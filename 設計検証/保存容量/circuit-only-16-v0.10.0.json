@@ -1,0 +1,952 @@
+{
+  "version": "0.10.0",
+  "checkedAt": "2026-10-12T20:43:15.758Z",
+  "evidence": "Actual PC localStorage QuotaExceededError from bounded synthetic padding in disposable contexts. No setItem replacement. Not disk exhaustion, physical phones, OS shutdown/eviction, or production.",
+  "browsers": [
+    {
+      "name": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "name": "webkit",
+      "channel": null,
+      "version": "26.5"
+    },
+    {
+      "name": "windows-chrome",
+      "channel": "chrome",
+      "version": "154.0.8037.99"
+    },
+    {
+      "name": "windows-edge",
+      "channel": "msedge",
+      "version": "155.0.4283.45"
+    }
+  ],
+  "checks": [
+    {
+      "browser": "chromium",
+      "label": "Bounded synthetic padding reaches actual browser localStorage quota without replacing setItem; existing circuits/score/history unchanged",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5239568,
+        "estimatedUTF16Bytes": 10482900,
+        "limitBytes": 16777216,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Actual quota prevents circuit save while preserving input and all existing circuits/score/history",
+      "message": "Failed to execute 'setItem' on 'Storage': Setting the value of 'prism-notes.circuits.v1' exceeded the quota.",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Fallback download during actual quota failure contains exact unsaved circuit and name, without erasing data",
+      "passed": true,
+      "requirements": [
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Removing only test padding permits retry in same form; new circuit reloads and prior circuits/score/history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Bounded synthetic padding reaches actual browser localStorage quota without replacing setItem; existing circuits/score/history unchanged",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85",
+          "prism-quota-fixture:86"
+        ],
+        "totalValueCharacters": 5238352,
+        "estimatedUTF16Bytes": 10480512,
+        "limitBytes": 16777216,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Actual quota prevents circuit save while preserving input and all existing circuits/score/history",
+      "message": "The quota has been exceeded.",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Fallback download during actual quota failure contains exact unsaved circuit and name, without erasing data",
+      "passed": true,
+      "requirements": [
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Removing only test padding permits retry in same form; new circuit reloads and prior circuits/score/history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Bounded synthetic padding reaches actual browser localStorage quota without replacing setItem; existing circuits/score/history unchanged",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5239568,
+        "estimatedUTF16Bytes": 10482900,
+        "limitBytes": 16777216,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Actual quota prevents circuit save while preserving input and all existing circuits/score/history",
+      "message": "Failed to execute 'setItem' on 'Storage': Setting the value of 'prism-notes.circuits.v1' exceeded the quota.",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Fallback download during actual quota failure contains exact unsaved circuit and name, without erasing data",
+      "passed": true,
+      "requirements": [
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Removing only test padding permits retry in same form; new circuit reloads and prior circuits/score/history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Bounded synthetic padding reaches actual browser localStorage quota without replacing setItem; existing circuits/score/history unchanged",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5239568,
+        "estimatedUTF16Bytes": 10482900,
+        "limitBytes": 16777216,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Actual quota prevents circuit save while preserving input and all existing circuits/score/history",
+      "message": "Failed to execute 'setItem' on 'Storage': Setting the value of 'prism-notes.circuits.v1' exceeded the quota.",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Fallback download during actual quota failure contains exact unsaved circuit and name, without erasing data",
+      "passed": true,
+      "requirements": [
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Removing only test padding permits retry in same form; new circuit reloads and prior circuits/score/history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-24"
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

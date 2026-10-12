@@ -1,6 +1,6 @@
 {
   "version": "0.10.0",
-  "checkedAt": "2026-10-12T20:43:15.758Z",
+  "checkedAt": "2026-10-12T20:48:44.186Z",
   "evidence": "Actual PC localStorage QuotaExceededError from bounded synthetic padding in disposable contexts. No setItem replacement. Not disk exhaustion, physical phones, OS shutdown/eviction, or production.",
   "browsers": [
     {
@@ -121,6 +121,7 @@
         "totalValueCharacters": 5239568,
         "estimatedUTF16Bytes": 10482900,
         "limitBytes": 16777216,
+        "finalTailAddedCharacters": 0,
         "failures": [
           {
             "name": "QuotaExceededError",
@@ -206,6 +207,12 @@
             "name": "QuotaExceededError",
             "code": 22,
             "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
           }
         ],
         "setItemReplaced": false
@@ -253,6 +260,455 @@
       ],
       "acceptance": [
         "AC-24"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Actual quota retains achieved Q2 result, inline retry and original best while retry still fails",
+      "passed": true,
+      "scoreRetryText": "2.5秒・0光線　達成 100.00点　成績1件未保存　成績を保存できませんでした。今回の結果と再試行候補は保持しています。",
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5238989,
+        "estimatedUTF16Bytes": 10481742,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 5,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Play continues on Q3 during actual quota; both unsaved candidates survive a failed menu retry",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Removing only padding allows both score retries; original best, circuits and guide history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Actual quota prevents skipped-to-completed guide history growth; practice and finish retry remain, with no false completion or lost data",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83"
+        ],
+        "totalValueCharacters": 5238830,
+        "estimatedUTF16Bytes": 10481336,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 14,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Guide finish retry after removing only padding restores original Q3 circuit/run/result and records completion without changing scores or circuits",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "chromium",
+      "label": "Reload retains recovered circuits, scores and independent guide outcomes without automatic challenge guide",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "F-024",
+        "NF-004"
+      ],
+      "acceptance": [
+        "AC-21",
+        "AC-26"
       ]
     },
     {
@@ -349,9 +805,10 @@
           "prism-quota-fixture:85",
           "prism-quota-fixture:86"
         ],
-        "totalValueCharacters": 5238352,
-        "estimatedUTF16Bytes": 10480512,
+        "totalValueCharacters": 5238365,
+        "estimatedUTF16Bytes": 10480538,
         "limitBytes": 16777216,
+        "finalTailAddedCharacters": 13,
         "failures": [
           {
             "name": "QuotaExceededError",
@@ -437,6 +894,12 @@
             "name": "QuotaExceededError",
             "code": 22,
             "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
           }
         ],
         "setItemReplaced": false
@@ -487,6 +950,456 @@
       ]
     },
     {
+      "browser": "webkit",
+      "label": "Actual quota retains achieved Q2 result, inline retry and original best while retry still fails",
+      "passed": true,
+      "scoreRetryText": "2.5秒・0光線　達成 100.00点　成績1件未保存　成績を保存できませんでした。今回の結果と再試行候補は保持しています。",
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84"
+        ],
+        "totalValueCharacters": 5237251,
+        "estimatedUTF16Bytes": 10478222,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 1,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Play continues on Q3 during actual quota; both unsaved candidates survive a failed menu retry",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Removing only padding allows both score retries; original best, circuits and guide history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Actual quota prevents skipped-to-completed guide history growth; practice and finish retry remain, with no false completion or lost data",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5237026,
+        "estimatedUTF16Bytes": 10477816,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 0,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Guide finish retry after removing only padding restores original Q3 circuit/run/result and records completion without changing scores or circuits",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "label": "Reload retains recovered circuits, scores and independent guide outcomes without automatic challenge guide",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "F-024",
+        "NF-004"
+      ],
+      "acceptance": [
+        "AC-21",
+        "AC-26"
+      ]
+    },
+    {
       "browser": "windows-chrome",
       "label": "Bounded synthetic padding reaches actual browser localStorage quota without replacing setItem; existing circuits/score/history unchanged",
       "passed": true,
@@ -582,6 +1495,7 @@
         "totalValueCharacters": 5239568,
         "estimatedUTF16Bytes": 10482900,
         "limitBytes": 16777216,
+        "finalTailAddedCharacters": 0,
         "failures": [
           {
             "name": "QuotaExceededError",
@@ -667,6 +1581,12 @@
             "name": "QuotaExceededError",
             "code": 22,
             "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
           }
         ],
         "setItemReplaced": false
@@ -714,6 +1634,455 @@
       ],
       "acceptance": [
         "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Actual quota retains achieved Q2 result, inline retry and original best while retry still fails",
+      "passed": true,
+      "scoreRetryText": "2.5秒・0光線　達成 100.00点　成績1件未保存　成績を保存できませんでした。今回の結果と再試行候補は保持しています。",
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5238989,
+        "estimatedUTF16Bytes": 10481742,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 5,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Play continues on Q3 during actual quota; both unsaved candidates survive a failed menu retry",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Removing only padding allows both score retries; original best, circuits and guide history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Actual quota prevents skipped-to-completed guide history growth; practice and finish retry remain, with no false completion or lost data",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83"
+        ],
+        "totalValueCharacters": 5238830,
+        "estimatedUTF16Bytes": 10481336,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 14,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Guide finish retry after removing only padding restores original Q3 circuit/run/result and records completion without changing scores or circuits",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "windows-chrome",
+      "label": "Reload retains recovered circuits, scores and independent guide outcomes without automatic challenge guide",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "F-024",
+        "NF-004"
+      ],
+      "acceptance": [
+        "AC-21",
+        "AC-26"
       ]
     },
     {
@@ -812,6 +2181,7 @@
         "totalValueCharacters": 5239568,
         "estimatedUTF16Bytes": 10482900,
         "limitBytes": 16777216,
+        "finalTailAddedCharacters": 0,
         "failures": [
           {
             "name": "QuotaExceededError",
@@ -897,6 +2267,12 @@
             "name": "QuotaExceededError",
             "code": 22,
             "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
           }
         ],
         "setItemReplaced": false
@@ -944,6 +2320,455 @@
       ],
       "acceptance": [
         "AC-24"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Actual quota retains achieved Q2 result, inline retry and original best while retry still fails",
+      "passed": true,
+      "scoreRetryText": "2.5秒・0光線　達成 100.00点　成績1件未保存　成績を保存できませんでした。今回の結果と再試行候補は保持しています。",
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83",
+          "prism-quota-fixture:84",
+          "prism-quota-fixture:85"
+        ],
+        "totalValueCharacters": 5238989,
+        "estimatedUTF16Bytes": 10481742,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 5,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Play continues on Q3 during actual quota; both unsaved candidates survive a failed menu retry",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Removing only padding allows both score retries; original best, circuits and guide history remain exact",
+      "passed": true,
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-21"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Actual quota prevents skipped-to-completed guide history growth; practice and finish retry remain, with no false completion or lost data",
+      "passed": true,
+      "padding": {
+        "names": [
+          "prism-quota-fixture:0",
+          "prism-quota-fixture:1",
+          "prism-quota-fixture:2",
+          "prism-quota-fixture:3",
+          "prism-quota-fixture:4",
+          "prism-quota-fixture:5",
+          "prism-quota-fixture:6",
+          "prism-quota-fixture:7",
+          "prism-quota-fixture:8",
+          "prism-quota-fixture:9",
+          "prism-quota-fixture:10",
+          "prism-quota-fixture:11",
+          "prism-quota-fixture:12",
+          "prism-quota-fixture:13",
+          "prism-quota-fixture:14",
+          "prism-quota-fixture:15",
+          "prism-quota-fixture:16",
+          "prism-quota-fixture:17",
+          "prism-quota-fixture:18",
+          "prism-quota-fixture:19",
+          "prism-quota-fixture:20",
+          "prism-quota-fixture:21",
+          "prism-quota-fixture:22",
+          "prism-quota-fixture:23",
+          "prism-quota-fixture:24",
+          "prism-quota-fixture:25",
+          "prism-quota-fixture:26",
+          "prism-quota-fixture:27",
+          "prism-quota-fixture:28",
+          "prism-quota-fixture:29",
+          "prism-quota-fixture:30",
+          "prism-quota-fixture:31",
+          "prism-quota-fixture:32",
+          "prism-quota-fixture:33",
+          "prism-quota-fixture:34",
+          "prism-quota-fixture:35",
+          "prism-quota-fixture:36",
+          "prism-quota-fixture:37",
+          "prism-quota-fixture:38",
+          "prism-quota-fixture:39",
+          "prism-quota-fixture:40",
+          "prism-quota-fixture:41",
+          "prism-quota-fixture:42",
+          "prism-quota-fixture:43",
+          "prism-quota-fixture:44",
+          "prism-quota-fixture:45",
+          "prism-quota-fixture:46",
+          "prism-quota-fixture:47",
+          "prism-quota-fixture:48",
+          "prism-quota-fixture:49",
+          "prism-quota-fixture:50",
+          "prism-quota-fixture:51",
+          "prism-quota-fixture:52",
+          "prism-quota-fixture:53",
+          "prism-quota-fixture:54",
+          "prism-quota-fixture:55",
+          "prism-quota-fixture:56",
+          "prism-quota-fixture:57",
+          "prism-quota-fixture:58",
+          "prism-quota-fixture:59",
+          "prism-quota-fixture:60",
+          "prism-quota-fixture:61",
+          "prism-quota-fixture:62",
+          "prism-quota-fixture:63",
+          "prism-quota-fixture:64",
+          "prism-quota-fixture:65",
+          "prism-quota-fixture:66",
+          "prism-quota-fixture:67",
+          "prism-quota-fixture:68",
+          "prism-quota-fixture:69",
+          "prism-quota-fixture:70",
+          "prism-quota-fixture:71",
+          "prism-quota-fixture:72",
+          "prism-quota-fixture:73",
+          "prism-quota-fixture:74",
+          "prism-quota-fixture:75",
+          "prism-quota-fixture:76",
+          "prism-quota-fixture:77",
+          "prism-quota-fixture:78",
+          "prism-quota-fixture:79",
+          "prism-quota-fixture:80",
+          "prism-quota-fixture:81",
+          "prism-quota-fixture:82",
+          "prism-quota-fixture:83"
+        ],
+        "totalValueCharacters": 5238830,
+        "estimatedUTF16Bytes": 10481336,
+        "limitBytes": 16777216,
+        "finalTailAddedCharacters": 14,
+        "failures": [
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 65536
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32768
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16384
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8192
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4096
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2048
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1024
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 512
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 256
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 128
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 64
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 32
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 16
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 8
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 4
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 2
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1
+          },
+          {
+            "name": "QuotaExceededError",
+            "code": 22,
+            "chunk": 1,
+            "phase": "grow-existing-key"
+          }
+        ],
+        "setItemReplaced": false
+      },
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Guide finish retry after removing only padding restores original Q3 circuit/run/result and records completion without changing scores or circuits",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "NF-003"
+      ],
+      "acceptance": [
+        "AC-26"
+      ]
+    },
+    {
+      "browser": "windows-edge",
+      "label": "Reload retains recovered circuits, scores and independent guide outcomes without automatic challenge guide",
+      "passed": true,
+      "requirements": [
+        "F-019",
+        "F-024",
+        "NF-004"
+      ],
+      "acceptance": [
+        "AC-21",
+        "AC-26"
       ]
     }
   ],
