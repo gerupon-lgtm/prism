@@ -1,0 +1,1006 @@
+{
+  "version": "0.8.0",
+  "checkedAt": "2026-10-12T19:00:58.975Z",
+  "evidence": "PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "label": "Closed-page prepared startup is served by the real worker with no reachable origin",
+      "requirements": [
+        "F-022",
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "fromServiceWorker": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Both three-step guides complete, restore original circuits, and never save practice scores",
+      "requirements": [
+        "F-019",
+        "F-021",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline synthetic score-write failure retains result and retry saves after recovery",
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Q1 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q1",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q2 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q2",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q3 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q3",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q4 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-012"
+      ],
+      "passed": true,
+      "challenge": "Q4",
+      "cases": 4
+    },
+    {
+      "engine": "chromium",
+      "label": "Q5 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-013"
+      ],
+      "passed": true,
+      "challenge": "Q5",
+      "cases": 3
+    },
+    {
+      "engine": "chromium",
+      "label": "Q6 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q6",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "All six scores persisted locally without a network connection",
+      "requirements": [
+        "F-024"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll",
+      "requirements": [
+        "F-020",
+        "NF-005"
+      ],
+      "passed": true,
+      "landscape": {
+        "viewport": [
+          844,
+          310
+        ],
+        "document": [
+          844,
+          310
+        ]
+      },
+      "physicalTouchVerified": false
+    },
+    {
+      "engine": "chromium",
+      "label": "Add/move/connect/direction and simultaneous faults; point deletion removes only its related path",
+      "requirements": [
+        "F-001",
+        "F-002",
+        "F-015",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Ten actual saves, canceled replacement, selected-only replacement, rename and load",
+      "requirements": [
+        "F-016",
+        "F-025"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Cancel and save-before-load preserve edits; invalid file rejected, circuit download round-trips, single slot deletion preserves scores",
+      "requirements": [
+        "F-017",
+        "F-018",
+        "F-026",
+        "NF-003",
+        "NF-007"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline synthetic circuit-write failure preserves all slots, exports a fallback file and saves after recovery",
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true,
+      "realCapacityVerified": false
+    },
+    {
+      "engine": "chromium",
+      "label": "Cyclic spread preserves branch/parent records and hand-calculated 4/5/7/8 arrivals, queue waits, pause/resume and stop",
+      "requirements": [
+        "F-004",
+        "F-005",
+        "F-007",
+        "F-008",
+        "F-010",
+        "F-011",
+        "NF-004"
+      ],
+      "passed": true,
+      "records": 116
+    },
+    {
+      "engine": "chromium",
+      "label": "Flow/target settings, dead end and unreachable target remain visible with all records; audio control API path checked separately",
+      "requirements": [
+        "F-002",
+        "F-006",
+        "F-020"
+      ],
+      "passed": true,
+      "audioSupport": {
+        "AudioContext": "function",
+        "webkitAudioContext": "undefined"
+      },
+      "listeningVerified": false
+    },
+    {
+      "engine": "chromium",
+      "label": "Measured synthetic render stall retains all particles, frozen clock and queue; every resumed record equals uninterrupted reference",
+      "requirements": [
+        "F-009",
+        "NF-002",
+        "NF-004"
+      ],
+      "passed": true,
+      "syntheticMilliseconds": 135,
+      "held": {
+        "status": "paused",
+        "pauseReason": "load",
+        "clock": "0",
+        "records": 6,
+        "retainedParticles": 3,
+        "active": 3,
+        "waiting": 0
+      },
+      "waiting": {
+        "status": "paused",
+        "pauseReason": null,
+        "clock": "0.5",
+        "records": 10,
+        "retainedParticles": 3,
+        "active": 3,
+        "waiting": 2
+      },
+      "records": 24,
+      "referenceRecords": 24
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline reload retains every saved slot/score/guide history; manual guide returns to the original mode",
+      "requirements": [
+        "F-019",
+        "F-023",
+        "NF-003",
+        "NF-004",
+        "NF-008"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "All observed app responses during offline flows and reload came from the worker",
+      "requirements": [
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:52190/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "label": "Closed-page prepared startup is served by the real worker with no reachable origin",
+      "requirements": [
+        "F-022",
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "fromServiceWorker": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Both three-step guides complete, restore original circuits, and never save practice scores",
+      "requirements": [
+        "F-019",
+        "F-021",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Offline synthetic score-write failure retains result and retry saves after recovery",
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Q1 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q1",
+      "cases": 0
+    },
+    {
+      "engine": "webkit",
+      "label": "Q2 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q2",
+      "cases": 0
+    },
+    {
+      "engine": "webkit",
+      "label": "Q3 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q3",
+      "cases": 0
+    },
+    {
+      "engine": "webkit",
+      "label": "Q4 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-012"
+      ],
+      "passed": true,
+      "challenge": "Q4",
+      "cases": 4
+    },
+    {
+      "engine": "webkit",
+      "label": "Q5 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-013"
+      ],
+      "passed": true,
+      "challenge": "Q5",
+      "cases": 3
+    },
+    {
+      "engine": "webkit",
+      "label": "Q6 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q6",
+      "cases": 0
+    },
+    {
+      "engine": "webkit",
+      "label": "All six scores persisted locally without a network connection",
+      "requirements": [
+        "F-024"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll",
+      "requirements": [
+        "F-020",
+        "NF-005"
+      ],
+      "passed": true,
+      "landscape": {
+        "viewport": [
+          844,
+          310
+        ],
+        "document": [
+          844,
+          310
+        ]
+      },
+      "physicalTouchVerified": false
+    },
+    {
+      "engine": "webkit",
+      "label": "Add/move/connect/direction and simultaneous faults; point deletion removes only its related path",
+      "requirements": [
+        "F-001",
+        "F-002",
+        "F-015",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Ten actual saves, canceled replacement, selected-only replacement, rename and load",
+      "requirements": [
+        "F-016",
+        "F-025"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Cancel and save-before-load preserve edits; invalid file rejected, circuit download round-trips, single slot deletion preserves scores",
+      "requirements": [
+        "F-017",
+        "F-018",
+        "F-026",
+        "NF-003",
+        "NF-007"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "Offline synthetic circuit-write failure preserves all slots, exports a fallback file and saves after recovery",
+      "requirements": [
+        "F-016",
+        "F-017",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true,
+      "realCapacityVerified": false
+    },
+    {
+      "engine": "webkit",
+      "label": "Cyclic spread preserves branch/parent records and hand-calculated 4/5/7/8 arrivals, queue waits, pause/resume and stop",
+      "requirements": [
+        "F-004",
+        "F-005",
+        "F-007",
+        "F-008",
+        "F-010",
+        "F-011",
+        "NF-004"
+      ],
+      "passed": true,
+      "records": 116
+    },
+    {
+      "engine": "webkit",
+      "label": "Flow/target settings, dead end and unreachable target remain visible with all records; audio control API path checked separately",
+      "requirements": [
+        "F-002",
+        "F-006",
+        "F-020"
+      ],
+      "passed": true,
+      "audioSupport": {
+        "AudioContext": "undefined",
+        "webkitAudioContext": "undefined"
+      },
+      "listeningVerified": false
+    },
+    {
+      "engine": "webkit",
+      "label": "Measured synthetic render stall retains all particles, frozen clock and queue; every resumed record equals uninterrupted reference",
+      "requirements": [
+        "F-009",
+        "NF-002",
+        "NF-004"
+      ],
+      "passed": true,
+      "syntheticMilliseconds": 135,
+      "held": {
+        "status": "paused",
+        "pauseReason": "load",
+        "clock": "0",
+        "records": 6,
+        "retainedParticles": 3,
+        "active": 3,
+        "waiting": 0
+      },
+      "waiting": {
+        "status": "paused",
+        "pauseReason": null,
+        "clock": "0.5",
+        "records": 10,
+        "retainedParticles": 3,
+        "active": 3,
+        "waiting": 2
+      },
+      "records": 24,
+      "referenceRecords": 24
+    },
+    {
+      "engine": "webkit",
+      "label": "Offline reload retains every saved slot/score/guide history; manual guide returns to the original mode",
+      "requirements": [
+        "F-019",
+        "F-023",
+        "NF-003",
+        "NF-004",
+        "NF-008"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "label": "All observed app responses during offline flows and reload came from the worker",
+      "requirements": [
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:52190/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/manifest.webmanifest",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/manifest.webmanifest",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        }
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "engine": "webkit",
+      "requirement": "F-020",
+      "label": "Actual offline audio synthesis/output",
+      "observed": {
+        "AudioContext": "undefined",
+        "webkitAudioContext": "undefined"
+      },
+      "reason": "Windows test engine has no audio context; physical Safari remains required."
+    }
+  ],
+  "errors": [],
+  "windowErrors": [],
+  "passed": true
+}

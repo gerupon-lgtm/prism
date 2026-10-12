@@ -1,0 +1,121 @@
+{
+  "version": "0.8.0",
+  "checkedAt": "2026-10-12T18:51:24.027Z",
+  "evidence": "PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "label": "Closed-page prepared startup is served by the real worker with no reachable origin",
+      "requirements": [
+        "F-022",
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "fromServiceWorker": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Both three-step guides complete, restore original circuits, and never save practice scores",
+      "requirements": [
+        "F-019",
+        "F-021",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Q1 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q1",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q2 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q2",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q3 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q3",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q4 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-012"
+      ],
+      "passed": true,
+      "challenge": "Q4",
+      "cases": 4
+    },
+    {
+      "engine": "chromium",
+      "label": "Q5 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-013"
+      ],
+      "passed": true,
+      "challenge": "Q5",
+      "cases": 3
+    },
+    {
+      "engine": "chromium",
+      "label": "Q6 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q6",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "All six scores persisted locally without a network connection",
+      "requirements": [
+        "F-024"
+      ],
+      "passed": true
+    }
+  ],
+  "pending": [],
+  "errors": [],
+  "windowErrors": [],
+  "passed": false,
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /^E1：/ })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"hint\">E1：ダブルタップで設定</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"dialog\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"dialog\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    55 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <dialog open=\"\" id=\"dialog\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at choose (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:28:109)\n    at async exercise (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:97:28)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:155:5"
+}
