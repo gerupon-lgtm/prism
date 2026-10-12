@@ -54,6 +54,34 @@ async function fit(page,label){
   assert(size.controls.every(b=>b.rect.left>=-1&&b.rect.right<=size.w+1&&b.rect.top>=-1&&b.rect.bottom<=size.h+1),`${label}: inaccessible controls`);
   report.checks.push({label,passed:true});
 }
+async function enlargedDialog(page,label){
+  const viewport=page.viewportSize(),original=await page.evaluate(()=>document.documentElement.getAttribute('style'));
+  try{
+    await page.evaluate(()=>document.documentElement.style.setProperty('font-size','28px','important'));
+    for(const [width,height] of [[390,664],[480,240],[844,310]]){
+      await page.setViewportSize({width,height});
+      const settlingFrames=await page.evaluate(async()=>{
+        await document.fonts.ready;let previous=null,stable=0;
+        for(let frame=1;frame<=60;frame++){
+          await new Promise(resolve=>requestAnimationFrame(resolve));
+          const signature=JSON.stringify([...document.querySelectorAll('dialog[open],dialog[open] *')].map(e=>{const r=e.getBoundingClientRect();return [e.className,e.hidden,e.textContent,r.x,r.y,r.width,r.height,e.scrollHeight,e.clientHeight];}));
+          stable=signature===previous?stable+1:0;previous=signature;if(stable>=3)return frame;
+        }
+        throw new Error('Dialog layout did not settle; do not treat moving geometry as passed');
+      });
+      const issues=await page.evaluate(()=>[...document.querySelectorAll('dialog[open],dialog[open] form,dialog[open] #dialog-body,dialog[open] #dialog-error,dialog[open] p,dialog[open] button,dialog[open] input')].filter(e=>e.getClientRects().length).flatMap(e=>{
+        const r=e.getBoundingClientRect(),name=e.id||e.textContent.slice(0,30),style=getComputedStyle(e);
+        const inside=r.left>=-.5&&r.right<=innerWidth+.5&&r.top>=-.5&&r.bottom<=innerHeight+.5;
+        const fits=e.scrollHeight<=e.clientHeight+1&&(e.matches('input')||e.scrollWidth<=e.clientWidth+1||style.textOverflow==='ellipsis');
+        return inside&&fits?[]:[{name,inside,fits,client:[e.clientWidth,e.clientHeight],scroll:[e.scrollWidth,e.scrollHeight],rect:r.toJSON(),children:[...e.children].map(child=>({tag:child.tagName,text:child.textContent,hidden:child.hidden,rect:child.getBoundingClientRect().toJSON()})),className:e.className}];
+      }));
+      report.checks.push({label:`${label} CSS root 28px ${width}x${height}`,passed:!issues.length,issues,settlingFrames,method:'CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails'});
+      assert.deepEqual(issues,[],`${label}: enlarged dialog does not fit`);
+    }
+  }finally{
+    await page.evaluate(style=>{if(style===null)document.documentElement.removeAttribute('style');else document.documentElement.setAttribute('style',style);},original);await page.setViewportSize(viewport);await settle(page);
+  }
+}
 async function drag(page,from,to){
   const box=async id=>page.locator(`[data-node="${id}"] .node-hit`).boundingBox();const a=await box(from),b=await box(to);
   await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
@@ -101,12 +129,26 @@ async function connection(context,engine,offline){
         const other=await context.newPage();await other.goto(url);await prepared(other);await other.locator('#home').click();await other.getByRole('button',{name:'自由へ',exact:true}).click();
         await other.locator('[data-node="A"] .node-hit').dblclick();await other.getByRole('button',{name:'時間',exact:true}).click();await other.getByRole('textbox',{name:'秒数'}).fill('2.7');
         await offline.locator('[data-node="A"] .node-hit').dblclick();await offline.getByRole('button',{name:'時間',exact:true}).click();await offline.getByRole('textbox',{name:'秒数'}).fill('1.7');await offline.getByRole('button',{name:'確定',exact:true}).click();
+        // Finish a synthetic preparation failure while its explanation is open.
+        // The return must read current worker state, not the captured checking view.
+        await menuItem(offline,'オフラインと更新');await offline.setViewportSize({width:480,height:240});await offline.evaluate(()=>document.documentElement.style.setProperty('font-size','28px','important'));await settle(offline);
+        await offline.evaluate(()=>{
+          const post=ServiceWorker.prototype.postMessage;window.__originalPreparationPost=post;let hold=true,fail=false;
+          ServiceWorker.prototype.postMessage=function(data,ports){
+            if(hold&&data.type==='STATUS'){hold=false;window.__releasePreparation=()=>{fail=true;ports[0].postMessage({ready:true,currentReady:true,currentVersion:document.querySelector('meta[name=prism-version]').content});};return;}
+            if(fail&&data.type==='PREPARE_ASSETS'){fail=false;window.__preparationFailed=true;throw new Error('Synthetic preparation failure');}
+            return post.call(this,data,ports);
+          };
+        });
+        await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>typeof window.__releasePreparation==='function');await offline.locator('#dialog-info').click();await offline.evaluate(()=>window.__releasePreparation());await offline.waitForFunction(()=>window.__preparationFailed===true);await status(offline);await settle(offline);
+        await offline.getByRole('button',{name:'戻る',exact:true}).click();assert((await offline.locator('#dialog-error').textContent()).includes('Synthetic preparation failure'),'Explanation return must expose the completed failure');await enlargedDialog(offline,`${engine} preparation completes while explanation is open`);
+        await offline.evaluate(()=>{ServiceWorker.prototype.postMessage=window.__originalPreparationPost;document.documentElement.style.removeProperty('font-size');});await offline.setViewportSize({width:390,height:664});await offline.locator('#dialog-close').click();
         current=1;await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.getByRole('button',{name:'更新へ',exact:true}).waitFor({timeout:15000});
-        assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),version);
-        await offline.getByRole('button',{name:'更新へ',exact:true}).click();await offline.getByRole('button',{name:'保存して更新へ',exact:true}).click();
+        assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),version);await enlargedDialog(offline,`${engine} update prepared status`);
+        await offline.getByRole('button',{name:'更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} dirty circuit update protection`);await offline.getByRole('button',{name:'保存せず更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} explicit discard confirmation`);await offline.getByRole('button',{name:'取消',exact:true}).click();await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'更新へ',exact:true}).click();await offline.getByRole('button',{name:'保存して更新へ',exact:true}).click();
         await offline.evaluate(()=>{window.oldSet=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='prism-notes.circuits.v1')throw new DOMException('Synthetic quota failure','QuotaExceededError');return window.oldSet.call(this,key,value);};});
         await offline.getByRole('textbox',{name:'回路名'}).fill('更新前の回路');await offline.getByRole('button',{name:'保存',exact:true}).click();assert((await offline.locator('#dialog-error').textContent()).length>0);assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),version);
-        await offline.evaluate(()=>{Storage.prototype.setItem=window.oldSet;});await offline.getByRole('button',{name:'保存',exact:true}).click();
+        await enlargedDialog(offline,`${engine} failed pre-update save retains form`);await offline.evaluate(()=>{Storage.prototype.setItem=window.oldSet;});await offline.getByRole('button',{name:'保存',exact:true}).click();await enlargedDialog(offline,`${engine} saved circuit final update confirmation`);
         await offline.evaluate(()=>{
           const post=ServiceWorker.prototype.postMessage;let delay=true;
           ServiceWorker.prototype.postMessage=function(data,ports){if(delay&&data.type==='STATUS'){delay=false;setTimeout(()=>post.call(this,data,ports),600);}else post.call(this,data,ports);};
@@ -125,7 +167,7 @@ async function connection(context,engine,offline){
         await connection(context,engine,true);const recovery=await context.newPage();const recovered=await recovery.goto(url);assert.equal(recovered.status(),503);assert((await recovery.locator('body').textContent()).includes('起動に必要な資材が不足'));assert.equal(await recovery.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await recovery.close();await connection(context,engine,false);
         await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await prepared(offline);assert.equal((await status(offline)).ready,true);
         current=2;await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>document.getElementById('dialog-error').textContent.length>0,{},{timeout:15000});assert.equal(await offline.getByRole('button',{name:'更新へ',exact:true}).count(),0);
-        assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));assert.equal(await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);
+        assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));assert.equal(await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await enlargedDialog(offline,`${engine} incomplete update error and old assets status`);
         await connection(context,engine,true);await offline.reload();assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));await prepared(offline);await fit(offline,`${engine} failed update old version offline`);
         report.checks.push({label:`${engine} cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data`,passed:true});assert.deepEqual(errors.filter(error=>!error.expectedStoppedOrigin),[]);assert.deepEqual(windowErrors,[]);
         await connection(context,engine,false);await context.close();

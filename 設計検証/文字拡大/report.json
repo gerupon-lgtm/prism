@@ -1,6 +1,6 @@
 {
-  "version": "0.7.0",
-  "checkedAt": "2026-10-12T18:04:17.488Z",
+  "version": "0.8.0",
+  "checkedAt": "2026-10-12T18:34:56.594Z",
   "evidence": "PC Chromium and installed Windows Chrome/Edge: native minimumFontSize=24/defaultFontSize=32, with independent probes. Windows Playwright WebKit: explicit CSS root-font 28px simulation. Does not prove OS, phone, or Safari text zoom. Native text input horizontal caret scrolling is allowed; page/hidden vertical scrolling is not.",
   "checks": [
     {
@@ -468,6 +468,681 @@
       "label": "chromium minimumFontSize=24 saved draft survives explanation and complete Unicode name paging",
       "passed": true,
       "characters": 460
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
     },
     {
       "label": "chromium minimumFontSize=24 empty records 320x480",
@@ -1112,6 +1787,681 @@
       "characters": 460
     },
     {
+      "label": "chromium defaultFontSize=32 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
+    },
+    {
       "label": "chromium defaultFontSize=32 empty records 320x480",
       "passed": true,
       "viewport": [
@@ -1752,6 +3102,681 @@
       "label": "windows-chrome minimumFontSize=24 saved draft survives explanation and complete Unicode name paging",
       "passed": true,
       "characters": 460
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
     },
     {
       "label": "windows-chrome minimumFontSize=24 empty records 320x480",
@@ -2396,6 +4421,681 @@
       "characters": 460
     },
     {
+      "label": "windows-chrome defaultFontSize=32 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
+    },
+    {
       "label": "windows-chrome defaultFontSize=32 empty records 320x480",
       "passed": true,
       "viewport": [
@@ -3036,6 +5736,681 @@
       "label": "windows-edge minimumFontSize=24 saved draft survives explanation and complete Unicode name paging",
       "passed": true,
       "characters": 460
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
     },
     {
       "label": "windows-edge minimumFontSize=24 empty records 320x480",
@@ -3680,6 +7055,681 @@
       "characters": 460
     },
     {
+      "label": "windows-edge defaultFontSize=32 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
+    },
+    {
       "label": "windows-edge defaultFontSize=32 empty records 320x480",
       "passed": true,
       "viewport": [
@@ -4320,6 +8370,681 @@
       "label": "webkit-css-simulation CSS-root-28px saved draft survives explanation and complete Unicode name paging",
       "passed": true,
       "characters": 460
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px saved circuit actions 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px saved circuit actions 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px rename form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px rename form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px delete confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px delete confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px prism and related edges deletion confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px prism and related edges deletion confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px unsaved load protection 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px unsaved load protection 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px offline preparation status 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px offline preparation status 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px full slots replacement list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px full slots replacement list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px replacement confirmation 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px replacement confirmation 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
     },
     {
       "label": "webkit-css-simulation CSS-root-28px empty records 320x480",

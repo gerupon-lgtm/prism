@@ -1,0 +1,178 @@
+{
+  "version": "0.8.0",
+  "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
+  "checks": [
+    {
+      "label": "chromium offline dialog 320x480",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 480x240",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 844x310",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 390x664",
+      "passed": true
+    },
+    {
+      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "passed": true
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets",
+      "passed": true
+    },
+    {
+      "label": "chromium incomplete update error and old assets status CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "method": "CSS simulation, not native OS or browser preferences"
+    },
+    {
+      "label": "chromium incomplete update error and old assets status CSS root 28px 480x240",
+      "passed": false,
+      "issues": [
+        {
+          "name": "dialog-body",
+          "inside": true,
+          "fits": false,
+          "client": [
+            446,
+            28
+          ],
+          "scroll": [
+            446,
+            36
+          ],
+          "rect": {
+            "x": 17,
+            "y": 70.1875,
+            "width": 446,
+            "height": 28.03125,
+            "top": 70.1875,
+            "right": 463,
+            "bottom": 98.21875,
+            "left": 17
+          }
+        }
+      ],
+      "method": "CSS simulation, not native OS or browser preferences"
+    }
+  ],
+  "errors": [],
+  "windowErrors": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: chromium incomplete update error and old assets status: enlarged dialog does not fit\n+ actual - expected\n\n+ [\n+   {\n+     client: [\n+       446,\n+       28\n+     ],\n+     fits: false,\n+     inside: true,\n+     name: 'dialog-body',\n+     rect: {\n+       bottom: 98.21875,\n+       height: 28.03125,\n+       left: 17,\n+       right: 463,\n+       top: 70.1875,\n+       width: 446,\n+       x: 17,\n+       y: 70.1875\n+     },\n+     scroll: [\n+       446,\n+       36\n+     ]\n+   }\n+ ]\n- []\n\n    at enlargedDialog (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_pwa.cjs:70:14)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_pwa.cjs:161:206"
+}

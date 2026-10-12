@@ -104,8 +104,7 @@ function listPage(items,makeRow,empty='まだありません。') {
   dialogPage=draw;requestAnimationFrame(draw);
 }
 new ResizeObserver(()=>{if(dialog.open){dialogLayout?.();dialogPage?.();}}).observe(body);
-function fitDialogForm(adapt=()=>{}){
-  const notes=[...body.children].filter(node=>node.tagName==='P');
+function fitDialogForm(adapt=()=>{},notes=[...body.children].filter(node=>node.tagName==='P'),restored=()=>{}){
   const layout=()=>{
     if(!dialog.open||dialogLayout!==layout)return;
     body.classList.remove('condensed-form');notes.forEach(node=>node.hidden=false);$('dialog-info').hidden=true;adapt(false);
@@ -117,7 +116,7 @@ function fitDialogForm(adapt=()=>{}){
   $('dialog-info').onclick=()=>{
     const saved={title:$('dialog-title').textContent,nodes:[...body.childNodes],actions:[...actions.childNodes],error:$('dialog-error').textContent,page:dialogPage,layout:dialogLayout};
     fullText('説明',notes.map(node=>node.textContent).join('\n'),()=>{
-      open(saved.title);body.append(...saved.nodes);actions.append(...saved.actions);$('dialog-error').textContent=saved.error;dialogPage=saved.page;dialogLayout=saved.layout;requestAnimationFrame(()=>{dialogLayout?.();dialogPage?.();});
+      open(saved.title);body.append(...saved.nodes);actions.append(...saved.actions);$('dialog-error').textContent=saved.error;dialogPage=saved.page;dialogLayout=saved.layout;restored();requestAnimationFrame(()=>{dialogLayout?.();dialogPage?.();});
     });
   };
   requestAnimationFrame(dialogLayout);
@@ -138,6 +137,7 @@ function replace(request) {
   if(session.mode==='free'&&session.dirty){
     open('現在の未保存回路');body.append(element('p','読み込み前に、現在の回路をどうしますか？'));
     actions.append(button('保存して入替',()=>saveForm(()=>{session.replace(request,{choice:'discard'});close();maybeGuide();})),button('保存せず入替',()=>{session.replace(request,{choice:'discard'});close();maybeGuide();}),button('取消',close));
+    fitDialogForm();
   }else{session.replace(request);close();maybeGuide();}
 }
 function maybeGuide() {
@@ -175,13 +175,15 @@ function saveForm(after=close,draftName=null) {
   const save=()=>{
     const slots=session.records.slots();
     if(slots.length<10){session.saveCircuit(input.value);after();}
-    else{const name=input.value;open('置換する回路を選ぶ');body.append(element('p','10枠が満杯です。置換する保存先を選んでください。'),button('保存名の全文',()=>fullText('保存名',name,()=>saveForm(after,name))));
+    else{const name=input.value;open('置換する回路を選ぶ');body.append(element('p',`10枠が満杯です。置換する保存先を選んでください。\n保存する名前：${name}`));
       listPage(slots,slot=>button(slot.name||'名前なし',()=>{
         confirmAction(`「${slot.name||'名前なし'}」を置換`,()=>{session.saveCircuit(name,{replaceId:slot.id});after();},()=>saveForm(after,name));
-        body.replaceChildren();body.append(element('p','選んだ保存枠だけを置き換えます。'),button('保存名の全文',()=>fullText('保存名',name,()=>saveForm(after,name))));
+        body.replaceChildren();body.append(element('p',`選んだ保存枠「${slot.name||'名前なし'}」だけを置き換えます。\n保存する名前：${name}`));
         actions.append(button('回路ファイル',()=>download('prism-notes-circuit.json',session.exportCircuit(name))));
+        fitDialogForm();
       }));
       actions.append(button('取消',()=>saveForm(after,name)));
+      fitDialogForm();
     }
   };
   input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(save);}});
@@ -189,8 +191,9 @@ function saveForm(after=close,draftName=null) {
   fitDialogForm(compact=>{$('dialog-title').textContent=compact?'回路名を保存':'回路を保存';});
 }
 function confirmAction(title,action,cancel=close) {
-  open(title);body.append(element('p','この対象を変更します。'));
+  open(title);body.append(element('p',`${title}\nこの対象を変更します。`));
   actions.append(button('確定',action),button('取消',cancel));
+  fitDialogForm();
 }
 function slots() {
   open('保存回路（10枠）');
@@ -218,6 +221,7 @@ function offlineStatus() {
   actions.replaceChildren(button('準備・更新を確認',()=>offline.prepare()),button('閉じる',close));
   if(update){body.append(element('p','更新版の準備ができました。適用するまで現在の画面を保持します。'));actions.prepend(button('更新へ',updateDialog));}
   $('dialog-error').textContent=error??'';
+  fitDialogForm(()=>{},[...body.querySelectorAll('p')].slice(1),offlineStatus);
 }
 function offlineDialog(){open('オフラインと更新');offlineStatus();}
 function updateDialog() {
@@ -233,11 +237,13 @@ function updateDialog() {
   else actions.append(button('更新を適用',()=>applyUpdate(false)));
   if(session.run?.records.length)body.append(button('実行記録を書き出す',()=>download('prism-notes-result.json',session.exportResult())));
   actions.append(button('取消',close));
+  fitDialogForm();
 }
 function confirmUpdate(discard) {
   open('更新を適用');body.append(element('p','現在の未保存回路と実行記録を閉じて更新します。保存済みの回路・成績・案内履歴は保持します。'));
   if(session.run?.records.length)body.append(button('実行記録を書き出す',()=>download('prism-notes-result.json',session.exportResult())));
   actions.append(button('更新を適用',()=>applyUpdate(discard)),button('取消',close));
+  fitDialogForm();
 }
 async function applyUpdate(discard) {
   if(updating)return;
@@ -281,6 +287,7 @@ function settings() {
     open(`${id}を削除`);body.append(element('p',node?`この点と、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
     listPage(related,path=>element('p',`${path.id}：${path.from} → ${path.to}`),'接続する道はありません。');
     actions.append(button('削除',()=>{session.remove(id,true);close();}),button('取消',close));
+    fitDialogForm();
   }]);
   listPage(items,item=>button(item[0],item[1]));actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
 }
