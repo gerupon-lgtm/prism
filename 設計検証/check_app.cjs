@@ -4,8 +4,8 @@ function arg(name){const index=process.argv.indexOf(name);return index<0?null:pr
 const library=arg('--playwright-path');if(!library)throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(path.resolve(library)),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'アプリ');fs.mkdirSync(out,{recursive:true});
-const report={version:'0.3.0',evidence:'PC Chromium/WebKit only. Real app actions with emulated viewport sizes. No real device or public deployment evidence.',checks:[]};
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.ttf':'font/ttf','.json':'application/json; charset=utf-8'};
+const report={version:JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version,evidence:'PC Chromium/WebKit only. Real app actions with emulated viewport sizes. No real device or public deployment evidence.',checks:[]};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.ttf':'font/ttf','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json','.png':'image/png','.svg':'image/svg+xml'};
 const server=http.createServer((request,response)=>{
   const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);let file=path.resolve(root,'.'+pathname);
   if(file!==root&&!file.startsWith(root+path.sep)){response.writeHead(403).end();return;}if(file===root)file=path.join(root,'index.html');

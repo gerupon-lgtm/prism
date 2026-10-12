@@ -35,10 +35,13 @@
 
 現在の証拠と未完成の範囲はdocs/implementation-status.mdを参照。計算・保存はsrc/core/、操作状態はsrc/app/、本アプリ画面はsrc/ui/とルートindex.html、テストはtests/。外部パッケージ不要のJavaScript ESモジュールで着手しており、基本設計時のTypeScriptは【想定】からの実装選択として記録する。
 
-- `npm.cmd test`：並列度1の計算・保存・操作状態テスト。最大5ファイルずつ、現在7ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
+- `npm.cmd test`：並列度1の計算・保存・操作状態・更新保護テスト。最大5ファイルずつ、現在9ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
 - `npm.cmd run check`：構文検査。
 - `npm.cmd run dev`：本アプリのローカルサーバー（http://127.0.0.1:4173）。
 - `npm.cmd run build`：dist/へ版付きの配信資材を生成。下位のモジュールとフォントも同じ版のディレクトリへ置き、古い資材の混在を避ける。表示版・package.json・index.htmlの更新値を合わせる。
 - `設計検証/check_app.cjs`：既存Playwrightを引数指定して本アプリをPC Chromium/WebKitで確認。設計用画面のcheck_screen_layout.cjsとは別。結果は設計検証/アプリ/。
+- `設計検証/check_pwa.cjs`：Pagesと同じ/prism/の配下で、実際のWorkerと保存資材を使い通信なしの再起動・更新失敗・別タブの状態保持を確認。WebKitの通信遮断模擬に既知の問題があるため、WebKitは配信元を停止して同じ対象を確認する。結果は設計検証/PWA/。生成したfixture-*はGitへ含めない。
+- `設計検証/check_public.cjs`：公開URL・版・全資材のハッシュと配信形式・ブラウザ操作を確認。結果は設計検証/公開/。公開確認を全対象実機の合格にしない。
+- `.github/workflows/pages.yml`：mainの配信対象変更で検査・自動テスト・版比較・ビルド後にdistだけをGitHub Pagesへ配信。保存データと設計資料は配信資材へ含めない。公開版以下の番号での再配信は拒否し、毎デプロイで表示版と資材版を更新する。
 
 全26機能・全対象環境を維持する。共通処理のテスト合格を、ゲーム画面・音・PWA・実機・公開の合格にしない。ユーザーの案.xlsxと既存の未採用試聴材料を実装の変更へ混ぜない。

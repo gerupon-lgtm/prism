@@ -6,6 +6,8 @@ import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
+import { Offline } from './offline.js';
+import { updateSafety } from '../app/update-safety.js';
 
 const $ = id => document.getElementById(id);
 function element(tag,text='',attributes={}) {
@@ -21,8 +23,9 @@ function button(text,action,attributes={}) {
 const storage={getItem:key=>window.localStorage.getItem(key),setItem:(key,value)=>window.localStorage.setItem(key,value)};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
-let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null;
+let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,updating=false;
 const board=new Board($('board'),session,render,settings,notify);
+const offline=new Offline(()=>{if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
 function notify(text) { message=text; render(false); }
 function attempt(action) {
@@ -39,9 +42,9 @@ function open(title) {
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
-function close() { dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
+function close() { if(updating)return;dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
 dialog.addEventListener('close',()=>{document.body.classList.remove('input-focus');dialogPage=null;render(false);});
-dialog.addEventListener('cancel',()=>{document.body.classList.remove('input-focus');});
+dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();return;}document.body.classList.remove('input-focus');});
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
 function render(redraw=true) {
@@ -119,6 +122,7 @@ function menu() {
     ['保存回路',slots],
     ['実行結果を書き出す',()=>download('prism-notes-result.json',session.exportResult())],
     ['成績未保存を再試行',pendingScores],
+    ['オフラインと更新',offlineDialog],
   ];
   if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
   if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
@@ -174,6 +178,49 @@ function pendingScores() {
   listPage([...session.pendingScores.entries()],([key,candidate])=>button(`${candidate.challenge} ${displayScore(candidate.score)}点`,()=>{
     if(!session.retryScore(key))throw new Error(session.scoreErrors.get(key));pendingScores();render(false);
   }),'未保存の成績はありません。');actions.append(button('閉じる',close));
+}
+
+function offlineStatus() {
+  const {ready,update,error,checking}=offline.state;
+  body.replaceChildren(element('p',checking?'資材を確認しています。':ready?'オフラインの準備が完了しています。':'オフラインの準備は未完了です。'),element('p','初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。'));
+  actions.replaceChildren(button('準備・更新を確認',()=>offline.prepare()),button('閉じる',close));
+  if(update){body.append(element('p','更新版の準備ができました。適用するまで現在の画面を保持します。'));actions.prepend(button('更新へ',updateDialog));}
+  $('dialog-error').textContent=error??'';
+}
+function offlineDialog(){open('オフラインと更新');offlineStatus();}
+function updateDialog() {
+  const safety=updateSafety(session);open('更新の前に');body.append(element('p',safety.message));
+  if(safety.kind==='guide')actions.append(button('案内を閉じて戻る',()=>{session.endGuide('interrupted');updateDialog();}));
+  else if(safety.kind==='running')actions.append(button('停止して更新へ',()=>{session.stop();chime.stop();clockAnchor=null;updateDialog();}));
+  else if(safety.kind==='scores')actions.append(button('成績の保存を再試行',()=>{
+    for(const key of session.pendingScores.keys())session.retryScore(key);
+    if(session.pendingScores.size)throw new Error('成績を保存できません。現在の結果と再試行候補を保持し、更新を延期します。');
+    updateDialog();
+  }));
+  else if(safety.kind==='circuit')actions.append(button('保存して更新へ',()=>saveForm(updateDialog)),button('保存せず更新へ',()=>confirmUpdate(true)));
+  else actions.append(button('更新を適用',()=>applyUpdate(false)));
+  if(session.run?.records.length)body.append(button('実行記録を書き出す',()=>download('prism-notes-result.json',session.exportResult())));
+  actions.append(button('取消',close));
+}
+function confirmUpdate(discard) {
+  open('更新を適用');body.append(element('p','現在の未保存回路と実行記録を閉じて更新します。保存済みの回路・成績・案内履歴は保持します。'));
+  if(session.run?.records.length)body.append(button('実行記録を書き出す',()=>download('prism-notes-result.json',session.exportResult())));
+  actions.append(button('更新を適用',()=>applyUpdate(discard)),button('取消',close));
+}
+async function applyUpdate(discard) {
+  if(updating)return;
+  const safety=updateSafety(session);
+  if(safety.kind!=='confirm'&&!(discard&&safety.kind==='circuit')){updateDialog();return;}
+  // Keep the confirmation modal open while asynchronous worker checks run.
+  // No edit, close, escape or duplicate apply can invalidate that confirmation.
+  updating=true;$('app').inert=true;
+  const approvedCircuit=session.circuit;
+  const controls=[...dialog.querySelectorAll('button')];controls.forEach(control=>control.disabled=true);
+  try{await offline.apply(()=>{
+    const current=updateSafety(session);
+    return session.circuit===approvedCircuit&&(current.kind==='confirm'||(discard&&current.kind==='circuit'));
+  });}
+  catch(error){updating=false;$('app').inert=false;controls.forEach(control=>control.disabled=false);throw error;}
 }
 
 function settings() {
@@ -315,3 +362,4 @@ $('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('co
 document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 function viewport(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??innerHeight}px`);}
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);viewport();render();maybeGuide();
+if(offline.enabled)offline.prepare();
