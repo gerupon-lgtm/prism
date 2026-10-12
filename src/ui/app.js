@@ -29,7 +29,16 @@ const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null;
 const board=new Board($('board'),session,render,settings,notify);
 const orientation=new OrientationLayout($('app'));
-const offline=new Offline(()=>{if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
+const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
+
+function updateNotice(){ $('update-notice').hidden=!offline.state.update; }
+
+document.addEventListener('click',event=>{
+  const target=event.target.closest('button');if(!target||target.disabled)return;
+  target.classList.remove('button-response');void target.offsetWidth;target.classList.add('button-response');
+  if(target.id!=='sound')chime.tap();
+});
+document.addEventListener('animationend',event=>{if(event.animationName==='button-response')event.target.classList.remove('button-response');});
 
 function notify(text) { message=text; render(false); }
 function attempt(action) {
@@ -42,7 +51,7 @@ function failure(error) {
 }
 function open(title) {
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -63,16 +72,19 @@ function render(redraw=true,{records=true}={}) {
   $('clear-wires').textContent=canRestore?'戻す':textEnlarged?'消去':'クリア';$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
   $('clear-wires').disabled=!session.editable||(!canRestore&&!session.circuit.edges.length);
   $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
-  $('magnifier-toggle').textContent=textEnlarged?'補助':'拡大補助';
+  $('magnifier-toggle').textContent=textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
   $('condition').textContent=session.mode==='challenge'?`${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${session.challenge.type==='interval'?`・${session.challenge.interval}秒間隔で${session.challenge.count}回`:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
+  for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
   $('play').textContent=session.editable?'流す':run.status==='running'?'一時停止':'再開';
   $('play').disabled=!session.editable&&run.exhausted;
   $('stop').disabled=session.editable;$('next').disabled=!run||run.status!=='paused'||run.exhausted;
+  $('play').dataset.state=run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
+  $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
   $('sound').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));
   let text=run?`${run.format()}秒・${run.activeCount}光線`:'';
   if(session.result){
@@ -167,7 +179,20 @@ function menu() {
   ];
   if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
   if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
-  listPage(items,item=>button(item[0],item[1]));actions.append(button('閉じる',close));
+  const short=['遊ぶ','案内','一覧','回路','結果','成績','更新'];
+  const aliases=new Map(['課題と自由','操作の案内','点と道の一覧','保存回路','実行結果を書き出す','成績未保存を再試行','オフラインと更新'].map((name,index)=>[name,short[index]]));
+  [['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
+  dialog.classList.add('menu-dialog');body.className='menu-grid';
+  const entries=items.map(([name,action])=>button(name,action));body.append(...entries);actions.append(button('閉じる',close));
+  const layout=()=>{
+    if(!dialog.open||dialogLayout!==layout)return;
+    const height=Math.max(...entries.map(entry=>entry.getBoundingClientRect().height));
+    const rows=Math.max(1,Math.floor((body.clientHeight+6)/(height+5))),columns=Math.max(2,Math.ceil(entries.length/rows));
+    body.style.setProperty('--menu-columns',columns);
+    entries.forEach((entry,index)=>{entry.textContent=items[index][0];});
+    entries.forEach((entry,index)=>{if(entry.scrollWidth>entry.clientWidth+1)entry.textContent=aliases.get(items[index][0])??items[index][0];});
+  };
+  dialogLayout=layout;requestAnimationFrame(layout);
 }
 function download(name,data) {
   const url=load.measure('records',()=>URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})));
@@ -431,9 +456,13 @@ function frame(now){
     try{
       const entries=load.measure('calculation',()=>session.advance(run.circuit.time.format(ticks),{shouldPause:()=>load.calculationExceeded()}));
       reactions(entries);load.measure('display',()=>render(false,{records:false}));
+      load.measure('audio',()=>{
+        let moving=false;if(run.status==='running')for(const particle of run.particles.values())if(particle.status==='moving'){moving=true;break;}
+        chime.motion(moving);
+      });
       if(!$('records-panel').hidden)load.measure('records',renderRecords);
       finishLoad();
-    }catch(error){load.current=null;session.pause('error');notify(error.message);}
+    }catch(error){load.current=null;session.pause('error');chime.stop();clockAnchor=null;notify(error.message);}
   }
   requestAnimationFrame(frame);
 }
@@ -450,7 +479,8 @@ $('records').addEventListener('click',()=>attempt(showRecords));$('close-records
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
-$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted)await chime.enable();else chime.mute();render(false);}));
+$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
+$('update-notice').addEventListener('click',()=>attempt(updateDialog));
 $('retry-result').addEventListener('click',()=>{
   let failed=false;
   for(const key of session.pendingScores.keys())if(!session.retryScore(key))failed=true;

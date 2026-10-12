@@ -146,7 +146,17 @@ async function connection(context,engine,offline){
         await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>typeof window.__releasePreparation==='function');await offline.locator('#dialog-info').click();await offline.evaluate(()=>window.__releasePreparation());await offline.waitForFunction(()=>window.__preparationFailed===true);await status(offline);await settle(offline);
         await offline.getByRole('button',{name:'戻る',exact:true}).click();assert((await offline.locator('#dialog-error').textContent()).includes('Synthetic preparation failure'),'Explanation return must expose the completed failure');await enlargedDialog(offline,`${engine} preparation completes while explanation is open`);
         await offline.evaluate(()=>{ServiceWorker.prototype.postMessage=window.__originalPreparationPost;document.documentElement.style.removeProperty('font-size');});await offline.setViewportSize({width:390,height:664});await offline.locator('#dialog-close').click();
-        current=1;await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.getByRole('button',{name:'更新へ',exact:true}).waitFor({timeout:15000});
+        current=1;
+        const startup=await context.newPage();observeErrors(startup);await startup.goto(url);await prepared(startup);
+        await startup.locator('#update-notice').waitFor({state:'visible',timeout:15000});
+        assert.equal(await startup.locator('meta[name=prism-version]').getAttribute('content'),version);
+        assert.equal(await startup.evaluate(()=>document.querySelector('dialog').open),false,'Startup update must not interrupt play');
+        assert.equal(await startup.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);
+        assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');
+        await startup.locator('#update-notice').click();assert.equal(await startup.locator('#dialog-title').textContent(),'更新の前に');await startup.getByRole('button',{name:'取消',exact:true}).click();
+        assert.equal(await startup.locator('meta[name=prism-version]').getAttribute('content'),version);await startup.close();
+        report.checks.push({label:`${engine} startup automatically prepares update, unobtrusive notice, user cancels without reload/data change`,passed:true});
+        await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.getByRole('button',{name:'更新へ',exact:true}).waitFor({timeout:15000});
         assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),version);await enlargedDialog(offline,`${engine} update prepared status`);
         await offline.getByRole('button',{name:'更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} dirty circuit update protection`);await offline.getByRole('button',{name:'保存せず更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} explicit discard confirmation`);await offline.getByRole('button',{name:'取消',exact:true}).click();await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'更新へ',exact:true}).click();await offline.getByRole('button',{name:'保存して更新へ',exact:true}).click();
         await offline.evaluate(()=>{window.oldSet=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='prism-notes.circuits.v1')throw new DOMException('Synthetic quota failure','QuotaExceededError');return window.oldSet.call(this,key,value);};});
