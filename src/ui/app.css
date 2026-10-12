@@ -33,3 +33,59 @@ dialog{width:min(480px,calc(100vw - 18px));max-width:calc(100vw - 18px);height:m
 .text-enlarged:not(.compact) #stage:has(#add-controls:not([hidden])){row-gap:.5rem}
 #dialog-actions button{flex:1 1 auto}
 @media(max-height:360px){dialog{height:calc(var(--app-height) - 12px);max-height:calc(var(--app-height) - 12px)}}
+
+/* Keep the portrait frame on the device. Only its readable content counter-rotates. */
+:root{--layout-width:100vw;--layout-height:var(--app-height);--ui-rotation:0deg;--safe-top:env(safe-area-inset-top);--safe-right:env(safe-area-inset-right);--safe-bottom:env(safe-area-inset-bottom);--safe-left:env(safe-area-inset-left)}
+body{height:var(--app-height)}
+#app{position:absolute;left:0;top:0;width:var(--layout-width);height:var(--layout-height);max-width:none;margin:0;transform-origin:0 0;padding:max(6px,var(--safe-top)) max(7px,var(--safe-right)) max(5px,var(--safe-bottom)) max(7px,var(--safe-left))}
+.device-landscape{--safe-top:env(safe-area-inset-right);--safe-right:env(safe-area-inset-bottom);--safe-bottom:env(safe-area-inset-left);--safe-left:env(safe-area-inset-top)}
+.device-left{--safe-top:env(safe-area-inset-left);--safe-right:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-right);--safe-left:env(safe-area-inset-bottom)}
+.device-inverted{--safe-top:env(safe-area-inset-bottom);--safe-right:env(safe-area-inset-left);--safe-bottom:env(safe-area-inset-top);--safe-left:env(safe-area-inset-right)}
+.orientation-content{display:flex;flex:1;min-width:0;min-height:0;gap:inherit;align-items:inherit;justify-content:inherit}
+.records-content{width:100%;height:100%;flex-direction:column;gap:5px}
+.footer-content>span:last-child{white-space:nowrap}
+.app-version{white-space:nowrap}
+header> .header-content>button:last-child{min-width:38px}
+.device-landscape .orientation-region{position:relative}
+.device-landscape .orientation-content{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(var(--ui-rotation));align-items:stretch}
+.device-landscape .header-content,.device-landscape .play-content,.device-landscape .zoom-content,.device-landscape .add-content,.device-landscape .guide-content,.device-landscape .result-content,.device-landscape .footer-content{flex-direction:column}
+.device-left .header-content,.device-left .play-content,.device-left .zoom-content,.device-left .add-content,.device-left .guide-content,.device-left .result-content,.device-left .footer-content{flex-direction:column-reverse}
+.device-landscape header{height:clamp(70px,calc(2.7 * var(--layout-font)),100px)}
+.device-landscape .header-content .logo{width:100%;max-width:100px;align-self:center;height:38px;min-height:38px}
+.device-landscape .heading-title{justify-content:center}
+.device-landscape .header-content .heading{width:100%;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.device-landscape .heading strong{white-space:nowrap}
+.device-landscape #workspace{flex-direction:column}
+.device-landscape #records-panel{width:100%;height:38%;min-height:110px}
+.device-landscape #play-controls{height:clamp(54px,calc(4.2 * var(--layout-font)),130px)}
+.device-landscape #play-controls button{min-height:0;padding:4px 2px}
+.device-landscape #result-line{height:clamp(70px,calc(3.8 * var(--layout-font)),130px)}
+.device-landscape .result-content{justify-content:center}
+.device-landscape #result{flex:none}
+.device-landscape #guide-bar{height:clamp(95px,7rem,160px)}
+.device-landscape .guide-content{align-items:center;justify-content:center}
+.device-landscape #guide-text{flex:none;width:100%}
+.device-landscape footer{height:clamp(50px,calc(4.2 * var(--layout-footer-font)),140px)}
+.device-landscape .footer-content{justify-content:space-between}
+.device-landscape .footer-content>span:last-child{white-space:normal;text-align:center}
+.device-landscape #hint{text-align:center;white-space:normal;overflow-wrap:anywhere;overflow:visible}
+.device-landscape .text-enlarged #hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.device-landscape #stage-controls{display:contents}
+.device-landscape #add-controls,.device-landscape .zoom-controls{position:absolute;width:calc(100% - 12px);max-width:calc(11 * var(--layout-font) + 12px);height:clamp(34px,calc(3.5 * var(--layout-font)),110px);padding:0;flex:none}
+.device-landscape #stage-controls button{flex:1;min-height:0;padding:2px;font-size:.857143rem;white-space:nowrap}
+.device-landscape .compact #stage-controls{display:contents}
+.device-landscape .text-enlarged:not(.compact) #stage{grid-template-rows:auto minmax(0,1fr)}
+.device-landscape .text-enlarged:not(.compact) #board{grid-row:2}
+.device-landscape .text-enlarged:not(.compact) #add-controls{position:relative;left:0;top:0;grid-row:1;padding:0;width:100%;max-width:none;height:clamp(34px,calc(3.5 * var(--layout-font)),110px)}
+.device-landscape body.records-fullscreen #workspace{position:absolute;inset:6px}
+.device-landscape body.records-fullscreen #records-panel{height:100%;min-height:0}
+.device-inverted .orientation-content{transform:rotate(180deg)}
+.device-inverted .header-content,.device-inverted .play-content,.device-inverted .zoom-content,.device-inverted .add-content,.device-inverted .guide-content,.device-inverted .result-content,.device-inverted .footer-content{flex-direction:row-reverse}
+.device-inverted .records-content{flex-direction:column-reverse}
+.device-landscape body:not(.records-fullscreen) .text-enlarged .records-content>.panel-heading{flex-wrap:wrap}
+.device-landscape body:not(.records-fullscreen) .text-enlarged #record-title{flex-basis:100%;min-width:0}
+.device-landscape body:not(.records-fullscreen) .text-enlarged .records-content>.panel-heading button{flex:1;min-width:0;padding:3px 1px}
+.device-landscape body:not(.records-fullscreen) .text-enlarged .records-content>.pager{flex-wrap:wrap}
+.device-landscape body:not(.records-fullscreen) .text-enlarged .records-content>.pager span{order:-1;flex-basis:100%;text-align:center}
+.device-landscape body:not(.records-fullscreen) .text-enlarged .records-content>.pager button{flex:1;min-width:0;padding:3px 1px}
+body.records-fullscreen #app>:not(#workspace){display:none}

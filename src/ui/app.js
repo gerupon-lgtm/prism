@@ -9,6 +9,7 @@ import { Chime } from './audio.js';
 import { Offline } from './offline.js';
 import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
+import { OrientationLayout } from './orientation.js';
 
 const $ = id => document.getElementById(id);
 function element(tag,text='',attributes={}) {
@@ -27,6 +28,7 @@ const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false;
 const board=new Board($('board'),session,render,settings,notify);
+const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
 function notify(text) { message=text; render(false); }
@@ -50,10 +52,13 @@ dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();ret
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
 function render(redraw=true,{records=true}={}) {
-  const textEnlarged=parseFloat(getComputedStyle(document.documentElement).fontSize)>=20,compact=innerHeight<=360&&textEnlarged;
+  const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=360&&textEnlarged;
+  document.documentElement.style.setProperty('--layout-font',`${readableFont}px`);
+  document.documentElement.style.setProperty('--layout-footer-font',getComputedStyle(document.querySelector('footer')).fontSize);
   $('app').classList.toggle('text-enlarged',textEnlarged);
   $('app').classList.toggle('compact',compact);
-  $('add-prism').textContent=compact?'◇＋':'＋プリズム';$('add-goal').textContent=compact?'祭壇＋':'＋祭壇';
+  const narrowControls=compact||Math.abs(orientation.rotation)===90;
+  $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'祭壇＋':'＋祭壇';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
@@ -337,9 +342,11 @@ const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐
 function showRecords(){session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
 function resizeRecords(){
   document.body.classList.remove('records-fullscreen');
+  orientation.syncRegions();
   const minimum=parseFloat(getComputedStyle($('record-list')).fontSize)*1.4+8;
   const empty=$('record-list').querySelector('p');
   if($('record-list').getBoundingClientRect().height<Math.max(minimum,empty?.getBoundingClientRect().height??0)||$('stage').getBoundingClientRect().height<70)document.body.classList.add('records-fullscreen');
+  orientation.syncRegions();
   const list=$('record-list'),space=list.getBoundingClientRect().height,probe=button('0s #0 到着',()=>{},{class:'record-row'});
   list.replaceChildren(probe);const height=probe.getBoundingClientRect().height,gap=parseFloat(getComputedStyle(list).gap)||0;
   recordCapacity=Math.max(1,Math.floor((space+gap)/(height+gap)));renderRecords();
@@ -459,8 +466,11 @@ $('hint').addEventListener('click',()=>{
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
-function viewport(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??innerHeight}px`);render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);}
-window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);viewport();render();maybeGuide();
+function viewport(){
+  orientation.update({width:window.visualViewport?.width??innerWidth,height:window.visualViewport?.height??innerHeight,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
+  board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
+}
+window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);screen.orientation?.addEventListener('change',viewport);window.addEventListener('orientationchange',viewport);viewport();render();maybeGuide();
 if(offline.enabled)offline.prepare();
 
 // Local inspection for performance verification; never stores or uploads data.

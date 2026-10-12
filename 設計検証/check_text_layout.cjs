@@ -3,7 +3,8 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'文字拡大');fs.mkdirSync(out,{recursive:true});
+const selected=arg('--configuration');
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'文字拡大',selected||'');fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version;
 const report={version,checkedAt:new Date().toISOString(),evidence:'PC Chromium and installed Windows Chrome/Edge: native minimumFontSize=24/defaultFontSize=32, with independent probes. Windows Playwright WebKit: explicit CSS root-font 28px simulation. Does not prove OS, phone, or Safari text zoom. Native text input horizontal caret scrolling is allowed; page/hidden vertical scrolling is not.',checks:[]};
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.ttf':'font/ttf','.png':'image/png','.webmanifest':'application/manifest+json'};
@@ -17,13 +18,15 @@ async function audit(page,label){
   const add=document.getElementById('add-controls'),source=document.querySelector('.source .node-name');if(!document.querySelector('dialog[open]')&&add.getClientRects().length&&source?.getClientRects().length&&getComputedStyle(add).visibility!=='hidden'&&!document.body.classList.contains('records-fullscreen')){const a=add.getBoundingClientRect(),s=source.getBoundingClientRect();if(a.left<s.right&&a.right>s.left&&a.top<s.bottom&&a.bottom>s.top)issues.push({kind:'source-label-covered-by-add-controls',control:[a.left,a.top,a.right,a.bottom],source:[s.left,s.top,s.right,s.bottom]});}
   return {viewport:[innerWidth,innerHeight],rootFont:getComputedStyle(document.documentElement).fontSize,playFont:getComputedStyle(document.getElementById('play')).fontSize,issues};
  });report.checks.push({label,passed:!measure.issues.length,...measure});
+ if(measure.issues.length&&!report.failureLayout){report.failureLayout={label,items:await page.locator('#app,#workspace,#stage,#records-panel,.records-content,#record-list,.record-row,.panel-heading,.pager,.pager>*').evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect();return {id:e.id||e.className,text:e.textContent.slice(0,60),rect:[r.left,r.top,r.right,r.bottom],client:[e.clientWidth,e.clientHeight],scroll:[e.scrollWidth,e.scrollHeight]};}))};await page.screenshot({path:path.join(out,'failed-layout.png')});}
 }
 async function sizes(page,label){for(const [width,height]of [[320,480],[390,664],[480,240],[844,310]]){await page.setViewportSize({width,height});await audit(page,`${label} ${width}x${height}`);}await page.setViewportSize({width:390,height:664});await settle(page);}
 async function choose(page,name){await settle(page);for(let i=0;i<50;i++){const button=page.getByRole('button',{name,exact:true});if(await button.count()){await button.click();await settle(page);return;}const next=page.locator('#dialog-body .pager button').last();assert(!(await next.isDisabled()),`Missing ${name}: ${await page.locator('#dialog-title').textContent()} ${await page.locator('#dialog-body').innerText()}`);await next.click();await settle(page);}throw new Error('Fixture paging limit');}
 async function readFull(page,label){const pieces=[];for(let n=0;n<100;n++){await audit(page,`${label} page ${n+1}`);pieces.push(...await page.locator('#dialog-body .detail-value').allTextContents());const next=page.locator('#dialog-body .pager button').last();if(await next.isDisabled())return pieces.join('');await next.click();await settle(page);}throw new Error('Fixture full text paging limit');}
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const url=`http://127.0.0.1:${server.address().port}/`;try{
  const configurations=[{name:'chromium',type:pw.chromium,options:{}},{name:'windows-chrome',type:pw.chromium,options:{channel:'chrome'}},{name:'windows-edge',type:pw.chromium,options:{channel:'msedge'}},{name:'webkit-css-simulation',type:pw.webkit,options:{},css:true}];
- for(const config of configurations)for(const setting of config.css?['CSS-root-28px']:['minimumFontSize=24','defaultFontSize=32']){
+ if(selected)assert(configurations.some(c=>c.name===selected),'Unknown diagnostic configuration');
+ for(const config of configurations.filter(c=>!selected||c.name===selected))for(const setting of config.css?['CSS-root-28px']:['minimumFontSize=24','defaultFontSize=32']){
   const pref=`${config.name} ${setting}`,browser=await config.type.launch({headless:true,...config.options,...(config.css?{}:{args:[`--blink-settings=${setting}`]})});try{
    const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.setContent('<span id="probe">MMMMMMMM</span><span id="fixed" style="font-size:12px">MMMMMMMM</span>');

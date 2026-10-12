@@ -1,0 +1,6561 @@
+{
+  "version": "0.10.0",
+  "checkedAt": "2026-10-12T20:03:55.476Z",
+  "evidence": "PC Chromium and installed Windows Chrome/Edge: native minimumFontSize=24/defaultFontSize=32, with independent probes. Windows Playwright WebKit: explicit CSS root-font 28px simulation. Does not prove OS, phone, or Safari text zoom. Native text input horizontal caret scrolling is allowed; page/hidden vertical scrolling is not.",
+  "checks": [
+    {
+      "label": "chromium minimumFontSize=24 independent setting probe",
+      "passed": true,
+      "probe": {
+        "natural": "24px",
+        "fixed": "24px"
+      },
+      "browser": "151.0.7922.34",
+      "method": "native engine preference"
+    },
+    {
+      "label": "chromium minimumFontSize=24 guide 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 guide 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 guide 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            128
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "案内 1/3 起点から候補へドラッグしてつなぎます",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            404
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            482
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 guide 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "案内 1/3 起点から候補へドラッグしてつなぎます",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            225
+          ],
+          "scroll": [
+            52,
+            404
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            482
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 play 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 play 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 play 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            128
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 play 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            225
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact guide instruction page 1",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            128
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "案内 1/3 起点から候補へドラッグしてつなぎます",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            404
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            482
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact guide instruction page 2",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            128
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "案内 1/3 起点から候補へドラッグしてつなぎます",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            404
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            482
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 guide dismissal returns to play",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            128
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact Q6 conditions page 1",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            179
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact Q6 conditions page 2",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            179
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact Q6 conditions page 3",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            179
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 mode list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 mode list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 mode list 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            179
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 mode list 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            214
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            225
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 free play 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 free play 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 free play 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 free play 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            225
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact current conditions page 1",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 flow form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 flow form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 flow form 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 flow form 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            225
+          ],
+          "scroll": [
+            52,
+            236
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            314
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 invalid time 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 invalid time 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 invalid time 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            280
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 invalid time 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact time adjustment and confirmation",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            280
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 save form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 save form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 save form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 save form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact save explanation",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full long name 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full long name 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full long name 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 full long name 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved draft survives explanation and complete Unicode name paging",
+      "passed": true,
+      "characters": 460
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 saved circuit actions 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 rename form 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 delete confirmation 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete deletion identity page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 prism and related edges deletion confirmation 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 unsaved load protection 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 offline preparation status 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 full slots replacement list 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete pending replacement name page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            270
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            266
+          ],
+          "scroll": [
+            224,
+            269
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 replacement confirmation 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            296,
+            632
+          ],
+          "scroll": [
+            296,
+            634
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            630
+          ],
+          "scroll": [
+            294,
+            633
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 1",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 2",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 3",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 4",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 5",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 6",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 7",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 8",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 9",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete old and new replacement names page 10",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 load/delete/replacement cancellation preserves all ten fixtures and unsaved edits",
+      "passed": true
+    },
+    {
+      "label": "chromium minimumFontSize=24 empty records 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 empty records 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 empty records 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            226,
+            84
+          ],
+          "scroll": [
+            3971,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            122
+          ],
+          "scroll": [
+            84,
+            3924
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            226,
+            268
+          ],
+          "scroll": [
+            226,
+            315
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            224,
+            150
+          ],
+          "scroll": [
+            224,
+            153
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "records-panel",
+          "kind": "content",
+          "client": [
+            224,
+            108
+          ],
+          "scroll": [
+            224,
+            156
+          ]
+        },
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            100,
+            14
+          ],
+          "scroll": [
+            100,
+            135
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            39
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            226,
+            52
+          ],
+          "scroll": [
+            227,
+            79
+          ]
+        },
+        {
+          "name": "hint",
+          "kind": "content",
+          "client": [
+            52,
+            155
+          ],
+          "scroll": [
+            52,
+            202
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            502,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 empty records 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            384
+          ],
+          "scroll": [
+            294,
+            387
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 populated records 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 populated records 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 populated records 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "kind": "page-scroll",
+          "size": [
+            480,
+            3988
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 populated records 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "\n      PRISMNOTES\n      星",
+          "kind": "content",
+          "client": [
+            296,
+            84
+          ],
+          "scroll": [
+            4006,
+            84
+          ]
+        },
+        {
+          "name": "condition-info",
+          "kind": "content",
+          "client": [
+            84,
+            192
+          ],
+          "scroll": [
+            84,
+            3959
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            294,
+            330
+          ],
+          "scroll": [
+            294,
+            333
+          ]
+        },
+        {
+          "name": "fit",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-prism",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            50,
+            51
+          ]
+        },
+        {
+          "name": "add-goal",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "flow",
+          "kind": "content",
+          "client": [
+            40,
+            51
+          ],
+          "scroll": [
+            74,
+            51
+          ]
+        },
+        {
+          "name": "next",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "sound",
+          "kind": "content",
+          "client": [
+            54,
+            53
+          ],
+          "scroll": [
+            54,
+            72
+          ]
+        },
+        {
+          "name": "A：ダブルタップで設定検証 v0.10.0",
+          "kind": "content",
+          "client": [
+            296,
+            52
+          ],
+          "scroll": [
+            297,
+            79
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            866,
+            4023
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium minimumFontSize=24 complete compact records page 1",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "kind": "page-scroll",
+          "size": [
+            480,
+            3988
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#record-next')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"record-next\">次へ</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    55 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not stable\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_text_layout.cjs:69:359"
+}

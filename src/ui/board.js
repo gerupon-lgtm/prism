@@ -18,11 +18,10 @@ export class Board {
     this.render(); this.resize();
   }
   resize() {
-    const coarse=matchMedia('(pointer:coarse)').matches;
-    const landscape=coarse&&screen.orientation?.type ? screen.orientation.type.startsWith('landscape') : innerWidth>innerHeight;
-    this.angle=landscape ? ((screen.orientation?.angle ?? 90) === 270 ? -90 : 90) : 0;
-    this.element.setAttribute('viewBox',this.angle ? '0 0 1600 1000' : '0 0 1000 1600');
-    this.orientation.setAttribute('transform',this.angle===90?'translate(1600 0) rotate(90)':this.angle===-90?'translate(0 1000) rotate(-90)':'');
+    this.angle=Number(document.documentElement.dataset.boardRotation||0);
+    // Leave room around the canonical circuit for readable labels and touch targets.
+    this.element.setAttribute('viewBox','-180 -240 1360 2080');
+    this.orientation.setAttribute('transform','');
     this.cancelAll(); this.transform(); this.render();
   }
   transform() {
@@ -35,7 +34,8 @@ export class Board {
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
   }
-  position(node) {return {x:((node.x??0.5)/(this.projectionScale??1))*1000,y:((node.y??0.5)/(this.projectionScale??1))*1600};}
+  position(node) {return {x:((node.x??0.5)/(this.projectionScale??1))*1000,y:1600-((node.y??0.5)/(this.projectionScale??1))*1600};}
+  coordinates(at) {return {x:at.x/1000*(this.projectionScale??1),y:(1600-at.y)/1600*(this.projectionScale??1)};}
   zoom(factor,x,y) {
     const rect=this.element.getBoundingClientRect();
     x ??= rect.left+rect.width/2; y ??= rect.top+rect.height/2;
@@ -53,7 +53,7 @@ export class Board {
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
     const kind=this.session.mode==='free'?'sky':Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory';
-    this.scene.draw(this.angle?1600:1000,this.angle?1000:1600,kind);
+    this.scene.draw(1000,1600,kind);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
     let extent=1;for(const node of input.nodes)extent=Math.max(extent,Math.abs(node.x??0.5),Math.abs(node.y??0.5));
     // Display projection only; original coordinates are retained in circuit files.
@@ -87,7 +87,7 @@ export class Board {
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
       group.append(svg('title',{},label),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
-      if(node.kind!=='goal') group.append(svg('text',{y:58*factor,class:'node-time'},`${node.process}s${node.kind==='source'?'（戻り）':''}`));
+      if(node.kind!=='goal') group.append(svg('text',{y:(node.kind==='source'?-58:58)*factor,class:'node-time'},`${node.process}s${node.kind==='source'?'（戻り）':''}`));
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
       group.addEventListener('keydown',event=>{
         if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=node.id;this.render();this.openSettings();}
@@ -132,7 +132,7 @@ export class Board {
     const run=this.session.run;if(!run||run.status==='stopped')return;
     for(const group of this.world.querySelectorAll('[data-node]')){
       group.querySelector('.node-state')?.remove();const gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
-      if(waiting||gate.current!==null)group.append(svg('text',{y:84*(this.fontFactor??1),class:'node-state'},`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`));
+      if(waiting||gate.current!==null)group.append(svg('text',{y:(group.classList.contains('source')?-84:84)*(this.fontFactor??1),class:'node-state'},`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`));
     }
     for(const particle of run.particles.values()) {
       let at;
@@ -188,9 +188,9 @@ export class Board {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
         const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
         if(target&&target!==gesture.id)this.session.connect(gesture.id,target);
-      } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) this.session.moveNode(gesture.id,gesture.last.x/1000*this.projectionScale,gesture.last.y/1600*this.projectionScale);
+      } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {
-        if(this.addKind&&gesture.kind==='pan'&&!gesture.id){this.session.addNode(this.addKind,gesture.last.x/1000*this.projectionScale,gesture.last.y/1600*this.projectionScale);this.addKind=null;}
+        if(this.addKind&&gesture.kind==='pan'&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}
         else if(gesture.id) {
           const now=performance.now();
           if(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400){this.lastTap=null;this.openSettings();}
@@ -201,5 +201,5 @@ export class Board {
     this.render();this.changed();
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
-  cancelAll() {this.gesture=null;this.pointers.clear();this.wire?.setAttribute('d','');}
+  cancelAll() {this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');}
 }

@@ -24,8 +24,10 @@ async function fit(page,label){
       const rect=element.getBoundingClientRect();return {name:element.id||element.textContent.slice(0,35),rect:[rect.left,rect.top,rect.right,rect.bottom],client:[element.clientWidth,element.clientHeight],scroll:[element.scrollWidth,element.scrollHeight]};
     })};
   });
-  assert(measure.document[0]<=measure.viewport[0]&&measure.document[1]<=measure.viewport[1],`${label}: document scroll ${JSON.stringify(measure.document)}`);
-  for(const item of measure.items){const [l,t,r,b]=item.rect;assert(l>=-.5&&t>=-.5&&r<=measure.viewport[0]+.5&&b<=measure.viewport[1]+.5,`${label}: out of viewport ${item.name} ${JSON.stringify(item.rect)}`);assert(item.scroll[0]<=item.client[0]+1&&item.scroll[1]<=item.client[1]+1,`${label}: hidden/scroll content ${item.name} ${JSON.stringify(item)}`);}
+  try{
+    assert(measure.document[0]<=measure.viewport[0]&&measure.document[1]<=measure.viewport[1],`${label}: document scroll ${JSON.stringify(measure.document)}`);
+    for(const item of measure.items){const [l,t,r,b]=item.rect;assert(l>=-.5&&t>=-.5&&r<=measure.viewport[0]+.5&&b<=measure.viewport[1]+.5,`${label}: out of viewport ${item.name} ${JSON.stringify(item.rect)}`);assert(item.scroll[0]<=item.client[0]+1&&item.scroll[1]<=item.client[1]+1,`${label}: hidden/scroll content ${item.name} ${JSON.stringify(item)}`);}
+  }catch(error){report.failureLayout={label,...measure};await page.screenshot({path:path.join(out,'failed-layout.png')});throw error;}
   report.checks.push({label,...measure});
 }
 async function drag(page,from,to){
@@ -43,8 +45,8 @@ async function drag(page,from,to){
         for(const [width,height] of [[320,480],[360,640],[390,664],[480,240],[568,260],[844,310],[768,1024],[1280,800]]){
           await page.setViewportSize({width,height});await fit(page,`${engine} play ${width}x${height}`);
           await page.locator('#home').click();await fit(page,`${engine} choices ${width}x${height}`);await page.locator('#dialog-close').click();
-          const orientation=await page.locator('#board>.board-orientation').getAttribute('transform');
-          await page.locator('#records').click();await fit(page,`${engine} records ${width}x${height}`);assert.equal(await page.locator('#board>.board-orientation').getAttribute('transform'),orientation,'Records must not rotate the graph');await page.locator('#close-records').click();
+          const orientation=await page.locator('html').getAttribute('data-board-rotation');
+          await page.locator('#records').click();await fit(page,`${engine} records ${width}x${height}`);assert.equal(await page.locator('html').getAttribute('data-board-rotation'),orientation,'Records must not rotate the device frame');await page.locator('#close-records').click();
         }
         await page.setViewportSize({width:390,height:664});await settle(page);
         await drag(page,'S','A');await drag(page,'A','G');assert.equal(await page.locator('.edge:not(.candidate)').count(),2);
@@ -65,7 +67,7 @@ async function drag(page,from,to){
         await page.setViewportSize({width:390,height:664});await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('3秒')&&document.getElementById('result').textContent.includes('終了'),{},{timeout:6500});await page.locator('#stop').click();
         await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill('<script>保存名</script>');await page.getByRole('button',{name:'保存',exact:true}).click();
         const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.circuits.v1')));assert.equal(saved.value.length,1);assert.equal(saved.value[0].name,'<script>保存名</script>');
-        const coordinates=await page.locator('[data-node="A"]').getAttribute('transform');await page.setViewportSize({width:844,height:310});await settle(page);const rotated=await page.locator('[data-node="A"]').getAttribute('transform');assert(coordinates.includes('translate(250 720)'));assert(rotated.includes('translate(250 720)'));assert(rotated.includes('rotate(-90)'));
+        const coordinates=await page.locator('[data-node="A"]').getAttribute('transform');await page.setViewportSize({width:844,height:310});await settle(page);const rotated=await page.locator('[data-node="A"]').getAttribute('transform');assert(coordinates.includes('translate(250 880)'));assert(rotated.includes('translate(250 880)'));assert(rotated.includes('rotate(90)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'-90');
         await fit(page,`${engine} orientation retains coordinates`);await page.screenshot({path:path.join(out,`${engine}-landscape.png`)});
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${engine}-portrait.png`)});
         await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill('長い回路名'.repeat(150));await page.getByRole('button',{name:'保存',exact:true}).click();await page.setViewportSize({width:320,height:480});await fit(page,`${engine} long saved name`);

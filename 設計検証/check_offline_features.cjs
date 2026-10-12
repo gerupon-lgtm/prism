@@ -111,7 +111,7 @@ async function exercise(page,engine){
   for(const [width,height] of [[320,480],[390,664],[480,240],[844,310]]){
    await page.setViewportSize({width,height});await settle(page);assert((await page.locator('#result').textContent()).includes('未達成 0.00点'));
    const fit=await page.evaluate(()=>{const result=document.getElementById('result'),line=document.getElementById('result-line'),rect=line.getBoundingClientRect();return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],result:[result.clientWidth,result.clientHeight,result.scrollWidth,result.scrollHeight],rect:[rect.left,rect.top,rect.right,rect.bottom]};});
-   assert(fit.document.every((size,index)=>size<=fit.viewport[index]));assert(fit.result[2]<=fit.result[0]+1&&fit.result[3]<=fit.result[1]+1);assert(fit.rect[0]>=0&&fit.rect[1]>=0&&fit.rect[2]<=width+.5&&fit.rect[3]<=height+.5);failedViews.push({cssTextEnlarged:enlarged,...fit});
+   try{assert(fit.document.every((size,index)=>size<=fit.viewport[index]));assert(fit.result[2]<=fit.result[0]+1&&fit.result[3]<=fit.result[1]+1);assert(fit.rect[0]>=0&&fit.rect[1]>=0&&fit.rect[2]<=width+.5&&fit.rect[3]<=height+.5);}catch(error){report.failureLayout={engine,cssTextEnlarged:enlarged,...fit};await page.screenshot({path:path.join(out,'failed-layout.png')});throw error;}failedViews.push({cssTextEnlarged:enlarged,...fit});
   }
   if(style)await style.evaluate(element=>element.remove());
  }
@@ -122,7 +122,7 @@ async function exercise(page,engine){
  const originalTransform=await worldTransform();await page.locator('#zoom-in').click();assert.notEqual(await worldTransform(),originalTransform);await page.locator('#zoom-out').click();
  const emptyBoard=await page.locator('#board').boundingBox(),panStart={x:emptyBoard.x+emptyBoard.width*.08,y:emptyBoard.y+emptyBoard.height*.15};assert(await page.evaluate(({x,y})=>!document.elementFromPoint(x,y).closest('[data-node],[data-edge]'),panStart));
  const beforePan=await worldTransform();await page.mouse.move(panStart.x,panStart.y);await page.mouse.down();await page.mouse.move(panStart.x+20,panStart.y+15,{steps:8});await page.mouse.up();assert.notEqual(await worldTransform(),beforePan);await page.locator('#fit').click();
- await page.setViewportSize({width:844,height:310});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(-90)'));assert.deepEqual((await circuit(page)).circuit,originalCircuit);
+ await page.setViewportSize({width:844,height:310});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(90)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'-90');assert.deepEqual((await circuit(page)).circuit,originalCircuit);
  const landscape=await page.evaluate(()=>({viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight]}));assert(landscape.document.every((size,index)=>size<=landscape.viewport[index]));await page.setViewportSize({width:390,height:664});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(0)'));
  record(engine,'Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll',['F-020','NF-005'],{landscape,physicalTouchVerified:false});
  // Add, move, connect, fault, change direction, and delete via real controls.
