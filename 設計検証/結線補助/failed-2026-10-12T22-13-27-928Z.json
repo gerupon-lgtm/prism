@@ -1,0 +1,775 @@
+{
+  "version": "0.12.0",
+  "evidence": "PC engines, mouse pointer gestures in mobile emulation, synthetic orientation and CSS text enlargement. No physical touch-device evidence.",
+  "checks": [
+    {
+      "label": "chromium portrait controls",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 283.328125,
+          "t": 698,
+          "r": 312,
+          "b": 730,
+          "client": [
+            27,
+            30
+          ],
+          "scroll": [
+            27,
+            30
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 315,
+          "t": 698,
+          "r": 361,
+          "b": 730,
+          "client": [
+            44,
+            30
+          ],
+          "scroll": [
+            44,
+            30
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 364,
+          "t": 698,
+          "r": 398,
+          "b": 730,
+          "client": [
+            32,
+            30
+          ],
+          "scroll": [
+            32,
+            30
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 698,
+          "r": 64,
+          "b": 730,
+          "client": [
+            48,
+            30
+          ],
+          "scroll": [
+            48,
+            30
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67,
+          "t": 698,
+          "r": 129,
+          "b": 730,
+          "client": [
+            60,
+            30
+          ],
+          "scroll": [
+            60,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium continuous preview at A",
+      "hidden": false,
+      "rect": [
+        248,
+        62,
+        398,
+        235
+      ],
+      "board": [
+        8,
+        56,
+        404,
+        736
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.5823529411764706 0 0 0.5823529411764706 -70.5882137522978 -437.47060977711396)",
+      "route": "S→A"
+    },
+    {
+      "label": "chromium continuous preview at G",
+      "hidden": false,
+      "rect": [
+        14,
+        62,
+        164,
+        235
+      ],
+      "board": [
+        8,
+        56,
+        404,
+        736
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.5823529411764706 0 0 0.5823529411764706 -216.1764705882353 -46.129423253676464)",
+      "route": "S→A→G"
+    },
+    {
+      "label": "chromium single uninterrupted S-A-G stroke commits two edges on release",
+      "passed": true
+    },
+    {
+      "label": "chromium clear all edges and immediate undo",
+      "passed": true
+    },
+    {
+      "label": "chromium running and paused circuits reject clear",
+      "passed": true
+    },
+    {
+      "label": "chromium release on empty space cancels entire stroke",
+      "passed": true
+    },
+    {
+      "label": "chromium interrupted stroke leaves no partial edges",
+      "passed": true
+    },
+    {
+      "label": "chromium magnifier OFF and separate consecutive drags",
+      "passed": true
+    },
+    {
+      "label": "chromium rotated 90",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 666.203125,
+          "t": 126.671875,
+          "r": 715.203125,
+          "b": 180,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 666.203125,
+          "t": 70.328125,
+          "r": 715.203125,
+          "b": 123.671875,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 666.203125,
+          "t": 14,
+          "r": 715.203125,
+          "b": 67.328125,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 652.203125,
+          "t": 262.5,
+          "r": 715.203125,
+          "b": 316,
+          "client": [
+            61,
+            52
+          ],
+          "scroll": [
+            61,
+            52
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 652.203125,
+          "t": 206,
+          "r": 715.203125,
+          "b": 259.5,
+          "client": [
+            61,
+            52
+          ],
+          "scroll": [
+            61,
+            52
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium rotated loupe 90",
+      "hidden": false,
+      "rect": [
+        86,
+        14,
+        227.296875,
+        178.296875
+      ],
+      "board": [
+        80,
+        8,
+        721.203125,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 -0.4901960784313726 0.4901960784313726 0 -356.37253377415857 197.54903485329243)",
+      "route": "S→A"
+    },
+    {
+      "label": "chromium rotated continuous stroke 90",
+      "passed": true
+    },
+    {
+      "label": "chromium rotated 270",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 199.796875,
+          "t": 150,
+          "r": 248.796875,
+          "b": 203.328125,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 199.796875,
+          "t": 206.328125,
+          "r": 248.796875,
+          "b": 259.671875,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 199.796875,
+          "t": 262.671875,
+          "r": 248.796875,
+          "b": 316,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 199.796875,
+          "t": 14,
+          "r": 262.796875,
+          "b": 67.5,
+          "client": [
+            61,
+            52
+          ],
+          "scroll": [
+            61,
+            52
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 199.796875,
+          "t": 70.5,
+          "r": 262.796875,
+          "b": 124,
+          "client": [
+            61,
+            52
+          ],
+          "scroll": [
+            61,
+            52
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium rotated loupe 270",
+      "hidden": false,
+      "rect": [
+        687.6875,
+        151.6875,
+        828.984375,
+        315.984375
+      ],
+      "board": [
+        193.796875,
+        8,
+        835,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 0.4901960784313726 -0.4901960784313726 0 506.3725337741586 -47.549034853292426)",
+      "route": "S→A"
+    },
+    {
+      "label": "chromium rotated continuous stroke 270",
+      "passed": true
+    },
+    {
+      "label": "chromium protocol touch loupe",
+      "hidden": false,
+      "rect": [
+        248,
+        62,
+        398,
+        235
+      ],
+      "board": [
+        8,
+        56,
+        404,
+        709
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.5823529411764706 0 0 0.5823529411764706 -70.5882137522978 -437.47060977711385)",
+      "route": "S→A"
+    },
+    {
+      "label": "chromium browser protocol touch connects and second finger cancels pending stroke; not physical-device evidence",
+      "passed": true
+    },
+    {
+      "label": "chromium saving cleared circuit then undo still protects unsaved restored edges",
+      "passed": true
+    },
+    {
+      "label": "chromium short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 191.328125,
+          "t": 462,
+          "r": 220,
+          "b": 494,
+          "client": [
+            27,
+            30
+          ],
+          "scroll": [
+            27,
+            30
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 223,
+          "t": 462,
+          "r": 269,
+          "b": 494,
+          "client": [
+            44,
+            30
+          ],
+          "scroll": [
+            44,
+            30
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 272,
+          "t": 462,
+          "r": 306,
+          "b": 494,
+          "client": [
+            32,
+            30
+          ],
+          "scroll": [
+            32,
+            30
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 462,
+          "r": 64,
+          "b": 494,
+          "client": [
+            48,
+            30
+          ],
+          "scroll": [
+            48,
+            30
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67,
+          "t": 462,
+          "r": 129,
+          "b": 494,
+          "client": [
+            60,
+            30
+          ],
+          "scroll": [
+            60,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 202.671875,
+          "t": 369.625,
+          "r": 222,
+          "b": 409.21875,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 225,
+          "t": 369.625,
+          "r": 279,
+          "b": 409.21875,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 282,
+          "t": 369.625,
+          "r": 312,
+          "b": 409.21875,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 369.625,
+          "r": 62,
+          "b": 409.21875,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65,
+          "t": 369.625,
+          "r": 119,
+          "b": 409.21875,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged portrait",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 294.671875,
+          "t": 639.21875,
+          "r": 314,
+          "b": 678.8125,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 317,
+          "t": 639.21875,
+          "r": 371,
+          "b": 678.8125,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 374,
+          "t": 639.21875,
+          "r": 404,
+          "b": 678.8125,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 639.21875,
+          "r": 62,
+          "b": 678.8125,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65,
+          "t": 639.21875,
+          "r": 119,
+          "b": 678.8125,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged landscape",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 634.015625,
+          "t": 114.671875,
+          "r": 710.015625,
+          "b": 165,
+          "client": [
+            74,
+            48
+          ],
+          "scroll": [
+            74,
+            48
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 634.015625,
+          "t": 61.328125,
+          "r": 710.015625,
+          "b": 111.671875,
+          "client": [
+            74,
+            48
+          ],
+          "scroll": [
+            74,
+            48
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 634.015625,
+          "t": 8,
+          "r": 710.015625,
+          "b": 58.328125,
+          "client": [
+            74,
+            48
+          ],
+          "scroll": [
+            74,
+            48
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 634.015625,
+          "t": 245,
+          "r": 710.015625,
+          "b": 322,
+          "client": [
+            74,
+            75
+          ],
+          "scroll": [
+            74,
+            75
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 634.015625,
+          "t": 165,
+          "r": 710.015625,
+          "b": 242,
+          "client": [
+            74,
+            75
+          ],
+          "scroll": [
+            74,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium no browser script errors",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "TypeError: Cannot read properties of null (reading 'x')\n    at center (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wiring_help.cjs:17:125)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async start (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wiring_help.cjs:18:39)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wiring_help.cjs:75:417"
+}

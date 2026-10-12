@@ -1,12 +1,14 @@
 import { svg } from './svg.js';
 import { Scene,symbol,constellation } from './scene.js';
+import { Magnifier } from './magnifier.js';
 
 export class Board {
   constructor(element, session, changed, openSettings, notify) {
     Object.assign(this,{element,session,changed,openSettings,notify});
-    this.orientation = svg('g',{class:'board-orientation'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
+    this.orientation = svg('g',{class:'board-orientation',id:'board-detail'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
     this.orientation.append(this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
     this.scene=new Scene(element);this.arrivalPictures=new Map();this.pictureRun=null;
+    this.magnifier=new Magnifier(this);
     this.pointers = new Map(); this.gesture = null; this.lastTap = null; this.addKind = null;
     element.addEventListener('pointerdown',event=>this.down(event));
     element.addEventListener('pointermove',event=>this.move(event));
@@ -100,7 +102,7 @@ export class Board {
         if(candidates.some(edge=>edge.from===this.session.selection&&edge.to===group.dataset.node)) group.classList.add('choice');
       }
     }
-    this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);
+    this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);this.previewWire();
     this.renderArrivals();
     this.particles();
   }
@@ -153,14 +155,15 @@ export class Board {
   down(event) {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance()};this.wire?.setAttribute('d','');return;}
+    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
     const node=event.target.closest('[data-node]')?.dataset.node,edge=event.target.closest('[data-edge]')?.dataset.edge;
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
-    this.gesture={kind:event.target.dataset.move?'move':node?'wire':'pan',id:node??edge,start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
+    this.gesture={kind:event.target.dataset.move?'move':node?'wire':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
+    if(node&&this.session.editable)this.magnifier.show(event,`${node}から結線`);
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
-  move(event) {
+  move(event,final=false) {
     if(!this.pointers.has(event.pointerId)||!this.gesture)return;
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});const gesture=this.gesture;
     if(gesture.kind==='pinch') {
@@ -172,22 +175,36 @@ export class Board {
     if(gesture.kind==='pan'&&gesture.moved) {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
     } else if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
-      const at=this.position(this.session.circuit.nodes.find(node=>node.id===gesture.id));
-      this.wire.setAttribute('d',`M${at.x},${at.y} L${gesture.last.x},${gesture.last.y}`);
+      const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
+      const from=gesture.route.at(-1),terminal=gesture.route.length>1&&this.session.circuit.nodes.find(n=>n.id===from)?.kind==='goal';
+      const hit=target?this.world.querySelector(`[data-node="${CSS.escape(target)}"] .node-hit`)?.getBoundingClientRect():null;
+      // Pass near the centre for an intermediate point. The larger hit region
+      // still accepts a final release without turning a nearby pass into a detour.
+      const near=hit&&Math.hypot(event.clientX-hit.left-hit.width/2,event.clientY-hit.top-hit.height/2)<=Math.min(hit.width,hit.height)*.2;
+      if(target&&target!==from&&!terminal&&(final||near)){
+        try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
+      }
+      this.previewWire();this.magnifier.show(event,`${gesture.route.join('→')}`);
     } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {
       const group=this.world.querySelector(`[data-node="${CSS.escape(gesture.id)}"]`);
       group?.setAttribute('transform',`translate(${gesture.last.x} ${gesture.last.y}) rotate(${-this.angle})`);
+      this.magnifier.show(event,`${gesture.id}を移動`);
     }
   }
+  previewWire() {
+    const gesture=this.gesture;if(!this.wire||gesture?.kind!=='wire'||!gesture.moved)return;
+    const points=gesture.route.map(id=>this.position(this.session.circuit.nodes.find(n=>n.id===id)));
+    points.push(gesture.last);this.wire.setAttribute('d',points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' '));
+  }
   up(event) {
-    const gesture=this.gesture;this.pointers.delete(event.pointerId);
+    this.move(event,true);const gesture=this.gesture;this.pointers.delete(event.pointerId);this.magnifier.hide();
     if(!gesture)return;
     if(gesture.kind==='pinch'){if(this.pointers.size===0)this.cancelAll();return;}
     this.gesture=null;this.wire?.setAttribute('d','');
     try {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
         const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
-        if(target&&target!==gesture.id)this.session.connect(gesture.id,target);
+        if(gesture.route.length>1&&target===gesture.route.at(-1))this.session.connectPath(gesture.route);
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {
         if(this.addKind&&gesture.kind==='pan'&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}
@@ -201,5 +218,5 @@ export class Board {
     this.render();this.changed();
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
-  cancelAll() {this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');}
+  cancelAll() {this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
 }

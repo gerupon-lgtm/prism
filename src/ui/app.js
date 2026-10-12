@@ -26,7 +26,7 @@ const load=new LoadMeter();
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
-let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false;
+let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null;
 const board=new Board($('board'),session,render,settings,notify);
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
@@ -57,8 +57,13 @@ function render(redraw=true,{records=true}={}) {
   document.documentElement.style.setProperty('--layout-footer-font',getComputedStyle(document.querySelector('footer')).fontSize);
   $('app').classList.toggle('text-enlarged',textEnlarged);
   $('app').classList.toggle('compact',compact);
-  const narrowControls=compact||Math.abs(orientation.rotation)===90;
+  const narrowControls=textEnlarged||compact||Math.abs(orientation.rotation)===90;
   $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'祭壇＋':'＋祭壇';
+  const canRestore=clearedConnections?.cleared===session.circuit;
+  $('clear-wires').textContent=canRestore?'戻す':textEnlarged?'消去':'クリア';$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
+  $('clear-wires').disabled=!session.editable||(!canRestore&&!session.circuit.edges.length);
+  $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
+  $('magnifier-toggle').textContent=textEnlarged?'補助':'拡大補助';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
@@ -78,7 +83,7 @@ function render(redraw=true,{records=true}={}) {
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
   $('result').textContent=[text,message].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
-  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${session.selection}：ダブルタップで設定`:'起点を選び、候補へドラッグ';
+  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${session.selection}：ダブルタップで設定`:'起点から候補をなぞって結線';
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
     const guide=session.guide,steps=guide.mode==='challenge'?['起点から候補へドラッグしてつなぎます。','祭壇までつないで「流す」を押します。','到着と点数を見て「記録」を開きます。']:['「流す」で2.5秒の到着を見ます。','停止してAをダブルタップ。処理時間を1.5秒へ。','もう一度流して、B経由の3秒到着を見ます。'];
@@ -452,6 +457,13 @@ $('retry-result').addEventListener('click',()=>{
   message=failed?'成績を保存できませんでした。今回の結果と再試行候補は保持しています。':'';render(false);
 });
 $('zoom-in').addEventListener('click',()=>board.zoom(1.2));$('zoom-out').addEventListener('click',()=>board.zoom(1/1.2));$('fit').addEventListener('click',()=>board.fit());
+$('clear-wires').addEventListener('click',()=>attempt(()=>{
+  board.cancelAll();session.requireEditable();
+  if(clearedConnections?.cleared===session.circuit){session.commitEdit(clearedConnections.before);session.dirty=clearedConnections.dirty||session.saveRevision!==clearedConnections.saveRevision;session.selection=null;clearedConnections=null;}
+  else{const before=structuredClone(session.circuit),dirty=session.dirty,saveRevision=session.saveRevision;session.clearConnections();clearedConnections={before,dirty,saveRevision,cleared:session.circuit};}
+  message='';render();
+}));
+$('magnifier-toggle').addEventListener('click',()=>{board.magnifier.toggle();render(false);});
 for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{board.addKind=board.addKind===kind?null:kind;render(false);});
 $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));

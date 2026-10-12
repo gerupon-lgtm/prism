@@ -12,6 +12,25 @@ function fixture() {
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
+test('連続結線は全体を検査して確定し、候補外では途中の配線も残さない',()=>{
+  const s=fixture().session;
+  assert.throws(()=>s.connectPath(['S','A','G','B']));assert.equal(s.circuit.edges.length,0);assert.equal(s.dirty,false);
+  s.connectPath(['S','A','G']);assert.deepEqual(s.circuit.edges.map(e=>e.id),['SA','AG']);assert.equal(s.selection,'G');
+});
+
+test('配線クリアは点・保存回路・停止後の記録を保持し、再生と一時停止では拒否する',()=>{
+  const f=fixture(),s=free(f);s.setTime('A','1.5');s.moveNode('B',.8,.4);s.setEnabled('B',false);s.setTime(s.circuit.edges[0].id,'1.2');s.saveCircuit('元回路');const nodes=structuredClone(s.circuit.nodes),saved=structuredClone(f.records.slots());
+  s.start();assert.throws(()=>s.clearConnections());s.pause();assert.throws(()=>s.clearConnections());s.stop();
+  const run=s.run,oldCircuit=structuredClone(run.circuit.raw),result=structuredClone(s.exportResult());
+  s.clearConnections();assert.equal(s.circuit.edges.length,0);assert.equal(s.dirty,true);assert.deepEqual(s.circuit.nodes,nodes);assert.deepEqual(f.records.slots(),saved);
+  assert.equal(s.run,run);assert.deepEqual(run.circuit.raw,oldCircuit);assert.deepEqual(s.exportResult(),result);
+});
+
+test('自由の連続結線は道の識別子が重ならず、不正な点を含む経路で元の配線を変えない',()=>{
+  const s=free(fixture());s.clearConnections();s.connectPath(['S','A','B','G']);assert.equal(new Set(s.circuit.edges.map(e=>e.id)).size,3);
+  const before=structuredClone(s.circuit);assert.throws(()=>s.connectPath(['S','missing','G']));assert.deepEqual(s.circuit,before);
+});
+
 test('実行から記録で停止、次動作、明示再開、停止後編集を一連で行える',()=>{
   const f=fixture(), s=free(f), original=structuredClone(s.circuit);
   s.start();

@@ -33,6 +33,7 @@ export class Session {
     this.pendingScores = new Map();
     this.scoreErrors = new Map();
     this.guide = null;
+    this.saveRevision = 0;
   }
 
   get editable() { return !this.run || this.run.status === 'stopped'; }
@@ -54,22 +55,41 @@ export class Session {
     }
   }
   connect(from, to, candidateId = null) {
+    return this.connectPath([from,to],candidateId).at(-1);
+  }
+  planConnections(path,candidateId=null) {
     this.requireEditable();
+    if(!Array.isArray(path)||path.length<2)throw new Error('二点以上をつないでください。');
     const next = copy(this.circuit);
-    if (this.mode === 'challenge') {
-      const candidate = this.challenge.candidates.find(edge => edge.from === from && edge.to === to && !next.edges.some(built => built.id === edge.id) && (candidateId === null || edge.id === candidateId));
-      if (!candidate) throw new Error('この向きの未接続の候補はありません。');
-      next.edges.push(copy(candidate));
-      if (next.edges.length > this.challenge.limit) throw new Error(`道は${this.challenge.limit}本までです。`);
-    } else {
-      next.edges.push({id:this.nextId('E'),from,to,time:'1',bidirectional:false});
+    const added=[];
+    for(let index=1;index<path.length;index++){
+      const from=path[index-1],to=path[index];
+      if(from===to||!next.nodes.some(n=>n.id===from)||!next.nodes.some(n=>n.id===to))throw new Error('接続する点が不正です。');
+      if (this.mode === 'challenge') {
+        const candidate = this.challenge.candidates.find(edge => edge.from === from && edge.to === to && !next.edges.some(built => built.id === edge.id) && (candidateId === null || edge.id === candidateId));
+        if (!candidate) throw new Error('この向きの未接続の候補はありません。');
+        next.edges.push(copy(candidate));
+        if (next.edges.length > this.challenge.limit) throw new Error(`道は${this.challenge.limit}本までです。`);
+      } else {
+        next.edges.push({id:this.nextId('E',next),from,to,time:'1',bidirectional:false});
+      }
+      added.push(next.edges.at(-1).id);
     }
+    createCircuit(next);
+    return {next,added};
+  }
+  connectPath(path,candidateId=null) {
+    const {next,added}=this.planConnections(path,candidateId);
     this.commitEdit(next);
     if (this.guide?.mode === 'challenge' && this.guide.step === 0 && next.edges.length) this.guide.step = 1;
-    return next.edges.at(-1).id;
+    this.selection=path.at(-1);
+    return added;
   }
-  nextId(prefix) {
-    const used = new Set([...this.circuit.nodes,...this.circuit.edges].map(item => item.id));
+  clearConnections() {
+    this.commitEdit({...this.circuit,edges:[]});this.selection=null;
+  }
+  nextId(prefix,circuit=this.circuit) {
+    const used = new Set([...circuit.nodes,...circuit.edges].map(item => item.id));
     let number = 1;
     while (used.has(`${prefix}${number}`)) number++;
     return `${prefix}${number}`;
@@ -165,7 +185,7 @@ export class Session {
     this.requireFree(); this.requireEditable();
     if (this.guide) throw new Error('練習用の回路は保存枠に書き込みません。');
     const slot = this.records.saveCircuit(this.circuit,name,options);
-    this.name = name; this.dirty = false;
+    this.name = name; this.dirty = false; this.saveRevision++;
     return slot;
   }
   exportCircuit(name = this.name) { this.requireFree(); return circuitFile(this.circuit,name); }

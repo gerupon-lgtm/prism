@@ -45,10 +45,30 @@ body{height:var(--app-height)}
 .records-content{width:100%;height:100%;flex-direction:column;gap:5px}
 .footer-content>span:last-child{white-space:nowrap}
 .app-version{white-space:nowrap;font:inherit;color:inherit;border:0;background:none;padding:0;min-height:0}
+#edit-controls{position:absolute;left:6px;bottom:6px;display:flex;gap:3px;max-width:calc(50% - 10px)}
+#edit-controls button{font-size:.857143rem;min-height:32px;padding:4px 6px;white-space:nowrap}
+#magnifier-toggle[aria-pressed=true]{border-color:var(--gold);color:#f5ddb0}
+#wire-magnifier{position:fixed;z-index:5;pointer-events:none;overflow:hidden;border:2px solid var(--gold);border-radius:12px;background:#101827;color:#fff;box-shadow:0 2px 12px #0009;font:12px/19px sans-serif}
+#wire-magnifier>span{display:block;height:19px;padding:0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#wire-magnifier svg{display:block;width:100%;height:calc(100% - 19px)}
+.magnifier-center{fill:none;stroke:#fff;stroke-width:1.5;pointer-events:none}
 header> .header-content>button:last-child{min-width:38px}
 .device-landscape .orientation-region{position:relative}
 .device-landscape .orientation-content{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(var(--ui-rotation));align-items:stretch}
 .device-landscape .header-content,.device-landscape .play-content,.device-landscape .zoom-content,.device-landscape .add-content,.device-landscape .guide-content,.device-landscape .result-content,.device-landscape .footer-content{flex-direction:column}
+.device-landscape .edit-content{flex-direction:column}
+.device-left .edit-content{flex-direction:column-reverse}
+.device-landscape #edit-controls{width:calc(100% - 12px);max-width:calc(7 * var(--layout-font) + 12px);height:clamp(60px,calc(4.5 * var(--layout-font)),160px)}
+.device-landscape #edit-controls button{flex:1;min-height:0;padding:2px;font-size:.785714rem}
+.device-inverted .edit-content{flex-direction:row-reverse}
+.text-enlarged #edit-controls{position:static;grid-column:1;grid-row:3;padding:0;max-width:none;flex:none}
+.text-enlarged #stage,.text-enlarged:not(.compact) #stage{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto minmax(0,1fr) auto}
+.text-enlarged #board{grid-column:1/-1;grid-row:2}
+.text-enlarged #stage-controls,.text-enlarged:not(.compact) #stage-controls{display:contents}
+.text-enlarged #stage-controls button{padding:2px;line-height:1.4}
+.text-enlarged .zoom-controls{position:static;grid-column:2;grid-row:3;padding:0;flex:none;justify-self:end}
+.text-enlarged #add-controls{position:static;grid-column:1/-1;grid-row:1;padding:4px}
+.device-landscape .text-enlarged #edit-controls{position:absolute;left:6px;bottom:6px;max-width:calc(7 * var(--layout-font) + 12px);padding:0}
 .device-left .header-content,.device-left .play-content,.device-left .zoom-content,.device-left .add-content,.device-left .guide-content,.device-left .result-content,.device-left .footer-content{flex-direction:column-reverse}
 .device-landscape header{height:clamp(70px,calc(2.7 * var(--layout-font)),100px)}
 .device-landscape .header-content .logo{width:100%;max-width:100px;align-self:center;height:38px;min-height:38px}
@@ -74,9 +94,13 @@ header> .header-content>button:last-child{min-width:38px}
 .device-landscape #add-controls,.device-landscape .zoom-controls{position:absolute;width:calc(100% - 12px);max-width:calc(11 * var(--layout-font) + 12px);height:clamp(34px,calc(3.5 * var(--layout-font)),110px);padding:0;flex:none}
 .device-landscape #stage-controls button{flex:1;min-height:0;padding:2px;font-size:.857143rem;white-space:nowrap}
 .device-landscape .compact #stage-controls{display:contents}
-.device-landscape .text-enlarged:not(.compact) #stage{grid-template-rows:auto minmax(0,1fr)}
-.device-landscape .text-enlarged:not(.compact) #board{grid-row:2}
-.device-landscape .text-enlarged:not(.compact) #add-controls{position:relative;left:0;top:0;grid-row:1;padding:0;width:100%;max-width:none;height:clamp(34px,calc(3.5 * var(--layout-font)),110px)}
+.device-landscape .text-enlarged #stage{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto minmax(0,1fr) auto}
+.device-landscape .text-enlarged #board{grid-column:1/-1;grid-row:2}
+.device-landscape .text-enlarged #stage-controls,.device-landscape .text-enlarged:not(.compact) #stage-controls{display:contents}
+.device-landscape .text-enlarged #stage-controls button{padding:0;line-height:1.4}
+.device-landscape .text-enlarged #edit-controls{position:relative;left:0;bottom:0;grid-column:1;grid-row:3;width:100%;max-width:none;height:clamp(68px,calc(2.7 * var(--layout-font)),110px)}
+.device-landscape .text-enlarged .zoom-controls{position:relative;right:0;bottom:0;grid-column:2;grid-row:3;width:100%;max-width:none;height:clamp(68px,calc(2.7 * var(--layout-font)),110px)}
+.device-landscape .text-enlarged #add-controls{position:relative;left:0;top:0;grid-column:1/-1;grid-row:1;padding:0;width:100%;max-width:none;height:clamp(80px,calc(3.4 * var(--layout-font)),140px)}
 .device-landscape body.records-fullscreen #workspace{position:absolute;inset:6px}
 .device-landscape body.records-fullscreen #records-panel{height:100%;min-height:0}
 .device-inverted .orientation-content{transform:rotate(180deg)}

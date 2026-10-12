@@ -1,0 +1,161 @@
+{
+  "version": "0.12.0",
+  "evidence": "PC engines, mouse pointer gestures in mobile emulation, synthetic orientation and CSS text enlargement. No physical touch-device evidence.",
+  "checks": [
+    {
+      "label": "chromium portrait controls",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 283.328125,
+          "t": 698,
+          "r": 312,
+          "b": 730,
+          "client": [
+            27,
+            30
+          ],
+          "scroll": [
+            27,
+            30
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 315,
+          "t": 698,
+          "r": 361,
+          "b": 730,
+          "client": [
+            44,
+            30
+          ],
+          "scroll": [
+            44,
+            30
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 364,
+          "t": 698,
+          "r": 398,
+          "b": 730,
+          "client": [
+            32,
+            30
+          ],
+          "scroll": [
+            32,
+            30
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 698,
+          "r": 64,
+          "b": 730,
+          "client": [
+            48,
+            30
+          ],
+          "scroll": [
+            48,
+            30
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67,
+          "t": 698,
+          "r": 129,
+          "b": 730,
+          "client": [
+            60,
+            30
+          ],
+          "scroll": [
+            60,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "label": "S→A",
+      "hidden": false,
+      "rect": [
+        248,
+        62,
+        398,
+        235
+      ],
+      "board": [
+        8,
+        56,
+        404,
+        736
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.5823529411764706 0 0 0.5823529411764706 -70.5882137522978 -437.47060977711396)"
+    },
+    {
+      "label": "S→A→G",
+      "hidden": false,
+      "rect": [
+        248,
+        557,
+        398,
+        730
+      ],
+      "board": [
+        8,
+        56,
+        404,
+        736
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.5823529411764706 0 0 0.5823529411764706 -216.1764705882353 -46.129423253676464)"
+    },
+    {
+      "label": "chromium single uninterrupted S-A-G stroke commits two edges on release",
+      "passed": true
+    },
+    {
+      "label": "chromium clear all edges and immediate undo",
+      "passed": true
+    },
+    {
+      "label": "chromium running and paused circuits reject clear",
+      "passed": true
+    },
+    {
+      "label": "chromium interrupted stroke leaves no partial edges",
+      "passed": true
+    },
+    {
+      "label": "chromium magnifier OFF and separate consecutive drags",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: chromium rotated 90 text magnifier-toggle\n    at controls (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wiring_help.cjs:29:142)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wiring_help.cjs:56:61"
+}
