@@ -1,0 +1,317 @@
+import { Session } from '../app/session.js';
+import { LocalRecords } from '../core/storage.js';
+import { TimeScale } from '../core/time.js';
+import { displayScore } from '../core/evaluation.js';
+import { challenges } from '../content/challenges.js';
+import { samples } from '../content/samples.js';
+import { Board } from './board.js';
+import { Chime } from './audio.js';
+
+const $ = id => document.getElementById(id);
+function element(tag,text='',attributes={}) {
+  const item=document.createElement(tag);item.textContent=text;
+  for(const [name,value] of Object.entries(attributes))item.setAttribute(name,value);
+  return item;
+}
+function button(text,action,attributes={}) {
+  const characters=Array.from(String(text));
+  const label=characters.length>18?characters.slice(0,17).join('')+'…':text;
+  const item=element('button',label,{type:'button',title:text,'aria-label':text,...attributes});item.addEventListener('click',()=>attempt(action));return item;
+}
+const storage={getItem:key=>window.localStorage.getItem(key),setItem:(key,value)=>window.localStorage.setItem(key,value)};
+const session=new Session(new LocalRecords(storage)),chime=new Chime();
+const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
+let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null;
+const board=new Board($('board'),session,render,settings,notify);
+
+function notify(text) { message=text; render(false); }
+function attempt(action) {
+  try {const pending=action();if(pending?.catch)pending.catch(failure);}
+  catch(error){failure(error);}
+}
+function failure(error) {
+  if(dialog.open)$('dialog-error').textContent=error.message;
+  else notify(error.message);
+}
+function open(title) {
+  session.pause('dialog');chime.stop();clockAnchor=null;
+  $('dialog-title').textContent=title;body.replaceChildren();actions.replaceChildren();$('dialog-error').textContent='';dialogPage=null;
+  document.body.classList.remove('input-focus');
+  if(!dialog.open)dialog.showModal();render(false);
+}
+function close() { dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
+dialog.addEventListener('close',()=>{document.body.classList.remove('input-focus');dialogPage=null;render(false);});
+dialog.addEventListener('cancel',()=>{document.body.classList.remove('input-focus');});
+document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
+
+function render(redraw=true) {
+  $('records-panel').hidden=!session.view.recordsOpen;
+  $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
+  $('condition').textContent=session.mode==='challenge'?`${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${session.challenge.type==='interval'?`・${session.challenge.interval}秒間隔で${session.challenge.count}回`:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
+  $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
+  const run=session.run;
+  $('play').textContent=session.editable?'流す':run.status==='running'?'一時停止':'再開';
+  $('play').disabled=!session.editable&&run.exhausted;
+  $('stop').disabled=session.editable;$('next').disabled=!run||run.status!=='paused'||run.exhausted;
+  $('sound').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));
+  let text=run?`${run.format()}秒・${run.activeCount}光線`:'';
+  if(session.result){
+    const stateText={pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
+    text+=`　${stateText}`;if(session.result.score)text+=` ${displayScore(session.result.score)}点`;
+  }
+  if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
+  if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
+  $('retry-result').hidden=session.pendingScores.size===0;
+  $('result').textContent=[text,message].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
+  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${session.selection}：ダブルタップで設定`:'起点を選び、候補へドラッグ';
+  $('guide-bar').hidden=!session.guide;
+  if(session.guide){
+    const guide=session.guide,steps=guide.mode==='challenge'?['起点から候補へドラッグしてつなぎます。','祭壇までつないで「流す」を押します。','到着と点数を見て「記録」を開きます。']:['「流す」で2.5秒の到着を見ます。','停止してAをダブルタップ。処理時間を1.5秒へ。','もう一度流して、B経由の3秒到着を見ます。'];
+    $('guide-text').textContent=`${guide.step+1}/3 ${steps[guide.step]}`;$('guide-finish').hidden=!guide.readyToFinish;
+  }
+  if(redraw)board.render();else board.particles();
+  if(!$('records-panel').hidden)renderRecords();
+}
+
+function listPage(items,makeRow,empty='まだありません。') {
+  const container=element('div','',{class:'dialog-list'}),rows=element('div','',{class:'dialog-list'}),pager=element('nav','',{class:'pager'});
+  let page=0,capacity=1;
+  const previous=button('前へ',()=>{page--;draw();}),position=element('span'),next=button('次へ',()=>{page++;draw();});
+  pager.append(previous,position,next);container.append(rows,pager);body.append(container);
+  function draw(){
+    capacity=Math.max(1,Math.floor((container.clientHeight-pager.getBoundingClientRect().height-8)/46));
+    const total=Math.max(1,Math.ceil(items.length/capacity));page=Math.max(0,Math.min(page,total-1));rows.replaceChildren();
+    if(!items.length)rows.append(element('p',empty));
+    else for(const item of items.slice(page*capacity,(page+1)*capacity))rows.append(makeRow(item));
+    previous.disabled=page===0;next.disabled=page===total-1;position.textContent=`${page+1}/${total}`;
+  }
+  dialogPage=draw;requestAnimationFrame(draw);
+}
+new ResizeObserver(()=>{if(dialog.open&&dialogPage)dialogPage();}).observe(body);
+
+function chooseMode() {
+  open('課題と自由');
+  actions.append(button('自由へ',()=>replace({sampleId:'compare'})),button('閉じる',close));
+  let scores=[];
+  try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
+  listPage(challenges,challenge=>{
+    const best=scores.find(score=>score.challenge===`${challenge.id}@${challenge.version}`&&score.rule===`${challenge.type}@1`);
+    return button(`${challenge.id} ${challenge.name}${best?'　'+displayScore(best.score)+'点':''}`,()=>replace({challengeId:challenge.id}));
+  });
+}
+function replace(request) {
+  session.requireEditable();session.replacement(request);
+  if(session.mode==='free'&&session.dirty){
+    open('現在の未保存回路');body.append(element('p','読み込み前に、現在の回路をどうしますか？'));
+    actions.append(button('保存して入替',()=>saveForm(()=>{session.replace(request,{choice:'discard'});close();maybeGuide();})),button('保存せず入替',()=>{session.replace(request,{choice:'discard'});close();maybeGuide();}),button('取消',close));
+  }else{session.replace(request);close();maybeGuide();}
+}
+function maybeGuide() {
+  try{if(session.needsGuide()){session.beginGuide();message='';render();}}
+  catch(error){notify(`${error.message} 案内はメニューから開けます。`);}
+}
+function menu() {
+  open('メニュー');
+  const items=[
+    ['課題と自由',chooseMode],
+    ['操作の案内',()=>{close();session.beginGuide();message='';render();}],
+    ['点と道の一覧',objects],
+    ['保存回路',slots],
+    ['実行結果を書き出す',()=>download('prism-notes-result.json',session.exportResult())],
+    ['成績未保存を再試行',pendingScores],
+  ];
+  if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
+  if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
+  listPage(items,item=>button(item[0],item[1]));actions.append(button('閉じる',close));
+}
+function download(name,data) {
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+  const link=element('a','',{href:url,download:name});document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$('import').addEventListener('change',()=>attempt(async()=>{
+  const file=$('import').files[0];$('import').value='';if(!file)return;
+  const fileText=await file.text();replace({fileText});
+}));
+
+function saveForm(after=close,draftName=null) {
+  session.requireFree();session.requireEditable();open('回路を保存');
+  const input=element('input','',{type:'text',value:draftName??(session.name||`自由 ${new Date().toLocaleDateString('ja-JP')}`),'aria-label':'回路名'});
+  body.append(element('label','回路名'),input,element('p','保存されるのは配置と設定です。実行途中や記録は含みません。'));
+  const save=()=>{
+    const slots=session.records.slots();
+    if(slots.length<10){session.saveCircuit(input.value);after();}
+    else{const name=input.value;open('置換する回路を選ぶ');body.append(element('p','10枠が満杯です。置換する保存先を選んでください。'),button('保存名の全文',()=>fullText('保存名',name,()=>saveForm(after,name))));
+      listPage(slots,slot=>button(slot.name||'名前なし',()=>{
+        confirmAction(`「${slot.name||'名前なし'}」を置換`,()=>{session.saveCircuit(name,{replaceId:slot.id});after();},()=>saveForm(after,name));
+        body.replaceChildren();body.append(element('p','選んだ保存枠だけを置き換えます。'),button('保存名の全文',()=>fullText('保存名',name,()=>saveForm(after,name))));
+        actions.append(button('回路ファイル',()=>download('prism-notes-circuit.json',session.exportCircuit(name))));
+      }));
+      actions.append(button('取消',()=>saveForm(after,name)));
+    }
+  };
+  input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(save);}});
+  actions.append(button('保存',save),button('回路ファイル',()=>download('prism-notes-circuit.json',session.exportCircuit(input.value))),button('取消',close));
+}
+function confirmAction(title,action,cancel=close) {
+  open(title);body.append(element('p','この対象を変更します。'));
+  actions.append(button('確定',action),button('取消',cancel));
+}
+function slots() {
+  open('保存回路（10枠）');
+  listPage(session.records.slots(),slot=>button(slot.name||'名前なし',()=>slotActions(slot)));
+  actions.append(button('閉じる',close));
+}
+function slotActions(slot) {
+  open(slot.name||'名前なし');
+  body.append(element('p',`${slot.circuit.nodes.length}点・${slot.circuit.edges.length}本`),button('名前の全文',()=>fullText('保存回路名',slot.name,()=>slotActions(slot))));
+  actions.append(button('読込',()=>replace({slotId:slot.id})),button('名前変更',()=>{
+    open('回路名を変更');const input=element('input','',{type:'text',value:slot.name,'aria-label':'新しい回路名'});body.append(input);
+    actions.append(button('変更',()=>{session.records.rename(slot.id,input.value);slots();}),button('取消',slots));
+  }),button('削除',()=>confirmAction(`「${slot.name||'名前なし'}」を削除`,()=>{session.records.remove(slot.id);slots();},slots)));
+}
+function pendingScores() {
+  open('成績の保存を再試行');
+  listPage([...session.pendingScores.entries()],([key,candidate])=>button(`${candidate.challenge} ${displayScore(candidate.score)}点`,()=>{
+    if(!session.retryScore(key))throw new Error(session.scoreErrors.get(key));pendingScores();render(false);
+  }),'未保存の成績はありません。');actions.append(button('閉じる',close));
+}
+
+function settings() {
+  const id=session.selection;if(!id)return;
+  const input=session.circuit,edge=input.edges.find(item=>item.id===id),node=input.nodes.find(item=>item.id===id);
+  if(!edge&&!node)return;
+  open(`${node?.name??id}の設定`);
+  const items=[];
+  items.push(['名前・識別子の全文',()=>fullText('対象の名前',`${node?.name??id}\n${id}`,settings)]);
+  if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
+  if(session.mode==='free'&&edge)items.push([edge.bidirectional?'向き：両方向':'向き：片方向',()=>{
+    session.requireEditable();open('道の向き');
+    listPage([
+      [`${edge.from} → ${edge.to}`,{bidirectional:false}],
+      [`${edge.to} → ${edge.from}`,{bidirectional:false,reverse:true}],
+      [`${edge.from} ↔ ${edge.to}`,{bidirectional:true}],
+    ],([name,direction])=>button(name,()=>{session.setDirection(id,direction);close();}));actions.append(button('取消',close));
+  }]);
+  if(session.mode==='free'&&(edge||node.kind==='prism'))items.push([`使用：${(edge??node).enabled===false?'不可':'可'}`,()=>{session.setEnabled(id,(edge??node).enabled===false);close();}]);
+  if(node&&session.mode==='free')items.push(['名前',()=>{
+    session.requireEditable();open('点の名前');const field=element('input','',{type:'text',value:node.name??node.id,'aria-label':'点の名前'});body.append(field);
+    actions.append(button('確定',()=>{const next=structuredClone(session.circuit);next.nodes.find(n=>n.id===id).name=field.value;session.commitEdit(next);close();}),button('取消',close));
+  }]);
+  if(edge||node.kind!=='source')items.push(['削除',()=>{
+    session.requireEditable();const related=node?input.edges.filter(path=>path.from===id||path.to===id):[edge];
+    open(`${id}を削除`);body.append(element('p',node?`この点と、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
+    listPage(related,path=>element('p',`${path.id}：${path.from} → ${path.to}`),'接続する道はありません。');
+    actions.append(button('削除',()=>{session.remove(id,true);close();}),button('取消',close));
+  }]);
+  listPage(items,item=>button(item[0],item[1]));actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
+}
+function fullText(title,text,back=close){
+  open(title);const chunks=Array.from(String(text));const parts=[];
+  for(let start=0;start<chunks.length;start+=18)parts.push(chunks.slice(start,start+18).join(''));
+  listPage(parts,part=>element('p',part,{class:'detail-value'}),'名前は空欄です。');actions.append(button('戻る',back));
+}
+function objects(){
+  open('点と道の一覧');
+  listPage([...session.circuit.nodes,...session.circuit.edges],item=>button(`${item.name??item.id}${item.from?'：'+item.from+' → '+item.to:''}`,()=>{session.selection=item.id;board.render();settings();}));
+  actions.append(button('回路名の全文',()=>fullText('回路名',session.name,objects)),button('閉じる',close));
+}
+function timeInput(id,initial) {
+  const editing=session.mode==='free'&&session.editable;
+  open(`${id}の時間`);
+  if(!editing){body.append(element('p',`${initial}秒。${session.mode==='challenge'?'課題の時間は固定です。':'停止後に編集できます。'}`));actions.append(button('戻る',settings));return;}
+  const input=element('input','',{type:'text',inputmode:'decimal',value:initial,'aria-label':'秒数',enterkeyhint:'done'});
+  const row=element('div','',{class:'dialog-row'}),scale=new TimeScale(['0.1']);
+  const adjust=direction=>{
+    const current=scale.ticks(input.value),next=current+BigInt(direction);if(next<0n)throw new Error('0秒未満にはできません。');
+    const edge=session.circuit.edges.find(item=>item.id===id);
+    if(edge&&next<1n)throw new Error('道の時間は0.1秒以上です。');
+    input.value=scale.format(next);
+  };
+  row.append(button('−0.1',()=>adjust(-1)),button('＋0.1',()=>adjust(1)));body.append(element('label','秒（0.1秒刻み）'),input,row);
+  input.addEventListener('focus',()=>{if(matchMedia('(pointer:coarse)').matches)document.body.classList.add('input-focus');});
+  const submit=()=>{session.setTime(id,input.value);close();};
+  input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(submit);}});
+  actions.append(button('確定',submit),button('取消',close));
+}
+function flow() {
+  session.requireEditable();open('自由の流れ方');
+  const mode=element('select','',{'aria-label':'流れ方'});
+  mode.append(element('option','最速経路',{value:'fastest'}),element('option','分かれて広がる',{value:'spread'}));mode.value=session.circuit.mode;
+  const target=element('select','',{'aria-label':'送信先'});target.append(element('option','全祭壇へ',{value:'all'}));
+  for(const node of session.circuit.nodes.filter(node=>node.kind==='goal'))target.append(element('option',node.name??node.id,{value:node.id}));
+  target.value=session.circuit.target??'all';body.append(element('label','流れ方'),mode,element('label','最速の送信先'),target);
+  actions.append(button('確定',()=>{session.setFlow(mode.value,target.value);close();}),button('取消',close));
+}
+
+const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'チャイム',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
+function showRecords(){session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
+function resizeRecords(){
+  const space=$('record-list').getBoundingClientRect().height;recordCapacity=Math.max(1,Math.floor(space/(innerHeight<=360?32:36)));renderRecords();
+}
+new ResizeObserver(()=>{if(!recordResize){recordResize=true;requestAnimationFrame(()=>{recordResize=false;if(!$('records-panel').hidden)resizeRecords();});}}).observe($('record-list'));
+function renderRecords(){
+  const cases=session.view.recordTab==='cases',items=cases?session.cases:session.run?.records??[],field=cases?'casePage':'recordPage';
+  const pages=Math.max(1,Math.ceil(items.length/recordCapacity));session.view[field]=Math.max(0,Math.min(pages-1,session.view[field]));
+  const page=session.view[field];$('record-title').textContent=cases?'故障ケース':'実行記録';$('record-tab').textContent=cases?'記録':'故障';$('record-tab').disabled=!session.cases.length;
+  const list=$('record-list');list.replaceChildren();
+  if(!items.length)list.append(element('p',cases?'故障ケースはありません。':'実行記録はまだありません。'));
+  for(const item of items.slice(page*recordCapacity,(page+1)*recordCapacity)) {
+    list.append(button(cases?`${item.id} 不可：${item.reachable?item.time+'秒':'到達不能'}`:`${item.time}s #${item.particle??'—'} ${recordNames[item.type]}`,()=>cases?caseDetails(item):recordDetails(item),{class:'record-row'}));
+  }
+  $('record-prev').disabled=page===0;$('record-next').disabled=page===pages-1;$('record-page').textContent=`${page+1}/${pages}・全${items.length}件`;
+}
+function recordDetails(record){
+  open('記録の詳細');
+  const names={type:'出来事',time:'時刻',particle:'光線番号',parent:'親の光線',node:'地点',target:'対象祭壇',edge:'道',from:'出発地点',to:'次の地点',plannedTime:'最短経路の予定時間',arrivalTime:'到着予定',hops:'通った道の本数',children:'分岐後の光線',arrivedAt:'到着時刻',wait:'待ち時間',finishTime:'処理終了予定',startedAt:'処理開始時刻',processing:'処理時間',reason:'理由'};
+  const fields=Object.entries(record).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>[names[key]??key,key==='type'?recordNames[item]:item??'—']));
+  listPage(fields,([key,value])=>button(`${key}：${value}`,()=>fullText(key,value,()=>recordDetails(record))));actions.append(button('戻る',close));
+}
+function caseDetails(item){
+  open(`${item.id} 使用不可`);body.append(element('p',item.reachable?`${item.time}秒・${item.edges.join(' → ')}`:'この故障では祭壇に届きません。'));
+  actions.append(button('このケースで流す',()=>{session.stop();session.start({caseId:item.id});close();startClock();}),button('戻る',close));
+}
+
+function startClock(){clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
+function play(){
+  if(session.editable){session.start();startClock();}
+  else if(session.run.status==='running'){session.pause();chime.stop();clockAnchor=null;render(false);}
+  else{session.resume();startClock();}
+}
+function reactions(entries){
+  for(const entry of entries)if(entry.type==='goal'){
+    chime.strike();const target=$('board').querySelector(`[data-node="${CSS.escape(entry.node)}"]`);target?.classList.add('arrived');
+    setTimeout(()=>target?.classList.remove('arrived'),1300);
+  }
+}
+function frame(now){
+  if(session.run?.status==='running'){
+    if(!clockAnchor||clockAnchor.run!==session.run)clockAnchor={run:session.run,clock:session.run.clock,wall:now};
+    const start=performance.now(),run=session.run,elapsed=BigInt(Math.max(0,Math.floor(now-clockAnchor.wall)));
+    const ticks=clockAnchor.clock+elapsed*run.circuit.time.unit/1000n;
+    try{const entries=session.advance(run.circuit.time.format(ticks),{shouldPause:()=>performance.now()-start>12});reactions(entries);render(false);}
+    catch(error){session.pause('error');notify(error.message);}
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+$('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
+$('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(()=>{session.stop();chime.stop();clockAnchor=null;message='';render();}));
+$('next').addEventListener('click',()=>attempt(()=>{message='';reactions(session.next({shouldPause:(()=>{const start=performance.now();return()=>performance.now()-start>12;})()}));render(false);}));
+$('records').addEventListener('click',()=>attempt(showRecords));$('close-records').addEventListener('click',()=>{session.view.recordsOpen=false;render(false);});
+$('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
+$('record-prev').addEventListener('click',()=>{session.view[session.view.recordTab==='cases'?'casePage':'recordPage']--;renderRecords();});
+$('record-next').addEventListener('click',()=>{session.view[session.view.recordTab==='cases'?'casePage':'recordPage']++;renderRecords();});
+$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted)await chime.enable();else chime.mute();render(false);}));
+$('retry-result').addEventListener('click',()=>{
+  let failed=false;
+  for(const key of session.pendingScores.keys())if(!session.retryScore(key))failed=true;
+  message=failed?'成績を保存できませんでした。今回の結果と再試行候補は保持しています。':'';render(false);
+});
+$('zoom-in').addEventListener('click',()=>board.zoom(1.2));$('zoom-out').addEventListener('click',()=>board.zoom(1/1.2));$('fit').addEventListener('click',()=>board.fit());
+for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{board.addKind=board.addKind===kind?null:kind;render(false);});
+$('flow').addEventListener('click',()=>attempt(flow));
+$('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
+$('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('completed');message='';render();}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+function viewport(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??innerHeight}px`);}
+window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);viewport();render();maybeGuide();

@@ -1,0 +1,191 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { Session } from '../src/app/session.js';
+import { LocalRecords, STORAGE_KEYS, circuitFile } from '../src/core/storage.js';
+import { sampleCircuit } from '../src/content/samples.js';
+
+function fixture() {
+  const values = new Map(); let failing = false; let writes = 0;
+  const records = new LocalRecords({getItem:key=>values.get(key) ?? null,setItem:(key,value)=>{ writes++; if (failing) throw new Error('Synthetic quota failure'); values.set(key,value); }});
+  return {session:new Session(records),records,values,fail:()=>{failing=true;},recover:()=>{failing=false;},writes:()=>writes};
+}
+function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
+function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
+
+test('実行から記録で停止、次動作、明示再開、停止後編集を一連で行える',()=>{
+  const f=fixture(), s=free(f), original=structuredClone(s.circuit);
+  s.start();
+  assert.throws(()=>s.setTime('A','1.5'));
+  s.advance('1'); s.openRecords();
+  assert.equal(s.run.status,'paused'); assert.equal(s.run.pauseReason,'records');
+  const first=s.next(); assert.ok(first.some(row=>row.type==='process-end'));
+  assert.equal(s.run.format(),'1.5');
+  assert.throws(()=>s.connect('S','G'));
+  s.resume(); s.advance('2.5');
+  assert.equal(s.result.arrivals[0].time,'2.5');
+  s.stop(); s.setTime('A','1.5');
+  assert.deepEqual(s.exportResult().conditions,original);
+  assert.equal(s.exportResult().records.filter(row=>row.type==='goal')[0].time,'2.5');
+  s.start(); s.advance('3');
+  assert.equal(s.result.arrivals[0].time,'3');
+});
+
+test('全候補と制限を守り、未接続の実験も未達成として受け付ける',()=>{
+  const f=fixture(),s=f.session;
+  assert.throws(()=>s.connect('A','S')); assert.equal(s.circuit.edges.length,0);
+  q1(f); assert.throws(()=>s.connect('S','B')); assert.equal(s.circuit.edges.length,2);
+  assert.throws(()=>s.setTime('SA','2'));
+  s.start(); assert.equal(s.result.state,'pending'); assert.equal(f.records.scores().length,0);
+  s.advance('2.5'); assert.equal(s.result.state,'achieved');
+  assert.deepEqual(s.result.score,{numerator:'100',denominator:'1'});
+  assert.equal(f.records.scores().length,1);
+  s.stop(); s.remove('AG',true); s.start();
+  assert.equal(s.result.state,'failed'); assert.equal(f.records.scores().length,1);
+});
+
+test('自由の新しい点・道の初期値、出発点保護、接続付き削除、故障を保つ',()=>{
+  const s=free(fixture());
+  const prism=s.addNode('prism',0.4,0.3),goal=s.addNode('goal',0.4,0.6);
+  const edge=s.connect(prism,goal);
+  assert.equal(s.circuit.nodes.find(n=>n.id===prism).process,'0.5');
+  assert.equal(s.circuit.edges.find(e=>e.id===edge).time,'1');
+  assert.equal(s.circuit.edges.find(e=>e.id===edge).bidirectional,false);
+  assert.throws(()=>s.addNode('source',0,0)); assert.throws(()=>s.remove('S',true));
+  s.setEnabled(prism,false); s.setEnabled('SA',false);
+  assert.equal(s.circuit.nodes.find(n=>n.id===prism).enabled,false);
+  assert.equal(s.circuit.edges.find(e=>e.id==='SA').enabled,false);
+  assert.throws(()=>s.remove(prism));
+  s.remove(prism,true);
+  assert.ok(!s.circuit.edges.some(e=>e.id===edge)); assert.ok(s.circuit.nodes.some(n=>n.id===goal));
+  s.setFlow('fastest',goal); s.remove(goal,true); assert.equal(s.circuit.target,'all');
+});
+
+test('誤入力は条件を変えず、正確な0.1秒刻みと0秒処理を認める',()=>{
+  const s=free(fixture()), before=structuredClone(s.circuit);
+  for (const text of ['', 'abc', '-1', '0.15', '１.５']) assert.throws(()=>s.setTime('SA',text));
+  assert.throws(()=>s.setTime('SA','0')); assert.throws(()=>s.setTime('G','1'));
+  assert.deepEqual(s.circuit,before);
+  s.setTime('A','000.00'); s.setTime('SA','01.500');
+  assert.equal(s.circuit.nodes.find(n=>n.id==='A').process,'0');
+  assert.equal(s.circuit.edges.find(e=>e.id==='SA').time,'1.5');
+});
+
+test('自由の道は正方向・逆方向・両方向を選べ、位置や他の道を変えない',()=>{
+  const s=free(fixture()),before=structuredClone(s.circuit);
+  s.setDirection('SA',{reverse:true});
+  assert.equal(s.circuit.edges[0].from,'A');assert.equal(s.circuit.edges[0].to,'S');
+  s.setDirection('SA',{bidirectional:true});assert.equal(s.circuit.edges[0].bidirectional,true);
+  assert.deepEqual(s.circuit.nodes,before.nodes);assert.deepEqual(s.circuit.edges.slice(1),before.edges.slice(1));
+  s.start();assert.throws(()=>s.setDirection('SA',{reverse:true}));
+});
+
+test('未保存編集の取消と保存失敗では入替えず、再試行成功後だけ読み込む',()=>{
+  const f=fixture(), s=free(f); s.setTime('A','1.5');
+  const before=structuredClone(s.circuit);
+  assert.equal(s.replace({sampleId:'loop'}),false); assert.deepEqual(s.circuit,before);
+  f.fail(); assert.throws(()=>s.replace({sampleId:'loop'},{choice:'save',save:{name:'修正案',id:'saved'}}));
+  assert.deepEqual(s.circuit,before); assert.equal(s.dirty,true); assert.equal(f.records.slots().length,0);
+  assert.deepEqual(s.exportCircuit('修正案').circuit,before);
+  f.recover(); assert.equal(s.replace({sampleId:'loop'},{choice:'save',save:{name:'修正案',id:'saved'}}),true);
+  assert.equal(s.circuit.mode,'spread'); assert.equal(f.records.slots()[0].name,'修正案');
+  assert.deepEqual(f.records.slots()[0].circuit,before);
+});
+
+test('不正ファイルは保存して入替の選択でも元の案と10枠を変えない',()=>{
+  const f=fixture(),s=free(f); s.setTime('A','1.5');
+  const before=structuredClone(s.circuit), count=f.writes();
+  const bad={...circuitFile(sampleCircuit()),version:99};
+  assert.throws(()=>s.replace({fileText:JSON.stringify(bad)},{choice:'save',save:{name:'現状',id:'saved'}}));
+  assert.equal(f.writes(),count); assert.deepEqual(s.circuit,before);
+  assert.equal(s.dirty,true); assert.equal(s.name,'自由の回路');
+});
+
+test('故障全ケースから最悪を再生し、他ケース再生でも元条件と全件を出力する',()=>{
+  const f=fixture(),s=f.session; s.replace({challengeId:'Q4'});
+  for (const [from,to] of [['S','A'],['A','G'],['S','B'],['B','G']]) s.connect(from,to);
+  const original=structuredClone(s.circuit);
+  s.start(); assert.equal(s.cases.length,4); assert.ok(s.cases.every(c=>c.reachable));
+  assert.equal(s.run.circuit.edges.get(s.replayCase).enabled,false);
+  assert.deepEqual(s.circuit,original); assert.equal(s.result.state,'pending');
+  s.advance('2'); assert.equal(s.result.state,'achieved');
+  const exported=s.exportResult(); assert.equal(exported.faultCases.length,4); assert.deepEqual(exported.originalConditions,original);
+  s.stop(); s.start({caseId:'SB'}); assert.equal(s.replayCase,'SB'); assert.deepEqual(s.circuit,original);
+  s.stop(); s.remove('BG',true); s.start();
+  assert.equal(s.result.state,'failed'); assert.ok(s.cases.some(c=>!c.reachable));
+});
+
+test('間隔の達成を実到着後に確定し、停止しても確定結果と成績を保つ',()=>{
+  const f=fixture(),s=f.session; s.replace({challengeId:'Q6'});
+  for(const candidate of ['direct1','direct3','direct5']) s.connect('S','G',candidate);
+  s.start(); s.advance('1'); assert.equal(s.result.state,'pending'); assert.equal(f.records.scores().length,0);
+  s.advance('3'); assert.equal(s.result.state,'pending');
+  s.advance('5'); assert.equal(s.result.state,'achieved');
+  s.stop(); assert.equal(s.result.state,'achieved'); assert.equal(s.result.first,'1');
+  assert.equal(f.records.scores().length,1);
+});
+
+test('未確定で停止した間隔を0点失敗にしない',()=>{
+  const f=fixture(),s=f.session; s.replace({challengeId:'Q6'});
+  for(const candidate of ['direct1','direct3','direct5']) s.connect('S','G',candidate);
+  s.start(); s.advance('1'); s.stop();
+  assert.equal(s.result.state,'stopped'); assert.equal(s.result.score,null); assert.equal(f.records.scores().length,0);
+});
+
+test('到着前の停止は未確定の中断、既に到達不能なら失敗の確定を保つ',()=>{
+  const f=fixture(),s=q1(f); s.start(); s.advance('1'); s.stop();
+  assert.equal(s.result.state,'stopped'); assert.equal(s.result.score,null);
+  s.remove('AG',true); s.start(); assert.equal(s.result.state,'failed');
+  s.stop(); assert.equal(s.result.state,'failed');
+  s.replace({challengeId:'Q4'});
+  for (const [from,to] of [['S','A'],['A','G'],['S','B'],['B','G']]) s.connect(from,to);
+  s.start(); s.stop(); assert.equal(s.result.state,'stopped');
+});
+
+test('道の削除も確認前は変更せず、選んだ一本だけを消す',()=>{
+  const s=free(fixture()),before=structuredClone(s.circuit);
+  assert.throws(()=>s.remove('SA')); assert.deepEqual(s.circuit,before);
+  s.remove('SA',true); assert.equal(s.circuit.edges.length,before.edges.length-1);
+  assert.ok(s.circuit.edges.some(edge=>edge.id==='AG'));
+});
+
+test('成績未保存候補を画面切替後も保持し、無限自動再試行せず戻って保存できる',()=>{
+  const f=fixture(),s=q1(f); f.fail(); s.start(); s.advance('2.5');
+  const writes=f.writes(); assert.equal(s.pendingScores.size,1);
+  s.evaluate(); s.evaluate(); assert.equal(f.writes(),writes);
+  s.stop(); s.replace({challengeId:'Q2'});
+  assert.equal(s.pendingScores.size,1); assert.equal(f.records.scores().length,0);
+  f.recover(); const key=[...s.pendingScores.keys()][0]; assert.equal(s.retryScore(key),true);
+  assert.equal(s.pendingScores.size,0); assert.equal(f.records.scores()[0].challenge,'Q1@1');
+});
+
+test('案内は別見本で練習し、スキップで元の回路・実行・結果・表示位置へ一時停止で戻る',()=>{
+  const f=fixture(),s=free(f); s.replace({sampleId:'loop'}); s.start(); s.advance('4');
+  s.view={zoom:2,panX:123,panY:-47,recordPage:3,casePage:0}; s.selection='C';
+  const run=s.run,circuit=s.circuit,result=s.result,view=s.view;
+  s.beginGuide(); assert.notEqual(s.circuit,circuit); assert.equal(s.circuit.nodes.length,4);
+  assert.equal(run.status,'paused'); assert.equal(s.needsGuide('free'),true);
+  s.start(); s.advance('2.5');
+  assert.throws(()=>s.saveCircuit('練習')); assert.equal(f.records.slots().length,0);
+  s.endGuide('skipped');
+  assert.equal(s.circuit,circuit); assert.equal(s.run,run); assert.equal(s.result,result);
+  assert.equal(s.view,view); assert.equal(s.selection,'C'); assert.equal(s.run.status,'paused');
+  assert.equal(s.needsGuide('free'),false); assert.equal(s.needsGuide('challenge'),true);
+  s.resume(); s.advance('5'); assert.ok(s.run.arrivals().some(a=>a.time==='5'));
+});
+
+test('案内履歴の保存失敗で完了を捏造せず、途中離脱では元へ戻り履歴をつけない',()=>{
+  const f=fixture(),s=free(f),original=s.circuit;
+  s.beginGuide(); s.start(); s.advance('2.5'); s.stop(); s.setTime('A','1.5'); s.start(); s.advance('3');
+  assert.equal(s.guide.readyToFinish,true); f.fail();
+  assert.throws(()=>s.endGuide('completed')); assert.ok(s.guide); assert.equal(f.values.has(STORAGE_KEYS.guides),false);
+  s.endGuide('interrupted'); assert.equal(s.circuit,original); assert.equal(s.guide,null); assert.equal(s.needsGuide(),true);
+});
+
+test('課題案内は結線・到着・記録を体験し、練習成績は本番へ登録しない',()=>{
+  const f=fixture(),s=f.session;
+  s.beginGuide(); s.connect('S','A'); s.connect('A','G'); s.start();
+  assert.equal(s.guide.step,1); assert.throws(()=>s.endGuide('completed'));
+  s.advance('2.5'); assert.equal(s.guide.step,2); assert.equal(s.guide.readyToFinish,false);
+  assert.equal(f.records.scores().length,0); s.openRecords(); assert.equal(s.guide.readyToFinish,true);
+  s.endGuide('completed'); assert.equal(s.circuit.edges.length,0); assert.equal(s.needsGuide('challenge'),false);
+});

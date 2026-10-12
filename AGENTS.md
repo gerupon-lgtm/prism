@@ -33,10 +33,12 @@
 
 ## 実装と検証
 
-現在の証拠と未完成の範囲はdocs/implementation-status.mdを参照。計算・保存の共通処理はsrc/core/、テストはtests/。外部パッケージ不要のJavaScript ESモジュールで着手しており、基本設計時のTypeScriptは【想定】からの実装選択として記録する。
+現在の証拠と未完成の範囲はdocs/implementation-status.mdを参照。計算・保存はsrc/core/、操作状態はsrc/app/、本アプリ画面はsrc/ui/とルートindex.html、テストはtests/。外部パッケージ不要のJavaScript ESモジュールで着手しており、基本設計時のTypeScriptは【想定】からの実装選択として記録する。
 
-- `npm.cmd test`：並列度1の計算・保存テスト。最大5ファイルずつ、現在6ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
+- `npm.cmd test`：並列度1の計算・保存・操作状態テスト。最大5ファイルずつ、現在7ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
 - `npm.cmd run check`：構文検査。
-- `npm.cmd run dev`：ローカル資材サーバー。
+- `npm.cmd run dev`：本アプリのローカルサーバー（http://127.0.0.1:4173）。
+- `npm.cmd run build`：dist/へ版付きの配信資材を生成。下位のモジュールとフォントも同じ版のディレクトリへ置き、古い資材の混在を避ける。表示版・package.json・index.htmlの更新値を合わせる。
+- `設計検証/check_app.cjs`：既存Playwrightを引数指定して本アプリをPC Chromium/WebKitで確認。設計用画面のcheck_screen_layout.cjsとは別。結果は設計検証/アプリ/。
 
 全26機能・全対象環境を維持する。共通処理のテスト合格を、ゲーム画面・音・PWA・実機・公開の合格にしない。ユーザーの案.xlsxと既存の未採用試聴材料を実装の変更へ混ぜない。
