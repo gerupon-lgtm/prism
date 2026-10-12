@@ -1,0 +1,84 @@
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/montserrat-500.ttf?v=logo-0.1.0") format("truetype");
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/montserrat-600.ttf?v=logo-0.1.0") format("truetype");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #060b14;
+}
+
+.preview {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  padding: calc(16px + env(safe-area-inset-top, 0px))
+    calc(16px + env(safe-area-inset-right, 0px))
+    calc(12px + env(safe-area-inset-bottom, 0px))
+    calc(16px + env(safe-area-inset-left, 0px));
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.logo-stage {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+
+.logo-container {
+  /* CSS alone has a responsive fallback. JavaScript measures the actual font. */
+  --base-logo-size: min(96px, calc((100vw - 40px) / 4.5), calc((100svh - 60px) / 1.65));
+  --logo-scale: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: max-content;
+}
+
+.prism-text, .notes-text {
+  font-family: Montserrat, sans-serif;
+  line-height: normal;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.prism-text {
+  font-weight: 600;
+  font-size: calc(var(--base-logo-size) * var(--logo-scale));
+  color: #dfb96e;
+  letter-spacing: calc(var(--base-logo-size) / 12 * var(--logo-scale));
+  margin-right: calc(var(--base-logo-size) / -12 * var(--logo-scale));
+}
+
+.notes-text {
+  font-weight: 500;
+  font-size: calc(var(--base-logo-size) * 0.375 * var(--logo-scale));
+  color: #c6a355;
+  letter-spacing: calc(var(--base-logo-size) * 0.2291666667 * var(--logo-scale));
+  margin-right: calc(var(--base-logo-size) * -0.2291666667 * var(--logo-scale));
+  margin-top: calc(var(--base-logo-size) / 12 * var(--logo-scale));
+}
+
+footer {
+  color: #b7b0a0;
+  font: 12px/1.5 system-ui, sans-serif;
+  text-align: center;
+}

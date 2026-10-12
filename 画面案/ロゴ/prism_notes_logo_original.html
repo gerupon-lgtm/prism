@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRISM NOTES Text Logo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #060b14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .prism-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 96px;
+    color: #DFB96E;
+    letter-spacing: 8px;
+    margin: 0;
+    /* 最後の文字の右側にできる不要な余白を相殺して中央に配置 */
+    margin-right: -8px; 
+  }
+
+  .notes-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    color: #C6A355;
+    letter-spacing: 22px;
+    margin: 0;
+    margin-top: 8px;
+    /* 最後の文字の右側にできる不要な余白を相殺して中央に配置 */
+    margin-right: -22px; 
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-container">
+  <h1 class="prism-text">PRISM</h1>
+  <h2 class="notes-text">NOTES</h2>
+</div>
+
+</body>
+</html>
