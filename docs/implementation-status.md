@@ -6,6 +6,8 @@
 
 ## 現在のコードと確認
 
+インストール済みWindows Chrome 154.0.8037.99とEdge 155.0.4283.45でも、各35通常操作・24通信なし・29更新と復旧が合格した。既存PC両エンジンの証拠を上書きせず、各検証フォルダのchrome/・msedge/へ保存する。[今回のWindows点検](reviews/2026-10-13-windows-browsers.md)と[実機確認の入口](device-checks.md)を参照。発案者が利用可能と示したAndroid Chrome・iPhone SafariのOS版・実際の結果は未確認。Mac・iPadも対象に保持する。検証器と資料だけの追加で、アプリ資材は0.9.0のまま再配信しない。
+
 計算部はブラウザでもNodeでも使えるJavaScriptのESモジュールで実装。TypeScriptは基本設計時の【想定】だったが、外部ライブラリを必要としない構成で着手した。計算方式・保存範囲は変更していない。ルートindex.htmlとsrc/ui/が実際のゲーム画面で、src/app/session.jsが編集・実行・保存・案内の状態をつなぐ。旧設計用画面とは別物。PWAの資材準備・安全な更新・復旧表示を実装し、[GitHub Pagesの公開URL](https://gerupon-lgtm.github.io/prism/)で版と資材・実操作まで確認した。初期版完成の宣言ではなく検証版の公開。
 
 | 部分 | 現在の状態 | 証拠・残る確認 |

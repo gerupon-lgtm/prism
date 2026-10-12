@@ -7,10 +7,13 @@ const {expectedStoppedOriginWorkerError}=require('./browser_errors.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'オフライン機能');
+const channel=arg('--channel');if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use --channel chrome or msedge');
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'オフライン機能',channel||'');
 fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'),'utf8')).version;
 const report={version,checkedAt:new Date().toISOString(),evidence:'PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.',checks:[],pending:[],errors:[],windowErrors:[]};
+if(channel)report.evidence=`Installed Windows ${channel}: HTTP cache cleared, context offline. Disposable browser context; actual UI, files, localStorage and worker with synthetic circuits/errors/stall. Audio API checks are not listening evidence. Phone and OS shutdown checks remain pending.`;
+report.browsers=[];
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.png':'image/png','.ttf':'font/ttf','.webmanifest':'application/manifest+json'};
 let originOffline=false,port;
 const server=http.createServer((req,res)=>{
@@ -190,8 +193,8 @@ async function exercise(page,engine){
 (async()=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));port=server.address().port;const url='http://127.0.0.1:'+port+'/prism/';
  try{
-  for(const engine of ['chromium','webkit']){
-   originOffline=false;if(!server.listening)await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));const browser=await pw[engine].launch({headless:true});
+  for(const engine of channel?['chromium']:['chromium','webkit']){
+   originOffline=false;if(!server.listening)await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel:channel||null,version:browser.version()});
    try{
     const context=await browser.newContext({viewport:{width:390,height:664}});await context.exposeBinding('__offlineWindowError',(source,error)=>report.windowErrors.push({engine,url:source.page.url(),...error}));
     await context.addInitScript(()=>{addEventListener('error',e=>{void window.__offlineWindowError({type:'error',message:e.message}).catch(()=>{});});addEventListener('unhandledrejection',e=>{void window.__offlineWindowError({type:'unhandledrejection',message:String(e.reason)}).catch(()=>{});});});

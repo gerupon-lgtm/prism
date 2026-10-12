@@ -3,8 +3,11 @@ const fs=require('node:fs');const path=require('node:path');const http=require('
 function arg(name){const index=process.argv.indexOf(name);return index<0?null:process.argv[index+1];}
 const library=arg('--playwright-path');if(!library)throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(library)),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'アプリ');fs.mkdirSync(out,{recursive:true});
+const channel=arg('--channel');if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use --channel chrome or msedge');
+const pw=require(path.resolve(library)),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'アプリ',channel||'');fs.mkdirSync(out,{recursive:true});
 const report={version:JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version,evidence:'PC Chromium/WebKit only. Real app actions with emulated viewport sizes. No real device or public deployment evidence.',checks:[]};
+if(channel)report.evidence=`Installed Windows ${channel}. Disposable browser context and emulated viewports; no phone, touch, or public deployment evidence.`;
+report.browsers=[];
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.ttf':'font/ttf','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json','.png':'image/png','.svg':'image/svg+xml'};
 const server=http.createServer((request,response)=>{
   const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);let file=path.resolve(root,'.'+pathname);
@@ -32,8 +35,8 @@ async function drag(page,from,to){
 (async()=>{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const url=`http://127.0.0.1:${server.address().port}/`;
   try{
-    for(const engine of ['chromium','webkit']){
-      const browser=await pw[engine].launch({headless:true});
+    for(const engine of channel?['chromium']:['chromium','webkit']){
+      const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel:channel||null,version:browser.version()});
       try{
         const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
         await page.goto(url);await settle(page);await page.locator('#guide-skip').click();

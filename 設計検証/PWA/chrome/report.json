@@ -1,0 +1,195 @@
+{
+  "version": "0.9.0",
+  "evidence": "Installed Windows chrome: disposable browser context, actual worker/cache and offline operations under /prism/. Later releases/errors are synthetic. No OS installation/shutdown or phone evidence.",
+  "checks": [
+    {
+      "label": "chromium offline dialog 320x480",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 480x240",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 844x310",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 390x664",
+      "passed": true
+    },
+    {
+      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "passed": true
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets",
+      "passed": true
+    },
+    {
+      "label": "chromium incomplete update error and old assets status CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium incomplete update error and old assets status CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium incomplete update error and old assets status CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed update old version offline",
+      "passed": true
+    },
+    {
+      "label": "chromium cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "windowErrors": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "154.0.8037.99"
+    }
+  ],
+  "passed": true
+}

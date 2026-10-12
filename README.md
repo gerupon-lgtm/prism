@@ -4,6 +4,8 @@
 
 発案者の指示により、設計資料に基づく実装と、このGitHubリポジトリへの反映・デプロイを確認不要で進めている。[公開URL](https://gerupon-lgtm.github.io/prism/)は現在0.9.0。未達成の0点表示・出力を補い、最高点を更新しない。自動テスト76件・通常操作70項目・通信なし48項目・更新と復旧58項目、公開37項目が合格した。0.8.0の文字拡大847項目と今回の0点16表示条件は別の証拠。全26機能・非機能8項目と全対象実機を維持する。[実装状況](docs/implementation-status.md)・[受入条件と証拠](docs/acceptance-status.md)を参照。npm.cmd run devで起動、npm.cmd run buildで版付き資材を生成する。実機の操作・音・負荷は未確認で、初期版完成とは扱わない。
 
+インストール済みWindows Chrome・Edgeでも、各ブラウザで通常35・通信なし24・更新と復旧29項目が合格した。既存PC両エンジンの結果とは別の証拠で、アプリ資材の追加変更はない。[Windowsの確認](docs/reviews/2026-10-13-windows-browsers.md)・[実機確認の入口](docs/device-checks.md)を参照。利用可能との回答はWindows Chrome/Edge、Android Chrome、iPhone Safari。スマホの実際の結果はまだ未確認で、Mac・iPadも対象に残す。
+
 以下の実装・公開「未指示」という記載は設計時点の記録。最新の作業許可をこの冒頭とAGENTS.mdで確認する。共通コードの合格をゲーム画面・音・PWA・実機・公開の成功と混同しない。
 
 ## 設計時点の記録

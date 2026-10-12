@@ -4,6 +4,8 @@
 
 ## 1. 要件との対応表（正典）
 
+Windows Chrome/Edgeの各35通常操作・24通信なし・29更新と復旧も合格し、既存PC両エンジンとは別の結果へ保存した。[Windowsの確認](reviews/2026-10-13-windows-browsers.md)を参照。利用可能と回答されたAndroid Chrome・iPhone Safariは[実機手順](device-checks.md)で観測する。Mac・iPadを含め全対象を維持し、端末があるという回答を検証済みへ変更しない。
+
 画面IDは[画面定義](screens.md)、データIDは[データ定義](data-model.md)を参照。各行の要求は確定、内部構成・タスク配分は【想定】。機能名は要件定義書を優先する。
 
 | 要件ID | 機能 | 画面 | 処理 | データ | タスク |

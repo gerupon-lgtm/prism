@@ -5,9 +5,12 @@ const {expectedStoppedOriginWorkerError}=require('./browser_errors.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'PWA');fs.mkdirSync(out,{recursive:true});
+const channel=arg('--channel');if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use --channel chrome or msedge');
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'PWA',channel||'');fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
 const report={version,evidence:'PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.',checks:[],errors:[],windowErrors:[]};
+if(channel)report.evidence=`Installed Windows ${channel}: disposable browser context, actual worker/cache and offline operations under /prism/. Later releases/errors are synthetic. No OS installation/shutdown or phone evidence.`;
+report.browsers=[];
 const parts=version.split('.').map(Number),later=offset=>[parts[0],parts[1],parts[2]+offset].join('.');
 const fixtures=[version,later(1),later(2)].map((v,index)=>{
   const output=path.join(out,`fixture-${index}`);
@@ -95,8 +98,8 @@ async function connection(context,engine,offline){
 (async()=>{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));port=server.address().port;const url=`http://127.0.0.1:${port}/prism/`;
   try{
-    for(const engine of ['chromium','webkit']){
-      current=0;const browser=await pw[engine].launch({headless:true});
+    for(const engine of channel?['chromium']:['chromium','webkit']){
+      current=0;const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel:channel||null,version:browser.version()});
       try{
         const context=await browser.newContext({viewport:{width:390,height:664}}),errors=[],windowErrors=[];
         await context.exposeBinding('__reportWindowError',(source,detail)=>{const value={engine,url:source.page.url(),originOffline,...detail};windowErrors.push(value);report.windowErrors.push(value);});
