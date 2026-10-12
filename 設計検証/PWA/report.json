@@ -1,6 +1,6 @@
 {
-  "version": "0.6.0",
-  "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic.",
+  "version": "0.7.0",
+  "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
   "checks": [
     {
       "label": "chromium offline dialog 320x480",
@@ -66,5 +66,8 @@
       "label": "webkit cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data",
       "passed": true
     }
-  ]
+  ],
+  "errors": [],
+  "windowErrors": [],
+  "passed": true
 }

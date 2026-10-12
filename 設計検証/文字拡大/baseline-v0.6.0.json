@@ -1,0 +1,1570 @@
+{
+  "version": "0.6.0",
+  "checkedAt": "2026-10-12T17:31:45.467Z",
+  "evidence": "Native Chromium minimumFontSize=24/defaultFontSize=32 in isolated PC browsers. Viewport resizing. Does not prove OS or Safari text zoom.",
+  "checks": [
+    {
+      "label": "minimumFontSize=24 independent setting probe",
+      "passed": true,
+      "probe": {
+        "natural": "24px",
+        "fixed": "24px"
+      },
+      "browser": "151.0.7922.34"
+    },
+    {
+      "label": "minimumFontSize=24 guide 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            306,
+            0
+          ],
+          "scroll": [
+            306,
+            2
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.6.0",
+          "kind": "viewport",
+          "rect": [
+            7,
+            417,
+            313,
+            487
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            320,
+            487
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 guide 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 guide 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            466,
+            0
+          ],
+          "scroll": [
+            466,
+            2
+          ]
+        },
+        {
+          "name": "起点を選び、候補へドラッグ検証 v0.6.0",
+          "kind": "viewport",
+          "rect": [
+            7,
+            232,
+            473,
+            267
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            480,
+            267
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 guide 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 play 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 play 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 play 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 play 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 mode list 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        },
+        {
+          "name": "Q1 はじめの一音",
+          "kind": "content",
+          "client": [
+            274,
+            42
+          ],
+          "scroll": [
+            274,
+            47
+          ]
+        },
+        {
+          "name": "Q2 早く届けよう",
+          "kind": "content",
+          "client": [
+            274,
+            42
+          ],
+          "scroll": [
+            274,
+            47
+          ]
+        },
+        {
+          "name": "Q3 速く、少ない道で",
+          "kind": "content",
+          "client": [
+            274,
+            42
+          ],
+          "scroll": [
+            274,
+            47
+          ]
+        },
+        {
+          "name": "Q4 道が一本使えなくても",
+          "kind": "content",
+          "client": [
+            274,
+            42
+          ],
+          "scroll": [
+            295,
+            47
+          ]
+        },
+        {
+          "name": "Q5 プリズムが使えなくても",
+          "kind": "content",
+          "client": [
+            274,
+            42
+          ],
+          "scroll": [
+            319,
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 mode list 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        },
+        {
+          "name": "Q1 はじめの一音",
+          "kind": "content",
+          "client": [
+            344,
+            42
+          ],
+          "scroll": [
+            344,
+            47
+          ]
+        },
+        {
+          "name": "Q2 早く届けよう",
+          "kind": "content",
+          "client": [
+            344,
+            42
+          ],
+          "scroll": [
+            344,
+            47
+          ]
+        },
+        {
+          "name": "Q3 速く、少ない道で",
+          "kind": "content",
+          "client": [
+            344,
+            42
+          ],
+          "scroll": [
+            344,
+            47
+          ]
+        },
+        {
+          "name": "Q4 道が一本使えなくても",
+          "kind": "content",
+          "client": [
+            344,
+            42
+          ],
+          "scroll": [
+            344,
+            47
+          ]
+        },
+        {
+          "name": "Q5 プリズムが使えなくても",
+          "kind": "content",
+          "client": [
+            344,
+            42
+          ],
+          "scroll": [
+            344,
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 mode list 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 mode list 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 flow form 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 flow form 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 flow form 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            466,
+            41
+          ],
+          "scroll": [
+            466,
+            52
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            464,
+            39
+          ],
+          "scroll": [
+            464,
+            51
+          ]
+        },
+        {
+          "name": "dialog",
+          "kind": "content",
+          "client": [
+            460,
+            216
+          ],
+          "scroll": [
+            460,
+            246
+          ]
+        },
+        {
+          "name": "自由の流れ方×流れ方最速経路分かれて広がる最速の送",
+          "kind": "content",
+          "client": [
+            446,
+            202
+          ],
+          "scroll": [
+            446,
+            239
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            446,
+            102
+          ],
+          "scroll": [
+            446,
+            192
+          ]
+        },
+        {
+          "name": "全祭壇へG",
+          "kind": "viewport",
+          "rect": [
+            17,
+            203,
+            463,
+            258
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 flow form 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            464,
+            172
+          ],
+          "scroll": [
+            464,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 invalid time 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 invalid time 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 invalid time 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            466,
+            41
+          ],
+          "scroll": [
+            466,
+            52
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            464,
+            39
+          ],
+          "scroll": [
+            464,
+            51
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            446,
+            63
+          ],
+          "scroll": [
+            446,
+            145
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 invalid time 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            464,
+            133
+          ],
+          "scroll": [
+            464,
+            145
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 save form 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 save form 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 save form 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            466,
+            41
+          ],
+          "scroll": [
+            466,
+            52
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            464,
+            39
+          ],
+          "scroll": [
+            464,
+            51
+          ]
+        },
+        {
+          "name": "dialog",
+          "kind": "content",
+          "client": [
+            460,
+            216
+          ],
+          "scroll": [
+            460,
+            220
+          ]
+        },
+        {
+          "name": "回路を保存×回路名保存されるのは配置と設定です。実",
+          "kind": "content",
+          "client": [
+            446,
+            202
+          ],
+          "scroll": [
+            446,
+            213
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            446,
+            67
+          ],
+          "scroll": [
+            446,
+            166
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 save form 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "dialog-body",
+          "kind": "content",
+          "client": [
+            464,
+            137
+          ],
+          "scroll": [
+            464,
+            166
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 empty records 320x480",
+      "passed": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            306,
+            133
+          ],
+          "scroll": [
+            306,
+            152
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            304,
+            5
+          ],
+          "scroll": [
+            304,
+            86
+          ]
+        },
+        {
+          "name": "records-panel",
+          "kind": "content",
+          "client": [
+            304,
+            118
+          ],
+          "scroll": [
+            304,
+            138
+          ]
+        },
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            292,
+            4
+          ],
+          "scroll": [
+            292,
+            84
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 empty records 390x664",
+      "passed": false,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            59
+          ],
+          "scroll": [
+            107,
+            59
+          ]
+        },
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            362,
+            31
+          ],
+          "scroll": [
+            362,
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 empty records 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            466,
+            41
+          ],
+          "scroll": [
+            467,
+            267
+          ]
+        },
+        {
+          "name": "stage",
+          "kind": "content",
+          "client": [
+            290,
+            39
+          ],
+          "scroll": [
+            290,
+            86
+          ]
+        },
+        {
+          "name": "records-panel",
+          "kind": "content",
+          "client": [
+            166,
+            39
+          ],
+          "scroll": [
+            168,
+            266
+          ]
+        },
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            158,
+            0
+          ],
+          "scroll": [
+            158,
+            117
+          ]
+        },
+        {
+          "name": "record-prev",
+          "kind": "viewport",
+          "rect": [
+            310.25,
+            244.5,
+            356.25,
+            328.5
+          ]
+        },
+        {
+          "name": "record-next",
+          "kind": "viewport",
+          "rect": [
+            428.3125,
+            244.5,
+            474.3125,
+            328.5
+          ]
+        },
+        {
+          "kind": "page-scroll",
+          "size": [
+            480,
+            346
+          ]
+        }
+      ]
+    },
+    {
+      "label": "minimumFontSize=24 empty records 844x310",
+      "passed": false,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": [
+        {
+          "name": "home",
+          "kind": "content",
+          "client": [
+            100,
+            57
+          ],
+          "scroll": [
+            107,
+            57
+          ]
+        },
+        {
+          "name": "workspace",
+          "kind": "content",
+          "client": [
+            830,
+            111
+          ],
+          "scroll": [
+            830,
+            135
+          ]
+        },
+        {
+          "name": "records-panel",
+          "kind": "content",
+          "client": [
+            297,
+            109
+          ],
+          "scroll": [
+            297,
+            134
+          ]
+        },
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            289,
+            0
+          ],
+          "scroll": [
+            289,
+            82
+          ]
+        }
+      ]
+    },
+    {
+      "label": "defaultFontSize=32 independent setting probe",
+      "passed": true,
+      "probe": {
+        "natural": "32px",
+        "fixed": "12px"
+      },
+      "browser": "151.0.7922.34"
+    },
+    {
+      "label": "defaultFontSize=32 guide 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 guide 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 guide 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 guide 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 play 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 play 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 play 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 play 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 mode list 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 mode list 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 mode list 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 mode list 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 flow form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 flow form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 flow form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 flow form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 invalid time 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 invalid time 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 invalid time 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 invalid time 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 save form 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 save form 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 save form 480x240",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 save form 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 empty records 320x480",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 empty records 390x664",
+      "passed": true,
+      "viewport": [
+        390,
+        664
+      ],
+      "rootFont": "14px",
+      "playFont": "12px",
+      "issues": []
+    },
+    {
+      "label": "defaultFontSize=32 empty records 480x240",
+      "passed": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": [
+        {
+          "name": "record-list",
+          "kind": "content",
+          "client": [
+            158,
+            19
+          ],
+          "scroll": [
+            158,
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "label": "defaultFontSize=32 empty records 844x310",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "rootFont": "12px",
+      "playFont": "12px",
+      "issues": []
+    }
+  ],
+  "passed": false
+}

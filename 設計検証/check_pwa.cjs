@@ -1,12 +1,13 @@
 // Actual workers/cache/offline/update interactions on PC engines, under a Pages subpath.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const {waitForAsync}=require('./browser_wait.cjs');
+const {expectedStoppedOriginWorkerError}=require('./browser_errors.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'PWA');fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
-const report={version,evidence:'PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic.',checks:[]};
+const report={version,evidence:'PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.',checks:[],errors:[],windowErrors:[]};
 const parts=version.split('.').map(Number),later=offset=>[parts[0],parts[1],parts[2]+offset].join('.');
 const fixtures=[version,later(1),later(2)].map((v,index)=>{
   const output=path.join(out,`fixture-${index}`);
@@ -15,7 +16,7 @@ const fixtures=[version,later(1),later(2)].map((v,index)=>{
 });
 const broken=JSON.parse(fs.readFileSync(path.join(fixtures[2].output,'build-info.json'),'utf8')).assets.find(asset=>asset.endsWith('board.js'));
 fs.unlinkSync(path.join(fixtures[2].output,broken));
-let current=0;
+let current=0,originOffline=false;
 let port;
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.ttf':'font/ttf','.json':'application/json','.webmanifest':'application/manifest+json','.png':'image/png','.svg':'image/svg+xml'};
 const server=http.createServer((request,response)=>{
@@ -58,6 +59,7 @@ async function drag(page,from,to){
   await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
 }
 async function connection(context,engine,offline){
+  originOffline=offline;
   if(engine==='chromium'){await context.setOffline(offline);return;}
   if(offline){if(server.listening)await new Promise(resolve=>server.close(resolve));}
   else if(!server.listening)await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));
@@ -68,7 +70,11 @@ async function connection(context,engine,offline){
     for(const engine of ['chromium','webkit']){
       current=0;const browser=await pw[engine].launch({headless:true});
       try{
-        const context=await browser.newContext({viewport:{width:390,height:664}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+        const context=await browser.newContext({viewport:{width:390,height:664}}),errors=[],windowErrors=[];
+        await context.exposeBinding('__reportWindowError',(source,detail)=>{const value={engine,url:source.page.url(),originOffline,...detail};windowErrors.push(value);report.windowErrors.push(value);});
+        await context.addInitScript(()=>{addEventListener('error',event=>{void window.__reportWindowError({type:'error',message:event.message,filename:event.filename}).catch(()=>{});});addEventListener('unhandledrejection',event=>{void window.__reportWindowError({type:'unhandledrejection',message:String(event.reason)}).catch(()=>{});});});
+        const page=await context.newPage();
+        const observeErrors=target=>target.on('pageerror',e=>{const detail={engine,message:e.message,name:e.name,stack:e.stack,url:target.url(),originOffline};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);errors.push(detail);report.errors.push(detail);});observeErrors(page);
         await page.goto(url);await prepared(page);await page.locator('#guide-skip').click();assert.equal((await status(page)).ready,true);
         const manifest=await page.evaluate(async()=>{const r=await fetch('manifest.webmanifest');return r.json();});assert.deepEqual(manifest.icons.map(i=>i.sizes),['192x192','512x512']);
         for(const [width,height] of [[320,480],[480,240],[844,310],[390,664]]){
@@ -77,7 +83,7 @@ async function connection(context,engine,offline){
         await connection(context,engine,true);
         const negative=await browser.newContext();if(engine==='chromium')await negative.setOffline(true);const negativePage=await negative.newPage();let rejected=false;
         try{await negativePage.goto(url,{timeout:3000});}catch{rejected=true;}assert(rejected,'A fresh context without prepared assets must not reach the origin');await negative.close();
-        await page.close();const offline=await context.newPage();offline.on('pageerror',e=>errors.push(e.message));await offline.goto(url);await prepared(offline);
+        await page.close();const offline=await context.newPage();observeErrors(offline);await offline.goto(url);await prepared(offline);
         assert.equal(await offline.locator('#guide-bar').isVisible(),false);
         await offline.locator('#home').click();await settle(offline);let names=[];
         do{names.push(...await offline.locator('#dialog-body .dialog-list button:not(.pager button)').allTextContents());const next=offline.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(offline);}while(names.length<30);
@@ -121,10 +127,12 @@ async function connection(context,engine,offline){
         current=2;await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>document.getElementById('dialog-error').textContent.length>0,{},{timeout:15000});assert.equal(await offline.getByRole('button',{name:'更新へ',exact:true}).count(),0);
         assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));assert.equal(await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);
         await connection(context,engine,true);await offline.reload();assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));await prepared(offline);await fit(offline,`${engine} failed update old version offline`);
-        report.checks.push({label:`${engine} cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data`,passed:true});assert.deepEqual(errors,[]);
+        report.checks.push({label:`${engine} cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data`,passed:true});assert.deepEqual(errors.filter(error=>!error.expectedStoppedOrigin),[]);assert.deepEqual(windowErrors,[]);
         await connection(context,engine,false);await context.close();
       }finally{await browser.close();}
     }
-  }finally{if(server.listening)await new Promise(resolve=>server.close(resolve));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));}
+    report.passed=true;
+  }catch(error){report.passed=false;report.failure=error.stack;throw error;}
+  finally{if(server.listening)await new Promise(resolve=>server.close(resolve));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));}
   console.log(`PWA checks passed: ${report.checks.length}`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

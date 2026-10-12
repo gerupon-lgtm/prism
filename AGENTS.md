@@ -35,12 +35,13 @@
 
 現在の証拠と未完成の範囲はdocs/implementation-status.mdを参照。計算・保存はsrc/core/、操作状態はsrc/app/、本アプリ画面はsrc/ui/とルートindex.html、テストはtests/。外部パッケージ不要のJavaScript ESモジュールで着手しており、基本設計時のTypeScriptは【想定】からの実装選択として記録する。
 
-- `npm.cmd test`：並列度1の計算・保存・操作状態・更新保護・負荷測定テスト。最大5ファイルずつ、現在11ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
+- `npm.cmd test`：並列度1の計算・保存・操作状態・更新保護・負荷測定テスト。最大5ファイルずつ、現在12ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
 - `npm.cmd run check`：構文検査。
 - `npm.cmd run dev`：本アプリのローカルサーバー（http://127.0.0.1:4173）。
 - `npm.cmd run build`：dist/へ版付きの配信資材を生成。下位のモジュールとフォントも同じ版のディレクトリへ置き、古い資材の混在を避ける。表示版・package.json・index.htmlの更新値を合わせる。
 - `設計検証/check_app.cjs`：既存Playwrightを引数指定して本アプリをPC Chromium/WebKitで確認。設計用画面のcheck_screen_layout.cjsとは別。結果は設計検証/アプリ/。
 - `設計検証/check_records.cjs`：二世代の分岐を持つ合成回路で親子を辿る操作、停止後の全記録、回転後の元ページを確認。PC Chromium/WebKitとインストール済みWindows Chrome/Edgeを検証専用状態で実行。結果は設計検証/記録の関係/。スマホ実機の証拠ではない。
+- `設計検証/check_text_layout.cjs`：PC ChromiumとWindows Chrome/Edgeの最低文字サイズ24・標準文字サイズ32を独立した小HTMLで照合し、実際の文字拡大、設定・保存・全記録の収まりと入力保持を確認。WebKitはCSSによる28pxの模擬であり、SafariやスマホOSの文字拡大の証拠にしない。結果は設計検証/文字拡大/。途中の不合格と最終結果を区別する。
 - `設計検証/check_world_load.cjs`：精霊の案内時表示、全6舞台、粒別の到着演出、合成負荷停止後の全状態・記録保持をPC両エンジンで確認。結果は設計検証/世界観と負荷/。測定はJavaScript呼出時間で、実描画・音出力の総負荷や実機基準ではない。Windows用WebKitで発音APIがない場合は音を未確認として残し、Safari実機を対象から外さない。画像の出所と生成指示はdocs/assets.md。
 - `設計検証/check_pwa.cjs`：Pagesと同じ/prism/の配下で、実際のWorkerと保存資材を使い通信なしの再起動・更新失敗・別タブの状態保持を確認。WebKitの通信遮断模擬に既知の問題があるため、WebKitは配信元を停止して同じ対象を確認する。結果は設計検証/PWA/。生成したfixture-*はGitへ含めない。
 - `設計検証/check_public.cjs`：公開URL・版・全資材のハッシュと配信形式・ブラウザ操作を確認。結果は設計検証/公開/。公開確認を全対象実機の合格にしない。

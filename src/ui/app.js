@@ -25,7 +25,7 @@ const load=new LoadMeter();
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
-let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,updating=false;
+let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false;
 const board=new Board($('board'),session,render,settings,notify);
 const offline=new Offline(()=>{if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
@@ -40,7 +40,7 @@ function failure(error) {
 }
 function open(title) {
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;body.replaceChildren();actions.replaceChildren();$('dialog-error').textContent='';dialogPage=null;
+  $('dialog-title').textContent=title;body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -50,7 +50,12 @@ dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();ret
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
 function render(redraw=true,{records=true}={}) {
+  const textEnlarged=parseFloat(getComputedStyle(document.documentElement).fontSize)>=20,compact=innerHeight<=360&&textEnlarged;
+  $('app').classList.toggle('text-enlarged',textEnlarged);
+  $('app').classList.toggle('compact',compact);
+  $('add-prism').textContent=compact?'◇＋':'＋プリズム';$('add-goal').textContent=compact?'祭壇＋':'＋祭壇';
   $('records-panel').hidden=!session.view.recordsOpen;
+  if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
   $('condition').textContent=session.mode==='challenge'?`${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${session.challenge.type==='interval'?`・${session.challenge.interval}秒間隔で${session.challenge.count}回`:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
@@ -73,6 +78,7 @@ function render(redraw=true,{records=true}={}) {
   if(session.guide){
     const guide=session.guide,steps=guide.mode==='challenge'?['起点から候補へドラッグしてつなぎます。','祭壇までつないで「流す」を押します。','到着と点数を見て「記録」を開きます。']:['「流す」で2.5秒の到着を見ます。','停止してAをダブルタップ。処理時間を1.5秒へ。','もう一度流して、B経由の3秒到着を見ます。'];
     $('guide-text').textContent=`${guide.step+1}/3 ${steps[guide.step]}`;$('guide-finish').hidden=!guide.readyToFinish;
+    if(compact)$('hint').textContent=`案内 ${$('guide-text').textContent}`;
   }
   if(redraw)board.render();else board.particles();
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
@@ -80,19 +86,42 @@ function render(redraw=true,{records=true}={}) {
 
 function listPage(items,makeRow,empty='まだありません。') {
   const container=element('div','',{class:'dialog-list'}),rows=element('div','',{class:'dialog-list'}),pager=element('nav','',{class:'pager'});
-  let page=0,capacity=1;
-  const previous=button('前へ',()=>{page--;draw();}),position=element('span'),next=button('次へ',()=>{page++;draw();});
+  let start=0,end=0;const history=[];
+  const previous=button('前へ',()=>{start=history.pop()??0;draw();}),position=element('span'),next=button('次へ',()=>{history.push(start);start=end;draw();});
   pager.append(previous,position,next);container.append(rows,pager);body.append(container);
   function draw(){
-    capacity=Math.max(1,Math.floor((container.clientHeight-pager.getBoundingClientRect().height-8)/46));
-    const total=Math.max(1,Math.ceil(items.length/capacity));page=Math.max(0,Math.min(page,total-1));rows.replaceChildren();
+    if(!dialog.open||dialogPage!==draw)return;
+    start=Math.min(start,Math.max(0,items.length-1));rows.replaceChildren();end=start;
     if(!items.length)rows.append(element('p',empty));
-    else for(const item of items.slice(page*capacity,(page+1)*capacity))rows.append(makeRow(item));
-    previous.disabled=page===0;next.disabled=page===total-1;position.textContent=`${page+1}/${total}`;
+    else while(end<items.length){
+      const row=makeRow(items[end]);rows.append(row);
+      if(end>start&&row.getBoundingClientRect().bottom>rows.getBoundingClientRect().bottom+.5){row.remove();break;}
+      end++;
+      if(row.getBoundingClientRect().bottom>rows.getBoundingClientRect().bottom+.5)break;
+    }
+    previous.disabled=start===0;next.disabled=end===items.length;position.textContent=items.length?`${start+1}–${end}/${items.length}`:'0/0';
   }
   dialogPage=draw;requestAnimationFrame(draw);
 }
-new ResizeObserver(()=>{if(dialog.open&&dialogPage)dialogPage();}).observe(body);
+new ResizeObserver(()=>{if(dialog.open){dialogLayout?.();dialogPage?.();}}).observe(body);
+function fitDialogForm(adapt=()=>{}){
+  const notes=[...body.children].filter(node=>node.tagName==='P');
+  const layout=()=>{
+    if(!dialog.open||dialogLayout!==layout)return;
+    body.classList.remove('condensed-form');notes.forEach(node=>node.hidden=false);$('dialog-info').hidden=true;adapt(false);
+    if(body.scrollHeight>body.clientHeight+1){
+      body.classList.add('condensed-form');notes.forEach(node=>node.hidden=true);$('dialog-info').hidden=!notes.length;adapt(true);
+    }
+  };
+  dialogLayout=layout;
+  $('dialog-info').onclick=()=>{
+    const saved={title:$('dialog-title').textContent,nodes:[...body.childNodes],actions:[...actions.childNodes],error:$('dialog-error').textContent,page:dialogPage,layout:dialogLayout};
+    fullText('説明',notes.map(node=>node.textContent).join('\n'),()=>{
+      open(saved.title);body.append(...saved.nodes);actions.append(...saved.actions);$('dialog-error').textContent=saved.error;dialogPage=saved.page;dialogLayout=saved.layout;requestAnimationFrame(()=>{dialogLayout?.();dialogPage?.();});
+    });
+  };
+  requestAnimationFrame(dialogLayout);
+}
 
 function chooseMode() {
   open('課題と自由');
@@ -157,6 +186,7 @@ function saveForm(after=close,draftName=null) {
   };
   input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(save);}});
   actions.append(button('保存',save),button('回路ファイル',()=>download('prism-notes-circuit.json',session.exportCircuit(input.value))),button('取消',close));
+  fitDialogForm(compact=>{$('dialog-title').textContent=compact?'回路名を保存':'回路を保存';});
 }
 function confirmAction(title,action,cancel=close) {
   open(title);body.append(element('p','この対象を変更します。'));
@@ -276,11 +306,12 @@ function timeInput(id,initial) {
     if(edge&&next<1n)throw new Error('道の時間は0.1秒以上です。');
     input.value=scale.format(next);
   };
-  row.append(button('−0.1',()=>adjust(-1)),button('＋0.1',()=>adjust(1)));body.append(element('label','秒（0.1秒刻み）'),input,row);
+  row.append(button('−0.1',()=>adjust(-1)),input,button('＋0.1',()=>adjust(1)));body.append(element('label','秒（0.1秒刻み）'),row);
   input.addEventListener('focus',()=>{if(matchMedia('(pointer:coarse)').matches)document.body.classList.add('input-focus');});
   const submit=()=>{session.setTime(id,input.value);close();};
   input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(submit);}});
   actions.append(button('確定',submit),button('取消',close));
+  fitDialogForm(compact=>{$('dialog-title').textContent=`${id}の時間${compact?'（秒）':''}`;});
 }
 function flow() {
   session.requireEditable();open('自由の流れ方');
@@ -288,14 +319,23 @@ function flow() {
   mode.append(element('option','最速経路',{value:'fastest'}),element('option','分かれて広がる',{value:'spread'}));mode.value=session.circuit.mode;
   const target=element('select','',{'aria-label':'送信先'});target.append(element('option','全祭壇へ',{value:'all'}));
   for(const node of session.circuit.nodes.filter(node=>node.kind==='goal'))target.append(element('option',node.name??node.id,{value:node.id}));
-  target.value=session.circuit.target??'all';body.append(element('label','流れ方'),mode,element('label','最速の送信先'),target);
+  target.value=session.circuit.target??'all';
+  const fields=element('div','',{class:'flow-fields'}),modeField=element('div','',{class:'flow-field'}),targetField=element('div','',{class:'flow-field'});
+  modeField.append(element('label','流れ方'),mode);targetField.append(element('label','最速の送信先'),target);fields.append(modeField,targetField);body.append(fields);
   actions.append(button('確定',()=>{session.setFlow(mode.value,target.value);close();}),button('取消',close));
+  fitDialogForm(compact=>fields.classList.toggle('columns',compact));
 }
 
 const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'チャイム',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
 function showRecords(){session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
 function resizeRecords(){
-  const space=$('record-list').getBoundingClientRect().height;recordCapacity=Math.max(1,Math.floor(space/(innerHeight<=360?32:36)));renderRecords();
+  document.body.classList.remove('records-fullscreen');
+  const minimum=parseFloat(getComputedStyle($('record-list')).fontSize)*1.4+8;
+  const empty=$('record-list').querySelector('p');
+  if($('record-list').getBoundingClientRect().height<Math.max(minimum,empty?.getBoundingClientRect().height??0)||$('stage').getBoundingClientRect().height<70)document.body.classList.add('records-fullscreen');
+  const list=$('record-list'),space=list.getBoundingClientRect().height,probe=button('0s #0 到着',()=>{},{class:'record-row'});
+  list.replaceChildren(probe);const height=probe.getBoundingClientRect().height,gap=parseFloat(getComputedStyle(list).gap)||0;
+  recordCapacity=Math.max(1,Math.floor((space+gap)/(height+gap)));renderRecords();
 }
 new ResizeObserver(()=>{if(!recordResize){recordResize=true;requestAnimationFrame(()=>{recordResize=false;if(!$('records-panel').hidden)resizeRecords();});}}).observe($('record-list'));
 function renderRecords(){
@@ -380,13 +420,14 @@ function frame(now){
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
+$('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}`));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(()=>{session.stop();chime.stop();clockAnchor=null;message='';render();}));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
   try{reactions(load.measure('calculation',()=>session.next({shouldPause:()=>load.calculationExceeded()})));load.measure('display',()=>render(false,{records:false}));if(session.view.recordsOpen)load.measure('records',renderRecords);finishLoad();}
   catch(error){load.current=null;throw error;}
 }));
-$('records').addEventListener('click',()=>attempt(showRecords));$('close-records').addEventListener('click',()=>{session.view.recordsOpen=false;render(false);});
+$('records').addEventListener('click',()=>attempt(showRecords));$('close-records').addEventListener('click',()=>{session.view.recordsOpen=false;document.body.classList.remove('records-fullscreen');render(false);$('records').focus();});
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
@@ -401,9 +442,17 @@ for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{
 $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
 $('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('completed');message='';render();}));
+$('hint').addEventListener('click',()=>{
+  if(session.guide&&$('app').classList.contains('compact')){
+    fullText('操作の案内',$('guide-text').textContent);
+    actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
+    if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
+  }else fullText('操作の案内',$('hint').textContent);
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
-function viewport(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??innerHeight}px`);}
+function viewport(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??innerHeight}px`);render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);}
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);viewport();render();maybeGuide();
 if(offline.enabled)offline.prepare();
 

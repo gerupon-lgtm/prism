@@ -1,0 +1,72 @@
+{
+  "version": "0.7.0",
+  "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic.",
+  "checks": [
+    {
+      "label": "chromium offline dialog 320x480",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 480x240",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 844x310",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 390x664",
+      "passed": true
+    },
+    {
+      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "passed": true
+    },
+    {
+      "label": "chromium explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets",
+      "passed": true
+    },
+    {
+      "label": "chromium failed update old version offline",
+      "passed": true
+    },
+    {
+      "label": "chromium cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data",
+      "passed": true
+    },
+    {
+      "label": "webkit offline dialog 320x480",
+      "passed": true
+    },
+    {
+      "label": "webkit offline dialog 480x240",
+      "passed": true
+    },
+    {
+      "label": "webkit offline dialog 844x310",
+      "passed": true
+    },
+    {
+      "label": "webkit offline dialog 390x664",
+      "passed": true
+    },
+    {
+      "label": "webkit subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "passed": true
+    },
+    {
+      "label": "webkit explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets",
+      "passed": true
+    },
+    {
+      "label": "webkit failed update old version offline",
+      "passed": true
+    },
+    {
+      "label": "webkit cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data",
+      "passed": true
+    }
+  ],
+  "passed": false,
+  "failure": "Process ended with AssertionError after 16 scenario checks: unexpected pageerror message /127.0.0.1:49924/prism/sw.js due to access control checks. This metadata was added from the captured process result; scenario flags are retained."
+}

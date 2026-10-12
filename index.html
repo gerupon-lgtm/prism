@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#090d1a">
-  <meta name="prism-version" content="0.6.0">
+  <meta name="prism-version" content="0.7.0">
   <!-- OFFLINE_METADATA -->
   <title>プリズム・ノーツ</title>
-  <link rel="stylesheet" href="./src/ui/app.css?v=0.6.0">
+  <link rel="stylesheet" href="./src/ui/app.css?v=0.7.0">
 </head>
 <body>
   <main id="app">
     <header>
-      <button id="home" class="logo" aria-label="課題と自由を選ぶ"><span class="prism">PRISM</span><span class="notes">NOTES</span></button>
-      <div class="heading"><strong id="title">はじめの一音</strong><small id="condition"></small></div>
+      <button id="home" class="logo" aria-label="課題と自由を選ぶ"><svg viewBox="0 0 1000 440" aria-hidden="true"><text class="prism" x="500" y="260">PRISM</text><text class="notes" x="500" y="420">NOTES</text></svg></button>
+      <button id="condition-info" class="heading" aria-label="現在の条件を読む"><span class="heading-title"><strong id="title">はじめの一音</strong><span aria-hidden="true">ⓘ</span></span><small id="condition"></small></button>
       <button id="menu" aria-label="保存と見本のメニュー">☰</button>
     </header>
     <div id="workspace">
       <section id="stage" aria-label="星の光を導く盤面">
         <svg id="board" aria-label="プリズムと道" role="group"></svg>
-        <div class="zoom-controls"><button id="zoom-out" aria-label="縮小">−</button><button id="fit">全体</button><button id="zoom-in" aria-label="拡大">＋</button></div>
-        <div id="add-controls" hidden><button id="add-prism">＋プリズム</button><button id="add-goal">＋祭壇</button><button id="flow">流れ方</button></div>
+        <div id="stage-controls"><div class="zoom-controls"><button id="zoom-out" aria-label="縮小">−</button><button id="fit">全体</button><button id="zoom-in" aria-label="拡大">＋</button></div>
+        <div id="add-controls" hidden><button id="add-prism" aria-label="プリズムを追加">＋プリズム</button><button id="add-goal" aria-label="祭壇を追加">＋祭壇</button><button id="flow">流れ方</button></div></div>
       </section>
       <aside id="records-panel" hidden aria-label="実行記録">
         <div class="panel-heading"><strong id="record-title">実行記録</strong><button id="record-tab">故障</button><button id="close-records" aria-label="記録を閉じる">×</button></div>
@@ -29,12 +29,12 @@
       </aside>
     </div>
     <div id="result-line"><div id="result" role="status" aria-live="polite"></div><button id="retry-result" hidden>成績再試行</button></div>
-    <div id="guide-bar" hidden><img id="guide-spirit" src="./public/spirit-guide.png?v=0.6.0" alt="星の精霊" draggable="false"><span id="guide-text"></span><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div>
+    <div id="guide-bar" hidden><img id="guide-spirit" src="./public/spirit-guide.png?v=0.7.0" alt="星の精霊" draggable="false"><span id="guide-text"></span><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div>
     <nav id="play-controls" aria-label="実行操作"><button id="play">流す</button><button id="next">次動作</button><button id="stop">停止</button><button id="records">記録</button><button id="sound" aria-pressed="false">音なし</button></nav>
-    <footer><span id="hint">起点を選び、候補へドラッグ</span><span>検証 v0.6.0</span></footer>
+    <footer><button id="hint">起点を選び、候補へドラッグ</button><span>検証 v0.7.0</span></footer>
   </main>
-  <dialog id="dialog"><form method="dialog"><div class="panel-heading"><h2 id="dialog-title"></h2><button id="dialog-close" aria-label="閉じる" value="cancel">×</button></div><div id="dialog-body"></div><p id="dialog-error" role="alert"></p><div id="dialog-actions"></div></form></dialog>
+  <dialog id="dialog"><form method="dialog"><div class="panel-heading"><h2 id="dialog-title"></h2><button id="dialog-info" type="button" aria-label="説明を読む" hidden>？</button><button id="dialog-close" aria-label="閉じる" value="cancel">×</button></div><div id="dialog-body"></div><p id="dialog-error" role="alert"></p><div id="dialog-actions"></div></form></dialog>
   <input id="import" type="file" accept=".json,application/json" hidden>
-  <script type="module" src="./src/ui/app.js?v=0.6.0"></script>
+  <script type="module" src="./src/ui/app.js?v=0.7.0"></script>
 </body>
 </html>
