@@ -4,7 +4,9 @@ export class Chime {
   async enable() {
     const Audio = window.AudioContext ?? window.webkitAudioContext;
     if (!Audio) throw new Error('このブラウザでは音を開始できません。到着は画面と記録で確認できます。');
-    this.context ??= new Audio(); await this.context.resume(); this.muted = false;
+    this.context ??= new Audio();
+    if(!this.output){this.output=this.context.createDynamicsCompressor();this.output.connect(this.context.destination);}
+    await this.context.resume(); this.muted = false;
   }
   mute() { this.muted = true; this.stop(); }
   strike() {
@@ -14,7 +16,7 @@ export class Chime {
       const oscillator=this.context.createOscillator(),gain=this.context.createGain();
       oscillator.type='sine'; oscillator.frequency.value=174.6*ratio;
       gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(volume,at+0.006);gain.gain.exponentialRampToValueAtTime(0.0001,at+decay);
-      oscillator.connect(gain);gain.connect(this.context.destination); this.voices.add(oscillator);
+      oscillator.connect(gain);gain.connect(this.output); this.voices.add(oscillator);
       oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};
       oscillator.start(at);oscillator.stop(at+decay+0.02);
     }

@@ -1,16 +1,12 @@
-const NS = 'http://www.w3.org/2000/svg';
-function svg(tag, attrs = {}, text = '') {
-  const element = document.createElementNS(NS,tag);
-  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
-  if (text) element.textContent = text;
-  return element;
-}
+import { svg } from './svg.js';
+import { Scene,symbol,constellation } from './scene.js';
 
 export class Board {
   constructor(element, session, changed, openSettings, notify) {
     Object.assign(this,{element,session,changed,openSettings,notify});
-    this.orientation = svg('g'); this.world = svg('g'); this.particleLayer = svg('g');
-    this.orientation.append(this.world,this.particleLayer); element.append(this.orientation);
+    this.orientation = svg('g',{class:'board-orientation'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
+    this.orientation.append(this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
+    this.scene=new Scene(element);this.arrivalPictures=new Map();this.pictureRun=null;
     this.pointers = new Map(); this.gesture = null; this.lastTap = null; this.addKind = null;
     element.addEventListener('pointerdown',event=>this.down(event));
     element.addEventListener('pointermove',event=>this.move(event));
@@ -32,7 +28,7 @@ export class Board {
   transform() {
     const {panX,panY,zoom}=this.session.view;
     const matrix=`translate(${panX} ${panY}) scale(${zoom})`;
-    this.world.setAttribute('transform',matrix); this.particleLayer.setAttribute('transform',matrix);
+    this.world.setAttribute('transform',matrix); this.particleLayer.setAttribute('transform',matrix);this.effectsLayer.setAttribute('transform',matrix);
     const screenMatrix=this.world.getScreenCTM();
     if(screenMatrix){const scale=Math.hypot(screenMatrix.a,screenMatrix.b);this.fontFactor=Math.max(1,0.5/scale);this.element.style.setProperty('--board-factor',this.fontFactor);}
   }
@@ -56,6 +52,8 @@ export class Board {
   }
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
+    const kind=this.session.mode==='free'?'sky':Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory';
+    this.scene.draw(this.angle?1600:1000,this.angle?1000:1600,kind);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
     let extent=1;for(const node of input.nodes)extent=Math.max(extent,Math.abs(node.x??0.5),Math.abs(node.y??0.5));
     // Display projection only; original coordinates are retained in circuit files.
@@ -82,12 +80,13 @@ export class Board {
     }
     for (const node of input.nodes) {
       const at=this.position(node),selected=this.session.selection===node.id;
-      const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${node.name??node.id} ${node.kind==='goal'?'祭壇':node.kind==='source'?'出発点':'プリズム'}`});
+      const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${node.name??node.id} ${node.kind==='goal'?'祭壇':node.kind==='source'?'出発点':'プリズム'}${node.enabled===false?' 使用不可':''}`});
       const factor=this.fontFactor??1;
       group.append(svg('circle',{r:65*factor,class:'node-hit'}));
-      group.append(node.kind==='prism' ? svg('path',{d:'M0 -37 L32 0 L0 37 L-32 0 Z',transform:`scale(${factor})`,class:'node-symbol'}) : svg('circle',{r:34*factor,class:'node-symbol'}));
+      group.append(symbol(node.kind,factor));
+      if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
-      group.append(svg('title',{},label),svg('text',{y:8*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      group.append(svg('title',{},label),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal') group.append(svg('text',{y:58*factor,class:'node-time'},`${node.process}s${node.kind==='source'?'（戻り）':''}`));
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
       group.addEventListener('keydown',event=>{
@@ -102,7 +101,28 @@ export class Board {
       }
     }
     this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);
+    this.renderArrivals();
     this.particles();
+  }
+  renderArrivals() {
+    const run=this.session.run;
+    if(this.pictureRun!==run||run?.status==='stopped'){this.arrivalPictures.clear();this.pictureRun=run;}
+    this.effectsLayer.replaceChildren();
+    const now=performance.now();
+    for(const [id,picture] of this.arrivalPictures){
+      if(now-picture.at>=1300){this.arrivalPictures.delete(id);continue;}
+      const node=run.circuit.nodes.get(picture.node),art=constellation(this.position(node),this.fontFactor??1,this.angle,id);
+      art.style.animationDelay=`-${Math.max(0,now-picture.at)}ms`;this.effectsLayer.append(art);
+    }
+  }
+  arrivals(entries) {
+    if(this.pictureRun!==this.session.run){this.arrivalPictures.clear();this.pictureRun=this.session.run;}
+    for(const entry of entries)if(entry.type==='goal'){
+      this.arrivalPictures.set(entry.particle,{node:entry.node,at:performance.now()});
+      const run=this.session.run,id=entry.particle;
+      setTimeout(()=>{if(this.pictureRun===run){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrived-particle="${id}"]`)?.remove();}},1300);
+    }
+    this.renderArrivals();
   }
   onCurve({a,b,control},fraction) {
     const r=1-fraction;return {x:r*r*a.x+2*r*fraction*control.x+fraction*fraction*b.x,y:r*r*a.y+2*r*fraction*control.y+fraction*fraction*b.y};
@@ -121,7 +141,10 @@ export class Board {
         // Calculate a bounded ratio without turning huge absolute times into Numbers.
         const travelled=run.clock-particle.departed,duration=particle.due-particle.departed;
         const fraction=Number(travelled*10000n/duration)/10000;
-        at=this.onCurve(particle.from===run.circuit.edges.get(particle.edge).from?curve:{a:curve.b,b:curve.a,control:curve.control},fraction);
+        const directed=particle.from===run.circuit.edges.get(particle.edge).from?curve:{a:curve.b,b:curve.a,control:curve.control};
+        at=this.onCurve(directed,fraction);
+        const tail=this.onCurve(directed,Math.max(0,fraction-.045));
+        this.particleLayer.append(svg('path',{d:`M${tail.x} ${tail.y} L${at.x} ${at.y}`,class:'light-trail'}));
       } else if(['waiting','processing','deadend'].includes(particle.status)) at=this.position(run.circuit.nodes.get(particle.node));
       else continue;
       this.particleLayer.append(svg('circle',{cx:at.x,cy:at.y,r:particle.status==='deadend'?16:11,class:`particle ${particle.status}`}));

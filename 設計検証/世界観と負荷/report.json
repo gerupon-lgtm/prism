@@ -1,0 +1,462 @@
+{
+  "version": "0.5.0",
+  "checkedAt": "2026-10-12T16:58:21.054Z",
+  "evidence": "PC Chromium/WebKit. Synthetic circuits; explicitly injected 135ms DOM stall verifies preservation, not a real-device load threshold. No physical touch or listening evidence. Unavailable audio APIs remain pending, never counted as sound acceptance.",
+  "checks": [
+    {
+      "label": "chromium adopted humanoid transparent image loaded only during guide",
+      "passed": true
+    },
+    {
+      "label": "chromium guide fits all eight portrait/landscape sizes",
+      "passed": true
+    },
+    {
+      "label": "chromium all six stages use their adopted setting with no decoration hit targets",
+      "passed": true
+    },
+    {
+      "label": "chromium prisms, source star and altar chime symbols",
+      "passed": true
+    },
+    {
+      "label": "chromium unwanted context menus suppressed; input selection/menu retained",
+      "passed": true
+    },
+    {
+      "label": "chromium three same-time arrivals have three tails; fading adds no experiment time",
+      "passed": true,
+      "clock": "0.1",
+      "records": 12
+    },
+    {
+      "label": "chromium three arrivals create all nine bell partials",
+      "passed": true,
+      "oscillators": 9
+    },
+    {
+      "label": "chromium stop clears decoration and all audio voices",
+      "passed": true
+    },
+    {
+      "label": "chromium measured synthetic rendering stall pauses while preserving every active particle",
+      "passed": true,
+      "measurement": {
+        "milliseconds": 142.09999990463257,
+        "phases": {
+          "calculation": 4.099999904632568,
+          "display": 137.90000009536743
+        },
+        "counts": {
+          "records": 48,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 0
+        }
+      }
+    },
+    {
+      "label": "chromium after load pause, all 24 arrivals and full records equal uninterrupted reference; record display and file export measured",
+      "passed": true,
+      "records": 192
+    },
+    {
+      "label": "chromium no browser script errors",
+      "passed": true
+    },
+    {
+      "label": "webkit adopted humanoid transparent image loaded only during guide",
+      "passed": true
+    },
+    {
+      "label": "webkit guide fits all eight portrait/landscape sizes",
+      "passed": true
+    },
+    {
+      "label": "webkit all six stages use their adopted setting with no decoration hit targets",
+      "passed": true
+    },
+    {
+      "label": "webkit prisms, source star and altar chime symbols",
+      "passed": true
+    },
+    {
+      "label": "webkit unwanted context menus suppressed; input selection/menu retained",
+      "passed": true
+    },
+    {
+      "label": "webkit unavailable audio API reported without disabling simulation",
+      "passed": true,
+      "audioSupport": {
+        "AudioContext": "undefined",
+        "webkitAudioContext": "undefined",
+        "OfflineAudioContext": "undefined"
+      }
+    },
+    {
+      "label": "webkit three same-time arrivals have three tails; fading adds no experiment time",
+      "passed": true,
+      "clock": "0.1",
+      "records": 12
+    },
+    {
+      "label": "webkit stop clears decoration and all audio voices",
+      "passed": true
+    },
+    {
+      "label": "webkit measured synthetic rendering stall pauses while preserving every active particle",
+      "passed": true,
+      "measurement": {
+        "milliseconds": 143,
+        "phases": {
+          "calculation": 3,
+          "display": 140
+        },
+        "counts": {
+          "records": 48,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 0
+        }
+      }
+    },
+    {
+      "label": "webkit after load pause, all 24 arrivals and full records equal uninterrupted reference; record display and file export measured",
+      "passed": true,
+      "records": 192
+    },
+    {
+      "label": "webkit no browser script errors",
+      "passed": true
+    }
+  ],
+  "measurements": [
+    {
+      "engine": "chromium",
+      "fixture": "24 all-goal particles sharing one processing gate",
+      "syntheticStall": {
+        "last": {
+          "milliseconds": 142.09999990463257,
+          "phases": {
+            "calculation": 4.099999904632568,
+            "display": 137.90000009536743
+          },
+          "counts": {
+            "records": 48,
+            "retainedParticles": 24,
+            "active": 24,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 22,
+            "milliseconds": 0.6999993324279785,
+            "maximum": 0.2999997138977051
+          },
+          "calculation": {
+            "calls": 5,
+            "milliseconds": 5.6999993324279785,
+            "maximum": 4.099999904632568
+          },
+          "display": {
+            "calls": 6,
+            "milliseconds": 141.50000047683716,
+            "maximum": 137.90000009536743
+          },
+          "audio": {
+            "calls": 1,
+            "milliseconds": 1.8999996185302734,
+            "maximum": 1.8999996185302734
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "paused",
+          "pauseReason": "load",
+          "clock": "0",
+          "records": 48,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 0
+        },
+        "audioVoices": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "fixture": "24-particle shared gate queue",
+      "snapshot": {
+        "last": {
+          "milliseconds": 1.1999998092651367,
+          "phases": {
+            "calculation": 0.6999998092651367,
+            "display": 0.5
+          },
+          "counts": {
+            "records": 73,
+            "retainedParticles": 24,
+            "active": 24,
+            "waiting": 23
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 22,
+            "milliseconds": 0.6999993324279785,
+            "maximum": 0.2999997138977051
+          },
+          "calculation": {
+            "calls": 6,
+            "milliseconds": 6.399999141693115,
+            "maximum": 4.099999904632568
+          },
+          "display": {
+            "calls": 7,
+            "milliseconds": 142.00000047683716,
+            "maximum": 137.90000009536743
+          },
+          "audio": {
+            "calls": 1,
+            "milliseconds": 1.8999996185302734,
+            "maximum": 1.8999996185302734
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "0.1",
+          "records": 73,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 23
+        },
+        "audioVoices": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "fixture": "completed queued run with record display and JSON export",
+      "snapshot": {
+        "last": {
+          "milliseconds": 3.5999999046325684,
+          "phases": {
+            "calculation": 0.09999990463256836,
+            "audio": 0.3000001907348633,
+            "display": 3.0999999046325684
+          },
+          "counts": {
+            "records": 192,
+            "retainedParticles": 24,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 24,
+            "milliseconds": 2.6999993324279785,
+            "maximum": 1.9000000953674316
+          },
+          "calculation": {
+            "calls": 31,
+            "milliseconds": 9.400000095367432,
+            "maximum": 4.099999904632568
+          },
+          "display": {
+            "calls": 56,
+            "milliseconds": 173.7999997138977,
+            "maximum": 137.90000009536743
+          },
+          "audio": {
+            "calls": 25,
+            "milliseconds": 9.099998950958252,
+            "maximum": 1.8999996185302734
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": "dialog",
+          "clock": "2.6",
+          "records": 192,
+          "retainedParticles": 24,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0
+      }
+    },
+    {
+      "engine": "webkit",
+      "fixture": "24 all-goal particles sharing one processing gate",
+      "syntheticStall": {
+        "last": {
+          "milliseconds": 143,
+          "phases": {
+            "calculation": 3,
+            "display": 140
+          },
+          "counts": {
+            "records": 48,
+            "retainedParticles": 24,
+            "active": 24,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 22,
+            "milliseconds": 2,
+            "maximum": 1
+          },
+          "calculation": {
+            "calls": 9,
+            "milliseconds": 5,
+            "maximum": 3
+          },
+          "display": {
+            "calls": 10,
+            "milliseconds": 145,
+            "maximum": 140
+          },
+          "audio": {
+            "calls": 1,
+            "milliseconds": 0,
+            "maximum": 0
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "paused",
+          "pauseReason": "load",
+          "clock": "0",
+          "records": 48,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 0
+        },
+        "audioVoices": 0
+      }
+    },
+    {
+      "engine": "webkit",
+      "fixture": "24-particle shared gate queue",
+      "snapshot": {
+        "last": {
+          "milliseconds": 1,
+          "phases": {
+            "calculation": 0,
+            "display": 1
+          },
+          "counts": {
+            "records": 73,
+            "retainedParticles": 24,
+            "active": 24,
+            "waiting": 23
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 22,
+            "milliseconds": 2,
+            "maximum": 1
+          },
+          "calculation": {
+            "calls": 10,
+            "milliseconds": 5,
+            "maximum": 3
+          },
+          "display": {
+            "calls": 11,
+            "milliseconds": 146,
+            "maximum": 140
+          },
+          "audio": {
+            "calls": 1,
+            "milliseconds": 0,
+            "maximum": 0
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "0.1",
+          "records": 73,
+          "retainedParticles": 24,
+          "active": 24,
+          "waiting": 23
+        },
+        "audioVoices": 0
+      }
+    },
+    {
+      "engine": "webkit",
+      "fixture": "completed queued run with record display and JSON export",
+      "snapshot": {
+        "last": {
+          "milliseconds": 2,
+          "phases": {
+            "calculation": 0,
+            "audio": 0,
+            "display": 1
+          },
+          "counts": {
+            "records": 192,
+            "retainedParticles": 24,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 24,
+            "milliseconds": 3,
+            "maximum": 1
+          },
+          "calculation": {
+            "calls": 35,
+            "milliseconds": 9,
+            "maximum": 3
+          },
+          "display": {
+            "calls": 60,
+            "milliseconds": 187,
+            "maximum": 140
+          },
+          "audio": {
+            "calls": 25,
+            "milliseconds": 0,
+            "maximum": 0
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": "dialog",
+          "clock": "2.6",
+          "records": 192,
+          "retainedParticles": 24,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0
+      }
+    }
+  ],
+  "pending": [
+    {
+      "engine": "webkit",
+      "label": "Actual Web Audio synthesis and output",
+      "observed": {
+        "AudioContext": "undefined",
+        "webkitAudioContext": "undefined",
+        "OfflineAudioContext": "undefined"
+      },
+      "reason": "This Windows test engine exposes no audio context. macOS Safari and iPhone/iPad Safari remain in the verification scope."
+    }
+  ],
+  "passed": true
+}

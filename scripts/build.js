@@ -23,7 +23,7 @@ function copyTree(directory) {
 copyTree('src');copyTree('画面案/ロゴ/fonts');copyTree('public');
 let index=readFileSync('index.html','utf8');
 if(!index.includes(`検証 v${packageVersion}`))throw new Error('画面の版番号をpackage.jsonと一致させてください。');
-index=index.replaceAll(packageVersion,version).replaceAll('./src/',`./${prefix}/src/`).replace('<!-- OFFLINE_METADATA -->',`<meta name="prism-offline" content="enabled"><link rel="manifest" href="./manifest.webmanifest?v=${version}"><link rel="icon" href="./${prefix}/public/icon-192.png"><link rel="apple-touch-icon" href="./${prefix}/public/apple-touch-icon.png">`);
+index=index.replaceAll(packageVersion,version).replaceAll('./src/',`./${prefix}/src/`).replaceAll('./public/',`./${prefix}/public/`).replace('<!-- OFFLINE_METADATA -->',`<meta name="prism-offline" content="enabled"><link rel="manifest" href="./manifest.webmanifest?v=${version}"><link rel="icon" href="./${prefix}/public/icon-192.png"><link rel="apple-touch-icon" href="./${prefix}/public/apple-touch-icon.png">`);
 // Queries on versioned entry points are unnecessary and would split offline keys.
 index=index.replaceAll(`?v=${version}`,'');
 writeFileSync(join(output,'index.html'),index);

@@ -40,8 +40,8 @@ async function drag(page,from,to){
         for(const [width,height] of [[320,480],[360,640],[390,664],[480,240],[568,260],[844,310],[768,1024],[1280,800]]){
           await page.setViewportSize({width,height});await fit(page,`${engine} play ${width}x${height}`);
           await page.locator('#home').click();await fit(page,`${engine} choices ${width}x${height}`);await page.locator('#dialog-close').click();
-          const orientation=await page.locator('#board>g').getAttribute('transform');
-          await page.locator('#records').click();await fit(page,`${engine} records ${width}x${height}`);assert.equal(await page.locator('#board>g').getAttribute('transform'),orientation,'Records must not rotate the graph');await page.locator('#close-records').click();
+          const orientation=await page.locator('#board>.board-orientation').getAttribute('transform');
+          await page.locator('#records').click();await fit(page,`${engine} records ${width}x${height}`);assert.equal(await page.locator('#board>.board-orientation').getAttribute('transform'),orientation,'Records must not rotate the graph');await page.locator('#close-records').click();
         }
         await page.setViewportSize({width:390,height:664});await settle(page);
         await drag(page,'S','A');await drag(page,'A','G');assert.equal(await page.locator('.edge:not(.candidate)').count(),2);
