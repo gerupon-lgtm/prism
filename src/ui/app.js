@@ -300,7 +300,8 @@ function resizeRecords(){
 new ResizeObserver(()=>{if(!recordResize){recordResize=true;requestAnimationFrame(()=>{recordResize=false;if(!$('records-panel').hidden)resizeRecords();});}}).observe($('record-list'));
 function renderRecords(){
   const cases=session.view.recordTab==='cases',items=cases?session.cases:session.run?.records??[],field=cases?'casePage':'recordPage';
-  const pages=Math.max(1,Math.ceil(items.length/recordCapacity));session.view[field]=Math.max(0,Math.min(pages-1,session.view[field]));
+  const anchor=`${field}Anchor`;session.view[anchor]??=(session.view[field]??0)*recordCapacity;
+  const pages=Math.max(1,Math.ceil(items.length/recordCapacity));session.view[field]=Math.max(0,Math.min(pages-1,Math.floor(session.view[anchor]/recordCapacity)));
   const page=session.view[field];$('record-title').textContent=cases?'故障ケース':'実行記録';$('record-tab').textContent=cases?'記録':'故障';$('record-tab').disabled=!session.cases.length;
   const list=$('record-list');list.replaceChildren();
   if(!items.length)list.append(element('p',cases?'故障ケースはありません。':'実行記録はまだありません。'));
@@ -309,11 +310,21 @@ function renderRecords(){
   }
   $('record-prev').disabled=page===0;$('record-next').disabled=page===pages-1;$('record-page').textContent=`${page+1}/${pages}・全${items.length}件`;
 }
-function recordDetails(record){
+function moveRecordPage(step){
+  const field=session.view.recordTab==='cases'?'casePage':'recordPage';
+  session.view[`${field}Anchor`]=Math.max(0,(session.view[field]+step)*recordCapacity);renderRecords();
+}
+function particleRecords(id,back=close){
+  open(`光線 #${id}の記録`);
+  const records=(session.run?.records??[]).filter(item=>item.particle===id);
+  listPage(records,item=>button(`${item.time}s ${recordNames[item.type]} ${item.node??''}`,()=>recordDetails(item,()=>particleRecords(id,back))),'この光線の記録はありません。');
+  actions.append(button('戻る',back));
+}
+function recordDetails(record,back=close){
   open('記録の詳細');
   const names={type:'出来事',time:'時刻',particle:'光線番号',parent:'親の光線',node:'地点',target:'対象祭壇',edge:'道',from:'出発地点',to:'次の地点',plannedTime:'最短経路の予定時間',arrivalTime:'到着予定',hops:'通った道の本数',children:'分岐後の光線',arrivedAt:'到着時刻',wait:'待ち時間',finishTime:'処理終了予定',startedAt:'処理開始時刻',processing:'処理時間',reason:'理由'};
-  const fields=Object.entries(record).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>[names[key]??key,key==='type'?recordNames[item]:item??'—']));
-  listPage(fields,([key,value])=>button(`${key}：${value}`,()=>fullText(key,value,()=>recordDetails(record))));actions.append(button('戻る',close));
+  const fields=Object.entries(record).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>({key,label:names[key]??key,value:key==='type'?recordNames[item]:item??'—'})));
+  listPage(fields,({key,label,value})=>button(`${label}：${value}`,()=>['particle','parent','children'].includes(key)&&Number.isSafeInteger(value)&&value>0?particleRecords(value,()=>recordDetails(record,back)):fullText(label,value,()=>recordDetails(record,back))));actions.append(button('戻る',back));
 }
 function caseDetails(item){
   open(`${item.id} 使用不可`);body.append(element('p',item.reachable?`${item.time}秒・${item.edges.join(' → ')}`:'この故障では祭壇に届きません。'));
@@ -333,7 +344,7 @@ function finishLoad(){
 }
 function startRun(options){
   load.begin();
-  try{load.measure('calculation',()=>session.start(options));load.measure('display',startClock);finishLoad();}
+  try{load.measure('calculation',()=>session.start(options));session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();}
   catch(error){load.current=null;throw error;}
 }
 function play(){
@@ -377,8 +388,8 @@ $('next').addEventListener('click',()=>attempt(()=>{
 }));
 $('records').addEventListener('click',()=>attempt(showRecords));$('close-records').addEventListener('click',()=>{session.view.recordsOpen=false;render(false);});
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
-$('record-prev').addEventListener('click',()=>{session.view[session.view.recordTab==='cases'?'casePage':'recordPage']--;renderRecords();});
-$('record-next').addEventListener('click',()=>{session.view[session.view.recordTab==='cases'?'casePage':'recordPage']++;renderRecords();});
+$('record-prev').addEventListener('click',()=>moveRecordPage(-1));
+$('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted)await chime.enable();else chime.mute();render(false);}));
 $('retry-result').addEventListener('click',()=>{
   let failed=false;

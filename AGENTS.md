@@ -40,6 +40,7 @@
 - `npm.cmd run dev`：本アプリのローカルサーバー（http://127.0.0.1:4173）。
 - `npm.cmd run build`：dist/へ版付きの配信資材を生成。下位のモジュールとフォントも同じ版のディレクトリへ置き、古い資材の混在を避ける。表示版・package.json・index.htmlの更新値を合わせる。
 - `設計検証/check_app.cjs`：既存Playwrightを引数指定して本アプリをPC Chromium/WebKitで確認。設計用画面のcheck_screen_layout.cjsとは別。結果は設計検証/アプリ/。
+- `設計検証/check_records.cjs`：二世代の分岐を持つ合成回路で親子を辿る操作、停止後の全記録、回転後の元ページを確認。PC Chromium/WebKitとインストール済みWindows Chrome/Edgeを検証専用状態で実行。結果は設計検証/記録の関係/。スマホ実機の証拠ではない。
 - `設計検証/check_world_load.cjs`：精霊の案内時表示、全6舞台、粒別の到着演出、合成負荷停止後の全状態・記録保持をPC両エンジンで確認。結果は設計検証/世界観と負荷/。測定はJavaScript呼出時間で、実描画・音出力の総負荷や実機基準ではない。Windows用WebKitで発音APIがない場合は音を未確認として残し、Safari実機を対象から外さない。画像の出所と生成指示はdocs/assets.md。
 - `設計検証/check_pwa.cjs`：Pagesと同じ/prism/の配下で、実際のWorkerと保存資材を使い通信なしの再起動・更新失敗・別タブの状態保持を確認。WebKitの通信遮断模擬に既知の問題があるため、WebKitは配信元を停止して同じ対象を確認する。結果は設計検証/PWA/。生成したfixture-*はGitへ含めない。
 - `設計検証/check_public.cjs`：公開URL・版・全資材のハッシュと配信形式・ブラウザ操作を確認。結果は設計検証/公開/。公開確認を全対象実機の合格にしない。

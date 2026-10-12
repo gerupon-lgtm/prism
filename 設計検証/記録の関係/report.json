@@ -1,0 +1,353 @@
+{
+  "version": "0.6.0",
+  "checkedAt": "2026-10-12T17:18:45.724Z",
+  "evidence": "Actual app navigation with a synthetic two-generation branch circuit. PC Chromium/WebKit and installed Windows Chrome/Edge. No physical phone evidence.",
+  "checks": [
+    {
+      "label": "chromium stopped-run child→parent→grandparent→child navigation",
+      "browserVersion": "151.0.7922.34",
+      "passed": true
+    },
+    {
+      "label": "chromium lineage list 320x480",
+      "passed": true,
+      "view": [
+        320,
+        480
+      ],
+      "documentSize": [
+        320,
+        480
+      ],
+      "dialog": [
+        9,
+        25,
+        311,
+        455
+      ]
+    },
+    {
+      "label": "chromium lineage list 480x240",
+      "passed": true,
+      "view": [
+        480,
+        240
+      ],
+      "documentSize": [
+        480,
+        240
+      ],
+      "dialog": [
+        9,
+        11,
+        471,
+        229
+      ]
+    },
+    {
+      "label": "chromium lineage list 844x310",
+      "passed": true,
+      "view": [
+        844,
+        310
+      ],
+      "documentSize": [
+        844,
+        310
+      ],
+      "dialog": [
+        182,
+        11,
+        662,
+        299
+      ]
+    },
+    {
+      "label": "chromium lineage list 768x1024",
+      "passed": true,
+      "view": [
+        768,
+        1024
+      ],
+      "documentSize": [
+        768,
+        1024
+      ],
+      "dialog": [
+        144,
+        297,
+        624,
+        727
+      ]
+    },
+    {
+      "label": "chromium main record page retained after related-record navigation",
+      "passed": true
+    },
+    {
+      "label": "chromium all full records and parent-child data remain identical after navigation",
+      "records": 24,
+      "passed": true
+    },
+    {
+      "label": "webkit stopped-run child→parent→grandparent→child navigation",
+      "browserVersion": "26.5",
+      "passed": true
+    },
+    {
+      "label": "webkit lineage list 320x480",
+      "passed": true,
+      "view": [
+        320,
+        480
+      ],
+      "documentSize": [
+        320,
+        480
+      ],
+      "dialog": [
+        9,
+        25,
+        311,
+        455
+      ]
+    },
+    {
+      "label": "webkit lineage list 480x240",
+      "passed": true,
+      "view": [
+        480,
+        240
+      ],
+      "documentSize": [
+        480,
+        240
+      ],
+      "dialog": [
+        9,
+        11,
+        471,
+        229
+      ]
+    },
+    {
+      "label": "webkit lineage list 844x310",
+      "passed": true,
+      "view": [
+        844,
+        310
+      ],
+      "documentSize": [
+        844,
+        310
+      ],
+      "dialog": [
+        182,
+        11,
+        662,
+        299
+      ]
+    },
+    {
+      "label": "webkit lineage list 768x1024",
+      "passed": true,
+      "view": [
+        768,
+        1024
+      ],
+      "documentSize": [
+        768,
+        1024
+      ],
+      "dialog": [
+        144,
+        297,
+        624,
+        727
+      ]
+    },
+    {
+      "label": "webkit main record page retained after related-record navigation",
+      "passed": true
+    },
+    {
+      "label": "webkit all full records and parent-child data remain identical after navigation",
+      "records": 24,
+      "passed": true
+    },
+    {
+      "label": "windows-chrome stopped-run child→parent→grandparent→child navigation",
+      "browserVersion": "154.0.8037.99",
+      "passed": true
+    },
+    {
+      "label": "windows-chrome lineage list 320x480",
+      "passed": true,
+      "view": [
+        320,
+        480
+      ],
+      "documentSize": [
+        320,
+        480
+      ],
+      "dialog": [
+        9,
+        25,
+        311,
+        455
+      ]
+    },
+    {
+      "label": "windows-chrome lineage list 480x240",
+      "passed": true,
+      "view": [
+        480,
+        240
+      ],
+      "documentSize": [
+        480,
+        240
+      ],
+      "dialog": [
+        9,
+        11,
+        471,
+        229
+      ]
+    },
+    {
+      "label": "windows-chrome lineage list 844x310",
+      "passed": true,
+      "view": [
+        844,
+        310
+      ],
+      "documentSize": [
+        844,
+        310
+      ],
+      "dialog": [
+        182,
+        11,
+        662,
+        299
+      ]
+    },
+    {
+      "label": "windows-chrome lineage list 768x1024",
+      "passed": true,
+      "view": [
+        768,
+        1024
+      ],
+      "documentSize": [
+        768,
+        1024
+      ],
+      "dialog": [
+        144,
+        297,
+        624,
+        727
+      ]
+    },
+    {
+      "label": "windows-chrome main record page retained after related-record navigation",
+      "passed": true
+    },
+    {
+      "label": "windows-chrome all full records and parent-child data remain identical after navigation",
+      "records": 24,
+      "passed": true
+    },
+    {
+      "label": "windows-edge stopped-run child→parent→grandparent→child navigation",
+      "browserVersion": "155.0.4283.45",
+      "passed": true
+    },
+    {
+      "label": "windows-edge lineage list 320x480",
+      "passed": true,
+      "view": [
+        320,
+        480
+      ],
+      "documentSize": [
+        320,
+        480
+      ],
+      "dialog": [
+        9,
+        25,
+        311,
+        455
+      ]
+    },
+    {
+      "label": "windows-edge lineage list 480x240",
+      "passed": true,
+      "view": [
+        480,
+        240
+      ],
+      "documentSize": [
+        480,
+        240
+      ],
+      "dialog": [
+        9,
+        11,
+        471,
+        229
+      ]
+    },
+    {
+      "label": "windows-edge lineage list 844x310",
+      "passed": true,
+      "view": [
+        844,
+        310
+      ],
+      "documentSize": [
+        844,
+        310
+      ],
+      "dialog": [
+        182,
+        11,
+        662,
+        299
+      ]
+    },
+    {
+      "label": "windows-edge lineage list 768x1024",
+      "passed": true,
+      "view": [
+        768,
+        1024
+      ],
+      "documentSize": [
+        768,
+        1024
+      ],
+      "dialog": [
+        144,
+        297,
+        624,
+        727
+      ]
+    },
+    {
+      "label": "windows-edge main record page retained after related-record navigation",
+      "passed": true
+    },
+    {
+      "label": "windows-edge all full records and parent-child data remain identical after navigation",
+      "records": 24,
+      "passed": true
+    }
+  ],
+  "pending": [],
+  "passed": true
+}
