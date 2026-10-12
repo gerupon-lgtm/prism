@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>プリズム・ノーツ 操作画面案 v0.1.0</title>
+  <link rel="stylesheet" href="screen.css?v=screen-0.1.0">
+  <script defer src="screen.js?v=screen-0.1.0"></script>
+</head>
+<body>
+<div class="app" data-view="play">
+  <header class="topbar">
+    <div class="brand" aria-label="プリズム・ノーツ">
+      <span class="prism">PRISM</span><span class="notes">NOTES</span>
+    </div>
+    <div class="scene-title"><span>最速の見本</span><small>夜空に浮かぶ遺跡</small></div>
+    <button data-action="guide">案内</button>
+  </header>
+  <main class="workspace">
+    <section class="stage" aria-label="実験エリア">
+      <div class="stage-meta"><span>自由 / 最速</span><span id="run-state">停止中</span><time>0.0 秒</time></div>
+      <div class="sky">
+        <svg viewBox="0 0 520 360" role="img" aria-label="出発点から二つのプリズムを経由して祭壇へ届く、配置確認用の見本">
+          <defs>
+            <radialGradient id="halo"><stop stop-color="#9ccce1" stop-opacity=".18"/><stop offset="1" stop-color="#9ccce1" stop-opacity="0"/></radialGradient>
+            <linearGradient id="glass" x1="0" x2="1" y2="1"><stop stop-color="#badce9" stop-opacity=".25"/><stop offset="1" stop-color="#7898c1" stop-opacity=".05"/></linearGradient>
+          </defs>
+          <circle cx="270" cy="180" r="178" fill="url(#halo)"/>
+          <g class="stars" fill="#9daebb"><circle cx="35" cy="63" r="1"/><circle cx="89" cy="28" r="1.3"/><circle cx="182" cy="54" r="1"/><circle cx="322" cy="18" r="1"/><circle cx="485" cy="80" r="1.2"/><circle cx="445" cy="302" r="1"/><circle cx="132" cy="330" r="1"/><circle cx="323" cy="325" r="1.3"/><circle cx="53" cy="272" r="1"/></g>
+          <g fill="none" stroke="#4c6475" stroke-width="1"><path d="M104 247 L105 296 L410 296 L417 249"/><path d="M158 293 L162 307 L379 307 L383 293"/><path d="M179 304 L183 317 L356 317 L360 304"/><ellipse cx="260" cy="185" rx="196" ry="125" stroke-dasharray="2 9" opacity=".5"/></g>
+          <g class="paths" fill="none" stroke="#c1a56c" stroke-width="1.8"><path d="M82 179 L250 96 L438 178"/><path d="M82 179 L250 259 L438 178"/></g>
+          <g class="path-times"><text x="151" y="124">1.0 秒</text><text x="350" y="119">1.0 秒</text><text x="147" y="249">1.5 秒</text><text x="352" y="250">1.0 秒</text></g>
+          <g class="source"><circle cx="82" cy="179" r="22" fill="#112030" stroke="#b6d8e7"/><path d="M82 161 L86 175 L100 179 L86 183 L82 197 L78 183 L64 179 L78 175Z" fill="#cfe7ee"/><text x="82" y="221">出発点</text></g>
+          <g class="prism-node" data-node="A" tabindex="0" role="button" aria-label="プリズムAを選択。ダブルタップで設定を開く"><path d="M250 68 L274 106 L226 106Z" fill="url(#glass)" stroke="#b6d8e7" stroke-width="1.5"/><path d="M250 68 L250 106 L274 106" fill="none" stroke="#b6d8e7" opacity=".5"/><text x="250" y="48">プリズム A</text><text x="250" y="136" data-time="A">処理 0.5 秒</text><circle class="move-handle" cx="282" cy="95" r="5" fill="#9eb8c6"/></g>
+          <g class="prism-node" data-node="B" tabindex="0" role="button" aria-label="プリズムBを選択。ダブルタップで設定を開く"><path d="M250 232 L274 271 L226 271Z" fill="url(#glass)" stroke="#b6d8e7" stroke-width="1.5"/><path d="M250 232 L250 271 L274 271" fill="none" stroke="#b6d8e7" opacity=".5"/><text x="250" y="219">プリズム B</text><text x="250" y="300" data-time="B">処理 0.5 秒</text><circle class="move-handle" cx="282" cy="261" r="5" fill="#9eb8c6"/></g>
+          <g class="altar"><path d="M418 198 L458 198 L451 205 L425 205Z M426 193 L450 193 M438 152 L438 174 M428 163 Q438 174 448 163" fill="none" stroke="#dfb96e" stroke-width="2"/><circle cx="438" cy="158" r="26" fill="none" stroke="#dfb96e" opacity=".5"/><text x="438" y="226">祭壇のチャイム</text></g>
+        </svg>
+        <div class="zoom-controls"><button aria-label="表示を縮小">−</button><button aria-label="表示を拡大">＋</button><button>全体</button></div>
+      </div>
+      <div class="transport"><button class="primary" data-action="run">流す</button><button data-action="step">次の動作</button><button data-action="stop">停止</button></div>
+    </section>
+    <aside class="panel" aria-label="操作欄">
+      <nav class="panel-tabs" aria-label="操作欄の切替"><button data-tab="settings">設定</button><button data-tab="records">記録</button><button data-tab="saves">保存</button><button data-action="close-panel">閉じる</button></nav>
+      <div class="panel-content" id="panel-content"></div>
+    </aside>
+  </main>
+  <footer><span>画面案 v0.1.0</span><span>表示値は見本データ</span></footer>
+</div>
+</body>
+</html>
