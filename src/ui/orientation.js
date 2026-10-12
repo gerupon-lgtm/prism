@@ -7,7 +7,10 @@ export function frameRotation({width,height,type,angle,portraitAngle,legacyAngle
     if(type==='portrait-primary')return 0;
     if(type==='portrait-secondary')return 180;
     const naturalPortrait=type.startsWith('portrait')===(angle%180===0);
-    return signed(-(angle-(portraitAngle??(naturalPortrait?0:90))));
+    const rotation=signed(-(angle-(portraitAngle??(naturalPortrait?0:90))));
+    // A landscape frame must be a quarter turn. Ignore an incompatible
+    // remembered portrait reference instead of turning it upside down.
+    return rotation%180===0?signed(-(angle-(naturalPortrait?0:90))):rotation;
   }
   if(coarse&&Number.isFinite(legacyAngle))return signed(-legacyAngle);
   if(editing)return previous;

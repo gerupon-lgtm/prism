@@ -49,3 +49,9 @@ test('旧方向API・キーボード・PC表示を区別する',()=>{
   assert.equal(frameRotation({width:390,height:220,editing:true,previous:0}),0);
   assert.equal(frameRotation({width:844,height:390}),-90);
 });
+
+test('横向きの情報と記憶した縦基準が食い違っても0度・180度へ回さない',()=>{
+  const input={coarse:true,width:915,height:330,portraitAngle:90};
+  assert.equal(frameRotation({...input,type:'landscape-primary',angle:90}),-90);
+  assert.equal(frameRotation({...input,type:'landscape-secondary',angle:270}),90);
+});

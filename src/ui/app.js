@@ -467,9 +467,18 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.ope
 document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
-  orientation.update({width:window.visualViewport?.width??innerWidth,height:window.visualViewport?.height??innerHeight,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
+  const visual=window.visualViewport;
+  // Mobile browsers can temporarily fit overflowing content by zooming out.
+  // Reading that enlarged CSS viewport back into the layout preserves the error.
+  const width=visual?visual.width*visual.scale:innerWidth,height=visual?visual.height*visual.scale:innerHeight;
+  orientation.update({width,height,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
+  const state={direction:screen.orientation?.type??null,angle:screen.orientation?.angle??window.orientation??null,frame:orientation.rotation,width,height,scale:visual?.scale??1};
+  const previous=viewport.history?.at(-1);if(JSON.stringify(previous)!==JSON.stringify(state)){viewport.history??=[];viewport.history.push(state);if(viewport.history.length>8)viewport.history.shift();}
   board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
 }
+document.querySelector('.app-version').addEventListener('click',()=>{
+  fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}`);
+});
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);screen.orientation?.addEventListener('change',viewport);window.addEventListener('orientationchange',viewport);viewport();render();maybeGuide();
 if(offline.enabled)offline.prepare();
 
