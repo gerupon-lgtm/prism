@@ -1,5 +1,6 @@
 // Verify real HTTPS assets and actual public-page startup. Device acceptance remains separate.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {waitForAsync}=require('./browser_wait.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--url')||!arg('--playwright-path'))throw new Error('Pass --url and --playwright-path');
 const base=new URL(arg('--url'));assert.equal(base.protocol,'https:');
@@ -18,7 +19,7 @@ async function drag(page,from,to){
   await start.waitFor({state:'visible'});await end.waitFor({state:'visible'});
   const a=await start.boundingBox(),b=await end.boundingBox();await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
 }
-async function prepared(page){await page.waitForFunction(async()=>{
+async function prepared(page){await waitForAsync(page,async()=>{
   const r=await navigator.serviceWorker.getRegistration();if(r?.active?.state!=='activated'||!navigator.serviceWorker.controller)return false;
   const v=document.querySelector('meta[name=prism-version]').content,c=await caches.open(`prism-notes:${new URL(document.baseURI).pathname}:${v}`),response=await c.match(new URL('build-info.json',document.baseURI));
   if(!response)return false;const m=await response.json();return m.version===v&&(await Promise.all(m.assets.map(asset=>c.match(new URL(asset,document.baseURI))))).every(Boolean);
@@ -50,6 +51,8 @@ async function contents(download){const stream=await download.createReadStream()
           // Remove ordinary HTTP cache, while retaining the worker's CacheStorage.
           const protocol=await context.newCDPSession(page);await protocol.send('Network.clearBrowserCache');await protocol.detach();
           report.cacheAfterHTTPClear=await page.evaluate(async()=>({keys:await caches.keys(),registrations:(await navigator.serviceWorker.getRegistrations()).map(r=>({scope:r.scope,active:r.active?.state,script:r.active?.scriptURL})),controller:navigator.serviceWorker.controller?.scriptURL}));
+          // Re-observe readiness after the cache operation; never silently repair or re-register.
+          await prepared(page);
           await page.evaluate(async()=>{
             const r=await navigator.serviceWorker.getRegistration();
             await new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>reject(new Error('Prepared worker did not respond')),5000);channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();event.data.ready?resolve():reject(new Error('Prepared assets missing'));};r.active.postMessage({type:'STATUS',version:document.querySelector('meta[name=prism-version]').content},[channel.port2]);});

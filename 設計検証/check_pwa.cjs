@@ -1,5 +1,6 @@
 // Actual workers/cache/offline/update interactions on PC engines, under a Pages subpath.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict'),cp=require('node:child_process');
+const {waitForAsync}=require('./browser_wait.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
@@ -39,7 +40,7 @@ async function status(page,type='STATUS',version=null){return page.evaluate(asyn
   if(!worker)throw new Error(`No worker: ${JSON.stringify({scope:registration.scope,installing:registration.installing?.state,active:registration.active?.state,url:location.href})}`);
   return new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>reject(new Error('worker timeout')),5000);channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();resolve(event.data);};worker.postMessage({type,version},[channel.port2]);});
 },{type,version});}
-async function prepared(page){await page.waitForFunction(async()=>{
+async function prepared(page){await waitForAsync(page,async()=>{
   const r=await navigator.serviceWorker.getRegistration();if(r?.active?.state!=='activated'||!navigator.serviceWorker.controller)return false;
   const version=document.querySelector('meta[name=prism-version]').content;
   const cache=await caches.open(`prism-notes:/prism/:${version}`),response=await cache.match(new URL('build-info.json',document.baseURI));

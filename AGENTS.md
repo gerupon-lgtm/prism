@@ -35,7 +35,7 @@
 
 現在の証拠と未完成の範囲はdocs/implementation-status.mdを参照。計算・保存はsrc/core/、操作状態はsrc/app/、本アプリ画面はsrc/ui/とルートindex.html、テストはtests/。外部パッケージ不要のJavaScript ESモジュールで着手しており、基本設計時のTypeScriptは【想定】からの実装選択として記録する。
 
-- `npm.cmd test`：並列度1の計算・保存・操作状態・更新保護・負荷測定テスト。最大5ファイルずつ、現在10ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
+- `npm.cmd test`：並列度1の計算・保存・操作状態・更新保護・負荷測定テスト。最大5ファイルずつ、現在11ファイル。ファイルが増えた場合はWindowsの資源を考慮して小分けに実行する。
 - `npm.cmd run check`：構文検査。
 - `npm.cmd run dev`：本アプリのローカルサーバー（http://127.0.0.1:4173）。
 - `npm.cmd run build`：dist/へ版付きの配信資材を生成。下位のモジュールとフォントも同じ版のディレクトリへ置き、古い資材の混在を避ける。表示版・package.json・index.htmlの更新値を合わせる。
