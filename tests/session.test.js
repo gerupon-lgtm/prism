@@ -41,6 +41,18 @@ test('全候補と制限を守り、未接続の実験も未達成として受�
   assert.equal(f.records.scores().length,1);
   s.stop(); s.remove('AG',true); s.start();
   assert.equal(s.result.state,'failed'); assert.equal(f.records.scores().length,1);
+  assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});assert.equal(s.pendingScores.size,0);
+});
+
+test('AC-17：全評価方式の確定した未達成は0点、成績候補にせず判定待ち・途中中断は無得点',()=>{
+  for(const id of ['Q1','Q2','Q3','Q4','Q5']){
+    const f=fixture(),s=f.session;s.replace({challengeId:id});s.start();
+    assert.equal(s.result.state,'failed');assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});
+    s.stop();assert.equal(s.result.state,'failed');assert.deepEqual(s.exportResult().evaluation.score,{numerator:'0',denominator:'1'});assert.equal(f.records.scores().length,0);assert.equal(s.pendingScores.size,0);
+  }
+  const f=fixture(),s=f.session;s.replace({challengeId:'Q6'});s.connect('S','G','direct1');s.connect('S','G','direct3');s.start();
+  assert.equal(s.result.state,'pending');assert.equal(s.result.score,null);s.advance('3');assert.equal(s.result.state,'failed');assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});assert.equal(f.records.scores().length,0);assert.equal(s.pendingScores.size,0);
+  const interrupted=q1(fixture());interrupted.start();interrupted.advance('1');interrupted.stop();assert.equal(interrupted.result.state,'stopped');assert.equal(interrupted.result.score,null);
 });
 
 test('自由の新しい点・道の初期値、出発点保護、接続付き削除、故障を保つ',()=>{

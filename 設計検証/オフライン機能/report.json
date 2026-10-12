@@ -1,6 +1,6 @@
 {
-  "version": "0.8.0",
-  "checkedAt": "2026-10-12T19:00:58.975Z",
+  "version": "0.9.0",
+  "checkedAt": "2026-10-12T19:12:41.167Z",
   "evidence": "PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.",
   "checks": [
     {
@@ -124,6 +124,208 @@
     },
     {
       "engine": "chromium",
+      "label": "Lower achieved score and failed zero score preserve all previous bests offline; zero score fits normal and CSS-enlarged views",
+      "requirements": [
+        "F-014",
+        "F-024",
+        "NF-003",
+        "NF-005"
+      ],
+      "passed": true,
+      "acceptance": [
+        "AC-17",
+        "AC-21"
+      ],
+      "failedViews": [
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            22,
+            306,
+            22
+          ],
+          "rect": [
+            7,
+            391,
+            313,
+            413
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            22,
+            376,
+            22
+          ],
+          "rect": [
+            7,
+            575,
+            383,
+            597
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            17,
+            466,
+            17
+          ],
+          "rect": [
+            7,
+            163.609375,
+            473,
+            185.609375
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            17,
+            830,
+            17
+          ],
+          "rect": [
+            7,
+            233.609375,
+            837,
+            255.609375
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            34,
+            306,
+            34
+          ],
+          "rect": [
+            7,
+            288.625,
+            313,
+            322.21875
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            34,
+            376,
+            34
+          ],
+          "rect": [
+            7,
+            506.21875,
+            383,
+            539.8125
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            34,
+            466,
+            34
+          ],
+          "rect": [
+            7,
+            122.625,
+            473,
+            156.21875
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            34,
+            830,
+            34
+          ],
+          "rect": [
+            7,
+            192.625,
+            837,
+            226.21875
+          ]
+        }
+      ],
+      "physicalTextZoomVerified": false
+    },
+    {
+      "engine": "chromium",
       "label": "Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll",
       "requirements": [
         "F-020",
@@ -185,6 +387,33 @@
       "passed": true,
       "syntheticQuotaFailure": true,
       "realCapacityVerified": false
+    },
+    {
+      "engine": "chromium",
+      "label": "Saved one-second path remains one second after unsaved two-second edit and offline reload",
+      "requirements": [
+        "F-016",
+        "F-018",
+        "NF-003",
+        "NF-004"
+      ],
+      "passed": true,
+      "acceptance": "AC-18"
+    },
+    {
+      "engine": "chromium",
+      "label": "Guide history write failure retains practice; retry restores paused original clock, circuit and all records without using save slots",
+      "requirements": [
+        "F-019",
+        "NF-003",
+        "NF-004"
+      ],
+      "passed": true,
+      "acceptance": [
+        "AC-25",
+        "AC-26"
+      ],
+      "syntheticQuotaFailure": true
     },
     {
       "engine": "chromium",
@@ -261,6 +490,18 @@
     },
     {
       "engine": "chromium",
+      "label": "Synthetic guide-history loss restores each mode independently without changing saved circuits or scores",
+      "requirements": [
+        "F-019",
+        "NF-003",
+        "NF-008"
+      ],
+      "passed": true,
+      "acceptance": "AC-26",
+      "syntheticHistoryLoss": true
+    },
+    {
+      "engine": "chromium",
       "label": "All observed app responses during offline flows and reload came from the worker",
       "requirements": [
         "F-023",
@@ -269,222 +510,442 @@
       "passed": true,
       "assetResponses": [
         {
-          "url": "http://127.0.0.1:52190/prism/",
+          "url": "http://127.0.0.1:49293/prism/",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/",
+          "url": "http://127.0.0.1:49293/prism/",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
           "status": 200,
           "fromServiceWorker": true
         }
@@ -611,6 +1072,208 @@
     },
     {
       "engine": "webkit",
+      "label": "Lower achieved score and failed zero score preserve all previous bests offline; zero score fits normal and CSS-enlarged views",
+      "requirements": [
+        "F-014",
+        "F-024",
+        "NF-003",
+        "NF-005"
+      ],
+      "passed": true,
+      "acceptance": [
+        "AC-17",
+        "AC-21"
+      ],
+      "failedViews": [
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            22,
+            306,
+            22
+          ],
+          "rect": [
+            7,
+            391,
+            313,
+            413
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            22,
+            376,
+            22
+          ],
+          "rect": [
+            7,
+            575,
+            383,
+            597
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            17,
+            466,
+            17
+          ],
+          "rect": [
+            7,
+            163.625,
+            473,
+            185.625
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            17,
+            830,
+            17
+          ],
+          "rect": [
+            7,
+            233.625,
+            837,
+            255.625
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            34,
+            306,
+            34
+          ],
+          "rect": [
+            7,
+            288.625,
+            313,
+            322.21875
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            34,
+            376,
+            34
+          ],
+          "rect": [
+            7,
+            506.21875,
+            383,
+            539.8125
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            34,
+            466,
+            34
+          ],
+          "rect": [
+            7,
+            122.640625,
+            473,
+            156.234375
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            34,
+            830,
+            34
+          ],
+          "rect": [
+            7,
+            192.640625,
+            837,
+            226.234375
+          ]
+        }
+      ],
+      "physicalTextZoomVerified": false
+    },
+    {
+      "engine": "webkit",
       "label": "Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll",
       "requirements": [
         "F-020",
@@ -672,6 +1335,33 @@
       "passed": true,
       "syntheticQuotaFailure": true,
       "realCapacityVerified": false
+    },
+    {
+      "engine": "webkit",
+      "label": "Saved one-second path remains one second after unsaved two-second edit and offline reload",
+      "requirements": [
+        "F-016",
+        "F-018",
+        "NF-003",
+        "NF-004"
+      ],
+      "passed": true,
+      "acceptance": "AC-18"
+    },
+    {
+      "engine": "webkit",
+      "label": "Guide history write failure retains practice; retry restores paused original clock, circuit and all records without using save slots",
+      "requirements": [
+        "F-019",
+        "NF-003",
+        "NF-004"
+      ],
+      "passed": true,
+      "acceptance": [
+        "AC-25",
+        "AC-26"
+      ],
+      "syntheticQuotaFailure": true
     },
     {
       "engine": "webkit",
@@ -748,6 +1438,18 @@
     },
     {
       "engine": "webkit",
+      "label": "Synthetic guide-history loss restores each mode independently without changing saved circuits or scores",
+      "requirements": [
+        "F-019",
+        "NF-003",
+        "NF-008"
+      ],
+      "passed": true,
+      "acceptance": "AC-26",
+      "syntheticHistoryLoss": true
+    },
+    {
+      "engine": "webkit",
       "label": "All observed app responses during offline flows and reload came from the worker",
       "requirements": [
         "F-023",
@@ -756,232 +1458,462 @@
       "passed": true,
       "assetResponses": [
         {
-          "url": "http://127.0.0.1:52190/prism/",
+          "url": "http://127.0.0.1:49293/prism/",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/manifest.webmanifest",
+          "url": "http://127.0.0.1:49293/prism/manifest.webmanifest",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/",
+          "url": "http://127.0.0.1:49293/prism/",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/manifest.webmanifest",
+          "url": "http://127.0.0.1:49293/prism/manifest.webmanifest",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.css",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/public/spirit-guide.png",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/app.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/session.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/storage.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/time.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/evaluation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/challenges.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/content/samples.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/board.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/audio.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/offline.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/app/update-safety.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/load-meter.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/circuit.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/simulation.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/core/heap.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/svg.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/src/ui/scene.js",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
           "status": 200,
           "fromServiceWorker": true
         },
         {
-          "url": "http://127.0.0.1:52190/prism/v0.8.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/manifest.webmanifest",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/manifest.webmanifest",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.css",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/public/spirit-guide.png",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/app.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/session.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/storage.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/time.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/evaluation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/challenges.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/content/samples.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/board.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/audio.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/offline.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/app/update-safety.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/load-meter.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/circuit.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/simulation.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/core/heap.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/svg.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/src/ui/scene.js",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-600.ttf",
+          "status": 200,
+          "fromServiceWorker": true
+        },
+        {
+          "url": "http://127.0.0.1:49293/prism/v0.9.0/%E7%94%BB%E9%9D%A2%E6%A1%88/%E3%83%AD%E3%82%B4/fonts/montserrat-500.ttf",
           "status": 200,
           "fromServiceWorker": true
         }

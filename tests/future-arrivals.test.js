@@ -5,6 +5,14 @@ import { Simulation } from '../src/core/simulation.js';
 const nodes = () => [{id:'S',kind:'source',process:'0'}, ...['A','B','C'].map(id=>({id,kind:'prism',process:'0'})), {id:'G',kind:'goal',process:'0'}];
 const edge = (id,from,to,time,bidirectional=false) => ({id,from,to,time,bidirectional});
 
+test('AC-10：初回2.5秒・間隔2秒の三到達は6.5秒の実到達後に確定する', () => {
+  const run = new Simulation({mode:'spread',nodes:nodes(),edges:[edge('first','S','G','2.5'),edge('second','S','G','4.5'),edge('third','S','G','6.5')]});
+  run.advanceUntil('6.4');assert.equal(run.intervalResult('G','2',3).state,'pending');
+  assert.deepEqual(run.arrivals('G').map(row=>row.time),['2.5','4.5']);
+  run.advanceUntil('6.5');assert.deepEqual(run.arrivals('G').map(row=>row.time),['2.5','4.5','6.5']);
+  assert.deepEqual(run.intervalResult('G','2',3),{state:'achieved',first:'2.5'});assert.equal(run.hasFutureArrival('G'),false);
+});
+
 test('例A：鐘へ出られない循環が残っても実到達1・3・5秒で達成する', () => {
   const run = new Simulation({mode:'spread',nodes:nodes(), edges:[
     edge('g1','S','G','1'), edge('g2','S','G','3'), edge('g3','S','G','5'),

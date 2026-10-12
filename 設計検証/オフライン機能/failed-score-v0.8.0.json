@@ -1,0 +1,131 @@
+{
+  "version": "0.8.0",
+  "checkedAt": "2026-10-12T19:09:43.819Z",
+  "evidence": "PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "label": "Closed-page prepared startup is served by the real worker with no reachable origin",
+      "requirements": [
+        "F-022",
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "fromServiceWorker": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Both three-step guides complete, restore original circuits, and never save practice scores",
+      "requirements": [
+        "F-019",
+        "F-021",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline synthetic score-write failure retains result and retry saves after recovery",
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Q1 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q1",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q2 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q2",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q3 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q3",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q4 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-012"
+      ],
+      "passed": true,
+      "challenge": "Q4",
+      "cases": 4
+    },
+    {
+      "engine": "chromium",
+      "label": "Q5 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-013"
+      ],
+      "passed": true,
+      "challenge": "Q5",
+      "cases": 3
+    },
+    {
+      "engine": "chromium",
+      "label": "Q6 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q6",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "All six scores persisted locally without a network connection",
+      "requirements": [
+        "F-024"
+      ],
+      "passed": true
+    }
+  ],
+  "pending": [],
+  "errors": [],
+  "windowErrors": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ null\n- {\n-   denominator: '1',\n-   numerator: '0'\n- }\n\n    at exercise (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:104:173)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:192:5"
+}

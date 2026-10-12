@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#090d1a">
-  <meta name="prism-version" content="0.8.0">
+  <meta name="prism-version" content="0.9.0">
   <!-- OFFLINE_METADATA -->
   <title>プリズム・ノーツ</title>
-  <link rel="stylesheet" href="./src/ui/app.css?v=0.8.0">
+  <link rel="stylesheet" href="./src/ui/app.css?v=0.9.0">
 </head>
 <body>
   <main id="app">
@@ -29,12 +29,12 @@
       </aside>
     </div>
     <div id="result-line"><div id="result" role="status" aria-live="polite"></div><button id="retry-result" hidden>成績再試行</button></div>
-    <div id="guide-bar" hidden><img id="guide-spirit" src="./public/spirit-guide.png?v=0.8.0" alt="星の精霊" draggable="false"><span id="guide-text"></span><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div>
+    <div id="guide-bar" hidden><img id="guide-spirit" src="./public/spirit-guide.png?v=0.9.0" alt="星の精霊" draggable="false"><span id="guide-text"></span><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div>
     <nav id="play-controls" aria-label="実行操作"><button id="play">流す</button><button id="next">次動作</button><button id="stop">停止</button><button id="records">記録</button><button id="sound" aria-pressed="false">音なし</button></nav>
-    <footer><button id="hint">起点を選び、候補へドラッグ</button><span>検証 v0.8.0</span></footer>
+    <footer><button id="hint">起点を選び、候補へドラッグ</button><span>検証 v0.9.0</span></footer>
   </main>
   <dialog id="dialog"><form method="dialog"><div class="panel-heading"><h2 id="dialog-title"></h2><button id="dialog-info" type="button" aria-label="説明を読む" hidden>？</button><button id="dialog-close" aria-label="閉じる" value="cancel">×</button></div><div id="dialog-body"></div><p id="dialog-error" role="alert"></p><div id="dialog-actions"></div></form></dialog>
   <input id="import" type="file" accept=".json,application/json" hidden>
-  <script type="module" src="./src/ui/app.js?v=0.8.0"></script>
+  <script type="module" src="./src/ui/app.js?v=0.9.0"></script>
 </body>
 </html>

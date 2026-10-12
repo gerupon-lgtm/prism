@@ -20,6 +20,31 @@ export function loopExample() {
   };
 }
 
+test('AC-01：道3本と中継処理2回の各0.5秒で2.5秒、初回出発と祭壇に隠れた処理なし', () => {
+  const run = new Simulation({ mode:'fastest', target:'G', nodes:[
+    {id:'S',kind:'source',process:'0.5'},
+    {id:'A',kind:'prism',process:'0.5'}, {id:'B',kind:'prism',process:'0.5'},
+    {id:'G',kind:'goal',process:'0'},
+  ], edges:[['SA','S','A'],['AB','A','B'],['BG','B','G']].map(([id,from,to])=>({id,from,to,time:'0.5'})) });
+  run.advanceUntil('3');
+  assert.deepEqual(run.records.filter(row=>row.type==='send').map(row=>[row.time,row.plannedTime]),[['0','2.5']]);
+  assert.deepEqual(run.records.filter(row=>row.type==='process-start').map(row=>[row.node,row.time]),[['A','0.5'],['B','1.5']]);
+  assert.deepEqual(run.records.filter(row=>row.type==='process-end').map(row=>[row.node,row.time]),[['A','1'],['B','2']]);
+  assert.deepEqual(run.arrivals().map(row=>[row.node,row.time]),[['G','2.5']]);
+  assert.equal(run.exhausted,true);
+});
+
+test('AC-05：1.0秒と1.2秒の到着は一つのゲートで待ち、1.5秒・2.0秒に処理終了', () => {
+  const run = new Simulation({ mode:'spread', target:'all', nodes:[
+    {id:'S',kind:'source',process:'0.5'}, {id:'A',kind:'prism',process:'0.5'}, {id:'G',kind:'goal',process:'0'},
+  ], edges:[{id:'early',from:'S',to:'A',time:'1'},{id:'later',from:'S',to:'A',time:'1.2'},{id:'AG',from:'A',to:'G',time:'1'}] });
+  run.advanceUntil('3');
+  assert.deepEqual(run.records.filter(row=>row.type==='process-start'&&row.node==='A').map(row=>[row.arrivedAt,row.time,row.wait]),[['1','1','0'],['1.2','1.5','0.3']]);
+  assert.deepEqual(run.records.filter(row=>row.type==='process-end'&&row.node==='A').map(row=>row.time),['1.5','2']);
+  assert.deepEqual(run.arrivals().map(row=>row.time),['2.5','3']);
+  assert.equal(run.exhausted,true);
+});
+
 test('自由の見本2はCで順番に処理し、G1に4・5・7・8秒、G2に5・6・8・9秒で到達する', () => {
   const run = new Simulation(loopExample());
   run.advanceUntil('9');
@@ -64,6 +89,17 @@ test('戻った出発点は処理するが初回送出には処理を加えな�
   run.advanceUntil('4.5');
   assert.deepEqual(run.arrivals().map(e => e.time), ['1','4.5']);
   assert.deepEqual(run.records.filter(e => e.type === 'process-start' && e.node === 'S').map(e => e.time), ['3']);
+});
+
+test('AC-16：出発点へ2秒と2.2秒に戻った粒も一つの処理ゲートで順番を待つ', () => {
+  const run = new Simulation({mode:'spread',target:'all',nodes:[
+    {id:'S',kind:'source',process:'0.5'},...['A','B','C'].map(id=>({id,kind:'prism',process:'0'})),{id:'G',kind:'goal',process:'0'},
+  ],edges:[{id:'SA',from:'S',to:'A',time:'0.5'},{id:'AB',from:'A',to:'B',time:'0.5'},{id:'BS',from:'B',to:'S',time:'1'},
+    {id:'SC',from:'S',to:'C',time:'1'},{id:'CS',from:'C',to:'S',time:'1.2'},{id:'SG',from:'S',to:'G',time:'1'}]});
+  run.advanceUntil('3');
+  assert.deepEqual(run.records.filter(row=>row.type==='process-start'&&row.node==='S').slice(0,2).map(row=>[row.arrivedAt,row.time,row.wait]),[['2','2','0'],['2.2','2.5','0.3']]);
+  assert.deepEqual(run.records.filter(row=>row.type==='process-end'&&row.node==='S').map(row=>row.time),['2.5','3']);
+  assert.deepEqual(run.arrivals('G').map(row=>row.time),['1']);
 });
 
 test('平行道は別の道として折り返せるが、直前の道そのものへは送り返さない', () => {

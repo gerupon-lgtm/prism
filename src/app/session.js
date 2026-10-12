@@ -236,13 +236,13 @@ export class Session {
       if (!worst || !worst.reachable) state = 'failed';
       actual = worst?.time ?? null;
     }
-    let score = null;
+    let score = state === 'failed' ? {numerator:'0',denominator:'1'} : null;
     if (state === 'achieved') {
       const baseline = scale.ticks(challenge.baseline);
       score = challenge.type === 'time-hops' ? timeHopScore(scale.ticks(actual),arrival.hops,baseline,challenge.baselineHops,this.run.circuit.nodes.size) : timeScore(scale.ticks(actual),baseline);
     }
     this.result = {state,first:arrival?.time ?? null,evaluatedTime:actual,score,challenge:challenge.id};
-    if (score && !guide) this.offerScore(challenge,score);
+    if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
     if (this.guide?.mode === 'challenge' && this.guide.step === 1 && arrival) this.guide.step = 2;
     return this.result;
   }
