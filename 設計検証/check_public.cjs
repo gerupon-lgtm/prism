@@ -13,7 +13,11 @@ async function item(page,name){
   await page.locator('#menu').click();await settle(page);
   for(let i=0;i<30;i++){const target=page.getByRole('button',{name,exact:true});if(await target.count()){await target.click();return;}const next=page.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(page);}throw new Error(`Missing ${name}`);
 }
-async function drag(page,from,to){const a=await page.locator(`[data-node="${from}"] .node-hit`).boundingBox(),b=await page.locator(`[data-node="${to}"] .node-hit`).boundingBox();await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();}
+async function drag(page,from,to){
+  const start=page.locator(`[data-node="${from}"] .node-hit`),end=page.locator(`[data-node="${to}"] .node-hit`);
+  await start.waitFor({state:'visible'});await end.waitFor({state:'visible'});
+  const a=await start.boundingBox(),b=await end.boundingBox();await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
+}
 async function prepared(page){await page.waitForFunction(async()=>{
   const r=await navigator.serviceWorker.getRegistration();if(r?.active?.state!=='activated'||!navigator.serviceWorker.controller)return false;
   const v=document.querySelector('meta[name=prism-version]').content,c=await caches.open(`prism-notes:${new URL(document.baseURI).pathname}:${v}`),response=await c.match(new URL('build-info.json',document.baseURI));
@@ -42,7 +46,19 @@ async function contents(download){const stream=await download.createReadStream()
           await page.setViewportSize({width,height});await settle(page);const size=await page.evaluate(()=>({w:innerWidth,h:innerHeight,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight}));assert(size.sw<=size.w+1&&size.sh<=size.h+1);report.checks.push({label:`${engine} public layout ${width}x${height}`,passed:true});
         }
         await page.setViewportSize({width:390,height:664});
-        if(engine==='chromium'){await context.setOffline(true);await page.close();page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));const response=await page.goto(base.href);assert(response.fromServiceWorker());await prepared(page);report.checks.push({label:'Public Chromium closed-page offline startup from service worker',passed:true});}
+        if(engine==='chromium'){
+          // Remove ordinary HTTP cache, while retaining the worker's CacheStorage.
+          const protocol=await context.newCDPSession(page);await protocol.send('Network.clearBrowserCache');await protocol.detach();
+          report.cacheAfterHTTPClear=await page.evaluate(async()=>({keys:await caches.keys(),registrations:(await navigator.serviceWorker.getRegistrations()).map(r=>({scope:r.scope,active:r.active?.state,script:r.active?.scriptURL})),controller:navigator.serviceWorker.controller?.scriptURL}));
+          await page.evaluate(async()=>{
+            const r=await navigator.serviceWorker.getRegistration();
+            await new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>reject(new Error('Prepared worker did not respond')),5000);channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();event.data.ready?resolve():reject(new Error('Prepared assets missing'));};r.active.postMessage({type:'STATUS',version:document.querySelector('meta[name=prism-version]').content},[channel.port2]);});
+          });
+          await context.setOffline(true);await page.close();page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+          const response=await page.goto(base.href);await prepared(page);
+          assert(response.fromServiceWorker(),'Offline navigation must actually be served by the prepared worker');
+          report.checks.push({label:'Public Chromium closed-page offline startup after clearing HTTP cache',url:response.url(),status:response.status(),fromServiceWorker:response.fromServiceWorker(),passed:true});
+        }
         await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await page.locator('#stop').click();
         const resultDownload=page.waitForEvent('download');await item(page,'実行結果を書き出す');const result=await contents(await resultDownload);assert.equal(result.conditions.edges.length,2);assert(result.records.some(r=>r.type==='goal'));await page.locator('#dialog-close').click();
         await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();
