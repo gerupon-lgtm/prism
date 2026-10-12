@@ -71,6 +71,7 @@ async function contents(download){const stream=await download.createReadStream()
         assert.deepEqual(errors,[]);report.checks.push({label:`${engine} public drag/run/score, result/circuit download and local manual save${engine==='chromium'?' while offline':''}`,passed:true});await context.close();
       }finally{await browser.close();}
     }
-    console.log(`Public checks passed: ${report.checks.length}`);
-  }finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));}
+    report.passed=true;console.log(`Public checks passed: ${report.checks.length}`);
+  }catch(error){report.passed=false;report.failure=error.stack;throw error;}
+  finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,167 +1,167 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "url": "https://gerupon-lgtm.github.io/prism/",
-  "checkedAt": "2026-10-12T17:26:36.921Z",
+  "checkedAt": "2026-10-12T18:18:34.814Z",
   "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
   "checks": [
     {
       "asset": "./index.html",
       "type": "text/html; charset=utf-8",
-      "sha256": "1e5d42c76998fbf1f4e425dedc3265ce3c4d6650b2a5629fe7ee14c04e8b535e",
+      "sha256": "fb42073c1f61b6581ca4b198f5ff57ec2961cc255015c88753f00e7a02bde3b1",
       "passed": true
     },
     {
       "asset": "./manifest.webmanifest",
       "type": "application/manifest+json; charset=utf-8",
-      "sha256": "49577d6fde96191543ff6ac881b59aa986600cbf59614190950bca856a67ed95",
+      "sha256": "c816a5534e086bbd9412c561e3f12dc01f57b4de80e1f9c4c0c5797e3100a326",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/app/session.js",
+      "asset": "./v0.7.0/src/app/session.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "baa4614cd3cea2f5bc6fad582cfa774aa28e046a192bbb7a9b082a52ed116451",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/app/update-safety.js",
+      "asset": "./v0.7.0/src/app/update-safety.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/content/challenges.js",
+      "asset": "./v0.7.0/src/content/challenges.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "3eeba233c07dc49013b58fdff7b5358f2c2080a9dee85de4f4785774f0ddc913",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/content/samples.js",
+      "asset": "./v0.7.0/src/content/samples.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/circuit.js",
+      "asset": "./v0.7.0/src/core/circuit.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/evaluation.js",
+      "asset": "./v0.7.0/src/core/evaluation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/heap.js",
+      "asset": "./v0.7.0/src/core/heap.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/simulation.js",
+      "asset": "./v0.7.0/src/core/simulation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "a113c6b5d03b753964981b74c84cbcf09c3308f86f7f432124927de33f9d8510",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/storage.js",
+      "asset": "./v0.7.0/src/core/storage.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "0b8802ebdf095887d7ffdfbee3f5fa24dae7f3e3a9b493b0100c00b50970a077",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/core/time.js",
+      "asset": "./v0.7.0/src/core/time.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/app.css",
+      "asset": "./v0.7.0/src/ui/app.css",
       "type": "text/css; charset=utf-8",
-      "sha256": "0c31f463eaba6ceb6b940f562f46c84923a2c67dbe36a3103eccf154e68e3cd1",
+      "sha256": "f7d49e1eccea8a6d9c2c2f72f7ab857ba77daf32f3377d966c318c0e9e137d51",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/app.js",
+      "asset": "./v0.7.0/src/ui/app.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "99e5533c70bb7200d0d2f89a427c0fdf8f087969bc122ac1172c5a9c6bbfb5b7",
+      "sha256": "d3e60986166447d56cf19ce63377d9b1b9010dcdcde822e50a49c6de791dcdfb",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/audio.js",
+      "asset": "./v0.7.0/src/ui/audio.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "988a4edab513107f949a36a684f53256ff2fbb8d5d4aa9e049ef545de398d806",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/board.js",
+      "asset": "./v0.7.0/src/ui/board.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "293a2423464069e9ba5ab32322c35e2586d4d53d2fadb66d8b368734569a1e7e",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/load-meter.js",
+      "asset": "./v0.7.0/src/ui/load-meter.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/offline.js",
+      "asset": "./v0.7.0/src/ui/offline.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "29ae80765c76de7976014c22da68aa0efab386e75d9659c51ac7a9b176a12ed2",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/scene.js",
+      "asset": "./v0.7.0/src/ui/scene.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "4066455c202571583ff08aa32473cab87e6b8bde9de8fba48bdad15b1e80cedb",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/src/ui/svg.js",
+      "asset": "./v0.7.0/src/ui/svg.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/画面案/ロゴ/fonts/OFL.txt",
+      "asset": "./v0.7.0/画面案/ロゴ/fonts/OFL.txt",
       "type": "text/plain; charset=utf-8",
       "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "asset": "./v0.7.0/画面案/ロゴ/fonts/montserrat-500.ttf",
       "type": "font/ttf",
       "sha256": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "asset": "./v0.7.0/画面案/ロゴ/fonts/montserrat-600.ttf",
       "type": "font/ttf",
       "sha256": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/public/apple-touch-icon.png",
+      "asset": "./v0.7.0/public/apple-touch-icon.png",
       "type": "image/png",
       "sha256": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/public/icon-192.png",
+      "asset": "./v0.7.0/public/icon-192.png",
       "type": "image/png",
       "sha256": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/public/icon-512.png",
+      "asset": "./v0.7.0/public/icon-512.png",
       "type": "image/png",
       "sha256": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
       "passed": true
     },
     {
-      "asset": "./v0.6.0/public/spirit-guide.png",
+      "asset": "./v0.7.0/public/spirit-guide.png",
       "type": "image/png",
       "sha256": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
       "passed": true
@@ -210,10 +210,10 @@
       "passed": true
     }
   ],
-  "commit": "70fd9c85f9f058ecef714e030587d161147fad21",
+  "commit": "ee8b8f88aea32b43409855bac299b58faae17bb7",
   "cacheAfterHTTPClear": {
     "keys": [
-      "prism-notes:/prism/:0.6.0"
+      "prism-notes:/prism/:0.7.0"
     ],
     "registrations": [
       {
@@ -223,5 +223,6 @@
       }
     ],
     "controller": "https://gerupon-lgtm.github.io/prism/sw.js"
-  }
+  },
+  "passed": true
 }
