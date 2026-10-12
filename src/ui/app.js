@@ -10,6 +10,7 @@ import { Offline } from './offline.js';
 import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
 import { OrientationLayout } from './orientation.js';
+import { EndWait } from './end-wait.js';
 
 const $ = id => document.getElementById(id);
 function element(tag,text='',attributes={}) {
@@ -23,6 +24,7 @@ function button(text,action,attributes={}) {
   const item=element('button',label,{type:'button',title:text,'aria-label':text,...attributes});item.addEventListener('click',()=>attempt(action));return item;
 }
 const load=new LoadMeter();
+const endWait=new EndWait();
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
@@ -415,6 +417,7 @@ function caseDetails(item){
   actions.append(button('このケースで流す',()=>{session.stop();close();startRun({caseId:item.id});}),button('戻る',close));
 }
 
+function interruptRun(reason){session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
 function startClock(){clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
@@ -423,7 +426,7 @@ function runCounts(){
 }
 function finishLoad(){
   if(load.finish(runCounts())&&session.run?.status!=='stopped'){
-    session.pause('load');chime.stop();clockAnchor=null;render(false);
+    interruptRun('load');render(false);
   }
 }
 function startRun(options){
@@ -436,6 +439,7 @@ function play(){
   else if(session.run.status==='running'){session.pause();chime.stop();clockAnchor=null;render(false);}
   else{session.resume();startClock();}
 }
+function stopRun(){session.stop();chime.stop();clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');if(!goals.length)return;
   load.measure('audio',()=>{for(const _entry of goals)chime.strike();});
@@ -462,18 +466,19 @@ function frame(now){
       });
       if(!$('records-panel').hidden)load.measure('records',renderRecords);
       finishLoad();
-    }catch(error){load.current=null;session.pause('error');chime.stop();clockAnchor=null;notify(error.message);}
+    }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
+  if(!document.hidden&&endWait.ready(session.run,now))attempt(stopRun);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 $('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}`));
-$('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(()=>{session.stop();chime.stop();clockAnchor=null;message='';render();}));
+$('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
   try{reactions(load.measure('calculation',()=>session.next({shouldPause:()=>load.calculationExceeded()})));load.measure('display',()=>render(false,{records:false}));if(session.view.recordsOpen)load.measure('records',renderRecords);finishLoad();}
-  catch(error){load.current=null;throw error;}
+  catch(error){load.current=null;interruptRun('error');throw error;}
 }));
 $('records').addEventListener('click',()=>attempt(showRecords));$('close-records').addEventListener('click',()=>{session.view.recordsOpen=false;document.body.classList.remove('records-fullscreen');render(false);$('records').focus();});
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
