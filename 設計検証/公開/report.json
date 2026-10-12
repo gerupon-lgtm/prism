@@ -1,179 +1,179 @@
 {
-  "version": "0.13.0",
+  "version": "0.14.0",
   "url": "https://gerupon-lgtm.github.io/prism/",
-  "checkedAt": "2026-10-12T22:49:41.365Z",
+  "checkedAt": "2026-10-12T23:11:35.618Z",
   "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
   "checks": [
     {
       "asset": "./index.html",
       "type": "text/html; charset=utf-8",
-      "sha256": "9c023ac8b9f340470f6a426d4a1314f11047bd56a2596b17ff0dc7749fd2beea",
+      "sha256": "a2824d81ec941eb07ed99bea33e0d4a320ea54b293b5905924cf63020e91bb0e",
       "passed": true
     },
     {
       "asset": "./manifest.webmanifest",
       "type": "application/manifest+json; charset=utf-8",
-      "sha256": "c742f313170df037245af7807ee9aa94282b1232788c908ee0e6bbcf8d2fa550",
+      "sha256": "3cd5512cbbaf136de9d580f179f6922e68148ec8984e4b77a2f63b2ff29a8401",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/app/session.js",
+      "asset": "./v0.14.0/src/app/session.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "67bf36e1ab9617fc76490fc98a795b0b0183573b4360977438949c0b7ed41fbd",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/app/update-safety.js",
+      "asset": "./v0.14.0/src/app/update-safety.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/content/challenges.js",
+      "asset": "./v0.14.0/src/content/challenges.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "3eeba233c07dc49013b58fdff7b5358f2c2080a9dee85de4f4785774f0ddc913",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/content/samples.js",
+      "asset": "./v0.14.0/src/content/samples.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/circuit.js",
+      "asset": "./v0.14.0/src/core/circuit.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/evaluation.js",
+      "asset": "./v0.14.0/src/core/evaluation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/heap.js",
+      "asset": "./v0.14.0/src/core/heap.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/simulation.js",
+      "asset": "./v0.14.0/src/core/simulation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "a113c6b5d03b753964981b74c84cbcf09c3308f86f7f432124927de33f9d8510",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/storage.js",
+      "asset": "./v0.14.0/src/core/storage.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "0b8802ebdf095887d7ffdfbee3f5fa24dae7f3e3a9b493b0100c00b50970a077",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/core/time.js",
+      "asset": "./v0.14.0/src/core/time.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/app.css",
+      "asset": "./v0.14.0/src/ui/app.css",
       "type": "text/css; charset=utf-8",
       "sha256": "1db1267d10fb97d658b74fefffeb28e012c79f8d459d3a840acead49febecd84",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/app.js",
+      "asset": "./v0.14.0/src/ui/app.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "c934b097e4667dbda2c4cc3f69f52cab92249fdbcf5e0ea300b7373647c0b74f",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/audio.js",
+      "asset": "./v0.14.0/src/ui/audio.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "6efb91db67a4926210072194602aa99c206b1a2a802904e7562df0bca6aedb3c",
+      "sha256": "c6a87d49b3fd090610a8674bc997c7ff86a8d17ce8f849b2e710f1460ca6a291",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/board.js",
+      "asset": "./v0.14.0/src/ui/board.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ce1197c4908896df15b6e0ce08d73d7042d020d0ff4b5e965b44e1f6097f623a",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/load-meter.js",
+      "asset": "./v0.14.0/src/ui/load-meter.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/magnifier.js",
+      "asset": "./v0.14.0/src/ui/magnifier.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "acbd1538d586b6bec094ecfd741dbe907fa1d3a2caa1ae5700e5ce37f9b79493",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/offline.js",
+      "asset": "./v0.14.0/src/ui/offline.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "29ae80765c76de7976014c22da68aa0efab386e75d9659c51ac7a9b176a12ed2",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/orientation.js",
+      "asset": "./v0.14.0/src/ui/orientation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "34240a256ef297f61b951a5f8d52aab2d67b98bddf39e2a5ea0d3599aef4fc67",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/scene.js",
+      "asset": "./v0.14.0/src/ui/scene.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "4066455c202571583ff08aa32473cab87e6b8bde9de8fba48bdad15b1e80cedb",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/src/ui/svg.js",
+      "asset": "./v0.14.0/src/ui/svg.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/画面案/ロゴ/fonts/OFL.txt",
+      "asset": "./v0.14.0/画面案/ロゴ/fonts/OFL.txt",
       "type": "text/plain; charset=utf-8",
       "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "asset": "./v0.14.0/画面案/ロゴ/fonts/montserrat-500.ttf",
       "type": "font/ttf",
       "sha256": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "asset": "./v0.14.0/画面案/ロゴ/fonts/montserrat-600.ttf",
       "type": "font/ttf",
       "sha256": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/public/apple-touch-icon.png",
+      "asset": "./v0.14.0/public/apple-touch-icon.png",
       "type": "image/png",
       "sha256": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/public/icon-192.png",
+      "asset": "./v0.14.0/public/icon-192.png",
       "type": "image/png",
       "sha256": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/public/icon-512.png",
+      "asset": "./v0.14.0/public/icon-512.png",
       "type": "image/png",
       "sha256": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
       "passed": true
     },
     {
-      "asset": "./v0.13.0/public/spirit-guide.png",
+      "asset": "./v0.14.0/public/spirit-guide.png",
       "type": "image/png",
       "sha256": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
       "passed": true
@@ -372,10 +372,10 @@
       "passed": true
     }
   ],
-  "commit": "aeb578ab0f4bc3f401c3a11cce55037103f297e7",
+  "commit": "ef2f7b865ed4b69b8311edde2c8431169da48601",
   "cacheAfterHTTPClear": {
     "keys": [
-      "prism-notes:/prism/:0.13.0"
+      "prism-notes:/prism/:0.14.0"
     ],
     "registrations": [
       {
