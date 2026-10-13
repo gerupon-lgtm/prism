@@ -441,8 +441,10 @@ function play(){
 }
 function stopRun(){session.stop();chime.stop();clockAnchor=null;message='';render();}
 function reactions(entries){
-  const goals=entries.filter(entry=>entry.type==='goal');if(!goals.length)return;
-  load.measure('audio',()=>{for(const _entry of goals)chime.strike();});
+  const goals=entries.filter(entry=>entry.type==='goal');
+  const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
+  if(goals.length||relays.length)load.measure('audio',()=>{for(const _entry of goals)chime.strike();for(const _entry of relays)chime.relay();});
+  if(!goals.length)return;
   load.measure('display',()=>{
     board.arrivals(goals);
     for(const entry of goals){
@@ -460,10 +462,6 @@ function frame(now){
     try{
       const entries=load.measure('calculation',()=>session.advance(run.circuit.time.format(ticks),{shouldPause:()=>load.calculationExceeded()}));
       reactions(entries);load.measure('display',()=>render(false,{records:false}));
-      load.measure('audio',()=>{
-        let moving=false;if(run.status==='running')for(const particle of run.particles.values())if(particle.status==='moving'){moving=true;break;}
-        chime.motion(moving);
-      });
       if(!$('records-panel').hidden)load.measure('records',renderRecords);
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
