@@ -1,6 +1,6 @@
 // Verify real HTTPS assets and actual public-page startup. Device acceptance remains separate.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
-const {waitForAsync}=require('./browser_wait.cjs');
+const {waitForAsync,wiringBounds}=require('./browser_wait.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--url')||!arg('--playwright-path'))throw new Error('Pass --url and --playwright-path');
 const base=new URL(arg('--url'));assert.equal(base.protocol,'https:');
@@ -15,9 +15,8 @@ async function item(page,name){
   for(let i=0;i<30;i++){const target=page.getByRole('button',{name,exact:true});if(await target.count()){await target.click();return;}const next=page.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(page);}throw new Error(`Missing ${name}`);
 }
 async function drag(page,from,to){
-  const start=page.locator(`[data-node="${from}"] .node-hit`),end=page.locator(`[data-node="${to}"] .node-hit`);
-  await start.waitFor({state:'visible'});await end.waitFor({state:'visible'});
-  const a=await start.boundingBox(),b=await end.boundingBox();await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
+  const {a,b}=await wiringBounds(page,from,to);
+  await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
 }
 async function prepared(page){await waitForAsync(page,async()=>{
   const r=await navigator.serviceWorker.getRegistration();if(r?.active?.state!=='activated'||!navigator.serviceWorker.controller)return false;

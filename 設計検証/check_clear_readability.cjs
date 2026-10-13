@@ -19,6 +19,9 @@ const inspect=p=>p.evaluate(async()=>{const app=await import(document.querySelec
 async function steps(page,count=30){await page.evaluate(count=>{for(let i=0;i<count&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();},count);await settle(page);}
 async function pauseStart(page){await page.evaluate(()=>{document.getElementById('play').click();document.getElementById('play').click();});await settle(page);}
 async function layout(page,label,toast=false){
+  // Geometry fixture only: startup refresh may hide this synthetic notice.
+  // Real update detection/application remains covered by check_pwa.cjs.
+  await page.evaluate(()=>{const notice=document.getElementById('update-notice');let latest=notice.hidden;notice.hidden=false;Object.defineProperty(notice,'hidden',{configurable:true,get:()=>false,set:value=>{latest=Boolean(value);}});notice.__restoreGeometry=()=>{delete notice.hidden;notice.hidden=latest;delete notice.__restoreGeometry;};});
   await settle(page);
   const data=await page.evaluate(()=>{
     const box=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
@@ -38,6 +41,7 @@ async function layout(page,label,toast=false){
   assert.equal(data.candidate,'rgb(163, 184, 222)');assert(Number(data.scene)>=.55);
   check.passed=true;
   }catch(error){await page.screenshot({path:path.join(out,'failed-'+Date.now()+'.png')});throw error;}
+  finally{await page.evaluate(()=>document.getElementById('update-notice').__restoreGeometry());}
 }
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
   for(const engine of channel?['chromium']:['chromium','webkit']){
