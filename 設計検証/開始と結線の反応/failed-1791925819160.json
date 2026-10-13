@@ -1,0 +1,14 @@
+{
+  "version": "0.23.0",
+  "evidence": "PC viewport geometry/state; synthetic audio trace; not device or acoustic acceptance.",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Bell target must sound while still dragging\n\n1 !== 2\n\n    at wireWhilePressed (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_launch_feedback.cjs:26:23)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_launch_feedback.cjs:50:2"
+}

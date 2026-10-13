@@ -14,6 +14,26 @@ const server=http.createServer((req,res)=>{let f=path.resolve(root,'.'+decodeURI
 const url=()=>arg('--url')||`http://127.0.0.1:${server.address().port}/`;
 async function settle(page){await page.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});}
 async function drag(page,from,to){const {a,b}=await wiringBounds(page,from,to);await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();await settle(page);}
+async function wireWhilePressed(page,context,engine){
+ const cdp=engine==='chromium'?await context.newCDPSession(page):null;
+ const center=async id=>{const {a}=await wiringBounds(page,id,id);return {x:a.x+a.width/2,y:a.y+a.height/2};};
+ const move=async point=>{if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...point,id:1}]});else await page.mouse.move(point.x,point.y);await settle(page);};
+ const s=await center('S'),a=await center('A'),g=await center('G');
+ await page.locator('#sound').click();await page.evaluate(()=>__audio.length=0);
+ if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...s,id:1}]});else{await page.mouse.move(s.x,s.y);await page.mouse.down();}
+ await move(a);assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1,'Prism must sound before releasing the drag');assert.equal(await page.locator('.edge:not(.candidate)').count(),0,'Touch feedback must not commit the stroke');
+ await move({x:a.x+1,y:a.y+1});assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1,'Staying on prism does not repeat');
+ await move(g);assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),2,'Bell target must sound while still dragging');assert.equal(await page.locator('.edge:not(.candidate)').count(),0);
+ if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});else await page.mouse.up();
+ assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),2,'Releasing does not duplicate the target sound');assert.equal(await page.locator('.edge:not(.candidate)').count(),2);
+ await page.locator('#clear-wires').click();await page.evaluate(()=>__audio.length=0);
+ if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...s,id:1}]});else{await page.mouse.move(s.x,s.y);await page.mouse.down();}
+ await move(a);assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1);
+ if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});else{await page.locator('#board').dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();}
+ assert.equal(await page.locator('.edge:not(.candidate)').count(),0);assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1,'Cancel keeps the prior cue without another sound or wiring');
+ report.checks.push({label:engine+' each accepted prism/goal sounds during continuous drag; release stays atomic and cancel preserves wiring',input:cdp?'Chromium protocol touch':'PC mouse plus synthetic pointer cancellation',passed:true});
+ await page.locator('#sound').click();await page.evaluate(()=>__audio.length=0);await cdp?.detach();
+}
 const state=p=>p.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src),box=e=>{const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height];};return {run:app.inspectPerformance().run,matrix:document.querySelector('[data-node="S"]').parentElement.getAttribute('transform'),board:box(document.getElementById('board')),nodes:['S','A','G'].map(id=>box(document.querySelector('[data-node="'+id+'"] .node-symbol'))),edges:document.querySelectorAll('.edge:not(.candidate)').length,scores:localStorage.getItem('prism-notes.scores.v1')};});
 function sameGeometry(a,b,label){assert.equal(b.matrix,a.matrix,label+' view transform');for(const key of ['board','nodes'])assert.deepEqual(b[key],a[key],label+' '+key);}
 async function launchFrames(page){return page.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src),frames=[],start=performance.now();document.getElementById('play').click();do{const run=app.inspectPerformance().run;frames.push({ms:performance.now()-start,state:document.getElementById('play').dataset.state,run,matrix:document.querySelector('[data-node="S"]').parentElement.getAttribute('transform')});if(frames.at(-1).state==='running')break;if(performance.now()-start>3000)throw Error('Launch did not finish');await new Promise(requestAnimationFrame);}while(true);document.getElementById('play').click();return frames;});}
@@ -27,6 +47,7 @@ function checkDelay(frames,label,previous){const elapsed=frames.at(-1).ms;assert
   window.AudioContext=class{constructor(){this.state='running';this.destination={};}get currentTime(){return performance.now()/1000;}async resume(){this.state='running';}createGain(){return {gain:parameter(),connect(){},disconnect(){}};}createDynamicsCompressor(){return {connect(){}};}createOscillator(){const voice={frequency:parameter(),connect(){},disconnect(){},start(at){this.started=at;window.__audio.push({hz:this.frequency.value,at});},stop(){this.onended?.();}};return voice;}};
  });
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url());await enterApp(page);await settle(page);const initial=await state(page);
+ await wireWhilePressed(page,context,engine);
  await drag(page,'S','A');sameGeometry(initial,await state(page),'muted first wire');assert.equal(await page.evaluate(()=>__audio.length),0);await page.locator('#sound').click();await page.evaluate(()=>__audio.length=0);
  await drag(page,'A','G');sameGeometry(initial,await state(page),'second wire');assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1);await page.evaluate(()=>__audio.length=0);await drag(page,'A','G');assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),0);
  const {a}=await wiringBounds(page,'S','S');await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(initial.board[0]+12,initial.board[1]+12,{steps:8});await page.mouse.up();assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),0);

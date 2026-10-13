@@ -9,7 +9,7 @@ function fixture(){
   chime.output={};chime.muted=false;return {chime,voices};
 }
 
-test('結線の確定音は短音1回で、停止・消音・鐘の余韻では重ならない',()=>{
+test('結線音は短音1回で、停止・消音・鐘の余韻では重ならない',()=>{
   const {chime,voices}=fixture();chime.wire();assert.equal(voices.length,1);
   assert(voices[0].frequency.events.some(e=>e.value===WIRING_SOUND.frequencyHz));
   assert(Math.abs(voices[0].stopAt-WIRING_SOUND.durationSeconds-.01)<1e-9);

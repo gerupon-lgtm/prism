@@ -257,7 +257,8 @@ export class Board {
       // still accepts a final release without turning a nearby pass into a detour.
       const near=hit&&Math.hypot(event.clientX-hit.left-hit.width/2,event.clientY-hit.top-hit.height/2)<=Math.min(hit.width,hit.height)*.2;
       if(target&&target!==from&&!terminal&&(final||near)){
-        try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
+        // Cue each accepted target; the stroke stays provisional until release.
+        try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.connected(target);this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
       }
       this.previewWire();this.magnifier.show(event,`${gesture.route.join('→')}`);
     } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {
@@ -280,7 +281,7 @@ export class Board {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
         const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
         if(gesture.route.length>1&&target===gesture.route.at(-1)){
-          const added=this.session.connectPath(gesture.route);if(added.length)this.connected(added);
+          this.session.connectPath(gesture.route);
         }
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {

@@ -1,0 +1,14 @@
+{
+  "version": "0.22.0",
+  "evidence": "PC viewport geometry/state; synthetic audio trace; not device or acoustic acceptance.",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Prism must sound before releasing the drag\n\n0 !== 1\n\n    at wireWhilePressed (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_launch_feedback.cjs:24:23)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_launch_feedback.cjs:50:2"
+}
