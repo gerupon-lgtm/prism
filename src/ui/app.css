@@ -224,3 +224,19 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 
 .launching .source .node-symbol{filter:drop-shadow(0 0 calc(4px + 6px * var(--launch-progress,0)) #edd397)}
 @media(prefers-reduced-motion:reduce){.launching .source .node-symbol{filter:drop-shadow(0 0 6px #edd397)}}
+
+#candidate-times{white-space:nowrap;min-width:0}
+.device-landscape #app:not(.text-enlarged) #edit-controls:has(#candidate-times:not([hidden])){height:clamp(96px,calc(6.5 * var(--layout-font)),190px)}
+
+html:not(.device-landscape) #app:not(.text-enlarged) #edit-controls:has(#candidate-times:not([hidden])){max-width:calc(100% - 128px)}
+
+.text-enlarged #stage:has(#candidate-times:not([hidden])){grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+
+/* Keep enlarged controls in one row in short desktop windows. */
+html:not(.device-landscape) .text-enlarged.compact #stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+html:not(.device-landscape) .text-enlarged.compact #board{grid-column:1;grid-row:1}
+html:not(.device-landscape) .text-enlarged.compact #stage-controls{display:flex;grid-column:1;grid-row:2;gap:4px;padding:2px;align-items:center}
+html:not(.device-landscape) .text-enlarged.compact #add-controls{order:-1;padding:0}
+html:not(.device-landscape) .text-enlarged.compact #edit-controls,html:not(.device-landscape) .text-enlarged.compact .zoom-controls{position:static;padding:0;max-width:none}
+html:not(.device-landscape) .text-enlarged.compact .header-actions button{padding:2px;min-height:30px;line-height:1.2}
+html:not(.device-landscape) .text-enlarged.compact #play-controls button{padding:2px 4px}

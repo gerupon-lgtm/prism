@@ -12,6 +12,22 @@ function fixture() {
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
+test('実践の複数祭壇課題は一つだけの到達では未達成で、全部への到達時間を採点する',()=>{
+  const f=fixture(),s=f.session;s.replace({challengeId:'Q7'});s.connectPath(['S','A','B','D','G1']);s.start();s.advance('10');
+  assert.equal(s.result.state,'failed');assert.equal(s.result.score.numerator,'0');assert.equal(s.clearChoices,null);assert.equal(f.records.scores().length,0);
+  s.stop();s.replace({challengeId:'Q7'});s.connectPath(['S','A','B','D','G1']);s.connectPath(['A','C','E','G2']);s.start();s.advance('3.5');
+  assert.equal(s.result.state,'pending');assert.equal(s.result.score,null);assert.equal(s.clearChoices,null);assert.equal(f.records.scores().length,0);
+  s.advance('4');assert.equal(s.result.state,'achieved');assert.equal(s.result.evaluatedTime,'4');assert.deepEqual(s.result.score,{numerator:'100',denominator:'1'});
+  assert.deepEqual(s.result.goals,[{id:'G1',first:'3.5'},{id:'G2',first:'4'}]);assert.equal(s.clearChoices.nextChallengeId,'Q8');assert.equal(f.records.scores()[0].challenge,'Q7@1');
+  const before=s.exportResult();s.stop();assert.deepEqual(s.exportResult().evaluation,before.evaluation);assert.deepEqual(s.exportResult().records,before.records);
+});
+
+test('合流の実践課題は一本道では失敗し、順番待ちを含む二到達で達成する',()=>{
+  const f=fixture(),s=f.session;s.replace({challengeId:'Q11'});s.connectPath(['S','A','B','D','G']);s.start();s.advance('10');assert.equal(s.result.state,'failed');s.stop();
+  s.replace({challengeId:'Q11'});s.connectPath(['S','A','B','D','G']);s.connectPath(['A','C','D']);s.start();s.advance('10');
+  assert.equal(s.result.state,'achieved');assert.deepEqual(s.run.arrivals('G').map(r=>r.time),['3.5','4.5']);assert(s.run.records.some(r=>r.type==='process-start'&&r.node==='D'&&r.wait==='0.5'));assert.deepEqual(s.result.score,{numerator:'100',denominator:'1'});
+});
+
 test('課題の再構成後も旧版の成績を保持し、新版の成績と混ぜない',()=>{
   const f=fixture();f.records.saveScore('Q6@1','interval@1',{numerator:'100',denominator:'1'});
   const old=structuredClone(f.records.scores()[0]),s=f.session;s.replace({challengeId:'Q6'});for(const id of ['A','B','C'])s.connectPath(['S',id,'G']);s.start();s.advance('5');
@@ -26,7 +42,7 @@ test('達成した課題だけに次の選択を出し、停止しても配線�
   assert.equal(s.clearChoices.nextChallengeId,'Q2');s.replace({challengeId:'Q2'});assert.equal(s.clearChoices,null);
   s.connect('S','C');s.start();s.stop();assert.equal(s.clearChoices,null);
   s.replace({challengeId:'Q6'});for(const id of ['A','B','C'])s.connectPath(['S',id,'G']);
-  s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:null});s.stop();
+  s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:'Q7'});s.stop();
   s.replace({sampleId:'compare'});s.start();s.advance('3');assert.equal(s.clearChoices,null);s.stop();
   s.replace({challengeId:'Q1'});s.beginGuide();s.connectPath(['S','A','G']);s.start();s.advance('2.5');assert.equal(s.clearChoices,null);
 });
@@ -247,4 +263,17 @@ test('課題案内は結線・到着・記録を体験し、練習成績は本�
   s.advance('2.5'); assert.equal(s.guide.step,2); assert.equal(s.guide.readyToFinish,false);
   assert.equal(f.records.scores().length,0); s.openRecords(); assert.equal(s.guide.readyToFinish,true);
   s.endGuide('completed'); assert.equal(s.circuit.edges.length,0); assert.equal(s.needsGuide('challenge'),false);
+});
+
+test('課題の上限を超える合成条件は連続実行と次動作の両方で停止し、最高点と条件を保つ',()=>{
+  for(const stepped of [false,true]){
+    const f=fixture(),s=q1(f);f.records.saveScore('Q1@1','time@1',{numerator:'100',denominator:'1'});const scores=f.records.scores(),circuit=structuredClone(s.circuit);
+    // Synthetic stale bound: not the verified time limit of the shipped Q1.
+    s.challenge={...s.challenge,maxDuration:'1'};s.start();if(stepped){s.pause();s.next();}else s.advance('10');
+    assert.equal(s.run.format(),'1');assert.equal(s.run.status,'stopped');assert(s.editable);assert.equal(s.result.timeLimitReached,true);assert.equal(s.result.score,null);assert.match(s.result.reason,/上限/);assert.deepEqual(s.circuit,circuit);assert.deepEqual(f.records.scores(),scores);assert(s.exportResult().records.some(r=>r.type==='arrival'&&r.node==='A'));
+  }
+});
+
+test('自由作成は固定課題の時間上限を引き継がず、長い移動も実験できる',()=>{
+  const s=free(fixture());s.setTime('SA','100');s.setTime('SB','100');s.start();s.advance('20');assert.equal(s.run.format(),'20');assert.equal(s.run.status,'running');assert.equal(s.result.timeLimitReached,undefined);s.stop();assert.equal(s.run.format(),'20');
 });

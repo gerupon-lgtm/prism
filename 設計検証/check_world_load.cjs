@@ -58,12 +58,12 @@ async function finishNext(page){
         }check(`${engine} guide fits all eight portrait/landscape sizes`);
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${engine}-guide.png`)});
         await skipGuide(page);assert(!(await page.locator('#guide-spirit').isVisible()));
-        for(const id of ['Q1','Q2','Q3','Q4','Q5','Q6']){
+        for(const id of Array.from({length:12},(_,i)=>'Q'+(i+1))){
           await page.locator('#home').click();await settle(page);
           for(let i=0;i<10;i++){const item=page.getByRole('button',{name:new RegExp(`^${id} `)});if(await item.count()){await item.click();break;}const next=page.locator('#dialog-body .pager button').last();assert(!(await next.isDisabled()),`${id} missing: ${await page.locator('#dialog-body').innerText()}`);await next.click();await settle(page);}
-          await settle(page);assert.equal(await page.locator('.scene').getAttribute('data-scene'),Number(id.slice(1))<=3?'ruins':'observatory');
+          await settle(page);assert.equal(await page.locator('.scene').getAttribute('data-scene'),[1,2,3,7,9,11].includes(Number(id.slice(1)))?'ruins':'observatory');
           assert.equal(await page.locator('.scene').evaluate(el=>getComputedStyle(el).pointerEvents),'none');assert.equal(await page.locator('.scene [data-node],.scene [data-edge]').count(),0);
-        }check(`${engine} all six stages use their adopted setting with no decoration hit targets`);
+        }check(`${engine} all twelve stages use their adopted setting with no decoration hit targets`);
         await page.screenshot({path:path.join(out,`${engine}-observatory.png`)});
         await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         const painted=await page.locator('[data-node] .node-symbol').evaluateAll(async elements=>Promise.all(elements.map(async e=>{const img=new Image();img.src=e.getAttribute('href');await img.decode();return {src:img.src,width:img.naturalWidth,height:img.naturalHeight};})));assert.equal(painted.length,4);assert(painted.every(a=>a.width>0&&a.src.includes('/public/graphics/')));assert.equal(painted.filter(a=>a.src.endsWith('/prism.png')).length,2);check(`${engine} prisms, source star and altar chime symbols`);

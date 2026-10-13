@@ -119,7 +119,7 @@ async function connection(context,engine,offline){
         assert.equal(await offline.locator('#guide-bar').isVisible(),false);
         await offline.locator('#home').click();await settle(offline);let names=[];
         do{names.push(...await offline.locator('#dialog-body .dialog-list button:not(.pager button)').allTextContents());const next=offline.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(offline);}while(names.length<30);
-        for(let q=1;q<=6;q++)assert(names.some(name=>name.startsWith(`Q${q} `)));await offline.locator('#dialog-close').click();
+        for(let q=1;q<=12;q++)assert(names.some(name=>name.startsWith(`Q${q} `)));await offline.locator('#dialog-close').click();
         await drag(offline,'S','A');await drag(offline,'A','G');await offline.locator('#play').click();await offline.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await offline.locator('#stop').click();
         const scoreBefore=await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1'));assert(scoreBefore);
         await offline.locator('#home').click();await offline.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(offline);
@@ -127,7 +127,7 @@ async function connection(context,engine,offline){
         await menuItem(offline,'回路を保存');await offline.getByRole('textbox',{name:'回路名'}).fill('通信なし保存');await offline.getByRole('button',{name:'保存',exact:true}).click();
         const slotBefore=await offline.evaluate(()=>localStorage.getItem('prism-notes.circuits.v1'));assert(slotBefore);
         await offline.locator('#play').click();await offline.waitForFunction(()=>document.getElementById('result').textContent.includes('到着'),{},{timeout:7000});await offline.locator('#stop').click();
-        report.checks.push({label:`${engine} subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run`,passed:true});
+        report.checks.push({label:`${engine} subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run`,passed:true});
         await connection(context,engine,false);
         // Keep a second old-version tab alive through an explicit update in the first.
         const other=await context.newPage();await other.goto(url);await enterApp(other);await prepared(other);await other.locator('#home').click();await other.getByRole('button',{name:'自由へ',exact:true}).click();

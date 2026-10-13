@@ -141,6 +141,7 @@ export class Simulation {
     this.events.items = [];
     for (const gate of this.gates.values()) { gate.current = null; gate.queue = []; gate.head = 0; }
   }
+  get nextTime() { return this.events.peek()?.at ?? null; }
   advanceNext({ shouldPause = () => false } = {}) {
     if (this.status === 'stopped' || !this.events.size) { this.pause(); return []; }
     const start = this.records.length;

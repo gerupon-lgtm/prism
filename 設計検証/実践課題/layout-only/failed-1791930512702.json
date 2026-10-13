@@ -1,0 +1,172 @@
+{
+  "scope": "layout only",
+  "version": "0.24.0",
+  "evidence": "PC browsers, mouse wiring in phone viewports and synthetic Screen Orientation; exported real simulation records. Not physical touch, listening or player trial acceptance.",
+  "checks": [
+    {
+      "label": "chromium Q12 320x480 angle=0",
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "board": {
+        "left": 8,
+        "top": 56,
+        "right": 312,
+        "bottom": 381
+      },
+      "nodes": [
+        {
+          "id": "S",
+          "left": 132.5,
+          "top": 293.5,
+          "right": 187.5,
+          "bottom": 358.5
+        },
+        {
+          "id": "A",
+          "left": 132.5,
+          "top": 238.5,
+          "right": 187.5,
+          "bottom": 303.5
+        },
+        {
+          "id": "B",
+          "left": 31.91176414489746,
+          "top": 176,
+          "right": 86.91176414489746,
+          "bottom": 241
+        },
+        {
+          "id": "C",
+          "left": 149.26470947265625,
+          "top": 181,
+          "right": 204.26470947265625,
+          "bottom": 246
+        },
+        {
+          "id": "D",
+          "left": 233.08822631835938,
+          "top": 238.5,
+          "right": 288.0882263183594,
+          "bottom": 303.5
+        },
+        {
+          "id": "E",
+          "left": 249.85293579101562,
+          "top": 176,
+          "right": 304.8529357910156,
+          "bottom": 241
+        },
+        {
+          "id": "F",
+          "left": 132.5,
+          "top": 121,
+          "right": 187.5,
+          "bottom": 186
+        },
+        {
+          "id": "G",
+          "left": 132.5,
+          "top": 71,
+          "right": 187.5,
+          "bottom": 136
+        }
+      ],
+      "cards": [
+        {
+          "left": 75.910400390625,
+          "top": 252.5,
+          "right": 117.975341796875,
+          "bottom": 282.5
+        },
+        {
+          "left": 25.616283416748047,
+          "top": 289.75,
+          "right": 67.68122863769531,
+          "bottom": 319.75
+        },
+        {
+          "left": 57.16498947143555,
+          "top": 111,
+          "right": 99.22992706298828,
+          "bottom": 141
+        },
+        {
+          "left": 92.9759750366211,
+          "top": 196.25,
+          "right": 120.41007232666016,
+          "bottom": 226.25
+        },
+        {
+          "left": 210.487548828125,
+          "top": 137.5,
+          "right": 252.552490234375,
+          "bottom": 167.5
+        },
+        {
+          "left": 220.85064697265625,
+          "top": 345,
+          "right": 262.91558837890625,
+          "bottom": 375
+        },
+        {
+          "left": 247.9783935546875,
+          "top": 97.75,
+          "right": 290.0433349609375,
+          "bottom": 127.75
+        },
+        {
+          "left": 204.9967803955078,
+          "top": 87,
+          "right": 232.43087768554688,
+          "bottom": 117
+        },
+        {
+          "left": 75.910400390625,
+          "top": 59,
+          "right": 117.975341796875,
+          "bottom": 89
+        },
+        {
+          "left": 208.0470428466797,
+          "top": 310.25,
+          "right": 235.4811248779297,
+          "bottom": 340.25
+        },
+        {
+          "left": 281.5658874511719,
+          "top": 313.75,
+          "right": 309,
+          "bottom": 343.75
+        },
+        {
+          "left": 11.000003814697266,
+          "top": 117,
+          "right": 53.06494140625,
+          "bottom": 147
+        },
+        {
+          "left": 12.812995910644531,
+          "top": 69.25,
+          "right": 54.877933502197266,
+          "bottom": 99.25
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: chromium Q12 320x480 angle=0 parts separated S/A\n    at layout (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_advanced_challenges.cjs:24:76)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_advanced_challenges.cjs:47:394"
+}

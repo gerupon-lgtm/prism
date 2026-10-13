@@ -34,3 +34,9 @@ test('次動作の終了も3秒で戻せるが、終了フレームのエラー�
   s.pause('dialog');assert.equal(wait.ready(s.run,7000),false);
   const other=session();other.connect('S','A');other.start();wait.ready(other.run,8000);assert.equal(wait.ready(interrupted,12000),false);assert.equal(s.editable,false);
 });
+
+test('固定課題はゴールへ届かない終了でも3秒後に編集へ戻せ、理由と記録を保持する',()=>{
+  const s=session(),wait=new EndWait();s.connect('S','A');s.start();assert(s.run.exhausted);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
+  assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,3100,{allowNoArrival:true}),true);
+  const records=structuredClone(s.run.records);s.stop();assert(s.editable);assert.deepEqual(s.run.records,records);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
+});

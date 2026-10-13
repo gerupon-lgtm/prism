@@ -1,0 +1,14 @@
+{
+  "version": "0.24.0",
+  "evidence": "PC browsers, mouse wiring in phone viewports and synthetic Screen Orientation; exported real simulation records. Not physical touch, listening or player trial acceptance.",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:53851/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:53851/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_advanced_challenges.cjs:29:105"
+}

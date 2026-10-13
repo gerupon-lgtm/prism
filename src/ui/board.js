@@ -63,7 +63,7 @@ export class Board {
   }
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
-    const kind=this.session.mode==='free'?'sky':Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory';
+    const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
     const sceneWidth=(this.frameWidth??1360)*.85;
     this.scene.draw(sceneWidth,1600,kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} 0)`);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
@@ -71,8 +71,20 @@ export class Board {
     // Display projection only; original coordinates are retained in circuit files.
     this.projectionScale=extent>1000?extent:1;
     const nodes=new Map(input.nodes.map(node=>[node.id,node]));
+    let symbolFactor=this.fontFactor??1,sideNames=false;
+    const screenMatrix=this.world.getScreenCTM();
+    if(this.session.mode==='challenge'&&nodes.size>5&&screenMatrix){
+      const positions=input.nodes.map(node=>this.position(node)),scale=Math.hypot(screenMatrix.a,screenMatrix.b);
+      let spacing=Infinity;
+      for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++)spacing=Math.min(spacing,Math.hypot(positions[i].x-positions[j].x,positions[i].y-positions[j].y)*scale);
+      // Keep dense small-screen parts apart; hit areas still have a 44px minimum.
+      symbolFactor=Math.min(symbolFactor,Math.max(44,spacing*.8)/(130*scale),parseFloat(getComputedStyle(document.documentElement).fontSize)>=20?44/(130*scale):Infinity);
+      sideNames=symbolFactor<(this.fontFactor??1)&&spacing<75;
+    }
+
     const candidates=this.session.mode==='challenge' ? this.session.challenge.candidates.filter(edge=>!input.edges.some(built=>built.id===edge.id)) : [];
     const all=[...input.edges,...candidates];
+    const timeOrigin=nodes.has(this.session.selection)?this.session.selection:input.nodes.find(node=>node.kind==='source')?.id;
     const timeCards=[];
     const parallels=new Map();
     for(const edge of all){const key=JSON.stringify([edge.from,edge.to].sort());let list=parallels.get(key);if(!list){list=[];parallels.set(key,list);}list.push(edge);}
@@ -92,7 +104,7 @@ export class Board {
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
       const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},secondsLabel(edge.time));
-      label.append(card,text);group.append(label);
+      label.append(card,text);if(candidate&&this.session.view.showAllTimes===false&&edge.from!==timeOrigin&&!(edge.bidirectional&&edge.to===timeOrigin))label.setAttribute('hidden','');group.append(label);
       this.world.append(group);
       timeCards.push({card,text,factor});
     }
@@ -100,13 +112,13 @@ export class Board {
       const at=this.position(node),selected=this.session.selection===node.id;
       const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${node.name??node.id} ${node.kind==='goal'?'祭壇':node.kind==='source'?'出発点':'プリズム'}${node.enabled===false?' 使用不可':''}`});
       const factor=this.fontFactor??1;
-      group.append(svg('circle',{r:65*factor,class:'node-hit'}));
-      group.append(symbol(node.kind,factor));
+      group.append(svg('circle',{r:65*symbolFactor,class:'node-hit'}));
+      group.append(symbol(node.kind,symbolFactor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
-      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{y:-80*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{x:sideNames?(node.x>.5?-1:1)*(65*symbolFactor+16*factor):0,y:sideNames?0:-80*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal'){
-        const text=svg('text',{y:90*factor,class:'node-time'},secondsLabel(node.process));
+        const text=svg('text',{y:90*symbolFactor,class:'node-time'},secondsLabel(node.process));
         group.append(text);
       }
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
@@ -132,19 +144,22 @@ export class Board {
     const worldMatrix=this.world.getScreenCTM();
     if(!worldMatrix)return;
     const area=this.element.getBoundingClientRect();
-    const labels=[...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item);
+    const labels=[...this.world.querySelectorAll('.node-name'),...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item).filter(label=>!label.hasAttribute('hidden'));
     this.world.querySelectorAll('.edge-label-leader').forEach(item=>item.remove());
     for(const label of labels){
       if(!this.labelOrigins.has(label))this.labelOrigins.set(label,label.getAttribute('transform')??'');
       else label.setAttribute('transform',this.labelOrigins.get(label));
     }
     const measurements=labels.map(label=>({label,bounds:label.getBoundingClientRect(),matrix:label.getScreenCTM(),card:Boolean(label.querySelector('.edge-label-card'))}));
+    // Place wider cards before small ones, so narrow gaps remain usable.
+    measurements.sort((a,b)=>Number(a.card)-Number(b.card)||(a.card?Math.round(b.bounds.width*b.bounds.height)-Math.round(a.bounds.width*a.bounds.height):0));
     const placements=[],worldInverse=worldMatrix.inverse();
     const occupied=new Map(),cellSize=64;
     const cells=rect=>{const keys=[];for(let x=Math.floor(rect.left/cellSize);x<=Math.floor(rect.right/cellSize);x++)for(let y=Math.floor(rect.top/cellSize);y<=Math.floor(rect.bottom/cellSize);y++)keys.push(`${x}/${y}`);return keys;};
     const reserve=rect=>{for(const key of cells(rect)){if(!occupied.has(key))occupied.set(key,[]);occupied.get(key).push(rect);}};
     const overlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
-    for(const node of this.world.querySelectorAll('.node-symbol,.node-name,.node-state'))reserve(node.getBoundingClientRect());
+    for(const node of this.world.querySelectorAll('.node-symbol,.node-state'))reserve(node.getBoundingClientRect());
+    for(const control of this.element.parentElement.querySelectorAll('#stage-controls button'))reserve(control.getBoundingClientRect());
     for(const {label,bounds,matrix,card} of measurements){
       if(!matrix)continue;
       const positions=[];
@@ -157,13 +172,19 @@ export class Board {
         const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
         positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,onPath:true,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)});
       }
-      for(const x of [0,-1,1,-2,2])for(const y of [0,-1,1,-2,2]){
+      const offsets=[0,-1,1,-2,2];
+      const addPositions=values=>{for(const x of values)for(const y of values){
         const left=Math.max(area.left+3,Math.min(area.right-3-bounds.width,bounds.left+x*Math.max(12,bounds.width*.75)));
         const top=Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,bounds.top+y*Math.max(12,bounds.height*.8)));
         const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
         positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)+(card&&(x||y)?80:0)});
-      }
-      const best=positions.reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
+      }};
+      addPositions(offsets);
+      // Dense challenge routes may need more room than the nearby five positions.
+      // Extend the search only when every nearby position still overlaps a part.
+      if(positions.every(position=>overlap(position.rect)>0))addPositions([...offsets,-3,3,-4,4,-5,5,-6,6,-7,7,-8,8]);
+      const clearPositions=positions.filter(position=>overlap(position.rect)===0);
+      const best=(clearPositions.length?clearPositions:positions).reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
       const placement={label,transform:`${this.labelOrigins.get(label)} translate(${inverse.a*best.dx+inverse.c*best.dy} ${inverse.b*best.dx+inverse.d*best.dy})`};
       if(card&&!best.onPath&&Math.hypot(best.dx,best.dy)>8){
         const origin=new DOMPoint(matrix.e,matrix.f).matrixTransform(worldInverse),end=new DOMPoint((best.rect.left+best.rect.right)/2,(best.rect.top+best.rect.bottom)/2).matrixTransform(worldInverse);
@@ -228,6 +249,7 @@ export class Board {
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
     if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
     const node=event.target.closest('[data-node]')?.dataset.node,edge=event.target.closest('[data-edge]')?.dataset.edge;
+    if(node&&this.session.editable&&this.session.mode==='challenge')this.session.view.showAllTimes=false;
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
     this.gesture={kind:event.target.dataset.move?'move':node?'wire':event.pointerType==='touch'?'idle':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};

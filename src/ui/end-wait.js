@@ -4,7 +4,7 @@ export const END_WAIT_MS = 3000;
 export class EndWait {
   constructor() { this.run = null; this.deadline = null; this.checked = false; this.interrupted = new WeakSet(); }
   interrupt(run) { if (run?.exhausted) this.interrupted.add(run); }
-  ready(run, now) {
+  ready(run, now, {allowNoArrival=false} = {}) {
     if (run !== this.run) {
       this.run = run; this.deadline = null; this.checked = false;
     }
@@ -16,7 +16,7 @@ export class EndWait {
     // Scan the finished run once, including runs finished by the next-event button.
     if (!this.checked) {
       this.checked = true;
-      if (run.records.some(entry => entry.type === 'goal')) this.deadline = now + END_WAIT_MS;
+      if (allowNoArrival || run.records.some(entry => entry.type === 'goal')) this.deadline = now + END_WAIT_MS;
     }
     return this.deadline !== null && now >= this.deadline;
   }

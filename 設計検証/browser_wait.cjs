@@ -51,4 +51,15 @@ async function startAndPause(page) {
   catch(error){const state=await page.evaluate(()=>({play:document.getElementById('play').outerHTML,hint:document.getElementById('hint').textContent,error:document.getElementById('dialog-error').textContent,edges:[...document.querySelectorAll('.edge:not(.candidate)')].map(e=>e.dataset.edge)}));throw new Error('Start did not reach running: '+JSON.stringify(state),{cause:error});}
   await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
 }
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause};
+async function chooseChallenge(page,id) {
+  await page.locator('#dialog-body .dialog-list button').first().waitFor({state:'visible'});
+  for(let n=0;n<30;n++){
+    const item=page.getByRole('button',{name:new RegExp('^'+id+' ')});if(await item.count()){await item.click();return;}
+    const names=await page.locator('#dialog-body .dialog-list button').allTextContents(),first=names.map(name=>/^Q(\d+) /.exec(name)).find(Boolean);
+    const pager=page.locator('#dialog-body .pager button'),next=first&&Number(id.slice(1))<Number(first[1])?pager.first():pager.last();if(await next.isDisabled())break;
+    await next.click();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+  }
+  throw new Error('Challenge not available in selector: '+id+' '+await page.locator('#dialog-body').innerText());
+}
+async function selectChallenge(page,id){await page.locator('#home').click();await chooseChallenge(page,id);}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge};

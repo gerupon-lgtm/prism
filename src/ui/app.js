@@ -2,7 +2,7 @@ import { Session } from '../app/session.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
 import { displayScore } from '../core/evaluation.js';
-import { challenges } from '../content/challenges.js';
+import { challenges, challengeObjective } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
@@ -79,26 +79,34 @@ function render(redraw=true,{records=true}={}) {
   $('clear-wires').disabled=Boolean(startPrelude)||!session.editable||(!canRestore&&!session.circuit.edges.length);
   $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
   $('magnifier-toggle').textContent=textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF';
+  const allTimes=session.view.showAllTimes!==false;
+  $('candidate-times').hidden=session.mode!=='challenge';$('candidate-times').setAttribute('aria-pressed',String(allTimes));
+  $('candidate-times').textContent=textEnlarged?(allTimes?'全秒':'候補'):(allTimes?'秒数 全体':'秒数 候補');
+  $('candidate-times').title=allTimes?'進める候補の秒数だけに絞る':'全候補の秒数を表示する';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
-  $('condition').textContent=session.mode==='challenge'?`${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${session.challenge.type==='interval'?`・${session.challenge.interval}秒間隔で${session.challenge.count}回`:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
+  const objective=session.mode==='challenge'?challengeObjective(session.challenge):'';
+  $('condition').textContent=session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}・${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${objective?'・'+objective:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
   const startBlockedReason=session.editable?session.startBlockedReason:'';
   $('stage').inert=Boolean(startPrelude);$('stage').classList.toggle('launching',Boolean(startPrelude));
-  $('play').textContent=startPrelude?'準備中':session.editable?'流す':run.status==='running'?'一時停止':'再開';
+  $('play').textContent=startPrelude?'準備中':session.editable?'流す':run.exhausted?'終了':run.status==='running'?'一時停止':'再開';
   $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
-  $('play').title=startBlockedReason;
+  $('play').title=startBlockedReason||(!session.editable&&run?.exhausted?'動作は終了しています。停止で編集へ戻れます。':'');
   $('stop').disabled=session.editable&&!startPrelude;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
   $('play').dataset.state=startPrelude?'preparing':run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
   $('sound').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));
-  let text=run?`${run.format()}秒・${run.activeCount}光線`:'';
+  const execution=run?(run.status==='stopped'?'編集可能':run.exhausted?'動作終了':run.status==='running'?'実行中':'一時停止'):'';
+  let text=run?`${execution}｜${run.format()}秒・${run.activeCount}光線`:'';
   if(session.result){
     const stateText={pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
-    text+=`　${stateText}`;if(session.result.score)text+=` ${displayScore(session.result.score)}点`;
+    text=`${stateText}${session.result.score?' '+displayScore(session.result.score)+'点':''}・${text}`;
+    if(session.result.reason)text+='　'+session.result.reason;
+    if(session.result.goals)text+=`　祭壇 ${session.result.goals.filter(goal=>goal.first!==null).length}/${session.result.goals.length}${session.result.state==='achieved'?'・全到達 '+session.result.evaluatedTime+'秒':''}`;
   }
   if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
@@ -220,7 +228,7 @@ function chooseMode(after=null) {
   try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
   listPage(challenges,challenge=>{
     const best=scores.find(score=>score.challenge===`${challenge.id}@${challenge.version}`&&score.rule===`${challenge.type}@1`);
-    return button(`${challenge.id} ${challenge.name}${best?'　'+displayScore(best.score)+'点':''}`,()=>replace({challengeId:challenge.id}));
+    return button(`${challenge.id} ${challenge.name}${Number(challenge.id.slice(1))>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`,()=>replace({challengeId:challenge.id}));
   });
 }
 function replace(request) {
@@ -264,7 +272,7 @@ function partsExplanation() {
 }
 function aboutGame() {
   open('遊び方と概要');
-  body.append(element('p','星の光をプリズムから祭壇へ導く、最短経路を探すゲームです。候補の道をつなぎ、流し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数とプリズムの処理時間を合わせて比べます。近い道や、道の本数が少ない経路が最短とは限りません。課題では速さ・少ない道・故障への強さ・到着間隔を試し、自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。'));
+  body.append(element('p','星の光をプリズムから祭壇へ導くゲームです。お試し6問と実践6問で、候補の道をつなぎ、流し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の祭壇への到達や指定間隔を満たします。複数祭壇の点数は最後の祭壇への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
   actions.append(button('閉じる',close));fitDialogForm();
 }
 function menu() {
@@ -592,17 +600,17 @@ function frame(now){
     load.begin();
     try{
       const entries=load.measure('calculation',()=>session.advance(run.circuit.time.format(ticks),{shouldPause:()=>load.calculationExceeded()}));
-      reactions(entries);load.measure('display',()=>render(false,{records:false}));
+      if(run.status==='stopped'){chime.stop();clockAnchor=null;}else reactions(entries);load.measure('display',()=>render(false,{records:false}));
       if(!$('records-panel').hidden)load.measure('records',renderRecords);
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
-  if(!document.hidden&&endWait.ready(session.run,now))attempt(stopRun);
+  if(!document.hidden&&endWait.ready(session.run,now,{allowNoArrival:session.runContext?.mode==='challenge'}))attempt(stopRun);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
-$('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}`));
+$('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}${session.mode==='challenge'?'\n動作上限 '+session.challenge.maxDuration+'秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。':''}`));
 $('result-info').addEventListener('click',()=>fullText('実行状況',$('result').textContent));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
@@ -640,6 +648,7 @@ $('clear-wires').addEventListener('click',()=>attempt(()=>{
   message='';render();
 }));
 $('magnifier-toggle').addEventListener('click',()=>{board.magnifier.toggle();render(false);});
+$('candidate-times').addEventListener('click',()=>{session.view.showAllTimes=session.view.showAllTimes===false;board.render();render(false);});
 for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{board.addKind=board.addKind===kind?null:kind;render(false);});
 $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
@@ -670,6 +679,11 @@ document.querySelector('.app-version').addEventListener('click',()=>{
   fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}`);
 });
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);screen.orientation?.addEventListener('change',viewport);window.addEventListener('orientationchange',viewport);viewport();render();maybeGuide();
+// Root font changes can resize text without dispatching a window resize event.
+const fontProbe=element('span','',{'aria-hidden':'true',style:'position:fixed;left:0;top:0;width:1rem;height:1rem;opacity:0;pointer-events:none'});
+document.body.append(fontProbe);let observedFont=parseFloat(getComputedStyle(document.documentElement).fontSize);
+const fontResize=new ResizeObserver(()=>{const next=parseFloat(getComputedStyle(document.documentElement).fontSize);if(next!==observedFont){observedFont=next;viewport();render();}});
+fontResize.observe(fontProbe);
 if(offline.enabled)offline.prepare();
 
 // Local inspection for performance verification; never stores or uploads data.

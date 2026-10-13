@@ -1,6 +1,6 @@
 {
-  "version": "0.13.0",
-  "checkedAt": "2026-10-12T22:42:11.798Z",
+  "version": "0.24.0",
+  "checkedAt": "2026-10-13T23:29:17.407Z",
   "evidence": "PC Chromium and installed Windows Chrome/Edge: native minimumFontSize=24/defaultFontSize=32, with independent probes. Windows Playwright WebKit: explicit CSS root-font 28px simulation. Does not prove OS, phone, or Safari text zoom. Native text input horizontal caret scrolling is allowed; page/hidden vertical scrolling is not.",
   "checks": [
     {
@@ -158,6 +158,28 @@
     },
     {
       "label": "chromium minimumFontSize=24 compact Q6 conditions page 3",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium minimumFontSize=24 compact Q6 conditions page 5",
       "passed": true,
       "viewport": [
         480,
@@ -1485,6 +1507,28 @@
       "issues": []
     },
     {
+      "label": "chromium defaultFontSize=32 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "chromium defaultFontSize=32 compact Q6 conditions page 5",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
       "label": "chromium defaultFontSize=32 mode list 320x480",
       "passed": true,
       "viewport": [
@@ -2792,6 +2836,28 @@
     },
     {
       "label": "windows-chrome minimumFontSize=24 compact Q6 conditions page 3",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome minimumFontSize=24 compact Q6 conditions page 5",
       "passed": true,
       "viewport": [
         480,
@@ -4119,6 +4185,28 @@
       "issues": []
     },
     {
+      "label": "windows-chrome defaultFontSize=32 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-chrome defaultFontSize=32 compact Q6 conditions page 5",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
       "label": "windows-chrome defaultFontSize=32 mode list 320x480",
       "passed": true,
       "viewport": [
@@ -5426,6 +5514,28 @@
     },
     {
       "label": "windows-edge minimumFontSize=24 compact Q6 conditions page 3",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "24px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge minimumFontSize=24 compact Q6 conditions page 5",
       "passed": true,
       "viewport": [
         480,
@@ -6753,6 +6863,28 @@
       "issues": []
     },
     {
+      "label": "windows-edge defaultFontSize=32 compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
+      "label": "windows-edge defaultFontSize=32 compact Q6 conditions page 5",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24px",
+      "issues": []
+    },
+    {
       "label": "windows-edge defaultFontSize=32 mode list 320x480",
       "passed": true,
       "viewport": [
@@ -8060,6 +8192,28 @@
     },
     {
       "label": "webkit-css-simulation CSS-root-28px compact Q6 conditions page 3",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px compact Q6 conditions page 4",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "rootFont": "28px",
+      "playFont": "24.000004px",
+      "issues": []
+    },
+    {
+      "label": "webkit-css-simulation CSS-root-28px compact Q6 conditions page 5",
       "passed": true,
       "viewport": [
         480,

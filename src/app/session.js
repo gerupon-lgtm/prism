@@ -226,14 +226,25 @@ export class Session {
   stop() {
     this.evaluate(); this.run?.stop(); this.evaluate();
   }
+  get runTimeLimit() {
+    return this.runContext?.mode==='challenge'?this.run.circuit.time.ticks(this.runContext.challenge.maxDuration):null;
+  }
+  stopAtTimeLimit() {
+    const limit=this.runTimeLimit;
+    if(limit===null||this.run.exhausted||this.run.clock<limit||['load','error'].includes(this.run.pauseReason))return;
+    this.runContext.timeLimitReached=true;this.stop();
+  }
   next(options) {
     if (!this.run || this.run.status !== 'paused') throw new Error('一時停止中に次の動作へ進めます。');
-    const entries = this.run.advanceNext(options); this.evaluate(); return entries;
+    const limit=this.runTimeLimit;
+    const entries=limit!==null&&this.run.nextTime!==null&&this.run.nextTime>limit?this.run.advanceUntil(this.run.circuit.time.format(limit),options):this.run.advanceNext(options);
+    this.evaluate();this.stopAtTimeLimit();return entries;
   }
   advance(seconds, options) {
     if (!this.run || this.run.status !== 'running') return [];
-    const entries = this.run.advanceUntil(seconds,options); this.evaluate();
-    if (!this.run.exhausted && this.run.pauseReason !== 'load') this.run.resume();
+    const limit=this.runTimeLimit,scale=this.run.circuit.time,requested=scale.ticks(seconds);
+    const entries = this.run.advanceUntil(limit!==null&&requested>limit?scale.format(limit):seconds,options); this.evaluate();this.stopAtTimeLimit();
+    if (this.run.status!=='stopped'&&!this.run.exhausted && this.run.pauseReason !== 'load') this.run.resume();
     return entries;
   }
   openRecords() {
@@ -255,7 +266,14 @@ export class Session {
     const arrival = this.run.arrivals(challenge.goal)[0], scale = this.run.circuit.time;
     let state = arrival ? 'achieved' : this.run.status === 'stopped' ? (this.result?.state === 'failed' ? 'failed' : 'stopped') : this.run.exhausted ? 'failed' : 'pending';
     let actual = arrival?.time ?? null;
-    if (challenge.type === 'interval') {
+    let goals;
+    if (challenge.type === 'delivery-all') {
+      goals=challenge.goals.map(id=>({id,first:this.run.arrivals(id)[0]?.time??null}));
+      const missing=goals.filter(goal=>goal.first===null);
+      if(!missing.length){state='achieved';actual=goals.reduce((latest,goal)=>scale.ticks(goal.first)>scale.ticks(latest)?goal.first:latest,goals[0].first);}
+      else if(this.run.status==='stopped'){state=this.result?.state==='failed'?'failed':'stopped';actual=null;}
+      else{state=missing.some(goal=>!this.run.hasFutureArrival(goal.id))?'failed':'pending';actual=null;}
+    } else if (challenge.type === 'interval') {
       const interval = this.run.intervalResult(challenge.goal,challenge.interval,challenge.count);
       state = interval.state; actual = interval.first;
     } else if (['edge-fault','prism-fault'].includes(challenge.type)) {
@@ -269,6 +287,9 @@ export class Session {
       score = challenge.type === 'time-hops' ? timeHopScore(scale.ticks(actual),arrival.hops,baseline,challenge.baselineHops,this.run.circuit.nodes.size) : timeScore(scale.ticks(actual),baseline);
     }
     this.result = {state,first:arrival?.time ?? null,evaluatedTime:actual,score,challenge:challenge.id};
+    if(goals)this.result.goals=goals;
+    if(state==='failed')this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
+    if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
     if (this.guide?.mode === 'challenge' && this.guide.step === 1 && arrival) this.guide.step = 2;
     return this.result;

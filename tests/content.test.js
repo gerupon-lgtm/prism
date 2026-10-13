@@ -4,6 +4,7 @@ import { challenges, challengeCircuit } from '../src/content/challenges.js';
 import { sampleCircuit } from '../src/content/samples.js';
 import { Simulation } from '../src/core/simulation.js';
 import { faultCases } from '../src/core/evaluation.js';
+import challengeFixtures from '../設計検証/challenge_fixtures.cjs';
 
 function bestRoute(nodes,edges) {
   const solutions=[];
@@ -28,6 +29,36 @@ function selections(candidates,limit) {
   }
   return result;
 }
+
+test('追加6課題は分岐が必須で、複数の最高評価構成と実現できる基準時間を持つ',()=>{
+  assert.equal(challenges.length,12);
+  const summaries=[];
+  for(const challenge of challenges.slice(6)){
+    let best=Infinity,winners=0,achieved=0,maxDuration=0n;
+    for(const edges of selections(challenge.candidates,challenge.limit)){
+      const run=new Simulation(challengeCircuit(challenge,edges.map(e=>e.id)));
+      for(let step=0;!run.exhausted&&step<2048;step++)run.advanceNext();assert(run.exhausted,'Finite authored content '+challenge.id);
+      if(run.clock>maxDuration)maxDuration=run.clock;
+      let time=null;
+      if(challenge.type==='delivery-all'){
+        const arrivals=challenge.goals.map(id=>run.arrivals(id)[0]?.time);if(arrivals.every(t=>t!==undefined))time=Math.max(...arrivals.map(Number));
+      }else{const result=run.intervalResult(challenge.goal,challenge.interval,challenge.count);if(result.state==='achieved')time=Number(result.first);}
+      if(time===null)continue;
+      achieved++;assert(run.records.some(r=>r.type==='branch'&&run.circuit.nodes.get(r.node).kind==='prism'),challenge.id+' requires prism splitting');
+      if(['Q11','Q12'].includes(challenge.id))assert(run.records.some(r=>r.type==='process-start'&&Number(r.wait)>0),challenge.id+' requires real queue delay');
+      if(time<best){best=time;winners=1;}else if(time===best)winners++;
+    }
+    assert.equal(maxDuration,new Simulation(challengeCircuit(challenge)).circuit.time.ticks(challenge.maxDuration),challenge.id+' verified maximum duration');
+    assert.equal(best,Number(challenge.baseline),challenge.id+' baseline');assert(winners>=2,challenge.id+' alternative best wirings');assert(challenge.candidates.length>challenge.limit,challenge.id+' cannot connect everything');
+    summaries.push({id:challenge.id,achieved,best,winners});
+  }
+  console.log('Advanced exhaustive content:',JSON.stringify(summaries));
+});
+
+test('実践6課題の確認用配線は説明した到達時刻を再現する',()=>{
+  const times={Q7:['3.5','4'],Q8:['3.5','3.5','4'],Q9:['2.5','4.5','6.5'],Q10:['3.5','4.5','5.5','6.5'],Q11:['3.5','4.5'],Q12:['3.5','4.5','5.5']};
+  for(const [id,expected] of Object.entries(times)){const challenge=challenges.find(c=>c.id===id),run=new Simulation(challengeCircuit(challenge,challengeFixtures[id]));run.advanceUntil('20');assert.deepEqual(run.arrivals().map(r=>r.time),expected,id);}
+});
 test('実際に使う自由2見本は資料の2.5秒と4・5・7・8秒の到達を再現する',()=>{
   const compare=new Simulation(sampleCircuit('compare')); compare.advanceUntil('3');
   assert.deepEqual(compare.arrivals().map(e=>e.time),['2.5']);
@@ -91,4 +122,15 @@ test('共有中継点を持つ構成は道故障に耐えても中継点故障�
   assert.equal(faultCases(circuit,'prism','G').find(c=>c.id==='C').reachable,false);
   const interval=new Simulation(challengeCircuit(challenges.find(c=>c.id==='Q6'),['SA','AG','SB','BG','BC','CG']));interval.advanceUntil('7');
   assert.deepEqual(interval.arrivals().map(c=>c.time),['1','3','6.5']);assert.equal(interval.intervalResult('G','2',3).state,'failed');
+});
+
+test('お試し6課題の全配線と故障ケースは、定義した最大時間以内に動作を終える',()=>{
+  for(const challenge of challenges.slice(0,6)){
+    let maximum=0n;const scale=new Simulation(challengeCircuit(challenge)).circuit.time;
+    for(const edges of selections(challenge.candidates,challenge.limit)){
+      const circuit=challengeCircuit(challenge,edges.map(e=>e.id)),inputs=['edge-fault','prism-fault'].includes(challenge.type)?faultCases(circuit,challenge.type==='edge-fault'?'edge':'prism',challenge.goal).map(c=>c.conditions):[circuit];
+      for(const input of inputs){const run=new Simulation(input);for(let i=0;!run.exhausted&&i<2048;i++)run.advanceNext();assert(run.exhausted);if(run.clock>maximum)maximum=run.clock;}
+    }
+    assert.equal(maximum,scale.ticks(challenge.maxDuration),challenge.id+' maximum');
+  }
 });

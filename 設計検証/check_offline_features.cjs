@@ -1,8 +1,9 @@
-const {enterApp,startGuide,skipGuide,wiringBounds}=require('./browser_wait.cjs');
+const {enterApp,startGuide,skipGuide,wiringBounds,chooseChallenge}=require('./browser_wait.cjs');
 // Actual UI flows after prepared-asset startup with no reachable origin.
 // PC engines and synthetic fixtures; this does not prove physical-device acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const {pathToFileURL}=require('node:url');
+const challengeFixtures=require('./challenge_fixtures.cjs');
 const {waitForAsync}=require('./browser_wait.cjs');
 const {expectedStoppedOriginWorkerError}=require('./browser_errors.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
@@ -52,7 +53,7 @@ async function finish(page){
  throw new Error('Finite fixture did not finish; this guard is not a production limit');
 }
 async function time(page,id,value){await page.locator('[data-node="'+id+'"] .node-hit').dblclick();await choose(page,'時間');await page.getByRole('textbox',{name:'秒数'}).fill(value);await choose(page,'確定');}
-async function selectChallenge(page,id){await page.locator('#home').click();await choose(page,new RegExp('^'+id+' '));}
+async function selectChallenge(page,id){await page.locator('#home').click();await chooseChallenge(page,id);}
 async function replaceDiscard(page){const item=page.getByRole('button',{name:'保存せず入替',exact:true});if(await item.count())await item.click();await settle(page);}
 async function importFile(page,file){
  await page.locator('#import').setInputFiles({name:'synthetic-circuit.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(file))});await settle(page);
@@ -76,11 +77,11 @@ async function exercise(page,engine){
  await page.locator('#home').click();await choose(page,'自由へ');await startGuide(page);assert(await page.locator('#guide-bar').isVisible());await pauseStart(page);await finish(page);await page.locator('#stop').click();await time(page,'A','1.5');await pauseStart(page);await finish(page);assert(await page.locator('#guide-finish').isVisible());await page.locator('#guide-finish').click();assert.equal(await page.locator('[data-node="A"] .node-time').textContent(),'0.5s');
  const history=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.guides.v1')).value);assert.deepEqual(history,{challenge:'completed',free:'completed'});
  record(engine,'Both three-step guides complete, restore original circuits, and never save practice scores',['F-019','F-021','NF-003']);
- // Exercise every initial challenge, including every independently replayed fault.
- for(const id of ['Q1','Q2','Q3','Q4','Q5','Q6']){
+ // Exercise all introductory and practical challenges, including every independently replayed fault.
+ for(const id of Object.keys(challengeFixtures)){
   await selectChallenge(page,id);
-  if(id==='Q6'){for(const node of ['A','B','C']){await drag(page,'S',node);await drag(page,node,'G');}}
-  else{await drag(page,'S','A');if(id==='Q2'){await drag(page,'A','C');await drag(page,'C','G');}else await drag(page,'A','G');if(['Q4','Q5'].includes(id)){await drag(page,'S','B');await drag(page,'B','G');}}
+  const routes=await page.evaluate(async({id,edges})=>{const entry=document.querySelector('script[type=module]').src,{challenges}=await import(new URL('../content/challenges.js',entry));const challenge=challenges.find(c=>c.id===id);return edges.map(id=>{const edge=challenge.candidates.find(e=>e.id===id);return [edge.from,edge.to];});},{id,edges:challengeFixtures[id]});
+  for(const [from,to] of routes)await drag(page,from,to);
   if(id==='Q1')await blockStorageWrites(page,'prism-notes.scores.v1');
   await pauseStart(page);await finish(page);assert((await page.locator('#result').textContent()).includes('100.00点'));
   if(id==='Q1'){
@@ -91,6 +92,8 @@ async function exercise(page,engine){
   const exported=await result(page);assert.equal(exported.evaluation.state,'achieved');assert.deepEqual(exported.evaluation.score,{numerator:'100',denominator:'1'});
   if(['Q1','Q2','Q3'].includes(id))assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['2.5']);
   if(id==='Q6')assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['1','3','5']);
+  if(['Q7','Q8'].includes(id)){assert(exported.evaluation.goals.every(goal=>goal.first!==null));assert.equal(exported.evaluation.evaluatedTime,'4');}
+  if(['Q11','Q12'].includes(id))assert(exported.records.some(row=>row.type==='process-start'&&Number(row.wait)>0));
   if(['Q4','Q5'].includes(id)){
    const cases=exported.faultCases;assert.equal(cases.length,id==='Q4'?4:3);assert(cases.every(c=>c.reachable&&c.time==='2.5'));
    for(const item of cases){
@@ -102,8 +105,8 @@ async function exercise(page,engine){
   }
   await page.locator('#stop').click();record(engine,id+' reaches 100; all fault cases separately replayed where applicable',['F-003','F-014','F-021','F-024',...(id==='Q4'?['F-012']:id==='Q5'?['F-013']:[])],{challenge:id,cases:exported.faultCases.length});
  }
- const scores=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value);assert.equal(scores.length,6);
- record(engine,'All six scores persisted locally without a network connection',['F-024']);
+ const scores=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value);assert.equal(scores.length,12);
+ record(engine,'All twelve scores persisted locally without a network connection',['F-024']);
  await selectChallenge(page,'Q2');await drag(page,'S','C');await drag(page,'C','G');await pauseStart(page);await finish(page);const lowerScore=await result(page);assert.equal(lowerScore.evaluation.state,'achieved');assert.deepEqual(lowerScore.records.filter(row=>row.type==='goal').map(row=>row.time),['3']);assert(BigInt(lowerScore.evaluation.score.numerator)<100n*BigInt(lowerScore.evaluation.score.denominator));await page.locator('#stop').click();
  await selectChallenge(page,'Q1');await drag(page,'S','A');await pauseStart(page);await finish(page);const failedScore=await result(page);assert.equal(failedScore.evaluation.state,'failed');assert.deepEqual(failedScore.evaluation.score,{numerator:'0',denominator:'1'});assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value),scores);
  const failedViews=[];
@@ -111,8 +114,8 @@ async function exercise(page,engine){
   const style=enlarged?await page.addStyleTag({content:':root{font-size:28px!important}'}):null;
   for(const [width,height] of [[320,480],[390,664],[480,240],[844,310]]){
    await page.setViewportSize({width,height});await settle(page);assert((await page.locator('#result').textContent()).includes('未達成 0.00点'));
-   const fit=await page.evaluate(()=>{const result=document.getElementById('result'),line=document.getElementById('result-line'),rect=line.getBoundingClientRect();return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],result:[result.clientWidth,result.clientHeight,result.scrollWidth,result.scrollHeight],rect:[rect.left,rect.top,rect.right,rect.bottom]};});
-   try{assert(fit.document.every((size,index)=>size<=fit.viewport[index]));assert(fit.result[2]<=fit.result[0]+1&&fit.result[3]<=fit.result[1]+1);assert(fit.rect[0]>=0&&fit.rect[1]>=0&&fit.rect[2]<=width+.5&&fit.rect[3]<=height+.5);}catch(error){report.failureLayout={engine,cssTextEnlarged:enlarged,...fit};await page.screenshot({path:path.join(out,'failed-layout.png')});throw error;}failedViews.push({cssTextEnlarged:enlarged,...fit});
+   const fit=await page.evaluate(()=>{const result=document.getElementById('result'),rect=result.getBoundingClientRect(),range=document.createRange();range.setStart(result.firstChild,0);range.setEnd(result.firstChild,result.textContent.indexOf('｜'));const prefix=range.getBoundingClientRect(),style=getComputedStyle(result);return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],result:[result.clientWidth,result.clientHeight,result.scrollWidth,result.scrollHeight],ellipsis:style.overflow==='hidden'&&style.textOverflow==='ellipsis',prefix:[prefix.left,prefix.top,prefix.right,prefix.bottom],rect:[rect.left,rect.top,rect.right,rect.bottom]};});
+   try{assert(fit.document.every((size,index)=>size<=fit.viewport[index]));assert(fit.result[3]<=fit.result[1]+1);assert(fit.result[2]<=fit.result[0]+1||fit.ellipsis);assert(fit.prefix[0]>=fit.rect[0]-.5&&fit.prefix[2]<=fit.rect[2]+.5,'Zero score and execution state visibly fit before the ellipsized details');assert(fit.rect[0]>=0&&fit.rect[1]>=0&&fit.rect[2]<=width+.5&&fit.rect[3]<=height+.5);}catch(error){report.failureLayout={engine,cssTextEnlarged:enlarged,...fit};await page.screenshot({path:path.join(out,'failed-layout.png')});throw error;}failedViews.push({cssTextEnlarged:enlarged,...fit});
   }
   if(style)await style.evaluate(element=>element.remove());
  }

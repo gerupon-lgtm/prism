@@ -1,5 +1,5 @@
 {
-  "version": "0.22.0",
+  "version": "0.24.0",
   "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
   "checks": [
     {
@@ -19,7 +19,7 @@
       "passed": true
     },
     {
-      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "label": "chromium subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run",
       "passed": true
     },
     {
@@ -55,14 +55,14 @@
       "label": "chromium update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 6,
+      "settlingFrames": 11,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
       "label": "chromium update prepared status CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -132,7 +132,7 @@
       "label": "chromium failed pre-update save retains form CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -206,7 +206,7 @@
       "passed": true
     },
     {
-      "label": "webkit subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "label": "webkit subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run",
       "passed": true
     },
     {
@@ -242,7 +242,7 @@
       "label": "webkit update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 7,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -256,7 +256,7 @@
       "label": "webkit update prepared status CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 6,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -277,7 +277,7 @@
       "label": "webkit dirty circuit update protection CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -291,7 +291,7 @@
       "label": "webkit explicit discard confirmation CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -312,7 +312,7 @@
       "label": "webkit failed pre-update save retains form CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 7,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -351,7 +351,7 @@
       "label": "webkit incomplete update error and old assets status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 8,
+      "settlingFrames": 7,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
