@@ -4,6 +4,10 @@ import { Board } from '../src/ui/board.js';
 import { challenges } from '../src/content/challenges.js';
 import { frameRotation } from '../src/ui/orientation.js';
 
+test('記録画面などで盤面の表示行列がない間は秒数配置を保留する',()=>{
+  assert.doesNotThrow(()=>Board.prototype.fitTimeLabels.call({world:{getScreenCTM:()=>null}}));
+});
+
 test('縦置きの表示は出発点が下・祭壇が上、元の回路座標は変えない',()=>{
   const view={projectionScale:1},before=structuredClone(challenges[0].nodes);
   const source=before.find(node=>node.kind==='source'),goal=before.find(node=>node.kind==='goal');
@@ -15,13 +19,19 @@ test('縦置きの表示は出発点が下・祭壇が上、元の回路座標�
 test('追加・移動の表示座標を元の保存座標へ戻す',()=>{
   const view={projectionScale:1};
   assert.deepEqual(Board.prototype.coordinates.call(view,{x:500,y:1440}),{x:.5,y:.1});
-  assert.deepEqual(Board.prototype.coordinates.call(view,{x:250,y:880}),{x:.25,y:.45});
+  assert.deepEqual(Board.prototype.coordinates.call(view,{x:125,y:880}),{x:.25,y:.45});
 });
 
 test('大きい保存座標の表示と逆変換も同じ倍率を保つ',()=>{
   const view={projectionScale:10000},node={x:2500,y:7500};
-  const at=Board.prototype.position.call(view,node);assert.deepEqual(at,{x:250,y:400});
+  const at=Board.prototype.position.call(view,node);assert.deepEqual(at,{x:125,y:400});
   assert.deepEqual(Board.prototype.coordinates.call(view,at),node);
+});
+
+test('空き幅に合わせて横方向を広げても保存座標と点の形の基準を保つ',()=>{
+  const view={projectionScale:1,displayWidthRatio:2};
+  const left=Board.prototype.position.call(view,{x:.25,y:.45}),right=Board.prototype.position.call(view,{x:.75,y:.45});
+  assert.equal(right.x-left.x,1500);assert.deepEqual(Board.prototype.coordinates.call(view,left),{x:.25,y:.45});
 });
 
 test('縦・左右の横置きは物理方向を保つ回転にする',()=>{

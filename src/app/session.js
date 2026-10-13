@@ -38,6 +38,11 @@ export class Session {
 
   get editable() { return !this.run || this.run.status === 'stopped'; }
   get startBlockedReason() { return this.circuit.edges.length ? '' : '点をつないでから流してください。'; }
+  get clearChoices() {
+    if(this.mode!=='challenge'||this.guide||this.runContext?.guide||this.result?.state!=='achieved'||this.result.challenge!==this.challenge.id)return null;
+    const index=challenges.findIndex(item=>item.id===this.challenge.id);
+    return {challengeId:this.challenge.id,nextChallengeId:challenges[index+1]?.id??null};
+  }
   requireEditable() {
     if (!this.editable) throw new Error('停止してから変更してください。一時停止中も実験条件は固定です。');
   }

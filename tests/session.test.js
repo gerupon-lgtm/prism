@@ -12,6 +12,19 @@ function fixture() {
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
+test('達成した課題だけに次の選択を出し、停止しても配線・結果・記録を残す',()=>{
+  const f=fixture(),s=q1(f);assert.equal(s.clearChoices,null);s.start();s.advance('2.5');
+  assert.deepEqual(s.clearChoices,{challengeId:'Q1',nextChallengeId:'Q2'});
+  const circuit=structuredClone(s.circuit),result=s.exportResult();s.stop();
+  assert.deepEqual(s.circuit,circuit);assert.deepEqual(s.exportResult().records,result.records);assert.equal(s.result.state,'achieved');
+  assert.equal(s.clearChoices.nextChallengeId,'Q2');s.replace({challengeId:'Q2'});assert.equal(s.clearChoices,null);
+  s.connect('S','C');s.start();s.stop();assert.equal(s.clearChoices,null);
+  s.replace({challengeId:'Q6'});for(const id of ['direct1','direct3','direct5'])s.connect('S','G',id);
+  s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:null});s.stop();
+  s.replace({sampleId:'compare'});s.start();s.advance('3');assert.equal(s.clearChoices,null);s.stop();
+  s.replace({challengeId:'Q1'});s.beginGuide();s.connectPath(['S','A','G']);s.start();s.advance('2.5');assert.equal(s.clearChoices,null);
+});
+
 test('配線0本では開始せず、自由のクリア後も直前の全記録・結果・保存を保持する',()=>{
   const f=fixture(),s=f.session;
   assert.throws(()=>s.start(),/つないで/);assert.equal(s.run,null);assert.equal(s.result,null);assert.equal(f.writes(),0);

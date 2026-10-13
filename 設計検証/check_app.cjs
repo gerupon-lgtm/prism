@@ -21,13 +21,19 @@ async function fit(page,label){
     const visible=element=>element.getClientRects().length&&getComputedStyle(element).visibility!=='hidden';
     const elements=[...document.querySelectorAll('header,#workspace,#stage,#records-panel,#result,#guide-bar,#play-controls,footer,dialog[open],dialog[open] form,dialog[open] #dialog-body,dialog[open] #dialog-actions,button,input,select')].filter(visible);
     return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],items:elements.map(element=>{
-      const rect=element.getBoundingClientRect();return {name:element.id||element.textContent.slice(0,35),rect:[rect.left,rect.top,rect.right,rect.bottom],client:[element.clientWidth,element.clientHeight],scroll:[element.scrollWidth,element.scrollHeight]};
+      const rect=element.getBoundingClientRect();return {name:element.id||element.textContent.slice(0,35),rect:[rect.left,rect.top,rect.right,rect.bottom],client:[element.clientWidth,element.clientHeight],scroll:[element.scrollWidth,element.scrollHeight],fullStatus:element.id==='result'?element.textContent:null};
     })};
   });
   try{
     assert(measure.document[0]<=measure.viewport[0]&&measure.document[1]<=measure.viewport[1],`${label}: document scroll ${JSON.stringify(measure.document)}`);
-    for(const item of measure.items){const [l,t,r,b]=item.rect;assert(l>=-.5&&t>=-.5&&r<=measure.viewport[0]+.5&&b<=measure.viewport[1]+.5,`${label}: out of viewport ${item.name} ${JSON.stringify(item.rect)}`);assert(item.scroll[0]<=item.client[0]+1&&item.scroll[1]<=item.client[1]+1,`${label}: hidden/scroll content ${item.name} ${JSON.stringify(item)}`);}
+    for(const item of measure.items){const [l,t,r,b]=item.rect;assert(l>=-.5&&t>=-.5&&r<=measure.viewport[0]+.5&&b<=measure.viewport[1]+.5,`${label}: out of viewport ${item.name} ${JSON.stringify(item.rect)}`);assert((item.name==='result'||item.scroll[0]<=item.client[0]+1)&&item.scroll[1]<=item.client[1]+1,`${label}: hidden/scroll content ${item.name} ${JSON.stringify(item)}`);}
   }catch(error){report.failureLayout={label,...measure};await page.screenshot({path:path.join(out,'failed-layout.png')});throw error;}
+  const status=measure.items.find(item=>item.name==='result'&&item.scroll[0]>item.client[0]+1);
+  if(status&&!await page.locator('#dialog').evaluate(e=>e.open)){
+    await page.locator('#result-info').click();await settle(page);let full='';
+    for(let i=0;i<30;i++){full+=(await page.locator('#dialog-body .detail-value').allTextContents()).join('');const next=page.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(page);}
+    assert.equal(full,status.fullStatus,label+' status available in full');await page.locator('#dialog-close').click();measure.statusFullTextVerified=true;
+  }
   report.checks.push({label,...measure});
 }
 async function drag(page,from,to){
@@ -67,7 +73,7 @@ async function drag(page,from,to){
         await page.setViewportSize({width:390,height:664});await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('3秒')&&document.getElementById('result').textContent.includes('終了'),{},{timeout:6500});await page.locator('#stop').click();
         await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill('<script>保存名</script>');await page.getByRole('button',{name:'保存',exact:true}).click();
         const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.circuits.v1')));assert.equal(saved.value.length,1);assert.equal(saved.value[0].name,'<script>保存名</script>');
-        const coordinates=await page.locator('[data-node="A"]').getAttribute('transform');await page.setViewportSize({width:844,height:310});await settle(page);const rotated=await page.locator('[data-node="A"]').getAttribute('transform');assert(coordinates.includes('translate(250 880)'));assert(rotated.includes('translate(250 880)'));assert(rotated.includes('rotate(90)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'-90');
+        const coordinates=await page.locator('[data-node="A"]').getAttribute('transform');await page.setViewportSize({width:844,height:310});await settle(page);const rotated=await page.locator('[data-node="A"]').getAttribute('transform');const savedNodes=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.circuits.v1')).value[0].circuit.nodes);assert.deepEqual(savedNodes.find(node=>node.id==='A'),{id:'A',kind:'prism',x:.25,y:.45,process:'1.5'});assert(/translate\([^ ]+ 880\)/.test(coordinates)&&/translate\([^ ]+ 880\)/.test(rotated));assert(rotated.includes('rotate(90)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'-90');
         await fit(page,`${engine} orientation retains coordinates`);await page.screenshot({path:path.join(out,`${engine}-landscape.png`)});
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${engine}-portrait.png`)});
         await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill('長い回路名'.repeat(150));await page.getByRole('button',{name:'保存',exact:true}).click();await page.setViewportSize({width:320,height:480});await fit(page,`${engine} long saved name`);

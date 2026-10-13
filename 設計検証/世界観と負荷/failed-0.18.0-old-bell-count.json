@@ -1,0 +1,31 @@
+{
+  "version": "0.18.0",
+  "checkedAt": "2026-10-13T09:48:26.137Z",
+  "evidence": "PC Chromium/WebKit. Synthetic circuits; explicitly injected 135ms DOM stall verifies preservation, not a real-device load threshold. No physical touch or listening evidence. Unavailable audio APIs remain pending, never counted as sound acceptance.",
+  "checks": [
+    {
+      "label": "chromium adopted humanoid transparent image loaded only during guide",
+      "passed": true
+    },
+    {
+      "label": "chromium guide fits all eight portrait/landscape sizes",
+      "passed": true
+    },
+    {
+      "label": "chromium all six stages use their adopted setting with no decoration hit targets",
+      "passed": true
+    },
+    {
+      "label": "chromium prisms, source star and altar chime symbols",
+      "passed": true
+    },
+    {
+      "label": "chromium unwanted context menus suppressed; input selection/menu retained",
+      "passed": true
+    }
+  ],
+  "measurements": [],
+  "pending": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n7 !== 9\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_world_load.cjs:82:87"
+}

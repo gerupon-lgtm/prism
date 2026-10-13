@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Chime, RELAY_SOUND } from '../src/ui/audio.js';
+import { Chime, RELAY_SOUND, DEFAULT_EFFECT_VOLUME } from '../src/ui/audio.js';
 
 function fixture(){
   const chime=new Chime(),voices=[];
@@ -20,17 +20,23 @@ test('中継音は停止・消音で止まり、消音中や音の一時停止�
   chime.muted=false;chime.context.state='suspended';chime.relay();assert.equal(voices.length,2);
 });
 test('鐘の発音前に中継音を止め、余韻の間は鳴らさず、停止後も抑制を持ち越さない',()=>{
-  const {chime,voices}=fixture();chime.relay();chime.strike();assert(voices[0].stopped);assert.equal(voices.length,5);
-  chime.context.currentTime=2.5;chime.relay();assert.equal(voices.length,5);
-  chime.context.currentTime=2.63;chime.relay();assert.equal(voices.length,6);chime.stop();assert(voices[5].stopped);
-  chime.context.currentTime=0;chime.relay();assert.equal(voices.length,7);
+  const {chime,voices}=fixture();chime.relay();chime.strike();assert(voices[0].stopped);assert.equal(voices.length,2);
+  chime.context.currentTime=2.5;chime.relay();assert.equal(voices.length,2);
+  chime.context.currentTime=2.63;chime.relay();assert.equal(voices.length,3);chime.stop();assert(voices[2].stopped);
+  chime.context.currentTime=0;chime.relay();assert.equal(voices.length,4);
 });
 test('重なる到着は最後の鐘の余韻まで中継音を抑え、操作音は消音中に発音しない',()=>{
-  const {chime,voices}=fixture();chime.strike();chime.context.currentTime=1;chime.strike();chime.context.currentTime=2.7;chime.relay();assert.equal(voices.length,8);
-  chime.context.currentTime=3.63;chime.relay();assert.equal(voices.length,9);chime.tap();assert.equal(voices.length,10);chime.mute();chime.tap();assert.equal(voices.length,10);
+  const {chime,voices}=fixture();chime.strike();chime.context.currentTime=1;chime.strike();chime.context.currentTime=2.7;chime.relay();assert.equal(voices.length,2);
+  chime.context.currentTime=3.63;chime.relay();assert.equal(voices.length,3);chime.tap();assert.equal(voices.length,4);chime.mute();chime.tap();assert.equal(voices.length,4);
 });
-test('鐘は以前の5度上にして1オクターブ上を同時に混ぜ、余韻の長さを変えない',()=>{
+test('鐘は上のオクターブだけを鳴らし、余韻の長さを変えない',()=>{
   const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();
-  const base=voices.find(voice=>Math.abs(voice.frequency.value-261.61)<.02),upper=voices.find(voice=>Math.abs(voice.frequency.value-523.22)<.04);
-  assert(base&&upper);assert.equal(base.startedAt,5);assert.equal(upper.startedAt,base.startedAt);assert.equal(upper.stopAt,base.stopAt);assert.equal(chime.bellUntil,7.62);
+  assert.equal(voices.length,1);assert(Math.abs(voices[0].frequency.value-523.22)<.04);
+  assert.equal(voices[0].startedAt,5);assert.equal(voices[0].stopAt,7.62);assert.equal(chime.bellUntil,7.62);
+});
+test('効果音共通の初期音量は最大の70%で、再有効化でも増幅経路が重複しない',async()=>{
+  let count=0;const master={gain:{value:0},connect(){count++;}};
+  const context={state:'running',destination:{},createDynamicsCompressor:()=>({connect(){count++;}}),createGain:()=>master,resume:async()=>{}};
+  const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){return context;}}};
+  try{const chime=new Chime();assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();assert.equal(master.gain.value,.7);assert.equal(count,2);chime.mute();await chime.enable();assert.equal(count,2);assert.equal(master.gain.value,.7);}finally{globalThis.window=original;}
 });

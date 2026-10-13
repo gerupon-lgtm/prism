@@ -29,6 +29,8 @@ const storage={getItem:key=>load.measure('records',()=>window.localStorage.getIt
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null;
+const dismissedClears=new WeakSet();
+let clearToastRun=null,clearToastCircuit=null;
 const board=new Board($('board'),session,render,settings,notify);
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
@@ -108,6 +110,31 @@ function render(redraw=true,{records=true}={}) {
   }
   if(redraw)board.render();else board.particles();
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
+  renderClearToast();
+}
+
+function renderClearToast() {
+  const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
+  if(run&&clearToastRun===run&&clearToastCircuit!==session.circuit)dismissedClears.add(run);
+  toast.hidden=!choices||dismissedClears.has(run)||dialog.open||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  if(toast.hidden)return;
+  if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
+  $('clear-next').textContent=choices.nextChallengeId?'次へ':'課題一覧へ';
+  const bounds=$('board').getBoundingClientRect();
+  const width=Math.min(420,innerWidth-16,bounds.width-8);
+  toast.classList.toggle('narrow',width<240);
+  toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';
+  toast.style.width=`${width}px`;
+  toast.style.left=`${Math.max(8,Math.min(innerWidth-width-8,bounds.left+(bounds.width-width)/2))}px`;
+  toast.style.top=`${Math.max(bounds.top+4,Math.min(bounds.bottom-toast.offsetHeight-4,bounds.top+8))}px`;
+}
+function dismissClear(){if(session.run)dismissedClears.add(session.run);render(false);}
+function clearAction(next=false){
+  const choices=session.clearChoices;
+  if(!choices||updating)return;
+  if(session.run)dismissedClears.add(session.run);
+  stopRun();
+  if(next){if(choices.nextChallengeId)replace({challengeId:choices.nextChallengeId});else chooseMode();}
 }
 
 function listPage(items,makeRow,empty='まだありません。') {
@@ -474,6 +501,7 @@ function frame(now){
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 $('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}`));
+$('result-info').addEventListener('click',()=>fullText('実行状況',$('result').textContent));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
@@ -486,6 +514,9 @@ $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(updateDialog));
+$('clear-dismiss').addEventListener('click',dismissClear);
+$('clear-again').addEventListener('click',()=>attempt(()=>clearAction()));
+$('clear-next').addEventListener('click',()=>attempt(()=>clearAction(true)));
 $('retry-result').addEventListener('click',()=>{
   let failed=false;
   for(const key of session.pendingScores.keys())if(!session.retryScore(key))failed=true;

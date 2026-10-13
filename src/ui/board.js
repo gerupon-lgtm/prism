@@ -2,6 +2,10 @@ import { svg } from './svg.js';
 import { Scene,symbol,constellation } from './scene.js';
 import { Magnifier } from './magnifier.js';
 
+// Display only; inverse projection keeps saved/edit coordinates unchanged.
+const CIRCUIT_WIDTH = 1.5;
+const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
+
 export class Board {
   constructor(element, session, changed, openSettings, notify) {
     Object.assign(this,{element,session,changed,openSettings,notify});
@@ -21,8 +25,10 @@ export class Board {
   }
   resize() {
     this.angle=Number(document.documentElement.dataset.boardRotation||0);
-    // Leave room around the canonical circuit for readable labels and touch targets.
-    this.element.setAttribute('viewBox','-180 -240 1360 2080');
+    // Fill the available width instead of centering a narrow fixed-aspect diagram.
+    this.frameWidth=2080*(this.element.clientWidth||1360)/(this.element.clientHeight||2080);
+    this.displayWidthRatio=this.frameWidth/1360;
+    this.element.setAttribute('viewBox',`${500-this.frameWidth/2} -240 ${this.frameWidth} 2080`);
     this.orientation.setAttribute('transform','');
     this.cancelAll(); this.transform(); this.render();
   }
@@ -36,8 +42,8 @@ export class Board {
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
   }
-  position(node) {return {x:((node.x??0.5)/(this.projectionScale??1))*1000,y:1600-((node.y??0.5)/(this.projectionScale??1))*1600};}
-  coordinates(at) {return {x:at.x/1000*(this.projectionScale??1),y:(1600-at.y)/1600*(this.projectionScale??1)};}
+  position(node) {return {x:500+(((node.x??0.5)/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:1600-((node.y??0.5)/(this.projectionScale??1))*1600};}
+  coordinates(at) {return {x:((at.x-500)/(CIRCUIT_WIDTH*(this.displayWidthRatio??1))+500)/1000*(this.projectionScale??1),y:(1600-at.y)/1600*(this.projectionScale??1)};}
   zoom(factor,x,y) {
     const rect=this.element.getBoundingClientRect();
     x ??= rect.left+rect.width/2; y ??= rect.top+rect.height/2;
@@ -49,13 +55,14 @@ export class Board {
     const input=this.session.run&&this.session.run.status!=='stopped'?this.session.run.circuit.raw:this.session.circuit;
     let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
     for(const node of input.nodes){const at=this.position(node);minX=Math.min(minX,at.x);minY=Math.min(minY,at.y);maxX=Math.max(maxX,at.x);maxY=Math.max(maxY,at.y);}
-    const zoom=Math.min(6,1000/(maxX-minX+250),1600/(maxY-minY+300));
+    const zoom=Math.min(6,(this.frameWidth??1360)*1000/1360/(maxX-minX+250),1600/(maxY-minY+300));
     Object.assign(this.session.view,{zoom,panX:500-(minX/2+maxX/2)*zoom,panY:800-(minY/2+maxY/2)*zoom});this.transform();this.render();
   }
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
     const kind=this.session.mode==='free'?'sky':Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory';
-    this.scene.draw(1000,1600,kind);
+    const sceneWidth=(this.frameWidth??1360)*.85;
+    this.scene.draw(sceneWidth,1600,kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} 0)`);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
     let extent=1;for(const node of input.nodes)extent=Math.max(extent,Math.abs(node.x??0.5),Math.abs(node.y??0.5));
     // Display projection only; original coordinates are retained in circuit files.
@@ -63,6 +70,7 @@ export class Board {
     const nodes=new Map(input.nodes.map(node=>[node.id,node]));
     const candidates=this.session.mode==='challenge' ? this.session.challenge.candidates.filter(edge=>!input.edges.some(built=>built.id===edge.id)) : [];
     const all=[...input.edges,...candidates];
+    const timeCards=[];
     const parallels=new Map();
     for(const edge of all){const key=JSON.stringify([edge.from,edge.to].sort());let list=parallels.get(key);if(!list){list=[];parallels.set(key,list);}list.push(edge);}
     for (const edge of all) {
@@ -74,11 +82,16 @@ export class Board {
       const curve={a,b,control}; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
       const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`});
+      group.append(svg('title',{},`${edge.from} ${edge.bidirectional?'↔':'→'} ${edge.to}：${edge.time}秒`));
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-line'}));
-      const middle=this.onCurve(curve,0.5), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
-      label.append(svg('text',{y:-10,class:'edge-time'},`${edge.time}s ${edge.bidirectional?'↔':'→'}`));group.append(label);
+      // Stagger parallel labels along the path, rather than stacking at its midpoint.
+      const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
+      const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
+      const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},`${secondsLabel(edge.time)} ${edge.bidirectional?'↔':'→'}`);
+      label.append(card,text);group.append(label);
       this.world.append(group);
+      timeCards.push({card,text,factor});
     }
     for (const node of input.nodes) {
       const at=this.position(node),selected=this.session.selection===node.id;
@@ -88,14 +101,20 @@ export class Board {
       group.append(symbol(node.kind,factor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
-      group.append(svg('title',{},label),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
-      if(node.kind!=='goal') group.append(svg('text',{y:(node.kind==='source'?-58:58)*factor,class:'node-time'},`${node.process}s${node.kind==='source'?'（戻り）':''}`));
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒${node.kind==='source'?'（戻り）':''}`}`),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      if(node.kind!=='goal'){
+        const text=svg('text',{y:(node.kind==='source'?-92:64)*factor,class:'node-time'},secondsLabel(node.process));
+        if(node.kind==='source')text.append(svg('tspan',{x:0,dy:30*factor,class:'source-time-note'},'戻り'));
+        group.append(text);
+      }
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
       group.addEventListener('keydown',event=>{
         if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=node.id;this.render();this.openSettings();}
       });
       this.world.append(group);
     }
+    const cardSizes=timeCards.map(item=>({...item,bounds:item.text.getBBox()}));
+    for(const {card,factor,bounds} of cardSizes)for(const [name,value] of Object.entries({x:bounds.x-10*factor,y:bounds.y-6*factor,width:bounds.width+20*factor,height:bounds.height+12*factor}))card.setAttribute(name,value);
     const selected=this.world.querySelector(`[data-node="${CSS.escape(this.session.selection??'')}"]`);if(selected)this.world.append(selected);
     if (this.session.selection) {
       for(const group of this.world.querySelectorAll('[data-node]')) {
@@ -103,8 +122,46 @@ export class Board {
       }
     }
     this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);this.previewWire();
-    this.renderArrivals();
+    this.timeLayoutSignature=null;this.labelOrigins=new Map();
     this.particles();
+    this.renderArrivals();
+  }
+  fitTimeLabels() {
+    const worldMatrix=this.world.getScreenCTM();
+    if(!worldMatrix)return;
+    const area=this.element.getBoundingClientRect();
+    const labels=[...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item);
+    this.world.querySelectorAll('.edge-label-leader').forEach(item=>item.remove());
+    for(const label of labels){
+      if(!this.labelOrigins.has(label))this.labelOrigins.set(label,label.getAttribute('transform')??'');
+      else label.setAttribute('transform',this.labelOrigins.get(label));
+    }
+    const measurements=labels.map(label=>({label,bounds:label.getBoundingClientRect(),matrix:label.getScreenCTM(),card:Boolean(label.querySelector('.edge-label-card'))}));
+    const placements=[],worldInverse=worldMatrix.inverse();
+    const occupied=new Map(),cellSize=64;
+    const cells=rect=>{const keys=[];for(let x=Math.floor(rect.left/cellSize);x<=Math.floor(rect.right/cellSize);x++)for(let y=Math.floor(rect.top/cellSize);y<=Math.floor(rect.bottom/cellSize);y++)keys.push(`${x}/${y}`);return keys;};
+    const reserve=rect=>{for(const key of cells(rect)){if(!occupied.has(key))occupied.set(key,[]);occupied.get(key).push(rect);}};
+    const overlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
+    for(const node of this.world.querySelectorAll('.node-symbol,.node-name,.node-state'))reserve(node.getBoundingClientRect());
+    for(const {label,bounds,matrix,card} of measurements){
+      if(!matrix)continue;
+      const positions=[];
+      for(const x of [0,-1,1,-2,2])for(const y of [0,-1,1,-2,2]){
+        const left=Math.max(area.left+3,Math.min(area.right-3-bounds.width,bounds.left+x*Math.max(12,bounds.width*.75)));
+        const top=Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,bounds.top+y*Math.max(12,bounds.height*.8)));
+        const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
+        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)});
+      }
+      const best=positions.reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
+      const placement={label,transform:`${this.labelOrigins.get(label)} translate(${inverse.a*best.dx+inverse.c*best.dy} ${inverse.b*best.dx+inverse.d*best.dy})`};
+      if(card&&Math.hypot(best.dx,best.dy)>8){
+        const origin=new DOMPoint(matrix.e,matrix.f).matrixTransform(worldInverse),end=new DOMPoint((best.rect.left+best.rect.right)/2,(best.rect.top+best.rect.bottom)/2).matrixTransform(worldInverse);
+        placement.leader=`M${origin.x} ${origin.y} L${end.x} ${end.y}`;
+      }
+      placements.push(placement);
+      reserve(best.rect);
+    }
+    for(const {label,transform,leader} of placements){label.setAttribute('transform',transform);if(leader)label.parentElement.insertBefore(svg('path',{d:leader,class:'edge-label-leader'}),label);}
   }
   renderArrivals() {
     const run=this.session.run;
@@ -131,11 +188,14 @@ export class Board {
   }
   particles() {
     this.particleLayer.replaceChildren();
-    const run=this.session.run;if(!run||run.status==='stopped')return;
+    const run=this.session.run;
+    if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){this.timeLayoutSignature='';this.fitTimeLabels();}return;}
+    const states=[];
     for(const group of this.world.querySelectorAll('[data-node]')){
       group.querySelector('.node-state')?.remove();const gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
-      if(waiting||gate.current!==null)group.append(svg('text',{y:(group.classList.contains('source')?-84:84)*(this.fontFactor??1),class:'node-state'},`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`));
+      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);group.append(svg('text',{y:(group.classList.contains('source')?-150:100)*(this.fontFactor??1),class:'node-state'},text));}
     }
+    const signature=states.join('/');if(this.timeLayoutSignature!==signature){this.timeLayoutSignature=signature;this.fitTimeLabels();}
     for(const particle of run.particles.values()) {
       let at;
       if(particle.status==='moving') {

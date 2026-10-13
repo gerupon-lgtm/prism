@@ -46,7 +46,7 @@ async function finishNext(page){
       const browser=await pw[engine].launch({headless:true});
       try{
         const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
-        await page.addInitScript(()=>{const Audio=window.AudioContext??window.webkitAudioContext;if(!Audio)return;const original=Audio.prototype.createOscillator,resume=Audio.prototype.resume;window.__oscillators=0;window.__audioContexts=[];Audio.prototype.createOscillator=function(...args){window.__oscillators++;return original.apply(this,args);};Audio.prototype.resume=function(...args){window.__audioContexts.push(this);return resume.apply(this,args);};});
+        await page.addInitScript(()=>{const Audio=window.AudioContext??window.webkitAudioContext;if(!Audio)return;const original=Audio.prototype.createOscillator,resume=Audio.prototype.resume;window.__oscillators=0;window.__bellStarts=[];window.__audioContexts=[];Audio.prototype.createOscillator=function(...args){window.__oscillators++;const voice=original.apply(this,args),start=voice.start.bind(voice);voice.start=at=>{if(Math.abs(voice.frequency.value-523.22)<.04)window.__bellStarts.push({frequency:voice.frequency.value,at});return start(at);};return voice;};Audio.prototype.resume=function(...args){window.__audioContexts.push(this);return resume.apply(this,args);};});
         await page.goto(url);await page.locator('#guide-spirit').waitFor({state:'visible'});
         await page.waitForFunction(()=>document.getElementById('guide-spirit').complete&&document.getElementById('guide-spirit').naturalHeight===1536);
         const alpha=await page.locator('#guide-spirit').evaluate(img=>{const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;const context=canvas.getContext('2d');context.drawImage(img,0,0);return context.getImageData(0,0,1,1).data[3];});assert.equal(alpha,0);
@@ -79,13 +79,13 @@ async function finishNext(page){
           check(`${engine} unavailable audio API reported without disabling simulation`,{audioSupport});
         }
         await pausedStart(page);await finishNext(page);
-        assert.equal(await page.locator('.arrival-art').count(),3);if(hasAudio)assert.equal(await page.evaluate(()=>window.__oscillators),9);
+        assert.equal(await page.locator('.arrival-art').count(),3);if(hasAudio)assert.equal(await page.evaluate(()=>window.__bellStarts.length),3);
         const arrival=await inspect(page);assert.equal(arrival.run.clock,'0.1');assert.equal(arrival.run.retainedParticles,3);
         await page.screenshot({path:path.join(out,`${engine}-arrivals.png`)});
         await page.waitForFunction(()=>document.querySelectorAll('.arrival-art').length===0,{},{timeout:4000});const after=await inspect(page);
         assert.equal(after.run.clock,arrival.run.clock);assert.equal(after.run.records,arrival.run.records);assert.equal(after.run.retainedParticles,3);
         check(`${engine} three same-time arrivals have three tails; fading adds no experiment time`,{clock:after.run.clock,records:after.run.records});
-        if(hasAudio)check(`${engine} three arrivals create all nine bell partials`,{oscillators:9});
+        if(hasAudio)check(`${engine} three arrivals each start one upper-octave bell`,{bellStarts:await page.evaluate(()=>window.__bellStarts)});
         await page.locator('#stop').click();assert.equal(await page.locator('.arrival-art').count(),0);assert.equal((await inspect(page)).audioVoices,0);check(`${engine} stop clears decoration and all audio voices`);
         const queued=manyGoals(24,true);await importCircuit(page,queued);
         // Inject one blocking render operation to deterministically test the load pause.

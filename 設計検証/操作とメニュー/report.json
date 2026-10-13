@@ -1,5 +1,5 @@
 {
-  "version": "0.17.0",
+  "version": "0.18.0",
   "evidence": "PC disposable browsers. CSS 28px enlargement, synthetic orientation and visible update-notice geometry. Real audio API where available; fallback audio mock explicitly labelled. No acoustic or physical device evidence.",
   "checks": [
     {
@@ -154,14 +154,14 @@
             "type": "start",
             "at": 0,
             "frequency": 440,
-            "wall": 1441.5
+            "wall": 2019
           },
           {
             "id": 1,
             "type": "stop",
             "at": 0.06,
             "frequency": 440,
-            "wall": 1441.6999998092651
+            "wall": 2019.5999999046326
           }
         ],
         "method": "real browser API"
@@ -389,10 +389,10 @@
       "label": "chromium notice 390x664 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 293.765625,
-        "y": 641,
-        "width": 30,
-        "height": 18
+        "x": 292,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -613,10 +613,10 @@
       "label": "chromium notice 320x480 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 223.765625,
-        "y": 457,
-        "width": 30,
-        "height": 18
+        "x": 222,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -837,10 +837,10 @@
       "label": "chromium notice 480x240 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 391.375,
-        "y": 218.40625,
-        "width": 27.984375,
-        "height": 16.59375
+        "x": 382,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -1061,10 +1061,10 @@
       "label": "chromium notice 844x310 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 755.375,
-        "y": 288.40625,
-        "width": 27.984375,
-        "height": 16.59375
+        "x": 746,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -1285,10 +1285,10 @@
       "label": "chromium notice 390x664 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 218.5625,
-        "y": 627,
-        "width": 50,
-        "height": 32
+        "x": 256.84375,
+        "y": 14.390625,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -1509,10 +1509,10 @@
       "label": "chromium notice 320x480 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 148.5625,
-        "y": 443,
-        "width": 50,
-        "height": 32
+        "x": 186.84375,
+        "y": 14.390625,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -1733,10 +1733,10 @@
       "label": "chromium notice 480x240 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 323.671875,
-        "y": 205.8125,
-        "width": 45.984375,
-        "height": 29.1875
+        "x": 346.84375,
+        "y": 6,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -1957,10 +1957,10 @@
       "label": "chromium notice 844x310 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 687.671875,
-        "y": 275.8125,
-        "width": 45.984375,
-        "height": 29.1875
+        "x": 710.84375,
+        "y": 6,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -2206,123 +2206,81 @@
         {
           "id": 6,
           "type": "start",
-          "at": 3.6906666666666665,
+          "at": 3.952,
           "frequency": 440,
-          "wall": 5223.699999809265
+          "wall": 6051.599999904633
         },
         {
           "id": 6,
           "type": "stop",
-          "at": 3.7506666666666666,
+          "at": 4.012,
           "frequency": 440,
-          "wall": 5223.699999809265
+          "wall": 6051.599999904633
         },
         {
           "id": 7,
           "type": "start",
-          "at": 4.050666666666666,
+          "at": 4.32,
           "frequency": 440,
-          "wall": 5583.900000095367
+          "wall": 6417.700000286102
         },
         {
           "id": 7,
           "type": "stop",
-          "at": 4.110666666666666,
+          "at": 4.38,
           "frequency": 440,
-          "wall": 5583.900000095367
+          "wall": 6417.700000286102
         },
         {
           "id": 8,
           "type": "start",
-          "at": 4.0906666666666665,
+          "at": 4.370666666666667,
           "frequency": 440,
-          "wall": 5623.400000095367
+          "wall": 6463
         },
         {
           "id": 8,
           "type": "stop",
-          "at": 4.150666666666666,
+          "at": 4.430666666666666,
           "frequency": 440,
-          "wall": 5623.400000095367
+          "wall": 6463
         },
         {
           "id": 9,
           "type": "start",
-          "at": 4.810666666666667,
+          "at": 5.08,
           "frequency": 659.260009765625,
-          "wall": 6334.799999713898
+          "wall": 7173.400000095367
         },
         {
           "id": 9,
           "type": "stop",
-          "at": 5.010666666666666,
+          "at": 5.279999999999999,
           "frequency": 659.260009765625,
-          "wall": 6334.799999713898
+          "wall": 7173.5
         },
         {
           "id": 10,
           "type": "start",
-          "at": 6.312,
-          "frequency": 261.6044006347656,
-          "wall": 7835.699999809265
+          "at": 6.581333333333333,
+          "frequency": 523.2088012695312,
+          "wall": 8673
         },
         {
           "id": 10,
           "type": "stop",
-          "at": 8.932,
-          "frequency": 261.6044006347656,
-          "wall": 7835.699999809265
-        },
-        {
-          "id": 11,
-          "type": "start",
-          "at": 6.312,
+          "at": 9.201333333333334,
           "frequency": 523.2088012695312,
-          "wall": 7835.900000095367
-        },
-        {
-          "id": 11,
-          "type": "stop",
-          "at": 8.932,
-          "frequency": 523.2088012695312,
-          "wall": 7835.900000095367
-        },
-        {
-          "id": 12,
-          "type": "start",
-          "at": 6.312,
-          "frequency": 722.0281982421875,
-          "wall": 7836.099999904633
-        },
-        {
-          "id": 12,
-          "type": "stop",
-          "at": 7.932,
-          "frequency": 722.0281982421875,
-          "wall": 7836.099999904633
-        },
-        {
-          "id": 13,
-          "type": "start",
-          "at": 6.312,
-          "frequency": 1072.578125,
-          "wall": 7836.199999809265
-        },
-        {
-          "id": 13,
-          "type": "stop",
-          "at": 7.232,
-          "frequency": 1072.578125,
-          "wall": 7836.199999809265
+          "wall": 8673
         }
       ]
     },
     {
       "label": "chromium automatic editing return after 3 sec preserves clock, score, records and wiring",
       "passed": true,
-      "elapsed": 3005,
+      "elapsed": 3021.4000000953674,
       "ended": {
-        "at": 7848.400000095367,
+        "at": 8684,
         "run": {
           "status": "paused",
           "pauseReason": null,
@@ -2337,7 +2295,7 @@
         "clearDisabled": true
       },
       "returned": {
-        "at": 10853.400000095367,
+        "at": 11705.400000095367,
         "run": {
           "status": "stopped",
           "pauseReason": null,
@@ -2355,13 +2313,13 @@
     {
       "label": "chromium manual stop allows immediate editing instead of waiting 3 sec",
       "passed": true,
-      "elapsed": 45
+      "elapsed": 47.30000019073486
     },
     {
       "label": "chromium clear blocks start, preserves last result and records; restore enables start",
       "passed": true,
       "cleared": {
-        "at": 13500.099999904633,
+        "at": 14356.5,
         "run": {
           "status": "stopped",
           "pauseReason": null,
@@ -2530,7 +2488,7 @@
       "label": "chromium synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop",
       "passed": true,
       "fault": {
-        "at": 13604.199999809265,
+        "at": 14458.099999904633,
         "run": {
           "status": "paused",
           "pauseReason": "error",
@@ -2545,7 +2503,7 @@
         "clearDisabled": true
       },
       "retained": {
-        "at": 16921.400000095367,
+        "at": 17776.599999904633,
         "run": {
           "status": "paused",
           "pauseReason": "dialog",
@@ -2710,16 +2668,16 @@
           {
             "id": 1,
             "type": "start",
-            "at": 0.795,
+            "at": 0.833,
             "frequency": 0,
-            "wall": 795
+            "wall": 834
           },
           {
             "id": 1,
             "type": "stop",
-            "at": 0.855,
+            "at": 0.893,
             "frequency": 0,
-            "wall": 795
+            "wall": 834
           }
         ],
         "method": "synthetic API fallback"
@@ -2947,10 +2905,10 @@
       "label": "webkit notice 390x664 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 293.75,
-        "y": 641,
-        "width": 30.015625,
-        "height": 18
+        "x": 292,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -3171,10 +3129,10 @@
       "label": "webkit notice 320x480 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 223.75,
-        "y": 457,
-        "width": 30.015625,
-        "height": 18
+        "x": 222,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -3395,10 +3353,10 @@
       "label": "webkit notice 480x240 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 391.28125,
-        "y": 218.421875,
-        "width": 28,
-        "height": 16.578125
+        "x": 382,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -3619,10 +3577,10 @@
       "label": "webkit notice 844x310 enlarged=false",
       "passed": true,
       "rect": {
-        "x": 755.28125,
-        "y": 288.421875,
-        "width": 28,
-        "height": 16.578125
+        "x": 746,
+        "y": 9,
+        "width": 48,
+        "height": 38
       }
     },
     {
@@ -3843,10 +3801,10 @@
       "label": "webkit notice 390x664 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 218.546875,
-        "y": 627,
-        "width": 50.015625,
-        "height": 32
+        "x": 256.84375,
+        "y": 14.375,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -4067,10 +4025,10 @@
       "label": "webkit notice 320x480 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 148.546875,
-        "y": 443,
-        "width": 50.015625,
-        "height": 32
+        "x": 186.84375,
+        "y": 14.375,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -4291,10 +4249,10 @@
       "label": "webkit notice 480x240 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 323.59375,
-        "y": 205.828125,
-        "width": 46,
-        "height": 29.171875
+        "x": 346.84375,
+        "y": 6,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -4515,10 +4473,10 @@
       "label": "webkit notice 844x310 enlarged=true",
       "passed": true,
       "rect": {
-        "x": 687.59375,
-        "y": 275.828125,
-        "width": 46,
-        "height": 29.171875
+        "x": 710.84375,
+        "y": 6,
+        "width": 74,
+        "height": 53.1875
       }
     },
     {
@@ -4764,132 +4722,90 @@
         {
           "id": 6,
           "type": "start",
-          "at": 7.25,
+          "at": 7.816,
           "frequency": 0,
-          "wall": 7250
+          "wall": 7816
         },
         {
           "id": 6,
           "type": "stop",
-          "at": 7.31,
+          "at": 7.8759999999999994,
           "frequency": 0,
-          "wall": 7250
+          "wall": 7816
         },
         {
           "id": 5,
           "type": "stop",
           "frequency": 0,
-          "wall": 7614
+          "wall": 8200
         },
         {
           "id": 6,
           "type": "stop",
           "frequency": 0,
-          "wall": 7614
+          "wall": 8200
         },
         {
           "id": 7,
           "type": "start",
-          "at": 7.617,
+          "at": 8.202,
           "frequency": 0,
-          "wall": 7617
+          "wall": 8202
         },
         {
           "id": 7,
           "type": "stop",
-          "at": 7.677,
+          "at": 8.262,
           "frequency": 0,
-          "wall": 7617
+          "wall": 8202
         },
         {
           "id": 8,
           "type": "start",
-          "at": 7.732,
+          "at": 8.316,
           "frequency": 0,
-          "wall": 7732
+          "wall": 8316
         },
         {
           "id": 8,
           "type": "stop",
-          "at": 7.792,
+          "at": 8.376000000000001,
           "frequency": 0,
-          "wall": 7732
+          "wall": 8316
         },
         {
           "id": 9,
           "type": "start",
-          "at": 8.44,
+          "at": 9.022,
           "frequency": 659.26,
-          "wall": 8440
+          "wall": 9022
         },
         {
           "id": 9,
           "type": "stop",
-          "at": 8.639999999999999,
+          "at": 9.222,
           "frequency": 659.26,
-          "wall": 8440
+          "wall": 9022
         },
         {
           "id": 9,
           "type": "stop",
           "frequency": 659.26,
-          "wall": 9942
+          "wall": 10527
         },
         {
           "id": 10,
           "type": "start",
-          "at": 9.942,
-          "frequency": 261.60441562266857,
-          "wall": 9942
+          "at": 10.527,
+          "frequency": 523.2088312453371,
+          "wall": 10527
         },
         {
           "id": 10,
           "type": "stop",
-          "at": 12.562,
-          "frequency": 261.60441562266857,
-          "wall": 9942
-        },
-        {
-          "id": 11,
-          "type": "start",
-          "at": 9.942,
+          "at": 13.146999999999998,
           "frequency": 523.2088312453371,
-          "wall": 9942
-        },
-        {
-          "id": 11,
-          "type": "stop",
-          "at": 12.562,
-          "frequency": 523.2088312453371,
-          "wall": 9942
-        },
-        {
-          "id": 12,
-          "type": "start",
-          "at": 9.942,
-          "frequency": 722.0281871185651,
-          "wall": 9942
-        },
-        {
-          "id": 12,
-          "type": "stop",
-          "at": 11.562,
-          "frequency": 722.0281871185651,
-          "wall": 9942
-        },
-        {
-          "id": 13,
-          "type": "start",
-          "at": 9.942,
-          "frequency": 1072.578104052941,
-          "wall": 9942
-        },
-        {
-          "id": 13,
-          "type": "stop",
-          "at": 10.862,
-          "frequency": 1072.578104052941,
-          "wall": 9942
+          "wall": 10527
         }
       ]
     },
@@ -4898,7 +4814,7 @@
       "passed": true,
       "elapsed": 3019,
       "ended": {
-        "at": 9952,
+        "at": 10539,
         "run": {
           "status": "paused",
           "pauseReason": null,
@@ -4913,7 +4829,7 @@
         "clearDisabled": true
       },
       "returned": {
-        "at": 12971,
+        "at": 13558,
         "run": {
           "status": "stopped",
           "pauseReason": null,
@@ -4931,13 +4847,13 @@
     {
       "label": "webkit manual stop allows immediate editing instead of waiting 3 sec",
       "passed": true,
-      "elapsed": 107
+      "elapsed": 109
     },
     {
       "label": "webkit clear blocks start, preserves last result and records; restore enables start",
       "passed": true,
       "cleared": {
-        "at": 15815,
+        "at": 16425,
         "run": {
           "status": "stopped",
           "pauseReason": null,
@@ -5106,7 +5022,7 @@
       "label": "webkit synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop",
       "passed": true,
       "fault": {
-        "at": 16070,
+        "at": 16678,
         "run": {
           "status": "paused",
           "pauseReason": "error",
@@ -5121,7 +5037,7 @@
         "clearDisabled": true
       },
       "retained": {
-        "at": 19536,
+        "at": 20151,
         "run": {
           "status": "paused",
           "pauseReason": "dialog",
