@@ -101,10 +101,9 @@ export class Board {
       group.append(symbol(node.kind,factor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
-      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒${node.kind==='source'?'（戻り）':''}`}`),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal'){
         const text=svg('text',{y:(node.kind==='source'?-92:64)*factor,class:'node-time'},secondsLabel(node.process));
-        if(node.kind==='source')text.append(svg('tspan',{x:0,dy:30*factor,class:'source-time-note'},'戻り'));
         group.append(text);
       }
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
