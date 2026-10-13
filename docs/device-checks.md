@@ -1,6 +1,6 @@
 # 実機確認の進め方
 
-2026-10-13。確認用の公開版は0.18.0、[公開URL](https://gerupon-lgtm.github.io/prism/)。利用できる環境として、発案者からWindowsのChrome／Edge、AndroidのChrome、iPhoneのSafariが示された。端末名・OS・ブラウザ版の詳細は未回答。0.11.0で回転時の配置・大きさが直ったという発案者の実機回答を取得したが、Android/iPhoneの双方で確認したとは判断しない。Windowsで取得した版と証拠は[Windowsの確認](reviews/2026-10-13-windows-browsers.md)を参照。Mac・iPadも要件の対象に残す。
+2026-10-13。確認用の公開版は0.19.0、[公開URL](https://gerupon-lgtm.github.io/prism/)。利用できる環境として、発案者からWindowsのChrome／Edge、AndroidのChrome、iPhoneのSafariが示された。端末名・OS・ブラウザ版の詳細は未回答。0.11.0で回転時の配置・大きさが直ったという発案者の実機回答を取得したが、Android/iPhoneの双方で確認したとは判断しない。Windowsで取得した版と証拠は[Windowsの確認](reviews/2026-10-13-windows-browsers.md)を参照。Mac・iPadも要件の対象に残す。
 
 PCの自動操作では、指・画面キーボード・OSの文字拡大・スピーカーの音・ホーム画面への追加を確認できない。まず短い一連の操作で実機の問題を見つけ、その後[受入条件26項目と非機能8項目](acceptance-status.md)の不足を確認する。以下だけの合格で全受入条件の完了とはしない。
 
