@@ -1,3 +1,4 @@
+const {startAndPause}=require('./browser_wait.cjs');
 const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual UI guide/selection flow in disposable PC browsers, not device acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -12,7 +13,7 @@ const server=http.createServer((req,res)=>{let target=path.resolve(root,'.'+deco
 const settle=p=>p.evaluate(async()=>{await document.fonts.ready;await Promise.all([...new Set([...document.querySelectorAll("#board image")].map(e=>e.getAttribute("href")))].map(async src=>{const img=new Image();img.src=src;await img.decode();}));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
 const inspect=p=>p.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src);return {run:app.inspectPerformance().run,result:document.getElementById('result').textContent,edges:[...document.querySelectorAll('#board .edge:not(.candidate)')].map(e=>e.dataset.edge),time:document.querySelector('[data-node="A"] .node-time')?.textContent};});
 async function drag(page,from,to){const {a,b}=await wiringBounds(page,from,to);await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:8});await page.mouse.up();}
-async function steps(page){await page.evaluate(()=>{document.getElementById('play').click();document.getElementById('play').click();for(let i=0;i<30&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);}
+async function steps(page){await startAndPause(page);await page.evaluate(()=>{for(let i=0;i<30&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);}
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
   for(const engine of channel?['chromium']:['chromium','webkit']){
     const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});try{

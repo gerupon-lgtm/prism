@@ -1,3 +1,4 @@
+const {startAndPause}=require('./browser_wait.cjs');
 const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual UI trials and decoded adopted artwork in disposable PC browsers.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -10,7 +11,7 @@ const server=http.createServer((req,res)=>{let f=path.resolve(root,'.'+decodeURI
 async function settle(page){await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...new Set([...document.querySelectorAll('#board image')].map(e=>e.getAttribute('href')))].map(async src=>{const image=new Image();image.src=src;await image.decode();}));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});}
 async function drag(page,from,to){const {a,b}=await wiringBounds(page,from,to);await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:12});await page.mouse.up();await settle(page);}
 async function choose(page,id){await page.locator('#home').click();await page.getByRole('button',{name:new RegExp('^'+id+' ')}).click();await settle(page);}
-async function run(page){await page.evaluate(()=>{document.getElementById('play').click();document.getElementById('play').click();for(let i=0;i<100&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);const text=await page.locator('#result').textContent();await page.locator('#stop').click();return text;}
+async function run(page){await startAndPause(page);await page.evaluate(()=>{for(let i=0;i<100&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);const text=await page.locator('#result').textContent();await page.locator('#stop').click();return text;}
 async function clear(page){await page.locator('#clear-wires').click();await settle(page);}
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of ['chromium','webkit']){
  const browser=await pw[engine].launch({headless:true});report.browsers.push({engine,version:browser.version()});try{

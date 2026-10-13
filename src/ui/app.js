@@ -25,13 +25,14 @@ function button(text,action,attributes={}) {
 }
 const load=new LoadMeter();
 const endWait=new EndWait();
+const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
-let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null;
+let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
 const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
-const board=new Board($('board'),session,render,settings,notify);
+const board=new Board($('board'),session,render,settings,notify,()=>chime.wire());
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
@@ -54,6 +55,7 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title) {
+  cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
   $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
@@ -74,7 +76,7 @@ function render(redraw=true,{records=true}={}) {
   $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'祭壇＋':'＋祭壇';
   const canRestore=clearedConnections?.cleared===session.circuit;
   $('clear-wires').textContent=canRestore?'戻す':textEnlarged?'消去':'クリア';$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
-  $('clear-wires').disabled=!session.editable||(!canRestore&&!session.circuit.edges.length);
+  $('clear-wires').disabled=Boolean(startPrelude)||!session.editable||(!canRestore&&!session.circuit.edges.length);
   $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
   $('magnifier-toggle').textContent=textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF';
   $('records-panel').hidden=!session.view.recordsOpen;
@@ -85,11 +87,12 @@ function render(redraw=true,{records=true}={}) {
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
   const startBlockedReason=session.editable?session.startBlockedReason:'';
-  $('play').textContent=session.editable?'流す':run.status==='running'?'一時停止':'再開';
+  $('stage').inert=Boolean(startPrelude);$('stage').classList.toggle('launching',Boolean(startPrelude));
+  $('play').textContent=startPrelude?'準備中':session.editable?'流す':run.status==='running'?'一時停止':'再開';
   $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
   $('play').title=startBlockedReason;
-  $('stop').disabled=session.editable;$('next').disabled=!run||run.status!=='paused'||run.exhausted;
-  $('play').dataset.state=run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
+  $('stop').disabled=session.editable&&!startPrelude;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
+  $('play').dataset.state=startPrelude?'preparing':run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
   $('sound').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));
   let text=run?`${run.format()}秒・${run.activeCount}光線`:'';
@@ -122,11 +125,35 @@ function renderClearToast() {
   $('clear-next').textContent=choices.nextChallengeId?'次へ':'課題一覧へ';
   const bounds=$('board').getBoundingClientRect();
   const width=Math.min(420,innerWidth-16,bounds.width-8);
+  toast.classList.remove('slim','docked');
   toast.classList.toggle('narrow',width<240);
   toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';
   toast.style.width=`${width}px`;
-  toast.style.left=`${Math.max(8,Math.min(innerWidth-width-8,bounds.left+(bounds.width-width)/2))}px`;
-  toast.style.top=`${Math.max(bounds.top+4,Math.min(bounds.bottom-toast.offsetHeight-4,bounds.top+8))}px`;
+  const height=toast.offsetHeight,left=bounds.left+4,right=bounds.right-width-4,center=bounds.left+(bounds.width-width)/2;
+  const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
+  const goals=[...$('board').querySelectorAll('[data-node] .node-symbol')].filter(e=>session.circuit.nodes.find(n=>n.id===e.closest('[data-node]').dataset.node)?.kind==='goal').map(e=>{const r=e.getBoundingClientRect();return {left:r.left-42,right:r.right+42,top:r.top-42,bottom:r.bottom+42};});
+  const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+  const lowerControls=controls.filter(r=>r.top>bounds.top+bounds.height/2);
+  const lowerEdge=Math.min(bounds.bottom-4,...lowerControls.map(r=>r.top-6));
+  const bottom=Math.max(bounds.top+4,lowerEdge-height),top=bounds.top+4;
+  // Prefer the lower empty area, then choose another corner if the rotated
+  // altar or board controls would be covered. Keep all choices inside the board.
+  const places=[bottom,top,(top+bottom)/2].flatMap(y=>[center,left,right].map(x=>({left:x,right:x+width,top:y,bottom:y+height})));
+  const cost=place=>goals.reduce((sum,r)=>sum+100*overlap(place,r),0)+controls.reduce((sum,r)=>sum+10*overlap(place,r),0);
+  let place=places.reduce((best,next)=>cost(next)<cost(best)?next:best);
+  // A very short landscape viewport has no empty corner around the altar.
+  // Use the existing result region without resizing or shifting the circuit.
+  if(cost(place)>0){
+    const result=$('result-line').getBoundingClientRect();
+    if(result.width>30&&result.height>30){
+      toast.style.width=`${result.width-4}px`;toast.classList.add('narrow','docked');toast.classList.toggle('slim',result.height<100&&result.width>=240);toast.querySelector('strong').textContent='クリア';
+      const compactHeight=toast.offsetHeight;
+      const dock={left:result.left+2,right:result.right-2,top:result.top+(result.height-compactHeight)/2,bottom:result.top+(result.height+compactHeight)/2};
+      if(compactHeight<=result.height&&cost(dock)===0)place=dock;
+      else{toast.classList.remove('slim','docked');toast.style.width=`${width}px`;toast.classList.toggle('narrow',width<240);toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';}
+    }
+  }
+  toast.style.left=`${place.left}px`;toast.style.top=`${place.top}px`;
 }
 function dismissClear(){if(session.run)dismissedClears.add(session.run);render(false);}
 function clearAction(next=false){
@@ -200,9 +227,13 @@ function replace(request) {
   session.requireEditable();session.replacement(request);
   if(session.mode==='free'&&session.dirty){
     open('現在の未保存回路');body.append(element('p','読み込み前に、現在の回路をどうしますか？'));
-    actions.append(button('保存して入替',()=>saveForm(()=>{session.replace(request,{choice:'discard'});close();maybeGuide();})),button('保存せず入替',()=>{session.replace(request,{choice:'discard'});close();maybeGuide();}),button('取消',close));
+    actions.append(button('保存して入替',()=>saveForm(()=>finishReplacement(request,{choice:'discard'}))),button('保存せず入替',()=>finishReplacement(request,{choice:'discard'})),button('取消',close));
     fitDialogForm();
-  }else{session.replace(request);close();maybeGuide();}
+  }else finishReplacement(request);
+}
+function finishReplacement(request,options) {
+  session.replace(request,options);close();maybeGuide();
+  if(!$('title-screen').hidden)leaveTitle();
 }
 function maybeGuide() {
   // Guides are chosen explicitly from the title/menu, including first launch.
@@ -217,7 +248,7 @@ function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;rende
 function layoutTitle(width,height) {
   const compact=height<360||parseFloat(getComputedStyle(document.documentElement).fontSize)>=20;
   $('title-screen').classList.toggle('title-compact',compact);
-  for(const [id,full,short] of [['title-challenges','課題を選ぶ','課題'],['title-free','自由に作る','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-resume','プレイ画面へ','続き']]){
+  for(const [id,full,short] of [['title-start','連続プレイ','開始'],['title-challenges','選択プレイ','選択'],['title-free','自由作成','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-resume','プレイ画面へ','続き']]){
     $(id).textContent=compact?short:full;$(id).setAttribute('aria-label',full);
   }
 }
@@ -334,6 +365,7 @@ function offlineStatus() {
 }
 function offlineDialog(){open('オフラインと更新');offlineStatus();}
 function requestUpdate() {
+  cancelStart();
   if(updateSafety(session).kind==='confirm'&&!session.run?.records.length)return applyUpdate(false);
   updateDialog();
 }
@@ -447,7 +479,7 @@ function flow() {
 }
 
 const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'チャイム',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
-function showRecords(){session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
+function showRecords(){cancelStart();session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
 function resizeRecords(){
   document.body.classList.remove('records-fullscreen');
   orientation.syncRegions();
@@ -490,10 +522,10 @@ function recordDetails(record,back=close){
 }
 function caseDetails(item){
   open(`${item.id} 使用不可`);body.append(element('p',item.reachable?`${item.time}秒・${item.edges.join(' → ')}`:'この故障では祭壇に届きません。'));
-  actions.append(button('このケースで流す',()=>{session.stop();close();startRun({caseId:item.id});}),button('戻る',close));
+  actions.append(button('このケースで流す',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
-function interruptRun(reason){session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
+function interruptRun(reason){cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
 function startClock(){clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
@@ -505,17 +537,40 @@ function finishLoad(){
     interruptRun('load');render(false);
   }
 }
+function cancelStart(){
+  const token=startPrelude;if(!token)return;startPrelude=null;cancelAnimationFrame(token.frame);
+  if(token.view===session.view){Object.assign(session.view,token.original);board.transform();board.render();}
+  $('stage').style.removeProperty('--launch-progress');token.cancel();render(false);
+}
+function launch(action){
+  const view=session.view,original={zoom:view.zoom,panX:view.panX,panY:view.panY},target=board.fitView();
+  const animated=view.zoom>Math.max(1,target.zoom)+.0001,reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const token={view,original,frame:null,started:null};
+  return new Promise((resolve,reject)=>{
+    token.cancel=()=>resolve(false);
+    startPrelude=token;board.cancelAll();render(false);
+    const step=now=>{
+      if(startPrelude!==token)return;
+      token.started??=now;const progress=Math.min(1,(now-token.started)/LAUNCH_DELAY_MS),ease=1-(1-progress)**3;
+      $('stage').style.setProperty('--launch-progress',progress);
+      if(animated&&(!reduced||progress===1)){for(const key of ['zoom','panX','panY'])view[key]=original[key]+(target[key]-original[key])*ease;board.transform();board.render();}
+      if(progress<1){token.frame=requestAnimationFrame(step);return;}
+      startPrelude=null;$('stage').style.removeProperty('--launch-progress');render(false);
+      try{action();resolve(true);}catch(error){Object.assign(view,original);board.transform();board.render();load.current=null;reject(error);}
+    };token.frame=requestAnimationFrame(step);
+  });
+}
 function startRun(options){
-  load.begin();
-  try{load.measure('calculation',()=>session.start(options));session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();}
-  catch(error){load.current=null;throw error;}
+  session.requireEditable();if(session.startBlockedReason)throw new Error(session.startBlockedReason);
+  return launch(()=>{load.begin();load.measure('calculation',()=>session.start(options));session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();});
 }
 function play(){
-  if(session.editable){startRun();}
+  if(startPrelude){cancelStart();return;}
+  if(session.editable){return startRun();}
   else if(session.run.status==='running'){session.pause();chime.stop();clockAnchor=null;render(false);}
-  else{session.resume();startClock();}
+  else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun(){session.stop();chime.stop();clockAnchor=null;message='';render();}
+function stopRun(){cancelStart();session.stop();chime.stop();clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
@@ -562,8 +617,9 @@ $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(requestUpdate));
-$('title-challenges').addEventListener('click',()=>attempt(()=>{leaveTitle();chooseMode();}));
-$('title-free').addEventListener('click',()=>attempt(()=>{leaveTitle();chooseMode(()=>replace({sampleId:'compare'}));}));
+$('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id}))));
+$('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode()));
+$('title-free').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({sampleId:'compare'}))));
 $('title-tutorial').addEventListener('click',()=>attempt(tutorial));
 $('title-parts').addEventListener('click',()=>attempt(partsExplanation));
 $('title-about').addEventListener('click',()=>attempt(aboutGame));
@@ -596,9 +652,10 @@ $('hint').addEventListener('click',()=>{
   }else fullText('操作の案内',$('hint').textContent);
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
+  cancelStart();
   const visual=window.visualViewport;
   // Mobile browsers can temporarily fit overflowing content by zooming out.
   // Reading that enlarged CSS viewport back into the layout preserves the error.

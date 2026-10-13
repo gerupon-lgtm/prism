@@ -1,3 +1,4 @@
+const {startAndPause}=require('./browser_wait.cjs');
 const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Disposable PC browsers; simulated orientation/text size is not device acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -18,7 +19,7 @@ async function drag(page,from,to){const {a,b}=await wiringBounds(page,from,to);a
 async function choose(page,id){await page.locator('#home').click();await page.getByRole('button',{name:new RegExp('^'+id+' ')}).click();if(await page.locator('#guide-skip').isVisible())await skipGuide(page);await settle(page);}
 const inspect=p=>p.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src);return {run:app.inspectPerformance().run,result:document.getElementById('result').textContent,edges:[...document.querySelectorAll('#board .edge:not(.candidate)')].map(e=>e.dataset.edge),scores:localStorage.getItem('prism-notes.scores.v1')};});
 async function steps(page,count=30){await page.evaluate(count=>{for(let i=0;i<count&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();},count);await settle(page);}
-async function pauseStart(page){await page.evaluate(()=>{document.getElementById('play').click();document.getElementById('play').click();});await settle(page);}
+async function pauseStart(page){await startAndPause(page);await settle(page);}
 async function layout(page,label,toast=false){
   // Geometry fixture only: startup refresh may hide this synthetic notice.
   // Real update detection/application remains covered by check_pwa.cjs.
@@ -27,7 +28,7 @@ async function layout(page,label,toast=false){
   const data=await page.evaluate(()=>{
     const box=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
     const font=e=>{const m=e.getScreenCTM();return parseFloat(getComputedStyle(e).fontSize)*Math.hypot(m.a,m.b);};
-    return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],board:box(document.getElementById('board')),update:box(document.getElementById('update-notice')),menu:box(document.getElementById('menu')),toast:box(document.getElementById('clear-toast')),toastItems:[...document.querySelectorAll('#clear-toast button')].map(e=>({box:box(e),size:[e.clientWidth,e.clientHeight,e.scrollWidth,e.scrollHeight]})),labels:[...document.querySelectorAll('#board .edge-time,#board .node-time')].map(e=>({text:e.textContent,box:box(e),font:font(e),fill:getComputedStyle(e).fill})),cards:[...document.querySelectorAll('#board .edge-label-card')].map(e=>({box:box(e),fill:getComputedStyle(e).fill,opacity:getComputedStyle(e).fillOpacity})),nodes:[...document.querySelectorAll('#board [data-node]')].map(e=>({id:e.dataset.node,box:box(e.querySelector('.node-symbol'))})),candidate:getComputedStyle(document.querySelector('#board .candidate .edge-line')).stroke,scene:getComputedStyle(document.querySelector('#board .floating-ruin,#board .observatory')).opacity};
+    return {viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],board:box(document.getElementById('board')),resultRegion:box(document.getElementById('result-line')),update:box(document.getElementById('update-notice')),menu:box(document.getElementById('menu')),toast:box(document.getElementById('clear-toast')),toastItems:[...document.querySelectorAll('#clear-toast button')].map(e=>({box:box(e),size:[e.clientWidth,e.clientHeight,e.scrollWidth,e.scrollHeight]})),labels:[...document.querySelectorAll('#board .edge-time,#board .node-time')].map(e=>({text:e.textContent,box:box(e),font:font(e),fill:getComputedStyle(e).fill})),cards:[...document.querySelectorAll('#board .edge-label-card')].map(e=>({box:box(e),fill:getComputedStyle(e).fill,opacity:getComputedStyle(e).fillOpacity})),nodes:[...document.querySelectorAll('#board [data-node]')].map(e=>({id:e.dataset.node,box:box(e.querySelector('.node-symbol'))})),candidate:getComputedStyle(document.querySelector('#board .candidate .edge-line')).stroke,scene:getComputedStyle(document.querySelector('#board .floating-ruin,#board .observatory')).opacity};
   });
   const check={label,passed:false,...data};report.checks.push(check);
   const inside=(r,area)=>r.x>=area.x-.5&&r.y>=area.y-.5&&r.right<=area.right+.5&&r.bottom<=area.bottom+.5;
@@ -35,12 +36,13 @@ async function layout(page,label,toast=false){
   try{
   assert(data.document[0]<=data.viewport[0]+1&&data.document[1]<=data.viewport[1]+1,label+' no page scroll');
   assert(inside(data.update,viewport)&&inside(data.menu,viewport),label+' header fits');assert(data.update.right<=data.menu.x+1,label+' update physically left of menu');assert(data.update.height>=38&&Math.abs(data.update.height-data.menu.height)<=1,label+' header sized update');
-  if(toast){assert(inside(data.toast,data.board),label+' toast stays inside board without blocking header/play');for(const item of data.toastItems){assert(inside(item.box,data.toast),label+' toast button fits');assert(item.size[2]<=item.size[0]+1&&item.size[3]<=item.size[1]+1,label+' toast text fits');}}
+  if(toast){assert(inside(data.toast,data.board)||inside(data.toast,data.resultRegion),label+' toast uses board or result region without blocking header/play');const goal=data.nodes.find(n=>n.id==='G').box;assert(Math.min(data.toast.right,goal.right+42)<=Math.max(data.toast.x,goal.x-42)||Math.min(data.toast.bottom,goal.bottom+42)<=Math.max(data.toast.y,goal.y-42),label+' bell and surrounding arrival effect stay visible');for(const item of data.toastItems){assert(inside(item.box,data.toast),label+' toast button fits');assert(item.size[2]<=item.size[0]+1&&item.size[3]<=item.size[1]+1,label+' toast text fits');}}
   for(const item of data.labels){assert(item.font>=15.9,label+' readable seconds '+item.text);assert(inside(item.box,data.board),label+' label within board '+item.text);}
   for(const card of data.cards){assert.equal(card.opacity,'1',label+' opaque card');assert(!card.fill.startsWith('rgba'),label+' solid card');assert(inside(card.box,data.board),label+' card within board');}
   if(!toast){for(let i=0;i<data.cards.length;i++)for(let j=i+1;j<data.cards.length;j++){const a=data.cards[i].box,b=data.cards[j].box;assert(Math.min(a.right,b.right)-Math.max(a.x,b.x)<=.5||Math.min(a.bottom,b.bottom)-Math.max(a.y,b.y)<=.5,label+' distinct time cards');}}
   assert.equal(data.candidate,'rgb(163, 184, 222)');assert(Number(data.scene)>=.55);
   check.passed=true;
+  if(toast&&label.includes('enlarged=true')&&(label.includes('320x480')||label.includes('480x240')))await page.screenshot({path:path.join(out,(channel||label.split(' ')[0])+'-clear-'+data.viewport.join('x')+'-enlarged.png')});
   }catch(error){await page.screenshot({path:path.join(out,'failed-'+Date.now()+'.png')});throw error;}
   finally{await page.evaluate(()=>document.getElementById('update-notice').__restoreGeometry());}
 }

@@ -41,4 +41,14 @@ async function startGuide(page) {
   }
 }
 async function skipGuide(page) {await startGuide(page);await page.locator('#guide-skip').click();}
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide};
+async function startAndPause(page) {
+  // Pause on the actual UI state change, before the next animation frame.
+  // An unreachable trial is already paused when its simulation is constructed.
+  // That completed result also passes here after the launch prelude.
+  await page.evaluate(()=>{window.__pausedAfterLaunch=false;const play=document.getElementById('play'),observer=new MutationObserver(()=>{if(play.dataset.state==='running'||play.dataset.state==='paused'){observer.disconnect();if(play.dataset.state==='running')play.click();window.__pausedAfterLaunch=play.dataset.state==='paused';}});observer.observe(play,{attributes:true,attributeFilter:['data-state']});});
+  await page.locator('#play').click();
+  try{await page.waitForFunction(()=>window.__pausedAfterLaunch,null,{timeout:5000});}
+  catch(error){const state=await page.evaluate(()=>({play:document.getElementById('play').outerHTML,hint:document.getElementById('hint').textContent,error:document.getElementById('dialog-error').textContent,edges:[...document.querySelectorAll('.edge:not(.candidate)')].map(e=>e.dataset.edge)}));throw new Error('Start did not reach running: '+JSON.stringify(state),{cause:error});}
+  await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
+}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause};

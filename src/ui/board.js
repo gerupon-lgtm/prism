@@ -7,8 +7,8 @@ const CIRCUIT_WIDTH = 1.5;
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
-  constructor(element, session, changed, openSettings, notify) {
-    Object.assign(this,{element,session,changed,openSettings,notify});
+  constructor(element, session, changed, openSettings, notify, connected=()=>{}) {
+    Object.assign(this,{element,session,changed,openSettings,notify,connected});
     this.orientation = svg('g',{class:'board-orientation',id:'board-detail'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
     this.orientation.append(this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
     this.scene=new Scene(element);this.arrivalPictures=new Map();this.pictureRun=null;
@@ -51,12 +51,15 @@ export class Board {
     this.session.view.panX += before.x*(old-next); this.session.view.panY += before.y*(old-next);
     this.session.view.zoom=next; this.transform(); this.render();
   }
-  fit() {
+  fitView() {
     const input=this.session.run&&this.session.run.status!=='stopped'?this.session.run.circuit.raw:this.session.circuit;
     let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
     for(const node of input.nodes){const at=this.position(node);minX=Math.min(minX,at.x);minY=Math.min(minY,at.y);maxX=Math.max(maxX,at.x);maxY=Math.max(maxY,at.y);}
     const zoom=Math.min(6,(this.frameWidth??1360)*1000/1360/(maxX-minX+250),1600/(maxY-minY+300));
-    Object.assign(this.session.view,{zoom,panX:500-(minX/2+maxX/2)*zoom,panY:800-(minY/2+maxY/2)*zoom});this.transform();this.render();
+    return {zoom,panX:500-(minX/2+maxX/2)*zoom,panY:800-(minY/2+maxY/2)*zoom};
+  }
+  fit() {
+    Object.assign(this.session.view,this.fitView());this.transform();this.render();
   }
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
@@ -276,7 +279,9 @@ export class Board {
     try {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
         const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
-        if(gesture.route.length>1&&target===gesture.route.at(-1))this.session.connectPath(gesture.route);
+        if(gesture.route.length>1&&target===gesture.route.at(-1)){
+          const added=this.session.connectPath(gesture.route);if(added.length)this.connected(added);
+        }
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {
         if(this.addKind&&['pan','idle'].includes(gesture.kind)&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}

@@ -2,6 +2,7 @@
 export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) * 2 });
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME = 0.7;
+export const WIRING_SOUND = Object.freeze({frequencyHz:880,endFrequencyHz:1174.66,durationSeconds:0.1});
 // One short notification per prism arrival; no periodic movement sound.
 export const RELAY_SOUND = Object.freeze({
   frequencyHz: 659.26,
@@ -10,7 +11,7 @@ export const RELAY_SOUND = Object.freeze({
 });
 
 export class Chime {
-  constructor() { this.muted = true; this.context = null; this.voices = new Set();this.relayVoices=new Map();this.bellUntil=0; }
+  constructor() { this.muted = true; this.context = null; this.voices = new Set();this.relayVoices=new Map();this.wireVoices=new Map();this.bellUntil=0; }
   async enable() {
     const Audio = window.AudioContext ?? window.webkitAudioContext;
     if (!Audio) throw new Error('このブラウザでは音を開始できません。到着は画面と記録で確認できます。');
@@ -33,11 +34,19 @@ export class Chime {
     oscillator.start(at);oscillator.stop(at+.06);
   }
   silenceRelay() {
-    for(const [oscillator,gain] of this.relayVoices){
+    for(const [oscillator,gain] of [...this.relayVoices,...this.wireVoices]){
       gain.gain.cancelScheduledValues(this.context.currentTime);gain.gain.setValueAtTime(0,this.context.currentTime);
       oscillator.stop();
     }
-    this.relayVoices.clear();
+    this.relayVoices.clear();this.wireVoices.clear();
+  }
+  wire() {
+    if(this.muted||!this.context||this.context.state!=='running'||this.context.currentTime<this.bellUntil)return;
+    const at=this.context.currentTime,oscillator=this.context.createOscillator(),gain=this.context.createGain();
+    oscillator.type='sine';oscillator.frequency.setValueAtTime(WIRING_SOUND.frequencyHz,at);oscillator.frequency.exponentialRampToValueAtTime(WIRING_SOUND.endFrequencyHz,at+.045);
+    gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.12,at+.004);gain.gain.exponentialRampToValueAtTime(.0001,at+WIRING_SOUND.durationSeconds);
+    oscillator.connect(gain);gain.connect(this.output);this.voices.add(oscillator);this.wireVoices.set(oscillator,gain);
+    oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);this.wireVoices.delete(oscillator);};oscillator.start(at);oscillator.stop(at+WIRING_SOUND.durationSeconds+.01);
   }
   relay() {
     if(this.muted||!this.context||this.context.state!=='running'||this.context.currentTime<this.bellUntil)return;

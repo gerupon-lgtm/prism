@@ -1,3 +1,4 @@
+const {startAndPause}=require('./browser_wait.cjs');
 const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Real Chromium protocol touch and explicitly synthetic WebKit pointer types.
 // PC evidence only; physical phone gestures and artistic judgement remain separate.
@@ -46,7 +47,7 @@ async function noSinglePan(page,cdp,label){
    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p,q]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...p,x:p.x-15},{...q,x:q.x+15}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.notEqual(await view(page),shifted);assert.equal(await count(page),2);await page.locator('#fit').click();await settle(page);
    report.checks.push({label:'Chromium pinch retains zoom and fit with all wiring unchanged',passed:true});
  }
- await page.evaluate(()=>{document.getElementById('play').click();document.getElementById('play').click();for(let i=0;i<40&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);
+ await startAndPause(page);await page.evaluate(()=>{for(let i=0;i<40&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});await settle(page);
  const result=await page.locator('#result').textContent();assert(result.includes('2.5秒')&&result.includes('100.00点'));assert(await page.locator('.arrival-art .arrival-glow').count()>0);assert.equal(await page.locator('.arrival-ring').count(),0);
  // Freeze decorative animation only to compare frames at a reproducible 400 ms.
  await page.locator('#clear-dismiss').click();await page.locator('.arrival-art').evaluateAll(items=>items.forEach(e=>{e.style.setProperty('--arrival-age','0ms');for(const a of e.getAnimations({subtree:true})){a.pause();a.currentTime=400;}}));await page.screenshot({path:path.join(out,engine+'-bell-arrival.png')});

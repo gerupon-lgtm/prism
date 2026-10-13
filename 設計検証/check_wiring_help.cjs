@@ -47,7 +47,7 @@ async function rotate(page,angle){await page.evaluate(angle=>{Object.assign(__di
       report.checks.push({label:engine+' single uninterrupted S-A-G stroke commits two edges on release',passed:true});
       await page.locator('#clear-wires').click();assert.equal(await count(page),0);assert.equal(await page.locator('#clear-wires').textContent(),'戻す');await page.locator('#clear-wires').click();assert.equal(await count(page),2);
       report.checks.push({label:engine+' clear all edges and immediate undo',passed:true});
-      await page.locator('#play').click();assert(await page.locator('#clear-wires').isDisabled());await page.locator('#play').click();assert(await page.locator('#clear-wires').isDisabled());await page.locator('#stop').click();await page.locator('#clear-wires').click();
+      await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='running');assert(await page.locator('#clear-wires').isDisabled());await page.locator('#play').click();assert(await page.locator('#clear-wires').isDisabled());await page.locator('#stop').click();await page.locator('#clear-wires').click();
       report.checks.push({label:engine+' running and paused circuits reject clear',passed:true});
       await start(page,'S');await move(page,'A');await page.mouse.move(30,100);await page.mouse.up();assert.equal(await count(page),0);
       report.checks.push({label:engine+' release on empty space cancels entire stroke',passed:true});

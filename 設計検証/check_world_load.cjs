@@ -34,7 +34,7 @@ function manyGoals(count,shared=false){
   for(let i=0;i<count;i++){const id=`G${i}`;nodes.push({id,kind:'goal',x:.08+(i%8)*.12,y:.65+Math.floor(i/8)*.07,process:'0'});edges.push({id:`e${i}`,from:shared?'A':'S',to:id,time:'0.1'});}
   return {mode:'fastest',target:'all',nodes,edges};
 }
-async function pausedStart(page){await page.locator('#play').click();await page.locator('#records').click();await page.locator('#close-records').click();}
+async function pausedStart(page){await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='running');await page.locator('#records').click();await page.locator('#close-records').click();}
 async function finishNext(page){
   // Finite fixture check guard only; production has no event/time/count cap.
   for(let i=0;i<160;i++){if(await page.locator('#next').isDisabled())return;await page.locator('#next').click();}throw new Error('Finite fixture did not finish');
