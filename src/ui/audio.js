@@ -1,8 +1,9 @@
-// One low bell strike per arrival. Partials sound together, never as a phrase.
+// Bell raised by a perfect fifth (7 semitones). Partials sound together.
+export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) });
 // One short notification per prism arrival; no periodic movement sound.
 export const RELAY_SOUND = Object.freeze({
-  frequencyHz: 440,
-  endFrequencyHz: 587.33,
+  frequencyHz: 659.26,
+  endFrequencyHz: 880,
   durationSeconds: 0.18,
 });
 
@@ -47,7 +48,7 @@ export class Chime {
     this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,at+2.62);
     for (const [ratio,volume,decay] of [[1,0.12,2.6],[2,0.05,2.6],[2.76,0.035,1.6],[4.1,0.016,0.9]]) {
       const oscillator=this.context.createOscillator(),gain=this.context.createGain();
-      oscillator.type='sine'; oscillator.frequency.value=174.6*ratio;
+      oscillator.type='sine'; oscillator.frequency.value=BELL_SOUND.frequencyHz*ratio;
       gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(volume,at+0.006);gain.gain.exponentialRampToValueAtTime(0.0001,at+decay);
       oscillator.connect(gain);gain.connect(this.output); this.voices.add(oscillator);
       oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};

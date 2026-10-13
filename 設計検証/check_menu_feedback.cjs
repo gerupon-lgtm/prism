@@ -1,5 +1,6 @@
 // PC UI checks. Synthetic text/orientation/notice layout is separate from device evidence.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
+const {wiringBounds}=require('./browser_wait.cjs');
 const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
@@ -38,11 +39,14 @@ async function noticeFit(page,label){
         const ramp=()=>({value:0,setValueAtTime(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){},cancelScheduledValues(){}});
         const Fallback=class{constructor(){this.state='running';this.destination={};}get currentTime(){return performance.now()/1000;}async resume(){}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:ramp(),connect(){},disconnect(){}};}createOscillator(){return {frequency:ramp(),connect(){},disconnect(){},start(){},stop(){}};}};
         let voiceId=0;
-        window.AudioContext=class extends (Original??Fallback){createOscillator(){const id=++voiceId,o=super.createOscillator(),start=o.start.bind(o),stop=o.stop.bind(o);o.start=t=>{__audio.push({id,type:'start',at:t,frequency:o.frequency.value,wall:performance.now()});if(window.__failBell&&Math.abs(o.frequency.value-174.6)<.01)throw new Error('Synthetic bell failure');return start(t);};o.stop=t=>{__audio.push({id,type:'stop',at:t,frequency:o.frequency.value,wall:performance.now()});return stop(t);};return o;}};
+        window.AudioContext=class extends (Original??Fallback){createOscillator(){const id=++voiceId,o=super.createOscillator(),start=o.start.bind(o),stop=o.stop.bind(o);o.start=t=>{__audio.push({id,type:'start',at:t,frequency:o.frequency.value,wall:performance.now()});if(window.__failBell&&Math.abs(o.frequency.value-261.61)<.02)throw new Error('Synthetic bell failure');return start(t);};o.stop=t=>{__audio.push({id,type:'stop',at:t,frequency:o.frequency.value,wall:performance.now()});return stop(t);};return o;}};
         window.__direction={angle:0,type:'portrait-primary'};const direction=new EventTarget();Object.defineProperties(direction,{angle:{get:()=>__direction.angle},type:{get:()=>__direction.type}});Object.defineProperty(screen,'orientation',{get:()=>direction});
       });
       const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await page.locator('#guide-skip').click();await settle(page);
       assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),version);
+      assert.equal(await page.locator('#play').isDisabled(),true);assert((await page.locator('#result').textContent()).includes('点をつないで'));
+      const initialState=await page.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src);document.getElementById('play').click();return {run:app.inspectPerformance().run,scores:localStorage.getItem('prism-notes.scores.v1')};});assert.equal(initialState.run,null);assert.equal(initialState.scores,null);
+      report.checks.push({label:engine+' no wiring disables start with visible reason and no run or score',passed:true,initialState});
       await menuFit(page,engine+' challenge menu',7);assert.equal(await page.evaluate(()=>__audio.length),0);
       await page.locator('#sound').click();await page.waitForFunction(()=>document.getElementById('sound').getAttribute('aria-pressed')==='true');
       const audio=await page.evaluate(()=>({events:__audio,method:__audioMethod}));assert.equal(audio.events.filter(e=>e.type==='start').length,1);assert(Math.abs(audio.events[1].at-audio.events[0].at-.06)<.001);
@@ -53,6 +57,8 @@ async function noticeFit(page,label){
       const mutedCount=await page.evaluate(()=>__audio.filter(e=>e.type==='start').length);await page.locator('#fit').click();assert.equal(await page.evaluate(()=>__audio.filter(e=>e.type==='start').length),mutedCount);
       report.checks.push({label:engine+' enabled/disabled state, transient click response, short UI audio only when sound enabled',passed:true,audio});
       await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
+      const freeEdges=await page.locator('#board .edge:not(.candidate)').count();await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isDisabled(),true);assert.equal(await page.locator('#board .edge:not(.candidate)').count(),0);assert((await page.locator('#result').textContent()).includes('点をつないで'));await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isEnabled(),true);assert.equal(await page.locator('#board .edge:not(.candidate)').count(),freeEdges);
+      report.checks.push({label:engine+' free mode clear blocks empty start and restore re-enables it',passed:true});
       for(const enlarged of [false,true]){
         await page.evaluate(enlarged=>document.documentElement.style.setProperty('font-size',enlarged?'28px':'14px','important'),enlarged);
         for(const [width,height] of [[390,664],[320,480],[480,240],[844,310]]){
@@ -62,17 +68,22 @@ async function noticeFit(page,label){
       await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:664});await settle(page);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='running');await page.waitForTimeout(260);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');await menuFit(page,engine+' paused menu retains stop/edit',13);
       await page.locator('#stop').click();await page.locator('#home').click();await page.getByRole('button',{name:/^Q1 /}).click();if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
       await settle(page);
-      for(const [from,to] of [['S','A'],['A','G']]){const source=page.locator(`[data-node="${from}"] .node-hit`),target=page.locator(`[data-node="${to}"] .node-hit`);await source.waitFor({state:'visible'});await target.waitFor({state:'visible'});const a=await source.boundingBox(),b=await target.boundingBox();assert(a&&b,'Visible wiring targets');await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:8});await page.mouse.up();}
+      assert.equal(await page.locator('#play').isDisabled(),true);
+      for(const [from,to] of [['S','A'],['A','G']]){
+        const bounds=await wiringBounds(page,from,to);
+        const {a,b}=bounds;assert(a&&b,'Visible stable wiring targets');await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:8});await page.mouse.up();
+      }
       await page.locator('#sound').click();await page.waitForFunction(()=>document.getElementById('sound').getAttribute('aria-pressed')==='true');await page.evaluate(()=>__audio=[]);
       assert.equal(await page.locator('#board .edge:not(.candidate)').count(),2,'Q1 has two complete edges before audio run');
       const relaySettings=await page.evaluate(async()=>{const entry=document.querySelector('script[src*="/ui/app.js"]');return (await import(new URL('audio.js',entry.src))).RELAY_SOUND;});
+      assert(Math.abs(relaySettings.frequencyHz-659.26)<.02&&Math.abs(relaySettings.endFrequencyHz-880)<.02,'Relay notification pitch raised');
       await page.locator('#play').click();await page.waitForTimeout(350);
       const travelAudio=await page.evaluate(()=>__audio),travelStarts=travelAudio.filter(e=>e.type==='start');
       assert.equal(travelStarts.filter(start=>!travelAudio.some(end=>end.type==='stop'&&end.id===start.id&&end.at!==undefined&&Math.abs(end.at-start.at-.06)<.001)).length,0,'Only the 0.06-second button sound occurs before prism arrival');
       await page.evaluate(()=>document.getElementById('play').click());await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
       await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});
-      const movement=await page.evaluate(()=>__audio),starts=movement.filter(e=>e.type==='start'&&movement.some(end=>end.type==='stop'&&end.id===e.id&&end.at!==undefined&&Math.abs(end.at-e.at-relaySettings.durationSeconds-.02)<.001)),bell=movement.find(e=>e.type==='start'&&Math.abs(e.frequency-174.6)<.01);assert.equal(starts.length,1,'One notification for Q1 prism A arrival');assert.equal(movement.filter(e=>e.type==='start'&&e.frequency===330).length,0,'Old periodic movement sound is absent');assert(bell&&starts[0].wall<bell.wall);assert((await page.locator('#result').textContent()).includes('2.5秒'));report.checks.push({label:engine+' one short prism notification at arrival, no travel sound; calculation remains 2.5 sec and 100 points',passed:true,method:audio.method,relaySettings,movement});
-      const upper=movement.find(e=>e.type==='start'&&Math.abs(e.frequency-349.2)<.01);assert(upper&&Math.abs(upper.at-bell.at)<.001,'Bell includes octave at the same start time');
+      const movement=await page.evaluate(()=>__audio),starts=movement.filter(e=>e.type==='start'&&movement.some(end=>end.type==='stop'&&end.id===e.id&&end.at!==undefined&&Math.abs(end.at-e.at-relaySettings.durationSeconds-.02)<.001)),bell=movement.find(e=>e.type==='start'&&Math.abs(e.frequency-261.61)<.02);assert.equal(starts.length,1,'One notification for Q1 prism A arrival');assert.equal(movement.filter(e=>e.type==='start'&&e.frequency===330).length,0,'Old periodic movement sound is absent');assert(bell&&starts[0].wall<bell.wall);assert((await page.locator('#result').textContent()).includes('2.5秒'));report.checks.push({label:engine+' one short prism notification at arrival, no travel sound; calculation remains 2.5 sec and 100 points',passed:true,method:audio.method,relaySettings,movement});
+      const upper=movement.find(e=>e.type==='start'&&Math.abs(e.frequency-523.22)<.04);assert(upper&&Math.abs(upper.at-bell.at)<.001,'Bell raised a fifth and includes octave at the same start time');
       const inspect=()=>page.evaluate(async()=>{const entry=document.querySelector('script[src*="/ui/app.js"]'),app=await import(entry.src);return {at:performance.now(),run:app.inspectPerformance().run,result:document.getElementById('result').textContent,edges:document.querySelectorAll('#board .edge:not(.candidate)').length,clearDisabled:document.getElementById('clear-wires').disabled};});
       const ended=await inspect();assert.equal(ended.run.status,'paused');assert.equal(ended.clearDisabled,true);
       await page.waitForTimeout(500);assert.equal((await inspect()).run.status,'paused');
@@ -82,6 +93,10 @@ async function noticeFit(page,label){
       await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点')&&document.getElementById('play').dataset.state==='paused',{},{timeout:7000});
       const manualStart=await inspect();await page.locator('#stop').click();const manualEnd=await inspect();assert.equal(manualEnd.run.status,'stopped');assert.equal(manualEnd.clearDisabled,false);assert(manualEnd.at-manualStart.at<1000,'Manual stop skips the 3-second wait');assert.equal(manualEnd.run.clock,manualStart.run.clock);assert.equal(manualEnd.run.records,manualStart.run.records);
       report.checks.push({label:engine+' manual stop allows immediate editing instead of waiting 3 sec',passed:true,elapsed:manualEnd.at-manualStart.at});
+      const scoresBeforeClear=await page.evaluate(()=>localStorage.getItem('prism-notes.scores.v1'));
+      await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isDisabled(),true);assert((await page.locator('#result').textContent()).includes('点をつないで'));const cleared=await inspect();assert.equal(cleared.edges,0);assert.equal(cleared.run.clock,manualEnd.run.clock);assert.equal(cleared.run.records,manualEnd.run.records);assert.equal(await page.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoresBeforeClear);
+      await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isEnabled(),true);assert.equal((await inspect()).edges,2);assert.equal(await page.locator('#result').textContent(),manualEnd.result);
+      report.checks.push({label:engine+' clear blocks start, preserves last result and records; restore enables start',passed:true,cleared});
       await page.locator('#play').click();await page.evaluate(()=>{document.getElementById('play').click();window.__failBell=true;for(let i=0;i<10&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});
       const fault=await inspect();assert.equal(fault.run.pauseReason,'error');assert(fault.result.includes('Synthetic bell failure'));
       await menuFit(page,engine+' next-event fault menu keeps stop/edit',8);await page.waitForTimeout(3200);

@@ -12,4 +12,19 @@ async function waitForAsync(page,predicate,arg,{timeout=15000}={}) {
     await page.waitForTimeout(Math.min(100,deadline-performance.now()));
   }
 }
-module.exports={waitForAsync};
+// ResizeObserver can replace SVG nodes between separate locator calls.
+// Read both targets together after their geometry is stable; never skip a drag.
+async function wiringBounds(page,from,to) {
+  return waitForAsync(page,async({from,to})=>{
+    await document.fonts.ready;let previous=null,stable=0;
+    for(let frame=0;frame<60;frame++){
+      await new Promise(requestAnimationFrame);
+      const measure=id=>{const node=document.querySelector('[data-node="'+id+'"] .node-hit');if(!node)return null;const r=node.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
+      const a=measure(from),b=measure(to),current=JSON.stringify({a,b});
+      stable=a?.width>0&&a.height>0&&b?.width>0&&b.height>0?(current===previous?stable+1:1):0;previous=current;
+      if(stable===3)return {a,b,frames:frame+1};
+    }
+    throw new Error('Wiring targets did not stabilize in 60 frames');
+  },{from,to},{timeout:5000});
+}
+module.exports={waitForAsync,wiringBounds};

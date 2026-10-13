@@ -11,6 +11,7 @@ function fixture(){
 test('中継点への到着通知を短いピコンとして1回鳴らし、時間経過だけでは繰り返さない',()=>{
   const {chime,voices}=fixture();chime.relay();assert.equal(voices.length,1);
   assert.equal(voices[0].frequency.value,RELAY_SOUND.frequencyHz);assert(voices[0].frequency.events.some(e=>e.value===RELAY_SOUND.endFrequencyHz));assert(Math.abs(voices[0].stopAt-.2)<1e-9);
+  assert(Math.abs(voices[0].frequency.value-659.26)<.02);assert(voices[0].frequency.events.some(e=>Math.abs(e.value-880)<.02));
   chime.context.currentTime=5;assert.equal(voices.length,1);chime.relay();assert.equal(voices.length,2);assert.equal(voices[1].startedAt,5);
 });
 test('中継音は停止・消音で止まり、消音中や音の一時停止中には鳴らさない',()=>{
@@ -28,8 +29,8 @@ test('重なる到着は最後の鐘の余韻まで中継音を抑え、操作�
   const {chime,voices}=fixture();chime.strike();chime.context.currentTime=1;chime.strike();chime.context.currentTime=2.7;chime.relay();assert.equal(voices.length,8);
   chime.context.currentTime=3.63;chime.relay();assert.equal(voices.length,9);chime.tap();assert.equal(voices.length,10);chime.mute();chime.tap();assert.equal(voices.length,10);
 });
-test('鐘は基本音と1オクターブ上を同時に混ぜ、余韻の長さを変えない',()=>{
+test('鐘は以前の5度上にして1オクターブ上を同時に混ぜ、余韻の長さを変えない',()=>{
   const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();
-  const base=voices.find(voice=>voice.frequency.value===174.6),upper=voices.find(voice=>voice.frequency.value===349.2);
+  const base=voices.find(voice=>Math.abs(voice.frequency.value-261.61)<.02),upper=voices.find(voice=>Math.abs(voice.frequency.value-523.22)<.04);
   assert(base&&upper);assert.equal(base.startedAt,5);assert.equal(upper.startedAt,base.startedAt);assert.equal(upper.stopAt,base.stopAt);assert.equal(chime.bellUntil,7.62);
 });

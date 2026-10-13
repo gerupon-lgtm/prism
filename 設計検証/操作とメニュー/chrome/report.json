@@ -1,7 +1,15 @@
 {
-  "version": "0.16.0",
+  "version": "0.17.0",
   "evidence": "PC disposable browsers. CSS 28px enlargement, synthetic orientation and visible update-notice geometry. Real audio API where available; fallback audio mock explicitly labelled. No acoustic or physical device evidence.",
   "checks": [
+    {
+      "label": "chromium no wiring disables start with visible reason and no run or score",
+      "passed": true,
+      "initialState": {
+        "run": null,
+        "scores": null
+      }
+    },
     {
       "label": "chromium challenge menu",
       "passed": true,
@@ -146,18 +154,22 @@
             "type": "start",
             "at": 0,
             "frequency": 440,
-            "wall": 1464.1999998092651
+            "wall": 1295.0999999046326
           },
           {
             "id": 1,
             "type": "stop",
             "at": 0.06,
             "frequency": 440,
-            "wall": 1464.2999997138977
+            "wall": 1295.1999998092651
           }
         ],
         "method": "real browser API"
       }
+    },
+    {
+      "label": "chromium free mode clear blocks empty start and restore re-enables it",
+      "passed": true
     },
     {
       "label": "chromium free menu 390x664 enlarged=false",
@@ -2186,8 +2198,8 @@
       "passed": true,
       "method": "real browser API",
       "relaySettings": {
-        "frequencyHz": 440,
-        "endFrequencyHz": 587.33,
+        "frequencyHz": 659.26,
+        "endFrequencyHz": 880,
         "durationSeconds": 0.18
       },
       "movement": [
@@ -2196,121 +2208,121 @@
           "type": "start",
           "at": 3.792,
           "frequency": 440,
-          "wall": 5290.400000095367
+          "wall": 5156
         },
         {
           "id": 6,
           "type": "stop",
           "at": 3.852,
           "frequency": 440,
-          "wall": 5290.400000095367
+          "wall": 5156
         },
         {
           "id": 7,
           "type": "start",
           "at": 4.16,
           "frequency": 440,
-          "wall": 5658.799999713898
+          "wall": 5523.5
         },
         {
           "id": 7,
           "type": "stop",
           "at": 4.22,
           "frequency": 440,
-          "wall": 5658.799999713898
+          "wall": 5523.5
         },
         {
           "id": 8,
           "type": "start",
           "at": 4.192,
           "frequency": 440,
-          "wall": 5695.900000095367
+          "wall": 5558.699999809265
         },
         {
           "id": 8,
           "type": "stop",
           "at": 4.252,
           "frequency": 440,
-          "wall": 5695.900000095367
+          "wall": 5558.699999809265
         },
         {
           "id": 9,
           "type": "start",
-          "at": 4.9013333333333335,
-          "frequency": 440,
-          "wall": 6399.199999809265
+          "at": 4.890666666666666,
+          "frequency": 659.260009765625,
+          "wall": 6259.199999809265
         },
         {
           "id": 9,
           "type": "stop",
-          "at": 5.101333333333333,
-          "frequency": 440,
-          "wall": 6399.199999809265
+          "at": 5.090666666666666,
+          "frequency": 659.260009765625,
+          "wall": 6259.299999713898
         },
         {
           "id": 10,
           "type": "start",
           "at": 6.410666666666667,
-          "frequency": 174.60000610351562,
-          "wall": 7909.799999713898
+          "frequency": 261.6044006347656,
+          "wall": 7772.89999961853
         },
         {
           "id": 10,
           "type": "stop",
           "at": 9.030666666666667,
-          "frequency": 174.60000610351562,
-          "wall": 7909.799999713898
+          "frequency": 261.6044006347656,
+          "wall": 7772.89999961853
         },
         {
           "id": 11,
           "type": "start",
           "at": 6.410666666666667,
-          "frequency": 349.20001220703125,
-          "wall": 7909.900000095367
+          "frequency": 523.2088012695312,
+          "wall": 7772.89999961853
         },
         {
           "id": 11,
           "type": "stop",
           "at": 9.030666666666667,
-          "frequency": 349.20001220703125,
-          "wall": 7909.900000095367
+          "frequency": 523.2088012695312,
+          "wall": 7772.89999961853
         },
         {
           "id": 12,
           "type": "start",
           "at": 6.410666666666667,
-          "frequency": 481.89599609375,
-          "wall": 7910
+          "frequency": 722.0281982421875,
+          "wall": 7773.099999904633
         },
         {
           "id": 12,
           "type": "stop",
           "at": 8.030666666666667,
-          "frequency": 481.89599609375,
-          "wall": 7910
+          "frequency": 722.0281982421875,
+          "wall": 7773.099999904633
         },
         {
           "id": 13,
           "type": "start",
           "at": 6.410666666666667,
-          "frequency": 715.8599853515625,
-          "wall": 7910.099999904633
+          "frequency": 1072.578125,
+          "wall": 7773.099999904633
         },
         {
           "id": 13,
           "type": "stop",
           "at": 7.330666666666667,
-          "frequency": 715.8599853515625,
-          "wall": 7910.099999904633
+          "frequency": 1072.578125,
+          "wall": 7773.099999904633
         }
       ]
     },
     {
       "label": "chromium automatic editing return after 3 sec preserves clock, score, records and wiring",
       "passed": true,
-      "elapsed": 3005.5,
+      "elapsed": 3000.7999997138977,
       "ended": {
-        "at": 7921,
+        "at": 7781.099999904633,
         "run": {
           "status": "paused",
           "pauseReason": null,
@@ -2325,7 +2337,7 @@
         "clearDisabled": true
       },
       "returned": {
-        "at": 10926.5,
+        "at": 10781.89999961853,
         "run": {
           "status": "stopped",
           "pauseReason": null,
@@ -2343,7 +2355,26 @@
     {
       "label": "chromium manual stop allows immediate editing instead of waiting 3 sec",
       "passed": true,
-      "elapsed": 48.799999713897705
+      "elapsed": 65.09999990463257
+    },
+    {
+      "label": "chromium clear blocks start, preserves last result and records; restore enables start",
+      "passed": true,
+      "cleared": {
+        "at": 13453.299999713898,
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "result": "2.5秒・0光線　達成 100.00点　点をつないでから流してください。",
+        "edges": 0,
+        "clearDisabled": false
+      }
     },
     {
       "label": "chromium next-event fault menu keeps stop/edit",
@@ -2499,7 +2530,7 @@
       "label": "chromium synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop",
       "passed": true,
       "fault": {
-        "at": 13572.400000095367,
+        "at": 13561.299999713898,
         "run": {
           "status": "paused",
           "pauseReason": "error",
@@ -2514,7 +2545,7 @@
         "clearDisabled": true
       },
       "retained": {
-        "at": 16890.699999809265,
+        "at": 16882.5,
         "run": {
           "status": "paused",
           "pauseReason": "dialog",

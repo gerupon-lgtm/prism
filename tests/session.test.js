@@ -12,6 +12,15 @@ function fixture() {
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
+test('配線0本では開始せず、自由のクリア後も直前の全記録・結果・保存を保持する',()=>{
+  const f=fixture(),s=f.session;
+  assert.throws(()=>s.start(),/つないで/);assert.equal(s.run,null);assert.equal(s.result,null);assert.equal(f.writes(),0);
+  free(f);s.saveCircuit('元回路');s.start();s.advance('2.5');s.stop();s.clearConnections();
+  const run=s.run,result=s.exportResult(),circuit=structuredClone(s.circuit),saved=f.records.slots(),writes=f.writes();
+  assert.throws(()=>s.start(),/つないで/);assert.equal(s.run,run);assert.deepEqual(s.exportResult(),result);assert.deepEqual(s.circuit,circuit);assert.deepEqual(f.records.slots(),saved);assert.equal(f.writes(),writes);assert.equal(s.editable,true);
+  s.connect('S','A');s.start();assert.equal(s.result.state,'finished');
+});
+
 test('連続結線は全体を検査して確定し、候補外では途中の配線も残さない',()=>{
   const s=fixture().session;
   assert.throws(()=>s.connectPath(['S','A','G','B']));assert.equal(s.circuit.edges.length,0);assert.equal(s.dirty,false);
@@ -49,7 +58,7 @@ test('実行から記録で停止、次動作、明示再開、停止後編集�
   assert.equal(s.result.arrivals[0].time,'3');
 });
 
-test('全候補と制限を守り、未接続の実験も未達成として受け付ける',()=>{
+test('全候補と制限を守り、途中結線の到達不能は未達成として受け付ける',()=>{
   const f=fixture(),s=f.session;
   assert.throws(()=>s.connect('A','S')); assert.equal(s.circuit.edges.length,0);
   q1(f); assert.throws(()=>s.connect('S','B')); assert.equal(s.circuit.edges.length,2);
@@ -65,7 +74,7 @@ test('全候補と制限を守り、未接続の実験も未達成として受�
 
 test('AC-17：全評価方式の確定した未達成は0点、成績候補にせず判定待ち・途中中断は無得点',()=>{
   for(const id of ['Q1','Q2','Q3','Q4','Q5']){
-    const f=fixture(),s=f.session;s.replace({challengeId:id});s.start();
+    const f=fixture(),s=f.session;s.replace({challengeId:id});s.connect('S','A');s.start();
     assert.equal(s.result.state,'failed');assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});
     s.stop();assert.equal(s.result.state,'failed');assert.deepEqual(s.exportResult().evaluation.score,{numerator:'0',denominator:'1'});assert.equal(f.records.scores().length,0);assert.equal(s.pendingScores.size,0);
   }

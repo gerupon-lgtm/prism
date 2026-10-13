@@ -1,6 +1,6 @@
 // Actual workers/cache/offline/update interactions on PC engines, under a Pages subpath.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict'),cp=require('node:child_process');
-const {waitForAsync}=require('./browser_wait.cjs');
+const {waitForAsync,wiringBounds}=require('./browser_wait.cjs');
 const {expectedStoppedOriginWorkerError}=require('./browser_errors.cjs');
 const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.argv[at+1];};
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
@@ -86,7 +86,7 @@ async function enlargedDialog(page,label){
   }
 }
 async function drag(page,from,to){
-  const box=async id=>page.locator(`[data-node="${id}"] .node-hit`).boundingBox();const a=await box(from),b=await box(to);
+  const {a,b}=await wiringBounds(page,from,to);
   await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:10});await page.mouse.up();
 }
 async function connection(context,engine,offline){

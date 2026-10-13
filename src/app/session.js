@@ -37,6 +37,7 @@ export class Session {
   }
 
   get editable() { return !this.run || this.run.status === 'stopped'; }
+  get startBlockedReason() { return this.circuit.edges.length ? '' : '点をつないでから流してください。'; }
   requireEditable() {
     if (!this.editable) throw new Error('停止してから変更してください。一時停止中も実験条件は固定です。');
   }
@@ -196,6 +197,7 @@ export class Session {
 
   start({caseId = null} = {}) {
     this.requireEditable();
+    if (this.startBlockedReason) throw new Error(this.startBlockedReason);
     const original = createCircuit(this.circuit).raw;
     let conditions = original, cases = [], selected = null;
     if (this.mode === 'challenge' && ['edge-fault','prism-fault'].includes(this.challenge.type)) {

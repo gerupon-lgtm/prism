@@ -82,8 +82,10 @@ function render(redraw=true,{records=true}={}) {
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
+  const startBlockedReason=session.editable?session.startBlockedReason:'';
   $('play').textContent=session.editable?'流す':run.status==='running'?'一時停止':'再開';
-  $('play').disabled=!session.editable&&run.exhausted;
+  $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
+  $('play').title=startBlockedReason;
   $('stop').disabled=session.editable;$('next').disabled=!run||run.status!=='paused'||run.exhausted;
   $('play').dataset.state=run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
@@ -96,7 +98,7 @@ function render(redraw=true,{records=true}={}) {
   if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
-  $('result').textContent=[text,message].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
+  $('result').textContent=[text,message||startBlockedReason].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
   $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${session.selection}：ダブルタップで設定`:'起点から候補をなぞって結線';
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
