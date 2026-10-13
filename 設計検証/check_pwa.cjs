@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual workers/cache/offline/update interactions on PC engines, under a Pages subpath.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const {waitForAsync,wiringBounds}=require('./browser_wait.cjs');
@@ -30,7 +31,7 @@ const server=http.createServer((request,response)=>{
   let content;try{content=fs.readFileSync(file);}catch{response.writeHead(404).end();return;}
   response.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});response.end(content);
 });
-async function menuItem(page,name){
+async function menuItem(page,name){await enterApp(page);
   await page.locator('#menu').click();
   await settle(page);
   for(let i=0;i<30;i++){
@@ -106,22 +107,22 @@ async function connection(context,engine,offline){
         await context.addInitScript(()=>{addEventListener('error',event=>{void window.__reportWindowError({type:'error',message:event.message,filename:event.filename}).catch(()=>{});});addEventListener('unhandledrejection',event=>{void window.__reportWindowError({type:'unhandledrejection',message:String(event.reason)}).catch(()=>{});});});
         const page=await context.newPage();
         const observeErrors=target=>target.on('pageerror',e=>{const detail={engine,message:e.message,name:e.name,stack:e.stack,url:target.url(),originOffline};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);errors.push(detail);report.errors.push(detail);});observeErrors(page);
-        await page.goto(url);await prepared(page);await page.locator('#guide-skip').click();assert.equal((await status(page)).ready,true);
+        await page.goto(url);await enterApp(page);await prepared(page);await skipGuide(page);assert.equal((await status(page)).ready,true);
         const manifest=await page.evaluate(async()=>{const r=await fetch('manifest.webmanifest');return r.json();});assert.deepEqual(manifest.icons.map(i=>i.sizes),['192x192','512x512']);
         for(const [width,height] of [[320,480],[480,240],[844,310],[390,664]]){
           await page.setViewportSize({width,height});await menuItem(page,'オフラインと更新');await fit(page,`${engine} offline dialog ${width}x${height}`);await page.locator('#dialog-close').click();
         }
         await connection(context,engine,true);
         const negative=await browser.newContext();if(engine==='chromium')await negative.setOffline(true);const negativePage=await negative.newPage();let rejected=false;
-        try{await negativePage.goto(url,{timeout:3000});}catch{rejected=true;}assert(rejected,'A fresh context without prepared assets must not reach the origin');await negative.close();
-        await page.close();const offline=await context.newPage();observeErrors(offline);await offline.goto(url);await prepared(offline);
+        try{await negativePage.goto(url,{timeout:3000});await enterApp(negativePage);}catch{rejected=true;}assert(rejected,'A fresh context without prepared assets must not reach the origin');await negative.close();
+        await page.close();const offline=await context.newPage();observeErrors(offline);await offline.goto(url);await enterApp(offline);await prepared(offline);
         assert.equal(await offline.locator('#guide-bar').isVisible(),false);
         await offline.locator('#home').click();await settle(offline);let names=[];
         do{names.push(...await offline.locator('#dialog-body .dialog-list button:not(.pager button)').allTextContents());const next=offline.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(offline);}while(names.length<30);
         for(let q=1;q<=6;q++)assert(names.some(name=>name.startsWith(`Q${q} `)));await offline.locator('#dialog-close').click();
         await drag(offline,'S','A');await drag(offline,'A','G');await offline.locator('#play').click();await offline.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await offline.locator('#stop').click();
         const scoreBefore=await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1'));assert(scoreBefore);
-        await offline.locator('#home').click();await offline.getByRole('button',{name:'自由へ',exact:true}).click();await offline.locator('#guide-skip').click();
+        await offline.locator('#home').click();await offline.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(offline);
         await offline.locator('[data-node="A"] .node-hit').dblclick();await offline.getByRole('button',{name:'時間',exact:true}).click();await offline.getByRole('textbox',{name:'秒数'}).fill('1.5');await offline.getByRole('button',{name:'確定',exact:true}).click();
         await menuItem(offline,'回路を保存');await offline.getByRole('textbox',{name:'回路名'}).fill('通信なし保存');await offline.getByRole('button',{name:'保存',exact:true}).click();
         const slotBefore=await offline.evaluate(()=>localStorage.getItem('prism-notes.circuits.v1'));assert(slotBefore);
@@ -129,7 +130,7 @@ async function connection(context,engine,offline){
         report.checks.push({label:`${engine} subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run`,passed:true});
         await connection(context,engine,false);
         // Keep a second old-version tab alive through an explicit update in the first.
-        const other=await context.newPage();await other.goto(url);await prepared(other);await other.locator('#home').click();await other.getByRole('button',{name:'自由へ',exact:true}).click();
+        const other=await context.newPage();await other.goto(url);await enterApp(other);await prepared(other);await other.locator('#home').click();await other.getByRole('button',{name:'自由へ',exact:true}).click();
         await other.locator('[data-node="A"] .node-hit').dblclick();await other.getByRole('button',{name:'時間',exact:true}).click();await other.getByRole('textbox',{name:'秒数'}).fill('2.7');
         await offline.locator('[data-node="A"] .node-hit').dblclick();await offline.getByRole('button',{name:'時間',exact:true}).click();await offline.getByRole('textbox',{name:'秒数'}).fill('1.7');await offline.getByRole('button',{name:'確定',exact:true}).click();
         // Finish a synthetic preparation failure while its explanation is open.
@@ -147,15 +148,18 @@ async function connection(context,engine,offline){
         await offline.getByRole('button',{name:'戻る',exact:true}).click();assert((await offline.locator('#dialog-error').textContent()).includes('Synthetic preparation failure'),'Explanation return must expose the completed failure');await enlargedDialog(offline,`${engine} preparation completes while explanation is open`);
         await offline.evaluate(()=>{ServiceWorker.prototype.postMessage=window.__originalPreparationPost;document.documentElement.style.removeProperty('font-size');});await offline.setViewportSize({width:390,height:664});await offline.locator('#dialog-close').click();
         current=1;
-        const startup=await context.newPage();observeErrors(startup);await startup.goto(url);await prepared(startup);
+        const titleUpdate=await context.newPage();observeErrors(titleUpdate);await titleUpdate.goto(url);await prepared(titleUpdate);await titleUpdate.locator('#title-update').waitFor({state:'visible',timeout:15000});assert.equal(await titleUpdate.locator('#title-screen').isVisible(),true);
+        const startup=await context.newPage();observeErrors(startup);await startup.goto(url);await enterApp(startup);await prepared(startup);
         await startup.locator('#update-notice').waitFor({state:'visible',timeout:15000});
         assert.equal(await startup.locator('meta[name=prism-version]').getAttribute('content'),version);
         assert.equal(await startup.evaluate(()=>document.querySelector('dialog').open),false,'Startup update must not interrupt play');
         assert.equal(await startup.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);
         assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');
-        await startup.locator('#update-notice').click();assert.equal(await startup.locator('#dialog-title').textContent(),'更新の前に');await startup.getByRole('button',{name:'取消',exact:true}).click();
-        assert.equal(await startup.locator('meta[name=prism-version]').getAttribute('content'),version);await startup.close();
-        report.checks.push({label:`${engine} startup automatically prepares update, unobtrusive notice, user cancels without reload/data change`,passed:true});
+        // A single click applies the prepared version when there is no work to lose.
+        await startup.locator('#update-notice').click();await startup.waitForFunction(v=>document.querySelector('meta[name=prism-version]')?.content===v,later(1),{timeout:15000});await prepared(startup);
+        assert.equal(await startup.locator('#title-screen').isVisible(),true);assert.equal(await startup.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');await startup.close();
+        report.checks.push({label:`${engine} startup automatically prepares update; one header click applies it while saved data and another tab input remain unchanged`,passed:true});
+        await titleUpdate.locator('#title-update').click();await titleUpdate.waitForFunction(v=>document.querySelector('meta[name=prism-version]')?.content===v,later(1),{timeout:15000});await prepared(titleUpdate);assert.equal(await titleUpdate.locator('#title-screen').isVisible(),true);assert.equal(await titleUpdate.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await titleUpdate.close();report.checks.push({label:`${engine} title update also applies in one click through the real worker`,passed:true});
         await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.getByRole('button',{name:'更新へ',exact:true}).waitFor({timeout:15000});
         assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),version);await enlargedDialog(offline,`${engine} update prepared status`);
         await offline.getByRole('button',{name:'更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} dirty circuit update protection`);await offline.getByRole('button',{name:'保存せず更新へ',exact:true}).click();await enlargedDialog(offline,`${engine} explicit discard confirmation`);await offline.getByRole('button',{name:'取消',exact:true}).click();await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'更新へ',exact:true}).click();await offline.getByRole('button',{name:'保存して更新へ',exact:true}).click();
@@ -176,12 +180,14 @@ async function connection(context,engine,offline){
         await connection(context,engine,true);assert.equal(await other.evaluate(async v=>(await fetch(`v${v}/src/content/samples.js`)).ok,version),true);await connection(context,engine,false);
         report.checks.push({label:`${engine} explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets`,passed:true});
         // A missing module with index still present must show the recovery page.
+        // Isolate before deletion: online startup/other-tab preparation can repair it.
+        await connection(context,engine,true);
         await offline.evaluate(async()=>{const v=document.querySelector('meta[name=prism-version]').content,c=await caches.open(`prism-notes:/prism/:${v}`);await c.delete(new URL(`v${v}/src/ui/audio.js`,document.baseURI));});assert.equal((await status(offline)).ready,false);
-        await connection(context,engine,true);const recovery=await context.newPage();const recovered=await recovery.goto(url);assert.equal(recovered.status(),503);assert((await recovery.locator('body').textContent()).includes('起動に必要な資材が不足'));assert.equal(await recovery.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await recovery.close();await connection(context,engine,false);
+        const recovery=await context.newPage();const recovered=await recovery.goto(url);await enterApp(recovery);assert.equal(recovered.status(),503);assert((await recovery.locator('body').textContent()).includes('起動に必要な資材が不足'));assert.equal(await recovery.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await recovery.close();await connection(context,engine,false);
         await menuItem(offline,'オフラインと更新');await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await prepared(offline);assert.equal((await status(offline)).ready,true);
         current=2;await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>document.getElementById('dialog-error').textContent.length>0,{},{timeout:15000});assert.equal(await offline.getByRole('button',{name:'更新へ',exact:true}).count(),0);
         assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));assert.equal(await offline.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);await enlargedDialog(offline,`${engine} incomplete update error and old assets status`);
-        await connection(context,engine,true);await offline.reload();assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));await prepared(offline);await fit(offline,`${engine} failed update old version offline`);
+        await connection(context,engine,true);await offline.reload();await enterApp(offline);assert.equal(await offline.locator('meta[name=prism-version]').getAttribute('content'),later(1));await prepared(offline);await fit(offline,`${engine} failed update old version offline`);
         report.checks.push({label:`${engine} cache-loss readiness/repair and incomplete-update rejection preserve usable old version/data`,passed:true});assert.deepEqual(errors.filter(error=>!error.expectedStoppedOrigin),[]);assert.deepEqual(windowErrors,[]);
         await connection(context,engine,false);await context.close();
       }finally{await browser.close();}

@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Verify real HTTPS assets and actual public-page startup. Device acceptance remains separate.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const {waitForAsync,wiringBounds}=require('./browser_wait.cjs');
@@ -41,7 +42,7 @@ async function contents(download){const stream=await download.createReadStream()
       const browser=await pw[engine].launch({headless:true});
       try{
         const context=await browser.newContext({viewport:{width:390,height:664},acceptDownloads:true});let page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-        await page.goto(base.href);await prepared(page);assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),expected);await page.locator('#guide-skip').click();
+        await page.goto(base.href);await enterApp(page);await prepared(page);assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),expected);await skipGuide(page);
         for(const [width,height] of [[320,480],[390,664],[844,310]]){
           await page.setViewportSize({width,height});await settle(page);const size=await page.evaluate(()=>{const center=e=>{const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};};return {w:innerWidth,h:innerHeight,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,rotation:Number(document.documentElement.dataset.boardRotation),source:center(document.querySelector('[data-node="S"] .node-hit')),goal:center(document.querySelector('[data-node="G"] .node-hit')),header:center(document.querySelector('header')),board:center(document.getElementById('board')),play:center(document.getElementById('play-controls'))};});assert(size.sw<=size.w+1&&size.sh<=size.h+1);if(width<=height){assert.equal(size.rotation,0);assert(size.source.y>size.goal.y&&size.header.y<size.board.y&&size.play.y>size.board.y,'Published portrait source below goal and frame order');}else{assert.equal(size.rotation,0);assert(size.source.y>size.goal.y&&size.header.y<size.board.y&&size.play.y>size.board.y,'Published desktop wide window remains upright');}report.checks.push({label:`${engine} public layout ${width}x${height}`,passed:true,...size});
         }
@@ -57,13 +58,13 @@ async function contents(download){const stream=await download.createReadStream()
             await new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>reject(new Error('Prepared worker did not respond')),5000);channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();event.data.ready?resolve():reject(new Error('Prepared assets missing'));};r.active.postMessage({type:'STATUS',version:document.querySelector('meta[name=prism-version]').content},[channel.port2]);});
           });
           await context.setOffline(true);await page.close();page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-          const response=await page.goto(base.href);await prepared(page);
+          const response=await page.goto(base.href);await enterApp(page);await prepared(page);
           assert(response.fromServiceWorker(),'Offline navigation must actually be served by the prepared worker');
           report.checks.push({label:'Public Chromium closed-page offline startup after clearing HTTP cache',url:response.url(),status:response.status(),fromServiceWorker:response.fromServiceWorker(),passed:true});
         }
         await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await page.locator('#stop').click();
         const resultDownload=page.waitForEvent('download');await item(page,'実行結果を書き出す');const result=await contents(await resultDownload);assert.equal(result.conditions.edges.length,2);assert(result.records.some(r=>r.type==='goal'));await page.locator('#dialog-close').click();
-        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();
+        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await item(page,'回路を保存');await page.getByRole('textbox',{name:'回路名'}).fill('公開確認の合成回路');await page.getByRole('button',{name:'保存',exact:true}).click();
         const circuitDownload=page.waitForEvent('download');await item(page,'回路ファイルを書き出す');const circuit=await contents(await circuitDownload);assert.equal(circuit.name,'公開確認の合成回路');assert.equal(circuit.circuit.nodes.length,4);assert.equal(circuit.records,undefined);
         await page.locator('#dialog-close').click();await page.screenshot({path:path.join(out,`${engine}-portrait.png`)});

@@ -1,0 +1,13 @@
+{
+  "version": "0.20.0",
+  "evidence": "PC Chromium protocol touch; WebKit synthetic pointerType on real mouse events. No physical phone acceptance.",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: chromium portrait one-finger background drag must not move the circuit\n+ actual - expected\n\n+ 'translate(171.49587750294467 171.49587750294467) scale(1)'\n- 'translate(0 0) scale(1)'\n\n    at noSinglePan (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_mobile_separation.cjs:25:10)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_mobile_separation.cjs:35:2"
+}

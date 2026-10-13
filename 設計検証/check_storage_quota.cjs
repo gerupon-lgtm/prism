@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual localStorage quota in disposable PC browser contexts, with synthetic padding.
 // This does not prove physical-device storage, disk exhaustion, or OS eviction behavior.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -71,9 +72,9 @@ const configurations=[{name:'chromium',type:pw.chromium},{name:'webkit',type:pw.
    try{
     const context=await browser.newContext({viewport:{width:390,height:664},acceptDownloads:true}),page=await context.newPage();
     page.on('pageerror',error=>report.errors.push({browser:config.name,message:error.message}));
-    await page.goto(url);await page.locator('#guide-skip').click();await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();
+    await page.goto(url);await enterApp(page);await skipGuide(page);await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();
     await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await page.locator('#stop').click();
-    await page.locator('#home').click();await choose(page,'自由へ');await page.locator('#guide-skip').click();await save(page,'容量確認の元回路1');await save(page,'容量確認の元回路2');
+    await page.locator('#home').click();await choose(page,'自由へ');await skipGuide(page);await save(page,'容量確認の元回路1');await save(page,'容量確認の元回路2');
     await page.locator('[data-node="A"] .node-hit').dblclick();await choose(page,'時間');await page.getByRole('textbox',{name:'秒数'}).fill('1.7');await choose(page,'確定');
     const edited=(await download(page,'回路ファイルを書き出す')).circuit,before=await snapshot(page),slots=JSON.parse(before[keys[0]]).value;
     assert.equal(slots.length,2);assert.equal(JSON.parse(before[keys[1]]).value.length,1);assert.equal(edited.nodes.find(node=>node.id==='A').process,'1.7');
@@ -114,7 +115,7 @@ const configurations=[{name:'chromium',type:pw.chromium},{name:'webkit',type:pw.
     await removePadding(page,guidePadding);await page.locator('#guide-finish').click();assert(!(await page.locator('#guide-bar').isVisible()));
     const afterGuide=await snapshot(page);assert.equal(afterGuide[keys[0]],afterScores[keys[0]]);assert.equal(afterGuide[keys[1]],afterScores[keys[1]]);assert.deepEqual(JSON.parse(afterGuide[keys[2]]).value,{challenge:'completed',free:'skipped'});assert.deepEqual(await download(page,'実行結果を書き出す'),originalResult);
     report.checks.push({browser:config.name,label:'Guide finish retry after removing only padding restores original Q3 circuit/run/result and records completion without changing scores or circuits',passed:true,requirements:['F-019','NF-003'],acceptance:['AC-26']});
-    await page.reload();await page.locator('#board [data-node="S"]').waitFor({state:'visible'});await settle(page);assert(!(await page.locator('#guide-bar').isVisible()));assert.deepEqual(await snapshot(page),afterGuide);assert.deepEqual(report.errors.filter(error=>error.browser===config.name),[]);
+    await page.reload();await enterApp(page);await page.locator('#board [data-node="S"]').waitFor({state:'visible'});await settle(page);assert(!(await page.locator('#guide-bar').isVisible()));assert.deepEqual(await snapshot(page),afterGuide);assert.deepEqual(report.errors.filter(error=>error.browser===config.name),[]);
     report.checks.push({browser:config.name,label:'Reload retains recovered circuits, scores and independent guide outcomes without automatic challenge guide',passed:true,requirements:['F-019','F-024','NF-004'],acceptance:['AC-21','AC-26']});
     console.log(config.name+': '+report.checks.filter(check=>check.browser===config.name).length+' actual quota checks passed');
     await context.close();

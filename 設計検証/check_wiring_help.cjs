@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // PC browser gestures on the built app. These are not physical touch-device results.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
@@ -36,8 +37,8 @@ async function rotate(page,angle){await page.evaluate(angle=>{Object.assign(__di
     const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});
     try{const context=await browser.newContext({viewport:{width:412,height:804},isMobile:true,hasTouch:true});
       await context.addInitScript(()=>{window.__direction={angle:0,type:'portrait-primary'};const o=new EventTarget();Object.defineProperties(o,{type:{get:()=>__direction.type},angle:{get:()=>__direction.angle}});Object.defineProperty(screen,'orientation',{get:()=>o});document.addEventListener('pointerdown',e=>{window.__lastPointer=e.pointerId;},true);});
-      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')??`http://127.0.0.1:${server.address().port}/`);await settle(page);
-      if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
+      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')??`http://127.0.0.1:${server.address().port}/`);await enterApp(page);await settle(page);
+      if(await page.locator('#guide-skip').isVisible())await skipGuide(page);
       assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),report.version);
       assert.equal(await page.locator('#magnifier-toggle').getAttribute('aria-pressed'),'true');await controls(page,engine+' portrait controls');
       await start(page,'S');const a=await move(page,'A');assert.equal(await count(page),0);await loupe(page,a,engine+' continuous preview at A');
@@ -65,7 +66,7 @@ async function rotate(page,angle){await page.evaluate(angle=>{Object.assign(__di
         await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...s,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...a,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...a,id:1},{x:a.x+60,y:a.y+40,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await count(page),0);assert(await page.locator('#wire-magnifier').isHidden());await cdp.detach();
         report.checks.push({label:engine+' browser protocol touch connects and second finger cancels pending stroke; not physical-device evidence',passed:true});
       }
-      await rotate(page,0);await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
+      await rotate(page,0);await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();if(await page.locator('#guide-skip').isVisible())await skipGuide(page);
       const save=async name=>{await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill(name);await page.getByRole('button',{name:'保存',exact:true}).click();};
       await save('元の配線');const original=await count(page);await page.locator('#clear-wires').click();assert.equal(await count(page),0);await save('空の配線');await page.locator('#clear-wires').click();assert.equal(await count(page),original);assert((await page.locator('#condition').textContent()).includes('未保存'));
       await page.locator('#home').click();await page.getByRole('button',{name:/^Q1 はじめの一音/}).click();assert(await page.getByRole('button',{name:'保存せず入替',exact:true}).isVisible());await page.getByRole('button',{name:'保存せず入替',exact:true}).click();
@@ -74,7 +75,7 @@ async function rotate(page,angle){await page.evaluate(angle=>{Object.assign(__di
       await page.evaluate(()=>{document.documentElement.style.fontSize='28px';window.dispatchEvent(new Event('resize'));});await controls(page,engine+' enlarged short portrait');
       await page.setViewportSize({width:412,height:804});await controls(page,engine+' enlarged portrait');await rotate(page,90);await controls(page,engine+' enlarged landscape');
       assert.deepEqual(errors,[]);report.checks.push({label:engine+' no browser script errors',passed:true});await context.close();
-      const desktop=await browser.newContext({viewport:{width:900,height:900}}),mousePage=await desktop.newPage();await mousePage.goto(arg('--url')??`http://127.0.0.1:${server.address().port}/`);await settle(mousePage);if(await mousePage.locator('#guide-skip').isVisible())await mousePage.locator('#guide-skip').click();await settle(mousePage);assert.equal(await mousePage.locator('#magnifier-toggle').getAttribute('aria-pressed'),'false');await start(mousePage,'S');await move(mousePage,'A');assert(await mousePage.locator('#wire-magnifier').isHidden());await mousePage.mouse.up();report.checks.push({label:engine+' desktop mouse starts with loupe OFF',passed:true});await desktop.close();
+      const desktop=await browser.newContext({viewport:{width:900,height:900}}),mousePage=await desktop.newPage();await mousePage.goto(arg('--url')??`http://127.0.0.1:${server.address().port}/`);await enterApp(mousePage);await settle(mousePage);if(await mousePage.locator('#guide-skip').isVisible())await skipGuide(mousePage);await settle(mousePage);assert.equal(await mousePage.locator('#magnifier-toggle').getAttribute('aria-pressed'),'false');await start(mousePage,'S');await move(mousePage,'A');assert(await mousePage.locator('#wire-magnifier').isHidden());await mousePage.mouse.up();report.checks.push({label:engine+' desktop mouse starts with loupe OFF',passed:true});await desktop.close();
     }finally{await browser.close();}
   }
   report.passed=true;console.log(`Wiring help checks passed: ${report.checks.length}`);

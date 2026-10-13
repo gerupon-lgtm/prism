@@ -1,0 +1,2592 @@
+{
+  "version": "0.21.0",
+  "evidence": "PC Chromium/WebKit, synthetic CSS 28px and viewports. Not physical phone acceptance.",
+  "checks": [
+    {
+      "label": "chromium first launch shows adopted art title without changing tutorial history",
+      "images": [
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/ruins.png",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/observatory.png",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/source.png",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/prism.png",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/goal.png",
+          "width": 1024,
+          "height": 1536
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 436x1000",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        436,
+        1000
+      ],
+      "scroll": [
+        436,
+        1000
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 760,
+          "r": 214,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 222,
+          "t": 760,
+          "r": 418,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 816,
+          "r": 418,
+          "b": 860,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 868,
+          "r": 214,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 222,
+          "t": 868,
+          "r": 418,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 920,
+          "r": 418,
+          "b": 964,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 436x1000 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        436,
+        1000
+      ],
+      "scroll": [
+        436,
+        1000
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 760,
+          "r": 214,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 222,
+          "t": 760,
+          "r": 418,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 816,
+          "r": 418,
+          "b": 860,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 868,
+          "r": 214,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 222,
+          "t": 868,
+          "r": 418,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 920,
+          "r": 418,
+          "b": 964,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 360,
+          "t": 10,
+          "r": 424,
+          "b": 54,
+          "w": 62,
+          "h": 42,
+          "sw": 62,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 320x480",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 282,
+          "r": 156,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-free",
+          "l": 164,
+          "t": 282,
+          "r": 302,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 329,
+          "r": 302,
+          "b": 367,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 372,
+          "r": 156,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-about",
+          "l": 164,
+          "t": 372,
+          "r": 302,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 415,
+          "r": 302,
+          "b": 453,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 320x480 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 282,
+          "r": 156,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-free",
+          "l": 164,
+          "t": 282,
+          "r": 302,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 329,
+          "r": 302,
+          "b": 367,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 372,
+          "r": 156,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-about",
+          "l": 164,
+          "t": 372,
+          "r": 302,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 415,
+          "r": 302,
+          "b": 453,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-update",
+          "l": 244,
+          "t": 10,
+          "r": 308,
+          "b": 48,
+          "w": 62,
+          "h": 36,
+          "sw": 62,
+          "sh": 36
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 1000x436",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        1000,
+        436
+      ],
+      "scroll": [
+        1000,
+        436
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 548.375,
+          "t": 108,
+          "r": 759.375,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 767.375,
+          "t": 108,
+          "r": 978.375,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 548.375,
+          "t": 164,
+          "r": 978.375,
+          "b": 208,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 548.375,
+          "t": 216,
+          "r": 759.375,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 767.375,
+          "t": 216,
+          "r": 978.375,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 548.375,
+          "t": 268,
+          "r": 978.375,
+          "b": 312,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 1000x436 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        1000,
+        436
+      ],
+      "scroll": [
+        1000,
+        436
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 548.375,
+          "t": 108,
+          "r": 759.375,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 767.375,
+          "t": 108,
+          "r": 978.375,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 548.375,
+          "t": 164,
+          "r": 978.375,
+          "b": 208,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 548.375,
+          "t": 216,
+          "r": 759.375,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 767.375,
+          "t": 216,
+          "r": 978.375,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 548.375,
+          "t": 268,
+          "r": 978.375,
+          "b": 312,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 924,
+          "t": 10,
+          "r": 988,
+          "b": 54,
+          "w": 62,
+          "h": 42,
+          "sw": 62,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 480x240",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 263.859375,
+          "t": 55.203125,
+          "r": 360.421875,
+          "b": 89.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-free",
+          "l": 365.421875,
+          "t": 55.203125,
+          "r": 461.984375,
+          "b": 89.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-tutorial",
+          "l": 263.859375,
+          "t": 94.203125,
+          "r": 360.421875,
+          "b": 128.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-parts",
+          "l": 365.421875,
+          "t": 94.203125,
+          "r": 461.984375,
+          "b": 128.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-about",
+          "l": 263.859375,
+          "t": 133.203125,
+          "r": 360.421875,
+          "b": 167.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-resume",
+          "l": 365.421875,
+          "t": 133.203125,
+          "r": 461.984375,
+          "b": 167.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 480x240 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 195.75,
+          "t": 55.203125,
+          "r": 281.15625,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-free",
+          "l": 286.15625,
+          "t": 55.203125,
+          "r": 371.578125,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-tutorial",
+          "l": 376.578125,
+          "t": 55.203125,
+          "r": 461.984375,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-parts",
+          "l": 195.75,
+          "t": 94.203125,
+          "r": 281.15625,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-about",
+          "l": 286.15625,
+          "t": 94.203125,
+          "r": 371.578125,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-resume",
+          "l": 376.578125,
+          "t": 94.203125,
+          "r": 461.984375,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-update",
+          "l": 195.75,
+          "t": 133.203125,
+          "r": 281.15625,
+          "b": 167.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 1280x800",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        1280,
+        800
+      ],
+      "scroll": [
+        1280,
+        800
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 688.375,
+          "t": 290,
+          "r": 899.375,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 907.375,
+          "t": 290,
+          "r": 1118.375,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 688.375,
+          "t": 346,
+          "r": 1118.375,
+          "b": 390,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 688.375,
+          "t": 398,
+          "r": 899.375,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 907.375,
+          "t": 398,
+          "r": 1118.375,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 688.375,
+          "t": 450,
+          "r": 1118.375,
+          "b": 494,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title 1280x800 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        1280,
+        800
+      ],
+      "scroll": [
+        1280,
+        800
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 688.375,
+          "t": 290,
+          "r": 899.375,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 907.375,
+          "t": 290,
+          "r": 1118.375,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 688.375,
+          "t": 346,
+          "r": 1118.375,
+          "b": 390,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 688.375,
+          "t": 398,
+          "r": 899.375,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 907.375,
+          "t": 398,
+          "r": 1118.375,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 688.375,
+          "t": 450,
+          "r": 1118.375,
+          "b": 494,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 1204,
+          "t": 10,
+          "r": 1268,
+          "b": 54,
+          "w": 62,
+          "h": 42,
+          "sw": 62,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title CSS28 small landscape",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 263.859375,
+          "t": 23.125,
+          "r": 360.421875,
+          "b": 74.3125,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-free",
+          "l": 365.421875,
+          "t": 23.125,
+          "r": 461.984375,
+          "b": 74.3125,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-tutorial",
+          "l": 263.859375,
+          "t": 79.3125,
+          "r": 360.421875,
+          "b": 130.5,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-parts",
+          "l": 365.421875,
+          "t": 79.3125,
+          "r": 461.984375,
+          "b": 130.5,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-about",
+          "l": 263.859375,
+          "t": 135.5,
+          "r": 360.421875,
+          "b": 186.6875,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-resume",
+          "l": 365.421875,
+          "t": 135.5,
+          "r": 461.984375,
+          "b": 186.6875,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title CSS28 small landscape with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 195.75,
+          "t": 23.125,
+          "r": 281.15625,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-free",
+          "l": 286.15625,
+          "t": 23.125,
+          "r": 371.578125,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-tutorial",
+          "l": 376.578125,
+          "t": 23.125,
+          "r": 461.984375,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-parts",
+          "l": 195.75,
+          "t": 79.3125,
+          "r": 281.15625,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-about",
+          "l": 286.15625,
+          "t": 79.3125,
+          "r": 371.578125,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-resume",
+          "l": 376.578125,
+          "t": 79.3125,
+          "r": 461.984375,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-update",
+          "l": 195.75,
+          "t": 135.5,
+          "r": 281.15625,
+          "b": 186.6875,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title CSS28 small portrait",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 269.4375,
+          "r": 157.5,
+          "b": 322.625,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-free",
+          "l": 162.5,
+          "t": 269.4375,
+          "r": 302,
+          "b": 322.625,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 327.625,
+          "r": 157.5,
+          "b": 380.8125,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-parts",
+          "l": 162.5,
+          "t": 327.625,
+          "r": 302,
+          "b": 380.8125,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-about",
+          "l": 18,
+          "t": 385.8125,
+          "r": 157.5,
+          "b": 439,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-resume",
+          "l": 162.5,
+          "t": 385.8125,
+          "r": 302,
+          "b": 439,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium title CSS28 small portrait with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 269.4375,
+          "r": 109.328125,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-free",
+          "l": 114.328125,
+          "t": 269.4375,
+          "r": 205.65625,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-tutorial",
+          "l": 210.65625,
+          "t": 269.4375,
+          "r": 302,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 327.625,
+          "r": 109.328125,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-about",
+          "l": 114.328125,
+          "t": 327.625,
+          "r": 205.65625,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-resume",
+          "l": 210.65625,
+          "t": 327.625,
+          "r": 302,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-update",
+          "l": 18,
+          "t": 385.8125,
+          "r": 109.328125,
+          "b": 439,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium parts and overview return to title",
+      "passed": true
+    },
+    {
+      "label": "chromium enlarged parts fit 480x240",
+      "fit": {
+        "w": 446,
+        "h": 109,
+        "sw": 446,
+        "sh": 109
+      },
+      "passed": true
+    },
+    {
+      "label": "chromium enlarged parts fit 320x480",
+      "fit": {
+        "w": 276,
+        "h": 293,
+        "sw": 276,
+        "sh": 293
+      },
+      "passed": true
+    },
+    {
+      "label": "chromium challenge/free do not force guide; explicit tutorial restores chosen Q2",
+      "passed": true
+    },
+    {
+      "label": "chromium title/resume preserves circuit, time and records; changing modes keeps stop and unsaved protection",
+      "passed": true
+    },
+    {
+      "label": "chromium reload returns to title and no browser errors",
+      "passed": true
+    },
+    {
+      "label": "webkit first launch shows adopted art title without changing tutorial history",
+      "images": [
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/ruins.png",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/observatory.png",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/source.png",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/prism.png",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "url": "http://127.0.0.1:64460/v0.21.0/public/graphics/goal.png",
+          "width": 1024,
+          "height": 1536
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 436x1000",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        436,
+        1000
+      ],
+      "scroll": [
+        436,
+        1000
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 760,
+          "r": 214,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 222,
+          "t": 760,
+          "r": 418,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 816,
+          "r": 418,
+          "b": 860,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 868,
+          "r": 214,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 222,
+          "t": 868,
+          "r": 418,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 920,
+          "r": 418,
+          "b": 964,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 436x1000 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        436,
+        1000
+      ],
+      "scroll": [
+        436,
+        1000
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 760,
+          "r": 214,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 222,
+          "t": 760,
+          "r": 418,
+          "b": 808,
+          "w": 194,
+          "h": 46,
+          "sw": 194,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 816,
+          "r": 418,
+          "b": 860,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 868,
+          "r": 214,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 222,
+          "t": 868,
+          "r": 418,
+          "b": 912,
+          "w": 194,
+          "h": 42,
+          "sw": 194,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 920,
+          "r": 418,
+          "b": 964,
+          "w": 398,
+          "h": 42,
+          "sw": 398,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 320x480",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 282,
+          "r": 156,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-free",
+          "l": 164,
+          "t": 282,
+          "r": 302,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 329,
+          "r": 302,
+          "b": 367,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 372,
+          "r": 156,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-about",
+          "l": 164,
+          "t": 372,
+          "r": 302,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 415,
+          "r": 302,
+          "b": 453,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 320x480 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 282,
+          "r": 156,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-free",
+          "l": 164,
+          "t": 282,
+          "r": 302,
+          "b": 324,
+          "w": 136,
+          "h": 40,
+          "sw": 136,
+          "sh": 40
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 329,
+          "r": 302,
+          "b": 367,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 372,
+          "r": 156,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-about",
+          "l": 164,
+          "t": 372,
+          "r": 302,
+          "b": 410,
+          "w": 136,
+          "h": 36,
+          "sw": 136,
+          "sh": 36
+        },
+        {
+          "id": "title-resume",
+          "l": 18,
+          "t": 415,
+          "r": 302,
+          "b": 453,
+          "w": 282,
+          "h": 36,
+          "sw": 282,
+          "sh": 36
+        },
+        {
+          "id": "title-update",
+          "l": 244,
+          "t": 10,
+          "r": 308,
+          "b": 48,
+          "w": 62,
+          "h": 36,
+          "sw": 62,
+          "sh": 36
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 1000x436",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        1000,
+        436
+      ],
+      "scroll": [
+        1000,
+        436
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 548.390625,
+          "t": 108,
+          "r": 759.390625,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 767.390625,
+          "t": 108,
+          "r": 978.390625,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 548.390625,
+          "t": 164,
+          "r": 978.390625,
+          "b": 208,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 548.390625,
+          "t": 216,
+          "r": 759.390625,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 767.390625,
+          "t": 216,
+          "r": 978.390625,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 548.390625,
+          "t": 268,
+          "r": 978.390625,
+          "b": 312,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 1000x436 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        1000,
+        436
+      ],
+      "scroll": [
+        1000,
+        436
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 548.390625,
+          "t": 108,
+          "r": 759.390625,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 767.390625,
+          "t": 108,
+          "r": 978.390625,
+          "b": 156,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 548.390625,
+          "t": 164,
+          "r": 978.390625,
+          "b": 208,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 548.390625,
+          "t": 216,
+          "r": 759.390625,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 767.390625,
+          "t": 216,
+          "r": 978.390625,
+          "b": 260,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 548.390625,
+          "t": 268,
+          "r": 978.390625,
+          "b": 312,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 924,
+          "t": 10,
+          "r": 988,
+          "b": 54,
+          "w": 62,
+          "h": 42,
+          "sw": 62,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 480x240",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 263.859375,
+          "t": 55.203125,
+          "r": 360.421875,
+          "b": 89.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-free",
+          "l": 365.421875,
+          "t": 55.203125,
+          "r": 461.984375,
+          "b": 89.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-tutorial",
+          "l": 263.859375,
+          "t": 94.203125,
+          "r": 360.421875,
+          "b": 128.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-parts",
+          "l": 365.421875,
+          "t": 94.203125,
+          "r": 461.984375,
+          "b": 128.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-about",
+          "l": 263.859375,
+          "t": 133.203125,
+          "r": 360.421875,
+          "b": 167.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        },
+        {
+          "id": "title-resume",
+          "l": 365.421875,
+          "t": 133.203125,
+          "r": 461.984375,
+          "b": 167.203125,
+          "w": 95,
+          "h": 32,
+          "sw": 95,
+          "sh": 32
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 480x240 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 195.75,
+          "t": 55.203125,
+          "r": 281.15625,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-free",
+          "l": 286.15625,
+          "t": 55.203125,
+          "r": 371.578125,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-tutorial",
+          "l": 376.578125,
+          "t": 55.203125,
+          "r": 462,
+          "b": 89.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-parts",
+          "l": 195.75,
+          "t": 94.203125,
+          "r": 281.15625,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-about",
+          "l": 286.15625,
+          "t": 94.203125,
+          "r": 371.578125,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-resume",
+          "l": 376.578125,
+          "t": 94.203125,
+          "r": 462,
+          "b": 128.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        },
+        {
+          "id": "title-update",
+          "l": 195.75,
+          "t": 133.203125,
+          "r": 281.15625,
+          "b": 167.203125,
+          "w": 83,
+          "h": 32,
+          "sw": 83,
+          "sh": 32
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 1280x800",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        1280,
+        800
+      ],
+      "scroll": [
+        1280,
+        800
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 688.390625,
+          "t": 290,
+          "r": 899.390625,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 907.390625,
+          "t": 290,
+          "r": 1118.390625,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 688.390625,
+          "t": 346,
+          "r": 1118.390625,
+          "b": 390,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 688.390625,
+          "t": 398,
+          "r": 899.390625,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 907.390625,
+          "t": 398,
+          "r": 1118.390625,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 688.390625,
+          "t": 450,
+          "r": 1118.390625,
+          "b": 494,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title 1280x800 with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        1280,
+        800
+      ],
+      "scroll": [
+        1280,
+        800
+      ],
+      "font": "14px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 688.390625,
+          "t": 290,
+          "r": 899.390625,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-free",
+          "l": 907.390625,
+          "t": 290,
+          "r": 1118.390625,
+          "b": 338,
+          "w": 209,
+          "h": 46,
+          "sw": 209,
+          "sh": 46
+        },
+        {
+          "id": "title-tutorial",
+          "l": 688.390625,
+          "t": 346,
+          "r": 1118.390625,
+          "b": 390,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-parts",
+          "l": 688.390625,
+          "t": 398,
+          "r": 899.390625,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-about",
+          "l": 907.390625,
+          "t": 398,
+          "r": 1118.390625,
+          "b": 442,
+          "w": 209,
+          "h": 42,
+          "sw": 209,
+          "sh": 42
+        },
+        {
+          "id": "title-resume",
+          "l": 688.390625,
+          "t": 450,
+          "r": 1118.390625,
+          "b": 494,
+          "w": 428,
+          "h": 42,
+          "sw": 428,
+          "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 1204,
+          "t": 10,
+          "r": 1268,
+          "b": 54,
+          "w": 62,
+          "h": 42,
+          "sw": 62,
+          "sh": 42
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title CSS28 small landscape",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 263.859375,
+          "t": 23.125,
+          "r": 360.421875,
+          "b": 74.3125,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-free",
+          "l": 365.421875,
+          "t": 23.125,
+          "r": 461.984375,
+          "b": 74.3125,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-tutorial",
+          "l": 263.859375,
+          "t": 79.3125,
+          "r": 360.421875,
+          "b": 130.5,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-parts",
+          "l": 365.421875,
+          "t": 79.3125,
+          "r": 461.984375,
+          "b": 130.5,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-about",
+          "l": 263.859375,
+          "t": 135.5,
+          "r": 360.421875,
+          "b": 186.6875,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        },
+        {
+          "id": "title-resume",
+          "l": 365.421875,
+          "t": 135.5,
+          "r": 461.984375,
+          "b": 186.6875,
+          "w": 95,
+          "h": 49,
+          "sw": 95,
+          "sh": 49
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title CSS28 small landscape with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "scroll": [
+        480,
+        240
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 195.75,
+          "t": 23.125,
+          "r": 281.15625,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-free",
+          "l": 286.15625,
+          "t": 23.125,
+          "r": 371.578125,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-tutorial",
+          "l": 376.578125,
+          "t": 23.125,
+          "r": 462,
+          "b": 74.3125,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-parts",
+          "l": 195.75,
+          "t": 79.3125,
+          "r": 281.15625,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-about",
+          "l": 286.15625,
+          "t": 79.3125,
+          "r": 371.578125,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-resume",
+          "l": 376.578125,
+          "t": 79.3125,
+          "r": 462,
+          "b": 130.5,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        },
+        {
+          "id": "title-update",
+          "l": 195.75,
+          "t": 135.5,
+          "r": 281.15625,
+          "b": 186.6875,
+          "w": 83,
+          "h": 49,
+          "sw": 83,
+          "sh": 49
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title CSS28 small portrait",
+      "syntheticUpdateGeometry": false,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 269.4375,
+          "r": 157.5,
+          "b": 322.625,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-free",
+          "l": 162.5,
+          "t": 269.4375,
+          "r": 302,
+          "b": 322.625,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-tutorial",
+          "l": 18,
+          "t": 327.625,
+          "r": 157.5,
+          "b": 380.8125,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-parts",
+          "l": 162.5,
+          "t": 327.625,
+          "r": 302,
+          "b": 380.8125,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-about",
+          "l": 18,
+          "t": 385.8125,
+          "r": 157.5,
+          "b": 439,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        },
+        {
+          "id": "title-resume",
+          "l": 162.5,
+          "t": 385.8125,
+          "r": 302,
+          "b": 439,
+          "w": 138,
+          "h": 51,
+          "sw": 138,
+          "sh": 51
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit title CSS28 small portrait with prepared-update button geometry",
+      "syntheticUpdateGeometry": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "scroll": [
+        320,
+        480
+      ],
+      "font": "28px",
+      "buttons": [
+        {
+          "id": "title-challenges",
+          "l": 18,
+          "t": 269.4375,
+          "r": 109.328125,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-free",
+          "l": 114.328125,
+          "t": 269.4375,
+          "r": 205.65625,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-tutorial",
+          "l": 210.65625,
+          "t": 269.4375,
+          "r": 301.984375,
+          "b": 322.625,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-parts",
+          "l": 18,
+          "t": 327.625,
+          "r": 109.328125,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-about",
+          "l": 114.328125,
+          "t": 327.625,
+          "r": 205.65625,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-resume",
+          "l": 210.65625,
+          "t": 327.625,
+          "r": 301.984375,
+          "b": 380.8125,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        },
+        {
+          "id": "title-update",
+          "l": 18,
+          "t": 385.8125,
+          "r": 109.328125,
+          "b": 439,
+          "w": 89,
+          "h": 51,
+          "sw": 89,
+          "sh": 51
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit parts and overview return to title",
+      "passed": true
+    },
+    {
+      "label": "webkit enlarged parts fit 480x240",
+      "fit": {
+        "w": 446,
+        "h": 109,
+        "sw": 446,
+        "sh": 109
+      },
+      "passed": true
+    },
+    {
+      "label": "webkit enlarged parts fit 320x480",
+      "fit": {
+        "w": 276,
+        "h": 293,
+        "sw": 276,
+        "sh": 293
+      },
+      "passed": true
+    },
+    {
+      "label": "webkit challenge/free do not force guide; explicit tutorial restores chosen Q2",
+      "passed": true
+    },
+    {
+      "label": "webkit title/resume preserves circuit, time and records; changing modes keeps stop and unsaved protection",
+      "passed": true
+    },
+    {
+      "label": "webkit reload returns to title and no browser errors",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

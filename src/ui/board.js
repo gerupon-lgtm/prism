@@ -84,7 +84,7 @@ export class Board {
       const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`});
       group.append(svg('title',{},`${edge.from} ${edge.bidirectional?'↔':'→'} ${edge.to}：${edge.time}秒`));
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
-      group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-line'}));
+      group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
@@ -178,8 +178,8 @@ export class Board {
     const now=performance.now();
     for(const [id,picture] of this.arrivalPictures){
       if(now-picture.at>=1300){this.arrivalPictures.delete(id);continue;}
-      const node=run.circuit.nodes.get(picture.node),art=constellation(this.position(node),this.fontFactor??1,this.angle,id);
-      art.style.animationDelay=`-${Math.max(0,now-picture.at)}ms`;this.effectsLayer.append(art);
+      const node=run.circuit.nodes.get(picture.node),art=constellation(this.position(node),this.fontFactor??1,this.angle,id,Math.max(0,now-picture.at));
+      this.effectsLayer.append(art);
     }
   }
   arrivals(entries) {
@@ -223,20 +223,24 @@ export class Board {
   down(event) {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
+    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
     const node=event.target.closest('[data-node]')?.dataset.node,edge=event.target.closest('[data-edge]')?.dataset.edge;
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
-    this.gesture={kind:event.target.dataset.move?'move':node?'wire':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
+    this.gesture={kind:event.target.dataset.move?'move':node?'wire':event.pointerType==='touch'?'idle':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
     if(node&&this.session.editable)this.magnifier.show(event,`${node}から結線`);
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
+  pointerCenter() {const [a,b]=[...this.pointers.values()];return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
   move(event,final=false) {
     if(!this.pointers.has(event.pointerId)||!this.gesture)return;
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});const gesture=this.gesture;
     if(gesture.kind==='pinch') {
-      if(this.pointers.size<2)return; const distance=this.distance(),[a,b]=[...this.pointers.values()];
-      if(gesture.distance>0)this.zoom(distance/gesture.distance,(a.x+b.x)/2,(a.y+b.y)/2);gesture.distance=distance;return;
+      if(this.pointers.size<2)return;const distance=this.distance(),center=this.pointerCenter(),matrix=this.world.getScreenCTM().inverse();
+      // Two fingers move the view deliberately; one finger remains for wiring.
+      const dx=center.x-gesture.center.x,dy=center.y-gesture.center.y,zoom=this.session.view.zoom;
+      this.session.view.panX+=(matrix.a*dx+matrix.c*dy)*zoom;this.session.view.panY+=(matrix.b*dx+matrix.d*dy)*zoom;this.transform();
+      if(gesture.distance>0)this.zoom(distance/gesture.distance,center.x,center.y);gesture.distance=distance;gesture.center=center;return;
     }
     gesture.moved ||= Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>7;
     gesture.last=this.location(event.clientX,event.clientY,gesture.matrix);
@@ -275,7 +279,7 @@ export class Board {
         if(gesture.route.length>1&&target===gesture.route.at(-1))this.session.connectPath(gesture.route);
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {
-        if(this.addKind&&gesture.kind==='pan'&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}
+        if(this.addKind&&['pan','idle'].includes(gesture.kind)&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}
         else if(gesture.id) {
           const now=performance.now();
           if(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400){this.lastTap=null;this.openSettings();}

@@ -4,7 +4,11 @@ const art=name=>new URL(`../../public/graphics/${name}.png`,import.meta.url).hre
 // Decoration has no circuit identifiers, hit targets, or simulation events.
 export class Scene {
   constructor(board) {
-    this.root=svg('g',{class:'scene','aria-hidden':'true'});board.prepend(this.root);
+    const defs=svg('defs');
+    for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.75],[.35,.3],[1,0]]]]){
+      const gradient=svg('radialGradient',{id});for(const [offset,opacity] of stops)gradient.append(svg('stop',{offset,'stop-color':color,'stop-opacity':opacity}));defs.append(gradient);
+    }
+    this.root=svg('g',{class:'scene','aria-hidden':'true'});board.prepend(defs,this.root);
   }
   draw(width,height,kind) {
     const signature=`${width}/${height}/${kind}`;if(signature===this.signature)return;
@@ -23,15 +27,16 @@ export class Scene {
 
 export function symbol(kind,factor) {
   const group=svg('g',{transform:`scale(${factor})`,class:'symbol-art','aria-hidden':'true'});
-  group.append(svg('ellipse',{rx:58,ry:65,class:'node-halo'}),svg('image',{href:art(kind),x:-55,y:-65,width:110,height:130,preserveAspectRatio:'xMidYMid meet',class:'node-symbol'}));
+  group.append(svg('ellipse',{rx:78,ry:88,class:'node-separation'}),svg('ellipse',{rx:58,ry:65,class:'node-halo'}),svg('image',{href:art(kind),x:-55,y:-65,width:110,height:130,preserveAspectRatio:'xMidYMid meet',class:'node-symbol'}));
   return group;
 }
 
-export function constellation({x,y},factor,angle,id) {
+export function constellation({x,y},factor,angle,id,age=0) {
   const group=svg('g',{transform:`translate(${x} ${y}) rotate(${-angle}) scale(${factor})`,class:'arrival-art','data-arrived-particle':id,'aria-hidden':'true'});
-  const dots=[[-100,-29],[-64,-78],[-13,-107],[58,-72],[101,-19],[70,72],[-20,106],[-80,70]];
-  group.append(svg('path',{d:dots.map(([dx,dy],index)=>`${index?'L':'M'}${dx} ${dy}`).join(' '),class:'constellation-line'}));
-  for(const [cx,cy] of dots)group.append(svg('circle',{cx,cy,r:3.5,class:'constellation-star'}));
-  group.append(svg('circle',{r:44,class:'arrival-ring'}),svg('circle',{r:12,class:'arrived-light'}));
+  group.style.setProperty('--arrival-age',`-${age}ms`);
+  const dots=[[-116,20],[-108,-52],[-55,-105],[35,-126],[100,-74],[120,8],[75,85]];
+  group.append(svg('ellipse',{cy:8,rx:85,ry:105,class:'arrival-glow'}));
+  group.append(svg('path',{d:`M-116,20 L-108,-52 L-55,-105 M35,-126 L100,-74 L120,8`,class:'constellation-line'}));
+  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*45}ms`);star.append(svg('circle',{r:index%3===0?3:2}));if(index%3===0)star.append(svg('path',{d:'M-6,0 L6,0 M0,-6 L0,6',class:'star-ray'}));group.append(star);});
   return group;
 }

@@ -1,0 +1,133 @@
+{
+  "version": "0.21.0",
+  "evidence": "PC Chromium protocol touch; WebKit synthetic pointerType on real mouse events. No physical phone acceptance.",
+  "checks": [
+    {
+      "label": "chromium portrait",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "chromium uninterrupted touch S-A-G builds both roads without moving board",
+      "passed": true
+    },
+    {
+      "label": "chromium touching a road card does not drag the whole circuit",
+      "passed": true
+    },
+    {
+      "label": "Chromium two fingers translate without creating or changing wiring",
+      "passed": true
+    },
+    {
+      "label": "Chromium pinch retains zoom and fit with all wiring unchanged",
+      "passed": true
+    },
+    {
+      "label": "chromium altar glow fades without changing time or score",
+      "passed": true
+    },
+    {
+      "label": "chromium local soft separation preserves adopted background opacity",
+      "nodes": 5,
+      "paths": 8,
+      "backgroundOpacity": "0.72",
+      "shadow": "drop-shadow(rgb(4, 11, 25) 0px 0px 3px) drop-shadow(rgba(2, 6, 16, 0.7) 0px 4px 7px)",
+      "passed": true
+    },
+    {
+      "label": "chromium direction 90",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "chromium direction 270",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "chromium direction 0",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "chromium reduced motion retains static star feedback",
+      "animation": "none",
+      "opacity": "0.8",
+      "passed": true
+    },
+    {
+      "label": "chromium desktop mouse pan and fit remain available",
+      "passed": true
+    },
+    {
+      "label": "webkit portrait",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "webkit uninterrupted touch S-A-G builds both roads without moving board",
+      "passed": true
+    },
+    {
+      "label": "webkit touching a road card does not drag the whole circuit",
+      "passed": true
+    },
+    {
+      "label": "webkit altar glow fades without changing time or score",
+      "passed": true
+    },
+    {
+      "label": "webkit local soft separation preserves adopted background opacity",
+      "nodes": 5,
+      "paths": 8,
+      "backgroundOpacity": "0.72",
+      "shadow": "drop-shadow(rgb(4, 11, 25) 0px 0px 3px) drop-shadow(rgba(2, 6, 16, 0.7) 0px 4px 7px)",
+      "passed": true
+    },
+    {
+      "label": "webkit direction 90",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "webkit direction 270",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "webkit direction 0",
+      "before": "translate(0 0) scale(1)",
+      "after": "translate(0 0) scale(1)",
+      "passed": true
+    },
+    {
+      "label": "webkit reduced motion retains static star feedback",
+      "animation": "none",
+      "opacity": "0.8",
+      "passed": true
+    },
+    {
+      "label": "webkit desktop mouse pan and fit remain available",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

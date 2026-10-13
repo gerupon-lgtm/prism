@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // PC UI checks. Synthetic text/orientation/notice layout is separate from device evidence.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const {wiringBounds}=require('./browser_wait.cjs');
@@ -17,6 +18,7 @@ const settle=p=>p.evaluate(async()=>{await document.fonts.ready;await new Promis
 async function menuFit(page,label,total){
   await page.locator('#menu').click();await settle(page);
   const data=await page.evaluate(()=>{const body=document.getElementById('dialog-body'),buttons=[...body.querySelectorAll('button')];return {count:buttons.length,pagers:body.querySelectorAll('.pager').length,body:[body.clientWidth,body.clientHeight,body.scrollWidth,body.scrollHeight],bounds:buttons.map(b=>{const r=b.getBoundingClientRect();return {name:b.getAttribute('aria-label'),text:b.textContent,rect:[r.left,r.top,r.right,r.bottom],size:[b.clientWidth,b.clientHeight,b.scrollWidth,b.scrollHeight]};}),viewport:[innerWidth,innerHeight],page:[document.documentElement.scrollWidth,document.documentElement.scrollHeight]};});
+  const clipped=data.bounds.filter(b=>b.size[3]>b.size[1]+1||b.size[2]>b.size[0]+1);if(clipped.length){report.checks.push({label,passed:false,...data});console.error(JSON.stringify({label,body:data.body,clipped}));}
   assert.equal(data.count,total,label);assert.equal(data.pagers,0,label+' no page switching');assert(data.body[2]<=data.body[0]+1&&data.body[3]<=data.body[1]+1,label+' body fits');
   assert(data.page[0]<=data.viewport[0]+1&&data.page[1]<=data.viewport[1]+1,label+' no scroll');
   for(const b of data.bounds){assert(b.rect[0]>=-.5&&b.rect[1]>=-.5&&b.rect[2]<=data.viewport[0]+.5&&b.rect[3]<=data.viewport[1]+.5,label+' bounds '+b.name);assert(b.size[3]<=b.size[1]+1&&b.size[2]<=b.size[0]+1,label+' full visible text '+b.name);assert(b.text.length>=2,label+' meaningful label');}
@@ -42,12 +44,12 @@ async function noticeFit(page,label){
         window.AudioContext=class extends (Original??Fallback){createOscillator(){const id=++voiceId,o=super.createOscillator(),start=o.start.bind(o),stop=o.stop.bind(o);o.start=t=>{__audio.push({id,type:'start',at:t,frequency:o.frequency.value,wall:performance.now()});if(window.__failBell&&Math.abs(o.frequency.value-523.22)<.02)throw new Error('Synthetic bell failure');return start(t);};o.stop=t=>{__audio.push({id,type:'stop',at:t,frequency:o.frequency.value,wall:performance.now()});return stop(t);};return o;}};
         window.__direction={angle:0,type:'portrait-primary'};const direction=new EventTarget();Object.defineProperties(direction,{angle:{get:()=>__direction.angle},type:{get:()=>__direction.type}});Object.defineProperty(screen,'orientation',{get:()=>direction});
       });
-      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await page.locator('#guide-skip').click();await settle(page);
+      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await enterApp(page);await skipGuide(page);await settle(page);
       assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),version);
       assert.equal(await page.locator('#play').isDisabled(),true);assert((await page.locator('#result').textContent()).includes('点をつないで'));
       const initialState=await page.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src);document.getElementById('play').click();return {run:app.inspectPerformance().run,scores:localStorage.getItem('prism-notes.scores.v1')};});assert.equal(initialState.run,null);assert.equal(initialState.scores,null);
       report.checks.push({label:engine+' no wiring disables start with visible reason and no run or score',passed:true,initialState});
-      await menuFit(page,engine+' challenge menu',7);assert.equal(await page.evaluate(()=>__audio.length),0);
+      await menuFit(page,engine+' challenge menu',8);assert.equal(await page.evaluate(()=>__audio.length),0);
       await page.locator('#sound').click();await page.waitForFunction(()=>document.getElementById('sound').getAttribute('aria-pressed')==='true');
       const audio=await page.evaluate(()=>({events:__audio,method:__audioMethod}));assert.equal(audio.events.filter(e=>e.type==='start').length,1);assert(Math.abs(audio.events[1].at-audio.events[0].at-.06)<.001);
       const on=await page.locator('#sound').evaluate(e=>getComputedStyle(e).backgroundColor);await page.locator('#magnifier-toggle').click();await settle(page);await page.waitForTimeout(260);
@@ -56,17 +58,17 @@ async function noticeFit(page,label){
       await page.locator('#sound').click();await settle(page);await page.waitForTimeout(260);const off=await page.locator('#sound').evaluate(e=>getComputedStyle(e).backgroundColor);assert.notEqual(on,off);
       const mutedCount=await page.evaluate(()=>__audio.filter(e=>e.type==='start').length);await page.locator('#fit').click();assert.equal(await page.evaluate(()=>__audio.filter(e=>e.type==='start').length),mutedCount);
       report.checks.push({label:engine+' enabled/disabled state, transient click response, short UI audio only when sound enabled',passed:true,audio});
-      await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
+      await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();if(await page.locator('#guide-skip').isVisible())await skipGuide(page);
       const freeEdges=await page.locator('#board .edge:not(.candidate)').count();await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isDisabled(),true);assert.equal(await page.locator('#board .edge:not(.candidate)').count(),0);assert((await page.locator('#result').textContent()).includes('点をつないで'));await page.locator('#clear-wires').click();assert.equal(await page.locator('#play').isEnabled(),true);assert.equal(await page.locator('#board .edge:not(.candidate)').count(),freeEdges);
       report.checks.push({label:engine+' free mode clear blocks empty start and restore re-enables it',passed:true});
       for(const enlarged of [false,true]){
         await page.evaluate(enlarged=>document.documentElement.style.setProperty('font-size',enlarged?'28px':'14px','important'),enlarged);
         for(const [width,height] of [[390,664],[320,480],[480,240],[844,310]]){
-          await page.setViewportSize({width,height});await settle(page);await menuFit(page,`${engine} free menu ${width}x${height} enlarged=${enlarged}`,12);await noticeFit(page,`${engine} notice ${width}x${height} enlarged=${enlarged}`);
+          await page.setViewportSize({width,height});await settle(page);await menuFit(page,`${engine} free menu ${width}x${height} enlarged=${enlarged}`,13);await noticeFit(page,`${engine} notice ${width}x${height} enlarged=${enlarged}`);
         }
       }
-      await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:664});await settle(page);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='running');await page.waitForTimeout(260);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');await menuFit(page,engine+' paused menu retains stop/edit',13);
-      await page.locator('#stop').click();await page.locator('#home').click();await page.getByRole('button',{name:/^Q1 /}).click();if(await page.locator('#guide-skip').isVisible())await page.locator('#guide-skip').click();
+      await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:664});await settle(page);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='running');await page.waitForTimeout(260);await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');await menuFit(page,engine+' paused menu retains stop/edit',14);
+      await page.locator('#stop').click();await page.locator('#home').click();await page.getByRole('button',{name:/^Q1 /}).click();if(await page.locator('#guide-skip').isVisible())await skipGuide(page);
       await settle(page);
       assert.equal(await page.locator('#play').isDisabled(),true);
       for(const [from,to] of [['S','A'],['A','G']]){
@@ -99,7 +101,7 @@ async function noticeFit(page,label){
       report.checks.push({label:engine+' clear blocks start, preserves last result and records; restore enables start',passed:true,cleared});
       await page.locator('#play').click();await page.evaluate(()=>{document.getElementById('play').click();window.__failBell=true;for(let i=0;i<10&&!document.getElementById('next').disabled;i++)document.getElementById('next').click();});
       const fault=await inspect();assert.equal(fault.run.pauseReason,'error');assert(fault.result.includes('Synthetic bell failure'));
-      await menuFit(page,engine+' next-event fault menu keeps stop/edit',8);await page.waitForTimeout(3200);
+      await menuFit(page,engine+' next-event fault menu keeps stop/edit',9);await page.waitForTimeout(3200);
       const retained=await inspect();assert.equal(retained.run.status,'paused');assert.equal(retained.run.clock,fault.run.clock);assert.equal(retained.run.records,fault.run.records);assert.equal(retained.run.retainedParticles,fault.run.retainedParticles);assert.equal(retained.clearDisabled,true);assert(retained.result.includes('Synthetic bell failure'));
       report.checks.push({label:engine+' synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop',passed:true,fault,retained});await page.evaluate(()=>window.__failBell=false);await page.locator('#stop').click();
       assert.deepEqual(errors,[]);await context.close();

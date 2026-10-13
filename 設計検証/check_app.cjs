@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual app interactions on PC engines. This does not claim physical-device evidence.
 const fs=require('node:fs');const path=require('node:path');const http=require('node:http');const assert=require('node:assert/strict');
 function arg(name){const index=process.argv.indexOf(name);return index<0?null:process.argv[index+1];}
@@ -47,7 +48,7 @@ async function drag(page,from,to){
       const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel:channel||null,version:browser.version()});
       try{
         const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
-        await page.goto(url);await settle(page);await page.locator('#guide-skip').click();
+        await page.goto(url);await enterApp(page);await settle(page);await skipGuide(page);
         for(const [width,height] of [[320,480],[360,640],[390,664],[480,240],[568,260],[844,310],[768,1024],[1280,800]]){
           await page.setViewportSize({width,height});await fit(page,`${engine} play ${width}x${height}`);
           await page.locator('#home').click();await fit(page,`${engine} choices ${width}x${height}`);await page.locator('#dialog-close').click();
@@ -63,7 +64,7 @@ async function drag(page,from,to){
         await page.locator('#records').click();assert(await page.locator('#record-page').textContent().then(text=>!text.includes('全0件')));await fit(page,`${engine} populated records`);
         await page.locator('#record-next').click();await page.locator('#record-list button').first().click();await fit(page,`${engine} record detail`);await page.locator('#dialog-close').click();
         await page.locator('#close-records').click();await page.locator('#stop').click();
-        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();
+        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await page.locator('[data-node="A"] .node-hit').dblclick();await page.getByRole('button',{name:'時間',exact:true}).click();
         await page.getByRole('button',{name:'＋0.1',exact:true}).click();await page.getByRole('button',{name:'取消',exact:true}).click();assert.equal(await page.locator('[data-node="A"] .node-time').textContent(),'0.5s');
         await page.locator('[data-node="A"] .node-hit').dblclick();await page.getByRole('button',{name:'時間',exact:true}).click();

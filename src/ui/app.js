@@ -35,7 +35,7 @@ const board=new Board($('board'),session,render,settings,notify);
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
-function updateNotice(){ $('update-notice').hidden=!offline.state.update; }
+function updateNotice(){ for(const id of ['update-notice','title-update'])$(id).hidden=!offline.state.update; }
 
 document.addEventListener('click',event=>{
   const target=event.target.closest('button');if(!target||target.disabled)return;
@@ -44,7 +44,7 @@ document.addEventListener('click',event=>{
 });
 document.addEventListener('animationend',event=>{if(event.animationName==='button-response')event.target.classList.remove('button-response');});
 
-function notify(text) { message=text; render(false); }
+function notify(text) { message=text;if(!$('title-screen').hidden)$('title-error').textContent=text;render(false); }
 function attempt(action) {
   try {const pending=action();if(pending?.catch)pending.catch(failure);}
   catch(error){failure(error);}
@@ -116,7 +116,7 @@ function render(redraw=true,{records=true}={}) {
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
   if(run&&clearToastRun===run&&clearToastCircuit!==session.circuit)dismissedClears.add(run);
-  toast.hidden=!choices||dismissedClears.has(run)||dialog.open||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  toast.hidden=!choices||dismissedClears.has(run)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
   if(toast.hidden)return;
   if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
   $('clear-next').textContent=choices.nextChallengeId?'次へ':'課題一覧へ';
@@ -175,17 +175,18 @@ function fitDialogForm(adapt=()=>{},notes=[...body.children].filter(node=>node.t
   requestAnimationFrame(dialogLayout);
 }
 
-function chooseMode() {
+function chooseMode(after=null) {
   if(session.guide){
     open('案内を閉じますか？');body.append(element('p','案内を閉じると、案内を開く前の配線と記録へ戻ってから課題を選べます。'));
-    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode();}),button('案内を続ける',close));
+    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode(after);}),button('案内を続ける',close));
     fitDialogForm();return;
   }
   if(!session.editable){
     open('停止して課題を選びますか？');body.append(element('p','課題を切り替える前に、現在の実行を停止します。配線と記録は停止後も確認できます。'));
-    actions.append(button('停止して課題を選ぶ',()=>{stopRun();chooseMode();}),button('戻る',close));
+    actions.append(button('停止して課題を選ぶ',()=>{stopRun();chooseMode(after);}),button('戻る',close));
     fitDialogForm();return;
   }
+  if(after){after();return;}
   open('課題と自由');
   actions.append(button('自由へ',()=>replace({sampleId:'compare'})),button('閉じる',close));
   let scores=[];
@@ -204,12 +205,41 @@ function replace(request) {
   }else{session.replace(request);close();maybeGuide();}
 }
 function maybeGuide() {
-  try{if(session.needsGuide()){session.beginGuide();message='';render();}}
-  catch(error){notify(`${error.message} 案内はメニューから開けます。`);}
+  // Guides are chosen explicitly from the title/menu, including first launch.
+  render();
+}
+function showTitle() {
+  interruptRun('title');board.cancelAll();
+  if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;
+  $('title-resume').focus();
+}
+function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render(); }
+function layoutTitle(width,height) {
+  const compact=height<360||parseFloat(getComputedStyle(document.documentElement).fontSize)>=20;
+  $('title-screen').classList.toggle('title-compact',compact);
+  for(const [id,full,short] of [['title-challenges','課題を選ぶ','課題'],['title-free','自由に作る','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-resume','プレイ画面へ','続き']]){
+    $(id).textContent=compact?short:full;$(id).setAttribute('aria-label',full);
+  }
+}
+function tutorial() {leaveTitle();if(!session.guide)session.beginGuide();message='';render();}
+function partsExplanation() {
+  open('パーツの説明');
+  listPage([
+    ['source','星の光 S','光の出発点。ここから祭壇へ道をつなぎます。'],
+    ['prism','プリズム','光の中継点。道の時間に加え、ここでの処理時間もかかります。'],
+    ['goal','祭壇 G','光の到着先。到着すると鐘が鳴り、星の光が浮かびます。'],
+  ],([asset,name,text])=>{const compact=body.clientHeight<180,item=button('',()=>fullText(name,text,partsExplanation)),copy=element('div');item.className=`part-description${compact?' compact':''}`;item.setAttribute('aria-label',`${name}の説明`);copy.append(element('strong',name));if(!compact)copy.append(element('p',text));item.append(element('img','',{src:new URL(`../../public/graphics/${asset}.png`,import.meta.url).href,alt:''}),copy);return item;});
+  actions.append(button('閉じる',close));
+}
+function aboutGame() {
+  open('遊び方と概要');
+  body.append(element('p','星の光をプリズムから祭壇へ導く、最短経路を探すゲームです。候補の道をつなぎ、流し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数とプリズムの処理時間を合わせて比べます。近い道や、道の本数が少ない経路が最短とは限りません。課題では速さ・少ない道・故障への強さ・到着間隔を試し、自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。'));
+  actions.append(button('閉じる',close));fitDialogForm();
 }
 function menu() {
   open('メニュー');
   const items=[
+    ['タイトルへ',showTitle],
     ['課題と自由',chooseMode],
     ['操作の案内',()=>{close();session.beginGuide();message='';render();}],
     ['点と道の一覧',objects],
@@ -222,14 +252,17 @@ function menu() {
   if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
   const short=['遊ぶ','案内','一覧','回路','結果','成績','更新'];
   const aliases=new Map(['課題と自由','操作の案内','点と道の一覧','保存回路','実行結果を書き出す','成績未保存を再試行','オフラインと更新'].map((name,index)=>[name,short[index]]));
-  [['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
+  [['タイトルへ','表紙'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
   dialog.classList.add('menu-dialog');body.className='menu-grid';
   const entries=items.map(([name,action])=>button(name,action));body.append(...entries);actions.append(button('閉じる',close));
   const layout=()=>{
     if(!dialog.open||dialogLayout!==layout)return;
-    const height=Math.max(...entries.map(entry=>entry.getBoundingClientRect().height));
+    // Grid rows can shrink before this callback. Measure the content as well
+    // so an extra item adds a column instead of clipping every row's text.
+    const height=Math.max(...entries.map(entry=>{const rect=entry.getBoundingClientRect();return Math.max(rect.height,entry.scrollHeight+rect.height-entry.clientHeight);}));
     const rows=Math.max(1,Math.floor((body.clientHeight+6)/(height+5))),columns=Math.max(2,Math.ceil(entries.length/rows));
     body.style.setProperty('--menu-columns',columns);
+    body.classList.toggle('tight-menu',columns>=6);
     entries.forEach((entry,index)=>{entry.textContent=items[index][0];});
     entries.forEach((entry,index)=>{if(entry.scrollWidth>entry.clientWidth+1)entry.textContent=aliases.get(items[index][0])??items[index][0];});
   };
@@ -300,6 +333,10 @@ function offlineStatus() {
   fitDialogForm(()=>{},[...body.querySelectorAll('p')].slice(1),offlineStatus);
 }
 function offlineDialog(){open('オフラインと更新');offlineStatus();}
+function requestUpdate() {
+  if(updateSafety(session).kind==='confirm'&&!session.run?.records.length)return applyUpdate(false);
+  updateDialog();
+}
 function updateDialog() {
   const safety=updateSafety(session);open('更新の前に');body.append(element('p',safety.message));
   if(safety.kind==='guide')actions.append(button('案内を閉じて戻る',()=>{session.endGuide('interrupted');updateDialog();}));
@@ -327,14 +364,14 @@ async function applyUpdate(discard) {
   if(safety.kind!=='confirm'&&!(discard&&safety.kind==='circuit')){updateDialog();return;}
   // Keep the confirmation modal open while asynchronous worker checks run.
   // No edit, close, escape or duplicate apply can invalidate that confirmation.
-  updating=true;$('app').inert=true;
+  updating=true;$('app').inert=true;$('title-screen').inert=true;
   const approvedCircuit=session.circuit;
-  const controls=[...dialog.querySelectorAll('button')];controls.forEach(control=>control.disabled=true);
+  const controls=[...dialog.querySelectorAll('button'),...$('title-screen').querySelectorAll('button'),$('update-notice')].map(control=>({control,disabled:control.disabled}));controls.forEach(({control})=>control.disabled=true);
   try{await offline.apply(()=>{
     const current=updateSafety(session);
     return session.circuit===approvedCircuit&&(current.kind==='confirm'||(discard&&current.kind==='circuit'));
   });}
-  catch(error){updating=false;$('app').inert=false;controls.forEach(control=>control.disabled=false);throw error;}
+  catch(error){updating=false;$('app').inert=!$('title-screen').hidden;$('title-screen').inert=false;controls.forEach(({control,disabled})=>control.disabled=disabled);throw error;}
 }
 
 function settings() {
@@ -523,7 +560,14 @@ $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.vie
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
-$('update-notice').addEventListener('click',()=>attempt(updateDialog));
+$('update-notice').addEventListener('click',()=>attempt(requestUpdate));
+$('title-update').addEventListener('click',()=>attempt(requestUpdate));
+$('title-challenges').addEventListener('click',()=>attempt(()=>{leaveTitle();chooseMode();}));
+$('title-free').addEventListener('click',()=>attempt(()=>{leaveTitle();chooseMode(()=>replace({sampleId:'compare'}));}));
+$('title-tutorial').addEventListener('click',()=>attempt(tutorial));
+$('title-parts').addEventListener('click',()=>attempt(partsExplanation));
+$('title-about').addEventListener('click',()=>attempt(aboutGame));
+$('title-resume').addEventListener('click',leaveTitle);
 $('clear-dismiss').addEventListener('click',dismissClear);
 $('clear-again').addEventListener('click',()=>attempt(()=>clearAction()));
 $('clear-next').addEventListener('click',()=>attempt(()=>clearAction(true)));
@@ -559,6 +603,7 @@ function viewport(){
   // Mobile browsers can temporarily fit overflowing content by zooming out.
   // Reading that enlarged CSS viewport back into the layout preserves the error.
   const width=visual?visual.width*visual.scale:innerWidth,height=visual?visual.height*visual.scale:innerHeight;
+  layoutTitle(width,height);
   orientation.update({width,height,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
   const state={direction:screen.orientation?.type??null,angle:screen.orientation?.angle??window.orientation??null,frame:orientation.rotation,width,height,scale:visual?.scale??1};
   const previous=viewport.history?.at(-1);if(JSON.stringify(previous)!==JSON.stringify(state)){viewport.history??=[];viewport.history.push(state);if(viewport.history.length>8)viewport.history.shift();}

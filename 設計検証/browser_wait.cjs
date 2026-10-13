@@ -27,4 +27,18 @@ async function wiringBounds(page,from,to) {
     throw new Error('Wiring targets did not stabilize in 60 frames');
   },{from,to},{timeout:5000});
 }
-module.exports={waitForAsync,wiringBounds};
+// Enter through the actual title controls; no hidden query or bypass flag.
+async function enterApp(page) {
+  if(!await page.locator('#title-screen').count())return; // Worker recovery HTML has no app.
+  await page.locator('#board [data-node="S"]').waitFor({state:'attached'});
+  if(await page.locator('#title-screen').isVisible())await page.locator('#title-resume').click();
+}
+async function startGuide(page) {
+  await page.locator('#board [data-node="S"]').waitFor({state:'attached'});
+  if(await page.locator('#title-screen').isVisible())await page.locator('#title-tutorial').click();
+  else if(!await page.locator('#guide-skip').isVisible()){
+    await page.locator('#menu').click();await page.getByRole('button',{name:'操作の案内',exact:true}).click();
+  }
+}
+async function skipGuide(page) {await startGuide(page);await page.locator('#guide-skip').click();}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide};

@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // PC engine evidence, synthetic circuits and a labelled synthetic rendering stall.
 // No claim about physical touch, device speed or listening quality.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -47,7 +48,7 @@ async function finishNext(page){
       try{
         const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
         await page.addInitScript(()=>{const Audio=window.AudioContext??window.webkitAudioContext;if(!Audio)return;const original=Audio.prototype.createOscillator,resume=Audio.prototype.resume;window.__oscillators=0;window.__bellStarts=[];window.__audioContexts=[];Audio.prototype.createOscillator=function(...args){window.__oscillators++;const voice=original.apply(this,args),start=voice.start.bind(voice);voice.start=at=>{if(Math.abs(voice.frequency.value-523.22)<.04)window.__bellStarts.push({frequency:voice.frequency.value,at});return start(at);};return voice;};Audio.prototype.resume=function(...args){window.__audioContexts.push(this);return resume.apply(this,args);};});
-        await page.goto(url);await page.locator('#guide-spirit').waitFor({state:'visible'});
+        await page.goto(url);await enterApp(page);await startGuide(page);await page.locator('#guide-spirit').waitFor({state:'visible'});
         await page.waitForFunction(()=>document.getElementById('guide-spirit').complete&&document.getElementById('guide-spirit').naturalHeight===1536);
         const alpha=await page.locator('#guide-spirit').evaluate(img=>{const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;const context=canvas.getContext('2d');context.drawImage(img,0,0);return context.getImageData(0,0,1,1).data[3];});assert.equal(alpha,0);
         check(`${engine} adopted humanoid transparent image loaded only during guide`);
@@ -56,7 +57,7 @@ async function finishNext(page){
           const fits=await page.evaluate(()=>{const bar=document.getElementById('guide-bar'),image=document.getElementById('guide-spirit'),rect=bar.getBoundingClientRect();return document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight&&rect.bottom<=innerHeight&&bar.scrollWidth<=bar.clientWidth&&bar.scrollHeight<=bar.clientHeight&&image.getBoundingClientRect().height>0;});assert(fits,`${engine} guide ${width}x${height}`);
         }check(`${engine} guide fits all eight portrait/landscape sizes`);
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${engine}-guide.png`)});
-        await page.locator('#guide-skip').click();assert(!(await page.locator('#guide-spirit').isVisible()));
+        await skipGuide(page);assert(!(await page.locator('#guide-spirit').isVisible()));
         for(const id of ['Q1','Q2','Q3','Q4','Q5','Q6']){
           await page.locator('#home').click();await settle(page);
           for(let i=0;i<10;i++){const item=page.getByRole('button',{name:new RegExp(`^${id} `)});if(await item.count()){await item.click();break;}const next=page.locator('#dialog-body .pager button').last();assert(!(await next.isDisabled()),`${id} missing: ${await page.locator('#dialog-body').innerText()}`);await next.click();await settle(page);}
@@ -64,7 +65,7 @@ async function finishNext(page){
           assert.equal(await page.locator('.scene').evaluate(el=>getComputedStyle(el).pointerEvents),'none');assert.equal(await page.locator('.scene [data-node],.scene [data-edge]').count(),0);
         }check(`${engine} all six stages use their adopted setting with no decoration hit targets`);
         await page.screenshot({path:path.join(out,`${engine}-observatory.png`)});
-        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();
+        await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         const painted=await page.locator('[data-node] .node-symbol').evaluateAll(async elements=>Promise.all(elements.map(async e=>{const img=new Image();img.src=e.getAttribute('href');await img.decode();return {src:img.src,width:img.naturalWidth,height:img.naturalHeight};})));assert.equal(painted.length,4);assert(painted.every(a=>a.width>0&&a.src.includes('/public/graphics/')));assert.equal(painted.filter(a=>a.src.endsWith('/prism.png')).length,2);check(`${engine} prisms, source star and altar chime symbols`);
         const contexts=await page.evaluate(()=>['#board','#play','.node-hit'].map(selector=>{const event=new MouseEvent('contextmenu',{bubbles:true,cancelable:true});document.querySelector(selector).dispatchEvent(event);return event.defaultPrevented;}));assert(contexts.every(Boolean));
         await menuItem(page,'回路を保存');const input=page.getByRole('textbox',{name:'回路名'});await input.fill('全選択の合成入力');await input.blur();await input.focus();

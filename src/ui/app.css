@@ -18,9 +18,17 @@ dialog{width:min(480px,calc(100vw - 18px));max-width:calc(100vw - 18px);height:m
 #guide-spirit{width:38px;height:56px;object-fit:contain;flex:none;pointer-events:none}#guide-text{min-width:0}#guide-bar button{flex:none}
 .scene,.symbol-art,.arrival-layer,.light-trail{pointer-events:none}.sky-stars{fill:#d8dff3}.floating-ruin{opacity:.22}.island{fill:#070b15;stroke:#485272;stroke-width:2}.stone{fill:#17233b;stroke:#68789d;stroke-width:2}.stone-line{fill:none;stroke:#879ac2;stroke-width:2}.observatory{opacity:.17}.dome-shell{fill:#121b30;stroke:#a28c64;stroke-width:2}.dome-line,.armillary{fill:none;stroke:#b7a16d;stroke-width:2}
 .prism-facet{fill:#6d7cbb;opacity:.32}.prism-seam{fill:none;stroke:#bdc8f0;stroke-width:1.5;opacity:.55}.star-core,.chime-clapper{fill:#fff0bb}.altar-steps{fill:none;stroke:var(--gold);stroke-width:3}.disabled-mark{fill:none;stroke:#e4c7be;stroke-width:4;pointer-events:none}.light-trail{fill:none;stroke:#f8e3ac;stroke-width:5;stroke-linecap:round;opacity:.75}
-.arrival-art{animation:constellation-reveal 1300ms ease-out both}.constellation-line{fill:none;stroke:#c5d9f8;stroke-width:2;opacity:.7}.constellation-star,.arrived-light{fill:#e8f1ff}.arrival-ring{fill:none;stroke:#f3d99d;stroke-width:2;opacity:.7}@keyframes constellation-reveal{0%{opacity:.2}12%{opacity:1}70%{opacity:.55}100%{opacity:0}}
+.arrival-art{animation:altar-fade 1300ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.arrival-glow{fill:url(#altar-light);transform-box:fill-box;transform-origin:center;animation:altar-bloom 1200ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.constellation-line{fill:none;stroke:#c5d9f8;stroke-width:1;animation:star-threads 1100ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + 100ms)}
+.constellation-star{fill:#fff1cf;filter:drop-shadow(0 0 4px #f1d395);animation:star-light 850ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
+.star-ray{fill:none;stroke:#e9d7ad;stroke-width:.8;opacity:.65}
+@keyframes altar-fade{0%,70%{opacity:1}100%{opacity:0}}
+@keyframes altar-bloom{0%{opacity:0;transform:scale(.55)}18%{opacity:.85}100%{opacity:0;transform:scale(1.35)}}
+@keyframes star-threads{0%{opacity:0}30%,60%{opacity:.25}100%{opacity:0}}
+@keyframes star-light{0%{opacity:0}20%,45%{opacity:1}100%{opacity:0}}
 @media(max-height:360px){#guide-spirit{width:25px;height:36px}}
-@media(prefers-reduced-motion:reduce){.arrival-art{animation-timing-function:steps(1,end)}}
+@media(prefers-reduced-motion:reduce){.arrival-art{animation-timing-function:steps(1,end)}.arrival-glow,.constellation-line,.constellation-star{animation:none}.arrival-glow{opacity:.3}.constellation-line{opacity:.2}.constellation-star{opacity:.8}}
 
 .dialog-list>*{flex-shrink:0}.dialog-list>.dialog-list{flex-shrink:1}.dialog-list>p,#record-list>p{margin:0}.pager span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.record-row{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
 
@@ -55,6 +63,7 @@ button:active:enabled{background:#52617f;box-shadow:inset 0 0 0 2px #e3e8f6}
 dialog.menu-dialog{height:calc(var(--app-height) - 22px)}
 #dialog-body.menu-grid{display:grid;grid-template-columns:repeat(var(--menu-columns,2),minmax(0,1fr));grid-auto-rows:minmax(0,max-content);align-content:start;gap:5px}
 .menu-grid button{min-width:0;padding:3px 4px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.menu-grid.tight-menu button{padding-inline:0}
 .version-tools{display:flex;align-items:center;justify-content:end;gap:4px;flex-wrap:wrap;flex:none}
 #update-notice{font:inherit;min-height:0;padding:1px 4px;color:#f5ddb0;border-color:#8a7854}
 .device-landscape .version-tools{justify-content:center}
@@ -179,3 +188,29 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 .choice .node-halo{stroke:#f3d68e;stroke-dasharray:7 5}
 .node-name{font-size:calc(2rem * var(--board-factor,1));font-weight:600;stroke:#090d1a;stroke-width:5;paint-order:stroke}
 .edge-line{stroke-width:calc(4px * var(--board-factor,1))}
+.node-separation{fill:url(#node-depth)}
+.node-symbol{filter:drop-shadow(0 0 3px #040b19) drop-shadow(0 4px 7px #020610b3)}
+.edge-backdrop{fill:none;stroke:#030a17;stroke-opacity:.65;stroke-width:calc(7px * var(--board-factor,1));stroke-linecap:round;pointer-events:none}
+.candidate .edge-backdrop{stroke-dasharray:12 10}
+.edge.selected .edge-backdrop{stroke-width:calc(12px * var(--board-factor,1))}
+
+/* A quiet title assembled from the adopted ruins and observatory artwork. */
+#title-screen{position:fixed;inset:0;z-index:8;background:#090d1a;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.title-art{position:absolute;inset:0;pointer-events:none}.title-art img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.7}
+.title-ruins{mask-image:linear-gradient(110deg,#000 12%,transparent 75%)}.title-observatory{mask-image:linear-gradient(110deg,transparent 15%,#000 90%)}
+.title-art:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#090d1a33,#090d1a55 40%,#090d1ae8 90%)}
+.title-layout{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:clamp(8px,2vh,24px);height:100%;max-width:1000px;margin:auto;padding:max(20px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
+.title-hero{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:0;text-align:center}.title-logo{width:min(360px,90%);margin:0;color:#e6c577;filter:drop-shadow(0 3px 10px #050b18)}
+.title-logo svg{display:block;width:100%;max-height:25vh;fill:currentColor}.title-logo .prism{font-size:240px;letter-spacing:30px;text-anchor:middle}.title-logo .notes{font-size:90px;letter-spacing:50px;text-anchor:middle}
+.title-hero p{font-size:.928571rem;line-height:1.5;color:#e5e9f3;text-shadow:0 2px 5px #000;margin:12px 0}
+.title-symbols{display:flex;align-items:center;justify-content:center;width:min(360px,85%);max-height:24vh;gap:12px}.title-symbols img{width:23%;height:clamp(42px,12vh,95px);object-fit:contain;filter:drop-shadow(0 4px 9px #030816)}.title-symbols span{flex:1;height:1px;background:linear-gradient(90deg,transparent,#d8ba71,transparent)}
+.title-menu{display:flex;flex-direction:column;gap:8px;width:min(430px,100%);margin:0 auto;text-align:center}.title-modes,.title-details{display:flex;gap:8px}.title-menu button{flex:1;min-width:0;min-height:44px;background:#152138e8;border-color:#7785a0;font-size:1rem}.title-modes button{min-height:48px;border-color:#ceb474;color:#fff0c6}.title-modes button:first-child{background:#c3a158;color:#091020}.title-menu small{font-size:.714286rem;color:#9fabbe}.title-menu #title-resume{background:transparent;border-color:#52617c}.title-menu #title-update{background:#d6b56a;color:#111827}.title-menu p{margin:0;color:#f5b7a4;font-size:.857143rem}.title-menu p:empty{display:none}
+.dialog-list .part-description{display:flex;align-items:center;gap:12px;min-height:75px;white-space:normal}.part-description img{width:48px;height:65px;object-fit:contain;flex:none}.part-description strong{font-size:1rem}.part-description p{line-height:1.4}.dialog-list .part-description.compact{min-height:48px;padding:4px 7px}.part-description.compact img{width:42px;height:40px}
+@media(max-aspect-ratio:1/1) and (max-height:600px){.title-layout{padding-top:10px;padding-bottom:8px;gap:6px}.title-symbols{display:none}.title-hero p{margin:5px 0}.title-menu{gap:5px}.title-menu button{min-height:38px}.title-modes button{min-height:42px}}
+@media(min-aspect-ratio:1/1){.title-layout{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);align-items:center;gap:24px}.title-logo svg{max-height:40vh}.title-symbols{max-height:28vh}.title-symbols img{height:clamp(42px,20vh,95px)}}
+@media(min-aspect-ratio:1/1) and (max-height:360px){.title-layout{padding:10px 18px;gap:18px}.title-menu{gap:4px}.title-menu button,.title-modes button{min-height:34px;padding:5px}.title-hero p{margin:6px 0;font-size:.857143rem}.title-symbols{gap:6px}.title-menu small{font-size:.642857rem}}
+.title-compact .title-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.title-compact .title-modes,.title-compact .title-details{display:contents}.title-compact .title-menu small,.title-compact .title-menu p{grid-column:1/-1}.title-compact .title-symbols,.title-compact .title-hero p{display:none}
+.title-menu #title-update{position:fixed;top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-width:64px}
+.title-compact:has(#title-update:not([hidden])) .title-menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+.title-compact .title-menu #title-update{position:static;min-width:0}
+@media(min-aspect-ratio:1/1){.title-compact:has(#title-update:not([hidden])) .title-layout{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}}

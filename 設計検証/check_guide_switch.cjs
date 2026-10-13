@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual UI guide/selection flow in disposable PC browsers, not device acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const {wiringBounds}=require('./browser_wait.cjs');
@@ -17,7 +18,7 @@ async function steps(page){await page.evaluate(()=>{document.getElementById('pla
     const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});try{
       const context=await browser.newContext({viewport:{width:416,height:974}}),page=await context.newPage(),errors=[];
       await context.addInitScript(()=>{const set=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(window.__failGuide&&key==='prism-notes.guides.v1')throw new DOMException('Synthetic guide save failure','QuotaExceededError');return set.call(this,key,value);};});
-      page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await settle(page);
+      page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await enterApp(page);await settle(page);
       for(const [width,height] of [[1740,1044],[1280,800],[844,310],[416,974]]){
         await page.setViewportSize({width,height});await settle(page);
         const layout=await page.evaluate(()=>{const box=id=>{const r=document.querySelector(id).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};return {rotation:document.documentElement.dataset.boardRotation,viewport:[innerWidth,innerHeight],scroll:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],header:box('header'),board:box('#board'),play:box('#play-controls'),source:box('[data-node="S"] .node-hit'),goal:box('[data-node="G"] .node-hit'),buttons:[...document.querySelectorAll('#play-controls button')].map(e=>({text:e.textContent,box:box('#'+e.id),width:e.clientWidth,height:e.clientHeight,sw:e.scrollWidth,sh:e.scrollHeight}))};});
@@ -26,7 +27,7 @@ async function steps(page){await page.evaluate(()=>{document.getElementById('pla
         if(width>=1280){assert(layout.board.width>=width*.85);await page.screenshot({path:path.join(out,`${channel||engine}-desktop-${width}.png`)});}
         report.checks.push({engine,channel,label:`Desktop header/controls upright and readable ${width}x${height}`,layout,passed:true});
       }
-      assert.equal(await page.locator('#guide-skip').isVisible(),true);const original=await page.locator('#guide-text').textContent();
+      await startGuide(page);assert.equal(await page.locator('#guide-skip').isVisible(),true);const original=await page.locator('#guide-text').textContent();
       await page.locator('#home').click();
       if(await page.locator('#dialog-title').textContent()==='課題と自由')await page.getByRole('button',{name:/^Q2 /}).click();
       const error=await page.locator('#dialog-error').textContent();report.checks.push({engine,label:'Guide selection has an actionable exit instead of blocked replacement',error});
@@ -39,7 +40,7 @@ async function steps(page){await page.evaluate(()=>{document.getElementById('pla
       assert.equal(await page.locator('#board .edge:not(.candidate)').count(),0);assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.guides.v1')).value.challenge),'skipped');
       await page.getByRole('button',{name:/^Q2 /}).click();assert((await page.locator('#title').textContent()).startsWith('Q2 '));assert.equal(await page.locator('#dialog-error').textContent(),'');
       report.checks.push({engine,label:'Cancel keeps guide; 3/3 guide exit survives save failure and restores original circuit before selecting Q2 without false completion',passed:true});
-      await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();await page.locator('[data-node="A"] .node-hit').dblclick();await page.getByRole('button',{name:'時間',exact:true}).click();await page.getByRole('textbox',{name:'秒数'}).fill('1.5');await page.getByRole('button',{name:'確定',exact:true}).click();await steps(page);await page.locator('#menu').click();const before=await inspect(page);
+      await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);await page.locator('[data-node="A"] .node-hit').dblclick();await page.getByRole('button',{name:'時間',exact:true}).click();await page.getByRole('textbox',{name:'秒数'}).fill('1.5');await page.getByRole('button',{name:'確定',exact:true}).click();await steps(page);await page.locator('#menu').click();const before=await inspect(page);
       await page.getByRole('button',{name:'操作の案内',exact:true}).click();await page.locator('#home').click();await page.getByRole('button',{name:'案内を閉じて課題を選ぶ',exact:true}).click();assert.equal(await page.locator('#dialog-title').textContent(),'停止して課題を選びますか？');await page.getByRole('button',{name:'戻る',exact:true}).click();assert.deepEqual(await inspect(page),before);
       await page.locator('#home').click();await page.getByRole('button',{name:'停止して課題を選ぶ',exact:true}).click();const after=await inspect(page);assert.equal(after.run.status,'stopped');assert.equal(after.run.clock,before.run.clock);assert.equal(after.run.records,before.run.records);assert.deepEqual(after.edges,before.edges);assert.equal(after.time,before.time);
       await page.getByRole('button',{name:/^Q3 /}).click();assert.equal(await page.locator('#dialog-title').textContent(),'現在の未保存回路');await page.getByRole('button',{name:'取消',exact:true}).click();assert.deepEqual(await inspect(page),after);report.checks.push({engine,label:'Guide restores paused dirty free circuit; explicit stop preserves records and replacement retains unsaved confirmation/cancel',passed:true});

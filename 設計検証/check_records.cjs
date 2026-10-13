@@ -1,3 +1,4 @@
+const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
 // Actual navigation on PC engines and installed Windows browsers; no phone evidence.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const {pathToFileURL}=require('node:url');
@@ -34,7 +35,7 @@ async function fits(page){
       const browser=await config.type.launch({headless:true,...config.options});
       try{
         const page=await browser.newPage({viewport:{width:390,height:664},acceptDownloads:true}),errors=[];page.on('pageerror',error=>errors.push(error.message));
-        await page.goto(url);await page.locator('#guide-skip').click();await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await page.locator('#guide-skip').click();
+        await page.goto(url);await enterApp(page);await skipGuide(page);await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await page.locator('#import').setInputFiles({name:'branch-fixture.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'prism-notes-circuit',version:1,name:'合成の二世代分岐',circuit}))});await settle(page);
         await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('到着・動作終了'));await page.locator('#stop').click();await page.locator('#records').click();
         await select(page,/^0\.2s #4 移動$/,'#record-list','#record-next');const originalPage=await page.locator('#record-page').textContent();

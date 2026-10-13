@@ -1,0 +1,175 @@
+{
+  "version": "0.21.0",
+  "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
+  "checks": [
+    {
+      "label": "chromium offline dialog 320x480",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 480x240",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 844x310",
+      "passed": true
+    },
+    {
+      "label": "chromium offline dialog 390x664",
+      "passed": true
+    },
+    {
+      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "passed": true
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium preparation completes while explanation is open CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium startup automatically prepares update; one header click applies it while saved data and another tab input remain unchanged",
+      "passed": true
+    },
+    {
+      "label": "chromium title update also applies in one click through the real worker",
+      "passed": true
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 10,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium update prepared status CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium dirty circuit update protection CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit discard confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium failed pre-update save retains form CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 390x664",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 480x240",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 5,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium saved circuit final update confirmation CSS root 28px 844x310",
+      "passed": true,
+      "issues": [],
+      "settlingFrames": 4,
+      "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
+    },
+    {
+      "label": "chromium explicit update retains score/slots, failed save prevents reload, other tab retains typed input/old assets",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "windowErrors": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#menu')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"menu\" aria-label=\"保存と見本のメニュー\">☰</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"title-hero\">…</div> from <section id=\"title-screen\" aria-label=\"プリズム・ノーツのタイトル\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"title-hero\">…</div> from <section id=\"title-screen\" aria-label=\"プリズム・ノーツのタイトル\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    55 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"title-hero\">…</div> from <section id=\"title-screen\" aria-label=\"プリズム・ノーツのタイトル\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at menuItem (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_pwa.cjs:35:31)\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_pwa.cjs:185:15"
+}

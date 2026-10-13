@@ -1,0 +1,23 @@
+{
+  "version": "0.21.0",
+  "evidence": "PC disposable browsers. CSS 28px enlargement, synthetic orientation and visible update-notice geometry. Real audio API where available; fallback audio mock explicitly labelled. No acoustic or physical device evidence.",
+  "checks": [
+    {
+      "label": "chromium no wiring disables start with visible reason and no run or score",
+      "passed": true,
+      "initialState": {
+        "run": null,
+        "scores": null
+      }
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: chromium challenge menu\n\n8 !== 7\n\n    at menuFit (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_menu_feedback.cjs:21:10)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_menu_feedback.cjs:51:7"
+}
