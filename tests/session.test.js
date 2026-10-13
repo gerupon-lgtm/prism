@@ -12,6 +12,12 @@ function fixture() {
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
+test('課題の再構成後も旧版の成績を保持し、新版の成績と混ぜない',()=>{
+  const f=fixture();f.records.saveScore('Q6@1','interval@1',{numerator:'100',denominator:'1'});
+  const old=structuredClone(f.records.scores()[0]),s=f.session;s.replace({challengeId:'Q6'});for(const id of ['A','B','C'])s.connectPath(['S',id,'G']);s.start();s.advance('5');
+  assert.deepEqual(f.records.scores()[0],old);assert.equal(f.records.scores()[1].challenge,'Q6@2');assert.deepEqual(f.records.scores()[1].score,{numerator:'100',denominator:'1'});
+});
+
 test('達成した課題だけに次の選択を出し、停止しても配線・結果・記録を残す',()=>{
   const f=fixture(),s=q1(f);assert.equal(s.clearChoices,null);s.start();s.advance('2.5');
   assert.deepEqual(s.clearChoices,{challengeId:'Q1',nextChallengeId:'Q2'});
@@ -19,7 +25,7 @@ test('達成した課題だけに次の選択を出し、停止しても配線�
   assert.deepEqual(s.circuit,circuit);assert.deepEqual(s.exportResult().records,result.records);assert.equal(s.result.state,'achieved');
   assert.equal(s.clearChoices.nextChallengeId,'Q2');s.replace({challengeId:'Q2'});assert.equal(s.clearChoices,null);
   s.connect('S','C');s.start();s.stop();assert.equal(s.clearChoices,null);
-  s.replace({challengeId:'Q6'});for(const id of ['direct1','direct3','direct5'])s.connect('S','G',id);
+  s.replace({challengeId:'Q6'});for(const id of ['A','B','C'])s.connectPath(['S',id,'G']);
   s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:null});s.stop();
   s.replace({sampleId:'compare'});s.start();s.advance('3');assert.equal(s.clearChoices,null);s.stop();
   s.replace({challengeId:'Q1'});s.beginGuide();s.connectPath(['S','A','G']);s.start();s.advance('2.5');assert.equal(s.clearChoices,null);
@@ -91,7 +97,7 @@ test('AC-17：全評価方式の確定した未達成は0点、成績候補に�
     assert.equal(s.result.state,'failed');assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});
     s.stop();assert.equal(s.result.state,'failed');assert.deepEqual(s.exportResult().evaluation.score,{numerator:'0',denominator:'1'});assert.equal(f.records.scores().length,0);assert.equal(s.pendingScores.size,0);
   }
-  const f=fixture(),s=f.session;s.replace({challengeId:'Q6'});s.connect('S','G','direct1');s.connect('S','G','direct3');s.start();
+  const f=fixture(),s=f.session;s.replace({challengeId:'Q6'});s.connectPath(['S','A','G']);s.connectPath(['S','B','G']);s.start();
   assert.equal(s.result.state,'pending');assert.equal(s.result.score,null);s.advance('3');assert.equal(s.result.state,'failed');assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});assert.equal(f.records.scores().length,0);assert.equal(s.pendingScores.size,0);
   const interrupted=q1(fixture());interrupted.start();interrupted.advance('1');interrupted.stop();assert.equal(interrupted.result.state,'stopped');assert.equal(interrupted.result.score,null);
 });
@@ -160,7 +166,7 @@ test('故障全ケースから最悪を再生し、他ケース再生でも元�
   s.start(); assert.equal(s.cases.length,4); assert.ok(s.cases.every(c=>c.reachable));
   assert.equal(s.run.circuit.edges.get(s.replayCase).enabled,false);
   assert.deepEqual(s.circuit,original); assert.equal(s.result.state,'pending');
-  s.advance('2'); assert.equal(s.result.state,'achieved');
+  s.advance('2.5'); assert.equal(s.result.state,'achieved');
   const exported=s.exportResult(); assert.equal(exported.faultCases.length,4); assert.deepEqual(exported.originalConditions,original);
   s.stop(); s.start({caseId:'SB'}); assert.equal(s.replayCase,'SB'); assert.deepEqual(s.circuit,original);
   s.stop(); s.remove('BG',true); s.start();
@@ -169,7 +175,7 @@ test('故障全ケースから最悪を再生し、他ケース再生でも元�
 
 test('間隔の達成を実到着後に確定し、停止しても確定結果と成績を保つ',()=>{
   const f=fixture(),s=f.session; s.replace({challengeId:'Q6'});
-  for(const candidate of ['direct1','direct3','direct5']) s.connect('S','G',candidate);
+  for(const id of ['A','B','C']) s.connectPath(['S',id,'G']);
   s.start(); s.advance('1'); assert.equal(s.result.state,'pending'); assert.equal(f.records.scores().length,0);
   s.advance('3'); assert.equal(s.result.state,'pending');
   s.advance('5'); assert.equal(s.result.state,'achieved');
@@ -179,7 +185,7 @@ test('間隔の達成を実到着後に確定し、停止しても確定結果�
 
 test('未確定で停止した間隔を0点失敗にしない',()=>{
   const f=fixture(),s=f.session; s.replace({challengeId:'Q6'});
-  for(const candidate of ['direct1','direct3','direct5']) s.connect('S','G',candidate);
+  for(const id of ['A','B','C']) s.connectPath(['S',id,'G']);
   s.start(); s.advance('1'); s.stop();
   assert.equal(s.result.state,'stopped'); assert.equal(s.result.score,null); assert.equal(f.records.scores().length,0);
 });

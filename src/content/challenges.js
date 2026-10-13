@@ -2,19 +2,21 @@ const point = (id,kind,x,y,process='0') => ({id,kind,x,y,process});
 const path = (id,from,to,time) => ({id,from,to,time});
 const diamond = () => [point('S','source',0.5,0.1,'0.5'),point('A','prism',0.25,0.45,'0.5'),point('B','prism',0.75,0.45,'0.5'),point('G','goal',0.5,0.87)];
 const diamondEdges = () => [path('SA','S','A','1'),path('AG','A','G','1'),path('SB','S','B','1'),path('BG','B','G','1')];
-const faultNodes = () => [point('S','source',0.5,0.1,'0.5'),point('A','prism',0.18,0.46),point('B','prism',0.5,0.46),point('C','prism',0.82,0.46),point('G','goal',0.5,0.86)];
-const faultEdges = () => ['A','B','C'].flatMap(id=>[path(`S${id}`,'S',id,'1'),path(`${id}G`,id,'G','1')]);
+const searchNodes = () => [point('S','source',0.5,0.1,'0.5'),point('A','prism',0.2,0.34,'0.5'),point('B','prism',0.8,0.34,'0.5'),point('C','prism',0.5,0.58,'0.5'),point('G','goal',0.5,0.92)];
+const searchEdges = (shortcut) => [path('SA','S','A','0.5'),path('SB','S','B','0.5'),path('AC','A','C','0.5'),path('BC','B','C','0.5'),path('CG','C','G','0.5'),path('AG','A','G',shortcut),path('BG','B','G',shortcut),path('SC','S','C',shortcut)];
+const resilientNodes = () => searchNodes().map(node=>node.id==='C'?{...node,process:'0'}:node);
+const resilientEdges = () => [path('SA','S','A','0.5'),path('SB','S','B','0.5'),path('AC','A','C','0.5'),path('CG','C','G','1'),path('AG','A','G','1.5'),path('BG','B','G','1.5'),path('SC','S','C','1'),path('CB','C','B','0.5')];
 
 // Initial content values are implementation proposals; baseline validation is separate.
 export const challenges = [
   {id:'Q1',version:1,name:'はじめの一音',stage:'夜空の遺跡',type:'time',limit:2,baseline:'2.5',goal:'G',nodes:diamond(),candidates:diamondEdges()},
-  {id:'Q2',version:1,name:'早く届けよう',stage:'夜空の遺跡',type:'time',limit:2,baseline:'2.5',goal:'G',nodes:[...diamond(),point('C','prism',0.5,0.63,'1')],candidates:[...diamondEdges(),path('SC','S','C','0.8'),path('CG','C','G','1')]},
-  {id:'Q3',version:1,name:'速く、少ない道で',stage:'夜空の遺跡',type:'time-hops',limit:3,baseline:'2.5',baselineHops:2,goal:'G',nodes:[...diamond(),point('C','prism',0.44,0.32),point('D','prism',0.5,0.65)],candidates:[...diamondEdges(),path('SC','S','C','0.5'),path('CD','C','D','0.5'),path('DG','D','G','1.5')]},
-  {id:'Q4',version:1,name:'道が一本使えなくても',stage:'ドーム型天文台',type:'edge-fault',limit:4,baseline:'2',goal:'G',nodes:faultNodes(),candidates:faultEdges()},
-  {id:'Q5',version:1,name:'プリズムが使えなくても',stage:'ドーム型天文台',type:'prism-fault',limit:4,baseline:'2',goal:'G',nodes:faultNodes(),candidates:faultEdges()},
-  {id:'Q6',version:1,name:'間隔をそろえて鳴らそう',stage:'ドーム型天文台',type:'interval',limit:4,baseline:'1',goal:'G',interval:'2',count:3,
-    nodes:[point('S','source',0.5,0.1,'0.5'),point('A','prism',0.25,0.45),point('B','prism',0.78,0.45),point('G','goal',0.5,0.87)],
-    candidates:[path('direct1','S','G','1'),path('direct3','S','G','3'),path('direct5','S','G','5'),path('SA','S','A','0.5'),path('AG1','A','G','0.5'),path('AG3','A','G','2.5'),path('AG5','A','G','4.5'),path('AB','A','B','0.5'),path('BA','B','A','0.5')],
+  {id:'Q2',version:2,name:'早く届けよう',stage:'夜空の遺跡',type:'time',limit:3,baseline:'2.5',goal:'G',nodes:searchNodes(),candidates:searchEdges('2')},
+  {id:'Q3',version:2,name:'速く、少ない道で',stage:'夜空の遺跡',type:'time-hops',limit:3,baseline:'2.5',baselineHops:2,goal:'G',nodes:searchNodes(),candidates:searchEdges('1.5')},
+  {id:'Q4',version:2,name:'道が一本使えなくても',stage:'ドーム型天文台',type:'edge-fault',limit:6,baseline:'2.5',goal:'G',nodes:resilientNodes(),candidates:resilientEdges()},
+  {id:'Q5',version:2,name:'プリズムが使えなくても',stage:'ドーム型天文台',type:'prism-fault',limit:6,baseline:'2.5',goal:'G',nodes:resilientNodes(),candidates:resilientEdges()},
+  {id:'Q6',version:2,name:'間隔をそろえて鳴らそう',stage:'ドーム型天文台',type:'interval',limit:6,baseline:'1',goal:'G',interval:'2',count:3,
+    nodes:[point('S','source',0.5,0.1,'0.5'),point('A','prism',0.16,0.43),point('B','prism',0.5,0.52),point('C','prism',0.84,0.43),point('G','goal',0.5,0.92)],
+    candidates:[path('SA','S','A','0.5'),path('AG','A','G','0.5'),path('SB','S','B','0.5'),path('BG','B','G','2.5'),path('SC','S','C','0.5'),path('CG','C','G','4.5'),path('AB','A','B','2'),path('BC','B','C','1.5')],
   },
 ];
 

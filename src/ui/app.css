@@ -170,3 +170,12 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 .narrow .clear-heading{gap:4px;margin-bottom:6px}.narrow .clear-heading strong{font-size:max(12px,.75em)}
 .narrow .clear-heading button{min-width:24px;min-height:28px}
 .narrow .clear-actions{display:grid;grid-template-columns:minmax(0,1fr)}.narrow .clear-actions button{white-space:normal;overflow-wrap:anywhere;padding:4px}
+
+/* Adopted painted artwork; only interactive routes carry diagram lines. */
+.scene-shade{fill:#090d1a;opacity:.22}
+.floating-ruin,.observatory{opacity:.72}
+.node-halo{fill:none;stroke:transparent;stroke-width:3}
+.selected .node-halo{stroke:#fff}
+.choice .node-halo{stroke:#f3d68e;stroke-dasharray:7 5}
+.node-name{font-size:calc(2rem * var(--board-factor,1));font-weight:600;stroke:#090d1a;stroke-width:5;paint-order:stroke}
+.edge-line{stroke-width:calc(4px * var(--board-factor,1))}

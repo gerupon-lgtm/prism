@@ -1,0 +1,340 @@
+{
+  "version": "0.20.0",
+  "checkedAt": "2026-10-13T11:45:34.630Z",
+  "evidence": "PC Chromium: context offline. Windows WebKit: stopped origin. Actual UI, downloads, localStorage, prepared service worker; synthetic fixture circuits and a labelled 135ms render stall. Audio API checks are not listening evidence. Physical-device checks remain pending.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "label": "Closed-page prepared startup is served by the real worker with no reachable origin",
+      "requirements": [
+        "F-022",
+        "F-023",
+        "NF-008"
+      ],
+      "passed": true,
+      "fromServiceWorker": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Both three-step guides complete, restore original circuits, and never save practice scores",
+      "requirements": [
+        "F-019",
+        "F-021",
+        "NF-003"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Offline synthetic score-write failure retains result and retry saves after recovery",
+      "requirements": [
+        "F-024",
+        "NF-003"
+      ],
+      "passed": true,
+      "syntheticQuotaFailure": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Q1 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q1",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q2 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q2",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q3 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q3",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "Q4 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-012"
+      ],
+      "passed": true,
+      "challenge": "Q4",
+      "cases": 4
+    },
+    {
+      "engine": "chromium",
+      "label": "Q5 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024",
+        "F-013"
+      ],
+      "passed": true,
+      "challenge": "Q5",
+      "cases": 3
+    },
+    {
+      "engine": "chromium",
+      "label": "Q6 reaches 100; all fault cases separately replayed where applicable",
+      "requirements": [
+        "F-003",
+        "F-014",
+        "F-021",
+        "F-024"
+      ],
+      "passed": true,
+      "challenge": "Q6",
+      "cases": 0
+    },
+    {
+      "engine": "chromium",
+      "label": "All six scores persisted locally without a network connection",
+      "requirements": [
+        "F-024"
+      ],
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Lower achieved score and failed zero score preserve all previous bests offline; zero score fits normal and CSS-enlarged views",
+      "requirements": [
+        "F-014",
+        "F-024",
+        "NF-003",
+        "NF-005"
+      ],
+      "passed": true,
+      "acceptance": [
+        "AC-17",
+        "AC-21"
+      ],
+      "failedViews": [
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            22,
+            306,
+            22
+          ],
+          "rect": [
+            7,
+            391,
+            313,
+            413
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            22,
+            376,
+            22
+          ],
+          "rect": [
+            7,
+            575,
+            383,
+            597
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            17,
+            466,
+            17
+          ],
+          "rect": [
+            7,
+            163.609375,
+            473,
+            185.609375
+          ]
+        },
+        {
+          "cssTextEnlarged": false,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            17,
+            830,
+            17
+          ],
+          "rect": [
+            7,
+            233.609375,
+            837,
+            255.609375
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            320,
+            480
+          ],
+          "document": [
+            320,
+            480
+          ],
+          "result": [
+            306,
+            34,
+            306,
+            34
+          ],
+          "rect": [
+            7,
+            288.625,
+            313,
+            322.21875
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            390,
+            664
+          ],
+          "document": [
+            390,
+            664
+          ],
+          "result": [
+            376,
+            34,
+            376,
+            34
+          ],
+          "rect": [
+            7,
+            506.21875,
+            383,
+            539.8125
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            480,
+            240
+          ],
+          "document": [
+            480,
+            240
+          ],
+          "result": [
+            466,
+            34,
+            466,
+            34
+          ],
+          "rect": [
+            7,
+            122.625,
+            473,
+            156.21875
+          ]
+        },
+        {
+          "cssTextEnlarged": true,
+          "viewport": [
+            844,
+            310
+          ],
+          "document": [
+            844,
+            310
+          ],
+          "result": [
+            830,
+            34,
+            830,
+            34
+          ],
+          "rect": [
+            7,
+            192.625,
+            837,
+            226.21875
+          ]
+        }
+      ],
+      "physicalTextZoomVerified": false
+    }
+  ],
+  "pending": [],
+  "errors": [],
+  "windowErrors": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert((await page.locator('[data-node=\"A\"]').getAttribute('transform')).includes('rotate(90)'))\n\n    at exercise (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:125:72)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_offline_features.cjs:206:5"
+}

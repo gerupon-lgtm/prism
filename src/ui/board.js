@@ -88,7 +88,7 @@ export class Board {
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
-      const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},`${secondsLabel(edge.time)} ${edge.bidirectional?'↔':'→'}`);
+      const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},secondsLabel(edge.time));
       label.append(card,text);group.append(label);
       this.world.append(group);
       timeCards.push({card,text,factor});
@@ -101,9 +101,9 @@ export class Board {
       group.append(symbol(node.kind,factor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;
-      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{y:(node.kind==='goal'?-50:8)*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{y:-80*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal'){
-        const text=svg('text',{y:(node.kind==='source'?-92:64)*factor,class:'node-time'},secondsLabel(node.process));
+        const text=svg('text',{y:90*factor,class:'node-time'},secondsLabel(node.process));
         group.append(text);
       }
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
@@ -145,15 +145,24 @@ export class Board {
     for(const {label,bounds,matrix,card} of measurements){
       if(!matrix)continue;
       const positions=[];
+      // Prefer a free segment of the same route before moving a card off its line.
+      const edge=card&&label.closest('[data-edge]'),curve=edge&&this.curves.get(edge.dataset.edge);
+      if(curve)for(const fraction of [.5,.4,.6,.3,.7,.2,.8]){
+        const at=this.onCurve(curve,fraction),point=new DOMPoint(at.x,at.y).matrixTransform(worldMatrix);
+        const left=bounds.left+point.x-matrix.e,top=bounds.top+point.y-matrix.f;
+        if(left<area.left+3||left+bounds.width>area.right-3||top<area.top+3||top+bounds.height>area.bottom-3)continue;
+        const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
+        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,onPath:true,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)});
+      }
       for(const x of [0,-1,1,-2,2])for(const y of [0,-1,1,-2,2]){
         const left=Math.max(area.left+3,Math.min(area.right-3-bounds.width,bounds.left+x*Math.max(12,bounds.width*.75)));
         const top=Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,bounds.top+y*Math.max(12,bounds.height*.8)));
         const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
-        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)});
+        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)+(card&&(x||y)?80:0)});
       }
       const best=positions.reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
       const placement={label,transform:`${this.labelOrigins.get(label)} translate(${inverse.a*best.dx+inverse.c*best.dy} ${inverse.b*best.dx+inverse.d*best.dy})`};
-      if(card&&Math.hypot(best.dx,best.dy)>8){
+      if(card&&!best.onPath&&Math.hypot(best.dx,best.dy)>8){
         const origin=new DOMPoint(matrix.e,matrix.f).matrixTransform(worldInverse),end=new DOMPoint((best.rect.left+best.rect.right)/2,(best.rect.top+best.rect.bottom)/2).matrixTransform(worldInverse);
         placement.leader=`M${origin.x} ${origin.y} L${end.x} ${end.y}`;
       }
@@ -192,7 +201,7 @@ export class Board {
     const states=[];
     for(const group of this.world.querySelectorAll('[data-node]')){
       group.querySelector('.node-state')?.remove();const gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
-      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);group.append(svg('text',{y:(group.classList.contains('source')?-150:100)*(this.fontFactor??1),class:'node-state'},text));}
+      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);group.append(svg('text',{y:(group.classList.contains('source')?-160:130)*(this.fontFactor??1),class:'node-state'},text));}
     }
     const signature=states.join('/');if(this.timeLayoutSignature!==signature){this.timeLayoutSignature=signature;this.fitTimeLabels();}
     for(const particle of run.particles.values()) {

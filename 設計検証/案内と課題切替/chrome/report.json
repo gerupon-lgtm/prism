@@ -1,0 +1,566 @@
+{
+  "version": "0.20.0",
+  "evidence": "Disposable PC Chromium/WebKit actual DOM actions. Not physical devices.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "label": "Desktop header/controls upright and readable 1740x1044",
+      "layout": {
+        "rotation": "0",
+        "viewport": [
+          1740,
+          1044
+        ],
+        "scroll": [
+          1740,
+          1044
+        ],
+        "header": {
+          "x": 7,
+          "y": 6,
+          "right": 1733,
+          "bottom": 50,
+          "width": 1726,
+          "height": 44
+        },
+        "board": {
+          "x": 8,
+          "y": 56,
+          "right": 1732,
+          "bottom": 888,
+          "width": 1724,
+          "height": 832
+        },
+        "play": {
+          "x": 7,
+          "y": 982,
+          "right": 1733,
+          "bottom": 1020,
+          "width": 1726,
+          "height": 38
+        },
+        "source": {
+          "x": 837.5,
+          "y": 695.5,
+          "right": 902.5,
+          "bottom": 760.5,
+          "width": 65,
+          "height": 65
+        },
+        "goal": {
+          "x": 837.5,
+          "y": 202.6999969482422,
+          "right": 902.5,
+          "bottom": 267.70001220703125,
+          "width": 65,
+          "height": 65.00001525878906
+        },
+        "buttons": [
+          {
+            "text": "流す",
+            "box": {
+              "x": 7,
+              "y": 982,
+              "right": 348.1875,
+              "bottom": 1020,
+              "width": 341.1875,
+              "height": 38
+            },
+            "width": 339,
+            "height": 36,
+            "sw": 339,
+            "sh": 36
+          },
+          {
+            "text": "次動作",
+            "box": {
+              "x": 353.1875,
+              "y": 982,
+              "right": 694.390625,
+              "bottom": 1020,
+              "width": 341.203125,
+              "height": 38
+            },
+            "width": 339,
+            "height": 36,
+            "sw": 339,
+            "sh": 36
+          },
+          {
+            "text": "停止",
+            "box": {
+              "x": 699.390625,
+              "y": 982,
+              "right": 1040.59375,
+              "bottom": 1020,
+              "width": 341.203125,
+              "height": 38
+            },
+            "width": 339,
+            "height": 36,
+            "sw": 339,
+            "sh": 36
+          },
+          {
+            "text": "記録",
+            "box": {
+              "x": 1045.59375,
+              "y": 982,
+              "right": 1386.796875,
+              "bottom": 1020,
+              "width": 341.203125,
+              "height": 38
+            },
+            "width": 339,
+            "height": 36,
+            "sw": 339,
+            "sh": 36
+          },
+          {
+            "text": "音なし",
+            "box": {
+              "x": 1391.796875,
+              "y": 982,
+              "right": 1733,
+              "bottom": 1020,
+              "width": 341.203125,
+              "height": 38
+            },
+            "width": 339,
+            "height": 36,
+            "sw": 339,
+            "sh": 36
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "label": "Desktop header/controls upright and readable 1280x800",
+      "layout": {
+        "rotation": "0",
+        "viewport": [
+          1280,
+          800
+        ],
+        "scroll": [
+          1280,
+          800
+        ],
+        "header": {
+          "x": 7,
+          "y": 6,
+          "right": 1273,
+          "bottom": 50,
+          "width": 1266,
+          "height": 44
+        },
+        "board": {
+          "x": 8,
+          "y": 56,
+          "right": 1272,
+          "bottom": 644,
+          "width": 1264,
+          "height": 588
+        },
+        "play": {
+          "x": 7,
+          "y": 738,
+          "right": 1273,
+          "bottom": 776,
+          "width": 1266,
+          "height": 38
+        },
+        "source": {
+          "x": 607.5,
+          "y": 498.423095703125,
+          "right": 672.5,
+          "bottom": 563.423095703125,
+          "width": 65,
+          "height": 65
+        },
+        "goal": {
+          "x": 607.5,
+          "y": 150.14614868164062,
+          "right": 672.5,
+          "bottom": 215.1461639404297,
+          "width": 65,
+          "height": 65.00001525878906
+        },
+        "buttons": [
+          {
+            "text": "流す",
+            "box": {
+              "x": 7,
+              "y": 738,
+              "right": 256.1875,
+              "bottom": 776,
+              "width": 249.1875,
+              "height": 38
+            },
+            "width": 247,
+            "height": 36,
+            "sw": 247,
+            "sh": 36
+          },
+          {
+            "text": "次動作",
+            "box": {
+              "x": 261.1875,
+              "y": 738,
+              "right": 510.390625,
+              "bottom": 776,
+              "width": 249.203125,
+              "height": 38
+            },
+            "width": 247,
+            "height": 36,
+            "sw": 247,
+            "sh": 36
+          },
+          {
+            "text": "停止",
+            "box": {
+              "x": 515.390625,
+              "y": 738,
+              "right": 764.59375,
+              "bottom": 776,
+              "width": 249.203125,
+              "height": 38
+            },
+            "width": 247,
+            "height": 36,
+            "sw": 247,
+            "sh": 36
+          },
+          {
+            "text": "記録",
+            "box": {
+              "x": 769.59375,
+              "y": 738,
+              "right": 1018.796875,
+              "bottom": 776,
+              "width": 249.203125,
+              "height": 38
+            },
+            "width": 247,
+            "height": 36,
+            "sw": 247,
+            "sh": 36
+          },
+          {
+            "text": "音なし",
+            "box": {
+              "x": 1023.796875,
+              "y": 738,
+              "right": 1273,
+              "bottom": 776,
+              "width": 249.203125,
+              "height": 38
+            },
+            "width": 247,
+            "height": 36,
+            "sw": 247,
+            "sh": 36
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "label": "Desktop header/controls upright and readable 844x310",
+      "layout": {
+        "rotation": "0",
+        "viewport": [
+          844,
+          310
+        ],
+        "scroll": [
+          844,
+          310
+        ],
+        "header": {
+          "x": 7,
+          "y": 6,
+          "right": 837,
+          "bottom": 50,
+          "width": 830,
+          "height": 44
+        },
+        "board": {
+          "x": 8,
+          "y": 54,
+          "right": 836,
+          "bottom": 190.609375,
+          "width": 828,
+          "height": 136.609375
+        },
+        "play": {
+          "x": 7,
+          "y": 258.609375,
+          "right": 837,
+          "bottom": 289.40625,
+          "width": 830,
+          "height": 30.796875
+        },
+        "source": {
+          "x": 389.5,
+          "y": 131.83834838867188,
+          "right": 454.5,
+          "bottom": 196.8383331298828,
+          "width": 65,
+          "height": 64.99998474121094
+        },
+        "goal": {
+          "x": 389.5,
+          "y": 50.92355728149414,
+          "right": 454.5,
+          "bottom": 115.92355728149414,
+          "width": 65,
+          "height": 65
+        },
+        "buttons": [
+          {
+            "text": "流す",
+            "box": {
+              "x": 7,
+              "y": 258.609375,
+              "right": 169,
+              "bottom": 289.40625,
+              "width": 162,
+              "height": 30.796875
+            },
+            "width": 160,
+            "height": 29,
+            "sw": 160,
+            "sh": 29
+          },
+          {
+            "text": "次動作",
+            "box": {
+              "x": 174,
+              "y": 258.609375,
+              "right": 336,
+              "bottom": 289.40625,
+              "width": 162,
+              "height": 30.796875
+            },
+            "width": 160,
+            "height": 29,
+            "sw": 160,
+            "sh": 29
+          },
+          {
+            "text": "停止",
+            "box": {
+              "x": 341,
+              "y": 258.609375,
+              "right": 503,
+              "bottom": 289.40625,
+              "width": 162,
+              "height": 30.796875
+            },
+            "width": 160,
+            "height": 29,
+            "sw": 160,
+            "sh": 29
+          },
+          {
+            "text": "記録",
+            "box": {
+              "x": 508,
+              "y": 258.609375,
+              "right": 670,
+              "bottom": 289.40625,
+              "width": 162,
+              "height": 30.796875
+            },
+            "width": 160,
+            "height": 29,
+            "sw": 160,
+            "sh": 29
+          },
+          {
+            "text": "音なし",
+            "box": {
+              "x": 675,
+              "y": 258.609375,
+              "right": 837,
+              "bottom": 289.40625,
+              "width": 162,
+              "height": 30.796875
+            },
+            "width": 160,
+            "height": 29,
+            "sw": 160,
+            "sh": 29
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "label": "Desktop header/controls upright and readable 416x974",
+      "layout": {
+        "rotation": "0",
+        "viewport": [
+          416,
+          974
+        ],
+        "scroll": [
+          416,
+          974
+        ],
+        "header": {
+          "x": 7,
+          "y": 6,
+          "right": 409,
+          "bottom": 50,
+          "width": 402,
+          "height": 44
+        },
+        "board": {
+          "x": 8,
+          "y": 56,
+          "right": 408,
+          "bottom": 818,
+          "width": 400,
+          "height": 762
+        },
+        "play": {
+          "x": 7,
+          "y": 912,
+          "right": 409,
+          "bottom": 950,
+          "width": 402,
+          "height": 38
+        },
+        "source": {
+          "x": 175.5,
+          "y": 638.9615478515625,
+          "right": 240.5,
+          "bottom": 703.9615478515625,
+          "width": 65,
+          "height": 65
+        },
+        "goal": {
+          "x": 175.5,
+          "y": 187.62307739257812,
+          "right": 240.5,
+          "bottom": 252.62307739257812,
+          "width": 65,
+          "height": 65
+        },
+        "buttons": [
+          {
+            "text": "流す",
+            "box": {
+              "x": 7,
+              "y": 912,
+              "right": 83.390625,
+              "bottom": 950,
+              "width": 76.390625,
+              "height": 38
+            },
+            "width": 74,
+            "height": 36,
+            "sw": 74,
+            "sh": 36
+          },
+          {
+            "text": "次動作",
+            "box": {
+              "x": 88.390625,
+              "y": 912,
+              "right": 164.796875,
+              "bottom": 950,
+              "width": 76.40625,
+              "height": 38
+            },
+            "width": 74,
+            "height": 36,
+            "sw": 74,
+            "sh": 36
+          },
+          {
+            "text": "停止",
+            "box": {
+              "x": 169.796875,
+              "y": 912,
+              "right": 246.1875,
+              "bottom": 950,
+              "width": 76.390625,
+              "height": 38
+            },
+            "width": 74,
+            "height": 36,
+            "sw": 74,
+            "sh": 36
+          },
+          {
+            "text": "記録",
+            "box": {
+              "x": 251.1875,
+              "y": 912,
+              "right": 327.59375,
+              "bottom": 950,
+              "width": 76.40625,
+              "height": 38
+            },
+            "width": 74,
+            "height": 36,
+            "sw": 74,
+            "sh": 36
+          },
+          {
+            "text": "音なし",
+            "box": {
+              "x": 332.59375,
+              "y": 912,
+              "right": 409,
+              "bottom": 950,
+              "width": 76.40625,
+              "height": 38
+            },
+            "width": 74,
+            "height": 36,
+            "sw": 74,
+            "sh": 36
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Guide selection has an actionable exit instead of blocked replacement",
+      "error": "",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Cancel keeps guide; 3/3 guide exit survives save failure and restores original circuit before selecting Q2 without false completion",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "label": "Guide restores paused dirty free circuit; explicit stop preserves records and replacement retains unsaved confirmation/cancel",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "154.0.8037.99"
+    }
+  ],
+  "passed": true
+}

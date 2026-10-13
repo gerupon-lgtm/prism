@@ -3,6 +3,8 @@ const signed=angle=>{const value=((angle%360)+360)%360;return value===270?-90:va
 // Screen angles are counter-clockwise; CSS angles are clockwise.
 // Refer to portrait-primary even when the screen's natural orientation is landscape.
 export function frameRotation({width,height,type,angle,portraitAngle,legacyAngle,coarse=false,editing=false,previous=0}) {
+  // A desktop window's aspect ratio is not a physical device rotation.
+  if(!coarse)return 0;
   if(coarse&&/^(portrait|landscape)-(primary|secondary)$/.test(type)&&Number.isFinite(angle)) {
     if(type==='portrait-primary')return 0;
     if(type==='portrait-secondary')return 180;

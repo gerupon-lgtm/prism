@@ -1,0 +1,13 @@
+{
+  "version": "0.19.0",
+  "evidence": "Disposable PC Chromium/WebKit actual DOM actions. Not physical devices.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "label": "Guide selection has an actionable exit instead of blocked replacement",
+      "error": "案内を閉じて元の回路へ戻ってから切り替えてください。"
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '案内を閉じて元の回路へ戻ってから切り替えてください。'\n- ''\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_guide_switch.cjs:20:86"
+}

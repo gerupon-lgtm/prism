@@ -176,6 +176,16 @@ function fitDialogForm(adapt=()=>{},notes=[...body.children].filter(node=>node.t
 }
 
 function chooseMode() {
+  if(session.guide){
+    open('案内を閉じますか？');body.append(element('p','案内を閉じると、案内を開く前の配線と記録へ戻ってから課題を選べます。'));
+    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode();}),button('案内を続ける',close));
+    fitDialogForm();return;
+  }
+  if(!session.editable){
+    open('停止して課題を選びますか？');body.append(element('p','課題を切り替える前に、現在の実行を停止します。配線と記録は停止後も確認できます。'));
+    actions.append(button('停止して課題を選ぶ',()=>{stopRun();chooseMode();}),button('戻る',close));
+    fitDialogForm();return;
+  }
   open('課題と自由');
   actions.append(button('自由へ',()=>replace({sampleId:'compare'})),button('閉じる',close));
   let scores=[];

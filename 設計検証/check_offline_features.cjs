@@ -78,8 +78,8 @@ async function exercise(page,engine){
  // Exercise every initial challenge, including every independently replayed fault.
  for(const id of ['Q1','Q2','Q3','Q4','Q5','Q6']){
   await selectChallenge(page,id);
-  if(id==='Q6'){for(let i=0;i<3;i++)await drag(page,'S','G');}
-  else{await drag(page,'S','A');await drag(page,'A','G');if(['Q4','Q5'].includes(id)){await drag(page,'S','B');await drag(page,'B','G');}}
+  if(id==='Q6'){for(const node of ['A','B','C']){await drag(page,'S',node);await drag(page,node,'G');}}
+  else{await drag(page,'S','A');if(id==='Q2'){await drag(page,'A','C');await drag(page,'C','G');}else await drag(page,'A','G');if(['Q4','Q5'].includes(id)){await drag(page,'S','B');await drag(page,'B','G');}}
   if(id==='Q1')await blockStorageWrites(page,'prism-notes.scores.v1');
   await pauseStart(page);await finish(page);assert((await page.locator('#result').textContent()).includes('100.00点'));
   if(id==='Q1'){
@@ -91,20 +91,20 @@ async function exercise(page,engine){
   if(['Q1','Q2','Q3'].includes(id))assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['2.5']);
   if(id==='Q6')assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['1','3','5']);
   if(['Q4','Q5'].includes(id)){
-   const cases=exported.faultCases;assert.equal(cases.length,id==='Q4'?4:3);assert(cases.every(c=>c.reachable&&c.time==='2'));
+   const cases=exported.faultCases;assert.equal(cases.length,id==='Q4'?4:3);assert(cases.every(c=>c.reachable&&c.time==='2.5'));
    for(const item of cases){
     const disabled=[...item.conditions.nodes,...item.conditions.edges].filter(x=>x.enabled===false);assert.equal(disabled.length,1);assert.equal(disabled[0].id,item.id);
     await page.locator('#records').click();if((await page.locator('#record-title').textContent())!=='故障ケース')await page.locator('#record-tab').click();
     for(let n=0;n<20;n++){const row=page.locator('#record-list button').filter({hasText:new RegExp('^'+item.id+' 不可')});if(await row.count()){await row.click();break;}assert(!(await page.locator('#record-next').isDisabled()));await page.locator('#record-next').click();await settle(page);}
-    await choose(page,'このケースで流す');await page.locator('#records').click();await page.locator('#close-records').click();await finish(page);const replay=await result(page);assert.equal(replay.replayCase,item.id);assert(replay.records.some(r=>r.type==='goal'&&r.time==='2'));
+    await choose(page,'このケースで流す');await page.locator('#records').click();await page.locator('#close-records').click();await finish(page);const replay=await result(page);assert.equal(replay.replayCase,item.id);assert(replay.records.some(r=>r.type==='goal'&&r.time==='2.5'));
    }
   }
   await page.locator('#stop').click();record(engine,id+' reaches 100; all fault cases separately replayed where applicable',['F-003','F-014','F-021','F-024',...(id==='Q4'?['F-012']:id==='Q5'?['F-013']:[])],{challenge:id,cases:exported.faultCases.length});
  }
  const scores=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value);assert.equal(scores.length,6);
  record(engine,'All six scores persisted locally without a network connection',['F-024']);
- await selectChallenge(page,'Q2');await drag(page,'S','C');await drag(page,'C','G');await pauseStart(page);await finish(page);const lowerScore=await result(page);assert.equal(lowerScore.evaluation.state,'achieved');assert.deepEqual(lowerScore.records.filter(row=>row.type==='goal').map(row=>row.time),['2.8']);assert(BigInt(lowerScore.evaluation.score.numerator)<100n*BigInt(lowerScore.evaluation.score.denominator));await page.locator('#stop').click();
- await selectChallenge(page,'Q1');await pauseStart(page);await finish(page);const failedScore=await result(page);assert.equal(failedScore.evaluation.state,'failed');assert.deepEqual(failedScore.evaluation.score,{numerator:'0',denominator:'1'});assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value),scores);
+ await selectChallenge(page,'Q2');await drag(page,'S','C');await drag(page,'C','G');await pauseStart(page);await finish(page);const lowerScore=await result(page);assert.equal(lowerScore.evaluation.state,'achieved');assert.deepEqual(lowerScore.records.filter(row=>row.type==='goal').map(row=>row.time),['3']);assert(BigInt(lowerScore.evaluation.score.numerator)<100n*BigInt(lowerScore.evaluation.score.denominator));await page.locator('#stop').click();
+ await selectChallenge(page,'Q1');await drag(page,'S','A');await pauseStart(page);await finish(page);const failedScore=await result(page);assert.equal(failedScore.evaluation.state,'failed');assert.deepEqual(failedScore.evaluation.score,{numerator:'0',denominator:'1'});assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.scores.v1')).value),scores);
  const failedViews=[];
  for(const enlarged of [false,true]){
   const style=enlarged?await page.addStyleTag({content:':root{font-size:28px!important}'}):null;
@@ -122,9 +122,9 @@ async function exercise(page,engine){
  const originalTransform=await worldTransform();await page.locator('#zoom-in').click();assert.notEqual(await worldTransform(),originalTransform);await page.locator('#zoom-out').click();
  const emptyBoard=await page.locator('#board').boundingBox(),panStart={x:emptyBoard.x+emptyBoard.width*.08,y:emptyBoard.y+emptyBoard.height*.15};assert(await page.evaluate(({x,y})=>!document.elementFromPoint(x,y).closest('[data-node],[data-edge]'),panStart));
  const beforePan=await worldTransform();await page.mouse.move(panStart.x,panStart.y);await page.mouse.down();await page.mouse.move(panStart.x+20,panStart.y+15,{steps:8});await page.mouse.up();assert.notEqual(await worldTransform(),beforePan);await page.locator('#fit').click();
- await page.setViewportSize({width:844,height:310});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(90)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'-90');assert.deepEqual((await circuit(page)).circuit,originalCircuit);
+ await page.setViewportSize({width:844,height:310});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(0)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'0');assert.deepEqual((await circuit(page)).circuit,originalCircuit);
  const landscape=await page.evaluate(()=>({viewport:[innerWidth,innerHeight],document:[document.documentElement.scrollWidth,document.documentElement.scrollHeight]}));assert(landscape.document.every((size,index)=>size<=landscape.viewport[index]));await page.setViewportSize({width:390,height:664});await settle(page);assert((await page.locator('[data-node="A"]').getAttribute('transform')).includes('rotate(0)'));
- record(engine,'Offline zoom, background pan, fit and landscape rotation preserve circuit coordinates and avoid document scroll',['F-020','NF-005'],{landscape,physicalTouchVerified:false});
+ record(engine,'Offline zoom, background pan, fit and wide desktop preserve circuit coordinates and avoid document scroll',['F-020','NF-005'],{landscape,physicalTouchVerified:false});
  // Add, move, connect, fault, change direction, and delete via real controls.
  await page.locator('#add-prism').click();const board=await page.locator('#board').boundingBox();await page.mouse.click(board.x+board.width*.12,board.y+board.height*.65);assert.equal(await page.locator('[data-node="P1"] .node-time').textContent(),'0.5s');
  const before=(await circuit(page)).circuit.nodes.find(n=>n.id==='P1');await page.locator('[data-node="P1"] .node-hit').click();await settle(page);const handle=await page.locator('[data-node="P1"] .move-handle').boundingBox();await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2);await page.mouse.down();await page.mouse.move(handle.x+handle.width/2+25,handle.y+handle.height/2-25,{steps:8});await page.mouse.up();await drag(page,'P1','G');
@@ -173,7 +173,7 @@ async function exercise(page,engine){
  await page.locator('#flow').click();await page.getByRole('combobox',{name:'流れ方',exact:true}).selectOption('spread');await choose(page,'確定');
  const audio=await page.evaluate(()=>({AudioContext:typeof window.AudioContext,webkitAudioContext:typeof window.webkitAudioContext}));const hasAudio=audio.AudioContext==='function'||audio.webkitAudioContext==='function';
  await page.locator('#sound').click();if(hasAudio)assert.equal(await page.locator('#sound').textContent(),'音あり');else{assert((await page.locator('#result').textContent()).includes('このブラウザでは音を開始できません'));report.pending.push({engine,requirement:'F-020',label:'Actual offline audio synthesis/output',observed:audio,reason:'Windows test engine has no audio context; physical Safari remains required.'});}
- await pauseStart(page);await finish(page);if(hasAudio)assert.equal((await inspect(page)).audioVoices,3);const endings=await result(page);assert(endings.records.some(r=>r.type==='deadend'&&r.node==='A'));assert(endings.records.some(r=>r.type==='goal'&&r.node==='G'));if(hasAudio){await page.locator('#sound').click();assert.equal(await page.locator('#sound').textContent(),'音なし');}await page.locator('#stop').click();
+ await page.evaluate(()=>window.__offlineBellStarts=[]);await pauseStart(page);await finish(page);if(hasAudio)assert.equal(await page.evaluate(()=>window.__offlineBellStarts.length),1);const endings=await result(page);assert(endings.records.some(r=>r.type==='deadend'&&r.node==='A'));assert(endings.records.some(r=>r.type==='goal'&&r.node==='G'));if(hasAudio){await page.locator('#sound').click();assert.equal(await page.locator('#sound').textContent(),'音なし');}await page.locator('#stop').click();
  record(engine,'Flow/target settings, dead end and unreachable target remain visible with all records; audio control API path checked separately',['F-002','F-006','F-020'],{audioSupport:audio,listeningVerified:false});
  // A labelled render stall tests offline preservation, not a device speed threshold.
  const queued={...finite,name:'通信なし待ち列合成回路',circuit:{mode:'fastest',target:'all',nodes:[{id:'S',kind:'source',x:.5,y:.1,process:'0'},{id:'A',kind:'prism',x:.5,y:.45,process:'0.5'},...[0,1,2].map(i=>({id:'G'+i,kind:'goal',x:.15+i*.35,y:.8,process:'0'}))],edges:[{id:'SA',from:'S',to:'A',time:'0.5'},...[0,1,2].map(i=>({id:'AG'+i,from:'A',to:'G'+i,time:'0.5'}))]}};
@@ -197,7 +197,10 @@ async function exercise(page,engine){
    originOffline=false;if(!server.listening)await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel:channel||null,version:browser.version()});
    try{
     const context=await browser.newContext({viewport:{width:390,height:664}});await context.exposeBinding('__offlineWindowError',(source,error)=>report.windowErrors.push({engine,url:source.page.url(),...error}));
-    await context.addInitScript(()=>{addEventListener('error',e=>{void window.__offlineWindowError({type:'error',message:e.message}).catch(()=>{});});addEventListener('unhandledrejection',e=>{void window.__offlineWindowError({type:'unhandledrejection',message:String(e.reason)}).catch(()=>{});});});
+    await context.addInitScript(()=>{addEventListener('error',e=>{void window.__offlineWindowError({type:'error',message:e.message}).catch(()=>{});});addEventListener('unhandledrejection',e=>{void window.__offlineWindowError({type:'unhandledrejection',message:String(e.reason)}).catch(()=>{});});
+      window.__offlineBellStarts=[];const Audio=window.AudioContext??window.webkitAudioContext;
+      if(Audio){const create=Audio.prototype.createOscillator;Audio.prototype.createOscillator=function(){const oscillator=create.call(this),start=oscillator.start.bind(oscillator);oscillator.start=at=>{if(Math.abs(oscillator.frequency.value-523.22)<.02)window.__offlineBellStarts.push({at,frequency:oscillator.frequency.value});return start(at);};return oscillator;};}
+    });
     const initial=await context.newPage();await initial.goto(url);await prepared(initial);if(engine==='chromium'){const cdp=await context.newCDPSession(initial);await cdp.send('Network.clearBrowserCache');await cdp.detach();}await initial.close();
     originOffline=true;if(engine==='chromium')await context.setOffline(true);else await new Promise(resolve=>server.close(resolve));
     const page=await context.newPage(),assetResponses=[];page.on('response',response=>{if(response.url().startsWith(url))assetResponses.push({url:response.url(),status:response.status(),fromServiceWorker:response.fromServiceWorker()});});page.on('pageerror',e=>{const detail={engine,url:page.url(),originOffline,name:e.name,message:e.message,stack:e.stack};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);report.errors.push(detail);});

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { challenges, challengeCircuit } from '../src/content/challenges.js';
 import { sampleCircuit } from '../src/content/samples.js';
 import { Simulation } from '../src/core/simulation.js';
+import { faultCases } from '../src/core/evaluation.js';
 
 function bestRoute(nodes,edges) {
   const solutions=[];
@@ -55,6 +56,8 @@ test('課題Q1～Q5の全接続組合せを独立した経路列挙で照合し�
 });
 test('Q6は全制限内の接続を判定し、初回1秒が実現可能で複数構成が満点条件を満たす',()=>{
   const challenge=challenges[5];
+  assert.equal(challenge.version,2);
+  assert.equal(new Set(challenge.candidates.map(edge=>[edge.from,edge.to].sort().join('/'))).size,challenge.candidates.length,'No overlapping parallel or opposing routes in the new task');
   const minimumPath=bestRoute(challenge.nodes,challenge.candidates);
   assert.equal(minimumPath.cost,10); // A positive cycle cannot beat this lower bound.
   const achieved=[];
@@ -70,4 +73,22 @@ test('Q6は全制限内の接続を判定し、初回1秒が実現可能で複�
   }
   assert.ok(achieved.filter(first=>first==='1').length>=2);
   assert.ok(achieved.every(first=>Number(first)>=1));
+});
+
+test('新しい課題は短い接続が最速とは限らず、同時間だけ本数で差がつく',()=>{
+  const run=(id,edges)=>{const challenge=challenges.find(c=>c.id===id);const simulation=new Simulation(challengeCircuit(challenge,edges));simulation.advanceUntil('10');return simulation.arrivals()[0].time;};
+  assert.equal(run('Q2',['SC','CG']),'3');
+  assert.equal(run('Q2',['SA','AC','CG']),'2.5');
+  assert.equal(run('Q2',['SB','BC','CG']),'2.5');
+  assert.equal(run('Q3',['SC','CG']),'2.5');
+  assert.equal(run('Q3',['SA','AC','CG']),'2.5');
+});
+
+test('共有中継点を持つ構成は道故障に耐えても中継点故障では不達になり、Q6の横断も到着を変える',()=>{
+  const edges=['SA','AC','SC','CG','CB','BG'];
+  const circuit=challengeCircuit(challenges.find(c=>c.id==='Q4'),edges);
+  const lineFailures=faultCases(circuit,'edge','G');assert(lineFailures.every(c=>c.reachable));assert.equal(Math.max(...lineFailures.map(c=>Number(c.time))),3.5);
+  assert.equal(faultCases(circuit,'prism','G').find(c=>c.id==='C').reachable,false);
+  const interval=new Simulation(challengeCircuit(challenges.find(c=>c.id==='Q6'),['SA','AG','SB','BG','BC','CG']));interval.advanceUntil('7');
+  assert.deepEqual(interval.arrivals().map(c=>c.time),['1','3','6.5']);assert.equal(interval.intervalResult('G','2',3).state,'failed');
 });
