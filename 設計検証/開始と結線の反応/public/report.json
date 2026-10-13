@@ -1,0 +1,1357 @@
+{
+  "version": "0.22.0",
+  "evidence": "PC viewport geometry/state; synthetic audio trace; not device or acoustic acceptance.",
+  "checks": [
+    {
+      "label": "chromium wiring preserves board geometry and confirms only a new successful connection (synthetic audio)",
+      "initial": {
+        "run": null,
+        "matrix": "translate(0 0) scale(1)",
+        "board": [
+          8,
+          56,
+          374,
+          509
+        ],
+        "nodes": [
+          [
+            167.5,
+            434.6153869628906,
+            55,
+            65
+          ],
+          [
+            64.375,
+            297.576904296875,
+            55,
+            65.00003051757812
+          ],
+          [
+            167.5,
+            133.13076782226562,
+            55,
+            65
+          ]
+        ],
+        "edges": 0,
+        "scores": null
+      },
+      "passed": true
+    },
+    {
+      "label": "chromium ordinary launch keeps view and excludes prelude from simulation",
+      "frames": [
+        {
+          "ms": 2.9000000953674316,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 12.099999904632568,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 27.699999809265137,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 43.90000009536743,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 61.19999980926514,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 77.59999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 94.59999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 111.40000009536743,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 128.59999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 145.69999980926514,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 161.59999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 178.09999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 195.19999980926514,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 211.80000019073486,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 227.59999990463257,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 245.69999980926514,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 261.80000019073486,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 297.69999980926514,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(0 0) scale(1)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium zoomed launch animates to whole view in the same short duration",
+      "normalDelay": 297.69999980926514,
+      "zoomDelay": 272.90000009536743,
+      "frames": [
+        {
+          "ms": 2.5,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+        },
+        {
+          "ms": 18,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+        },
+        {
+          "ms": 36.5,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-298.4704810112984 -482.1755297395553) scale(1.5969409790734823)"
+        },
+        {
+          "ms": 52.30000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-241.99705937343435 -395.80195622633073) scale(1.4839941324109192)"
+        },
+        {
+          "ms": 66.7000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-193.2767586738504 -321.28643455231787) scale(1.3865535280898877)"
+        },
+        {
+          "ms": 85.80000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-152.27545791014566 -258.5767781698676) scale(1.3045509241035402)"
+        },
+        {
+          "ms": 99.80000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-117.87660225505317 -205.96526639095583) scale(1.2357532107303804)"
+        },
+        {
+          "ms": 117.2000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-89.5722922686578 -162.67508973001355) scale(1.179144589060118)"
+        },
+        {
+          "ms": 133.90000009536743,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-67.18994019854495 -128.442282935984) scale(1.1343798835775736)"
+        },
+        {
+          "ms": 151.30000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-49.74216988483579 -101.75669831713748) scale(1.099484341903774)"
+        },
+        {
+          "ms": 166.80000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-36.547235283669636 -81.57563577971399) scale(1.0730944719101125)"
+        },
+        {
+          "ms": 183.59999990463257,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-27.09889754921352 -67.12482564254935) scale(1.0541977958745627)"
+        },
+        {
+          "ms": 201.2000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-20.801313328119875 -57.4929521363822) scale(1.0416026270546954)"
+        },
+        {
+          "ms": 217.30000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-16.95604485989702 -51.61178593313855) scale(1.0339120898876406)"
+        },
+        {
+          "ms": 234.40000009536743,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.98407482502921 -48.59574593002435) scale(1.0299681496996418)"
+        },
+        {
+          "ms": 251.40000009536743,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.26158365024338 -47.490727980196766) scale(1.0285231673067405)"
+        },
+        {
+          "ms": 272.90000009536743,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium stop cancels launch and restores zoom, prior time, records, scores and wiring",
+      "passed": true
+    },
+    {
+      "label": "chromium opening menu cancels pending launch without a delayed run",
+      "passed": true
+    },
+    {
+      "label": "chromium reduced motion keeps duration and fits once before launch",
+      "frames": [
+        {
+          "ms": 2.4000000953674316,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 9.600000381469727,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 25.90000009536743,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 41.30000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 58.60000038146973,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 74.7000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 92.10000038146973,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 109.80000019073486,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 125.2000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 143.2000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 157.90000009536743,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 175.7000002861023,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 192.5,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 209.60000038146973,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 225.60000038146973,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 243.10000038146973,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 271.1000003814697,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "chromium resume leaves paused time and records untouched during prelude",
+      "passed": true
+    },
+    {
+      "label": "chromium Q1 still records 2.5 seconds and 100 points after prelude",
+      "done": {
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 1,
+          "active": 0,
+          "waiting": 0
+        },
+        "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)",
+        "board": [
+          8,
+          56,
+          374,
+          509
+        ],
+        "nodes": [
+          [
+            167.5,
+            433.010498046875,
+            55,
+            65
+          ],
+          [
+            61.45505905151367,
+            292.09185791015625,
+            54.999996185302734,
+            65
+          ],
+          [
+            167.5,
+            122.9894790649414,
+            55,
+            65.00000762939453
+          ]
+        ],
+        "edges": 2,
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      },
+      "passed": true
+    },
+    {
+      "label": "webkit wiring preserves board geometry and confirms only a new successful connection (synthetic audio)",
+      "initial": {
+        "run": null,
+        "matrix": "translate(0 0) scale(1)",
+        "board": [
+          8,
+          56,
+          374,
+          509
+        ],
+        "nodes": [
+          [
+            167.5,
+            434.6153869628906,
+            55,
+            65
+          ],
+          [
+            64.375,
+            297.5769348144531,
+            55,
+            65
+          ],
+          [
+            167.5,
+            133.13076782226562,
+            55,
+            65
+          ]
+        ],
+        "edges": 0,
+        "scores": null
+      },
+      "passed": true
+    },
+    {
+      "label": "webkit ordinary launch keeps view and excludes prelude from simulation",
+      "frames": [
+        {
+          "ms": 5,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 9,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 24,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 54,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 72,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 86,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 100,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 116,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 132,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 147,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 163,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 179,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 194,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 210,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 225,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 240,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 256,
+          "state": "preparing",
+          "run": null,
+          "matrix": "translate(0 0) scale(1)"
+        },
+        {
+          "ms": 282,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(0 0) scale(1)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit zoomed launch animates to whole view in the same short duration",
+      "normalDelay": 282,
+      "zoomDelay": 302,
+      "frames": [
+        {
+          "ms": 5,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+        },
+        {
+          "ms": 14,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+        },
+        {
+          "ms": 47,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-269.1926215659692 -437.39635270779786) scale(1.5383852584269664)"
+        },
+        {
+          "ms": 77,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-177.63479400059973 -297.36274892441475) scale(1.3552695978053035)"
+        },
+        {
+          "ms": 111,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-109.34872581650214 -192.92226065278356) scale(1.2186974573418428)"
+        },
+        {
+          "ms": 140,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-64.49190779475163 -124.31576300127085) scale(1.1289838186081798)"
+        },
+        {
+          "ms": 171,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-36.547235283669636 -81.57563577971399) scale(1.0730944719101125)"
+        },
+        {
+          "ms": 208,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-21.512597513555875 -58.580829497054765) scale(1.0430251954682248)"
+        },
+        {
+          "ms": 254,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.429721672370704 -47.747887567722955) scale(1.0288594433610787)"
+        },
+        {
+          "ms": 302,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit stop cancels launch and restores zoom, prior time, records, scores and wiring",
+      "passed": true
+    },
+    {
+      "label": "webkit opening menu cancels pending launch without a delayed run",
+      "passed": true
+    },
+    {
+      "label": "webkit reduced motion keeps duration and fits once before launch",
+      "frames": [
+        {
+          "ms": 6,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 23,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 38,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 52,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 68,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 83,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 99,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 114,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 129,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 145,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 162,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 176,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 192,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 208,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 223,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 238,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 254,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 270,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+        },
+        {
+          "ms": 305,
+          "state": "running",
+          "run": {
+            "status": "running",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          },
+          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "webkit resume leaves paused time and records untouched during prelude",
+      "passed": true
+    },
+    {
+      "label": "webkit Q1 still records 2.5 seconds and 100 points after prelude",
+      "done": {
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 1,
+          "active": 0,
+          "waiting": 0
+        },
+        "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)",
+        "board": [
+          8,
+          56,
+          374,
+          509
+        ],
+        "nodes": [
+          [
+            167.5,
+            433.010498046875,
+            55,
+            65
+          ],
+          [
+            61.455055236816406,
+            292.09185791015625,
+            55,
+            65
+          ],
+          [
+            167.5,
+            122.9894790649414,
+            55,
+            65.00000762939453
+          ]
+        ],
+        "edges": 2,
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      },
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

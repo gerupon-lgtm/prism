@@ -1,215 +1,215 @@
 {
-  "version": "0.21.0",
+  "version": "0.22.0",
   "url": "https://gerupon-lgtm.github.io/prism/",
-  "checkedAt": "2026-10-13T18:55:18.002Z",
+  "checkedAt": "2026-10-13T20:31:12.366Z",
   "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
   "checks": [
     {
       "asset": "./index.html",
       "type": "text/html; charset=utf-8",
-      "sha256": "04813fa41b35fbb087fa418d2a17d3c438861b5f3ca357c79d2a42e5f9284b6e",
+      "sha256": "f77b419a7564b11baef1230a6a462afb31d130120d53438f7eb6e5e67a493f06",
       "passed": true
     },
     {
       "asset": "./manifest.webmanifest",
       "type": "application/manifest+json; charset=utf-8",
-      "sha256": "2bdb4c8c60ff0845f42ae1d7513409f5642ae4b9219f617a73809b5240e3a0f8",
+      "sha256": "f2669f76a19bb3606fe5683b2e8d8321333896917966486aea3acb0e08aee377",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/app/session.js",
+      "asset": "./v0.22.0/src/app/session.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d853e7fc024306949d424b6e662b8e0375db4bd31bdb2ff29c67078ecaf65745",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/app/update-safety.js",
+      "asset": "./v0.22.0/src/app/update-safety.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/content/challenges.js",
+      "asset": "./v0.22.0/src/content/challenges.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "8552d25b6e90a9d87428a07f8da1cd0faadd40cee2ee6c7e4acddff582c7fba2",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/content/samples.js",
+      "asset": "./v0.22.0/src/content/samples.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/circuit.js",
+      "asset": "./v0.22.0/src/core/circuit.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/evaluation.js",
+      "asset": "./v0.22.0/src/core/evaluation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/heap.js",
+      "asset": "./v0.22.0/src/core/heap.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/simulation.js",
+      "asset": "./v0.22.0/src/core/simulation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "a113c6b5d03b753964981b74c84cbcf09c3308f86f7f432124927de33f9d8510",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/storage.js",
+      "asset": "./v0.22.0/src/core/storage.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "0b8802ebdf095887d7ffdfbee3f5fa24dae7f3e3a9b493b0100c00b50970a077",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/core/time.js",
+      "asset": "./v0.22.0/src/core/time.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/app.css",
+      "asset": "./v0.22.0/src/ui/app.css",
       "type": "text/css; charset=utf-8",
-      "sha256": "8f197af0fa9a4e8534fa7519807d2a468d4a9a119a5e75442c1b9bb60e7a614b",
+      "sha256": "bb987ce5d03726aade68300b2b46f3f950454bfb5d9a84ee427cb4de84bad152",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/app.js",
+      "asset": "./v0.22.0/src/ui/app.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "dc44902a173ba555ee3b3e453906f7cd845e182920dbe55028821c7a70f3d2e3",
+      "sha256": "f66fec62c86d3380eb2458ad0e81ed1f78796efa98d770568d8352a6b5e41f75",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/audio.js",
+      "asset": "./v0.22.0/src/ui/audio.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "a807120f93347fe2c583fab4aba40534fbd65eb2caaf2f3a436367597c2912aa",
+      "sha256": "4d9cbc29a5be47ffdc4745fe1360bf47217ab94a5ad0b02c9498f1555ea4255e",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/board.js",
+      "asset": "./v0.22.0/src/ui/board.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "14b4c886174e89c094b4f8ae5953d385d6b595ee8153c4ebe22a36a33afc2a25",
+      "sha256": "e6035d00fde5f8630160132d1af81492f2506a2fd09bff9220906df5cf3aea2d",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/end-wait.js",
+      "asset": "./v0.22.0/src/ui/end-wait.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d45f11e4c67134ec3f604cf2334b1447c3e86c9746a66fb8c63db272faadca9e",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/load-meter.js",
+      "asset": "./v0.22.0/src/ui/load-meter.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/magnifier.js",
+      "asset": "./v0.22.0/src/ui/magnifier.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "acbd1538d586b6bec094ecfd741dbe907fa1d3a2caa1ae5700e5ce37f9b79493",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/offline.js",
+      "asset": "./v0.22.0/src/ui/offline.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "29ae80765c76de7976014c22da68aa0efab386e75d9659c51ac7a9b176a12ed2",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/orientation.js",
+      "asset": "./v0.22.0/src/ui/orientation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "984bbf87bfee5921a73f1e2e21eb2c42de81e158f1d087b4c47b09be35d4fdf0",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/scene.js",
+      "asset": "./v0.22.0/src/ui/scene.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "eecd87bbbb525b9542db1f6d25a42ed5067b805b68add7841f6c60a8885a7804",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/src/ui/svg.js",
+      "asset": "./v0.22.0/src/ui/svg.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/画面案/ロゴ/fonts/OFL.txt",
+      "asset": "./v0.22.0/画面案/ロゴ/fonts/OFL.txt",
       "type": "text/plain; charset=utf-8",
       "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "asset": "./v0.22.0/画面案/ロゴ/fonts/montserrat-500.ttf",
       "type": "font/ttf",
       "sha256": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "asset": "./v0.22.0/画面案/ロゴ/fonts/montserrat-600.ttf",
       "type": "font/ttf",
       "sha256": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/apple-touch-icon.png",
+      "asset": "./v0.22.0/public/apple-touch-icon.png",
       "type": "image/png",
       "sha256": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/graphics/goal.png",
+      "asset": "./v0.22.0/public/graphics/goal.png",
       "type": "image/png",
       "sha256": "79ef581e9d6db0211fe7cc06eb642749d989517a9d0081f827e6e03378f85558",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/graphics/observatory.png",
+      "asset": "./v0.22.0/public/graphics/observatory.png",
       "type": "image/png",
       "sha256": "2628c2ccdbd8a83f3f37fd7f8f707309a96fc8e5c08a6edbdb97e7e427373b47",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/graphics/prism.png",
+      "asset": "./v0.22.0/public/graphics/prism.png",
       "type": "image/png",
       "sha256": "aff97d60401b20d0c603ad9f1b6193f0ea12d6de193d5d328943270a663053d6",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/graphics/ruins.png",
+      "asset": "./v0.22.0/public/graphics/ruins.png",
       "type": "image/png",
       "sha256": "0cf8246eb08f8369148b2373f1c68ddce5ededf9dca30460f86d9b4bef5222ca",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/graphics/source.png",
+      "asset": "./v0.22.0/public/graphics/source.png",
       "type": "image/png",
       "sha256": "9806dd69e14dee5fc2113715b6281c31e30d0e45f294fb7c00cc5c063879e1fc",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/icon-192.png",
+      "asset": "./v0.22.0/public/icon-192.png",
       "type": "image/png",
       "sha256": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/icon-512.png",
+      "asset": "./v0.22.0/public/icon-512.png",
       "type": "image/png",
       "sha256": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
       "passed": true
     },
     {
-      "asset": "./v0.21.0/public/spirit-guide.png",
+      "asset": "./v0.22.0/public/spirit-guide.png",
       "type": "image/png",
       "sha256": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
       "passed": true
@@ -228,11 +228,11 @@
       "rotation": 0,
       "source": {
         "x": 160,
-        "y": 321.73077392578125
+        "y": 318.5
       },
       "goal": {
         "x": 160,
-        "y": 126.86154174804688
+        "y": 126
       },
       "header": {
         "x": 160,
@@ -240,7 +240,7 @@
       },
       "board": {
         "x": 160,
-        "y": 220.5
+        "y": 218.5
       },
       "play": {
         "x": 160,
@@ -256,12 +256,12 @@
       "sh": 664,
       "rotation": 0,
       "source": {
-        "x": 195.00000762939453,
-        "y": 470.3461456298828
+        "x": 195,
+        "y": 467.1153869628906
       },
       "goal": {
-        "x": 195.00000762939453,
-        "y": 166.4923095703125
+        "x": 195,
+        "y": 165.63076782226562
       },
       "header": {
         "x": 195,
@@ -269,7 +269,7 @@
       },
       "board": {
         "x": 195,
-        "y": 312.5
+        "y": 310.5
       },
       "play": {
         "x": 195,
@@ -286,11 +286,11 @@
       "rotation": 0,
       "source": {
         "x": 422,
-        "y": 195.83834838867188
+        "y": 192.60757446289062
       },
       "goal": {
         "x": 422,
-        "y": 91.82355880737305
+        "y": 90.96201705932617
       },
       "header": {
         "x": 422,
@@ -298,7 +298,7 @@
       },
       "board": {
         "x": 422,
-        "y": 141.8046875
+        "y": 139.8046875
       },
       "play": {
         "x": 422,
@@ -326,11 +326,11 @@
       "rotation": 0,
       "source": {
         "x": 160,
-        "y": 321.73077392578125
+        "y": 318.5
       },
       "goal": {
         "x": 160,
-        "y": 126.86154174804688
+        "y": 126
       },
       "header": {
         "x": 160,
@@ -338,7 +338,7 @@
       },
       "board": {
         "x": 160,
-        "y": 220.5
+        "y": 218.5
       },
       "play": {
         "x": 160,
@@ -354,12 +354,12 @@
       "sh": 664,
       "rotation": 0,
       "source": {
-        "x": 195.00000762939453,
-        "y": 470.3461608886719
+        "x": 195,
+        "y": 467.1153869628906
       },
       "goal": {
-        "x": 195.00000762939453,
-        "y": 166.4923095703125
+        "x": 195,
+        "y": 165.63076782226562
       },
       "header": {
         "x": 195,
@@ -367,7 +367,7 @@
       },
       "board": {
         "x": 195,
-        "y": 312.5
+        "y": 310.5
       },
       "play": {
         "x": 195,
@@ -384,11 +384,11 @@
       "rotation": 0,
       "source": {
         "x": 422,
-        "y": 195.85096740722656
+        "y": 192.6201934814453
       },
       "goal": {
         "x": 422,
-        "y": 91.82692337036133
+        "y": 90.96538543701172
       },
       "header": {
         "x": 422,
@@ -396,7 +396,7 @@
       },
       "board": {
         "x": 422,
-        "y": 141.8125
+        "y": 139.8125
       },
       "play": {
         "x": 422,
@@ -408,10 +408,10 @@
       "passed": true
     }
   ],
-  "commit": "99fbe29f8a2f7b2b34935020a87a7c4690fad87c",
+  "commit": "779d8f8b724373a6e0c218a1cce6340df0f0811a",
   "cacheAfterHTTPClear": {
     "keys": [
-      "prism-notes:/prism/:0.21.0"
+      "prism-notes:/prism/:0.22.0"
     ],
     "registrations": [
       {
