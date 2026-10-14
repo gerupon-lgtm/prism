@@ -8,6 +8,7 @@ const selected=arg('--configuration');
 const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'文字拡大',selected||'');fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version;
 const report={version,checkedAt:new Date().toISOString(),evidence:'PC Chromium and installed Windows Chrome/Edge: native minimumFontSize=24/defaultFontSize=32, with independent probes. Windows Playwright WebKit: explicit CSS root-font 28px simulation. Does not prove OS, phone, or Safari text zoom. Native text input horizontal caret scrolling is allowed; page/hidden vertical scrolling is not.',checks:[]};
+let diagnosticPage;
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.ttf':'font/ttf','.png':'image/png','.webmanifest':'application/manifest+json'};
 const server=http.createServer((req,res)=>{let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(file===root)file=path.join(root,'index.html');try{res.setHeader('Content-Type',mime[path.extname(file)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
 const settle=p=>p.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
@@ -29,7 +30,7 @@ async function readFull(page,label){const pieces=[];for(let n=0;n<100;n++){await
  if(selected)assert(configurations.some(c=>c.name===selected),'Unknown diagnostic configuration');
  for(const config of configurations.filter(c=>!selected||c.name===selected))for(const setting of config.css?['CSS-root-28px']:['minimumFontSize=24','defaultFontSize=32']){
   const pref=`${config.name} ${setting}`,browser=await config.type.launch({headless:true,...config.options,...(config.css?{}:{args:[`--blink-settings=${setting}`]})});try{
-   const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+   const page=await browser.newPage({viewport:{width:390,height:664}}),errors=[];diagnosticPage=page;page.on('pageerror',e=>errors.push(e.message));
    await page.setContent('<span id="probe">MMMMMMMM</span><span id="fixed" style="font-size:12px">MMMMMMMM</span>');
    const probe=await page.evaluate(()=>({natural:getComputedStyle(document.getElementById('probe')).fontSize,fixed:getComputedStyle(document.getElementById('fixed')).fontSize}));assert.equal(probe.natural,config.css?'16px':setting.startsWith('minimum')?'24px':'32px');assert.equal(probe.fixed,setting.startsWith('minimum')?'24px':'12px');report.checks.push({label:`${pref} independent setting probe`,passed:true,probe,browser:browser.version(),method:config.css?'CSS simulation':'native engine preference'});
    await page.goto(url);await enterApp(page);if(config.css)await page.addStyleTag({content:':root{font-size:28px!important}'});await settle(page);assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),version);if((config.css||setting.startsWith('default'))&&!process.argv.includes('--baseline'))assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).fontSize),'28px','App must actually enlarge with the default font setting');await startGuide(page);await sizes(page,`${pref} guide`);await skipGuide(page);await sizes(page,`${pref} play`);
@@ -74,6 +75,12 @@ async function readFull(page,label){const pieces=[];for(let n=0;n<100;n++){await
    }
    assert.deepEqual(errors,[]);
    await page.screenshot({path:path.join(out,config.name+'-'+setting.split('=')[0]+'.png')});
+  }catch(error){
+   if(diagnosticPage&&!diagnosticPage.isClosed()){
+    report.actionFailure=await diagnosticPage.evaluate(()=>({dialogOpen:document.getElementById('dialog').open,title:document.getElementById('dialog-title').textContent,close:[...document.getElementById('dialog-close').getClientRects()].map(r=>[r.left,r.top,r.width,r.height]),active:document.activeElement?.id,bodyClass:document.body.className}));
+    await diagnosticPage.screenshot({path:path.join(out,'failed-action.png')});
+   }
+   throw error;
   }finally{await browser.close();}
  }
  report.passed=report.checks.every(c=>c.passed);console.log(JSON.stringify({checks:report.checks.length,failures:report.checks.filter(c=>!c.passed).map(c=>({label:c.label,issues:c.issues})),passed:report.passed}));if(!report.passed&&!process.argv.includes('--baseline'))process.exitCode=1;

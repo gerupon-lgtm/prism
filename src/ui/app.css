@@ -264,3 +264,84 @@ html:not(.device-landscape) .text-enlarged.compact #update-notice{min-height:30p
 .device-landscape .text-enlarged #wire-budget span{white-space:normal}
 
 .device-landscape .text-enlarged header:has(#challenge-info:not([hidden])):has(#update-notice:not([hidden])){height:clamp(110px,calc(4.5 * var(--layout-font)),150px)}
+
+/* Thumb actions stay at the lower edge; occasional tools share the header. */
+#home.logo{width:100px;height:44px;min-height:44px}
+html:not(.device-landscape) .header-content,html:not(.device-landscape) .header-content:has(#challenge-info:not([hidden])){display:grid;grid-template-columns:100px minmax(0,1fr) auto;gap:4px;align-items:center}
+.header-actions{gap:4px;justify-content:end}
+.header-actions button,.header-actions #update-notice{min-width:44px;min-height:44px;padding:4px;font-size:1rem;line-height:1.2}
+.heading strong,.heading small{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;overflow-wrap:anywhere}
+#sound .sound-icon{display:none;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#sound[aria-pressed=false] .sound-waves,#sound[aria-pressed=true] .sound-off{display:none}
+.text-enlarged #sound-label{display:none}.text-enlarged #sound .sound-icon{display:block}
+.text-enlarged .header-actions button,.text-enlarged .header-actions #update-notice{min-height:44px}
+#play-controls{min-height:56px}
+.play-content{display:flex;gap:6px;align-items:stretch}
+#play-controls button{min-height:56px;min-width:0;font-size:1rem;line-height:1.2;padding:6px}
+#play-controls #play{flex:2;font-size:1.15rem;font-weight:600;background:#c3a158;color:#091020;border-color:#e3c780}
+#play-controls #play[data-state=running]{background:#466e61;color:#fff}
+#play-controls #play[data-state=paused]{background:#745e3a;color:#fff}
+#stop{border-color:#9b8290}
+#edit-controls button,.zoom-controls button{min-height:40px}
+html:not(.device-landscape) .text-enlarged:not(.compact) .header-content{grid-template-columns:100px minmax(0,1fr)}
+html:not(.device-landscape) .text-enlarged:not(.compact) #home{grid-column:1;grid-row:1}
+html:not(.device-landscape) .text-enlarged:not(.compact) .header-actions{grid-column:2;grid-row:1}
+html:not(.device-landscape) .text-enlarged:not(.compact) #condition-info{grid-column:1/-1;grid-row:2}
+html:not(.device-landscape) .text-enlarged:not(.compact) #challenge-info{grid-row:3}
+html:not(.device-landscape) .compact .header-content{grid-template-columns:44px minmax(0,1fr) auto}
+html:not(.device-landscape) .compact #home{width:44px;height:32px;min-height:32px}
+html:not(.device-landscape) .compact #play-controls,html:not(.device-landscape) .compact #play-controls button{min-height:44px}
+.device-landscape #play-controls{height:clamp(64px,calc(4 * var(--layout-font)),128px);min-height:0}
+.device-landscape .play-content{display:flex;gap:6px}
+.device-landscape #play-controls button{min-height:0}
+.device-landscape .header-actions{flex-direction:row;flex-wrap:wrap}
+.device-landscape .header-actions button{min-height:44px;min-width:40px;flex:1 1 40px}
+.device-landscape .header-content .heading strong{white-space:normal}
+.device-landscape .header-content .logo{max-width:min(100px,100%)}
+.dialog-list button.challenge-row{display:flex;align-items:center;gap:10px;white-space:normal;overflow:visible;text-overflow:clip;padding:8px 10px;min-height:52px}
+.challenge-name{flex:1;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.4}
+.challenge-number{color:#e3c780;white-space:nowrap}
+.challenge-tier{display:block;color:#aebbd1;font-size:.785714rem}
+.challenge-score{flex:none;display:flex;flex-direction:column;align-items:end;gap:2px;white-space:nowrap;color:#e5eaf4}
+.challenge-score small{font-size:.714286rem;color:#aebbd1}.challenge-score strong{font-size:.928571rem;font-weight:500;font-variant-numeric:tabular-nums}
+.device-landscape .text-enlarged .heading-title>span[aria-hidden]{display:none}
+.device-landscape .text-enlarged #wire-budget::before{content:'配線';width:100%;font-size:.714286rem}
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])),.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])):has(#update-notice:not([hidden])){height:clamp(88px,calc(3.2 * var(--layout-font)),140px)}
+/* User-created circuit names can be arbitrarily long; their full text opens
+   from the heading. Fixed challenge names remain wrapped and fully visible. */
+.header-content:not(:has(#challenge-info:not([hidden]))) .heading strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-content:not(:has(#challenge-info:not([hidden]))) .heading small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#condition-info{line-height:1.4;padding-block:2px}
+.text-enlarged .heading strong{font-size:.857143rem;line-height:1.4}
+html:not(.device-landscape) .text-enlarged.compact #stage-controls button{min-height:34px}
+html:not(.device-landscape) .text-enlarged.compact #play{font-size:1rem}
+html:not(.device-landscape) .text-enlarged.compact #stage-controls button{line-height:1.2}
+html:not(.device-landscape) .text-enlarged.compact #play-controls,html:not(.device-landscape) .text-enlarged.compact #play-controls button{min-height:40px}
+html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.857143rem}
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])),.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])):has(#update-notice:not([hidden])){height:clamp(116px,calc(4.15 * var(--layout-font)),160px)}
+.device-landscape .text-enlarged .header-actions{display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;justify-content:stretch}
+.device-landscape .text-enlarged .header-actions button{flex:1 1 40px;min-width:0}
+.device-landscape .text-enlarged .header-actions #records,.device-landscape .text-enlarged .header-actions #update-notice{flex-basis:62px}
+.device-landscape .text-enlarged #sound{display:flex;align-items:center;justify-content:center}
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])),.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])):has(#update-notice:not([hidden])){height:108px}
+.device-landscape .text-enlarged #play-controls{height:88px}
+.device-landscape .text-enlarged #result-line{height:80px}
+.device-landscape .text-enlarged footer{height:70px}
+@media(max-width:360px){
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content{grid-template-columns:64px minmax(0,1fr) auto}
+  html:not(.device-landscape) #app:not(.compact) #home{width:64px}
+  html:not(.device-landscape) #app.text-enlarged:not(.compact) .header-content{grid-template-columns:64px minmax(0,1fr)}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .heading small{display:none}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content:has(#update-notice:not([hidden])){grid-template-columns:64px minmax(0,1fr)}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content:has(#update-notice:not([hidden])) #home{grid-column:1;grid-row:1}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content:has(#update-notice:not([hidden])) .header-actions{grid-column:2;grid-row:1}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content:has(#update-notice:not([hidden])) #condition-info{grid-column:1/-1;grid-row:2}
+  html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content:has(#update-notice:not([hidden])) #challenge-info{grid-row:3}
+}
+@media(min-width:361px) and (max-width:600px) and (min-height:361px){
+  html:not(.device-landscape) #app:not(.compact) .header-content{grid-template-columns:100px minmax(0,1fr)}
+  html:not(.device-landscape) #app:not(.compact) #home{grid-column:1;grid-row:1}
+  html:not(.device-landscape) #app:not(.compact) .header-actions{grid-column:2;grid-row:1}
+  html:not(.device-landscape) #app:not(.compact) #condition-info{grid-column:1/-1;grid-row:2}
+  html:not(.device-landscape) #app:not(.compact) #challenge-info{grid-row:3}
+}

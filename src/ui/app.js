@@ -2,7 +2,7 @@ import { Session } from '../app/session.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
 import { displayScore } from '../core/evaluation.js';
-import { challenges, challengeObjective } from '../content/challenges.js';
+import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
@@ -11,6 +11,7 @@ import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
 import { OrientationLayout } from './orientation.js';
 import { EndWait } from './end-wait.js';
+import { partName,objectName } from './labels.js';
 
 const $ = id => document.getElementById(id);
 function element(tag,text='',attributes={}) {
@@ -19,9 +20,7 @@ function element(tag,text='',attributes={}) {
   return item;
 }
 function button(text,action,attributes={}) {
-  const characters=Array.from(String(text));
-  const label=characters.length>18?characters.slice(0,17).join('')+'…':text;
-  const item=element('button',label,{type:'button',title:text,'aria-label':text,...attributes});item.addEventListener('click',()=>attempt(action));return item;
+  const item=element('button',text,{type:'button',title:text,'aria-label':text,...attributes});item.addEventListener('click',()=>attempt(action));return item;
 }
 const load=new LoadMeter();
 const endWait=new EndWait();
@@ -73,7 +72,10 @@ dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();ret
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
 function challengeGoal(challenge){
-  return challengeObjective(challenge)||({time:`${challenge.goal}へより早く届ける`,'time-hops':`${challenge.goal}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${challenge.goal}へ`,'prism-fault':`どのプリズムが1つ止まっても${challenge.goal}へ`}[challenge.type]);
+  const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
+  if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
+  if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
+  return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
 }
 function render(redraw=true,{records=true}={}) {
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=360&&textEnlarged;
@@ -82,7 +84,7 @@ function render(redraw=true,{records=true}={}) {
   $('app').classList.toggle('text-enlarged',textEnlarged);
   $('app').classList.toggle('compact',compact);
   const narrowControls=textEnlarged||compact||Math.abs(orientation.rotation)===90;
-  $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'祭壇＋':'＋祭壇';
+  $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'鐘＋':'＋鐘';
   const canRestore=clearedConnections?.cleared===session.circuit;
   $('clear-wires').textContent=canRestore?'戻す':textEnlarged?'消去':'クリア';$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
   $('clear-wires').disabled=Boolean(startPrelude)||!session.editable||(!canRestore&&!session.circuit.edges.length);
@@ -102,39 +104,43 @@ function render(redraw=true,{records=true}={}) {
   $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
   if(session.mode==='challenge'){
     const used=session.circuit.edges.length,limit=session.challenge.limit;
-    const counter=(label,value)=>{const part=element('span');part.append(document.createTextNode(label),element('b',String(value),{class:'wire-count'}),document.createTextNode('本'));return part;};
+    const shortCounters=textEnlarged&&Math.abs(orientation.rotation)===90;
+    const counter=(label,value)=>{const part=element('span');part.append(document.createTextNode(label),element('b',String(value),{class:'wire-count'}),document.createTextNode(shortCounters?'':'本'));return part;};
     $('wire-budget').style.setProperty('--wire-digits',Math.max(1,String(limit).length));
     $('wire-budget').replaceChildren(counter(`${textEnlarged?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
-    if(compact)$('title').textContent=`${session.challenge.id} 上限${limit}本・課題`;
+    $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
+    if(compact)$('title').textContent=`課題${session.challenge.id.slice(1)}`;
+    else if(shortCounters)$('title').textContent=`課題${session.challenge.id.slice(1)}`;
   }
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
   const startBlockedReason=session.editable?session.startBlockedReason:'';
   $('stage').inert=Boolean(startPrelude);$('stage').classList.toggle('launching',Boolean(startPrelude));
-  $('play').textContent=startPrelude?'準備中':session.editable?'流す':run.exhausted?'終了':run.status==='running'?'一時停止':'再開';
+  $('play').textContent=startPrelude?'準備中':session.editable?'鐘を鳴らす':run.exhausted?'終了':run.status==='running'?'一時停止':'再開';
   $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
   $('play').title=startBlockedReason||(!session.editable&&run?.exhausted?'動作は終了しています。停止で編集へ戻れます。':'');
   $('stop').disabled=session.editable&&!startPrelude;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
   $('play').dataset.state=startPrelude?'preparing':run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
+  $('next').textContent=narrowControls?'次へ':'次の動き';
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
-  $('sound').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));
+  $('sound-label').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));$('sound').setAttribute('aria-label',chime.muted?'音なし':'音あり');
   const execution=run?(run.status==='stopped'?'編集可能':run.exhausted?'動作終了':run.status==='running'?'実行中':'一時停止'):'';
   let text=run?`${execution}｜${run.format()}秒・${run.activeCount}光線`:'';
   if(session.result){
     const stateText={pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
     text=`${stateText}${session.result.score?' '+displayScore(session.result.score)+'点':''}・${text}`;
-    if(session.result.reason)text+='　'+session.result.reason;
-    if(session.result.goals)text+=`　祭壇 ${session.result.goals.filter(goal=>goal.first!==null).length}/${session.result.goals.length}${session.result.state==='achieved'?'・全到達 '+session.result.evaluatedTime+'秒':''}`;
+    if(session.result.reason)text+='　'+session.result.reason.replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');
+    if(session.result.goals)text+=`　鐘 ${session.result.goals.filter(goal=>goal.first!==null).length}/${session.result.goals.length}${session.result.state==='achieved'?'・全到達 '+session.result.evaluatedTime+'秒':''}`;
   }
   if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
   $('result').textContent=[text,message||startBlockedReason].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
-  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${session.selection}：ダブルタップで設定`:'起点から候補をなぞって結線';
+  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：ダブルタップで設定`:'起点から候補をなぞって結線';
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
-    const guide=session.guide,steps=guide.mode==='challenge'?['起点から候補へドラッグしてつなぎます。','祭壇までつないで「流す」を押します。','到着と点数を見て「記録」を開きます。']:['「流す」で2.5秒の到着を見ます。','停止してAをダブルタップ。処理時間を1.5秒へ。','もう一度流して、B経由の3秒到着を見ます。'];
+    const guide=session.guide,steps=guide.mode==='challenge'?['星から候補へドラッグしてつなぎます。','鐘までつないで「鐘を鳴らす」を押します。','鐘への到着と点数を見て、上の「記録」を開きます。']:['「鐘を鳴らす」で2.5秒後に鐘が鳴る様子を見ます。','停止してプリズムAをダブルタップ。処理時間を1.5秒へ。','もう一度「鐘を鳴らす」を押して、プリズムB経由で3秒後に鐘が鳴る様子を見ます。'];
     $('guide-text').textContent=`${guide.step+1}/3 ${steps[guide.step]}`;$('guide-finish').hidden=!guide.readyToFinish;
     if(compact)$('hint').textContent=`案内 ${$('guide-text').textContent}`;
   }
@@ -255,7 +261,12 @@ function chooseMode(after=null) {
   try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
   listPage(challenges,challenge=>{
     const best=scores.find(score=>score.challenge===`${challenge.id}@${challenge.version}`&&score.rule===`${challenge.type}@1`);
-    return button(`${challenge.id} ${challenge.name}${Number(challenge.id.slice(1))>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`,()=>replace({challengeId:challenge.id}));
+    const text=`${challenge.id} ${challenge.name}${Number(challenge.id.slice(1))>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`;
+    const row=button(text,()=>replace({challengeId:challenge.id}),{class:'challenge-row','data-challenge':challenge.id});row.replaceChildren();
+    const name=element('span','',{class:'challenge-name'});name.append(element('span',challenge.id+' ',{class:'challenge-number'}),document.createTextNode(challenge.name));
+    if(Number(challenge.id.slice(1))>6)name.append(element('small','実践',{class:'challenge-tier'}));
+    const score=element('span','',{class:'challenge-score'});score.append(element('small','最高点'),element('strong',best?displayScore(best.score)+'点':'未達成'));
+    row.append(name,score);return row;
   });
 }
 function replace(request) {
@@ -292,15 +303,15 @@ function tutorial() {leaveTitle();if(!session.guide)session.beginGuide();message
 function partsExplanation() {
   open('パーツの説明');
   listPage([
-    ['source','星の光 S','光の出発点。ここから祭壇へ道をつなぎます。'],
+    ['source','星の光','光の出発点。ここから鐘へ道をつなぎます。'],
     ['prism','プリズム','光の中継点。道の時間に加え、ここでの処理時間もかかります。'],
-    ['goal','祭壇 G','光の到着先。到着すると鐘が鳴り、星の光が浮かびます。'],
+    ['goal','祭壇の鐘','光の到着先。光が届くと鐘が鳴り、星の光が浮かびます。'],
   ],([asset,name,text])=>{const compact=body.clientHeight<180,item=button('',()=>fullText(name,text,partsExplanation)),copy=element('div');item.className=`part-description${compact?' compact':''}`;item.setAttribute('aria-label',`${name}の説明`);copy.append(element('strong',name));if(!compact)copy.append(element('p',text));item.append(element('img','',{src:new URL(`../../public/graphics/${asset}.png`,import.meta.url).href,alt:''}),copy);return item;});
   actions.append(button('閉じる',close));
 }
 function aboutGame() {
   open('遊び方と概要');
-  body.append(element('p','星の光をプリズムから祭壇へ導くゲームです。お試し6問と実践6問で、候補の道をつなぎ、流し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の祭壇への到達や指定間隔を満たします。複数祭壇の点数は最後の祭壇への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
+  body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
   actions.append(button('閉じる',close));fitDialogForm();
 }
 function menu() {
@@ -448,27 +459,27 @@ function settings() {
   const id=session.selection;if(!id)return;
   const input=session.circuit,edge=input.edges.find(item=>item.id===id),node=input.nodes.find(item=>item.id===id);
   if(!edge&&!node)return;
-  open(`${node?.name??id}の設定`);
+  open(`${objectName(id,input)}の設定`);
   const items=[];
-  items.push(['名前・識別子の全文',()=>fullText('対象の名前',`${node?.name??id}\n${id}`,settings)]);
+  items.push(['名前の全文',()=>fullText('対象の名前',objectName(id,input),settings)]);
   if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
   if(session.mode==='free'&&edge)items.push([edge.bidirectional?'向き：両方向':'向き：片方向',()=>{
     session.requireEditable();open('道の向き');
     listPage([
-      [`${edge.from} → ${edge.to}`,{bidirectional:false}],
-      [`${edge.to} → ${edge.from}`,{bidirectional:false,reverse:true}],
-      [`${edge.from} ↔ ${edge.to}`,{bidirectional:true}],
+      [`${objectName(edge.from,input)}から${objectName(edge.to,input)}へ`,{bidirectional:false}],
+      [`${objectName(edge.to,input)}から${objectName(edge.from,input)}へ`,{bidirectional:false,reverse:true}],
+      [`${objectName(edge.from,input)}と${objectName(edge.to,input)}の両方向`,{bidirectional:true}],
     ],([name,direction])=>button(name,()=>{session.setDirection(id,direction);close();}));actions.append(button('取消',close));
   }]);
   if(session.mode==='free'&&(edge||node.kind==='prism'))items.push([`使用：${(edge??node).enabled===false?'不可':'可'}`,()=>{session.setEnabled(id,(edge??node).enabled===false);close();}]);
   if(node&&session.mode==='free')items.push(['名前',()=>{
-    session.requireEditable();open('点の名前');const field=element('input','',{type:'text',value:node.name??node.id,'aria-label':'点の名前'});body.append(field);
+    session.requireEditable();open('点の名前');const field=element('input','',{type:'text',value:partName(node,input.nodes),'aria-label':'点の名前'});body.append(field);
     actions.append(button('確定',()=>{const next=structuredClone(session.circuit);next.nodes.find(n=>n.id===id).name=field.value;session.commitEdit(next);close();}),button('取消',close));
   }]);
   if(edge||node.kind!=='source')items.push(['削除',()=>{
     session.requireEditable();const related=node?input.edges.filter(path=>path.from===id||path.to===id):[edge];
-    open(`${id}を削除`);body.append(element('p',node?`この点と、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
-    listPage(related,path=>element('p',`${path.id}：${path.from} → ${path.to}`),'接続する道はありません。');
+    open('選んだパーツを削除');body.append(element('p',node?`このパーツと、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
+    listPage(related,path=>element('p',objectName(path.id,input)),'接続する道はありません。');
     actions.append(button('削除',()=>{session.remove(id,true);close();}),button('取消',close));
     fitDialogForm();
   }]);
@@ -481,12 +492,12 @@ function fullText(title,text,back=close){
 }
 function objects(){
   open('点と道の一覧');
-  listPage([...session.circuit.nodes,...session.circuit.edges],item=>button(`${item.name??item.id}${item.from?'：'+item.from+' → '+item.to:''}`,()=>{session.selection=item.id;board.render();settings();}));
+  listPage([...session.circuit.nodes,...session.circuit.edges],item=>button(objectName(item.id,session.circuit),()=>{session.selection=item.id;board.render();settings();}));
   actions.append(button('回路名の全文',()=>fullText('回路名',session.name,objects)),button('閉じる',close));
 }
 function timeInput(id,initial) {
   const editing=session.mode==='free'&&session.editable;
-  open(`${id}の時間`);
+  open(`${objectName(id,session.circuit)}の時間`);
   if(!editing){body.append(element('p',`${initial}秒。${session.mode==='challenge'?'課題の時間は固定です。':'停止後に編集できます。'}`));actions.append(button('戻る',settings));return;}
   const input=element('input','',{type:'text',inputmode:'decimal',value:initial,'aria-label':'秒数',enterkeyhint:'done'});
   const row=element('div','',{class:'dialog-row'}),scale=new TimeScale(['0.1']);
@@ -501,14 +512,14 @@ function timeInput(id,initial) {
   const submit=()=>{session.setTime(id,input.value);close();};
   input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();attempt(submit);}});
   actions.append(button('確定',submit),button('取消',close));
-  fitDialogForm(compact=>{$('dialog-title').textContent=`${id}の時間${compact?'（秒）':''}`;});
+  fitDialogForm(compact=>{$('dialog-title').textContent=`${objectName(id,session.circuit)}の時間${compact?'（秒）':''}`;});
 }
 function flow() {
   session.requireEditable();open('自由の流れ方');
   const mode=element('select','',{'aria-label':'流れ方'});
   mode.append(element('option','最速経路',{value:'fastest'}),element('option','分かれて広がる',{value:'spread'}));mode.value=session.circuit.mode;
-  const target=element('select','',{'aria-label':'送信先'});target.append(element('option','全祭壇へ',{value:'all'}));
-  for(const node of session.circuit.nodes.filter(node=>node.kind==='goal'))target.append(element('option',node.name??node.id,{value:node.id}));
+  const target=element('select','',{'aria-label':'送信先'});target.append(element('option','すべての鐘へ',{value:'all'}));
+  for(const node of session.circuit.nodes.filter(node=>node.kind==='goal'))target.append(element('option',partName(node,session.circuit.nodes),{value:node.id}));
   target.value=session.circuit.target??'all';
   const fields=element('div','',{class:'flow-fields'}),modeField=element('div','',{class:'flow-field'}),targetField=element('div','',{class:'flow-field'});
   modeField.append(element('label','流れ方'),mode);targetField.append(element('label','最速の送信先'),target);fields.append(modeField,targetField);body.append(fields);
@@ -516,7 +527,7 @@ function flow() {
   fitDialogForm(compact=>fields.classList.toggle('columns',compact));
 }
 
-const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'チャイム',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
+const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'鐘が鳴る',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
 function showRecords(){cancelStart();session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
 function resizeRecords(){
   document.body.classList.remove('records-fullscreen');
@@ -525,7 +536,7 @@ function resizeRecords(){
   const empty=$('record-list').querySelector('p');
   if($('record-list').getBoundingClientRect().height<Math.max(minimum,empty?.getBoundingClientRect().height??0)||$('stage').getBoundingClientRect().height<70)document.body.classList.add('records-fullscreen');
   orientation.syncRegions();
-  const list=$('record-list'),space=list.getBoundingClientRect().height,probe=button('0s #0 到着',()=>{},{class:'record-row'});
+  const list=$('record-list'),space=list.getBoundingClientRect().height,probe=button('0秒 光線0 到着',()=>{},{class:'record-row'});
   list.replaceChildren(probe);const height=probe.getBoundingClientRect().height,gap=parseFloat(getComputedStyle(list).gap)||0;
   recordCapacity=Math.max(1,Math.floor((space+gap)/(height+gap)));renderRecords();
 }
@@ -538,7 +549,7 @@ function renderRecords(){
   const list=$('record-list');list.replaceChildren();
   if(!items.length)list.append(element('p',cases?'故障ケースはありません。':'実行記録はまだありません。'));
   for(const item of items.slice(page*recordCapacity,(page+1)*recordCapacity)) {
-    list.append(button(cases?`${item.id} 不可：${item.reachable?item.time+'秒':'到達不能'}`:`${item.time}s #${item.particle??'—'} ${recordNames[item.type]}`,()=>cases?caseDetails(item):recordDetails(item),{class:'record-row'}));
+    list.append(button(cases?`${objectName(item.id,session.circuit)} 不可：${item.reachable?item.time+'秒':'到達不能'}`:`${item.time}秒 光線${item.particle??'—'} ${recordNames[item.type]}`,()=>cases?caseDetails(item):recordDetails(item),{class:'record-row'}));
   }
   $('record-prev').disabled=page===0;$('record-next').disabled=page===pages-1;$('record-page').textContent=`${page+1}/${pages}・全${items.length}件`;
 }
@@ -547,20 +558,22 @@ function moveRecordPage(step){
   session.view[`${field}Anchor`]=Math.max(0,(session.view[field]+step)*recordCapacity);renderRecords();
 }
 function particleRecords(id,back=close){
-  open(`光線 #${id}の記録`);
+  open(`光線${id}の記録`);
   const records=(session.run?.records??[]).filter(item=>item.particle===id);
-  listPage(records,item=>button(`${item.time}s ${recordNames[item.type]} ${item.node??''}`,()=>recordDetails(item,()=>particleRecords(id,back))),'この光線の記録はありません。');
+  listPage(records,item=>button(`${item.time}秒 ${recordNames[item.type]} ${item.node?objectName(item.node,session.circuit):''}`,()=>recordDetails(item,()=>particleRecords(id,back))),'この光線の記録はありません。');
   actions.append(button('戻る',back));
 }
 function recordDetails(record,back=close){
   open('記録の詳細');
-  const names={type:'出来事',time:'時刻',particle:'光線番号',parent:'親の光線',node:'地点',target:'対象祭壇',edge:'道',from:'出発地点',to:'次の地点',plannedTime:'最短経路の予定時間',arrivalTime:'到着予定',hops:'通った道の本数',children:'分岐後の光線',arrivedAt:'到着時刻',wait:'待ち時間',finishTime:'処理終了予定',startedAt:'処理開始時刻',processing:'処理時間',reason:'理由'};
-  const fields=Object.entries(record).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>({key,label:names[key]??key,value:key==='type'?recordNames[item]:item??'—'})));
+  const names={type:'出来事',time:'時刻',particle:'光線番号',parent:'親の光線',node:'地点',target:'対象の鐘',edge:'道',from:'出発地点',to:'次の地点',plannedTime:'最短経路の予定時間',arrivalTime:'到着予定',hops:'通った道の本数',children:'分岐後の光線',arrivedAt:'到着時刻',wait:'待ち時間',finishTime:'処理終了予定',startedAt:'処理開始時刻',processing:'処理時間',reason:'理由'};
+  const fields=Object.entries(record).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>({key,label:names[key]??key,value:key==='type'?recordNames[item]:['node','target','edge','from','to'].includes(key)&&item?objectName(item,session.circuit):item??'—'})));
   listPage(fields,({key,label,value})=>button(`${label}：${value}`,()=>['particle','parent','children'].includes(key)&&Number.isSafeInteger(value)&&value>0?particleRecords(value,()=>recordDetails(record,back)):fullText(label,value,()=>recordDetails(record,back))));actions.append(button('戻る',back));
 }
 function caseDetails(item){
-  open(`${item.id} 使用不可`);body.append(element('p',item.reachable?`${item.time}秒・${item.edges.join(' → ')}`:'この故障では祭壇に届きません。'));
-  actions.append(button('このケースで流す',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
+  open(item.kind==='edge'?'道の故障':'プリズムの故障');body.append(element('p',objectName(item.id,session.circuit)),element('p',item.reachable?`${item.time}秒で鐘に届きます。`:'この故障では鐘に届きません。'));
+  if(item.edges.length)body.append(button('通った道を見る',()=>fullText('通った道',item.edges.map(id=>objectName(id,session.circuit)).join('\n'),()=>caseDetails(item))));
+  fitDialogForm();
+  actions.append(button('このケースで鐘を鳴らす',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
 function interruptRun(reason){cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
@@ -642,7 +655,7 @@ requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の祭壇への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
   fullText('現在の条件',detail);
 }
 $('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);

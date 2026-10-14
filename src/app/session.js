@@ -37,7 +37,7 @@ export class Session {
   }
 
   get editable() { return !this.run || this.run.status === 'stopped'; }
-  get startBlockedReason() { return this.circuit.edges.length ? '' : '点をつないでから流してください。'; }
+  get startBlockedReason() { return this.circuit.edges.length ? '' : '点をつないでから「鐘を鳴らす」を押してください。'; }
   get clearChoices() {
     if(this.mode!=='challenge'||this.guide||this.runContext?.guide||this.result?.state!=='achieved'||this.result.challenge!==this.challenge.id)return null;
     const index=challenges.findIndex(item=>item.id===this.challenge.id);

@@ -1,6 +1,7 @@
 import { svg } from './svg.js';
 import { Scene,symbol,constellation } from './scene.js';
 import { Magnifier } from './magnifier.js';
+import { partName,objectName } from './labels.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
@@ -97,7 +98,7 @@ export class Board {
       const curve={a,b,control}; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
       const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`});
-      group.append(svg('title',{},`${edge.from} ${edge.bidirectional?'↔':'→'} ${edge.to}：${edge.time}秒`));
+      group.append(svg('title',{},`${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}への道：${edge.time}秒`));
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
@@ -110,12 +111,12 @@ export class Board {
     }
     for (const node of input.nodes) {
       const at=this.position(node),selected=this.session.selection===node.id;
-      const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${node.name??node.id} ${node.kind==='goal'?'祭壇':node.kind==='source'?'出発点':'プリズム'}${node.enabled===false?' 使用不可':''}`});
+      const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${partName(node,input.nodes)}${node.enabled===false?' 使用不可':''}`});
       const factor=this.fontFactor??1;
       group.append(svg('circle',{r:Math.max(65*symbolFactor,screenScale>0?22/screenScale:0),class:'node-hit'}));
       group.append(symbol(node.kind,symbolFactor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
-      const label=node.name??node.id;
+      const label=partName(node,input.nodes,true);
       group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{x:sideNames?(node.x>.5?-1:1)*(65*symbolFactor+16*factor):0,y:sideNames?0:-80*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal'){
         const text=svg('text',{y:90*symbolFactor,class:'node-time'},secondsLabel(node.process));
@@ -253,7 +254,7 @@ export class Board {
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
     this.gesture={kind:event.target.dataset.move?'move':node?'wire':event.pointerType==='touch'?'idle':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
-    if(node&&this.session.editable)this.magnifier.show(event,`${node}から結線`);
+    if(node&&this.session.editable)this.magnifier.show(event,`${objectName(node,this.session.circuit)}から結線`);
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
   pointerCenter() {const [a,b]=[...this.pointers.values()];return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
@@ -282,11 +283,11 @@ export class Board {
         // Cue each accepted target; the stroke stays provisional until release.
         try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.connected(target);this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
       }
-      this.previewWire();this.magnifier.show(event,`${gesture.route.join('→')}`);
+      this.previewWire();this.magnifier.show(event,`${gesture.route.map(id=>partName(this.session.circuit.nodes.find(node=>node.id===id),this.session.circuit.nodes,true)).join('→')}`);
     } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {
       const group=this.world.querySelector(`[data-node="${CSS.escape(gesture.id)}"]`);
       group?.setAttribute('transform',`translate(${gesture.last.x} ${gesture.last.y}) rotate(${-this.angle})`);
-      this.magnifier.show(event,`${gesture.id}を移動`);
+      this.magnifier.show(event,`${objectName(gesture.id,this.session.circuit)}を移動`);
     }
   }
   previewWire() {

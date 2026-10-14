@@ -100,7 +100,7 @@ async function exercise(page,engine){
     const disabled=[...item.conditions.nodes,...item.conditions.edges].filter(x=>x.enabled===false);assert.equal(disabled.length,1);assert.equal(disabled[0].id,item.id);
     await page.locator('#records').click();if((await page.locator('#record-title').textContent())!=='故障ケース')await page.locator('#record-tab').click();
     for(let n=0;n<20;n++){const row=page.locator('#record-list button').filter({hasText:new RegExp('^'+item.id+' 不可')});if(await row.count()){await row.click();break;}assert(!(await page.locator('#record-next').isDisabled()));await page.locator('#record-next').click();await settle(page);}
-    await choose(page,'このケースで流す');await page.waitForFunction(()=>['running','paused'].includes(document.getElementById('play').dataset.state));await page.locator('#records').click();await page.locator('#close-records').click();await finish(page);const replay=await result(page);assert.equal(replay.replayCase,item.id);assert(replay.records.some(r=>r.type==='goal'&&r.time==='2.5'));
+    await choose(page,'このケースで鐘を鳴らす');await page.waitForFunction(()=>['running','paused'].includes(document.getElementById('play').dataset.state));await page.locator('#records').click();await page.locator('#close-records').click();await finish(page);const replay=await result(page);assert.equal(replay.replayCase,item.id);assert(replay.records.some(r=>r.type==='goal'&&r.time==='2.5'));
    }
   }
   await page.locator('#stop').click();record(engine,id+' reaches 100; all fault cases separately replayed where applicable',['F-003','F-014','F-021','F-024',...(id==='Q4'?['F-012']:id==='Q5'?['F-013']:[])],{challenge:id,cases:exported.faultCases.length});

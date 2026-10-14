@@ -38,14 +38,14 @@ async function fits(page){
         await page.goto(url);await enterApp(page);await skipGuide(page);await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await page.locator('#import').setInputFiles({name:'branch-fixture.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'prism-notes-circuit',version:1,name:'合成の二世代分岐',circuit}))});await settle(page);
         await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('到着・動作終了'));await page.locator('#stop').click();await page.locator('#records').click();
-        await select(page,/^0\.2s #4 移動$/,'#record-list','#record-next');const originalPage=await page.locator('#record-page').textContent();
-        await select(page,'親の光線：3');assert.equal(await page.locator('#dialog-title').textContent(),'光線 #3の記録');
-        await select(page,/^0\.2s 分岐 C$/);await select(page,'親の光線：1');assert.equal(await page.locator('#dialog-title').textContent(),'光線 #1の記録');
-        await select(page,/^0\.1s 分岐 A$/);await select(page,'分岐後の光線：2');assert.equal(await page.locator('#dialog-title').textContent(),'光線 #2の記録');
+        await select(page,/^0\.2秒 光線4 移動$/,'#record-list','#record-next');const originalPage=await page.locator('#record-page').textContent();
+        await select(page,'親の光線：3');assert.equal(await page.locator('#dialog-title').textContent(),'光線3の記録');
+        await select(page,/^0\.2秒 分岐 プリズムC$/);await select(page,'親の光線：1');assert.equal(await page.locator('#dialog-title').textContent(),'光線1の記録');
+        await select(page,/^0\.1秒 分岐 プリズムA$/);await select(page,'分岐後の光線：2');assert.equal(await page.locator('#dialog-title').textContent(),'光線2の記録');
         report.checks.push({label:`${config.name} stopped-run child→parent→grandparent→child navigation`,browserVersion:browser.version(),passed:true});
-        await select(page,/^0\.3s チャイム G1$/);await select(page,'光線番号：2');assert.equal(await page.locator('#dialog-title').textContent(),'光線 #2の記録');
+        await select(page,/^0\.3秒 鐘が鳴る 鐘1$/);await select(page,'光線番号：2');assert.equal(await page.locator('#dialog-title').textContent(),'光線2の記録');
         await page.getByRole('button',{name:'戻る',exact:true}).click();assert.equal(await page.locator('#dialog-title').textContent(),'記録の詳細');
-        await page.getByRole('button',{name:'戻る',exact:true}).click();assert.equal(await page.locator('#dialog-title').textContent(),'光線 #2の記録');
+        await page.getByRole('button',{name:'戻る',exact:true}).click();assert.equal(await page.locator('#dialog-title').textContent(),'光線2の記録');
         for(const [width,height]of [[320,480],[480,240],[844,310],[768,1024]]){await page.setViewportSize({width,height});await settle(page);report.checks.push({label:`${config.name} lineage list ${width}x${height}`,passed:true,...await fits(page)});}
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${config.name}.png`)});
         await page.locator('#dialog-close').click();assert.equal(await page.locator('#record-page').textContent(),originalPage);report.checks.push({label:`${config.name} main record page retained after related-record navigation`,passed:true});
