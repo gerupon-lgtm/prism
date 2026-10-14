@@ -72,13 +72,13 @@ export class Board {
     this.projectionScale=extent>1000?extent:1;
     const nodes=new Map(input.nodes.map(node=>[node.id,node]));
     let symbolFactor=this.fontFactor??1,sideNames=false;
-    const screenMatrix=this.world.getScreenCTM();
+    const screenMatrix=this.world.getScreenCTM(),screenScale=screenMatrix?Math.hypot(screenMatrix.a,screenMatrix.b):0;
     if(this.session.mode==='challenge'&&nodes.size>5&&screenMatrix){
       const positions=input.nodes.map(node=>this.position(node)),scale=Math.hypot(screenMatrix.a,screenMatrix.b);
       let spacing=Infinity;
       for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++)spacing=Math.min(spacing,Math.hypot(positions[i].x-positions[j].x,positions[i].y-positions[j].y)*scale);
       // Keep dense small-screen parts apart; hit areas still have a 44px minimum.
-      symbolFactor=Math.min(symbolFactor,Math.max(44,spacing*.8)/(130*scale),parseFloat(getComputedStyle(document.documentElement).fontSize)>=20?44/(130*scale):Infinity);
+      symbolFactor=Math.min(symbolFactor,Math.max(36,spacing*.8)/(130*scale),parseFloat(getComputedStyle(document.documentElement).fontSize)>=20?44/(130*scale):Infinity);
       sideNames=symbolFactor<(this.fontFactor??1)&&spacing<75;
     }
 
@@ -112,7 +112,7 @@ export class Board {
       const at=this.position(node),selected=this.session.selection===node.id;
       const group=svg('g',{'data-node':node.id,class:`node ${node.kind}${selected?' selected':''}${node.enabled===false?' unavailable':''}`,transform:`translate(${at.x} ${at.y}) rotate(${-this.angle})`,tabindex:0,role:'button','aria-label':`${node.name??node.id} ${node.kind==='goal'?'祭壇':node.kind==='source'?'出発点':'プリズム'}${node.enabled===false?' 使用不可':''}`});
       const factor=this.fontFactor??1;
-      group.append(svg('circle',{r:65*symbolFactor,class:'node-hit'}));
+      group.append(svg('circle',{r:Math.max(65*symbolFactor,screenScale>0?22/screenScale:0),class:'node-hit'}));
       group.append(symbol(node.kind,symbolFactor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=node.name??node.id;

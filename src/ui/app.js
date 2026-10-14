@@ -66,6 +66,9 @@ dialog.addEventListener('close',()=>{document.body.classList.remove('input-focus
 dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();return;}document.body.classList.remove('input-focus');});
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
+function challengeGoal(challenge){
+  return challengeObjective(challenge)||({time:`${challenge.goal}へより早く届ける`,'time-hops':`${challenge.goal}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${challenge.goal}へ`,'prism-fault':`どのプリズムが1つ止まっても${challenge.goal}へ`}[challenge.type]);
+}
 function render(redraw=true,{records=true}={}) {
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=360&&textEnlarged;
   document.documentElement.style.setProperty('--layout-font',`${readableFont}px`);
@@ -86,8 +89,18 @@ function render(redraw=true,{records=true}={}) {
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
-  const objective=session.mode==='challenge'?challengeObjective(session.challenge):'';
-  $('condition').textContent=session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}・${session.challenge.stage}・道 ${session.circuit.edges.length}/${session.challenge.limit}本${objective?'・'+objective:''}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
+  const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
+  $('condition').textContent=session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
+  $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide&&textEnlarged&&innerHeight<=600);
+  $('challenge-goal').textContent=textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'';
+  $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
+  if(session.mode==='challenge'){
+    const used=session.circuit.edges.length,limit=session.challenge.limit;
+    const counter=(label,value)=>{const part=element('span');part.append(document.createTextNode(label),element('b',String(value),{class:'wire-count'}),document.createTextNode('本'));return part;};
+    $('wire-budget').style.setProperty('--wire-digits',Math.max(1,String(limit).length));
+    $('wire-budget').replaceChildren(counter(`${textEnlarged?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
+    if(compact)$('title').textContent=`${session.challenge.id} 上限${limit}本・課題`;
+  }
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
@@ -139,7 +152,7 @@ function renderClearToast() {
   toast.style.width=`${width}px`;
   const height=toast.offsetHeight,left=bounds.left+4,right=bounds.right-width-4,center=bounds.left+(bounds.width-width)/2;
   const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
-  const goals=[...$('board').querySelectorAll('[data-node] .node-symbol')].filter(e=>session.circuit.nodes.find(n=>n.id===e.closest('[data-node]').dataset.node)?.kind==='goal').map(e=>{const r=e.getBoundingClientRect();return {left:r.left-42,right:r.right+42,top:r.top-42,bottom:r.bottom+42};});
+  const goals=[...$('board').querySelectorAll('[data-node] .node-symbol')].filter(e=>session.circuit.nodes.find(n=>n.id===e.closest('[data-node]').dataset.node)?.kind==='goal').map(e=>{const r=e.getBoundingClientRect();return {left:r.left-44,right:r.right+44,top:r.top-44,bottom:r.bottom+44};});
   const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
   const lowerControls=controls.filter(r=>r.top>bounds.top+bounds.height/2);
   const lowerEdge=Math.min(bounds.bottom-4,...lowerControls.map(r=>r.top-6));
@@ -149,9 +162,17 @@ function renderClearToast() {
   const places=[bottom,top,(top+bottom)/2].flatMap(y=>[center,left,right].map(x=>({left:x,right:x+width,top:y,bottom:y+height})));
   const cost=place=>goals.reduce((sum,r)=>sum+100*overlap(place,r),0)+controls.reduce((sum,r)=>sum+10*overlap(place,r),0);
   let place=places.reduce((best,next)=>cost(next)<cost(best)?next:best);
+  if(width>=240&&(cost(place)>0||place.top<bounds.top||place.bottom>bounds.bottom)){
+    toast.classList.add('slim');toast.querySelector('strong').textContent='クリア';
+    const smallHeight=toast.offsetHeight,smallBottom=Math.max(bounds.top+4,lowerEdge-smallHeight);
+    const smallPlaces=[smallBottom,top,(top+smallBottom)/2].flatMap(y=>[center,left,right].map(x=>({left:x,right:x+width,top:y,bottom:y+smallHeight})));
+    const clear=smallPlaces.find(p=>p.top>=bounds.top&&p.bottom<=bounds.bottom&&cost(p)===0);
+    if(clear)place=clear;
+    else{toast.classList.remove('slim');toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';}
+  }
   // A very short landscape viewport has no empty corner around the altar.
   // Use the existing result region without resizing or shifting the circuit.
-  if(cost(place)>0){
+  if(cost(place)>0||place.top<bounds.top||place.bottom>bounds.bottom){
     const result=$('result-line').getBoundingClientRect();
     if(result.width>30&&result.height>30){
       toast.style.width=`${result.width-4}px`;toast.classList.add('narrow','docked');toast.classList.toggle('slim',result.height<100&&result.width>=240);toast.querySelector('strong').textContent='クリア';
@@ -610,7 +631,12 @@ function frame(now){
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
-$('condition-info').addEventListener('click',()=>fullText('現在の条件',`${$('title').textContent}\n${$('condition').textContent}${session.mode==='challenge'?'\n動作上限 '+session.challenge.maxDuration+'秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。':''}`));
+function showConditions(){
+  const challenge=session.challenge;
+  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の祭壇への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  fullText('現在の条件',detail);
+}
+$('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);
 $('result-info').addEventListener('click',()=>fullText('実行状況',$('result').textContent));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{

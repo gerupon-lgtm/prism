@@ -240,3 +240,27 @@ html:not(.device-landscape) .text-enlarged.compact #add-controls{order:-1;paddin
 html:not(.device-landscape) .text-enlarged.compact #edit-controls,html:not(.device-landscape) .text-enlarged.compact .zoom-controls{position:static;padding:0;max-width:none}
 html:not(.device-landscape) .text-enlarged.compact .header-actions button{padding:2px;min-height:30px;line-height:1.2}
 html:not(.device-landscape) .text-enlarged.compact #play-controls button{padding:2px 4px}
+
+/* Task and wire counts use the complete header width, independent of the title. */
+html:not(.device-landscape) .header-content:has(#challenge-info:not([hidden])){display:grid;grid-template-columns:100px minmax(0,1fr) auto;gap:3px 9px}
+#challenge-info{grid-column:1/-1;min-width:0;min-height:0;padding:3px 6px;text-align:left;background:#111a2c88;border-color:#394861}
+#challenge-goal{display:block;white-space:normal;font-size:.928571rem;line-height:1.35;overflow-wrap:anywhere}
+#wire-budget{display:flex;flex-wrap:wrap;gap:0 7px;margin-top:2px;font-size:.857143rem;line-height:1.4;color:#c4cde0}
+#wire-budget span{white-space:nowrap}
+#wire-budget span:first-child{color:var(--gold);font-weight:600}
+.compact #challenge-info{display:none}
+.device-landscape #challenge-info{text-align:center}
+.device-landscape #wire-budget{justify-content:center}
+.device-landscape header:has(#challenge-info:not([hidden])){height:clamp(90px,calc(5.4 * var(--layout-font)),170px)}
+.text-enlarged .header-actions button,.text-enlarged #update-notice{padding:2px;min-height:38px;line-height:1.2}
+.text-enlarged .logo{height:32px;min-height:32px}
+.text-enlarged #condition{display:none}
+
+.wire-count{display:inline-block;min-width:calc(var(--wire-digits,1) * 1ch);text-align:right;font-weight:inherit;font-variant-numeric:tabular-nums}
+html:not(.device-landscape) .text-enlarged.compact #update-notice{min-height:30px}
+
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])){height:clamp(70px,calc(2.7 * var(--layout-font)),100px)}
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])) .logo{display:none}
+.device-landscape .text-enlarged #wire-budget span{white-space:normal}
+
+.device-landscape .text-enlarged header:has(#challenge-info:not([hidden])):has(#update-notice:not([hidden])){height:clamp(110px,calc(4.5 * var(--layout-font)),150px)}

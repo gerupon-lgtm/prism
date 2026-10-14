@@ -1,0 +1,48 @@
+{
+  "version": "0.24.0",
+  "evidence": "PC browsers, synthetic mobile orientation and CSS text enlargement; not physical-device acceptance.",
+  "checks": [
+    {
+      "label": "chromium Q7 portrait",
+      "viewport": [
+        390,
+        844
+      ],
+      "document": [
+        390,
+        844
+      ],
+      "goal": {
+        "text": "実践・夜空の遺跡・道 0/7本・祭壇G1・G2すべてに届ける",
+        "size": [
+          220,
+          15,
+          287,
+          15
+        ],
+        "box": [
+          116,
+          30.09375,
+          336,
+          45.484375
+        ]
+      },
+      "budget": null,
+      "header": [
+        7,
+        6,
+        383,
+        50
+      ],
+      "board": [
+        8,
+        56,
+        382,
+        745
+      ],
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Q7 goal is fully visible, not ellipsized\n    at check (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_challenge_heading.cjs:11:1088)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_challenge_heading.cjs:12:786"
+}

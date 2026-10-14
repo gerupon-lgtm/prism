@@ -1,5 +1,5 @@
 {
-  "version": "0.24.0",
+  "version": "0.25.0",
   "evidence": "PC viewport geometry/state; synthetic audio trace; not device or acoustic acceptance.",
   "checks": [
     {
@@ -14,27 +14,27 @@
         "matrix": "translate(0 0) scale(1)",
         "board": [
           8,
-          56,
+          103.34375,
           374,
-          509
+          461.65625
         ],
         "nodes": [
           [
-            167.5,
-            434.6153869628906,
-            55,
-            65
+            167.49998474121094,
+            443.7199401855469,
+            55.00001525878906,
+            65.00003051757812
           ],
           [
-            64.375,
-            297.576904296875,
+            64.45172119140625,
+            319.4278564453125,
             55,
             65.00003051757812
           ],
           [
-            167.5,
-            133.13076782226562,
-            55,
+            167.49998474121094,
+            170.27740478515625,
+            55.00001525878906,
             65
           ]
         ],
@@ -47,103 +47,103 @@
       "label": "chromium ordinary launch keeps view and excludes prelude from simulation",
       "frames": [
         {
-          "ms": 2.3000001907348633,
+          "ms": 4.199999809265137,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 13.099999904632568,
+          "ms": 7,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 29.59999990463257,
+          "ms": 22.5,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 45.59999990463257,
+          "ms": 38.5,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 63.200000286102295,
+          "ms": 55.59999990463257,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 78.90000009536743,
+          "ms": 72.19999980926514,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 95.90000009536743,
+          "ms": 89.19999980926514,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 113.59999990463257,
+          "ms": 105.5,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 129.09999990463257,
+          "ms": 122.19999980926514,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 145.80000019073486,
+          "ms": 139.59999990463257,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 163.30000019073486,
+          "ms": 155.2999997138977,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 180,
+          "ms": 172.39999961853027,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 196.80000019073486,
+          "ms": 188.5,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 212.2000002861023,
+          "ms": 206.19999980926514,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 230.5,
+          "ms": 222.39999961853027,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 247,
+          "ms": 239.09999990463257,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 276.90000009536743,
+          "ms": 274.19999980926514,
           "state": "running",
           "run": {
             "status": "running",
@@ -161,11 +161,11 @@
     },
     {
       "label": "chromium zoomed launch animates to whole view in the same short duration",
-      "normalDelay": 276.90000009536743,
-      "zoomDelay": 268.8999996185303,
+      "normalDelay": 274.19999980926514,
+      "zoomDelay": 290.7999997138977,
       "frames": [
         {
-          "ms": 2.0999999046325684,
+          "ms": 2.4000000953674316,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -176,10 +176,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+          "matrix": "translate(-364.0000123977658 -582.3999832153327) scale(1.728)"
         },
         {
-          "ms": 12.899999618530273,
+          "ms": 20.199999809265137,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -190,10 +190,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+          "matrix": "translate(-364.0000123977658 -582.3999832153327) scale(1.728)"
         },
         {
-          "ms": 29.699999809265137,
+          "ms": 36.59999990463257,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -204,10 +204,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-298.4704810112984 -482.1755297395553) scale(1.5969409790734823)"
+          "matrix": "translate(-299.9757164715528 -484.6561271236624) scale(1.5999514127920587)"
         },
         {
-          "ms": 46,
+          "ms": 53.90000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -218,10 +218,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-241.99705937343435 -395.80195622633073) scale(1.4839941324109192)"
+          "matrix": "translate(-244.79948912348635 -400.4203358889379) scale(1.4895989620985493)"
         },
         {
-          "ms": 62.39999961853027,
+          "ms": 69.19999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -232,10 +232,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-193.00821380809634 -320.87570718657497) scale(1.3860164383422744)"
+          "matrix": "translate(-197.46093245270788 -328.1500671748772) scale(1.3949218521910511)"
         },
         {
-          "ms": 77.09999990463257,
+          "ms": 86.69999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -246,10 +246,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-152.04965170768588 -258.23141767882163) scale(1.3040993116850785)"
+          "matrix": "translate(-157.1387925197625 -266.59153871474035) scale(1.3142775752502307)"
         },
         {
-          "ms": 94.69999980926514,
+          "ms": 100.19999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -260,10 +260,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-117.69005679820253 -205.67995345500225) scale(1.2353801198054915)"
+          "matrix": "translate(-123.53007845406111 -215.28218398399912) scale(1.2470601495568892)"
         },
         {
-          "ms": 111.89999961853027,
+          "ms": 117.40000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -274,10 +274,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-89.5722922686578 -162.67508973001355) scale(1.179144589060118)"
+          "matrix": "translate(-96.02348048470589 -173.2887358000994) scale(1.192046955613577)"
         },
         {
-          "ms": 128,
+          "ms": 134.19999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -288,10 +288,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-67.18994019854495 -128.442282935984) scale(1.1343798835775736)"
+          "matrix": "translate(-74.1243880703122 -139.85608798219005) scale(1.1482487723734054)"
         },
         {
-          "ms": 148.59999990463257,
+          "ms": 151.59999990463257,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -302,10 +302,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-49.74216988483579 -101.75669831713748) scale(1.099484341903774)"
+          "matrix": "translate(-56.96069374778733 -113.65282180655339) scale(1.1139213849734535)"
         },
         {
-          "ms": 160.5,
+          "ms": 168.40000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -316,10 +316,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-36.480132635336474 -81.4730052791947) scale(1.072960266609422)"
+          "matrix": "translate(-44.068846746459656 -93.97124905632973) scale(1.0881376919060055)"
         },
         {
-          "ms": 177.7999997138977,
+          "ms": 184.09999990463257,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -330,10 +330,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-27.09889754921352 -67.12482564254935) scale(1.0541977958745627)"
+          "matrix": "translate(-34.8831297725381 -79.94770713354853) scale(1.0697662586245174)"
         },
         {
-          "ms": 193.59999990463257,
+          "ms": 201.19999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -344,10 +344,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-20.771475004727392 -57.44731575480114) scale(1.041542950406121)"
+          "matrix": "translate(-28.684608561008304 -70.48462196383122) scale(1.0573692166511144)"
         },
         {
-          "ms": 209.09999990463257,
+          "ms": 218.69999980926514,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -358,10 +358,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-16.95604485989702 -51.61178593313855) scale(1.0339120898876406)"
+          "matrix": "translate(-24.944105457298917 -64.77411485414314) scale(1.0498882107150411)"
         },
         {
-          "ms": 226.7999997138977,
+          "ms": 235,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -372,10 +372,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-14.98407482502921 -48.59574593002435) scale(1.0299681496996418)"
+          "matrix": "translate(-23.008291182783466 -61.81876877604634) scale(1.0460165823064391)"
         },
         {
-          "ms": 244.09999990463257,
+          "ms": 250.09999990463257,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -386,10 +386,24 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-14.259721546776007 -47.48787997619661) scale(1.0285194430996942)"
+          "matrix": "translate(-22.295096450067263 -60.72995706306335) scale(1.0445901928927435)"
         },
         {
-          "ms": 268.8999996185303,
+          "ms": 267.69999980926514,
+          "state": "preparing",
+          "run": {
+            "status": "stopped",
+            "pauseReason": null,
+            "clock": "0",
+            "records": 2,
+            "retainedParticles": 0,
+            "active": 0,
+            "waiting": 0
+          },
+          "matrix": "translate(-22.193211510126275 -60.574412566034084) scale(1.0443864230202529)"
+        },
+        {
+          "ms": 290.7999997138977,
           "state": "running",
           "run": {
             "status": "running",
@@ -400,7 +414,7 @@
             "active": 1,
             "waiting": 0
           },
-          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+          "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)"
         }
       ],
       "passed": true
@@ -417,7 +431,7 @@
       "label": "chromium reduced motion keeps duration and fits once before launch",
       "frames": [
         {
-          "ms": 7.200000286102295,
+          "ms": 7.600000381469727,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -428,10 +442,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 11.200000286102295,
+          "ms": 10.200000286102295,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -442,10 +456,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 27,
+          "ms": 26.5,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -456,10 +470,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 44.59999990463257,
+          "ms": 42.30000019073486,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -470,10 +484,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 60.30000019073486,
+          "ms": 59.10000038146973,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -484,10 +498,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 76.90000009536743,
+          "ms": 77.40000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -498,10 +512,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 93.30000019073486,
+          "ms": 92.90000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -512,10 +526,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 114.40000009536743,
+          "ms": 109.30000019073486,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -526,10 +540,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 126.5,
+          "ms": 126.2000002861023,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -540,10 +554,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 143.80000019073486,
+          "ms": 142.80000019073486,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -554,10 +568,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 160.7000002861023,
+          "ms": 158.90000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -568,10 +582,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 177.30000019073486,
+          "ms": 176.30000019073486,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -582,10 +596,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 194.30000019073486,
+          "ms": 192.60000038146973,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -596,10 +610,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 210,
+          "ms": 209.7000002861023,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -610,10 +624,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 226.80000019073486,
+          "ms": 225.90000009536743,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -624,10 +638,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 244.30000019073486,
+          "ms": 242.60000038146973,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -638,10 +652,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.34989043253205 -687.072586382276) scale(1.804699738903394)"
         },
         {
-          "ms": 282.80000019073486,
+          "ms": 275.90000009536743,
           "state": "running",
           "run": {
             "status": "running",
@@ -652,7 +666,7 @@
             "active": 1,
             "waiting": 0
           },
-          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+          "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)"
         }
       ],
       "passed": true
@@ -673,31 +687,31 @@
           "active": 0,
           "waiting": 0
         },
-        "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)",
+        "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)",
         "board": [
           8,
-          56,
+          103.34375,
           374,
-          509
+          461.65625
         ],
         "nodes": [
           [
-            167.5,
-            433.010498046875,
+            167.49998474121094,
+            444.4617004394531,
             55,
             65
           ],
           [
-            61.45505905151367,
-            292.09185791015625,
-            54.999996185302734,
+            59.877777099609375,
+            314.65277099609375,
+            55.00000762939453,
             65
           ],
           [
-            167.5,
-            122.9894790649414,
+            167.49998474121094,
+            158.8820343017578,
             55,
-            65.00000762939453
+            64.99998474121094
           ]
         ],
         "edges": 2,
@@ -717,26 +731,26 @@
         "matrix": "translate(0 0) scale(1)",
         "board": [
           8,
-          56,
+          103.3125,
           374,
-          509
+          461.6875
         ],
         "nodes": [
           [
             167.5,
-            434.6153869628906,
+            443.71392822265625,
             55,
             65
           ],
           [
-            64.375,
-            297.5769348144531,
+            64.44474792480469,
+            319.4134521484375,
             55,
             65
           ],
           [
             167.5,
-            133.13076782226562,
+            170.2528839111328,
             55,
             65
           ]
@@ -750,109 +764,109 @@
       "label": "webkit ordinary launch keeps view and excludes prelude from simulation",
       "frames": [
         {
-          "ms": 4,
+          "ms": 5,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 11,
+          "ms": 24,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 26,
+          "ms": 53,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 41,
+          "ms": 69,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 57,
+          "ms": 83,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 72,
+          "ms": 99,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 88,
+          "ms": 115,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 104,
+          "ms": 131,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 120,
+          "ms": 146,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 136,
+          "ms": 161,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 151,
+          "ms": 176,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 167,
+          "ms": 191,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 183,
+          "ms": 207,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 198,
+          "ms": 222,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 214,
+          "ms": 238,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 229,
+          "ms": 254,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 245,
+          "ms": 269,
           "state": "preparing",
           "run": null,
           "matrix": "translate(0 0) scale(1)"
         },
         {
-          "ms": 271,
+          "ms": 295,
           "state": "running",
           "run": {
             "status": "running",
@@ -870,11 +884,11 @@
     },
     {
       "label": "webkit zoomed launch animates to whole view in the same short duration",
-      "normalDelay": 271,
-      "zoomDelay": 291,
+      "normalDelay": 295,
+      "zoomDelay": 294,
       "frames": [
         {
-          "ms": 4,
+          "ms": 7,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -885,10 +899,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+          "matrix": "translate(-364.0000123977658 -582.3999832153327) scale(1.728)"
         },
         {
-          "ms": 22,
+          "ms": 46,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -899,10 +913,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-363.999989509583 -582.3999832153327) scale(1.728)"
+          "matrix": "translate(-364.0000123977658 -582.3999832153327) scale(1.728)"
         },
         {
-          "ms": 61,
+          "ms": 87,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -913,21 +927,7 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-249.32903523054443 -407.0158854929555) scale(1.498658084564854)"
-        },
-        {
-          "ms": 100,
-          "state": "preparing",
-          "run": {
-            "status": "stopped",
-            "pauseReason": null,
-            "clock": "0",
-            "records": 2,
-            "retainedParticles": 0,
-            "active": 0,
-            "waiting": 0
-          },
-          "matrix": "translate(-126.11168721083504 -218.56046064670772) scale(1.2522233811358203)"
+          "matrix": "translate(-202.50112254559434 -335.8447650702126) scale(1.405002232011196)"
         },
         {
           "ms": 132,
@@ -941,10 +941,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-75.59527653973748 -141.29786907391696) scale(1.151190556764045)"
+          "matrix": "translate(-105.24222319267932 -187.36269706056783) scale(1.2104844403607729)"
         },
         {
-          "ms": 162,
+          "ms": 165,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -955,10 +955,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-43.15291450599551 -91.67872681558288) scale(1.0863058307509215)"
+          "matrix": "translate(-62.9008592442882 -122.72148352397136) scale(1.1258017155355406)"
         },
         {
-          "ms": 196,
+          "ms": 195,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -969,10 +969,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-24.78249033990903 -63.581984380647214) scale(1.0495649813170338)"
+          "matrix": "translate(-38.67805582541445 -85.74130002863268) scale(1.0773561104549767)"
         },
         {
-          "ms": 223,
+          "ms": 225,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -983,10 +983,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-16.481893271777835 -50.886592278051694) scale(1.0329637866829664)"
+          "matrix": "translate(-27.158565054794167 -68.15485988362138) scale(1.0543171297493892)"
         },
         {
-          "ms": 255,
+          "ms": 256,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -997,10 +997,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-14.24901253190177 -47.4715010167381) scale(1.0284980250693034)"
+          "matrix": "translate(-22.783853640222276 -61.476127118776844) scale(1.045567707237598)"
         },
         {
-          "ms": 291,
+          "ms": 294,
           "state": "running",
           "run": {
             "status": "running",
@@ -1011,7 +1011,7 @@
             "active": 1,
             "waiting": 0
           },
-          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+          "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)"
         }
       ],
       "passed": true
@@ -1028,7 +1028,7 @@
       "label": "webkit reduced motion keeps duration and fits once before launch",
       "frames": [
         {
-          "ms": 4,
+          "ms": 5,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1039,21 +1039,7 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
-        },
-        {
-          "ms": 7,
-          "state": "preparing",
-          "run": {
-            "status": "stopped",
-            "pauseReason": null,
-            "clock": "0",
-            "records": 2,
-            "retainedParticles": 0,
-            "active": 0,
-            "waiting": 0
-          },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
           "ms": 22,
@@ -1067,10 +1053,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 38,
+          "ms": 37,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1081,7 +1067,7 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
           "ms": 53,
@@ -1095,10 +1081,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 69,
+          "ms": 68,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1109,10 +1095,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 85,
+          "ms": 84,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1123,10 +1109,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 101,
+          "ms": 99,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1137,10 +1123,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 116,
+          "ms": 114,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1151,10 +1137,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 132,
+          "ms": 130,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1165,10 +1151,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 147,
+          "ms": 145,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1179,10 +1165,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 163,
+          "ms": 162,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1193,10 +1179,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 179,
+          "ms": 177,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1207,10 +1193,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 195,
+          "ms": 194,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1221,10 +1207,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 211,
+          "ms": 209,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1235,10 +1221,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 225,
+          "ms": 224,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1249,10 +1235,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 241,
+          "ms": 240,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1263,10 +1249,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 256,
+          "ms": 255,
           "state": "preparing",
           "run": {
             "status": "stopped",
@@ -1277,10 +1263,10 @@
             "active": 0,
             "waiting": 0
           },
-          "matrix": "translate(-388.46381517024554 -664.18836562139) scale(1.7769276404494383)"
+          "matrix": "translate(-402.3498904325321 -687.0725863822761) scale(1.804699738903394)"
         },
         {
-          "ms": 290,
+          "ms": 293,
           "state": "running",
           "run": {
             "status": "running",
@@ -1291,7 +1277,7 @@
             "active": 1,
             "waiting": 0
           },
-          "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)"
+          "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)"
         }
       ],
       "passed": true
@@ -1312,31 +1298,31 @@
           "active": 0,
           "waiting": 0
         },
-        "matrix": "translate(-14.157303370786622 -47.331235955056286) scale(1.0283146067415732)",
+        "matrix": "translate(-22.193211488250654 -60.57441253263721) scale(1.0443864229765014)",
         "board": [
           8,
-          56,
+          103.3125,
           374,
-          509
+          461.6875
         ],
         "nodes": [
           [
-            167.5,
-            433.010498046875,
+            167.49998474121094,
+            444.45574951171875,
             55,
             65
           ],
           [
-            61.455055236816406,
-            292.09185791015625,
-            55,
-            65
+            59.87049102783203,
+            314.63800048828125,
+            55.00000762939453,
+            65.00003051757812
           ],
           [
-            167.5,
-            122.9894790649414,
+            167.49998474121094,
+            158.8567352294922,
             55,
-            65.00000762939453
+            65
           ]
         ],
         "edges": 2,
