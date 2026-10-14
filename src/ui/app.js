@@ -36,7 +36,13 @@ const board=new Board($('board'),session,render,settings,notify,()=>chime.wire()
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
-function updateNotice(){ for(const id of ['update-notice','title-update'])$(id).hidden=!offline.state.update; }
+function updateNotice(){
+  $('update-notice').hidden=!offline.state.update;
+  const control=$('title-update');control.hidden=false;control.disabled=offline.state.checking||updating;
+  control.textContent=offline.state.checking?'確認中':offline.state.update?'更新':$('title-screen').classList.contains('title-compact')?'確認':'更新確認';
+  control.setAttribute('aria-label',offline.state.checking?'更新を確認中':offline.state.update?'更新':'更新を確認');
+  control.setAttribute('aria-busy',String(offline.state.checking));
+}
 
 document.addEventListener('click',event=>{
   const target=event.target.closest('button');if(!target||target.disabled)return;
@@ -280,6 +286,7 @@ function layoutTitle(width,height) {
   for(const [id,full,short] of [['title-start','連続プレイ','開始'],['title-challenges','選択プレイ','選択'],['title-free','自由作成','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-resume','プレイ画面へ','続き']]){
     $(id).textContent=compact?short:full;$(id).setAttribute('aria-label',full);
   }
+  updateNotice();
 }
 function tutorial() {leaveTitle();if(!session.guide)session.beginGuide();message='';render();}
 function partsExplanation() {
@@ -385,10 +392,12 @@ function pendingScores() {
 }
 
 function offlineStatus() {
-  const {ready,update,error,checking}=offline.state;
-  body.replaceChildren(element('p',checking?'資材を確認しています。':ready?'オフラインの準備が完了しています。':'オフラインの準備は未完了です。'),element('p','初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。'));
-  actions.replaceChildren(button('準備・更新を確認',()=>offline.prepare()),button('閉じる',close));
-  if(update){body.append(element('p','更新版の準備ができました。適用するまで現在の画面を保持します。'));actions.prepend(button('更新へ',updateDialog));}
+  const {ready,update,error,checking,checked}=offline.state;
+  const result=checking?'更新を確認しています。':update?'更新版の準備ができました。':checked&&!error?'最新版です。':error?'更新確認を完了できませんでした。':'更新はまだ確認していません。';
+  body.replaceChildren(element('p',result,{'role':'status'}),element('p',ready?'オフラインの準備が完了しています。':'オフラインの準備は未完了です。'),element('p','初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。'));
+  const check=button(checking?'確認中':'準備・更新を確認',()=>offline.prepare());check.disabled=checking;
+  actions.replaceChildren(check,button('閉じる',close));
+  if(update){body.append(element('p','適用するまで現在の画面を保持します。'));actions.prepend(button('更新へ',updateDialog));}
   $('dialog-error').textContent=error??'';
   fitDialogForm(()=>{},[...body.querySelectorAll('p')].slice(1),offlineStatus);
 }
@@ -650,7 +659,10 @@ $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
-$('title-update').addEventListener('click',()=>attempt(requestUpdate));
+$('title-update').addEventListener('click',()=>attempt(()=>{
+  if(offline.state.update)return requestUpdate();
+  offlineDialog();return offline.prepare();
+}));
 $('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id}))));
 $('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode()));
 $('title-free').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({sampleId:'compare'}))));

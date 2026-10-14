@@ -50,7 +50,15 @@ async function prepared(page){await waitForAsync(page,async()=>{
   const version=document.querySelector('meta[name=prism-version]').content;
   const cache=await caches.open(`prism-notes:/prism/:${version}`),response=await cache.match(new URL('build-info.json',document.baseURI));
   if(!response)return false;const manifest=await response.json();return manifest.version===version&&(await Promise.all(manifest.assets.map(asset=>cache.match(new URL(asset,document.baseURI))))).every(Boolean);
-},{},{timeout:15000});}
+},{},{timeout:15000}).catch(async error=>{
+  report.preparationFailure=await page.evaluate(async()=>{
+    const r=await navigator.serviceWorker.getRegistration(),v=document.querySelector('meta[name=prism-version]')?.content;
+    const names=await caches.keys(),cache=v?await caches.open(`prism-notes:/prism/:${v}`):null;
+    const response=cache?await cache.match(new URL('build-info.json',document.baseURI)):null;
+    const manifest=response?await response.json():null;
+    return {version:v,controller:navigator.serviceWorker.controller?.state,active:r?.active?.state,waiting:r?.waiting?.state,installing:r?.installing?.state,caches:names,missing:manifest?await Promise.all(manifest.assets.map(async asset=>await cache.match(new URL(asset,document.baseURI))?null:asset)).then(items=>items.filter(Boolean)):['manifest'],title:document.getElementById('dialog-title')?.textContent,error:document.getElementById('dialog-error')?.textContent,update:document.getElementById('title-update')?.textContent};
+  });throw error;
+});}
 async function settle(page){await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));}
 async function fit(page,label){
   const size=await page.evaluate(()=>({w:innerWidth,h:innerHeight,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,controls:[...document.querySelectorAll('dialog[open] button')].filter(b=>b.getClientRects().length).map(b=>({text:b.textContent,rect:b.getBoundingClientRect().toJSON()}))}));
@@ -107,7 +115,28 @@ async function connection(context,engine,offline){
         await context.addInitScript(()=>{addEventListener('error',event=>{void window.__reportWindowError({type:'error',message:event.message,filename:event.filename}).catch(()=>{});});addEventListener('unhandledrejection',event=>{void window.__reportWindowError({type:'unhandledrejection',message:String(event.reason)}).catch(()=>{});});});
         const page=await context.newPage();
         const observeErrors=target=>target.on('pageerror',e=>{const detail={engine,message:e.message,name:e.name,stack:e.stack,url:target.url(),originOffline};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);errors.push(detail);report.errors.push(detail);});observeErrors(page);
-        await page.goto(url);await enterApp(page);await prepared(page);await skipGuide(page);assert.equal((await status(page)).ready,true);
+        await page.goto(url);await prepared(page);await page.waitForFunction(()=>!document.getElementById('title-update').disabled);
+        assert.equal(await page.locator('#title-update').isVisible(),true);assert.equal(await page.locator('#title-update').textContent(),'更新確認');
+        await page.locator('#title-update').click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
+        assert.equal(await page.locator('#title-screen').isVisible(),true);await fit(page,`${engine} title manual update check returns latest version without leaving title`);
+        await page.locator('#dialog-close').click();
+        await page.evaluate(()=>{
+          const post=ServiceWorker.prototype.postMessage;window.__titlePreparationPost=post;let hold=true;
+          ServiceWorker.prototype.postMessage=function(data,ports){
+            if(hold&&data.type==='PREPARE_ASSETS'){hold=false;window.__finishTitlePreparation=()=>ports[0].postMessage({ready:false});return;}
+            return post.call(this,data,ports);
+          };
+        });
+        await page.locator('#title-update').click();await page.waitForFunction(()=>typeof window.__finishTitlePreparation==='function');
+        assert.equal(await page.getByRole('button',{name:'確認中',exact:true}).isDisabled(),true);assert.equal(await page.locator('#title-update').isDisabled(),true);
+        assert.equal(await page.locator('#dialog-body [role="status"]').textContent(),'更新を確認しています。');
+        await page.evaluate(()=>window.__finishTitlePreparation());await page.waitForFunction(()=>document.getElementById('dialog-error').textContent.includes('資材の準備に失敗')&&document.querySelector('#dialog-body [role="status"]')?.textContent==='更新確認を完了できませんでした。');
+        assert.equal(await page.locator('#dialog-body [role="status"]').textContent(),'更新確認を完了できませんでした。');assert.equal((await status(page)).ready,true);
+        await page.evaluate(()=>{ServiceWorker.prototype.postMessage=window.__titlePreparationPost;});
+        await page.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
+        await page.locator('#dialog-close').click();assert.equal(await page.locator('#title-screen').isVisible(),true);
+        report.checks.push({label:`${engine} title/manual retry holds checking through pending assets; negative worker response is shown without losing prepared cache`,passed:true});
+        await enterApp(page);await skipGuide(page);assert.equal((await status(page)).ready,true);
         const manifest=await page.evaluate(async()=>{const r=await fetch('manifest.webmanifest');return r.json();});assert.deepEqual(manifest.icons.map(i=>i.sizes),['192x192','512x512']);
         for(const [width,height] of [[320,480],[480,240],[844,310],[390,664]]){
           await page.setViewportSize({width,height});await menuItem(page,'オフラインと更新');await fit(page,`${engine} offline dialog ${width}x${height}`);await page.locator('#dialog-close').click();
@@ -115,7 +144,18 @@ async function connection(context,engine,offline){
         await connection(context,engine,true);
         const negative=await browser.newContext();if(engine==='chromium')await negative.setOffline(true);const negativePage=await negative.newPage();let rejected=false;
         try{await negativePage.goto(url,{timeout:3000});await enterApp(negativePage);}catch{rejected=true;}assert(rejected,'A fresh context without prepared assets must not reach the origin');await negative.close();
-        await page.close();const offline=await context.newPage();observeErrors(offline);await offline.goto(url);await enterApp(offline);await prepared(offline);
+        await page.close();const offline=await context.newPage();observeErrors(offline);const offlineResponse=await offline.goto(url);
+        if(!await offline.locator('meta[name=prism-version]').count()){
+          report.startupFailure={engine,status:offlineResponse?.status(),...await offline.evaluate(async()=>({url:location.href,body:document.body.textContent,caches:await caches.keys(),registration:await navigator.serviceWorker.getRegistration().then(r=>({active:r?.active?.state,waiting:r?.waiting?.state,installing:r?.installing?.state}))}))};
+          throw new Error('Prepared offline restart has no application metadata');
+        }
+        await enterApp(offline);await prepared(offline);
+        await menuItem(offline,'オフラインと更新');await offline.waitForFunction(()=>!document.getElementById('title-update').disabled);
+        await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();
+        try{await offline.waitForFunction(()=>document.getElementById('dialog-error').textContent.includes('通信'),{},{timeout:10000});}
+        catch(error){report.offlineCheckFailure=await offline.evaluate(()=>({online:navigator.onLine,title:document.getElementById('dialog-title').textContent,body:document.getElementById('dialog-body').textContent,error:document.getElementById('dialog-error').textContent,actions:document.getElementById('dialog-actions').textContent}));throw error;}
+        assert.equal((await status(offline)).ready,true);assert.equal(await offline.getByRole('button',{name:'更新へ',exact:true}).count(),0);await offline.locator('#dialog-close').click();
+        report.checks.push({label:`${engine} hamburger update check offline reports unavailable check and preserves prepared cache`,passed:true});
         assert.equal(await offline.locator('#guide-bar').isVisible(),false);
         await offline.locator('#home').click();await settle(offline);let names=[];
         do{names.push(...await offline.locator('#dialog-body .dialog-list button:not(.pager button)').allTextContents());const next=offline.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(offline);}while(names.length<30);
@@ -144,7 +184,9 @@ async function connection(context,engine,offline){
             return post.call(this,data,ports);
           };
         });
-        await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>typeof window.__releasePreparation==='function');await offline.locator('#dialog-info').click();await offline.evaluate(()=>window.__releasePreparation());await offline.waitForFunction(()=>window.__preparationFailed===true);await status(offline);await settle(offline);
+        await offline.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await offline.waitForFunction(()=>typeof window.__releasePreparation==='function');
+        assert.equal(await offline.getByRole('button',{name:'確認中',exact:true}).isDisabled(),true);assert.equal(await offline.locator('#dialog-body [role="status"]').textContent(),'更新を確認しています。');
+        await offline.locator('#dialog-info').click();await offline.evaluate(()=>window.__releasePreparation());await offline.waitForFunction(()=>window.__preparationFailed===true);await status(offline);await settle(offline);
         await offline.getByRole('button',{name:'戻る',exact:true}).click();assert((await offline.locator('#dialog-error').textContent()).includes('Synthetic preparation failure'),'Explanation return must expose the completed failure');await enlargedDialog(offline,`${engine} preparation completes while explanation is open`);
         await offline.evaluate(()=>{ServiceWorker.prototype.postMessage=window.__originalPreparationPost;document.documentElement.style.removeProperty('font-size');});await offline.setViewportSize({width:390,height:664});await offline.locator('#dialog-close').click();
         current=1;

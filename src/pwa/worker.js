@@ -46,6 +46,12 @@ self.addEventListener('fetch',event=>{
   const request=event.request,url=new URL(request.url),scope=new URL(base);
   if(request.method!=='GET'||url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return;
   event.respondWith((async()=>{
+    // Update checks must reach the origin. An unavailable origin is a handled
+    // result, rather than a rejected fetch event that can break offline clients.
+    if(url.pathname===new URL('./build-info.json',base).pathname&&url.searchParams.has('update-check')){
+      try{return await fetch(request);}
+      catch{return new Response('{}',{status:503,headers:{'Content-Type':'application/json'}});}
+    }
     const cache=await caches.open(cacheName(VERSION));
     if(request.mode==='navigate'){
       const index=await cache.match(cacheURL('./index.html'));if(index&&await ready(VERSION))return index;

@@ -1,7 +1,15 @@
 {
-  "version": "0.25.0",
+  "version": "0.26.0",
   "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
   "checks": [
+    {
+      "label": "chromium title manual update check returns latest version without leaving title",
+      "passed": true
+    },
+    {
+      "label": "chromium title/manual retry holds checking through pending assets; negative worker response is shown without losing prepared cache",
+      "passed": true
+    },
     {
       "label": "chromium offline dialog 320x480",
       "passed": true
@@ -19,6 +27,10 @@
       "passed": true
     },
     {
+      "label": "chromium hamburger update check offline reports unavailable check and preserves prepared cache",
+      "passed": true
+    },
+    {
       "label": "chromium subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run",
       "passed": true
     },
@@ -33,7 +45,7 @@
       "label": "chromium preparation completes while explanation is open CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -55,7 +67,7 @@
       "label": "chromium update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 11,
+      "settlingFrames": 9,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -190,6 +202,14 @@
       "passed": true
     },
     {
+      "label": "webkit title manual update check returns latest version without leaving title",
+      "passed": true
+    },
+    {
+      "label": "webkit title/manual retry holds checking through pending assets; negative worker response is shown without losing prepared cache",
+      "passed": true
+    },
+    {
       "label": "webkit offline dialog 320x480",
       "passed": true
     },
@@ -206,6 +226,10 @@
       "passed": true
     },
     {
+      "label": "webkit hamburger update check offline reports unavailable check and preserves prepared cache",
+      "passed": true
+    },
+    {
       "label": "webkit subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run",
       "passed": true
     },
@@ -213,14 +237,14 @@
       "label": "webkit preparation completes while explanation is open CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
       "label": "webkit preparation completes while explanation is open CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -351,7 +375,7 @@
       "label": "webkit incomplete update error and old assets status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 8,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {

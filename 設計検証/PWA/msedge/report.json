@@ -1,7 +1,15 @@
 {
-  "version": "0.10.0",
+  "version": "0.26.0",
   "evidence": "Installed Windows msedge: disposable browser context, actual worker/cache and offline operations under /prism/. Later releases/errors are synthetic. No OS installation/shutdown or phone evidence.",
   "checks": [
+    {
+      "label": "chromium title manual update check returns latest version without leaving title",
+      "passed": true
+    },
+    {
+      "label": "chromium title/manual retry holds checking through pending assets; negative worker response is shown without losing prepared cache",
+      "passed": true
+    },
     {
       "label": "chromium offline dialog 320x480",
       "passed": true
@@ -19,7 +27,11 @@
       "passed": true
     },
     {
-      "label": "chromium subpath icons, closed-page offline startup, all six choices, drag/score/free edit/save/run",
+      "label": "chromium hamburger update check offline reports unavailable check and preserves prepared cache",
+      "passed": true
+    },
+    {
+      "label": "chromium subpath icons, closed-page offline startup, all twelve choices, drag/score/free edit/save/run",
       "passed": true
     },
     {
@@ -33,7 +45,7 @@
       "label": "chromium preparation completes while explanation is open CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -44,10 +56,18 @@
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
+      "label": "chromium startup automatically prepares update; one header click applies it while saved data and another tab input remain unchanged",
+      "passed": true
+    },
+    {
+      "label": "chromium title update also applies in one click through the real worker",
+      "passed": true
+    },
+    {
       "label": "chromium update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -110,7 +130,7 @@
       "label": "chromium failed pre-update save retains form CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {

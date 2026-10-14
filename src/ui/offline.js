@@ -2,7 +2,7 @@ export class Offline {
   constructor(changed) {
     this.changed=changed;this.version=document.querySelector('meta[name="prism-version"]').content;
     this.enabled=Boolean(document.querySelector('meta[name="prism-offline"]'));
-    this.registration=null;this.applying=false;this.state={ready:false,update:false,error:null,checking:false};
+    this.registration=null;this.applying=false;this.state={ready:false,update:false,error:null,checking:false,checked:false};
     navigator.serviceWorker?.addEventListener('controllerchange',()=>{
       if(this.applying){
         if(!this.allowed())this.rejectApply?.(new Error('更新確認後に状態が変わりました。現在の状態を保持し、更新を延期します。'));
@@ -11,7 +11,7 @@ export class Offline {
     });
     window.addEventListener('online',()=>this.prepare().catch(error=>this.fail(error)));
   }
-  fail(error) {this.state.error=error.message;this.state.checking=false;this.changed();}
+  fail(error) {this.state.error=error.message;this.state.checked=false;this.state.checking=Boolean(this.preparing);this.changed();}
   request(worker,version=this.version,type='STATUS') {
     return new Promise((resolve,reject)=>{
       if(!worker){reject(new Error('オフラインの準備はまだ完了していません。'));return;}
@@ -30,11 +30,31 @@ export class Offline {
     };
     worker.addEventListener('statechange',changed);
   }
-  async prepare() {
-    if(!this.enabled){this.state.error='開発用の画面です。オフライン確認には配信資材を使ってください。';this.changed();return;}
-    if(!('serviceWorker' in navigator)||!window.isSecureContext){this.fail(new Error('この環境ではオフライン準備ができません。対応ブラウザでHTTPSの公開URLを開いてください。'));return;}
-    this.state.checking=true;this.state.error=null;this.changed();
+  prepare() {
+    if(this.preparation)return this.preparation;
+    this.preparing=true;this.state.checking=true;this.state.checked=false;this.state.error=null;this.changed();
+    this.preparation=this.prepareOnce().finally(()=>{
+      this.preparation=null;this.preparing=false;this.state.checking=Boolean(this.registration?.installing);this.changed();
+    });
+    return this.preparation;
+  }
+  installation(worker) {
+    if(!worker)return Promise.resolve();
+    return new Promise((resolve,reject)=>{
+      let timer;
+      const finish=error=>{clearTimeout(timer);worker.removeEventListener('statechange',changed);error?reject(error):resolve();};
+      const changed=()=>{
+        if(worker.state==='redundant')finish(new Error('新しい資材の準備に失敗しました。現在の資材と保存データは保持しています。'));
+        else if(['installed','activated'].includes(worker.state))finish();
+      };
+      timer=setTimeout(()=>finish(new Error('更新の準備に時間がかかっています。通信を確認して再試行してください。')),30000);
+      worker.addEventListener('statechange',changed);changed();
+    });
+  }
+  async prepareOnce() {
     try {
+      if(!this.enabled)throw new Error('開発用の画面です。オフライン確認には配信資材を使ってください。');
+      if(!('serviceWorker' in navigator)||!window.isSecureContext)throw new Error('この環境ではオフライン準備ができません。対応ブラウザでHTTPSの公開URLを開いてください。');
       const scope=new URL('./',document.baseURI);
       if(!this.registration){
         const existing=await navigator.serviceWorker.getRegistration(scope.href);
@@ -43,21 +63,39 @@ export class Offline {
       if(!this.watching){this.registration.addEventListener('updatefound',()=>this.watch(this.registration.installing));this.watching=true;}
       this.watch(this.registration.installing);
       await this.refresh();
-      if(navigator.onLine&&!this.registration.installing)await this.registration.update();
-      if(navigator.onLine&&this.registration.active)await this.request(this.registration.active,null,'PREPARE_ASSETS');
+      await this.installation(this.registration.installing);
+      if(!navigator.onLine)throw new Error('通信なしのため更新を確認できません。保存済み資材は保持しています。通信できる状態で再試行してください。');
+      // A worker update may reuse its script even when the browser reports online.
+      // A unique URL bypasses both our worker caches and the normal HTTP cache.
+      const url=new URL('./build-info.json',scope);url.searchParams.set('update-check',`${Date.now()}-${Math.random()}`);
+      let latest;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);
+      try{
+        const response=await fetch(url,{cache:'no-store',signal:controller.signal});
+        if(!response.ok)throw new Error('Manifest unavailable');
+        latest=(await response.json()).version;
+        if(!/^\d+\.\d+\.\d+$/.test(latest))throw new Error('Manifest invalid');
+      }catch{throw new Error('通信先の版情報を取得できませんでした。通信を確認して再試行してください。現在の資材と保存データは保持しています。');}
+      finally{clearTimeout(timer);}
+      await this.registration.update();
+      await this.installation(this.registration.installing);
+      const worker=this.registration.waiting??this.registration.active;
+      const prepared=await this.request(worker,null,'PREPARE_ASSETS');
+      if(!prepared.ready)throw new Error('資材の準備に失敗しました。現在の資材と保存データは保持しています。通信を確認して再試行してください。');
       await this.refresh();
+      if(latest!==this.version&&!this.state.update)throw new Error('更新版の準備がまだ完了していません。少し待って再試行してください。現在の資材と保存データは保持しています。');
+      this.state.checked=!this.state.error;
     }catch(error){this.fail(error);await this.refresh().catch(()=>{});}
   }
   async refresh() {
     if(!this.registration)return;
     const worker=this.registration.active??this.registration.waiting;
-    if(!worker){this.state.checking=Boolean(this.registration.installing);this.changed();return;}
+    if(!worker){this.state.checking=Boolean(this.preparing||this.registration.installing);this.changed();return;}
     const status=await this.request(worker);
     this.state.ready=status.ready===true;
     const waiting=this.registration.waiting;
     const next=waiting?await this.request(waiting,null):null;
     this.state.update=Boolean(next?.ready)||(status.currentVersion!==this.version&&status.currentReady);
-    this.state.checking=Boolean(this.registration.installing);
+    this.state.checking=Boolean(this.preparing||this.registration.installing);
     this.changed();
   }
   async apply(allowed=()=>true) {
