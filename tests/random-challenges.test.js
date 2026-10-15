@@ -39,6 +39,20 @@ test('お試し6課題は数値も基準も変えず、抽選を呼ばない',()
   for(const authored of challenges.slice(0,6))assert.deepEqual(drawChallenge(authored,{random:()=>{throw new Error('No draw');}}),authored);
 });
 
+test('Q7は選び直すと満点の配線も変わり、同じ問題での再編集は保持する',()=>{
+  const {session:s}=fixture(),winners=new Set();
+  let previous=null;
+  for(let i=0;i<16;i++){
+    s.random=()=>((i*7)%16)/16;s.replace({challengeId:'Q7'});
+    const problem=proof.stages.find(p=>p.id===s.challenge.draw.id);
+    const winner=JSON.stringify(problem.winner);
+    if(previous!==null)assert.notEqual(winner,previous,'選び直しは同じ満点配線を繰り返さない');
+    winners.add(winner);previous=winner;
+    const current=structuredClone(s.challenge);s.clearConnections();assert.deepEqual(s.challenge,current);
+  }
+  assert(winners.size>=2);
+});
+
 test('未保存の自由回路からの取消は出題を消費せず、元回路と保存を保つ',()=>{
   const f=fixture(),s=f.session;s.replace({sampleId:'compare'});s.clearConnections();
   const circuit=structuredClone(s.circuit),values=[...f.values];let draws=0;s.random=()=>{draws++;return 0;};
@@ -67,6 +81,19 @@ test('固定版と各出題の成績を別々に残し、元の秒数・条件�
   assert.equal(records.scores().length,3);
 });
 
+test('Q7の旧ランダム版の条件と満点成績を新版の課題と分けて保持する',()=>{
+  const f=fixture(),old={...structuredClone(challenges[6]),version:1};
+  const times=['0.7','0.5','0.7','0.7','0.1','0.1','0.5','1.4','1.2','1.8','1.4','0.4'];
+  old.candidates=old.candidates.filter(e=>e.id!=='CD').map((e,i)=>({...e,time:times[i]}));
+  Object.assign(old,{baseline:'3.5',maxDuration:'4.5',draw:{id:'ba52aaa9f2a997c3',revision:1,number:1}});
+  f.records.saveScore('Q7@1/random-1-ba52aaa9f2a997c3','delivery-all@1',{numerator:'100',denominator:'1'},old);
+  const before=structuredClone(f.records.scores()[0]);
+  const s=new Session(new LocalRecords({getItem:key=>f.values.get(key)??null,setItem:(key,value)=>f.values.set(key,value)}),{random:()=>0});
+  s.replace({challengeId:'Q7'});runPerfect(s);
+  assert.equal(s.challenge.version,2);assert.deepEqual(f.records.scores()[0],before);
+  assert(f.records.scores()[1].challenge.startsWith('Q7@2/'));
+});
+
 test('成績の保存失敗から別出題へ進んでも、二つの元条件で再保存できる',()=>{
   const f=fixture(),s=f.session;f.fail();s.replace({challengeId:'Q7'});runPerfect(s);const first=s.challenge.draw.id;
   s.stop();s.replace({challengeId:'Q7'});runPerfect(s);assert.equal(s.pendingScores.size,2);
@@ -81,6 +108,7 @@ test('全48出題の全配線で唯一の満点・部分点・分岐や合流待
     const result=inspectProblem(problem);
     assert(result.valid,authored.id+' '+variant.id);assert.equal(result.winners,1);assert.equal(result.purposeFailures,0);
     assert(result.traps.length>0);assert.equal(result.baseline,variant.baseline);assert.equal(result.maxDuration,variant.maxDuration);
+    assert.deepEqual(result.winner,proof.stages.find(p=>p.id===variant.id).winner);
     count++;
   }
   assert.equal(count,48);

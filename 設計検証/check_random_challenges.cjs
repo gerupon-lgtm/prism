@@ -19,7 +19,7 @@ async function wire(page,id,partial=false){
   assert.deepEqual([...actual].sort(),[...edges].sort(),'Requested individual routes: '+JSON.stringify({id,edges,actual}));
 }
 async function finish(page){
-  if(page.realTime){await page.locator('#play').click();await page.waitForFunction(()=>{const text=document.getElementById('result').textContent;return text.includes('動作終了')||text.includes('編集可能')||text.includes('負荷のため');},null,{timeout:22000});}
+  if(page.realTime){await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state!=='preparing');await page.waitForFunction(()=>{const text=document.getElementById('result').textContent;return text.includes('動作終了')||text.includes('編集可能')||text.includes('負荷のため');},null,{timeout:22000});}
   else{await startAndPause(page);await page.evaluate(async()=>{for(let i=0;i<512&&!document.getElementById('next').disabled;i++){document.getElementById('next').click();await new Promise(requestAnimationFrame);await new Promise(r=>setTimeout(r,100));}});}
   await page.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
   report.lastPlayback=await page.evaluate(async()=>{const app=await import(document.querySelector('script[type=module]').src);return {performance:app.inspectPerformance(),profile:window.__displayProfile};});
@@ -70,6 +70,12 @@ async function fitted(page,label){
     const before=await exported(page);assert.deepEqual(before.challenge,file.challenge);assert.deepEqual(before.records,file.records);
     report.checks.push({label:engine+' '+id+' retry, clear, menu and record export preserve the same draw and full result',passed:true});
     await page.evaluate(()=>window.__fixtureDrawValue=.9999);await selectChallenge(page,id);await page.evaluate(()=>delete window.__fixtureDrawValue);const second=await page.locator('#app').getAttribute('data-problem-id');assert.notEqual(second,first);assert.notDeepEqual(await snapshot(page),values);
+    if(id==='Q7'){
+     const alternate=proof.stages.find(p=>p.id===second);assert.notDeepEqual(alternate.winner,fixture.winner,'Q7 must change its perfect wiring as well as times');
+     await wire(page,id);await finish(page);await waitClear(page);const perfect=await exported(page);assert.deepEqual(perfect.evaluation.score,{numerator:'100',denominator:'1'});
+     report.checks.push({label:engine+' Q7 reselected problem has a different unique-perfect wiring and earns 100 points in the UI',passed:true,first,second,firstWiring:fixture.winner,secondWiring:alternate.winner});
+     await page.locator('#clear-again').click();await page.locator('#clear-wires').click();assert.equal(await page.locator('#app').getAttribute('data-problem-id'),second);
+    }
     await wire(page,id,true);await finish(page);const partial=await exported(page);assert.equal(partial.evaluation.state,'achieved');assert(Number(partial.evaluation.score.numerator)/Number(partial.evaluation.score.denominator)<100);await waitClear(page);
     report.checks.push({label:engine+' '+id+' reselection changes weights; another wiring clears with partial points',passed:true,first,second,score:partial.evaluation.score});
     await page.screenshot({path:path.join(out,engine+'-'+id+'.png')});

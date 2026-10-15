@@ -5,7 +5,9 @@ export function drawChallenge(authored,{previousId=null,random=Math.random}={}){
   if(Number(authored.id.slice(1))<=6)return structuredClone(authored);
   const bank=randomVariants[authored.id];
   if(!bank?.length)throw new Error('この課題の検査済み出題がありません。');
-  const choices=bank.length>1?bank.filter(item=>item.id!==previousId):bank;
+  const previous=bank.find(item=>item.id===previousId);
+  const choices=bank.length>1?bank.filter(item=>previous?.family===undefined?item.id!==previousId:item.family!==previous.family):bank;
+  if(!choices.length)throw new Error('異なる満点配線の出題がありません。');
   const value=random();
   if(!Number.isFinite(value)||value<0||value>=1)throw new Error('出題の抽選に失敗しました。');
   const selected=choices[Math.floor(value*choices.length)];

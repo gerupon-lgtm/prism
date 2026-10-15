@@ -2,8 +2,9 @@
 export const randomVariants = {
   "Q7": [
     {
-      "id": "ba52aaa9f2a997c3",
-      "baseVersion": 1,
+      "id": "78940e83aa04eaac",
+      "baseVersion": 2,
+      "family": 0,
       "times": [
         "0.7",
         "0.5",
@@ -16,14 +17,16 @@ export const randomVariants = {
         "1.2",
         "1.8",
         "1.4",
-        "0.4"
+        "0.4",
+        "1.6"
       ],
       "baseline": "3.5",
-      "maxDuration": "4.5"
+      "maxDuration": "4.6"
     },
     {
-      "id": "28f9461f96050db9",
-      "baseVersion": 1,
+      "id": "0facc4c938902d33",
+      "baseVersion": 2,
+      "family": 0,
       "times": [
         "1.2",
         "0.2",
@@ -36,14 +39,16 @@ export const randomVariants = {
         "1.3",
         "1.7",
         "1.3",
-        "0.6"
+        "0.6",
+        "1.7"
       ],
       "baseline": "3.9",
-      "maxDuration": "4.9"
+      "maxDuration": "5"
     },
     {
-      "id": "99b294640280e346",
-      "baseVersion": 1,
+      "id": "87ebe90b70392b1b",
+      "baseVersion": 2,
+      "family": 0,
       "times": [
         "0.9",
         "0.5",
@@ -56,14 +61,16 @@ export const randomVariants = {
         "1.4",
         "1.8",
         "1.4",
-        "0.4"
+        "0.4",
+        "1.8"
       ],
       "baseline": "3.7",
-      "maxDuration": "4.7"
+      "maxDuration": "4.8"
     },
     {
-      "id": "f24cc37160e17108",
-      "baseVersion": 1,
+      "id": "52506271a826b5d6",
+      "baseVersion": 2,
+      "family": 0,
       "times": [
         "0.9",
         "0.4",
@@ -76,90 +83,99 @@ export const randomVariants = {
         "1.6",
         "1.8",
         "1.4",
-        "0.5"
+        "0.5",
+        "2"
       ],
       "baseline": "3.7",
-      "maxDuration": "4.7"
+      "maxDuration": "4.8"
     },
     {
-      "id": "22a1983a88cfc7b7",
-      "baseVersion": 1,
+      "id": "6ccefba02c917d42",
+      "baseVersion": 2,
+      "family": 1,
       "times": [
         "1",
         "0.7",
         "0.5",
-        "0.5",
-        "0.3",
+        "1.6",
+        "0.4",
         "0.1",
         "0.5",
         "1.2",
         "1.4",
         "1.8",
         "1.4",
-        "0.2"
+        "0.1",
+        "0.7"
       ],
       "baseline": "3.8",
-      "maxDuration": "4.8"
+      "maxDuration": "4.9"
     },
     {
-      "id": "b17a442fa25525b4",
-      "baseVersion": 1,
+      "id": "630b9d47b94feea8",
+      "baseVersion": 2,
+      "family": 1,
       "times": [
         "1.1",
         "0.2",
         "0.3",
-        "0.9",
-        "0.4",
+        "2",
+        "0.5",
         "0.1",
         "0.5",
         "1.6",
         "1.5",
         "1.7",
         "1.3",
-        "0.6"
+        "0.5",
+        "0.8"
       ],
       "baseline": "3.8",
-      "maxDuration": "4.8"
+      "maxDuration": "4.9"
     },
     {
-      "id": "6f876775c7b3c2e8",
-      "baseVersion": 1,
+      "id": "7b3b839cb875b9c8",
+      "baseVersion": 2,
+      "family": 1,
       "times": [
         "0.5",
         "0.6",
         "0.7",
-        "0.8",
-        "0.3",
+        "1.9",
+        "0.4",
         "0.1",
         "0.5",
         "1.5",
         "1.4",
         "2",
         "1.6",
-        "0.5"
+        "0.4",
+        "0.7"
       ],
       "baseline": "3.5",
-      "maxDuration": "4.5"
+      "maxDuration": "4.6"
     },
     {
-      "id": "c0d814b5b5cb0598",
-      "baseVersion": 1,
+      "id": "ffcc1e012bf57884",
+      "baseVersion": 2,
+      "family": 1,
       "times": [
         "0.6",
         "0.9",
         "0.8",
-        "0.5",
-        "0.2",
+        "1.6",
+        "0.3",
         "0.1",
         "0.5",
         "1.2",
         "1.3",
         "2",
         "1.6",
-        "0.2"
+        "0.1",
+        "0.6"
       ],
       "baseline": "3.6",
-      "maxDuration": "4.6"
+      "maxDuration": "4.7"
     }
   ],
   "Q8": [

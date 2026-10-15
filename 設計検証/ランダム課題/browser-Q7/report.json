@@ -1,0 +1,217 @@
+{
+  "version": "0.34.0",
+  "evidence": "Real UI and exported records in disposable PC browsers. Synthetic mobile orientation and CSS enlargement; no physical-device or listening acceptance.",
+  "checks": [
+    {
+      "label": "chromium Q7 drawn condition fits",
+      "passed": true,
+      "w": 390,
+      "h": 844,
+      "sw": 390,
+      "sh": 844,
+      "condition": {
+        "width": 376,
+        "scroll": 376
+      },
+      "text": "実践・出題1・夜空の遺跡"
+    },
+    {
+      "label": "chromium Q7 unique-perfect UI, actual baseline and complete persisted/exported conditions",
+      "passed": true,
+      "problem": "78940e83aa04eaac",
+      "baseline": "3.5"
+    },
+    {
+      "label": "chromium Q7 retry, clear, menu and record export preserve the same draw and full result",
+      "passed": true
+    },
+    {
+      "label": "chromium Q7 reselected problem has a different unique-perfect wiring and earns 100 points in the UI",
+      "passed": true,
+      "first": "78940e83aa04eaac",
+      "second": "ffcc1e012bf57884",
+      "firstWiring": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "DG1",
+        "EG2"
+      ],
+      "secondWiring": [
+        "SA",
+        "AB",
+        "AC",
+        "DG1",
+        "EG2",
+        "BE",
+        "CD"
+      ]
+    },
+    {
+      "label": "chromium Q7 reselection changes weights; another wiring clears with partial points",
+      "passed": true,
+      "first": "78940e83aa04eaac",
+      "second": "ffcc1e012bf57884",
+      "score": {
+        "numerator": "3650",
+        "denominator": "37"
+      }
+    },
+    {
+      "label": "chromium failed variant score retry shows its full problem name and draw with enlarged text, then saves the retained conditions",
+      "passed": true,
+      "metrics": {
+        "text": "Q12 三つの光、ひとつの合流点 出題5 100.00点",
+        "width": 344,
+        "scrollWidth": 344,
+        "height": 94,
+        "scrollHeight": 94
+      },
+      "syntheticQuotaFailure": true
+    },
+    {
+      "label": "chromium introductory content unchanged and no page errors",
+      "passed": true
+    },
+    {
+      "label": "webkit Q7 drawn condition fits",
+      "passed": true,
+      "w": 390,
+      "h": 844,
+      "sw": 390,
+      "sh": 844,
+      "condition": {
+        "width": 376,
+        "scroll": 376
+      },
+      "text": "実践・出題1・夜空の遺跡"
+    },
+    {
+      "label": "webkit Q7 unique-perfect UI, actual baseline and complete persisted/exported conditions",
+      "passed": true,
+      "problem": "78940e83aa04eaac",
+      "baseline": "3.5"
+    },
+    {
+      "label": "webkit Q7 retry, clear, menu and record export preserve the same draw and full result",
+      "passed": true
+    },
+    {
+      "label": "webkit Q7 reselected problem has a different unique-perfect wiring and earns 100 points in the UI",
+      "passed": true,
+      "first": "78940e83aa04eaac",
+      "second": "ffcc1e012bf57884",
+      "firstWiring": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "DG1",
+        "EG2"
+      ],
+      "secondWiring": [
+        "SA",
+        "AB",
+        "AC",
+        "DG1",
+        "EG2",
+        "BE",
+        "CD"
+      ]
+    },
+    {
+      "label": "webkit Q7 reselection changes weights; another wiring clears with partial points",
+      "passed": true,
+      "first": "78940e83aa04eaac",
+      "second": "ffcc1e012bf57884",
+      "score": {
+        "numerator": "3650",
+        "denominator": "37"
+      }
+    },
+    {
+      "label": "webkit failed variant score retry shows its full problem name and draw with enlarged text, then saves the retained conditions",
+      "passed": true,
+      "metrics": {
+        "text": "Q12 三つの光、ひとつの合流点 出題5 100.00点",
+        "width": 344,
+        "scrollWidth": 344,
+        "height": 94,
+        "scrollHeight": 94
+      },
+      "syntheticQuotaFailure": true
+    },
+    {
+      "label": "webkit introductory content unchanged and no page errors",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "lastPlayback": {
+    "performance": {
+      "last": {
+        "milliseconds": 50,
+        "phases": {
+          "records": 3,
+          "calculation": 1,
+          "audio": 0,
+          "display": 46
+        },
+        "counts": {
+          "records": 44,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 16,
+          "milliseconds": 4,
+          "maximum": 3
+        },
+        "calculation": {
+          "calls": 497,
+          "milliseconds": 75,
+          "maximum": 3
+        },
+        "display": {
+          "calls": 525,
+          "milliseconds": 1173,
+          "maximum": 47
+        },
+        "audio": {
+          "calls": 28,
+          "milliseconds": 0,
+          "maximum": 0
+        }
+      },
+      "slowFrames": 1,
+      "run": {
+        "status": "paused",
+        "pauseReason": null,
+        "clock": "5.6",
+        "records": 44,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      },
+      "audioVoices": 0
+    }
+  },
+  "passed": true
+}

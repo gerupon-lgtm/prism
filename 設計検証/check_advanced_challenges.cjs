@@ -6,7 +6,8 @@ const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const layoutOnly=process.argv.includes('--layout-only');
 const pw=require(arg('--playwright-path')),channel=arg('--channel'),root=path.resolve(__dirname,'../dist');
-const out=path.join(__dirname,'実践課題',arg('--url')?'public':channel||'',layoutOnly?'layout-only':'');fs.mkdirSync(out,{recursive:true});
+const diagnostic=arg('--engine')||arg('--draw');
+const out=path.join(__dirname,'実践課題',arg('--url')?'public':channel||'',layoutOnly?'layout-only':'',diagnostic?`diagnostic-${arg('--engine')||'both'}-${arg('--draw')||'all'}`:'');fs.mkdirSync(out,{recursive:true});
 const reportFile=path.join(out,'report.json');if(fs.existsSync(reportFile)&&!JSON.parse(fs.readFileSync(reportFile)).passed)fs.copyFileSync(reportFile,path.join(out,'failed-'+Date.now()+'.json'));
 const report={scope:layoutOnly?'layout only':'full UI and layout',version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,evidence:'PC browsers, mouse wiring in phone viewports and synthetic Screen Orientation; exported real simulation records. Not physical touch, listening or player trial acceptance.',checks:[],browsers:[]};
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.ttf':'font/ttf'};
@@ -29,14 +30,21 @@ async function layout(page,label){await settle(page);const data=await page.evalu
  assert(data.hits.every(hit=>hit.right-hit.left>=43.9&&hit.bottom-hit.top>=43.9),label+' touch targets at least 44px');
  check.passed=true;
 }
-(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of channel?['chromium']:['chromium','webkit']){
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of channel?['chromium']:arg('--engine')?[arg('--engine')]:['chromium','webkit']){
  const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});try{
  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.addInitScript(()=>{const nativeRandom=Math.random;Math.random=()=>window.__layoutDraw??nativeRandom();window.__direction={angle:0,type:'portrait-primary'};const o=new EventTarget();Object.defineProperties(o,{angle:{get:()=>__direction.angle},type:{get:()=>__direction.type}});Object.defineProperty(screen,'orientation',{get:()=>o});});
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url());await enterApp(page);
  if(layoutOnly){
-   for(let draw=0;draw<8;draw++){
-     await page.evaluate(value=>window.__layoutDraw=value,draw/8);await selectChallenge(page,'Q12');const problem=await page.locator('#app').getAttribute('data-problem-id'),expected=JSON.parse(fs.readFileSync(path.join(__dirname,'ランダム課題/generation.json'),'utf8')).stages.filter(row=>row.challenge==='Q12')[draw].id;assert.equal(problem,expected,'Requested Q12 draw is selected');await wire(page,'Q12');
-     const enlarged=await page.addStyleTag({content:':root{font-size:28px!important}'});await layout(page,`${engine} Q12 draw ${draw+1} CSS text enlargement`);await enlarged.evaluate(e=>e.remove());await settle(page);
+   for(const id of ['Q7','Q12']){
+    const bank=JSON.parse(fs.readFileSync(path.join(__dirname,'ランダム課題/generation.json'),'utf8')).stages.filter(row=>row.challenge===id);let previous=null;
+    const order=id==='Q7'?[0,4,1,5,2,6,3,7]:[0,1,2,3,4,5,6,7];
+    for(const draw of arg('--draw')?[Number(arg('--draw'))-1]:order){
+     const expected=bank[draw],choices=bank.filter(p=>id==='Q7'&&previous?p.family!==previous.family:p.id!==previous?.id);
+     await page.evaluate(value=>window.__layoutDraw=value,(choices.findIndex(p=>p.id===expected.id)+.5)/choices.length);await selectChallenge(page,id);const problem=await page.locator('#app').getAttribute('data-problem-id');assert.equal(problem,expected.id,'Requested '+id+' draw is selected');previous=expected;
+     if(id==='Q7')await layout(page,`${engine} Q7 draw ${draw+1} all candidate times`);
+     await wire(page,id);
+     const enlarged=await page.addStyleTag({content:':root{font-size:28px!important}'});await layout(page,`${engine} ${id} draw ${draw+1} CSS text enlargement`);await enlarged.evaluate(e=>e.remove());await settle(page);
+    }
    }
    await page.evaluate(()=>delete window.__layoutDraw);
  }

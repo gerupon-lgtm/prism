@@ -6,7 +6,7 @@ export const ARRIVAL_DURATION_MS=Object.freeze({prism:1000,goal:1800});
 export class Scene {
   constructor(board) {
     const defs=svg('defs');
-    for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.95],[.35,.55],[1,0]]],['prism-light','#ccecff',[[0,.95],[.3,.65],[1,0]]]]){
+    for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.95],[.35,.55],[1,0]]],['prism-light','#ccecff',[[0,.95],[.3,.65],[1,0]]],['particle-light','#ffe4a0',[[0,.8],[.3,.45],[.65,.12],[1,0]]]]){
       const gradient=svg('radialGradient',{id});for(const [offset,opacity] of stops)gradient.append(svg('stop',{offset,'stop-color':color,'stop-opacity':opacity}));defs.append(gradient);
     }
     const column=svg('linearGradient',{id:'altar-column',x1:0,y1:1,x2:0,y2:0});

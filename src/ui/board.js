@@ -40,7 +40,7 @@ export class Board {
     const matrix=`translate(${panX} ${panY}) scale(${zoom})`;
     this.world.setAttribute('transform',matrix); this.particleLayer.setAttribute('transform',matrix);this.effectsLayer.setAttribute('transform',matrix);
     const screenMatrix=this.world.getScreenCTM();
-    if(screenMatrix){const scale=Math.hypot(screenMatrix.a,screenMatrix.b);this.fontFactor=Math.max(1,0.5/scale);this.element.style.setProperty('--board-factor',this.fontFactor);}
+    if(screenMatrix){const scale=Math.hypot(screenMatrix.a,screenMatrix.b);this.fontFactor=Math.max(1,0.5/scale);this.particleRadius=Math.min(9,Math.max(6,18*scale))/scale;this.element.style.setProperty('--board-factor',this.fontFactor);}
   }
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
@@ -198,6 +198,12 @@ export class Board {
         const others=[...new Set([...occupied.values()].flat())],xs=[area.left+3,area.right-3-bounds.width],ys=[area.top+3,area.bottom-3-bounds.height];
         for(const x of xs)for(const y of [...ys,...others.flatMap(rect=>[rect.top-bounds.height-4,rect.bottom+4])])addPosition(x,y);
         for(const y of ys)for(const x of others.flatMap(rect=>[rect.left-bounds.width-4,rect.right+4]))addPosition(x,y);
+        // Interior gaps can lie between two labels without touching a board edge.
+        if(positions.every(position=>overlap(position.rect)>0)){
+          const innerX=[...new Set(others.flatMap(rect=>[rect.left-bounds.width-4,rect.right+4]).map(x=>Math.max(area.left+3,Math.min(area.right-3-bounds.width,x))))];
+          const innerY=[...new Set(others.flatMap(rect=>[rect.top-bounds.height-4,rect.bottom+4]).map(y=>Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,y))))];
+          for(const x of innerX)for(const y of innerY)addPosition(x,y);
+        }
       }
       const clearPositions=positions.filter(position=>overlap(position.rect)===0);
       const best=(clearPositions.length?clearPositions:positions).reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
@@ -304,7 +310,12 @@ export class Board {
         this.particleLayer.append(svg('path',{d:`M${tail.x} ${tail.y} L${at.x} ${at.y}`,class:'light-trail'}));
       } else if(['waiting','processing','deadend'].includes(particle.status)) at=this.position(run.circuit.nodes.get(particle.node));
       else continue;
-      this.particleLayer.append(svg('circle',{cx:at.x,cy:at.y,r:particle.status==='deadend'?16:11,class:`particle ${particle.status}`}));
+      const radius=this.particleRadius??18,active=particle.status!=='deadend';
+      const light=svg('g',{class:`light-particle ${particle.status}`,transform:`translate(${at.x} ${at.y})`,'aria-hidden':'true'});
+      if(active)light.append(svg('circle',{r:radius*3,class:'particle-glow'}));
+      light.append(svg('circle',{r:radius,class:`particle ${particle.status}`}));
+      if(active)light.append(svg('circle',{cx:-radius*.25,cy:-radius*.25,r:radius*.3,class:'particle-spark'}));
+      this.particleLayer.append(light);
     }
   }
   down(event) {

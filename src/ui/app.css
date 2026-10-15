@@ -65,6 +65,11 @@ dialog.menu-dialog{height:calc(var(--app-height) - 22px)}
 .menu-grid button{min-width:0;padding:3px 4px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
 .menu-grid.tight-menu button{padding-inline:0}
 .version-tools{display:flex;align-items:center;justify-content:end;gap:4px;flex-wrap:wrap;flex:none}
+.copyright{color:#a6acba;white-space:nowrap;letter-spacing:.025em}
+.version-tools{gap:8px;line-height:1.2}
+.title-credits{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 14px}
+.device-landscape .version-tools{flex-direction:column;align-items:center;gap:0}
+.device-landscape .version-tools .copyright{white-space:normal;overflow-wrap:anywhere;text-align:center}
 #update-notice{font:inherit;min-height:0;padding:1px 4px;color:#f5ddb0;border-color:#8a7854}
 .device-landscape .version-tools{justify-content:center}
 #wire-magnifier{position:fixed;z-index:5;pointer-events:none;overflow:hidden;border:2px solid var(--gold);border-radius:12px;background:#101827;color:#fff;box-shadow:0 2px 12px #0009;font:12px/19px sans-serif}
@@ -444,6 +449,13 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 @media(prefers-reduced-motion:reduce){.prism-flare{animation:none;opacity:.7}}
 
 #board{overflow:hidden}
+.light-particle{pointer-events:none}
+.particle-glow{fill:url(#particle-light)}
+.particle-spark{fill:#fff;stroke:none}
+.particle{fill:#fffbe6;stroke:#ffe4a3;stroke-width:2;filter:drop-shadow(0 0 8px #ffe7aa)}
+.particle.waiting{fill:#b5caff}.particle.processing{fill:#d7ffec}.particle.deadend{fill:none;stroke:#a585bf;filter:none}
+.light-particle.waiting .particle-glow{opacity:.7}
+.light-trail{stroke:#fff0c6;stroke-width:2.4px;vector-effect:non-scaling-stroke;opacity:.85}
 
 /* A very short window uses the existing compact guide and full-text entry. */
 html:not(.device-landscape) body:not(.records-fullscreen) .compact #stage{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}

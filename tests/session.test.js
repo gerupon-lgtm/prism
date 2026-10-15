@@ -11,7 +11,7 @@ function fixture() {
   return {session:new Session(records),records,values,fail:()=>{failing=true;},recover:()=>{failing=false;},writes:()=>writes};
 }
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
-function authored(s,id){s.replace({challengeId:id});s.challenge=structuredClone(challenges.find(c=>c.id===id));s.circuit=challengeCircuit(s.challenge);return s;}
+function authored(s,id){s.replace({challengeId:id});s.challenge=structuredClone(challenges.find(c=>c.id===id));if(id==='Q7'){s.challenge.version=1;s.challenge.candidates=s.challenge.candidates.filter(e=>e.id!=='CD');}s.circuit=challengeCircuit(s.challenge);return s;}
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
 test('旧固定版の実践の複数祭壇課題は一つだけの到達では未達成で、全部への到達時間を採点する',()=>{
