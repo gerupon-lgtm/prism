@@ -6,13 +6,48 @@ process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright'
 const pw=require(arg('--playwright-path')),channel=arg('--channel'),root=path.resolve(__dirname,'../dist');
 const out=path.join(__dirname,'結果のジングル',arg('--url')?'public':channel||'');fs.mkdirSync(out,{recursive:true});
 const file=path.join(out,'report.json');if(fs.existsSync(file)&&JSON.parse(fs.readFileSync(file)).passed===false)fs.copyFileSync(file,path.join(out,'failed-'+Date.now()+'.json'));
-const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,evidence:'Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.',checks:[],pending:[],browsers:[]};
+const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,url:arg('--url'),checkedAt:new Date().toISOString(),evidence:'Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.',checks:[],pending:[],browsers:[]};
 const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.ttf':'font/ttf','.json':'application/json'};
 const server=http.createServer((req,res)=>{let f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(f===root)f=path.join(root,'index.html');if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}try{res.setHeader('Content-Type',types[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
 const check=(label,data={})=>{report.checks.push({label,passed:true,...data});console.log(label);};
 async function wire(page,id,route){if(await page.locator('#stop').isEnabled())await page.locator('#stop').click();await selectChallenge(page,id);for(let i=1;i<route.length;i++)await dragConnection(page,route[i-1],route[i]);}
 async function finish(page,kind){await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state!=='preparing');await page.waitForFunction(kind=>__outcomes.some(c=>c.kind===kind),kind,{timeout:18000});assert(!(await page.locator('#result').textContent()).includes('負荷のため'));}
 async function exported(page){await page.locator('#menu').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'実行結果を書き出す',exact:true}).click();const chunks=[],stream=await(await pending).createReadStream();for await(const c of stream)chunks.push(c);await page.locator('#dialog-close').click();return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
+async function failureWithBell(page,label,audio){
+ await wire(page,'Q6',['S','A','G']);
+ await page.evaluate(async()=>{
+  window.__outcomes=[];window.__failureMix=null;
+  const {Chime,BELL_SOUND}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src)),original=Chime.prototype.failure;
+  Chime.prototype.failure=function(){
+   Chime.prototype.failure=original;const c=this.context;
+   if(!c||c.state!=='running'){window.__failureMix={done:true,unavailable:true};return original.call(this);}
+   const probe={at:c.currentTime,lastBell:this.bellUntil-BELL_SOUND.durationSeconds,voices:[],samples:[],done:false};window.__failureMix=probe;
+   const analyser=c.createAnalyser(),samples=new Float32Array(2048);analyser.fftSize=samples.length;this.output.connect(analyser);
+   const create=c.createOscillator;c.createOscillator=function(){
+    const voice=create.call(this),row={stops:[]},start=voice.start.bind(voice),stop=voice.stop.bind(voice);probe.voices.push(row);
+    voice.start=at=>{row.start=at;return start(at);};voice.stop=at=>{row.stops.push({at,calledAt:c.currentTime});return at===undefined?stop():stop(at);};
+    voice.addEventListener('ended',()=>{row.endedAt=c.currentTime;});return voice;
+   };
+   try{original.call(this);}finally{c.createOscillator=create;}
+   const timer=setInterval(()=>{analyser.getFloatTimeDomainData(samples);let peak=0;for(const value of samples)peak=Math.max(peak,Math.abs(value));probe.samples.push({at:c.currentTime,peak});},20);
+   setTimeout(()=>{clearInterval(timer);this.output.disconnect(analyser);probe.done=true;},2300);
+  };
+ });
+ await finish(page,'failure');await page.waitForFunction(()=>__failureMix?.done,null,{timeout:5000});
+ const probe=await page.evaluate(()=>__failureMix);let signal;
+ if(audio){
+  assert(!probe.unavailable);assert.equal(probe.voices.length,2);const first=probe.voices[0].start;
+  assert(first-probe.lastBell>=1.5-1e-7&&first-probe.lastBell<1.55,'Failure notes wait at least 1.5s after the last actual bell, allowing one audio clock quantum');
+  assert(probe.voices.every(v=>v.endedAt>=v.stops[0].at-.02&&v.endedAt<probe.at+2.3&&v.stops.length===1),'Both notes finish naturally before automatic stop');
+  const peakBetween=(from,to)=>Math.max(0,...probe.samples.filter(s=>s.at>=from&&s.at<=to).map(s=>s.peak));
+  const quietBell=peakBetween(first-.25,first-.15),failurePeak=peakBetween(first+.01,first+.18);
+  assert(failurePeak>.01&&failurePeak>quietBell*4,'Actual mixed signal rises above the remaining bell tail');
+  signal={firstNoteAfterBell:first-probe.lastBell,lastNoteEndedAfterResult:Math.max(...probe.voices.map(v=>v.endedAt))-probe.at,quietBell,failurePeak,voices:probe.voices};
+ }
+ await page.waitForFunction(()=>document.getElementById('stop').disabled,null,{timeout:4500});
+ const result=await exported(page);assert.equal(result.evaluation.state,'failed');assert.equal(result.records.filter(r=>r.type==='goal').length,1);assert.equal(result.evaluation.score.numerator,'0');assert.equal(await page.evaluate(()=>__outcomes.length),1);
+ check(label+' actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records',{audioAvailable:audio,signal});
+}
 async function offlineAudio(page,label){
  const buffers=await page.evaluate(async()=>{
   if(typeof OfflineAudioContext!=='function')return null;
@@ -44,6 +79,7 @@ async function offlineAudio(page,label){
   await page.locator('#records').click();await page.locator('#close-records').click();await page.locator('#fit').click();const after=await exported(page);assert.deepEqual({...after,status:before.status},before);assert.equal(await page.evaluate(()=>__outcomes.length),1);
   check((channel||engine)+' '+kind+' actual result selects one sound, retains full records and never repeats on reopening',{calls});
  }
+ await failureWithBell(page,channel||engine,audio);
  await wire(page,'Q7',['S','A','B','D','G1']);await page.evaluate(()=>__outcomes=[]);await startAndPause(page);assert((await page.locator('#result').textContent()).includes('未達成'));assert.equal(await page.evaluate(()=>__outcomes.length),0);await page.locator('#play').click();await page.waitForFunction(()=>__outcomes.length===1,null,{timeout:16000});assert.equal(await page.evaluate(()=>__outcomes[0].kind),'failure');check((channel||engine)+' known failure waits until active light finishes');
  await wire(page,'Q1',['S','A','G']);await page.evaluate(()=>__outcomes=[]);await startAndPause(page);await page.locator('#stop').click();assert.equal(await page.evaluate(()=>__outcomes.length),0);check((channel||engine)+' stopping an unfinished trial does not play a result');
  for(const kind of ['clear','perfect','failure']){

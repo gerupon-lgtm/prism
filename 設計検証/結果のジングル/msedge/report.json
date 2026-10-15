@@ -1,5 +1,7 @@
 {
-  "version": "0.35.0",
+  "version": "0.36.0",
+  "url": null,
+  "checkedAt": "2026-10-15T22:30:27.689Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -39,6 +41,39 @@
       ]
     },
     {
+      "label": "msedge actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": true,
+      "signal": {
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.071999999999999,
+        "quietBell": 0.008671445772051811,
+        "failurePeak": 0.09383954107761383,
+        "voices": [
+          {
+            "stops": [
+              {
+                "at": 14.431999999999997,
+                "calledAt": 12.64
+              }
+            ],
+            "start": 14.131999999999998,
+            "endedAt": 14.432
+          },
+          {
+            "stops": [
+              {
+                "at": 14.711999999999996,
+                "calledAt": 12.64
+              }
+            ],
+            "start": 14.411999999999997,
+            "endedAt": 14.712
+          }
+        ]
+      }
+    },
+    {
       "label": "msedge known failure waits until active light finishes",
       "passed": true
     },
@@ -66,15 +101,15 @@
           "peak": 0.09046778082847595,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097810398122,
-          "signature": 2970894290
+          "energy": 773.3097822032803,
+          "signature": 4140271109
         },
         "perfect": {
           "peak": 0.13536329567432404,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932100130019,
-          "signature": 2113458575
+          "energy": 973.39321018415,
+          "signature": 65853454
         },
         "failure": {
           "peak": 0.06359196454286575,

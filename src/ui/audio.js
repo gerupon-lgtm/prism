@@ -1,5 +1,5 @@
 // Keep only the upper octave of the previously mixed bell.
-export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) * 2 });
+export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) * 2, durationSeconds: 2.62 });
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME = 0.7;
 export const WIRING_SOUND = Object.freeze({frequencyHz:880,endFrequencyHz:1174.66,durationSeconds:0.1});
@@ -16,6 +16,8 @@ export const PERFECT_SOUND = Object.freeze([
 export const FAILURE_SOUND = Object.freeze([
   note(.75,.42,.28,.06),note(.625,.70,.28,.06),
 ]);
+// Let the last bell decay before the quiet failure notes; both still end within 3s.
+export const FAILURE_BELL_DELAY_SECONDS = 1.5;
 // One short notification per prism arrival; no periodic movement sound.
 export const RELAY_SOUND = Object.freeze({
   frequencyHz: 659.26,
@@ -77,24 +79,28 @@ export class Chime {
   strike() {
     if (this.muted || !this.context || this.context.state!=='running') return;
     const at = this.context.currentTime;
-    this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,at+2.62);
+    this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,at+BELL_SOUND.durationSeconds);
     {
       const oscillator=this.context.createOscillator(),gain=this.context.createGain();
       oscillator.type='sine'; oscillator.frequency.value=BELL_SOUND.frequencyHz;
       gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.2,at+0.006);gain.gain.exponentialRampToValueAtTime(0.0001,at+2.6);
       oscillator.connect(gain);gain.connect(this.output); this.voices.add(oscillator);
       oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};
-      oscillator.start(at);oscillator.stop(at+2.62);
+      oscillator.start(at);oscillator.stop(at+BELL_SOUND.durationSeconds);
     }
   }
   clear() { this.sequence(CLEAR_SOUND); }
   perfect() { this.sequence(PERFECT_SOUND); }
-  failure() { this.sequence(FAILURE_SOUND); }
-  sequence(notes) {
+  failure() {
+    const now=this.context?.currentTime??0,lastBell=this.bellUntil-BELL_SOUND.durationSeconds;
+    const delay=Math.max(0,lastBell+FAILURE_BELL_DELAY_SECONDS-now-FAILURE_SOUND[0].offsetSeconds);
+    this.sequence(FAILURE_SOUND,delay);
+  }
+  sequence(notes,delay=0) {
     if(this.muted||!this.context||this.context.state!=='running')return;
     const now=this.context.currentTime;
     notes.forEach(({ratio,offsetSeconds,durationSeconds,volume})=>{
-      const at=now+offsetSeconds,oscillator=this.context.createOscillator(),gain=this.context.createGain();
+      const at=now+delay+offsetSeconds,oscillator=this.context.createOscillator(),gain=this.context.createGain();
       oscillator.type='sine';oscillator.frequency.value=BELL_SOUND.frequencyHz*ratio;
       gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(volume,at+.008);gain.gain.exponentialRampToValueAtTime(.0001,at+durationSeconds);
       oscillator.connect(gain);gain.connect(this.output);this.voices.add(oscillator);

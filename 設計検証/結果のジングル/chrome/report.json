@@ -1,5 +1,7 @@
 {
-  "version": "0.35.0",
+  "version": "0.36.0",
+  "url": null,
+  "checkedAt": "2026-10-15T22:29:44.285Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -39,6 +41,39 @@
       ]
     },
     {
+      "label": "chrome actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": true,
+      "signal": {
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.072000000000001,
+        "quietBell": 0.008671445772051811,
+        "failurePeak": 0.09383954107761383,
+        "voices": [
+          {
+            "stops": [
+              {
+                "at": 14.551999999999998,
+                "calledAt": 12.76
+              }
+            ],
+            "start": 14.251999999999999,
+            "endedAt": 14.552
+          },
+          {
+            "stops": [
+              {
+                "at": 14.831999999999997,
+                "calledAt": 12.76
+              }
+            ],
+            "start": 14.531999999999998,
+            "endedAt": 14.832
+          }
+        ]
+      }
+    },
+    {
       "label": "chrome known failure waits until active light finishes",
       "passed": true
     },
@@ -66,15 +101,15 @@
           "peak": 0.09046778082847595,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097810620036,
-          "signature": 723399232
+          "energy": 773.3097824435736,
+          "signature": 3120047983
         },
         "perfect": {
           "peak": 0.13536329567432404,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932100570465,
-          "signature": 1147890683
+          "energy": 973.3932107499187,
+          "signature": 3516876656
         },
         "failure": {
           "peak": 0.06359196454286575,

@@ -96,3 +96,14 @@ test('未達成は短く柔らかな下降二音とし、消音・休止・停�
   chime.muted=false;chime.context.state='suspended';chime.failure();chime.clear();assert.equal(voices.length,2);
   chime.context.state='running';chime.clear();assert.equal(voices.length,6);chime.mute();assert(voices.every(v=>v.stopped));
 });
+
+test('鐘と未達成が重なる時は最後の鐘から1.5秒空け、二音とも三秒の終了待機内で終わる',()=>{
+  const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();chime.failure();
+  assert.equal(voices.length,3);assert.equal(voices[0].stopAt,7.62);
+  assert.equal(voices[1].startedAt,6.5);assert(Math.abs(voices[2].startedAt-6.78)<1e-9);
+  assert(voices.slice(1).every(v=>v.stopAt<8));chime.stop();assert(voices.every(v=>v.stopped));
+
+  const latest=fixture();latest.chime.context.currentTime=5;latest.chime.strike();
+  latest.chime.context.currentTime=5.2;latest.chime.strike();latest.chime.context.currentTime=5.3;latest.chime.failure();
+  assert(Math.abs(latest.voices[2].startedAt-6.7)<1e-9);assert(latest.voices.slice(2).every(v=>v.stopAt<8.3));
+});

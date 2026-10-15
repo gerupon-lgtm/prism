@@ -1,5 +1,7 @@
 {
-  "version": "0.35.0",
+  "version": "0.36.0",
+  "url": null,
+  "checkedAt": "2026-10-15T22:27:11.339Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -39,6 +41,39 @@
       ]
     },
     {
+      "label": "chromium actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": true,
+      "signal": {
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.0666666666666664,
+        "quietBell": 0.008671445772051811,
+        "failurePeak": 0.09383954107761383,
+        "voices": [
+          {
+            "stops": [
+              {
+                "at": 13.472,
+                "calledAt": 11.701333333333332
+              }
+            ],
+            "start": 13.172,
+            "endedAt": 13.48
+          },
+          {
+            "stops": [
+              {
+                "at": 13.751999999999999,
+                "calledAt": 11.701333333333332
+              }
+            ],
+            "start": 13.452,
+            "endedAt": 13.757333333333333
+          }
+        ]
+      }
+    },
+    {
       "label": "chromium known failure waits until active light finishes",
       "passed": true
     },
@@ -66,15 +101,15 @@
           "peak": 0.09046778082847595,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097878035148,
-          "signature": 3630355419
+          "energy": 773.3097878102008,
+          "signature": 684569752
         },
         "perfect": {
           "peak": 0.13536329567432404,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932183845186,
-          "signature": 766699237
+          "energy": 973.3932183282637,
+          "signature": 1742950361
         },
         "failure": {
           "peak": 0.06359196454286575,
@@ -117,6 +152,11 @@
           "added": 0
         }
       ]
+    },
+    {
+      "label": "webkit actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": false
     },
     {
       "label": "webkit known failure waits until active light finishes",
