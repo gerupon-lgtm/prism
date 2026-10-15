@@ -327,6 +327,33 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 .device-landscape .text-enlarged #play-controls{height:88px}
 .device-landscape .text-enlarged #result-line{height:80px}
 .device-landscape .text-enlarged footer{height:70px}
+/* Quiet outcome notice, outside the rotated app so its text stays upright. */
+#failure-toast{position:fixed;z-index:6;left:8px;top:8px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);overflow:hidden;padding:10px;border:1px solid #ab9094;border-radius:12px;background:#111a2cf5;box-shadow:0 4px 20px #0008;font-size:1rem;line-height:1.5}
+.failure-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+#failure-title{color:#f3b3a7;font-size:1.071429rem;overflow-wrap:anywhere}
+#failure-dismiss{min-width:32px;min-height:32px;padding:0;flex:none}
+#failure-reason{margin:0 0 10px;white-space:normal;overflow-wrap:anywhere}
+#failure-timing{margin-bottom:10px;overflow-wrap:anywhere}
+#failure-condition{margin:0 0 4px;color:#e6d3a0}
+.failure-caption{margin:0 0 3px;color:#b7c7df;font-size:.857143rem}
+#failure-arrivals{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+#failure-arrivals li{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px}
+#failure-arrivals b{font-variant-numeric:tabular-nums;color:#fff}
+#failure-arrivals small{font-size:.857143rem;color:#bdcce3}
+.failure-actions{display:flex;gap:6px}.failure-actions button{flex:1;min-width:0;padding:6px;white-space:normal;overflow-wrap:anywhere}
+#failure-edit{border-color:#d6b56a}
+#failure-toast.compact-notice{display:flex;align-items:center;gap:6px;padding:4px 6px}
+.compact-notice .failure-heading,.compact-notice .failure-actions{display:contents}
+.compact-notice #failure-title{font-size:1rem;white-space:nowrap}
+.compact-notice #failure-dismiss{order:3;min-width:28px;min-height:30px}
+.compact-notice #failure-details{font-size:.857143rem;min-height:32px;padding:2px 4px}
+#failure-toast.narrow-notice.compact-notice{display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:4px}
+.narrow-notice.compact-notice #failure-title{white-space:normal;text-align:center}
+.narrow-notice.compact-notice #failure-dismiss{order:3}
+#failure-toast.slim-notice{padding:0 2px;gap:4px;line-height:1.4;border-width:0}
+.slim-notice #failure-title{font-size:clamp(12px,.714286rem,20px);line-height:1.4}
+.slim-notice #failure-details{font-size:clamp(12px,.714286rem,20px);line-height:1.4;min-height:24px;padding:0 2px;border-width:0}
+.slim-notice #failure-dismiss{font-size:clamp(12px,.714286rem,20px);line-height:1.4;min-width:24px;min-height:24px;border-width:0}
 @media(max-width:360px){
   html:not(.device-landscape) #app:not(.text-enlarged):not(.compact) .header-content{grid-template-columns:64px minmax(0,1fr) auto}
   html:not(.device-landscape) #app:not(.compact) #home{width:64px}

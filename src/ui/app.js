@@ -31,6 +31,8 @@ const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
 const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
+const dismissedFailures=new WeakSet();
+let failureToastRun=null,failureToastCircuit=null;
 const board=new Board($('board'),session,render,settings,notify,()=>chime.wire());
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
@@ -130,7 +132,7 @@ function render(redraw=true,{records=true}={}) {
   if(session.result){
     const stateText={pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
     text=`${stateText}${session.result.score?' '+displayScore(session.result.score)+'点':''}・${text}`;
-    if(session.result.reason)text+='　'+session.result.reason.replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');
+    if(session.result.reason&&session.result.state!=='failed')text+='　'+playerReason();
     if(session.result.goals)text+=`　鐘 ${session.result.goals.filter(goal=>goal.first!==null).length}/${session.result.goals.length}${session.result.state==='achieved'?'・全到達 '+session.result.evaluatedTime+'秒':''}`;
   }
   if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
@@ -147,6 +149,91 @@ function render(redraw=true,{records=true}={}) {
   if(redraw)board.render();else board.particles();
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
+  renderFailureToast();
+}
+
+function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}
+function failureArrivalData(){
+  const run=session.run,challenge=session.runContext.challenge,nodes=run.circuit.raw.nodes;
+  const goals=challenge.type==='delivery-all'?challenge.goals:[challenge.goal];
+  const rows=goals.flatMap(goal=>{
+    const arrivals=run.arrivals(goal),required=challenge.type==='interval'?challenge.count:1;
+    return Array.from({length:Math.max(required,arrivals.length)},(_,index)=>{
+      const arrival=arrivals[index],previous=arrivals[index-1];
+      const label=`${goals.length>1?partName(nodes.find(node=>node.id===goal),nodes)+' ':''}${index+1}回目`;
+      const time=arrival?`${arrival.time}秒`:'到達なし';
+      const gap=arrival&&previous?`前回から${run.circuit.time.format(run.circuit.time.ticks(arrival.time)-run.circuit.time.ticks(previous.time))}秒`:'';
+      return {label,time,gap};
+    });
+  });
+  return {condition:`条件：${challengeGoal(challenge)}`,rows};
+}
+function failureResultText(){
+  const {condition,rows}=failureArrivalData();
+  return [playerReason(),condition,'鐘が鳴った時刻（開始から）',...rows.map(row=>`${row.label}：${row.time}${row.gap?`（${row.gap}）`:''}`)].join('\n');
+}
+function failureOutcome(){
+  const run=session.run;
+  return Boolean(run&&session.mode==='challenge'&&!session.guide&&!session.runContext?.guide&&session.result?.challenge===session.challenge.id&&session.result.state==='failed'&&(run.exhausted||run.status==='stopped'));
+}
+function renderFailureToast(){
+  const toast=$('failure-toast'),run=session.run;
+  if(run&&failureToastRun===run&&failureToastCircuit!==session.circuit)dismissedFailures.add(run);
+  toast.hidden=!failureOutcome()||dismissedFailures.has(run)||Boolean(startPrelude)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  if(toast.hidden)return;
+  if(failureToastRun!==run){failureToastRun=run;failureToastCircuit=session.circuit;}
+  const reason=playerReason();if($('failure-reason').textContent!==reason)$('failure-reason').textContent=reason;
+  const timing=$('failure-timing'),data=failureArrivalData(),key=JSON.stringify(data);
+  if(timing.dataset.result!==key){
+    $('failure-condition').textContent=data.condition;
+    $('failure-arrivals').replaceChildren(...data.rows.map(row=>{
+      const item=element('li');item.append(element('span',row.label+'：'),element('b',row.time));
+      if(row.gap)item.append(element('small',row.gap));return item;
+    }));timing.dataset.result=key;
+  }
+  const boardBox=$('board').getBoundingClientRect(),resultBox=$('result-line').getBoundingClientRect();
+  const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
+  const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:r.left-44,right:r.right+44,top:r.top-44,bottom:r.bottom+44};});
+  const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+  // Full reason in ordinary viewports. Compact notices expose a complete,
+  // paginated explanation rather than squeezing or ellipsizing the reason.
+  for(const {area,compact,slim=false} of [{area:boardBox,compact:false},{area:boardBox,compact:true},{area:resultBox,compact:true,slim:true}]){
+    const maximum=Math.min(420,innerWidth-16,area.width-8);
+    for(const width of slim?[maximum,Math.min(160,maximum)]:[maximum]){
+      if(width<40)continue;
+      toast.style.width=`${width}px`;toast.classList.toggle('compact-notice',compact);toast.classList.toggle('narrow-notice',width<(slim?140:220));toast.classList.toggle('slim-notice',slim);
+      $('failure-title').textContent=compact?'未達成':'課題未達成';$('failure-reason').hidden=compact;$('failure-timing').hidden=compact;$('failure-edit').hidden=compact;
+      $('failure-details').textContent=slim||width<150?'結果':'結果を見る';
+      if(toast.scrollHeight>toast.clientHeight+1)continue;
+      const height=toast.getBoundingClientRect().height,pad=4;
+      const xs=[area.left+(area.width-width)/2,area.left+pad,area.right-width-pad];
+      const controlTop=Math.min(area.bottom-pad,...controls.filter(r=>r.top>area.top+area.height/2).map(r=>r.top-6));
+      const ys=[controlTop-height,area.top+pad,area.top+(area.height-height)/2,area.bottom-height-pad];
+      for(const top of ys)for(const left of xs){
+        const place={left,top,right:left+width,bottom:top+height};
+        if(left<area.left||top<area.top||place.right>area.right||place.bottom>area.bottom||left<0||top<0||place.right>innerWidth||place.bottom>innerHeight)continue;
+        if([...goals,...controls].some(r=>overlap(place,r)>0))continue;
+        // Clamp stale positions during rotation too, before the next resize
+        // callback can choose a new placement. Measurement must not zoom the page.
+        toast.style.left=`clamp(8px,${left}px,calc(100vw - ${width}px - 8px))`;
+        toast.style.top=`clamp(8px,${top}px,calc(100dvh - ${height}px - 8px))`;return;
+      }
+    }
+  }
+  // At an extreme viewport/font combination there may be no overlay space.
+  // The status button still opens the same complete reason without moving UI.
+  toast.hidden=true;
+}
+function dismissFailure(){if(session.run)dismissedFailures.add(session.run);render(false);}
+function reviewFailure(){if(!failureOutcome())return;dismissFailure();stopRun();}
+function failureDetails(title='未達成の結果',text=failureResultText()){
+  open(title);
+  // Keep each short page row free of embedded newlines. Even a two-line
+  // fragment can cover the pager in a short window with enlarged text.
+  const parts=String(text).split('\n').flatMap(line=>{
+    const chars=Array.from(line);return Array.from({length:Math.ceil(chars.length/12)},(_,index)=>chars.slice(index*12,index*12+12).join(''));
+  });
+  listPage(parts,part=>element('p',part,{class:'detail-value'}));actions.append(button('戻る',close));
 }
 
 function renderClearToast() {
@@ -287,7 +374,7 @@ function maybeGuide() {
 }
 function showTitle() {
   interruptRun('title');board.cancelAll();
-  if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;
+  if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;$('failure-toast').hidden=true;
   $('title-resume').focus();
 }
 function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render(); }
@@ -659,7 +746,7 @@ function showConditions(){
   fullText('現在の条件',detail);
 }
 $('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);
-$('result-info').addEventListener('click',()=>fullText('実行状況',$('result').textContent));
+$('result-info').addEventListener('click',()=>session.result?.state==='failed'?failureDetails('実行状況',$('result').textContent+'\n'+failureResultText()):fullText('実行状況',$('result').textContent));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
@@ -686,6 +773,9 @@ $('title-resume').addEventListener('click',leaveTitle);
 $('clear-dismiss').addEventListener('click',dismissClear);
 $('clear-again').addEventListener('click',()=>attempt(()=>clearAction()));
 $('clear-next').addEventListener('click',()=>attempt(()=>clearAction(true)));
+$('failure-dismiss').addEventListener('click',dismissFailure);
+$('failure-edit').addEventListener('click',()=>attempt(reviewFailure));
+$('failure-details').addEventListener('click',()=>attempt(failureDetails));
 $('retry-result').addEventListener('click',()=>{
   let failed=false;
   for(const key of session.pendingScores.keys())if(!session.retryScore(key))failed=true;
