@@ -46,8 +46,15 @@ export function constellation({x,y},factor,angle,id,age=0) {
     const angle=index*Math.PI/6,dx=Math.cos(angle),dy=Math.sin(angle);
     rays.append(svg('path',{d:`M${dx*62} ${dy*68} L${dx*165} ${dy*175}`,class:'altar-ray'}));
   }
-  group.append(rays,svg('path',{d:'M-150,25 L-145,-70 L-80,-145 L25,-175 L125,-125 L160,-25 M110,110 L-75,120',class:'constellation-line'}));
-  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*60}ms`);star.append(svg('circle',{r:index%3===0?5:3}));star.append(svg('path',{d:'M-10,0 L10,0 M0,-10 L0,10',class:'star-ray'}));group.append(star);});
+  group.append(rays);
+  // Use the star positions themselves so every segment meets both endpoints.
+  // Each link starts after its destination star has finished appearing.
+  const links=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[1,7]];
+  links.forEach(([from,to])=>{
+    const [fromX,fromY]=dots[from],[x,y]=dots[to],link=svg('path',{d:`M${fromX},${fromY} L${x},${y}`,pathLength:1,class:'constellation-line'});
+    link.style.setProperty('--link-delay',`${320+to*60}ms`);group.append(link);
+  });
+  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*60}ms`);star.append(svg('circle',{r:index%3===0?6:4.5}));star.append(svg('path',{d:'M-10,0 L10,0 M0,-10 L0,10',class:'star-ray'}));group.append(star);});
   return group;
 }
 

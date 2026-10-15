@@ -378,9 +378,10 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 .arrival-glow{animation:altar-bloom 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
 .altar-column{fill:url(#altar-column);animation:altar-column 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
 .altar-rays{fill:none;stroke:#ffe6a6;stroke-width:3;stroke-linecap:round;animation:altar-rays 1300ms ease-out both;animation-delay:var(--arrival-age,0ms)}
-.constellation-line{stroke:#c5e6ff;stroke-width:2;animation:star-threads 1550ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + 100ms)}
-.constellation-star{animation:star-light 1250ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
+.constellation-line{stroke:#c5e6ff;stroke-width:1.1px;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;animation:constellation-link 300ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--link-delay,0ms))}
+.constellation-star{animation:constellation-spark 240ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
 .star-ray{stroke:#fff0c0;stroke-width:1.8;opacity:.9}
+.constellation-star .star-ray{stroke-width:1.3px;vector-effect:non-scaling-stroke}
 .prism-arrival-glow{fill:url(#prism-light);animation:prism-bloom 900ms ease-out both;animation-delay:var(--arrival-age,0ms)}
 .prism-shard{fill:var(--shard-color);animation:prism-scatter 950ms cubic-bezier(.1,.6,.3,1) both;animation-delay:var(--arrival-age,0ms)}
 .prism.arrived .node-symbol{filter:drop-shadow(0 0 10px #cceaff)}
@@ -393,7 +394,8 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 @keyframes altar-bloom{0%{opacity:0;transform:scale(.5)}12%{opacity:1}55%{opacity:.6}100%{opacity:0;transform:scale(1.2)}}
 @keyframes altar-column{0%{opacity:0}12%,25%{opacity:.9}100%{opacity:0}}
 @keyframes altar-rays{0%{opacity:0}14%{opacity:.85}100%{opacity:0}}
-@keyframes star-threads{0%{opacity:0}22%,64%{opacity:.85}100%{opacity:0}}
+@keyframes constellation-link{0%{opacity:0;stroke-dashoffset:1}20%{opacity:.85}100%{opacity:.85;stroke-dashoffset:0}}
+@keyframes constellation-spark{from{opacity:0}to{opacity:1}}
 @keyframes prism-bloom{0%{opacity:0}12%{opacity:1}100%{opacity:0}}
 @keyframes prism-scatter{0%{opacity:0;transform:translate(0,0) scale(.5)}12%,55%{opacity:1}100%{opacity:0;transform:translate(var(--shard-x),var(--shard-y)) scale(.7)}}
 @keyframes firework-rise{0%{opacity:0;stroke-dashoffset:1}12%{opacity:.95}88%{opacity:1}100%{opacity:0;stroke-dashoffset:0}}
@@ -422,6 +424,7 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
   .arrival-art{animation-timing-function:steps(1,end)}
   .arrival-glow,.altar-column,.altar-rays,.constellation-line,.constellation-star,.prism-arrival-glow,.prism-shard,.firework-ray,.firework-star{animation:none}
   .arrival-glow,.prism-arrival-glow{opacity:.65}.altar-column{opacity:.3}.altar-rays,.constellation-line{opacity:.65}.constellation-star,.firework-ray,.firework-star{opacity:.85}
+  .constellation-line{stroke-dasharray:none;stroke-dashoffset:0}
   .prism-shard{opacity:.8;transform:translate(var(--shard-x),var(--shard-y)) scale(.6)}
   .firework-rocket{display:none}.firework-ray{stroke-dasharray:none}
 }

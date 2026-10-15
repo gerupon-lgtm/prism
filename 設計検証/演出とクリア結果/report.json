@@ -1,5 +1,5 @@
 {
-  "version": "0.29.0",
+  "version": "0.30.0",
   "url": null,
   "fontSetting": null,
   "checks": [
@@ -16,6 +16,318 @@
     {
       "label": "chromium prism arrival creates rainbow light shards at the actual relay event",
       "passed": true
+    },
+    {
+      "label": "chromium bell constellation connects all eight stars; stars precede lines, all seven complete, then fade together",
+      "passed": true,
+      "stars": 8,
+      "links": 7,
+      "geometry": [
+        {
+          "from": {
+            "index": 0,
+            "distance": 1.4210854715202004e-14
+          },
+          "to": {
+            "index": 1,
+            "distance": 1.4210854715202004e-14
+          }
+        },
+        {
+          "from": {
+            "index": 1,
+            "distance": 1.4210854715202004e-14
+          },
+          "to": {
+            "index": 2,
+            "distance": 0
+          }
+        },
+        {
+          "from": {
+            "index": 2,
+            "distance": 0
+          },
+          "to": {
+            "index": 3,
+            "distance": 2.842170943040401e-14
+          }
+        },
+        {
+          "from": {
+            "index": 3,
+            "distance": 2.842170943040401e-14
+          },
+          "to": {
+            "index": 4,
+            "distance": 6.355287432313019e-14
+          }
+        },
+        {
+          "from": {
+            "index": 4,
+            "distance": 6.355287432313019e-14
+          },
+          "to": {
+            "index": 5,
+            "distance": 5.684341886080802e-14
+          }
+        },
+        {
+          "from": {
+            "index": 5,
+            "distance": 5.684341886080802e-14
+          },
+          "to": {
+            "index": 6,
+            "distance": 0
+          }
+        },
+        {
+          "from": {
+            "index": 1,
+            "distance": 1.4210854715202004e-14
+          },
+          "to": {
+            "index": 7,
+            "distance": 6.355287432313019e-14
+          }
+        }
+      ],
+      "frames": [
+        {
+          "time": 200,
+          "parentOpacity": 1,
+          "stars": [
+            0.684643,
+            0.378138,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "links": [
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 500,
+          "parentOpacity": 1,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            0.906535,
+            0.684643,
+            0.378138,
+            0
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0.42912,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0.691634,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 1100,
+          "parentOpacity": 1,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 1600,
+          "parentOpacity": 0.211908,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        }
+      ]
     },
     {
       "label": "chromium exact 100-point result triggers five fireworks and one four-note jingle request",
@@ -2672,20 +2984,20 @@
         "x": 8,
         "y": 185.875,
         "width": 303.984375,
-        "height": 115.53125,
+        "height": 80.25,
         "top": 185.875,
         "right": 311.984375,
-        "bottom": 301.40625,
+        "bottom": 266.125,
         "left": 8
       },
       "toast": {
         "x": 11,
-        "y": 349,
+        "y": 313.71875,
         "width": 298,
         "height": 28,
-        "top": 349,
+        "top": 313.71875,
         "right": 309,
-        "bottom": 377,
+        "bottom": 341.71875,
         "left": 11
       },
       "slim": true,
@@ -2696,12 +3008,12 @@
           "text": "達成",
           "box": {
             "x": 13,
-            "y": 349,
+            "y": 313.71875,
             "width": 40,
             "height": 28,
-            "top": 349,
+            "top": 313.71875,
             "right": 53,
-            "bottom": 377,
+            "bottom": 341.71875,
             "left": 13
           },
           "client": [
@@ -2717,12 +3029,12 @@
           "text": "×",
           "box": {
             "x": 283,
-            "y": 349,
+            "y": 313.71875,
             "width": 24,
             "height": 28,
-            "top": 349,
+            "top": 313.71875,
             "right": 307,
-            "bottom": 377,
+            "bottom": 341.71875,
             "left": 283
           },
           "client": [
@@ -2738,12 +3050,12 @@
           "text": "2.5秒",
           "box": {
             "x": 57,
-            "y": 349,
+            "y": 313.71875,
             "width": 50.109375,
             "height": 28,
-            "top": 349,
+            "top": 313.71875,
             "right": 107.109375,
-            "bottom": 377,
+            "bottom": 341.71875,
             "left": 57
           },
           "client": [
@@ -2759,12 +3071,12 @@
           "text": "100点",
           "box": {
             "x": 111.109375,
-            "y": 349,
+            "y": 313.71875,
             "width": 55.40625,
             "height": 28,
-            "top": 349,
+            "top": 313.71875,
             "right": 166.515625,
-            "bottom": 377,
+            "bottom": 341.71875,
             "left": 111.109375
           },
           "client": [
@@ -2780,12 +3092,12 @@
           "text": "結果",
           "box": {
             "x": 170.515625,
-            "y": 349,
+            "y": 313.71875,
             "width": 108.484375,
             "height": 28,
-            "top": 349,
+            "top": 313.71875,
             "right": 279,
-            "bottom": 377,
+            "bottom": 341.71875,
             "left": 170.515625
           },
           "client": [
@@ -2801,12 +3113,12 @@
       "goals": [
         {
           "x": 132.4921875,
-          "y": 178.25865173339844,
+          "y": 170.73193359375,
           "width": 55,
           "height": 65,
-          "top": 178.25865173339844,
+          "top": 170.73193359375,
           "right": 187.4921875,
-          "bottom": 243.25865173339844,
+          "bottom": 235.73193359375,
           "left": 132.4921875
         }
       ],
@@ -2873,90 +3185,90 @@
         },
         {
           "x": 202.65625,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 19.328125,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 221.984375,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 202.65625
         },
         {
           "x": 224.984375,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 54,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 278.984375,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 224.984375
         },
         {
           "x": 281.984375,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 30,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 311.984375,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 281.984375
         },
         {
           "x": 8,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 54,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 62,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 8
         },
         {
           "x": 65,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 54,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 119,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 65
         },
         {
           "x": 122,
-          "y": 301.40625,
+          "y": 266.125,
           "width": 54,
           "height": 40,
-          "top": 301.40625,
+          "top": 266.125,
           "right": 176,
-          "bottom": 341.40625,
+          "bottom": 306.125,
           "left": 122
         },
         {
           "x": 7,
-          "y": 386,
+          "y": 350.71875,
           "width": 77,
-          "height": 56,
-          "top": 386,
+          "height": 91.28125,
+          "top": 350.71875,
           "right": 84,
           "bottom": 442,
           "left": 7
         },
         {
           "x": 90,
-          "y": 386,
+          "y": 350.71875,
           "width": 140,
-          "height": 56,
-          "top": 386,
+          "height": 91.28125,
+          "top": 350.71875,
           "right": 230,
           "bottom": 442,
           "left": 90
         },
         {
           "x": 236,
-          "y": 386,
+          "y": 350.71875,
           "width": 77,
-          "height": 56,
-          "top": 386,
+          "height": 91.28125,
+          "top": 350.71875,
           "right": 313,
           "bottom": 442,
           "left": 236
@@ -4831,7 +5143,7 @@
       "samples": 132300,
       "peak": 0.11797857284545898,
       "earlyDifference": 0,
-      "jingleDifference": 772.0310364509128,
+      "jingleDifference": 772.0310334838261,
       "tail": 0
     },
     {
@@ -4847,6 +5159,318 @@
     {
       "label": "webkit prism arrival creates rainbow light shards at the actual relay event",
       "passed": true
+    },
+    {
+      "label": "webkit bell constellation connects all eight stars; stars precede lines, all seven complete, then fade together",
+      "passed": true,
+      "stars": 8,
+      "links": 7,
+      "geometry": [
+        {
+          "from": {
+            "index": 0,
+            "distance": 1.4210854715202004e-14
+          },
+          "to": {
+            "index": 1,
+            "distance": 3.1776437161565096e-14
+          }
+        },
+        {
+          "from": {
+            "index": 1,
+            "distance": 3.1776437161565096e-14
+          },
+          "to": {
+            "index": 2,
+            "distance": 2.842170943040401e-14
+          }
+        },
+        {
+          "from": {
+            "index": 2,
+            "distance": 2.842170943040401e-14
+          },
+          "to": {
+            "index": 3,
+            "distance": 0
+          }
+        },
+        {
+          "from": {
+            "index": 3,
+            "distance": 0
+          },
+          "to": {
+            "index": 4,
+            "distance": 5.684341886080802e-14
+          }
+        },
+        {
+          "from": {
+            "index": 4,
+            "distance": 5.684341886080802e-14
+          },
+          "to": {
+            "index": 5,
+            "distance": 5.684341886080802e-14
+          }
+        },
+        {
+          "from": {
+            "index": 5,
+            "distance": 5.684341886080802e-14
+          },
+          "to": {
+            "index": 6,
+            "distance": 0
+          }
+        },
+        {
+          "from": {
+            "index": 1,
+            "distance": 3.1776437161565096e-14
+          },
+          "to": {
+            "index": 7,
+            "distance": 2.842170943040401e-14
+          }
+        }
+      ],
+      "frames": [
+        {
+          "time": 200,
+          "parentOpacity": 1,
+          "stars": [
+            0.684643,
+            0.378138,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "links": [
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 500,
+          "parentOpacity": 1,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            0.906535,
+            0.684643,
+            0.378138,
+            0
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0.42912,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0.691634,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0,
+              "offset": 1,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 1100,
+          "parentOpacity": 1,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        },
+        {
+          "time": 1600,
+          "parentOpacity": 0.211908,
+          "stars": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "links": [
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            },
+            {
+              "opacity": 0.85,
+              "offset": 0,
+              "width": "1.1px",
+              "vector": "non-scaling-stroke"
+            }
+          ]
+        }
+      ]
     },
     {
       "label": "webkit exact 100-point result triggers five fireworks and one four-note jingle request",
