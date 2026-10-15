@@ -55,6 +55,7 @@ async function constellationFrames(page,engine){
   const complete=data.frames[2];assert(complete.stars.every(opacity=>opacity===1));assert(complete.links.every(link=>link.opacity>.8&&Math.abs(link.offset)<.001&&link.width==='1.1px'&&link.vector==='non-scaling-stroke'));
   assert.equal(complete.parentOpacity,1);assert(data.frames[3].parentOpacity>0&&data.frames[3].parentOpacity<1,'Completed stars and links fade through their common parent');
   check(engine+' bell constellation connects all eight stars; stars precede lines, all seven complete, then fade together',data);
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   await page.screenshot({path:path.join(out,(channel||engine)+'-constellation.png')});
 }
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of channel?['chromium']:['chromium','webkit']){
