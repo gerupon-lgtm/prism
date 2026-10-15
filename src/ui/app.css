@@ -378,8 +378,10 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 .arrival-glow{animation:altar-bloom 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
 .altar-column{fill:url(#altar-column);animation:altar-column 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
 .altar-rays{fill:none;stroke:#ffe6a6;stroke-width:3;stroke-linecap:round;animation:altar-rays 1300ms ease-out both;animation-delay:var(--arrival-age,0ms)}
-.constellation-line{stroke:#c5e6ff;stroke-width:1.1px;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;animation:constellation-link 300ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--link-delay,0ms))}
-.constellation-star{animation:constellation-spark 240ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
+.bell-constellation{pointer-events:none}
+.constellation-line{stroke:#d8e8f6;stroke-width:.85px;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;animation:constellation-link 280ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--link-delay,0ms))}
+.constellation-star{fill:#fff2d2;filter:none;animation:constellation-spark 160ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
+.star-aureole{fill:url(#altar-light);opacity:.6}.star-point{fill:#fff9e9;filter:drop-shadow(0 0 2px #eac57b)}.star-diffraction{fill:#fff3d5;opacity:.9}
 .star-ray{stroke:#fff0c0;stroke-width:1.8;opacity:.9}
 .constellation-star .star-ray{stroke-width:1.3px;vector-effect:non-scaling-stroke}
 .prism-arrival-glow{fill:url(#prism-light);animation:prism-bloom 900ms ease-out both;animation-delay:var(--arrival-age,0ms)}

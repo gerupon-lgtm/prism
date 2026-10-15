@@ -258,6 +258,7 @@ function renderClearToast() {
   const boardBox=$('board').getBoundingClientRect(),resultBox=$('result-line').getBoundingClientRect();
   const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
   const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:Math.max(boardBox.left,r.left-54),right:Math.min(boardBox.right,r.right+54),top:Math.max(boardBox.top,r.top-90),bottom:Math.min(boardBox.bottom,r.bottom+54)};});
+  for(const motif of $('board').querySelectorAll('.bell-constellation')){const r=motif.getBoundingClientRect();goals.push({left:r.left-6,right:r.right+6,top:r.top-6,bottom:r.bottom+6});}
   const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
   for(const {area,compact,slim=false} of [{area:boardBox,compact:false},{area:boardBox,compact:true},{area:resultBox,compact:true,slim:true}]){
     const maximum=Math.min(420,innerWidth-16,area.width-8);

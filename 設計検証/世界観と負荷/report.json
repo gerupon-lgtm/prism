@@ -1,6 +1,6 @@
 {
-  "version": "0.30.0",
-  "checkedAt": "2026-10-15T11:28:55.177Z",
+  "version": "0.31.0",
+  "checkedAt": "2026-10-15T12:02:47.200Z",
   "evidence": "PC Chromium/WebKit. Synthetic circuits; explicitly injected 135ms DOM stall verifies preservation, not a real-device load threshold. No physical touch or listening evidence. Unavailable audio APIs remain pending, never counted as sound acceptance.",
   "checks": [
     {
@@ -139,10 +139,10 @@
       "label": "chromium measured synthetic rendering stall pauses while preserving every active particle",
       "passed": true,
       "measurement": {
-        "milliseconds": 252.5,
+        "milliseconds": 252.30000001192093,
         "phases": {
-          "calculation": 3.1000000089406967,
-          "display": 249.19999998807907
+          "calculation": 3.2000000029802322,
+          "display": 249.1000000089407
         },
         "counts": {
           "records": 48,
@@ -288,10 +288,10 @@
       "label": "webkit measured synthetic rendering stall pauses while preserving every active particle",
       "passed": true,
       "measurement": {
-        "milliseconds": 253,
+        "milliseconds": 236,
         "phases": {
-          "calculation": 5,
-          "display": 248
+          "calculation": 4,
+          "display": 232
         },
         "counts": {
           "records": 48,
@@ -317,10 +317,10 @@
       "fixture": "24 all-goal particles sharing one processing gate",
       "syntheticStall": {
         "last": {
-          "milliseconds": 252.5,
+          "milliseconds": 252.30000001192093,
           "phases": {
-            "calculation": 3.1000000089406967,
-            "display": 249.19999998807907
+            "calculation": 3.2000000029802322,
+            "display": 249.1000000089407
           },
           "counts": {
             "records": 48,
@@ -332,23 +332,23 @@
         "totals": {
           "records": {
             "calls": 18,
-            "milliseconds": 1.300000011920929,
-            "maximum": 0.4000000059604645
+            "milliseconds": 0.800000011920929,
+            "maximum": 0.29999999701976776
           },
           "calculation": {
             "calls": 5,
-            "milliseconds": 6.100000008940697,
-            "maximum": 3.1000000089406967
+            "milliseconds": 5.200000017881393,
+            "maximum": 3.2000000029802322
           },
           "display": {
             "calls": 6,
-            "milliseconds": 260.70000000298023,
-            "maximum": 249.19999998807907
+            "milliseconds": 268.40000000596046,
+            "maximum": 249.1000000089407
           },
           "audio": {
             "calls": 1,
-            "milliseconds": 0.5,
-            "maximum": 0.5
+            "milliseconds": 0.4000000059604645,
+            "maximum": 0.4000000059604645
           }
         },
         "slowFrames": 1,
@@ -369,11 +369,11 @@
       "fixture": "24-particle shared gate queue",
       "snapshot": {
         "last": {
-          "milliseconds": 114.5,
+          "milliseconds": 111,
           "phases": {
-            "calculation": 0.3999999910593033,
-            "audio": 1.7999999970197678,
-            "display": 112.09999999403954
+            "calculation": 0.5,
+            "audio": 1.7000000029802322,
+            "display": 108.70000000298023
           },
           "counts": {
             "records": 73,
@@ -385,23 +385,23 @@
         "totals": {
           "records": {
             "calls": 18,
-            "milliseconds": 1.300000011920929,
-            "maximum": 0.4000000059604645
+            "milliseconds": 0.800000011920929,
+            "maximum": 0.29999999701976776
           },
           "calculation": {
             "calls": 6,
-            "milliseconds": 6.5,
-            "maximum": 3.1000000089406967
+            "milliseconds": 5.700000017881393,
+            "maximum": 3.2000000029802322
           },
           "display": {
             "calls": 8,
-            "milliseconds": 372.79999999701977,
-            "maximum": 249.19999998807907
+            "milliseconds": 377.1000000089407,
+            "maximum": 249.1000000089407
           },
           "audio": {
             "calls": 2,
-            "milliseconds": 2.2999999970197678,
-            "maximum": 1.7999999970197678
+            "milliseconds": 2.1000000089406967,
+            "maximum": 1.7000000029802322
           }
         },
         "slowFrames": 2,
@@ -422,11 +422,11 @@
       "fixture": "completed queued run with record display and JSON export",
       "snapshot": {
         "last": {
-          "milliseconds": 10.299999997019768,
+          "milliseconds": 35,
           "phases": {
             "calculation": 0.10000000894069672,
-            "audio": 0.19999998807907104,
-            "display": 10
+            "audio": 0.09999999403953552,
+            "display": 34.79999999701977
           },
           "counts": {
             "records": 192,
@@ -438,23 +438,23 @@
         "totals": {
           "records": {
             "calls": 20,
-            "milliseconds": 2.9000000059604645,
-            "maximum": 1.5999999940395355
+            "milliseconds": 2.4000000208616257,
+            "maximum": 1.4000000059604645
           },
           "calculation": {
             "calls": 31,
-            "milliseconds": 10.599999994039536,
-            "maximum": 3.1000000089406967
+            "milliseconds": 10.000000029802322,
+            "maximum": 3.2000000029802322
           },
           "display": {
             "calls": 57,
-            "milliseconds": 3422.600000038743,
-            "maximum": 249.19999998807907
+            "milliseconds": 3959.0999999791384,
+            "maximum": 249.1000000089407
           },
           "audio": {
             "calls": 26,
-            "milliseconds": 6.499999985098839,
-            "maximum": 1.7999999970197678
+            "milliseconds": 5.100000023841858,
+            "maximum": 1.7000000029802322
           }
         },
         "slowFrames": 0,
@@ -475,10 +475,10 @@
       "fixture": "24 all-goal particles sharing one processing gate",
       "syntheticStall": {
         "last": {
-          "milliseconds": 253,
+          "milliseconds": 236,
           "phases": {
-            "calculation": 5,
-            "display": 248
+            "calculation": 4,
+            "display": 232
           },
           "counts": {
             "records": 48,
@@ -490,23 +490,23 @@
         "totals": {
           "records": {
             "calls": 18,
-            "milliseconds": 1,
-            "maximum": 1
+            "milliseconds": 3,
+            "maximum": 2
           },
           "calculation": {
-            "calls": 6,
-            "milliseconds": 8,
-            "maximum": 5
+            "calls": 8,
+            "milliseconds": 7,
+            "maximum": 4
           },
           "display": {
-            "calls": 7,
-            "milliseconds": 264,
-            "maximum": 248
+            "calls": 9,
+            "milliseconds": 271,
+            "maximum": 232
           },
           "audio": {
             "calls": 1,
-            "milliseconds": 0,
-            "maximum": 0
+            "milliseconds": 1,
+            "maximum": 1
           }
         },
         "slowFrames": 1,
@@ -527,11 +527,11 @@
       "fixture": "24-particle shared gate queue",
       "snapshot": {
         "last": {
-          "milliseconds": 131,
+          "milliseconds": 127,
           "phases": {
-            "calculation": 0,
-            "audio": 1,
-            "display": 130
+            "calculation": 1,
+            "audio": 0,
+            "display": 126
           },
           "counts": {
             "records": 73,
@@ -543,18 +543,18 @@
         "totals": {
           "records": {
             "calls": 18,
-            "milliseconds": 1,
-            "maximum": 1
+            "milliseconds": 3,
+            "maximum": 2
           },
           "calculation": {
-            "calls": 7,
+            "calls": 9,
             "milliseconds": 8,
-            "maximum": 5
+            "maximum": 4
           },
           "display": {
-            "calls": 9,
-            "milliseconds": 394,
-            "maximum": 248
+            "calls": 11,
+            "milliseconds": 397,
+            "maximum": 232
           },
           "audio": {
             "calls": 2,
@@ -580,11 +580,11 @@
       "fixture": "completed queued run with record display and JSON export",
       "snapshot": {
         "last": {
-          "milliseconds": 7,
+          "milliseconds": 58,
           "phases": {
-            "calculation": 0,
+            "calculation": 1,
             "audio": 0,
-            "display": 7
+            "display": 57
           },
           "counts": {
             "records": 192,
@@ -596,18 +596,18 @@
         "totals": {
           "records": {
             "calls": 20,
-            "milliseconds": 2,
-            "maximum": 1
+            "milliseconds": 4,
+            "maximum": 2
           },
           "calculation": {
-            "calls": 32,
-            "milliseconds": 12,
-            "maximum": 5
+            "calls": 34,
+            "milliseconds": 11,
+            "maximum": 4
           },
           "display": {
-            "calls": 58,
-            "milliseconds": 2851,
-            "maximum": 248
+            "calls": 60,
+            "milliseconds": 4323,
+            "maximum": 232
           },
           "audio": {
             "calls": 26,
@@ -615,7 +615,7 @@
             "maximum": 1
           }
         },
-        "slowFrames": 0,
+        "slowFrames": 27,
         "run": {
           "status": "paused",
           "pauseReason": "dialog",

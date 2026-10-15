@@ -38,23 +38,28 @@ export function constellation({x,y},factor,angle,id,age=0) {
   const group=svg('g',{transform:`translate(${x} ${y}) rotate(${-angle}) scale(${factor})`,class:'arrival-art','data-arrived-particle':id,'aria-hidden':'true'});
   group.style.setProperty('--arrival-age',`-${age}ms`);
   group.style.setProperty('--arrival-duration',`${ARRIVAL_DURATION_MS.goal}ms`);
-  const dots=[[-150,25],[-145,-70],[-80,-145],[25,-175],[125,-125],[160,-25],[110,110],[-75,120]];
-  group.append(svg('ellipse',{cy:0,rx:150,ry:170,class:'arrival-glow'}));
-  group.append(svg('path',{d:'M-35,18 L-65,-270 L65,-270 L35,18 Z',class:'altar-column'}));
-  const rays=svg('g',{class:'altar-rays'});
-  for(let index=0;index<12;index++){
-    const angle=index*Math.PI/6,dx=Math.cos(angle),dy=Math.sin(angle);
-    rays.append(svg('path',{d:`M${dx*62} ${dy*68} L${dx*165} ${dy*175}`,class:'altar-ray'}));
-  }
-  group.append(rays);
-  // Use the star positions themselves so every segment meets both endpoints.
-  // Each link starts after its destination star has finished appearing.
-  const links=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[1,7]];
+  group.append(svg('ellipse',{rx:95,ry:110,class:'arrival-glow'}));
+  group.append(svg('path',{d:'M-18,15 L-30,-190 L30,-190 L18,15 Z',class:'altar-column'}));
+  // Approved B: a diamond suspension, a closed flared body and an inner clapper.
+  // This is a fictional bell motif, not a chart of an astronomical constellation.
+  const dots=[[0,-200],[-36,-164],[0,-128],[36,-164],[0,-104],[-50,-86],[-84,-40],[-102,22],[-118,94],[-144,152],[-176,200],[-88,200],[0,200],[88,200],[176,200],[144,152],[118,94],[102,22],[84,-40],[50,-86],[0,-40],[0,42],[0,104],[-24,132],[0,158],[24,132]];
+  const parts=['suspension','suspension','suspension','suspension',...Array(16).fill('body'),...Array(6).fill('clapper')];
+  const delays=[40,65,90,65,115,140,165,190,215,240,265,290,315,290,265,240,215,190,165,140,190,215,240,265,290,265];
+  const primary=new Set([0,2,4,6,10,12,14,18,22,24]);
+  const motif=svg('g',{class:'bell-constellation','data-constellation':'bell-b'});
+  const links=[[0,1],[1,2],[2,3],[3,0],[2,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,18],[18,19],[19,4],[6,20],[20,18],[20,21],[21,22],[22,23],[23,24],[24,25],[25,22]];
   links.forEach(([from,to])=>{
     const [fromX,fromY]=dots[from],[x,y]=dots[to],link=svg('path',{d:`M${fromX},${fromY} L${x},${y}`,pathLength:1,class:'constellation-line'});
-    link.style.setProperty('--link-delay',`${320+to*60}ms`);group.append(link);
+    link.style.setProperty('--link-delay',`${Math.max(delays[from],delays[to])+180}ms`);motif.append(link);
   });
-  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*60}ms`);star.append(svg('circle',{r:index%3===0?6:4.5}));star.append(svg('path',{d:'M-10,0 L10,0 M0,-10 L0,10',class:'star-ray'}));group.append(star);});
+  dots.forEach(([cx,cy],index)=>{
+    const bright=primary.has(index),star=svg('g',{class:`constellation-star${bright?' primary-star':''}`,transform:`translate(${cx} ${cy})`,'data-bell-part':parts[index]});
+    star.style.setProperty('--star-delay',`${delays[index]}ms`);
+    star.append(svg('circle',{r:bright?12:7,class:'star-aureole'}),svg('circle',{r:bright?3.2:2.2,class:'star-point'}));
+    if(bright)star.append(svg('path',{d:'M0,-12 Q1.3,-1.3 9,0 Q1.3,1.3 0,12 Q-1.3,1.3 -9,0 Q-1.3,-1.3 0,-12 Z',class:'star-diffraction'}));
+    motif.append(star);
+  });
+  group.append(motif);
   return group;
 }
 

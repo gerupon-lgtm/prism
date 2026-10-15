@@ -210,6 +210,40 @@ export class Board {
       art.setAttribute('data-arrival-key',id);art.setAttribute('data-arrival-node',picture.node);
       this.effectsLayer.append(art);
     }
+    this.placeConstellations();
+  }
+  placeConstellations() {
+    const area=this.element.getBoundingClientRect(),pad=8;
+    if(area.width<1||area.height<1)return;
+    const occupied=[...this.world.querySelectorAll('.node-symbol'),...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>e.getBoundingClientRect());
+    const labels=[...this.world.querySelectorAll('.node-name,.edge-label-card')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>e.getBoundingClientRect());
+    const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+    for(const motif of this.effectsLayer.querySelectorAll('.bell-constellation')){
+      const art=motif.parentElement,target=this.world.querySelector(`[data-node="${CSS.escape(art.dataset.arrivalNode)}"] .node-symbol`),matrix=art.getScreenCTM();
+      if(!target||!matrix)continue;
+      const bell=target.getBoundingClientRect(),cx=(bell.left+bell.right)/2,cy=(bell.top+bell.bottom)/2;
+      const maximum=Math.min(156,area.height-2*pad,(area.width-2*pad)/.88),heights=[maximum,maximum*.85,maximum*.7,maximum*.55,maximum*.4,maximum*.25,maximum*.18,maximum*.12];
+      let best=null,bestCost=Infinity;
+      for(const height of heights){
+        const width=height*.88;
+        const positions=[[cx-width/2,bell.top-12-height],[bell.right+12,cy-height/2],[bell.left-12-width,cy-height/2]];
+        if(height<=maximum*.4)positions.push([cx-width/2,bell.bottom+12],[area.left+pad,bell.bottom+12],[area.right-pad-width,bell.bottom+12],[area.left+pad,area.top+pad],[area.right-pad-width,area.top+pad],[area.left+pad,area.bottom-pad-height],[area.right-pad-width,area.bottom-pad-height]);
+        if(height<=maximum*.18)for(let step=0;step<=24;step++)for(const x of [area.left+pad,area.right-pad-width])positions.push([x,area.top+pad+(area.height-height-pad*2)*step/24]);
+        for(const [x,y] of positions){
+          const rect={left:x,top:y,right:x+width,bottom:y+height};
+          if(x<area.left+pad||y<area.top+pad||rect.right>area.right-pad||rect.bottom>area.bottom-pad)continue;
+          const clearance=Math.max(2,height*.03+1),cost=occupied.reduce((sum,r)=>sum+overlap(rect,{left:r.left-clearance,right:r.right+clearance,top:r.top-clearance,bottom:r.bottom+clearance}),0)*100000+labels.reduce((sum,r)=>sum+overlap(rect,r),0);
+          if(cost<bestCost){best=rect;bestCost=cost;}
+          if(cost===0)break;
+        }
+        if(bestCost===0)break;
+      }
+      // An exceptionally small view still gets the complete silhouette, never a crop.
+      best??={left:area.left+pad,top:area.top+pad,right:area.left+pad+maximum*.88,bottom:area.top+pad+maximum};
+      const center=new DOMPoint((best.left+best.right)/2,(best.top+best.bottom)/2).matrixTransform(matrix.inverse()),scale=(best.bottom-best.top)/400/Math.hypot(matrix.a,matrix.b);
+      motif.setAttribute('transform',`translate(${center.x} ${center.y}) scale(${scale})`);
+      occupied.push(best);
+    }
   }
   arrivals(entries) {
     if(this.pictureRun!==this.session.run){this.arrivalPictures.clear();this.pictureRun=this.session.run;}
