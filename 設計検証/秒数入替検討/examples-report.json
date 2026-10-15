@@ -1,0 +1,600 @@
+{
+  "method": "Feasibility examples with proposed new edge values, not literal permutations. Every allowed subset is simulated. Require one perfect wiring, other slower clears, branching, and queue use in Q11/Q12. No production content, node costs, limits, scoring, or interval targets changed.",
+  "seed": 539365397,
+  "samplesPerStage": 0,
+  "stages": [
+    {
+      "id": "Q7",
+      "source": "Proposed new values; feasibility only, not approved content",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "DG1",
+        "EG2",
+        "BG1",
+        "CG2",
+        "AD",
+        "AE",
+        "BE"
+      ],
+      "times": [
+        "0.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "legalSubsets": 3302,
+      "achieved": 162,
+      "winners": 1,
+      "best": "3.5",
+      "maximum": "6",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CE",
+          "DG1",
+          "EG2"
+        ]
+      ],
+      "elapsedMs": 299,
+      "partialExample": {
+        "time": "5",
+        "ids": [
+          "SA",
+          "AB",
+          "AC",
+          "CE",
+          "EG2",
+          "BG1"
+        ],
+        "score": "85.00"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G1",
+          "time": "3.5"
+        },
+        {
+          "goal": "G2",
+          "time": "3.5"
+        }
+      ],
+      "branchPrisms": [
+        "A"
+      ],
+      "queueWaits": [],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "3.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "5",
+        "score": "85.00",
+        "perfect": false
+      }
+    },
+    {
+      "id": "Q8",
+      "source": "Proposed new values; feasibility only, not approved content",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CD",
+        "DG1",
+        "DG2",
+        "EG3",
+        "BE",
+        "CE",
+        "AE",
+        "BG1",
+        "CG2",
+        "AG3"
+      ],
+      "times": [
+        "0.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "3",
+        "0.5",
+        "0.5",
+        "0.5",
+        "3",
+        "0.5",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "legalSubsets": 12911,
+      "achieved": 252,
+      "winners": 1,
+      "best": "3.5",
+      "maximum": "6",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "DG1",
+          "DG2",
+          "EG3",
+          "CE"
+        ]
+      ],
+      "elapsedMs": 1256,
+      "partialExample": {
+        "time": "4",
+        "ids": [
+          "SA",
+          "AB",
+          "BD",
+          "DG1",
+          "DG2",
+          "AG3"
+        ],
+        "score": "93.75"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G3",
+          "time": "3.5"
+        },
+        {
+          "goal": "G1",
+          "time": "3.5"
+        },
+        {
+          "goal": "G2",
+          "time": "3.5"
+        }
+      ],
+      "branchPrisms": [
+        "A",
+        "D"
+      ],
+      "queueWaits": [],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "3.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "4",
+        "score": "93.75",
+        "perfect": false
+      }
+    },
+    {
+      "id": "Q9",
+      "source": "Proposed value adjustments to retain both one perfect solution and partial clears",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "BG",
+        "BC",
+        "CG",
+        "CD",
+        "DE",
+        "EG",
+        "AG",
+        "AC",
+        "BD",
+        "CE"
+      ],
+      "times": [
+        "0.5",
+        "0.5",
+        "0.5",
+        "1",
+        "1",
+        "0.5",
+        "0.5",
+        "1",
+        "2.5",
+        "3",
+        "4",
+        "4"
+      ],
+      "legalSubsets": 3797,
+      "achieved": 7,
+      "winners": 1,
+      "best": "2.5",
+      "maximum": "10",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "BG",
+          "BC",
+          "CG",
+          "CD",
+          "DE",
+          "EG"
+        ]
+      ],
+      "elapsedMs": 355,
+      "partialExample": {
+        "time": "3.5",
+        "ids": [
+          "SA",
+          "CG",
+          "CD",
+          "DE",
+          "EG",
+          "AG",
+          "AC"
+        ],
+        "score": "85.71"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G",
+          "time": "2.5"
+        },
+        {
+          "goal": "G",
+          "time": "4.5"
+        },
+        {
+          "goal": "G",
+          "time": "6.5"
+        }
+      ],
+      "branchPrisms": [
+        "B",
+        "C"
+      ],
+      "queueWaits": [],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "2.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "3.5",
+        "score": "85.71",
+        "perfect": false
+      }
+    },
+    {
+      "id": "Q10",
+      "source": "Literal permutation #24, then BG adjusted to 7.5 for slower partial clears",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "BE",
+        "CD",
+        "CE",
+        "DG",
+        "EG",
+        "BG",
+        "CG",
+        "CF",
+        "FE"
+      ],
+      "times": [
+        "3.5",
+        "0.5",
+        "2.5",
+        "1.5",
+        "0.5",
+        "0.5",
+        "0.5",
+        "2.5",
+        "0.5",
+        "7.5",
+        "2",
+        "1.5",
+        "1.5"
+      ],
+      "legalSubsets": 8100,
+      "achieved": 2,
+      "winners": 1,
+      "best": "8.5",
+      "maximum": "12.5",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CD",
+          "CE",
+          "DG",
+          "EG",
+          "CF",
+          "FE"
+        ]
+      ],
+      "elapsedMs": 675,
+      "partialExample": {
+        "time": "9.5",
+        "ids": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CD",
+          "DG",
+          "EG",
+          "BG",
+          "CF",
+          "FE"
+        ],
+        "score": "94.73"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G",
+          "time": "8.5"
+        },
+        {
+          "goal": "G",
+          "time": "9.5"
+        },
+        {
+          "goal": "G",
+          "time": "10.5"
+        },
+        {
+          "goal": "G",
+          "time": "11.5"
+        }
+      ],
+      "branchPrisms": [
+        "A",
+        "C"
+      ],
+      "queueWaits": [],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "8.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "9.5",
+        "score": "94.73",
+        "perfect": false
+      }
+    },
+    {
+      "id": "Q11",
+      "source": "Proposed value adjustments to retain both one perfect solution and partial clears",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "BD",
+        "AC",
+        "CD",
+        "DG",
+        "AD",
+        "BG",
+        "CG",
+        "AG",
+        "BC"
+      ],
+      "times": [
+        "0.5",
+        "0.5",
+        "0.5",
+        "1",
+        "0.5",
+        "0.5",
+        "2.5",
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "legalSubsets": 1486,
+      "achieved": 41,
+      "winners": 1,
+      "best": "3.5",
+      "maximum": "9.5",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "BD",
+          "AC",
+          "CD",
+          "DG"
+        ]
+      ],
+      "elapsedMs": 98,
+      "partialExample": {
+        "time": "4",
+        "ids": [
+          "SA",
+          "AC",
+          "CD",
+          "DG",
+          "AD"
+        ],
+        "score": "93.75"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G",
+          "time": "3.5"
+        },
+        {
+          "goal": "G",
+          "time": "4.5"
+        }
+      ],
+      "branchPrisms": [
+        "A"
+      ],
+      "queueWaits": [
+        {
+          "node": "D",
+          "time": "3",
+          "wait": "0.5"
+        }
+      ],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "3.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "4",
+        "score": "93.75",
+        "perfect": false
+      }
+    },
+    {
+      "id": "Q12",
+      "source": "Proposed new values; feasibility only, not approved content",
+      "candidateIds": [
+        "SA",
+        "AB",
+        "BF",
+        "AC",
+        "CF",
+        "AD",
+        "DE",
+        "EF",
+        "FG",
+        "AF",
+        "AE",
+        "BC",
+        "AG"
+      ],
+      "times": [
+        "0.5",
+        "0.5",
+        "0.5",
+        "1",
+        "0.5",
+        "0.5",
+        "0.5",
+        "1",
+        "0.5",
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "legalSubsets": 7814,
+      "achieved": 4,
+      "winners": 1,
+      "best": "3.5",
+      "maximum": "8.5",
+      "examples": [
+        [
+          "SA",
+          "AB",
+          "BF",
+          "AC",
+          "CF",
+          "AD",
+          "DE",
+          "EF",
+          "FG"
+        ]
+      ],
+      "elapsedMs": 787,
+      "partialExample": {
+        "time": "6.5",
+        "ids": [
+          "SA",
+          "AB",
+          "CF",
+          "EF",
+          "FG",
+          "AF",
+          "AE",
+          "BC"
+        ],
+        "score": "76.92"
+      },
+      "exampleArrivals": [
+        {
+          "goal": "G",
+          "time": "3.5"
+        },
+        {
+          "goal": "G",
+          "time": "4.5"
+        },
+        {
+          "goal": "G",
+          "time": "5.5"
+        }
+      ],
+      "branchPrisms": [
+        "A"
+      ],
+      "queueWaits": [
+        {
+          "node": "F",
+          "time": "3",
+          "wait": "0.5"
+        },
+        {
+          "node": "F",
+          "time": "4",
+          "wait": "1"
+        }
+      ],
+      "eligible": true,
+      "playable": true,
+      "sessionPerfect": {
+        "first": "3.5",
+        "score": "100.00",
+        "perfect": true
+      },
+      "sessionPartial": {
+        "first": "6.5",
+        "score": "76.92",
+        "perfect": false
+      }
+    }
+  ],
+  "complete": true,
+  "createdAt": "2026-10-15T13:04:28.650Z",
+  "appVersion": "0.32.0",
+  "sourceHashes": {
+    "src/content/challenges.js": "e1d96957b26e2af224fcbc78115d36d979995f0ee8bac2c317961a34fb04e5ff",
+    "src/core/simulation.js": "069191b0c89ad06bb45c69568911a56e81cd0cd352b3063c1ee20aa55571ba84",
+    "src/core/circuit.js": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
+    "src/core/evaluation.js": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
+    "src/core/time.js": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
+    "src/app/session.js": "e52a0df26c4d1b05adb9ad3c88660ba1a833492b762a1530a205e6a662caee02"
+  },
+  "feasibilityOnly": true,
+  "difficultyReviewed": false
+}
