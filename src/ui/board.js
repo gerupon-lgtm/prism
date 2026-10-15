@@ -5,6 +5,7 @@ import { partName,objectName } from './labels.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
+const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMin:20,passMax:26});
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
@@ -290,7 +291,8 @@ export class Board {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
     if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
-    const node=event.target.closest('[data-node]')?.dataset.node,edge=event.target.closest('[data-edge]')?.dataset.edge;
+    const edge=event.target.closest('[data-edge]')?.dataset.edge;
+    const node=event.target.closest('[data-node]')?.dataset.node??(!edge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
     if(node&&this.session.editable&&this.session.mode==='challenge')this.session.view.showAllTimes=false;
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
@@ -299,6 +301,20 @@ export class Board {
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
   pointerCenter() {const [a,b]=[...this.pointers.values()];return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+  wireTarget(x,y,{route=null,final=false}={}) {
+    const from=route?.at(-1),terminal=route?.length>1&&this.session.circuit.nodes.find(n=>n.id===from)?.kind==='goal';
+    let nearest=null,distance=Infinity;
+    for(const group of this.world.querySelectorAll('[data-node]')){
+      const id=group.dataset.node,hit=group.querySelector('.node-hit')?.getBoundingClientRect();if(!hit?.width||!hit.height)continue;
+      const radius=Math.min(hit.width,hit.height)/2;
+      const tolerance=route?(final?radius+WIRING_HIT.releaseMargin:Math.min(WIRING_HIT.passMax,Math.max(WIRING_HIT.passMin,radius*.7))):radius+WIRING_HIT.startMargin;
+      const gap=Math.hypot(x-hit.left-hit.width/2,y-hit.top-hit.height/2);
+      if(gap>tolerance||gap>=distance)continue;
+      if(route&&id!==from){if(terminal)continue;try{this.session.planConnections([...route,id]);}catch{continue;}}
+      nearest=id;distance=gap;
+    }
+    return nearest;
+  }
   move(event,final=false) {
     if(!this.pointers.has(event.pointerId)||!this.gesture)return;
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});const gesture=this.gesture;
@@ -314,13 +330,10 @@ export class Board {
     if(gesture.kind==='pan'&&gesture.moved) {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
     } else if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
-      const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
+      const target=this.wireTarget(event.clientX,event.clientY,{route:gesture.route,final});
       const from=gesture.route.at(-1),terminal=gesture.route.length>1&&this.session.circuit.nodes.find(n=>n.id===from)?.kind==='goal';
-      const hit=target?this.world.querySelector(`[data-node="${CSS.escape(target)}"] .node-hit`)?.getBoundingClientRect():null;
-      // Pass near the centre for an intermediate point. The larger hit region
-      // still accepts a final release without turning a nearby pass into a detour.
-      const near=hit&&Math.hypot(event.clientX-hit.left-hit.width/2,event.clientY-hit.top-hit.height/2)<=Math.min(hit.width,hit.height)*.2;
-      if(target&&target!==from&&!terminal&&(final||near)){
+      if(final)gesture.releaseTarget=target;
+      if(target&&target!==from&&!terminal){
         // Cue each accepted target; the stroke stays provisional until release.
         try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.connected(target);this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
       }
@@ -343,8 +356,7 @@ export class Board {
     this.gesture=null;this.wire?.setAttribute('d','');
     try {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
-        const target=document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-node]')?.dataset.node;
-        if(gesture.route.length>1&&target===gesture.route.at(-1)){
+        if(gesture.route.length>1&&gesture.releaseTarget===gesture.route.at(-1)){
           this.session.connectPath(gesture.route);
         }
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}

@@ -17,8 +17,12 @@ export const RELAY_SOUND = Object.freeze({
 });
 
 export class Chime {
-  constructor() { this.muted = true; this.context = null; this.voices = new Set();this.relayVoices=new Map();this.wireVoices=new Map();this.bellUntil=0; }
+  constructor() { this.muted = false; this.context = null; this.voices = new Set();this.relayVoices=new Map();this.wireVoices=new Map();this.bellUntil=0; }
   async enable() {
+    this.muted=false;
+    await this.unlock();
+  }
+  async unlock() {
     const Audio = window.AudioContext ?? window.webkitAudioContext;
     if (!Audio) throw new Error('このブラウザでは音を開始できません。到着は画面と記録で確認できます。');
     this.context ??= new Audio();
@@ -27,7 +31,7 @@ export class Chime {
       const master=this.context.createGain();master.gain.value=DEFAULT_EFFECT_VOLUME;
       this.output.connect(master);master.connect(this.context.destination);
     }
-    await this.context.resume(); this.muted = false;
+    await this.context.resume();
   }
   mute() { this.muted = true; this.stop(); }
   tap() {
@@ -64,7 +68,7 @@ export class Chime {
     oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);this.relayVoices.delete(oscillator);};oscillator.start(at);oscillator.stop(at+RELAY_SOUND.durationSeconds+.02);
   }
   strike() {
-    if (this.muted || !this.context) return;
+    if (this.muted || !this.context || this.context.state!=='running') return;
     const at = this.context.currentTime;
     this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,at+2.62);
     {

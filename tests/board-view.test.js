@@ -4,6 +4,29 @@ import { Board } from '../src/ui/board.js';
 import { challenges } from '../src/content/challenges.js';
 import { frameRotation } from '../src/ui/orientation.js';
 
+function hitBoard(){
+  const points=[['S',0,100],['A',100,100],['B',145,100],['G',100,0]];
+  return {world:{querySelectorAll:()=>points.map(([id,x,y])=>({dataset:{node:id},querySelector:()=>({getBoundingClientRect:()=>({left:x-22,top:y-22,width:44,height:44})})}))},session:{circuit:{nodes:points.map(([id])=>({id,kind:id==='G'?'goal':'prism'}))},planConnections:route=>{if(route.at(-1)==='B')throw Error('Not an available candidate');}}};
+}
+
+test('結線は点の手前や横で離しても受け付け、遠い余白では取り消す',()=>{
+  const board=hitBoard(),target=(x,y,options)=>Board.prototype.wireTarget.call(board,x,y,options);
+  assert.equal(target(29,100),'S');assert.equal(target(100,119,{route:['S']}),'A');
+  assert.equal(target(131,100,{route:['S'],final:true}),'A');
+  assert.equal(target(105,145,{route:['S'],final:true}),null);
+});
+
+test('近接候補では接続できる近い点を選び、近い候補外の点へは結線しない',()=>{
+  const board=hitBoard(),target=(x,y)=>Board.prototype.wireTarget.call(board,x,y,{route:['S'],final:true});
+  assert.equal(target(126,100),'A');assert.equal(target(145,100),null);
+  board.session.planConnections=()=>{};assert.equal(target(126,100),'B');
+});
+
+test('鐘で終わった連続結線は近傍へずれても確定でき、鐘の先へ追加しない',()=>{
+  const board=hitBoard(),target=(x,y)=>Board.prototype.wireTarget.call(board,x,y,{route:['S','A','G'],final:true});
+  assert.equal(target(130,0),'G');assert.equal(target(100,100),null);
+});
+
 test('記録画面などで盤面の表示行列がない間は秒数配置を保留する',()=>{
   assert.doesNotThrow(()=>Board.prototype.fitTimeLabels.call({world:{getScreenCTM:()=>null}}));
 });

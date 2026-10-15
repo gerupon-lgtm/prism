@@ -49,7 +49,17 @@ test('効果音共通の初期音量は最大の70%で、再有効化でも増�
   let count=0;const master={gain:{value:0},connect(){count++;}};
   const context={state:'running',destination:{},createDynamicsCompressor:()=>({connect(){count++;}}),createGain:()=>master,resume:async()=>{}};
   const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){return context;}}};
-  try{const chime=new Chime();assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();assert.equal(master.gain.value,.7);assert.equal(count,2);chime.mute();await chime.enable();assert.equal(count,2);assert.equal(master.gain.value,.7);}finally{globalThis.window=original;}
+  try{const chime=new Chime();assert.equal(chime.muted,false);assert.equal(chime.context,null);assert.equal(count,0);assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();assert.equal(master.gain.value,.7);assert.equal(count,2);chime.mute();await chime.enable();assert.equal(count,2);assert.equal(master.gain.value,.7);}finally{globalThis.window=original;}
+});
+
+test('音の準備中に消音を選んでも、準備の完了で音ありへ戻さない',async()=>{
+  let resume;const original=globalThis.window;
+  globalThis.window={AudioContext:class{constructor(){this.state='suspended';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{},connect(){}};}resume(){return new Promise(resolve=>{resume=()=>{this.state='running';resolve();};});}}};
+  try{const chime=new Chime(),pending=chime.enable();chime.mute();resume();await pending;assert.equal(chime.muted,true);chime.tap();assert.equal(chime.voices.size,0);}finally{globalThis.window=original;}
+});
+
+test('ブラウザが音を休止している間は、鐘を後から鳴らす予約を残さない',()=>{
+  const {chime,voices}=fixture();chime.context.state='suspended';chime.strike();assert.equal(voices.length,0);assert.equal(chime.bellUntil,0);
 });
 
 test('満点の短いジングルは鐘の立ち上がりを避けた四音で、実行終了待機内に収まる',()=>{

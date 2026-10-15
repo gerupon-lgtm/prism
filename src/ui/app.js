@@ -38,6 +38,13 @@ const board=new Board($('board'),session,render,settings,notify,()=>chime.wire()
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal,()=>chime.perfect());
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
+let soundUnlock=null,automaticSoundFailed=false;
+// Create/resume audio inside an actual user action. A pending resume must never
+// overwrite an explicit mute, and opening a page alone must not start audio.
+document.addEventListener('click',event=>{
+  if(!event.isTrusted||event.target.closest('#sound')||chime.muted||automaticSoundFailed||chime.context?.state==='running')return;
+  soundUnlock??=chime.unlock().catch(error=>{automaticSoundFailed=true;failure(error);}).finally(()=>{soundUnlock=null;});
+},true);
 
 function updateNotice(){
   $('update-notice').hidden=!offline.state.update;
@@ -764,7 +771,7 @@ $('records').addEventListener('click',()=>attempt(showRecords));$('close-records
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
-$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();chime.tap();}else chime.mute();render(false);}));
+$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(()=>{
   if(offline.state.update)return requestUpdate();

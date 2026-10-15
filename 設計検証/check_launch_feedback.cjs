@@ -1,3 +1,4 @@
+const {setSound}=require('./browser_wait.cjs');
 // Disposable PC browsers: geometry and state, with explicitly synthetic audio.
 // No physical-device touch, audio output or subjective visual acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -19,7 +20,7 @@ async function wireWhilePressed(page,context,engine){
  const center=async id=>{const {a}=await wiringBounds(page,id,id);return {x:a.x+a.width/2,y:a.y+a.height/2};};
  const move=async point=>{if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...point,id:1}]});else await page.mouse.move(point.x,point.y);await settle(page);};
  const s=await center('S'),a=await center('A'),g=await center('G');
- await page.locator('#sound').click();await page.evaluate(()=>__audio.length=0);
+ await setSound(page,true);await page.evaluate(()=>__audio.length=0);
  if(cdp)await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...s,id:1}]});else{await page.mouse.move(s.x,s.y);await page.mouse.down();}
  await move(a);assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1,'Prism must sound before releasing the drag');assert.equal(await page.locator('.edge:not(.candidate)').count(),0,'Touch feedback must not commit the stroke');
  await move({x:a.x+1,y:a.y+1});assert.equal(await page.evaluate(()=>__audio.filter(v=>v.hz===880).length),1,'Staying on prism does not repeat');

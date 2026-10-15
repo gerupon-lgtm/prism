@@ -37,14 +37,19 @@ async function noticeFit(page,label){
     const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});
     try{const context=await browser.newContext({viewport:{width:390,height:664},isMobile:true,hasTouch:true});
       await context.addInitScript(()=>{
-        window.__audio=[];const Original=window.AudioContext??window.webkitAudioContext;window.__audioMethod=Original?'real browser API':'synthetic API fallback';
+        window.__audio=[];window.__contexts=[];const Original=window.AudioContext??window.webkitAudioContext;window.__audioMethod=Original?'real browser API':'synthetic API fallback';
         const ramp=()=>({value:0,setValueAtTime(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){},cancelScheduledValues(){}});
         const Fallback=class{constructor(){this.state='running';this.destination={};}get currentTime(){return performance.now()/1000;}async resume(){}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:ramp(),connect(){},disconnect(){}};}createOscillator(){return {frequency:ramp(),connect(){},disconnect(){},start(){},stop(){}};}};
         let voiceId=0;
-        window.AudioContext=class extends (Original??Fallback){createOscillator(){const id=++voiceId,o=super.createOscillator(),start=o.start.bind(o),stop=o.stop.bind(o);o.start=t=>{__audio.push({id,type:'start',at:t,frequency:o.frequency.value,wall:performance.now()});if(window.__failBell&&Math.abs(o.frequency.value-523.22)<.02)throw new Error('Synthetic bell failure');return start(t);};o.stop=t=>{__audio.push({id,type:'stop',at:t,frequency:o.frequency.value,wall:performance.now()});return stop(t);};return o;}};
+        window.AudioContext=class extends (Original??Fallback){constructor(...args){super(...args);__contexts.push({gesture:navigator.userActivation.isActive});}createOscillator(){const id=++voiceId,o=super.createOscillator(),start=o.start.bind(o),stop=o.stop.bind(o);o.start=t=>{__audio.push({id,type:'start',at:t,frequency:o.frequency.value,wall:performance.now()});if(window.__failBell&&Math.abs(o.frequency.value-523.22)<.02)throw new Error('Synthetic bell failure');return start(t);};o.stop=t=>{__audio.push({id,type:'stop',at:t,frequency:o.frequency.value,wall:performance.now()});return stop(t);};return o;}};
         window.__direction={angle:0,type:'portrait-primary'};const direction=new EventTarget();Object.defineProperties(direction,{angle:{get:()=>__direction.angle},type:{get:()=>__direction.type}});Object.defineProperty(screen,'orientation',{get:()=>direction});
       });
-      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await enterApp(page);await skipGuide(page);await settle(page);
+      const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await settle(page);
+      assert.equal(await page.locator('#sound').getAttribute('aria-pressed'),'true');assert.deepEqual(await page.evaluate(()=>({contexts:__contexts.length,voices:__audio.length})),{contexts:0,voices:0},'Opening the page alone must not create audio or play sound');
+      await enterApp(page);await page.waitForFunction(()=>__contexts.length===1);await skipGuide(page);await settle(page);
+      const initialAudio=await page.evaluate(()=>({contexts:__contexts,starts:__audio.filter(e=>e.type==='start').length,method:__audioMethod}));assert(initialAudio.contexts[0].gesture&&initialAudio.starts>0,'Normal title selection unlocks default sound without pressing sound');
+      report.checks.push({label:engine+' sound defaults on; no audio at load; first trusted title action unlocks effects',passed:true,initialAudio});
+      await page.locator('#sound').click();await settle(page);await page.evaluate(()=>__audio=[]);
       assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),version);
       assert.equal(await page.locator('#play').isDisabled(),true);assert((await page.locator('#result').textContent()).includes('点をつないで'));
       const initialState=await page.evaluate(async()=>{const app=await import(document.querySelector('script[src*="/ui/app.js"]').src);document.getElementById('play').click();return {run:app.inspectPerformance().run,scores:localStorage.getItem('prism-notes.scores.v1')};});assert.equal(initialState.run,null);assert.equal(initialState.scores,null);

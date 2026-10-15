@@ -1,3 +1,4 @@
+const {setSound}=require('./browser_wait.cjs');
 const {enterApp,startGuide,skipGuide,selectChallenge}=require('./browser_wait.cjs');
 // PC engine evidence, synthetic circuits and a labelled synthetic rendering stall.
 // No claim about physical touch, device speed or listening quality.
@@ -72,7 +73,7 @@ async function finishNext(page){
         assert(await input.evaluate(el=>el.selectionStart===0&&el.selectionEnd===el.value.length));assert(await input.evaluate(el=>{const event=new MouseEvent('contextmenu',{bubbles:true,cancelable:true});el.dispatchEvent(event);return !event.defaultPrevented;}));await page.locator('#dialog-close').click();check(`${engine} unwanted context menus suppressed; input selection/menu retained`);
         const simultaneous=manyGoals(3);await importCircuit(page,simultaneous);
         const audioSupport=await page.evaluate(()=>({AudioContext:typeof window.AudioContext,webkitAudioContext:typeof window.webkitAudioContext,OfflineAudioContext:typeof window.OfflineAudioContext}));
-        const hasAudio=audioSupport.AudioContext==='function'||audioSupport.webkitAudioContext==='function';await page.locator('#sound').click();
+        const hasAudio=audioSupport.AudioContext==='function'||audioSupport.webkitAudioContext==='function';if(hasAudio)await setSound(page,true);else{await setSound(page,false);await setSound(page,true);}
         if(hasAudio)await page.waitForFunction(()=>document.getElementById('sound').textContent==='音あり',{},{timeout:5000});
         else{
           assert((await page.locator('#result').textContent()).includes('このブラウザでは音を開始できません'));

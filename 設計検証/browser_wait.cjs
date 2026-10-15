@@ -62,4 +62,8 @@ async function chooseChallenge(page,id) {
   throw new Error('Challenge not available in selector: '+id+' '+await page.locator('#dialog-body').innerText());
 }
 async function selectChallenge(page,id){await page.locator('#home').click();await chooseChallenge(page,id);}
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge};
+async function setSound(page,enabled){
+  if(await page.locator('#sound').getAttribute('aria-pressed')!==String(enabled))await page.locator('#sound').click();
+  await page.waitForFunction(enabled=>document.getElementById('sound').getAttribute('aria-pressed')===String(enabled),enabled);
+}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound};
