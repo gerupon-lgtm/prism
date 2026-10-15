@@ -1,5 +1,5 @@
 const {startAndPause}=require('./browser_wait.cjs');
-const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
+const {enterApp,startGuide,skipGuide,selectChallenge}=require('./browser_wait.cjs');
 // Real Chromium protocol touch and explicitly synthetic WebKit pointer types.
 // PC evidence only; physical phone gestures and artistic judgement remain separate.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -17,7 +17,7 @@ async function settle(page){await page.evaluate(async()=>{await document.fonts.r
 const view=page=>page.locator('[data-node="S"]').evaluate(e=>e.parentElement.getAttribute('transform'));
 const count=page=>page.locator('.edge:not(.candidate)').count();
 async function center(page,id){const {a}=await wiringBounds(page,id,id);return {x:a.x+a.width/2,y:a.y+a.height/2};}
-async function choose(page,id){await page.locator('#home').click();await page.getByRole('button',{name:new RegExp('^'+id+' ')}).click();await settle(page);}
+async function choose(page,id){await selectChallenge(page,id);await settle(page);}
 async function mouseDrag(page,a,b){await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:8});await page.mouse.up();await settle(page);}
 async function touchStroke(cdp,points){await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...points[0],id:1}]});for(const p of points.slice(1))await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...p,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
 async function noSinglePan(page,cdp,label){

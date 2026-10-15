@@ -1,4 +1,4 @@
-const {enterApp,startGuide,skipGuide}=require('./browser_wait.cjs');
+const {enterApp,startGuide,skipGuide,selectChallenge}=require('./browser_wait.cjs');
 // PC engine evidence, synthetic circuits and a labelled synthetic rendering stall.
 // No claim about physical touch, device speed or listening quality.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -54,13 +54,13 @@ async function finishNext(page){
         check(`${engine} adopted humanoid transparent image loaded only during guide`);
         for(const [width,height]of [[320,480],[360,640],[390,664],[480,240],[568,260],[844,310],[768,1024],[1280,800]]){
           await page.setViewportSize({width,height});await settle(page);
-          const fits=await page.evaluate(()=>{const bar=document.getElementById('guide-bar'),image=document.getElementById('guide-spirit'),rect=bar.getBoundingClientRect();return document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight&&rect.bottom<=innerHeight&&bar.scrollWidth<=bar.clientWidth&&bar.scrollHeight<=bar.clientHeight&&image.getBoundingClientRect().height>0;});assert(fits,`${engine} guide ${width}x${height}`);
+          const fits=await page.evaluate(()=>{const compact=document.getElementById('app').classList.contains('compact'),bar=document.getElementById(compact?'hint':'guide-bar'),image=document.getElementById('guide-spirit'),rect=bar.getBoundingClientRect(),board=document.getElementById('board').getBoundingClientRect();return {ok:document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight&&rect.bottom<=innerHeight&&bar.scrollWidth<=bar.clientWidth&&bar.scrollHeight<=bar.clientHeight&&(compact||image.getBoundingClientRect().height>0)&&board.height>0,compact,bar:rect.toJSON(),board:board.toJSON(),size:[bar.clientWidth,bar.clientHeight,bar.scrollWidth,bar.scrollHeight],imageHeight:image.getBoundingClientRect().height,scroll:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],viewport:[innerWidth,innerHeight],font:getComputedStyle(document.documentElement).fontSize};});if(!fits.ok){report.guideFailure=fits;await page.screenshot({path:path.join(out,engine+'-guide-failed.png')});}assert(fits.ok,`${engine} guide ${width}x${height}: ${JSON.stringify(fits)}`);
+          if(fits.compact){const expected=await page.locator('#guide-text').textContent();await page.locator('#hint').click();await page.locator('.detail-value').first().waitFor({state:'visible'});await settle(page);let text='';for(let n=0;n<30;n++){text+=(await page.locator('.detail-value').allTextContents()).join('');const next=page.locator('#dialog-body .pager button').last();if(await next.isDisabled())break;await next.click();await settle(page);}assert(text.replaceAll('\n','').includes(expected.replaceAll('\n','')),JSON.stringify({expected,text}));assert(await page.getByRole('button',{name:'スキップ',exact:true}).isVisible());await page.locator('#dialog-close').click();await settle(page);check(`${engine} compact guide ${width}x${height} retains the full instruction and skip action`,fits);}
         }check(`${engine} guide fits all eight portrait/landscape sizes`);
         await page.setViewportSize({width:390,height:664});await settle(page);await page.screenshot({path:path.join(out,`${engine}-guide.png`)});
         await skipGuide(page);assert(!(await page.locator('#guide-spirit').isVisible()));
         for(const id of Array.from({length:12},(_,i)=>'Q'+(i+1))){
-          await page.locator('#home').click();await settle(page);
-          for(let i=0;i<10;i++){const item=page.getByRole('button',{name:new RegExp(`^${id} `)});if(await item.count()){await item.click();break;}const next=page.locator('#dialog-body .pager button').last();assert(!(await next.isDisabled()),`${id} missing: ${await page.locator('#dialog-body').innerText()}`);await next.click();await settle(page);}
+          await selectChallenge(page,id);
           await settle(page);assert.equal(await page.locator('.scene').getAttribute('data-scene'),[1,2,3,7,9,11].includes(Number(id.slice(1)))?'ruins':'observatory');
           assert.equal(await page.locator('.scene').evaluate(el=>getComputedStyle(el).pointerEvents),'none');assert.equal(await page.locator('.scene [data-node],.scene [data-edge]').count(),0);
         }check(`${engine} all twelve stages use their adopted setting with no decoration hit targets`);

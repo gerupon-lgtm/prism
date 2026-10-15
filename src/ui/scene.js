@@ -1,13 +1,16 @@
 import { svg } from './svg.js';
 const art=name=>new URL(`../../public/graphics/${name}.png`,import.meta.url).href;
+export const ARRIVAL_DURATION_MS=Object.freeze({prism:1000,goal:1800});
 
 // Decoration has no circuit identifiers, hit targets, or simulation events.
 export class Scene {
   constructor(board) {
     const defs=svg('defs');
-    for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.75],[.35,.3],[1,0]]]]){
+    for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.95],[.35,.55],[1,0]]],['prism-light','#ccecff',[[0,.95],[.3,.65],[1,0]]]]){
       const gradient=svg('radialGradient',{id});for(const [offset,opacity] of stops)gradient.append(svg('stop',{offset,'stop-color':color,'stop-opacity':opacity}));defs.append(gradient);
     }
+    const column=svg('linearGradient',{id:'altar-column',x1:0,y1:1,x2:0,y2:0});
+    for(const [offset,opacity] of [[0,.8],[.4,.3],[1,0]])column.append(svg('stop',{offset,'stop-color':'#fff1cf','stop-opacity':opacity}));defs.append(column);
     this.root=svg('g',{class:'scene','aria-hidden':'true'});board.prepend(defs,this.root);
   }
   draw(width,height,kind) {
@@ -34,9 +37,35 @@ export function symbol(kind,factor) {
 export function constellation({x,y},factor,angle,id,age=0) {
   const group=svg('g',{transform:`translate(${x} ${y}) rotate(${-angle}) scale(${factor})`,class:'arrival-art','data-arrived-particle':id,'aria-hidden':'true'});
   group.style.setProperty('--arrival-age',`-${age}ms`);
-  const dots=[[-116,20],[-108,-52],[-55,-105],[35,-126],[100,-74],[120,8],[75,85]];
-  group.append(svg('ellipse',{cy:8,rx:85,ry:105,class:'arrival-glow'}));
-  group.append(svg('path',{d:`M-116,20 L-108,-52 L-55,-105 M35,-126 L100,-74 L120,8`,class:'constellation-line'}));
-  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*45}ms`);star.append(svg('circle',{r:index%3===0?3:2}));if(index%3===0)star.append(svg('path',{d:'M-6,0 L6,0 M0,-6 L0,6',class:'star-ray'}));group.append(star);});
+  group.style.setProperty('--arrival-duration',`${ARRIVAL_DURATION_MS.goal}ms`);
+  const dots=[[-150,25],[-145,-70],[-80,-145],[25,-175],[125,-125],[160,-25],[110,110],[-75,120]];
+  group.append(svg('ellipse',{cy:0,rx:150,ry:170,class:'arrival-glow'}));
+  group.append(svg('path',{d:'M-35,18 L-65,-270 L65,-270 L35,18 Z',class:'altar-column'}));
+  const rays=svg('g',{class:'altar-rays'});
+  for(let index=0;index<12;index++){
+    const angle=index*Math.PI/6,dx=Math.cos(angle),dy=Math.sin(angle);
+    rays.append(svg('path',{d:`M${dx*62} ${dy*68} L${dx*165} ${dy*175}`,class:'altar-ray'}));
+  }
+  group.append(rays,svg('path',{d:'M-150,25 L-145,-70 L-80,-145 L25,-175 L125,-125 L160,-25 M110,110 L-75,120',class:'constellation-line'}));
+  dots.forEach(([cx,cy],index)=>{const star=svg('g',{class:'constellation-star',transform:`translate(${cx} ${cy})`});star.style.setProperty('--star-delay',`${80+index*60}ms`);star.append(svg('circle',{r:index%3===0?5:3}));star.append(svg('path',{d:'M-10,0 L10,0 M0,-10 L0,10',class:'star-ray'}));group.append(star);});
+  return group;
+}
+
+export function prismArrival({x,y},factor,angle,id,age=0) {
+  const group=svg('g',{transform:`translate(${x} ${y}) rotate(${-angle}) scale(${factor})`,class:'arrival-art prism-arrival','data-arrived-particle':id,'aria-hidden':'true'});
+  group.style.setProperty('--arrival-age',`-${age}ms`);group.style.setProperty('--arrival-duration',`${ARRIVAL_DURATION_MS.prism}ms`);
+  group.append(svg('ellipse',{rx:115,ry:115,class:'prism-arrival-glow'}));
+  const flare=svg('g',{class:'prism-flare'});
+  for(let index=0;index<12;index++){
+    const angle=index*Math.PI/6,dx=Math.cos(angle),dy=Math.sin(angle);
+    flare.append(svg('path',{d:`M${dx*60} ${dy*60} L${dx*135} ${dy*135}`}));
+  }
+  group.append(flare);
+  const colors=['#fff1cf','#bfe8ff','#d5b9ff','#a9e9f0','#f2c7da','#ffe3a2'];
+  for(let index=0;index<12;index++){
+    const angle=index*Math.PI/6,dx=Math.cos(angle)*145,dy=Math.sin(angle)*145;
+    const shard=svg('g',{class:'prism-shard'});shard.style.setProperty('--shard-x',`${dx}px`);shard.style.setProperty('--shard-y',`${dy}px`);shard.style.setProperty('--shard-color',colors[index%colors.length]);
+    shard.append(svg('path',{d:index%2?'M0,-12 L6,0 L0,12 L-6,0 Z':'M0,-20 L8,0 L0,20 L-8,0 Z'}));group.append(shard);
+  }
   return group;
 }

@@ -1,5 +1,5 @@
 import { svg } from './svg.js';
-import { Scene,symbol,constellation } from './scene.js';
+import { Scene,symbol,constellation,prismArrival,ARRIVAL_DURATION_MS } from './scene.js';
 import { Magnifier } from './magnifier.js';
 import { partName,objectName } from './labels.js';
 
@@ -11,7 +11,8 @@ export class Board {
   constructor(element, session, changed, openSettings, notify, connected=()=>{}) {
     Object.assign(this,{element,session,changed,openSettings,notify,connected});
     this.orientation = svg('g',{class:'board-orientation',id:'board-detail'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
-    this.orientation.append(this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
+    this.fireworksLayer=svg('g',{class:'fireworks-layer','aria-hidden':'true'});
+    this.orientation.append(this.fireworksLayer,this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
     this.scene=new Scene(element);this.arrivalPictures=new Map();this.pictureRun=null;
     this.magnifier=new Magnifier(this);
     this.pointers = new Map(); this.gesture = null; this.lastTap = null; this.addKind = null;
@@ -101,6 +102,7 @@ export class Board {
       group.append(svg('title',{},`${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}への道：${edge.time}秒`));
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
+      if(!candidate)group.append(svg('path',{d,class:'edge-core'}));
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
@@ -202,17 +204,22 @@ export class Board {
     this.effectsLayer.replaceChildren();
     const now=performance.now();
     for(const [id,picture] of this.arrivalPictures){
-      if(now-picture.at>=1300){this.arrivalPictures.delete(id);continue;}
-      const node=run.circuit.nodes.get(picture.node),art=constellation(this.position(node),this.fontFactor??1,this.angle,id,Math.max(0,now-picture.at));
+      if(now-picture.at>=picture.duration){this.arrivalPictures.delete(id);continue;}
+      const node=run.circuit.nodes.get(picture.node),draw=picture.kind==='prism'?prismArrival:constellation;
+      const art=draw(this.position(node),this.fontFactor??1,this.angle,picture.particle,Math.max(0,now-picture.at));
+      art.setAttribute('data-arrival-key',id);art.setAttribute('data-arrival-node',picture.node);
       this.effectsLayer.append(art);
     }
   }
   arrivals(entries) {
     if(this.pictureRun!==this.session.run){this.arrivalPictures.clear();this.pictureRun=this.session.run;}
-    for(const entry of entries)if(entry.type==='goal'){
-      this.arrivalPictures.set(entry.particle,{node:entry.node,at:performance.now()});
-      const run=this.session.run,id=entry.particle;
-      setTimeout(()=>{if(this.pictureRun===run){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrived-particle="${id}"]`)?.remove();}},1300);
+    for(const entry of entries){
+      const kind=this.session.run.circuit.nodes.get(entry.node)?.kind;
+      if(entry.type!=='goal'&&!(entry.type==='arrival'&&kind==='prism'))continue;
+      const id=`${entry.particle}:${entry.node}:${entry.time}`,duration=ARRIVAL_DURATION_MS[kind];
+      this.arrivalPictures.set(id,{node:entry.node,particle:entry.particle,kind,at:performance.now(),duration});
+      const run=this.session.run;
+      setTimeout(()=>{if(this.pictureRun===run){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`)?.remove();}},duration);
     }
     this.renderArrivals();
   }

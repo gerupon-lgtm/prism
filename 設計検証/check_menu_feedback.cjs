@@ -103,7 +103,8 @@ async function noticeFit(page,label){
       const fault=await inspect();assert.equal(fault.run.pauseReason,'error');assert(fault.result.includes('Synthetic bell failure'));
       await menuFit(page,engine+' next-event fault menu keeps stop/edit',9);await page.waitForTimeout(3200);
       const retained=await inspect();assert.equal(retained.run.status,'paused');assert.equal(retained.run.clock,fault.run.clock);assert.equal(retained.run.records,fault.run.records);assert.equal(retained.run.retainedParticles,fault.run.retainedParticles);assert.equal(retained.clearDisabled,true);assert(retained.result.includes('Synthetic bell failure'));
-      report.checks.push({label:engine+' synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop',passed:true,fault,retained});await page.evaluate(()=>window.__failBell=false);await page.locator('#stop').click();
+      assert.equal(await page.locator('.perfect-fireworks').count(),0,'An interrupted ending must not celebrate after viewing the menu');
+      report.checks.push({label:engine+' synthetic final next-event audio failure survives menu viewing and 3 sec without automatic stop or perfect celebration',passed:true,fault,retained});await page.evaluate(()=>window.__failBell=false);await page.locator('#stop').click();
       assert.deepEqual(errors,[]);await context.close();
     }finally{await browser.close();}
   }

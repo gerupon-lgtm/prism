@@ -3,6 +3,12 @@ export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) * 2
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME = 0.7;
 export const WIRING_SOUND = Object.freeze({frequencyHz:880,endFrequencyHz:1174.66,durationSeconds:0.1});
+// Four soft celesta notes enter after the bell's attack, within the end wait.
+export const PERFECT_SOUND = Object.freeze({
+  ratios:Object.freeze([1,1.25,1.5,2]),
+  offsetsSeconds:Object.freeze([.42,.58,.74,.98]),
+  durationSeconds:.62,
+});
 // One short notification per prism arrival; no periodic movement sound.
 export const RELAY_SOUND = Object.freeze({
   frequencyHz: 659.26,
@@ -69,6 +75,18 @@ export class Chime {
       oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};
       oscillator.start(at);oscillator.stop(at+2.62);
     }
+  }
+  perfect() {
+    if(this.muted||!this.context||this.context.state!=='running')return;
+    const now=this.context.currentTime;
+    PERFECT_SOUND.ratios.forEach((ratio,index)=>{
+      const at=now+PERFECT_SOUND.offsetsSeconds[index],oscillator=this.context.createOscillator(),gain=this.context.createGain();
+      oscillator.type='sine';oscillator.frequency.value=BELL_SOUND.frequencyHz*ratio;
+      gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.075,at+.008);gain.gain.exponentialRampToValueAtTime(.0001,at+PERFECT_SOUND.durationSeconds);
+      oscillator.connect(gain);gain.connect(this.output);this.voices.add(oscillator);
+      oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};
+      oscillator.start(at);oscillator.stop(at+PERFECT_SOUND.durationSeconds+.02);
+    });
   }
   stop() { this.silenceRelay();this.bellUntil=0;for (const voice of this.voices) { try {voice.stop();} catch { /* Already stopped. */ } } this.voices.clear(); }
 }

@@ -1,7 +1,7 @@
 import { Session } from '../app/session.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
-import { displayScore } from '../core/evaluation.js';
+import { displayScore,perfectScore } from '../core/evaluation.js';
 import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
@@ -12,6 +12,7 @@ import { LoadMeter } from './load-meter.js';
 import { OrientationLayout } from './orientation.js';
 import { EndWait } from './end-wait.js';
 import { partName,objectName } from './labels.js';
+import { PerfectCelebration } from './celebration.js';
 
 const $ = id => document.getElementById(id);
 function element(tag,text='',attributes={}) {
@@ -34,6 +35,7 @@ let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
 const board=new Board($('board'),session,render,settings,notify,()=>chime.wire());
+const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal,()=>chime.perfect());
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 
@@ -62,7 +64,7 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title) {
-  cancelStart();
+  celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
   $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
@@ -80,7 +82,7 @@ function challengeGoal(challenge){
   return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
 }
 function render(redraw=true,{records=true}={}) {
-  const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=360&&textEnlarged;
+  const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=300||(innerHeight<=360&&textEnlarged);
   document.documentElement.style.setProperty('--layout-font',`${readableFont}px`);
   document.documentElement.style.setProperty('--layout-footer-font',getComputedStyle(document.querySelector('footer')).fontSize);
   $('app').classList.toggle('text-enlarged',textEnlarged);
@@ -226,7 +228,8 @@ function renderFailureToast(){
 }
 function dismissFailure(){if(session.run)dismissedFailures.add(session.run);render(false);}
 function reviewFailure(){if(!failureOutcome())return;dismissFailure();stopRun();}
-function failureDetails(title='未達成の結果',text=failureResultText()){
+function failureDetails(title='未達成の結果',text=failureResultText()){outcomeDetails(title,text);}
+function outcomeDetails(title,text){
   open(title);
   // Keep each short page row free of embedded newlines. Even a two-line
   // fragment can cover the pager in a short window with enlarged text.
@@ -236,53 +239,56 @@ function failureDetails(title='未達成の結果',text=failureResultText()){
   listPage(parts,part=>element('p',part,{class:'detail-value'}));actions.append(button('戻る',close));
 }
 
+function clearTimeLabel(){
+  const type=session.runContext?.challenge?.type;
+  return type==='interval'?'初回到達':type==='delivery-all'?'全てに到達':'到達時間';
+}
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
   if(run&&clearToastRun===run&&clearToastCircuit!==session.circuit)dismissedClears.add(run);
   toast.hidden=!choices||dismissedClears.has(run)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  celebration.update(run,session.result,!toast.hidden&&!endWait.interrupted.has(run));
   if(toast.hidden)return;
   if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
+  const perfect=perfectScore(session.result.score),time=session.result.evaluatedTime,score=displayScore(session.result.score);
   $('clear-next').textContent=choices.nextChallengeId?'次へ':'課題一覧へ';
-  const bounds=$('board').getBoundingClientRect();
-  const width=Math.min(420,innerWidth-16,bounds.width-8);
-  toast.classList.remove('slim','docked');
-  toast.classList.toggle('narrow',width<240);
-  toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';
-  toast.style.width=`${width}px`;
-  const height=toast.offsetHeight,left=bounds.left+4,right=bounds.right-width-4,center=bounds.left+(bounds.width-width)/2;
+  $('clear-time-label').textContent=clearTimeLabel();$('clear-time').textContent=time+'秒';$('clear-score').textContent=score+'点';
+  $('clear-time').setAttribute('aria-label',`${clearTimeLabel()} ${time}秒`);$('clear-score').setAttribute('aria-label',`スコア ${score}点`);
+  toast.classList.toggle('perfect-clear',perfect);
+  const boardBox=$('board').getBoundingClientRect(),resultBox=$('result-line').getBoundingClientRect();
   const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
-  const goals=[...$('board').querySelectorAll('[data-node] .node-symbol')].filter(e=>session.circuit.nodes.find(n=>n.id===e.closest('[data-node]').dataset.node)?.kind==='goal').map(e=>{const r=e.getBoundingClientRect();return {left:r.left-44,right:r.right+44,top:r.top-44,bottom:r.bottom+44};});
+  const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:Math.max(boardBox.left,r.left-54),right:Math.min(boardBox.right,r.right+54),top:Math.max(boardBox.top,r.top-90),bottom:Math.min(boardBox.bottom,r.bottom+54)};});
   const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
-  const lowerControls=controls.filter(r=>r.top>bounds.top+bounds.height/2);
-  const lowerEdge=Math.min(bounds.bottom-4,...lowerControls.map(r=>r.top-6));
-  const bottom=Math.max(bounds.top+4,lowerEdge-height),top=bounds.top+4;
-  // Prefer the lower empty area, then choose another corner if the rotated
-  // altar or board controls would be covered. Keep all choices inside the board.
-  const places=[bottom,top,(top+bottom)/2].flatMap(y=>[center,left,right].map(x=>({left:x,right:x+width,top:y,bottom:y+height})));
-  const cost=place=>goals.reduce((sum,r)=>sum+100*overlap(place,r),0)+controls.reduce((sum,r)=>sum+10*overlap(place,r),0);
-  let place=places.reduce((best,next)=>cost(next)<cost(best)?next:best);
-  if(width>=240&&(cost(place)>0||place.top<bounds.top||place.bottom>bounds.bottom)){
-    toast.classList.add('slim');toast.querySelector('strong').textContent='クリア';
-    const smallHeight=toast.offsetHeight,smallBottom=Math.max(bounds.top+4,lowerEdge-smallHeight);
-    const smallPlaces=[smallBottom,top,(top+smallBottom)/2].flatMap(y=>[center,left,right].map(x=>({left:x,right:x+width,top:y,bottom:y+smallHeight})));
-    const clear=smallPlaces.find(p=>p.top>=bounds.top&&p.bottom<=bounds.bottom&&cost(p)===0);
-    if(clear)place=clear;
-    else{toast.classList.remove('slim');toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';}
-  }
-  // A very short landscape viewport has no empty corner around the altar.
-  // Use the existing result region without resizing or shifting the circuit.
-  if(cost(place)>0||place.top<bounds.top||place.bottom>bounds.bottom){
-    const result=$('result-line').getBoundingClientRect();
-    if(result.width>30&&result.height>30){
-      toast.style.width=`${result.width-4}px`;toast.classList.add('narrow','docked');toast.classList.toggle('slim',result.height<100&&result.width>=240);toast.querySelector('strong').textContent='クリア';
-      const compactHeight=toast.offsetHeight;
-      const dock={left:result.left+2,right:result.right-2,top:result.top+(result.height-compactHeight)/2,bottom:result.top+(result.height+compactHeight)/2};
-      if(compactHeight<=result.height&&cost(dock)===0)place=dock;
-      else{toast.classList.remove('slim','docked');toast.style.width=`${width}px`;toast.classList.toggle('narrow',width<240);toast.querySelector('strong').textContent=width<240?'クリア':'課題クリア！';}
+  for(const {area,compact,slim=false} of [{area:boardBox,compact:false},{area:boardBox,compact:true},{area:resultBox,compact:true,slim:true}]){
+    const maximum=Math.min(420,innerWidth-16,area.width-8);
+    for(const width of slim?[maximum,Math.min(180,maximum)]:[maximum]){
+      if(width<40)continue;
+      toast.style.width=`${width}px`;toast.classList.toggle('compact-clear',compact);toast.classList.toggle('narrow',width<240);toast.classList.toggle('slim',slim);toast.classList.toggle('docked',slim);
+      toast.querySelector('.clear-heading strong').textContent=slim?'達成':perfect?'100点クリア！':'課題クリア！';
+      toast.querySelector('.clear-actions').hidden=slim;$('clear-details').hidden=!slim;$('clear-details').textContent=slim?'結果':'結果を見る';
+      $('clear-score').textContent=(slim?score.replace(/\.00$/,''):score)+'点';
+      if(toast.scrollHeight>toast.clientHeight+1)continue;
+      const height=toast.getBoundingClientRect().height,pad=4;
+      const xs=[area.left+(area.width-width)/2,area.left+pad,area.right-width-pad];
+      const controlTop=Math.min(area.bottom-pad,...controls.filter(r=>r.top>area.top+area.height/2).map(r=>r.top-6));
+      const ys=[controlTop-height,area.top+pad,area.top+(area.height-height)/2,area.bottom-height-pad];
+      for(const top of ys)for(const left of xs){
+        const place={left,top,right:left+width,bottom:top+height};
+        if(left<area.left||top<area.top||place.right>area.right||place.bottom>area.bottom||left<0||top<0||place.right>innerWidth||place.bottom>innerHeight)continue;
+        if([...goals,...controls].some(r=>overlap(place,r)>0))continue;
+        toast.style.left=`clamp(8px,${left}px,calc(100vw - ${width}px - 8px))`;
+        toast.style.top=`clamp(8px,${top}px,calc(100dvh - ${height}px - 8px))`;return;
+      }
     }
   }
-  toast.style.left=`${place.left}px`;toast.style.top=`${place.top}px`;
+  toast.hidden=true;
 }
+function clearDetails(){
+  if(!session.clearChoices)return;
+  outcomeDetails('クリアの結果',`${clearTimeLabel()}：${session.result.evaluatedTime}秒\nスコア：${displayScore(session.result.score)}点`);
+  actions.replaceChildren(button('もう一度',()=>{close();clearAction();}),button(session.clearChoices.nextChallengeId?'次の課題へ':'課題一覧へ',()=>{close();clearAction(true);}));
+}
+
 function dismissClear(){if(session.run)dismissedClears.add(session.run);render(false);}
 function clearAction(next=false){
   const choices=session.clearChoices;
@@ -663,7 +669,7 @@ function caseDetails(item){
   actions.append(button('このケースで鐘を鳴らす',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
-function interruptRun(reason){cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
+function interruptRun(reason){celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
 function startClock(){clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
@@ -705,20 +711,20 @@ function startRun(options){
 function play(){
   if(startPrelude){cancelStart();return;}
   if(session.editable){return startRun();}
-  else if(session.run.status==='running'){session.pause();chime.stop();clockAnchor=null;render(false);}
+  else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop();clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun(){cancelStart();session.stop();chime.stop();clockAnchor=null;message='';render();}
+function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop();clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
   if(goals.length||relays.length)load.measure('audio',()=>{for(const _entry of goals)chime.strike();for(const _entry of relays)chime.relay();});
-  if(!goals.length)return;
+  if(!goals.length&&!relays.length)return;
   load.measure('display',()=>{
-    board.arrivals(goals);
-    for(const entry of goals){
+    board.arrivals([...goals,...relays]);
+    for(const entry of [...goals,...relays]){
       const target=$('board').querySelector(`[data-node="${CSS.escape(entry.node)}"]`);target?.classList.add('arrived');
-      setTimeout(()=>target?.classList.remove('arrived'),1300);
+      setTimeout(()=>target?.classList.remove('arrived'),entry.type==='goal'?1800:1000);
     }
   });
 }
@@ -771,6 +777,7 @@ $('title-parts').addEventListener('click',()=>attempt(partsExplanation));
 $('title-about').addEventListener('click',()=>attempt(aboutGame));
 $('title-resume').addEventListener('click',leaveTitle);
 $('clear-dismiss').addEventListener('click',dismissClear);
+$('clear-details').addEventListener('click',()=>attempt(clearDetails));
 $('clear-again').addEventListener('click',()=>attempt(()=>clearAction()));
 $('clear-next').addEventListener('click',()=>attempt(()=>clearAction(true)));
 $('failure-dismiss').addEventListener('click',dismissFailure);
@@ -802,10 +809,10 @@ $('hint').addEventListener('click',()=>{
   }else fullText('操作の案内',$('hint').textContent);
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
-  cancelStart();
+  if(celebration.run){celebration.cancel();chime.stop();}cancelStart();
   const visual=window.visualViewport;
   // Mobile browsers can temporarily fit overflowing content by zooming out.
   // Reading that enlarged CSS viewport back into the layout preserves the error.

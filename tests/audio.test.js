@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Chime, RELAY_SOUND, WIRING_SOUND, DEFAULT_EFFECT_VOLUME } from '../src/ui/audio.js';
+import { Chime, RELAY_SOUND, WIRING_SOUND, PERFECT_SOUND, BELL_SOUND, DEFAULT_EFFECT_VOLUME } from '../src/ui/audio.js';
 
 function fixture(){
   const chime=new Chime(),voices=[];
@@ -50,4 +50,20 @@ test('効果音共通の初期音量は最大の70%で、再有効化でも増�
   const context={state:'running',destination:{},createDynamicsCompressor:()=>({connect(){count++;}}),createGain:()=>master,resume:async()=>{}};
   const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){return context;}}};
   try{const chime=new Chime();assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();assert.equal(master.gain.value,.7);assert.equal(count,2);chime.mute();await chime.enable();assert.equal(count,2);assert.equal(master.gain.value,.7);}finally{globalThis.window=original;}
+});
+
+test('満点の短いジングルは鐘の立ち上がりを避けた四音で、実行終了待機内に収まる',()=>{
+  const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();const bellUntil=chime.bellUntil;chime.perfect();
+  assert.equal(voices.length,5);assert.equal(chime.bellUntil,bellUntil);
+  voices.slice(1).forEach((voice,index)=>{
+    assert.equal(voice.frequency.value,BELL_SOUND.frequencyHz*PERFECT_SOUND.ratios[index]);
+    assert.equal(voice.startedAt,5+PERFECT_SOUND.offsetsSeconds[index]);assert(voice.stopAt<8);
+  });
+  chime.stop();assert(voices.every(voice=>voice.stopped));assert.equal(chime.voices.size,0);
+});
+
+test('満点ジングルは音なし・休止中には予約せず、消音で予約済みの音も止める',()=>{
+  const {chime,voices}=fixture();chime.muted=true;chime.perfect();assert.equal(voices.length,0);
+  chime.muted=false;chime.context.state='suspended';chime.perfect();assert.equal(voices.length,0);
+  chime.context.state='running';chime.perfect();assert.equal(voices.length,4);chime.mute();assert(voices.every(voice=>voice.stopped));
 });

@@ -372,3 +372,74 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
   html:not(.device-landscape) #app:not(.compact) #condition-info{grid-column:1/-1;grid-row:2}
   html:not(.device-landscape) #app:not(.compact) #challenge-info{grid-row:3}
 }
+
+/* Arrival light answers the exact prism/bell event, behind the painted parts. */
+.arrival-art{animation:arrival-fade var(--arrival-duration,1800ms) ease-out both;animation-delay:var(--arrival-age,0ms)}
+.arrival-glow{animation:altar-bloom 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.altar-column{fill:url(#altar-column);animation:altar-column 1500ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.altar-rays{fill:none;stroke:#ffe6a6;stroke-width:3;stroke-linecap:round;animation:altar-rays 1300ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.constellation-line{stroke:#c5e6ff;stroke-width:2;animation:star-threads 1550ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + 100ms)}
+.constellation-star{animation:star-light 1250ms ease-out both;animation-delay:calc(var(--arrival-age,0ms) + var(--star-delay,0ms))}
+.star-ray{stroke:#fff0c0;stroke-width:1.8;opacity:.9}
+.prism-arrival-glow{fill:url(#prism-light);animation:prism-bloom 900ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.prism-shard{fill:var(--shard-color);animation:prism-scatter 950ms cubic-bezier(.1,.6,.3,1) both;animation-delay:var(--arrival-age,0ms)}
+.prism.arrived .node-symbol{filter:drop-shadow(0 0 10px #cceaff)}
+.goal.arrived .node-symbol{filter:drop-shadow(0 0 13px #ffe6a6)}
+.fireworks-layer{pointer-events:none}
+.firework-rocket{fill:none;stroke:#fff1cf;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:.15 1;animation:firework-rise 450ms ease-out both;animation-delay:var(--firework-delay)}
+.firework-ray{fill:none;stroke:var(--firework-color);stroke-width:3;stroke-linecap:round;stroke-dasharray:.23 1;animation:firework-ray 1150ms cubic-bezier(.1,.6,.3,1) both;animation-delay:calc(var(--firework-delay) + 400ms)}
+.firework-star{fill:var(--firework-color);animation:firework-star 1100ms ease-out both;animation-delay:calc(var(--firework-delay) + 450ms)}
+@keyframes arrival-fade{0%,72%{opacity:1}100%{opacity:0}}
+@keyframes altar-bloom{0%{opacity:0;transform:scale(.5)}12%{opacity:1}55%{opacity:.6}100%{opacity:0;transform:scale(1.2)}}
+@keyframes altar-column{0%{opacity:0}12%,25%{opacity:.9}100%{opacity:0}}
+@keyframes altar-rays{0%{opacity:0}14%{opacity:.85}100%{opacity:0}}
+@keyframes star-threads{0%{opacity:0}22%,64%{opacity:.85}100%{opacity:0}}
+@keyframes prism-bloom{0%{opacity:0}12%{opacity:1}100%{opacity:0}}
+@keyframes prism-scatter{0%{opacity:0;transform:translate(0,0) scale(.5)}12%,55%{opacity:1}100%{opacity:0;transform:translate(var(--shard-x),var(--shard-y)) scale(.7)}}
+@keyframes firework-rise{0%{opacity:0;stroke-dashoffset:1}12%{opacity:.95}88%{opacity:1}100%{opacity:0;stroke-dashoffset:0}}
+@keyframes firework-ray{0%{opacity:0;stroke-dashoffset:1}12%{opacity:1}65%{opacity:.8}100%{opacity:0;stroke-dashoffset:0}}
+@keyframes firework-star{0%,10%{opacity:0}24%,45%{opacity:1}100%{opacity:0}}
+/* Result numbers carry the hierarchy; the same values stay on the small notice. */
+#clear-toast{max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);overflow:hidden}
+#clear-toast.perfect-clear{border-color:#f0d489;background:linear-gradient(145deg,#26283cf7,#101a2df7 65%);box-shadow:0 4px 24px #0008,0 0 20px #d6b56a20}
+#clear-toast .clear-heading strong{color:#f5ddb0;font-size:1.071429rem;white-space:normal;overflow-wrap:anywhere}
+#clear-toast .clear-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px;text-align:center}
+#clear-toast .clear-summary dt{font-size:.857143rem;color:#bdcce3;margin-bottom:2px}
+#clear-toast .clear-summary dd{margin:0;font-size:1.8rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25;overflow-wrap:anywhere}
+#clear-score{color:#ffe3a2}
+#clear-toast.narrow .clear-summary{grid-template-columns:1fr;gap:6px}
+#clear-toast.compact-clear .clear-summary{margin-bottom:6px;gap:4px}
+#clear-toast.compact-clear .clear-summary dt{display:none}
+#clear-toast.compact-clear .clear-summary dd{font-size:1.071429rem;line-height:1.4}
+#clear-toast.slim{padding:0 2px;border-width:0;gap:4px;line-height:1.4}
+#clear-toast.slim .clear-summary,#clear-toast.slim .clear-summary>div{display:contents}
+#clear-toast.slim .clear-heading strong,#clear-toast.slim .clear-summary dd,#clear-toast.slim #clear-details,#clear-toast.slim #clear-dismiss{font-size:clamp(12px,.714286rem,20px);line-height:1.4}
+#clear-toast.slim #clear-details{padding:0 2px;min-height:24px;border-width:0;flex:1}
+#clear-toast.slim #clear-dismiss{min-width:24px;min-height:24px;border-width:0;order:6}
+#clear-toast.slim.narrow{flex-direction:column;align-items:stretch;padding:2px}
+#clear-toast.slim.narrow .clear-heading strong,#clear-toast.slim.narrow .clear-summary dd{text-align:center}
+@media(prefers-reduced-motion:reduce){
+  .arrival-art{animation-timing-function:steps(1,end)}
+  .arrival-glow,.altar-column,.altar-rays,.constellation-line,.constellation-star,.prism-arrival-glow,.prism-shard,.firework-ray,.firework-star{animation:none}
+  .arrival-glow,.prism-arrival-glow{opacity:.65}.altar-column{opacity:.3}.altar-rays,.constellation-line{opacity:.65}.constellation-star,.firework-ray,.firework-star{opacity:.85}
+  .prism-shard{opacity:.8;transform:translate(var(--shard-x),var(--shard-y)) scale(.6)}
+  .firework-rocket{display:none}.firework-ray{stroke-dasharray:none}
+}
+
+/* Built routes keep an actual screen-pixel width at every board zoom. */
+.edge:not(.candidate) .edge-line{stroke:#e9c56d;stroke-width:4px;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.edge:not(.candidate) .edge-backdrop{stroke-width:8px;stroke-opacity:.88;vector-effect:non-scaling-stroke}
+.edge-core{fill:none;stroke:#fff0c0;stroke-width:1.15px;stroke-linecap:round;opacity:.85;vector-effect:non-scaling-stroke;pointer-events:none}
+.edge.selected:not(.candidate) .edge-line{stroke:#fff5d4;stroke-width:5px}
+
+.prism-flare{fill:none;stroke:#d7ecff;stroke-width:3;stroke-linecap:round;animation:prism-flare 800ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+@keyframes prism-flare{0%{opacity:0}12%,40%{opacity:.95}100%{opacity:0}}
+.firework-rocket{stroke-width:1.5px;vector-effect:non-scaling-stroke}
+.firework-ray{stroke-width:1.8px;vector-effect:non-scaling-stroke}
+@media(prefers-reduced-motion:reduce){.prism-flare{animation:none;opacity:.7}}
+
+#board{overflow:hidden}
+
+/* A very short window uses the existing compact guide and full-text entry. */
+html:not(.device-landscape) body:not(.records-fullscreen) .compact #stage{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+html:not(.device-landscape) body:not(.records-fullscreen) .compact #board{grid-column:1;grid-row:1;min-width:0;min-height:0}
