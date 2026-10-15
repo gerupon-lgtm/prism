@@ -1,6 +1,6 @@
 # B案の鐘の星座
 
-2026-10-15 / 0.31.0。実装済み。公開確認は後段へ記録する。
+2026-10-15 / 0.31.0。公開・公開URL確認済み。
 
 ## 採用と前提の訂正
 
@@ -31,4 +31,7 @@ PCの演出・配置確認159件（Chromium/WebKit合計79、Windows Chrome/Edge
 
 ## 公開確認
 
-未実施。ソース識別子・配信実行・公開資材と公開画面の確認結果を追記する。
+- 公開ソース：[2a2beee7f89fbb191d70017599203f8a976e9996](https://github.com/gerupon-lgtm/prism/commit/2a2beee7f89fbb191d70017599203f8a976e9996)。[GitHub Pages実行38731996485](https://github.com/gerupon-lgtm/prism/actions/runs/38731996485)は検査・テスト・版比較・ビルド・配信が成功した。
+- [公開URL](https://gerupon-lgtm.github.io/prism/)で表示版0.31.0・ソース識別子・38資材のハッシュと配信形式・起動・操作・通信なしを51件で確認した。[公開レポート](../../設計検証/公開/report.json)を参照。
+- 公開URLの演出・配置確認もChromium/WebKit合計79件で合格。Bの形・輝く順序・実時間の完成・小画面・左右横・縦復帰・CSS文字拡大・3つの鐘の配置、点数・時刻・全記録・保存と既存演出を照合した。[公開の演出レポート](../../設計検証/演出とクリア結果/public/report.json)、[Chromium実時間の完成画像](../../設計検証/演出とクリア結果/public/chromium-constellation-live.png)、[WebKit実時間の完成画像](../../設計検証/演出とクリア結果/public/webkit-constellation-live.png)を参照。
+- 表示版・キャッシュバスターを0.31.0へ更新済み。PCの実ブラウザとスマホ寸法・方向の模擬であり、Android Chrome・iPhone Safari・macOS・iPadの実機での見え方・実スピーカーでの聴感の合格へ拡張しない。
