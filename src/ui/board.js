@@ -15,6 +15,7 @@ export class Board {
     this.fireworksLayer=svg('g',{class:'fireworks-layer','aria-hidden':'true'});
     this.orientation.append(this.fireworksLayer,this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
     this.scene=new Scene(element);this.arrivalPictures=new Map();this.pictureRun=null;
+    this.goalHistories=new WeakMap();
     this.magnifier=new Magnifier(this);
     this.pointers = new Map(); this.gesture = null; this.lastTap = null; this.addKind = null;
     element.addEventListener('pointerdown',event=>this.down(event));
@@ -99,14 +100,14 @@ export class Board {
       const control=length ? {x:(a.x+b.x)/2-(b.y-a.y)/length*normal,y:(a.y+b.y)/2+(b.x-a.x)/length*normal} : {x:a.x+160+offset,y:a.y-160-offset};
       const curve={a,b,control}; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
-      const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`});
-      group.append(svg('title',{},`${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}への道：${edge.time}秒`));
+      const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`,tabindex:0,role:'button','aria-label':`${candidate?'未結線の候補':'結線済みの配線'}：${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}へ、${edge.time}秒`});
+      group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=edge.id;this.openSettings();}});
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
       if(!candidate)group.append(svg('path',{d,class:'edge-core'}));
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
-      const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
+      const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{class:'edge-label',transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
       const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},secondsLabel(edge.time));
       label.append(card,text);if(candidate&&this.session.view.showAllTimes===false&&edge.from!==timeOrigin&&!(edge.bidirectional&&edge.to===timeOrigin))label.setAttribute('hidden','');group.append(label);
       this.world.append(group);
@@ -124,7 +125,7 @@ export class Board {
       if(node.kind!=='goal'){
         const text=svg('text',{y:90*symbolFactor,class:'node-time'},secondsLabel(node.process));
         group.append(text);
-      }
+      }else group.dataset.baseLabel=group.getAttribute('aria-label');
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
       group.addEventListener('keydown',event=>{
         if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=node.id;this.render();this.openSettings();}
@@ -286,9 +287,28 @@ export class Board {
   onCurve({a,b,control},fraction) {
     const r=1-fraction;return {x:r*r*a.x+2*r*fraction*control.x+fraction*fraction*b.x,y:r*r*a.y+2*r*fraction*control.y+fraction*fraction*b.y};
   }
+  updateGoalMarkers() {
+    const run=this.session.run;
+    let history=run&&this.goalHistories.get(run);
+    if(run&&!history){history={circuit:this.session.circuit,cursor:0,counts:new Map(),last:new Set(),time:null};this.goalHistories.set(run,history);}
+    if(history)for(;history.cursor<run.records.length;history.cursor++){
+      const entry=run.records[history.cursor];if(entry.type!=='goal')continue;
+      history.counts.set(entry.node,(history.counts.get(entry.node)??0)+1);
+      if(history.time!==entry.time){history.last.clear();history.time=entry.time;}
+      history.last.add(entry.node);
+    }
+    const visible=history&&(run.status!=='stopped'||history.circuit===this.session.circuit);
+    for(const group of this.world.querySelectorAll('.goal')){
+      const id=group.dataset.node,count=visible?(history.counts.get(id)??0):0,last=count>0&&history.last.has(id),state=`${count}:${last}`;
+      if(group.dataset.arrivalState===state)continue;group.dataset.arrivalState=state;
+      group.classList.toggle('has-arrived',count>0);group.classList.toggle('last-arrival',last);group.dataset.arrivalCount=count;
+      group.setAttribute('aria-label',group.dataset.baseLabel+(count?`、到達${count}回${last?'、最後の到達':''}`:''));
+    }
+  }
   particles() {
     this.particleLayer.replaceChildren();
     const run=this.session.run;
+    this.updateGoalMarkers();
     if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){this.timeLayoutSignature='';this.fitTimeLabels();}return;}
     const states=[];
     for(const group of this.world.querySelectorAll('[data-node]')){
@@ -322,8 +342,11 @@ export class Board {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
     if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
-    const edge=event.target.closest('[data-edge]')?.dataset.edge;
-    const node=event.target.closest('[data-node]')?.dataset.node??(!edge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
+    const directEdge=event.target.closest('[data-edge]');
+    const directNode=event.target.closest('[data-node]')?.dataset.node??(!directEdge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
+    const card=event.target.closest('.edge-label')&&directEdge&&!directEdge.classList.contains('candidate');
+    const edge=directNode?null:card?directEdge.dataset.edge:this.edgeTarget(event.clientX,event.clientY)??directEdge?.dataset.edge;
+    const node=directNode??(!edge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
     if(node&&this.session.editable&&this.session.mode==='challenge')this.session.view.showAllTimes=false;
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
@@ -332,6 +355,21 @@ export class Board {
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
   pointerCenter() {const [a,b]=[...this.pointers.values()];return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+  edgeTarget(x,y) {
+    const matrix=this.world.getScreenCTM();if(!matrix)return null;
+    let nearest=null,distance=14;
+    const point=({x,y})=>({x:matrix.a*x+matrix.c*y+matrix.e,y:matrix.b*x+matrix.d*y+matrix.f});
+    for(const edge of this.session.circuit.edges){
+      const curve=this.curves.get(edge.id);if(!curve)continue;let previous=point(curve.a);
+      for(let n=1;n<=16;n++){
+        const current=point(this.onCurve(curve,n/16));
+        const dx=current.x-previous.x,dy=current.y-previous.y,length=dx*dx+dy*dy,fraction=length?Math.max(0,Math.min(1,((x-previous.x)*dx+(y-previous.y)*dy)/length)):0;
+        const gap=Math.hypot(x-previous.x-dx*fraction,y-previous.y-dy*fraction);
+        if(gap<distance){distance=gap;nearest=edge.id;}previous=current;
+      }
+    }
+    return nearest;
+  }
   wireTarget(x,y,{route=null,final=false}={}) {
     const from=route?.at(-1),terminal=route?.length>1&&this.session.circuit.nodes.find(n=>n.id===from)?.kind==='goal';
     let nearest=null,distance=Infinity;
@@ -356,7 +394,8 @@ export class Board {
       this.session.view.panX+=(matrix.a*dx+matrix.c*dy)*zoom;this.session.view.panY+=(matrix.b*dx+matrix.d*dy)*zoom;this.transform();
       if(gesture.distance>0)this.zoom(distance/gesture.distance,center.x,center.y);gesture.distance=distance;gesture.center=center;return;
     }
-    gesture.moved ||= Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>7;
+    const threshold=event.pointerType==='touch'&&this.session.circuit.edges.some(edge=>edge.id===gesture.id)?12:7;
+    gesture.moved ||= Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>threshold;
     gesture.last=this.location(event.clientX,event.clientY,gesture.matrix);
     if(gesture.kind==='pan'&&gesture.moved) {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
@@ -395,7 +434,8 @@ export class Board {
         if(this.addKind&&['pan','idle'].includes(gesture.kind)&&!gesture.id){const at=this.coordinates(gesture.last);this.session.addNode(this.addKind,at.x,at.y);this.addKind=null;}
         else if(gesture.id) {
           const now=performance.now();
-          if(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400){this.lastTap=null;this.openSettings();}
+          const built=this.session.circuit.edges.some(edge=>edge.id===gesture.id);
+          if(built||(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400)){this.lastTap=null;this.openSettings(built?event:undefined);}
           else this.lastTap={id:gesture.id,time:now};
         }
       }

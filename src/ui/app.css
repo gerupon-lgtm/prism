@@ -460,3 +460,18 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 /* A very short window uses the existing compact guide and full-text entry. */
 html:not(.device-landscape) body:not(.records-fullscreen) .compact #stage{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
 html:not(.device-landscape) body:not(.records-fullscreen) .compact #board{grid-column:1;grid-row:1;min-width:0;min-height:0}
+
+/* Arrival remains legible after the transient constellation and in failed trials. */
+.goal-reached-aura{fill:url(#altar-light);opacity:0}
+.goal-arrival-stars{opacity:0}
+.goal.has-arrived .goal-reached-aura{opacity:.48}
+.goal.has-arrived .goal-arrival-stars{opacity:.3}
+.goal.last-arrival .goal-reached-aura{opacity:.85}
+.goal.last-arrival .goal-arrival-stars{opacity:1}
+.goal.has-arrived .node-symbol{filter:drop-shadow(0 0 5px #eacb83)}
+.goal.last-arrival .node-symbol{filter:brightness(1.18) drop-shadow(0 0 5px #fff2ce) drop-shadow(0 0 11px #e9c879)}
+.goal.arrived .node-symbol{filter:brightness(1.35) drop-shadow(0 0 7px #fff7dc) drop-shadow(0 0 15px #efce7e)}
+.bell-arrival-beacon{transform-origin:0 0;animation:bell-beacon 1400ms ease-out both;animation-delay:var(--arrival-age,0ms)}
+.bell-arrival-ray{fill:none;stroke:#fff0c1;stroke-width:2px;stroke-linecap:round;vector-effect:non-scaling-stroke}
+@keyframes bell-beacon{0%{opacity:0;transform:scale(.75)}12%,30%{opacity:1}100%{opacity:0;transform:scale(1.22)}}
+@media(prefers-reduced-motion:reduce){.bell-arrival-beacon{animation:none;opacity:.65}.goal.arrived .node-symbol{filter:drop-shadow(0 0 9px #f3dca5)}}

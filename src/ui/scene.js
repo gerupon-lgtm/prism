@@ -30,7 +30,15 @@ export class Scene {
 
 export function symbol(kind,factor) {
   const group=svg('g',{transform:`scale(${factor})`,class:'symbol-art','aria-hidden':'true'});
-  group.append(svg('ellipse',{rx:78,ry:88,class:'node-separation'}),svg('ellipse',{rx:58,ry:65,class:'node-halo'}),svg('image',{href:art(kind),x:-55,y:-65,width:110,height:130,preserveAspectRatio:'xMidYMid meet',class:'node-symbol'}));
+  group.append(svg('ellipse',{rx:78,ry:88,class:'node-separation'}));
+  if(kind==='goal'){
+    group.append(svg('ellipse',{rx:88,ry:98,class:'goal-reached-aura'}));
+    const stars=svg('g',{class:'goal-arrival-stars'});
+    for(const [x,y] of [[-64,-43],[65,28]]){
+      const star=svg('g',{transform:`translate(${x} ${y})`});star.append(svg('circle',{r:16,class:'star-aureole'}),svg('path',{d:'M0,-11 Q2,-2 8,0 Q2,2 0,11 Q-2,2 -8,0 Q-2,-2 0,-11 Z',class:'star-point'}));stars.append(star);
+    }group.append(stars);
+  }
+  group.append(svg('ellipse',{rx:58,ry:65,class:'node-halo'}),svg('image',{href:art(kind),x:-55,y:-65,width:110,height:130,preserveAspectRatio:'xMidYMid meet',class:'node-symbol'}));
   return group;
 }
 
@@ -39,6 +47,9 @@ export function constellation({x,y},factor,angle,id,age=0) {
   group.style.setProperty('--arrival-age',`-${age}ms`);
   group.style.setProperty('--arrival-duration',`${ARRIVAL_DURATION_MS.goal}ms`);
   group.append(svg('ellipse',{rx:95,ry:110,class:'arrival-glow'}));
+  const beacon=svg('g',{class:'bell-arrival-beacon'});
+  for(const angle of [-55,-25,25,55,125,155,205,235])beacon.append(svg('path',{d:'M0,-66 L0,-104',transform:`rotate(${angle})`,class:'bell-arrival-ray'}));
+  group.append(beacon);
   group.append(svg('path',{d:'M-18,15 L-30,-190 L30,-190 L18,15 Z',class:'altar-column'}));
   // Approved B: a diamond suspension, a closed flared body and an inner clapper.
   // This is a fictional bell motif, not a chart of an astronomical constellation.

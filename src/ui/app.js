@@ -32,6 +32,11 @@ const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
+let wireDialogTap=null;
+// A second tap at the same board position must not activate the new dialog behind it.
+for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
+  if(wireDialogTap&&performance.now()<wireDialogTap.until&&Math.hypot(event.clientX-wireDialogTap.x,event.clientY-wireDialogTap.y)<24){event.preventDefault();event.stopImmediatePropagation();}
+},true);
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
 const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
@@ -82,7 +87,7 @@ function open(title) {
   if(!dialog.open)dialog.showModal();render(false);
 }
 function close() { if(updating)return;dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
-dialog.addEventListener('close',()=>{document.body.classList.remove('input-focus');dialogPage=null;render(false);});
+dialog.addEventListener('close',()=>{if(dialog.open)return;document.body.classList.remove('input-focus');dialogPage=null;render(false);});
 dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();return;}document.body.classList.remove('input-focus');});
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 
@@ -157,7 +162,8 @@ function render(redraw=true,{records=true}={}) {
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
   setText('result',[text,message||startBlockedReason].filter(Boolean).join('　'));$('result').classList.toggle('error',Boolean(message));
-  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：ダブルタップで設定`:'起点から候補をなぞって結線');
+  const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
+  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで変更・削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
     const guide=session.guide,steps=guide.mode==='challenge'?['星から候補へドラッグしてつなぎます。','鐘までつないで「鐘を鳴らす」を押します。','鐘への到着と点数を見て、上の「記録」を開きます。']:['「鐘を鳴らす」で2.5秒後に鐘が鳴る様子を見ます。','停止してプリズムAをダブルタップ。処理時間を1.5秒へ。','もう一度「鐘を鳴らす」を押して、プリズムB経由で3秒後に鐘が鳴る様子を見ます。'];
@@ -213,6 +219,7 @@ function renderFailureToast(){
   const boardBox=$('board').getBoundingClientRect(),resultBox=$('result-line').getBoundingClientRect();
   const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
   const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:r.left-44,right:r.right+44,top:r.top-44,bottom:r.bottom+44};});
+  for(const mark of $('board').querySelectorAll('.bell-constellation')){const r=mark.getBoundingClientRect();goals.push({left:r.left-6,right:r.right+6,top:r.top-6,bottom:r.bottom+6});}
   const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
   // Full reason in ordinary viewports. Compact notices expose a complete,
   // paginated explanation rather than squeezing or ellipsizing the reason.
@@ -570,11 +577,16 @@ async function applyUpdate(discard) {
   catch(error){updating=false;$('app').inert=!$('title-screen').hidden;$('title-screen').inert=false;controls.forEach(({control,disabled})=>control.disabled=disabled);throw error;}
 }
 
-function settings() {
+function settings(pointer) {
   const id=session.selection;if(!id)return;
   const input=session.circuit,edge=input.edges.find(item=>item.id===id),node=input.nodes.find(item=>item.id===id);
-  if(!edge&&!node)return;
+  if(!edge&&!node){
+    const candidate=session.mode==='challenge'&&session.challenge.candidates.find(item=>item.id===id);
+    if(candidate){open('未結線の候補');body.append(element('p',objectName(id,input,session.challenge.candidates)),element('p',`${candidate.time}秒。まだ結線されていません。起点の星やプリズムからドラッグすると結線できます。`));actions.append(button('閉じる',close));fitDialogForm();}
+    return;
+  }
   open(`${objectName(id,input)}の設定`);
+  if(edge&&pointer)wireDialogTap={x:pointer.clientX,y:pointer.clientY,until:performance.now()+400};
   const items=[];
   items.push(['名前の全文',()=>fullText('対象の名前',objectName(id,input),settings)]);
   if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
@@ -591,13 +603,15 @@ function settings() {
     session.requireEditable();open('点の名前');const field=element('input','',{type:'text',value:partName(node,input.nodes),'aria-label':'点の名前'});body.append(field);
     actions.append(button('確定',()=>{const next=structuredClone(session.circuit);next.nodes.find(n=>n.id===id).name=field.value;session.commitEdit(next);close();}),button('取消',close));
   }]);
-  if(edge||node.kind!=='source')items.push(['削除',()=>{
+  const remove=()=>{
     session.requireEditable();const related=node?input.edges.filter(path=>path.from===id||path.to===id):[edge];
     open('選んだパーツを削除');body.append(element('p',node?`このパーツと、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
     listPage(related,path=>element('p',objectName(path.id,input)),'接続する道はありません。');
     actions.append(button('削除',()=>{session.remove(id,true);close();}),button('取消',close));
     fitDialogForm();
-  }]);
+  };
+  if(edge)actions.append(button(session.editable?'削除':'停止して編集',()=>{if(session.editable)remove();else{stopRun();settings();}}));
+  else if(node.kind!=='source')items.push(['削除',remove]);
   listPage(items,item=>button(item[0],item[1]));actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
 }
 function fullText(title,text,back=close){

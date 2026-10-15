@@ -9,6 +9,12 @@ function hitBoard(){
   return {world:{querySelectorAll:()=>points.map(([id,x,y])=>({dataset:{node:id},querySelector:()=>({getBoundingClientRect:()=>({left:x-22,top:y-22,width:44,height:44})})}))},session:{circuit:{nodes:points.map(([id])=>({id,kind:id==='G'?'goal':'prism'}))},planConnections:route=>{if(route.at(-1)==='B')throw Error('Not an available candidate');}}};
 }
 
+test('候補が重なっていても近い結線済みの線を選び、線から離れた場所は選ばない',()=>{
+  const board={onCurve:Board.prototype.onCurve,session:{circuit:{edges:[{id:'built'}]}},world:{getScreenCTM:()=>({a:1,b:0,c:0,d:1,e:0,f:0})},curves:new Map([['built',{a:{x:0,y:0},b:{x:100,y:100},control:{x:50,y:50}}]])};
+  assert.equal(Board.prototype.edgeTarget.call(board,50,53),'built');
+  assert.equal(Board.prototype.edgeTarget.call(board,50,80),null);
+});
+
 test('結線は点の手前や横で離しても受け付け、遠い余白では取り消す',()=>{
   const board=hitBoard(),target=(x,y,options)=>Board.prototype.wireTarget.call(board,x,y,options);
   assert.equal(target(29,100),'S');assert.equal(target(100,119,{route:['S']}),'A');
