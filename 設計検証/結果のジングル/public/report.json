@@ -1,0 +1,166 @@
+{
+  "version": "0.35.0",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "chromium perfect actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "perfect",
+          "muted": false,
+          "state": "running",
+          "added": 11
+        }
+      ]
+    },
+    {
+      "label": "chromium clear actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "clear",
+          "muted": false,
+          "state": "running",
+          "added": 4
+        }
+      ]
+    },
+    {
+      "label": "chromium failure actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "failure",
+          "muted": false,
+          "state": "running",
+          "added": 2
+        }
+      ]
+    },
+    {
+      "label": "chromium known failure waits until active light finishes",
+      "passed": true
+    },
+    {
+      "label": "chromium stopping an unfinished trial does not play a result",
+      "passed": true
+    },
+    {
+      "label": "chromium stop cancels every scheduled result voice",
+      "passed": true
+    },
+    {
+      "label": "chromium muted result sounds schedule no voices",
+      "passed": true
+    },
+    {
+      "label": "chromium enabling sound after a muted clear does not replay the result",
+      "passed": true
+    },
+    {
+      "label": "chromium three actual offline-rendered audio signals",
+      "passed": true,
+      "buffers": {
+        "clear": {
+          "peak": 0.09046778082847595,
+          "early": 0,
+          "tail": 0,
+          "energy": 773.3097850540244,
+          "signature": 4285325128
+        },
+        "perfect": {
+          "peak": 0.13536329567432404,
+          "early": 0,
+          "tail": 0,
+          "energy": 973.3932176519311,
+          "signature": 1033747775
+        },
+        "failure": {
+          "peak": 0.06359196454286575,
+          "early": 0,
+          "tail": 0,
+          "energy": 167.04179267586798,
+          "signature": 102665806
+        }
+      }
+    },
+    {
+      "label": "webkit perfect actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "perfect",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit clear actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "clear",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit failure actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "failure",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit known failure waits until active light finishes",
+      "passed": true
+    },
+    {
+      "label": "webkit stopping an unfinished trial does not play a result",
+      "passed": true
+    },
+    {
+      "label": "webkit stop cancels every scheduled result voice",
+      "passed": true
+    },
+    {
+      "label": "webkit muted result sounds schedule no voices",
+      "passed": true
+    },
+    {
+      "label": "webkit enabling sound after a muted clear does not replay the result",
+      "passed": true
+    }
+  ],
+  "pending": [
+    {
+      "engine": "webkit",
+      "label": "Real-time audio output",
+      "reason": "API unavailable in this Windows engine; Android/iPhone/macOS/iPad listening remains included and unconfirmed."
+    },
+    {
+      "label": "webkit three actual offline-rendered audio signals",
+      "reason": "OfflineAudioContext unavailable; actual target-device listening remains pending."
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}
