@@ -1,6 +1,7 @@
 // Actual UI routing and Web Audio buffers; never physical-device listening proof.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const {enterApp,selectChallenge,dragConnection,startAndPause}=require('./browser_wait.cjs');
+const {checkMusicalAudio}=require('./musical_audio.cjs');
 const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),channel=arg('--channel'),root=path.resolve(__dirname,'../dist');
@@ -56,7 +57,7 @@ async function offlineAudio(page,label){
    const context=new OfflineAudioContext(1,3*44100,44100),chime=new Chime(),output=context.createDynamicsCompressor(),master=context.createGain();master.gain.value=.7;output.connect(master);master.connect(context.destination);chime.context=context;chime.output=output;
    // Offline contexts report suspended until rendering starts; scheduling is
    // exercised through the same host API with its running state made explicit.
-   chime.context={state:'running',currentTime:0,createOscillator:()=>context.createOscillator(),createGain:()=>context.createGain()};
+   chime.context={state:'running',currentTime:0,createOscillator:()=>context.createOscillator(),createGain:()=>context.createGain(),createBiquadFilter:()=>context.createBiquadFilter()};
    chime[method]();const data=(await context.startRendering()).getChannelData(0);let peak=0,early=0,tail=0,energy=0,signature=2166136261;
    for(let i=0;i<data.length;i++){const value=Math.abs(data[i]);peak=Math.max(peak,value);energy+=value;if(i<.4*44100)early=Math.max(early,value);if(i>2.8*44100)tail=Math.max(tail,value);signature=Math.imul(signature^Math.round(data[i]*1e6),16777619)>>>0;}
    results[method]={peak,early,tail,energy,signature};
@@ -87,6 +88,6 @@ async function offlineAudio(page,label){
  }check((channel||engine)+' stop cancels every scheduled result voice');
  const muted=await page.evaluate(()=>{const c=__lastChime;c.mute();const before=c.voices.size;for(const k of ['clear','perfect','failure'])c[k]();return {before,after:c.voices.size};});assert.equal(muted.after,muted.before);check((channel||engine)+' muted result sounds schedule no voices');
  await wire(page,'Q1',['S','A','G']);await page.evaluate(()=>__outcomes=[]);await finish(page,'perfect');assert.equal(await page.evaluate(()=>__outcomes[0].added),0);await page.locator('#sound').click();assert.equal(await page.evaluate(()=>__outcomes.length),1);check((channel||engine)+' enabling sound after a muted clear does not replay the result');
- await offlineAudio(page,(channel||engine)+' three actual offline-rendered audio signals');assert.deepEqual(errors,[]);await page.close();
+ await offlineAudio(page,(channel||engine)+' three actual offline-rendered audio signals');await checkMusicalAudio(page,channel||engine,{out,check,pending:report.pending});assert.deepEqual(errors,[]);await page.close();
  }finally{await browser.close();}
  }report.passed=true;console.log('Outcome audio checks passed: '+report.checks.length);}catch(e){report.passed=false;report.failure=e.stack;console.error(e.stack);process.exitCode=1;}finally{fs.writeFileSync(file,JSON.stringify(report,null,2));await new Promise(r=>server.close(r));}})();

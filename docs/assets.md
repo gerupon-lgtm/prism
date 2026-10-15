@@ -27,3 +27,9 @@ Edit target: the attached adopted character comparison image. Extract ONLY the h
 資材はpublic/graphics/source.png（1254×1254）、prism.png（1254×1254）、goal.png（1024×1536）のRGBA PNG、ruins.png / observatory.png（1672×941）のRGB PNG。組み込みimage_genに比較案を参照させて生成し、画像を確認してコピーした。追加加工は行っていない。生成指示と採用原本は[グラフィック候補](../画面案/グラフィック候補_v0.1/README.md)、実画面の証拠は[課題見直し](../設計検証/課題見直し/report.json)。透過化・背景拡張は生成による再構成で、比較案と全画素同一という意味ではない。選択や結線候補の印を画像の周囲へ描き、版付きの配信と通信なし準備へ含める。
 
 一到着につき光の粒と星座を1300ms表示する値は、実装時の調整値。実験の時計へ加算せず、同時到着の別々の粒・到着数・記録を保持する。停止や別の実験では古い演出を消す。外観の細部が利用者によって新たに承認されたという意味ではない。
+
+## 0.38.0のFM音源と楽器音色
+
+発案者の指定により、Koekitの `probe/saezuri/light-voice.js`（2026-10-03-timbres-v2）のエレピ2種・柔らかい音の設定と発音・停止方法を参照し、`src/ui/voices.js` に必要な部分を取り込んだ。元の音符長に余韻を収める。原本の識別と確認範囲は[資料の確認](proposals/2026-10-16-fm-audio-reuse-review.md)を参照。6オペレーターの別音源や外部パッケージは利用しない。
+
+鐘はKoekit `.local-tools/two-op-bell-20261014/two-op-bells-20261014.zip` のチャイムを基準に、先の調整版と同じ2.62秒へ収めた。鳴り始めに880Hzの短いエレピ打音を重ねる。ジングル・結線・中継・操作音の楽器音色は役割ごとに選び、音高や再生時刻は保つ。すべて実行時のWeb Audio合成で、試聴用WAVを配信アプリの録音サンプルに使わない。実装と点検は[0.38.0の記録](reviews/2026-10-16-musical-timbres-chime.md)を参照。

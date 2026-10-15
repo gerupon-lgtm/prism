@@ -26,9 +26,10 @@ function wav(samples,rate){const b=Buffer.alloc(44+samples.length*2);b.write('RI
     const owned=[];if(reference)chime.strike();else for(let i=0;i<count;i++)owned.push(scheduleFmBell(ctx,output,FM_BELL_PRESETS[id],0));
     const bellCalls=calls.length;
     if(method){chime.bellUntil=BELL_SOUND.durationSeconds;chime[method]();}
+    const noteCount=chime.voices.size;
     if(stopAt!==null){const paused=ctx.suspend(stopAt);const rendering=ctx.startRendering();await paused;for(const voice of owned)voice.stop();await ctx.resume();const pcm=(await rendering).getChannelData(0);return {silent:rms(pcm,stopAt+.1,2.9),calls};}
     const pcm=(await ctx.startRendering()).getChannelData(0);let peak=0,last=0;for(let i=0;i<pcm.length;i++){peak=Math.max(peak,Math.abs(pcm[i]));if(Math.abs(pcm[i])>1e-6)last=i/rate;}
-    return {pcm:method?undefined:Array.from(pcm),peak,last,calls,bellCalls,finite:pcm.every(Number.isFinite),attackRms:rms(pcm,.03,.2),lateRms:rms(pcm,1.25,1.35),nearEndRms:rms(pcm,2.45,2.53),silence:rms(pcm,2.7,2.9),failureRms:rms(pcm,1.54,1.67)};
+    return {pcm:method?undefined:Array.from(pcm),peak,last,calls,bellCalls,noteCount,finite:pcm.every(Number.isFinite),attackRms:rms(pcm,.03,.2),lateRms:rms(pcm,1.25,1.35),nearEndRms:rms(pcm,2.45,2.53),silence:rms(pcm,2.7,2.9),failureRms:rms(pcm,1.54,1.67)};
    };
    const rows=[];for(const id of Object.keys(FM_BELL_PRESETS)){
     const solo=await render({id}),failure=await render({id,method:'failure'}),triple=await render({id,method:'failure',count:3}),stopped=await render({id,stopAt:.4});
@@ -45,7 +46,7 @@ function wav(samples,rate){const b=Buffer.alloc(44+samples.length*2);b.write('RI
    assert(solo.calls.every(c=>c.start===0&&c.stop===2.62));check(row.id+' two-operator bell fades to silence within 2.62s at the existing master volume',{peak:solo.peak,last:solo.last,attackRms:solo.attackRms,lateRms:solo.lateRms});
    for(const [name,mix] of [['single',failure],['three simultaneous',triple]]){const notes=mix.calls.slice(mix.bellCalls);assert.equal(notes.length,2);assert.equal(notes[0].start,1.5);assert(notes.every(c=>c.stop<3));assert(mix.peak<1&&mix.failureRms>mix.lateRms*4,JSON.stringify({id:row.id,name,peak:mix.peak,quietRms:mix.lateRms,failureRms:mix.failureRms}));check(row.id+' '+name+' bell leaves room for both failure notes after 1.5s',{quietRms:mix.lateRms,failureRms:mix.failureRms,peak:mix.peak});}
    assert.equal(stopped.silent,0);check(row.id+' explicit stop cancels both oscillators before their natural end');
-   for(const mix of row.successMixes){assert(mix.finite&&mix.peak<1&&mix.silence===0);const notes=mix.calls.slice(mix.bellCalls);assert.equal(notes.length,mix.method==='clear'?4:11);assert(notes.every(note=>note.stop<2.3));check(row.id+' '+mix.method+' mixes with the unchanged result melody without clipping or extending the wait',{peak:mix.peak,notes:notes.length});}
+   for(const mix of row.successMixes){assert(mix.finite&&mix.peak<1&&mix.silence===0);const notes=mix.calls.slice(mix.bellCalls);assert.equal(mix.noteCount,mix.method==='clear'?4:11);assert(notes.every(note=>note.stop<2.3));check(row.id+' '+mix.method+' mixes with the unchanged result melody without clipping or extending the wait',{peak:mix.peak,notes:mix.noteCount});}
    const b=wav(solo.pcm,data.rate);fs.writeFileSync(path.join(out,row.id+'.wav'),b);row.wav={bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')};delete solo.pcm;
   }
   delete data.reference.pcm;report.audio=data;
