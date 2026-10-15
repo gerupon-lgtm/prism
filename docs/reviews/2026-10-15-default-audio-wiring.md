@@ -1,6 +1,6 @@
 # 音ありの初期設定と結線の許容範囲
 
-2026-10-15 / 0.32.0。実装・検証中。公開確認は後段へ記録する。
+2026-10-15 / 0.32.0。公開済み。公開確認は後段へ記録する。
 
 ## 依頼と変更
 
@@ -46,4 +46,6 @@ PCでの結線確認106件（Chromium/WebKit合計52、Windows Chrome/Edge各27�
 
 ## 公開確認
 
-未実施。
+公開コミットはdb259a1ef7cf54e762deb12633becc47c5ef3199。[公開ジョブ](https://github.com/gerupon-lgtm/prism/actions/runs/38737951293)は構文検査・自動テスト・版比較・ビルドと配信を正常終了した。[公開URL](https://gerupon-lgtm.github.io/prism/)のbuild-info・表示版・資材版は0.32.0で一致する。
+
+公開確認51件（全配信資材のハッシュ・配信形式、更新確認、縦横表示、結線・実行・保存・書き出し、Chromiumの通信なし再起動）、公開先での結線補助52件、音とメニュー56件が合格。証拠は設計検証/公開/report.json、結線補助/public/report.json、操作とメニュー/public/report.json。PCの使い捨て状態のChromium/WebKitであり、スマホ実機の指操作・聴感・録画成功の証拠ではない。
