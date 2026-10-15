@@ -1,7 +1,7 @@
 {
-  "version": "0.36.0",
+  "version": "0.38.0",
   "url": null,
-  "checkedAt": "2026-10-15T22:27:11.339Z",
+  "checkedAt": "2026-10-15T23:40:32.738Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -46,29 +46,29 @@
       "audioAvailable": true,
       "signal": {
         "firstNoteAfterBell": 1.5,
-        "lastNoteEndedAfterResult": 2.0666666666666664,
-        "quietBell": 0.008671445772051811,
-        "failurePeak": 0.09383954107761383,
+        "lastNoteEndedAfterResult": 2.064,
+        "quietBell": 0.0016353620449081063,
+        "failurePeak": 0.08980799466371536,
         "voices": [
           {
             "stops": [
               {
-                "at": 13.472,
-                "calledAt": 11.701333333333332
+                "at": 13.632000000000001,
+                "calledAt": 11.850666666666667
               }
             ],
-            "start": 13.172,
-            "endedAt": 13.48
+            "start": 13.332,
+            "endedAt": 13.632
           },
           {
             "stops": [
               {
-                "at": 13.751999999999999,
-                "calledAt": 11.701333333333332
+                "at": 13.912,
+                "calledAt": 11.850666666666667
               }
             ],
-            "start": 13.452,
-            "endedAt": 13.757333333333333
+            "start": 13.612,
+            "endedAt": 13.914666666666667
           }
         ]
       }
@@ -98,27 +98,118 @@
       "passed": true,
       "buffers": {
         "clear": {
-          "peak": 0.09046778082847595,
+          "peak": 0.186365008354187,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097878102008,
-          "signature": 684569752
+          "energy": 2258.1905929631935,
+          "signature": 753846987
         },
         "perfect": {
-          "peak": 0.13536329567432404,
+          "peak": 0.18420666456222534,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932183282637,
-          "signature": 1742950361
+          "energy": 3268.8082573008683,
+          "signature": 879997310
         },
         "failure": {
-          "peak": 0.06359196454286575,
+          "peak": 0.06257930397987366,
           "early": 0,
           "tail": 0,
-          "energy": 167.04179267586798,
-          "signature": 102665806
+          "energy": 492.98181682769024,
+          "signature": 2838545327
         }
       }
+    },
+    {
+      "label": "chromium strike has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.11765115708112717,
+      "oscillators": 4
+    },
+    {
+      "label": "chromium clear has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.18514181673526764,
+      "oscillators": 8
+    },
+    {
+      "label": "chromium perfect has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.185342937707901,
+      "oscillators": 22
+    },
+    {
+      "label": "chromium failure has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.06268265098333359,
+      "oscillators": 2
+    },
+    {
+      "label": "chromium relay has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.0767795592546463,
+      "oscillators": 2
+    },
+    {
+      "label": "chromium wire has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.07151629030704498,
+      "oscillators": 2
+    },
+    {
+      "label": "chromium tap has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.05541728436946869,
+      "oscillators": 1
+    },
+    {
+      "label": "chromium selected 440Hz chime gains a short separate attack while retaining its late decay",
+      "passed": true,
+      "attackRms": 0.0510408379538617,
+      "bodyOnlyAttackRms": 0.046992142428041485,
+      "lateRms": 0.0005236830783533486
+    },
+    {
+      "label": "chromium result melodies use electric piano, brighter FM piano and a separate soft timbre",
+      "passed": true,
+      "clearHarmonicRatio": 0.10856602317681666,
+      "perfectHarmonicRatio": 0.6426385032657658
+    },
+    {
+      "label": "chromium three simultaneous chimes leave room for the failure notes",
+      "passed": true,
+      "quietRms": 0.0015710492363223282,
+      "failureRms": 0.03496544060130953
+    },
+    {
+      "label": "chromium stop cancels layered bells and future FM notes without residual sound",
+      "passed": true
+    },
+    {
+      "label": "chromium four audition WAVs are generated from the same shipped audio code",
+      "passed": true,
+      "files": [
+        {
+          "name": "strike.wav",
+          "bytes": 288044,
+          "sha256": "f1e420775f8e6fce849f1d8e0a4551a71bbc51c43f83418b27587d12d5d142e5"
+        },
+        {
+          "name": "clear.wav",
+          "bytes": 288044,
+          "sha256": "6ad36725e1d6fcbb42d96e9c031074a802a3a6363d40e43687bd3d8111345463"
+        },
+        {
+          "name": "perfect.wav",
+          "bytes": 288044,
+          "sha256": "1d18bc3ca4a7d490f80ef36d4efce909be0daabe5e3289cb9031f41986ca8283"
+        },
+        {
+          "name": "failure.wav",
+          "bytes": 288044,
+          "sha256": "0a91c3f42125aa859054d02e370dc36c3f4aa87101907d544b2490b2946938d9"
+        }
+      ]
     },
     {
       "label": "webkit perfect actual result selects one sound, retains full records and never repeats on reopening",
@@ -188,6 +279,10 @@
     {
       "label": "webkit three actual offline-rendered audio signals",
       "reason": "OfflineAudioContext unavailable; actual target-device listening remains pending."
+    },
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable in this Windows engine. Actual-device audio remains pending."
     }
   ],
   "browsers": [

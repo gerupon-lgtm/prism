@@ -1,7 +1,7 @@
 {
-  "version": "0.36.0",
+  "version": "0.38.0",
   "url": null,
-  "checkedAt": "2026-10-15T22:29:44.285Z",
+  "checkedAt": "2026-10-15T23:41:51.949Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -46,29 +46,29 @@
       "audioAvailable": true,
       "signal": {
         "firstNoteAfterBell": 1.5,
-        "lastNoteEndedAfterResult": 2.072000000000001,
-        "quietBell": 0.008671445772051811,
-        "failurePeak": 0.09383954107761383,
+        "lastNoteEndedAfterResult": 2.071999999999999,
+        "quietBell": 0.0015339384553954005,
+        "failurePeak": 0.08980801701545715,
         "voices": [
           {
             "stops": [
               {
-                "at": 14.551999999999998,
-                "calledAt": 12.76
+                "at": 14.512,
+                "calledAt": 12.72
               }
             ],
-            "start": 14.251999999999999,
-            "endedAt": 14.552
+            "start": 14.212,
+            "endedAt": 14.512
           },
           {
             "stops": [
               {
-                "at": 14.831999999999997,
-                "calledAt": 12.76
+                "at": 14.792,
+                "calledAt": 12.72
               }
             ],
-            "start": 14.531999999999998,
-            "endedAt": 14.832
+            "start": 14.491999999999999,
+            "endedAt": 14.792
           }
         ]
       }
@@ -98,27 +98,118 @@
       "passed": true,
       "buffers": {
         "clear": {
-          "peak": 0.09046778082847595,
+          "peak": 0.1863650381565094,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097824435736,
-          "signature": 3120047983
+          "energy": 2258.190578657973,
+          "signature": 2701783050
         },
         "perfect": {
-          "peak": 0.13536329567432404,
+          "peak": 0.18420666456222534,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932107499187,
-          "signature": 3516876656
+          "energy": 3268.807825660445,
+          "signature": 417374089
         },
         "failure": {
-          "peak": 0.06359196454286575,
+          "peak": 0.06257929652929306,
           "early": 0,
           "tail": 0,
-          "energy": 167.04179134081483,
-          "signature": 3556352964
+          "energy": 492.98181534712813,
+          "signature": 2209004135
         }
       }
+    },
+    {
+      "label": "chrome strike has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.11765117198228836,
+      "oscillators": 4
+    },
+    {
+      "label": "chrome clear has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.18514181673526764,
+      "oscillators": 8
+    },
+    {
+      "label": "chrome perfect has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.18534299731254578,
+      "oscillators": 22
+    },
+    {
+      "label": "chrome failure has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.06268266588449478,
+      "oscillators": 2
+    },
+    {
+      "label": "chrome relay has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.0767795667052269,
+      "oscillators": 2
+    },
+    {
+      "label": "chrome wire has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.07151629030704498,
+      "oscillators": 2
+    },
+    {
+      "label": "chrome tap has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.05541728436946869,
+      "oscillators": 1
+    },
+    {
+      "label": "chrome selected 440Hz chime gains a short separate attack while retaining its late decay",
+      "passed": true,
+      "attackRms": 0.05104083780151952,
+      "bodyOnlyAttackRms": 0.04699214236578394,
+      "lateRms": 0.0005236830817821509
+    },
+    {
+      "label": "chrome result melodies use electric piano, brighter FM piano and a separate soft timbre",
+      "passed": true,
+      "clearHarmonicRatio": 0.1085660273377428,
+      "perfectHarmonicRatio": 0.6426385048098315
+    },
+    {
+      "label": "chrome three simultaneous chimes leave room for the failure notes",
+      "passed": true,
+      "quietRms": 0.0015710492435787773,
+      "failureRms": 0.034965440430854214
+    },
+    {
+      "label": "chrome stop cancels layered bells and future FM notes without residual sound",
+      "passed": true
+    },
+    {
+      "label": "chrome four audition WAVs are generated from the same shipped audio code",
+      "passed": true,
+      "files": [
+        {
+          "name": "strike.wav",
+          "bytes": 288044,
+          "sha256": "39fe0bf3cca7803a63b9dd911d952bcbcb494b52f0cc6796f7219f10066c5f6b"
+        },
+        {
+          "name": "clear.wav",
+          "bytes": 288044,
+          "sha256": "e40d55dcb9afc1cd5f2a34dd5eb3f246e8f4d38cd3fa51c6ad538e2e01346e8d"
+        },
+        {
+          "name": "perfect.wav",
+          "bytes": 288044,
+          "sha256": "c1cd247ffd02d9a8386f337d4863b79f9d876a412c3d51952be879ccea3b13e2"
+        },
+        {
+          "name": "failure.wav",
+          "bytes": 288044,
+          "sha256": "0a91c3f42125aa859054d02e370dc36c3f4aa87101907d544b2490b2946938d9"
+        }
+      ]
     }
   ],
   "pending": [],
