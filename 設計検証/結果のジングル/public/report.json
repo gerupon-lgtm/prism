@@ -1,5 +1,7 @@
 {
-  "version": "0.35.0",
+  "version": "0.37.0",
+  "url": "https://gerupon-lgtm.github.io/prism/",
+  "checkedAt": "2026-10-15T22:59:50.306Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -39,6 +41,39 @@
       ]
     },
     {
+      "label": "chromium actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": true,
+      "signal": {
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.064,
+        "quietBell": 0.008940436877310276,
+        "failurePeak": 0.09383954107761383,
+        "voices": [
+          {
+            "stops": [
+              {
+                "at": 13.551999999999998,
+                "calledAt": 11.770666666666667
+              }
+            ],
+            "start": 13.251999999999999,
+            "endedAt": 13.554666666666666
+          },
+          {
+            "stops": [
+              {
+                "at": 13.831999999999997,
+                "calledAt": 11.770666666666667
+              }
+            ],
+            "start": 13.531999999999998,
+            "endedAt": 13.834666666666667
+          }
+        ]
+      }
+    },
+    {
       "label": "chromium known failure waits until active light finishes",
       "passed": true
     },
@@ -66,15 +101,15 @@
           "peak": 0.09046778082847595,
           "early": 0,
           "tail": 0,
-          "energy": 773.3097850540244,
-          "signature": 4285325128
+          "energy": 773.3097878036906,
+          "signature": 2034840921
         },
         "perfect": {
           "peak": 0.13536329567432404,
           "early": 0,
           "tail": 0,
-          "energy": 973.3932176519311,
-          "signature": 1033747775
+          "energy": 973.3932161197534,
+          "signature": 3733288154
         },
         "failure": {
           "peak": 0.06359196454286575,
@@ -117,6 +152,11 @@
           "added": 0
         }
       ]
+    },
+    {
+      "label": "webkit actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": false
     },
     {
       "label": "webkit known failure waits until active light finishes",
