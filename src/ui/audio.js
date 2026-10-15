@@ -3,12 +3,19 @@ export const BELL_SOUND = Object.freeze({ frequencyHz: 174.6 * 2 ** (7 / 12) * 2
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME = 0.7;
 export const WIRING_SOUND = Object.freeze({frequencyHz:880,endFrequencyHz:1174.66,durationSeconds:0.1});
-// Four soft celesta notes enter after the bell's attack, within the end wait.
-export const PERFECT_SOUND = Object.freeze({
-  ratios:Object.freeze([1,1.25,1.5,2]),
-  offsetsSeconds:Object.freeze([.42,.58,.74,.98]),
-  durationSeconds:.62,
-});
+// Result sounds start after the bell's attack and finish within the end wait.
+const note=(ratio,offsetSeconds,durationSeconds,volume)=>Object.freeze({ratio,offsetSeconds,durationSeconds,volume});
+export const CLEAR_SOUND = Object.freeze([
+  note(1,.42,.62,.075),note(1.25,.58,.62,.075),note(1.5,.74,.62,.075),note(2,.98,.62,.075),
+]);
+export const PERFECT_SOUND = Object.freeze([
+  note(1,.42,.35,.065),note(1.25,.56,.35,.065),note(1.5,.70,.35,.065),note(1.5,.84,.35,.065),
+  note(2,1.02,.35,.065),note(2.5,1.20,.35,.065),note(2.25,1.38,.35,.065),note(2,1.60,.65,.065),
+  note(1,1.60,.65,.025),note(1.25,1.60,.65,.025),note(1.5,1.60,.65,.025),
+]);
+export const FAILURE_SOUND = Object.freeze([
+  note(.75,.42,.28,.06),note(.625,.70,.28,.06),
+]);
 // One short notification per prism arrival; no periodic movement sound.
 export const RELAY_SOUND = Object.freeze({
   frequencyHz: 659.26,
@@ -80,16 +87,19 @@ export class Chime {
       oscillator.start(at);oscillator.stop(at+2.62);
     }
   }
-  perfect() {
+  clear() { this.sequence(CLEAR_SOUND); }
+  perfect() { this.sequence(PERFECT_SOUND); }
+  failure() { this.sequence(FAILURE_SOUND); }
+  sequence(notes) {
     if(this.muted||!this.context||this.context.state!=='running')return;
     const now=this.context.currentTime;
-    PERFECT_SOUND.ratios.forEach((ratio,index)=>{
-      const at=now+PERFECT_SOUND.offsetsSeconds[index],oscillator=this.context.createOscillator(),gain=this.context.createGain();
+    notes.forEach(({ratio,offsetSeconds,durationSeconds,volume})=>{
+      const at=now+offsetSeconds,oscillator=this.context.createOscillator(),gain=this.context.createGain();
       oscillator.type='sine';oscillator.frequency.value=BELL_SOUND.frequencyHz*ratio;
-      gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.075,at+.008);gain.gain.exponentialRampToValueAtTime(.0001,at+PERFECT_SOUND.durationSeconds);
+      gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(volume,at+.008);gain.gain.exponentialRampToValueAtTime(.0001,at+durationSeconds);
       oscillator.connect(gain);gain.connect(this.output);this.voices.add(oscillator);
       oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();this.voices.delete(oscillator);};
-      oscillator.start(at);oscillator.stop(at+PERFECT_SOUND.durationSeconds+.02);
+      oscillator.start(at);oscillator.stop(at+durationSeconds+.02);
     });
   }
   stop() { this.silenceRelay();this.bellUntil=0;for (const voice of this.voices) { try {voice.stop();} catch { /* Already stopped. */ } } this.voices.clear(); }

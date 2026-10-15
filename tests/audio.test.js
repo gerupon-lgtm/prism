@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Chime, RELAY_SOUND, WIRING_SOUND, PERFECT_SOUND, BELL_SOUND, DEFAULT_EFFECT_VOLUME } from '../src/ui/audio.js';
+import { Chime, RELAY_SOUND, WIRING_SOUND, BELL_SOUND, DEFAULT_EFFECT_VOLUME } from '../src/ui/audio.js';
 
 function fixture(){
   const chime=new Chime(),voices=[];
@@ -62,18 +62,37 @@ test('ブラウザが音を休止している間は、鐘を後から鳴らす�
   const {chime,voices}=fixture();chime.context.state='suspended';chime.strike();assert.equal(voices.length,0);assert.equal(chime.bellUntil,0);
 });
 
-test('満点の短いジングルは鐘の立ち上がりを避けた四音で、実行終了待機内に収まる',()=>{
-  const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();const bellUntil=chime.bellUntil;chime.perfect();
+test('100点未満のクリアは従来の四音を同じ音程・時刻・余韻で鳴らす',()=>{
+  const {chime,voices}=fixture();chime.context.currentTime=5;chime.strike();const bellUntil=chime.bellUntil;chime.clear();
   assert.equal(voices.length,5);assert.equal(chime.bellUntil,bellUntil);
   voices.slice(1).forEach((voice,index)=>{
-    assert.equal(voice.frequency.value,BELL_SOUND.frequencyHz*PERFECT_SOUND.ratios[index]);
-    assert.equal(voice.startedAt,5+PERFECT_SOUND.offsetsSeconds[index]);assert(voice.stopAt<8);
+    assert.equal(voice.frequency.value,BELL_SOUND.frequencyHz*[1,1.25,1.5,2][index]);
+    assert.equal(voice.startedAt,5+[.42,.58,.74,.98][index]);assert(Math.abs(voice.stopAt-voice.startedAt-.64)<1e-9);
   });
   chime.stop();assert(voices.every(voice=>voice.stopped));assert.equal(chime.voices.size,0);
+});
+
+test('満点は弾む八音と明るい三和音で祝福し、三秒の終了待機内に収まる',()=>{
+  const {chime,voices}=fixture();chime.context.currentTime=5;chime.perfect();
+  assert.equal(voices.length,11);const melody=voices.slice(0,8),chord=voices.slice(8);
+  assert.deepEqual(melody.map(v=>v.frequency.value/BELL_SOUND.frequencyHz),[1,1.25,1.5,1.5,2,2.5,2.25,2]);
+  assert(melody.every((v,i)=>v.startedAt>=5.4&&(i===0||v.startedAt>melody[i-1].startedAt)));
+  assert.deepEqual(chord.map(v=>v.frequency.value/BELL_SOUND.frequencyHz),[1,1.25,1.5]);
+  assert(chord.every(v=>v.startedAt===melody.at(-1).startedAt));assert(voices.every(v=>v.stopAt<8));
+  chime.stop();assert(voices.every(v=>v.stopped));
 });
 
 test('満点ジングルは音なし・休止中には予約せず、消音で予約済みの音も止める',()=>{
   const {chime,voices}=fixture();chime.muted=true;chime.perfect();assert.equal(voices.length,0);
   chime.muted=false;chime.context.state='suspended';chime.perfect();assert.equal(voices.length,0);
-  chime.context.state='running';chime.perfect();assert.equal(voices.length,4);chime.mute();assert(voices.every(voice=>voice.stopped));
+  chime.context.state='running';chime.perfect();assert.equal(voices.length,11);chime.mute();assert(voices.every(voice=>voice.stopped));
+});
+
+test('未達成は短く柔らかな下降二音とし、消音・休止・停止を尊重する',()=>{
+  const {chime,voices}=fixture();chime.context.currentTime=5;chime.failure();
+  assert.equal(voices.length,2);assert(voices[1].frequency.value<voices[0].frequency.value&&voices[0].frequency.value<BELL_SOUND.frequencyHz);
+  assert(voices.every(v=>v.startedAt>=5.4&&v.stopAt<6.2));chime.stop();assert(voices.every(v=>v.stopped));
+  chime.muted=true;chime.failure();chime.clear();assert.equal(voices.length,2);
+  chime.muted=false;chime.context.state='suspended';chime.failure();chime.clear();assert.equal(voices.length,2);
+  chime.context.state='running';chime.clear();assert.equal(voices.length,6);chime.mute();assert(voices.every(v=>v.stopped));
 });

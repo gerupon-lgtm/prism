@@ -1,0 +1,98 @@
+{
+  "version": "0.35.0",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "chrome perfect actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "perfect",
+          "muted": false,
+          "state": "running",
+          "added": 11
+        }
+      ]
+    },
+    {
+      "label": "chrome clear actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "clear",
+          "muted": false,
+          "state": "running",
+          "added": 4
+        }
+      ]
+    },
+    {
+      "label": "chrome failure actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "failure",
+          "muted": false,
+          "state": "running",
+          "added": 2
+        }
+      ]
+    },
+    {
+      "label": "chrome known failure waits until active light finishes",
+      "passed": true
+    },
+    {
+      "label": "chrome stopping an unfinished trial does not play a result",
+      "passed": true
+    },
+    {
+      "label": "chrome stop cancels every scheduled result voice",
+      "passed": true
+    },
+    {
+      "label": "chrome muted result sounds schedule no voices",
+      "passed": true
+    },
+    {
+      "label": "chrome enabling sound after a muted clear does not replay the result",
+      "passed": true
+    },
+    {
+      "label": "chrome three actual offline-rendered audio signals",
+      "passed": true,
+      "buffers": {
+        "clear": {
+          "peak": 0.09046778082847595,
+          "early": 0,
+          "tail": 0,
+          "energy": 773.3097810620036,
+          "signature": 723399232
+        },
+        "perfect": {
+          "peak": 0.13536329567432404,
+          "early": 0,
+          "tail": 0,
+          "energy": 973.3932100570465,
+          "signature": 1147890683
+        },
+        "failure": {
+          "peak": 0.06359196454286575,
+          "early": 0,
+          "tail": 0,
+          "energy": 167.04179134081483,
+          "signature": 3556352964
+        }
+      }
+    }
+  ],
+  "pending": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "155.0.8059.40"
+    }
+  ],
+  "passed": true
+}

@@ -14,6 +14,7 @@ import { OrientationLayout } from './orientation.js';
 import { EndWait } from './end-wait.js';
 import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
+import { OutcomeSound } from './outcome-sound.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -37,7 +38,8 @@ let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
 const board=new Board($('board'),session,render,settings,notify,()=>chime.wire());
-const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal,()=>chime.perfect());
+const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
+const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 let soundUnlock=null,automaticSoundFailed=false;
@@ -166,6 +168,7 @@ function render(redraw=true,{records=true}={}) {
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
+  outcomeSound.update(run,session.result,Boolean(session.clearChoices||failureOutcome())&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(run));
 }
 
 function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}

@@ -5,8 +5,8 @@ export const CELEBRATION_DURATION_MS = 2400;
 
 // A presentation effect belongs to one run, not to each re-render of its result.
 export class PerfectCelebration {
-  constructor(layer, frame, sound) {
-    Object.assign(this,{layer,frame,sound});this.seen=new WeakSet();this.run=null;this.timer=null;
+  constructor(layer, frame) {
+    Object.assign(this,{layer,frame});this.seen=new WeakSet();this.run=null;this.timer=null;
   }
   update(run,result,visible) {
     if(this.run!==run||!visible||run?.status==='stopped')this.cancel();
@@ -31,7 +31,7 @@ export class PerfectCelebration {
       }
       burst.append(bloom);root.append(burst);
     });
-    this.layer.replaceChildren(root);this.sound();
+    this.layer.replaceChildren(root);
     this.timer=setTimeout(()=>{if(this.run===run)this.cancel();},CELEBRATION_DURATION_MS);
   }
   cancel() {

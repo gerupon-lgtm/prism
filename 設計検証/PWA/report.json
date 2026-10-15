@@ -1,5 +1,5 @@
 {
-  "version": "0.34.0",
+  "version": "0.35.0",
   "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
   "checks": [
     {
@@ -280,7 +280,7 @@
       "label": "webkit update prepared status CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -301,7 +301,7 @@
       "label": "webkit dirty circuit update protection CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -375,7 +375,7 @@
       "label": "webkit incomplete update error and old assets status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
