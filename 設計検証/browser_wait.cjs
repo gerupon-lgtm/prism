@@ -66,4 +66,30 @@ async function setSound(page,enabled){
   if(await page.locator('#sound').getAttribute('aria-pressed')!==String(enabled))await page.locator('#sound').click();
   await page.waitForFunction(enabled=>document.getElementById('sound').getAttribute('aria-pressed')===String(enabled),enabled);
 }
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound};
+async function challengeSolution(page,id,{partial=false}={}){
+  const problem=await page.locator('#app').getAttribute('data-problem-id');
+  if(!problem)return require('./challenge_fixtures.cjs')[id];
+  const fs=require('node:fs'),path=require('node:path');
+  const proof=JSON.parse(fs.readFileSync(path.join(__dirname,'ランダム課題/generation.json'),'utf8'));
+  const row=proof.stages.find(item=>item.challenge===id&&item.id===problem);
+  if(!row)throw new Error('No verified fixture for visible problem '+id+' '+problem);
+  return partial?row.partial.edges:row.winner;
+}
+async function dragConnection(page,from,to){
+  const {a,b}=await wiringBounds(page,from,to),start={x:a.x+a.width/2,y:a.y+a.height/2},end={x:b.x+b.width/2,y:b.y+b.height/2};
+  const geometry=await page.locator('#board').evaluate((board,{from,to})=>{
+    const box=board.getBoundingClientRect();
+    return {box:{left:box.left,right:box.right,top:box.top,bottom:box.bottom},others:[...board.querySelectorAll('[data-node] .node-hit')].filter(e=>![from,to].includes(e.closest('[data-node]').dataset.node)).map(e=>{const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})};
+  },{from,to});
+  const distance=(p,a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy)));return Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t);};
+  const clear=points=>geometry.others.every(p=>points.slice(1).every((b,i)=>distance(p,points[i],b)>34));
+  let route=[start,end];
+  if(!clear(route)){
+    const dx=end.x-start.x,dy=end.y-start.y,length=Math.hypot(dx,dy),box=geometry.box;
+    const choices=[40,-40,70,-70,100,-100,140,-140].map(offset=>[start,{x:(start.x+end.x)/2-dy/length*offset,y:(start.y+end.y)/2+dx/length*offset},end]);
+    route=choices.find(points=>points.slice(1,-1).every(p=>p.x>box.left+8&&p.x<box.right-8&&p.y>box.top+8&&p.y<box.bottom-8)&&clear(points));
+    if(!route)throw new Error('No fixture drag route avoiding intermediate nodes '+from+' -> '+to);
+  }
+  await page.mouse.move(start.x,start.y);await page.mouse.down();for(const point of route.slice(1))await page.mouse.move(point.x,point.y,{steps:10});await page.mouse.up();
+}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound,challengeSolution,dragConnection};

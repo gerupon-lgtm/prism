@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Session } from '../src/app/session.js';
 import { LocalRecords, STORAGE_KEYS, circuitFile } from '../src/core/storage.js';
+import { challenges,challengeCircuit } from '../src/content/challenges.js';
 import { sampleCircuit } from '../src/content/samples.js';
 
 function fixture() {
@@ -10,21 +11,22 @@ function fixture() {
   return {session:new Session(records),records,values,fail:()=>{failing=true;},recover:()=>{failing=false;},writes:()=>writes};
 }
 function free(f) { f.session.replace({sampleId:'compare'}); return f.session; }
+function authored(s,id){s.replace({challengeId:id});s.challenge=structuredClone(challenges.find(c=>c.id===id));s.circuit=challengeCircuit(s.challenge);return s;}
 function q1(f) { f.session.connect('S','A'); f.session.connect('A','G'); return f.session; }
 
-test('実践の複数祭壇課題は一つだけの到達では未達成で、全部への到達時間を採点する',()=>{
-  const f=fixture(),s=f.session;s.replace({challengeId:'Q7'});s.connectPath(['S','A','B','D','G1']);s.start();s.advance('10');
+test('旧固定版の実践の複数祭壇課題は一つだけの到達では未達成で、全部への到達時間を採点する',()=>{
+  const f=fixture(),s=f.session;authored(s,'Q7');s.connectPath(['S','A','B','D','G1']);s.start();s.advance('10');
   assert.equal(s.result.state,'failed');assert.equal(s.result.score.numerator,'0');assert.equal(s.clearChoices,null);assert.equal(f.records.scores().length,0);
-  s.stop();s.replace({challengeId:'Q7'});s.connectPath(['S','A','B','D','G1']);s.connectPath(['A','C','E','G2']);s.start();s.advance('3.5');
+  s.stop();authored(s,'Q7');s.connectPath(['S','A','B','D','G1']);s.connectPath(['A','C','E','G2']);s.start();s.advance('3.5');
   assert.equal(s.result.state,'pending');assert.equal(s.result.score,null);assert.equal(s.clearChoices,null);assert.equal(f.records.scores().length,0);
   s.advance('4');assert.equal(s.result.state,'achieved');assert.equal(s.result.evaluatedTime,'4');assert.deepEqual(s.result.score,{numerator:'100',denominator:'1'});
   assert.deepEqual(s.result.goals,[{id:'G1',first:'3.5'},{id:'G2',first:'4'}]);assert.equal(s.clearChoices.nextChallengeId,'Q8');assert.equal(f.records.scores()[0].challenge,'Q7@1');
   const before=s.exportResult();s.stop();assert.deepEqual(s.exportResult().evaluation,before.evaluation);assert.deepEqual(s.exportResult().records,before.records);
 });
 
-test('合流の実践課題は一本道では失敗し、順番待ちを含む二到達で達成する',()=>{
-  const f=fixture(),s=f.session;s.replace({challengeId:'Q11'});s.connectPath(['S','A','B','D','G']);s.start();s.advance('10');assert.equal(s.result.state,'failed');s.stop();
-  s.replace({challengeId:'Q11'});s.connectPath(['S','A','B','D','G']);s.connectPath(['A','C','D']);s.start();s.advance('10');
+test('旧固定版の合流の実践課題は一本道では失敗し、順番待ちを含む二到達で達成する',()=>{
+  const f=fixture(),s=f.session;authored(s,'Q11');s.connectPath(['S','A','B','D','G']);s.start();s.advance('10');assert.equal(s.result.state,'failed');s.stop();
+  authored(s,'Q11');s.connectPath(['S','A','B','D','G']);s.connectPath(['A','C','D']);s.start();s.advance('10');
   assert.equal(s.result.state,'achieved');assert.deepEqual(s.run.arrivals('G').map(r=>r.time),['3.5','4.5']);assert(s.run.records.some(r=>r.type==='process-start'&&r.node==='D'&&r.wait==='0.5'));assert.deepEqual(s.result.score,{numerator:'100',denominator:'1'});
 });
 

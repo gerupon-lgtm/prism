@@ -142,6 +142,7 @@ export class Board {
     this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);this.previewWire();
     this.timeLayoutSignature=null;this.labelOrigins=new Map();
     this.particles();
+    this.effectsLayer.replaceChildren();
     this.renderArrivals();
   }
   fitTimeLabels() {
@@ -161,11 +162,14 @@ export class Board {
     const occupied=new Map(),cellSize=64;
     const cells=rect=>{const keys=[];for(let x=Math.floor(rect.left/cellSize);x<=Math.floor(rect.right/cellSize);x++)for(let y=Math.floor(rect.top/cellSize);y<=Math.floor(rect.bottom/cellSize);y++)keys.push(`${x}/${y}`);return keys;};
     const reserve=rect=>{for(const key of cells(rect)){if(!occupied.has(key))occupied.set(key,[]);occupied.get(key).push(rect);}};
-    const overlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
+    const measureOverlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
     for(const node of this.world.querySelectorAll('.node-symbol,.node-state'))reserve(node.getBoundingClientRect());
     for(const control of this.element.parentElement.querySelectorAll('#stage-controls button'))reserve(control.getBoundingClientRect());
     for(const {label,bounds,matrix,card} of measurements){
       if(!matrix)continue;
+      // Occupancy stays fixed while choosing this label. Reuse the same
+      // overlap result for scoring, expansion and the final clear-place filter.
+      const overlaps=new WeakMap(),overlap=rect=>{if(!overlaps.has(rect))overlaps.set(rect,measureOverlap(rect));return overlaps.get(rect);};
       const positions=[];
       // Prefer a free segment of the same route before moving a card off its line.
       const edge=card&&label.closest('[data-edge]'),curve=edge&&this.curves.get(edge.dataset.edge);
@@ -177,16 +181,24 @@ export class Board {
         positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,onPath:true,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)});
       }
       const offsets=[0,-1,1,-2,2];
-      const addPositions=values=>{for(const x of values)for(const y of values){
-        const left=Math.max(area.left+3,Math.min(area.right-3-bounds.width,bounds.left+x*Math.max(12,bounds.width*.75)));
-        const top=Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,bounds.top+y*Math.max(12,bounds.height*.8)));
+      const addPosition=(x,y)=>{
+        const left=Math.max(area.left+3,Math.min(area.right-3-bounds.width,x));
+        const top=Math.max(area.top+3,Math.min(area.bottom-3-bounds.height,y));
         const rect={left,top,right:left+bounds.width,bottom:top+bounds.height};
-        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)+(card&&(x||y)?80:0)});
-      }};
+        positions.push({rect,dx:left-bounds.left,dy:top-bounds.top,score:overlap(rect)*1000+Math.hypot(left-bounds.left,top-bounds.top)+(card&&(left!==bounds.left||top!==bounds.top)?80:0)});
+      };
+      const addPositions=values=>{for(const x of values)for(const y of values)addPosition(bounds.left+x*Math.max(12,bounds.width*.75),bounds.top+y*Math.max(12,bounds.height*.8));};
       addPositions(offsets);
       // Dense challenge routes may need more room than the nearby five positions.
       // Extend the search only when every nearby position still overlaps a part.
       if(positions.every(position=>overlap(position.rect)>0))addPositions([...offsets,-3,3,-4,4,-5,5,-6,6,-7,7,-8,8]);
+      // A regular grid can miss a clear strip along the board's edge when
+      // enlarged cards nearly fill it. Test the exact edge/obstacle boundaries.
+      if(positions.every(position=>overlap(position.rect)>0)){
+        const others=[...new Set([...occupied.values()].flat())],xs=[area.left+3,area.right-3-bounds.width],ys=[area.top+3,area.bottom-3-bounds.height];
+        for(const x of xs)for(const y of [...ys,...others.flatMap(rect=>[rect.top-bounds.height-4,rect.bottom+4])])addPosition(x,y);
+        for(const y of ys)for(const x of others.flatMap(rect=>[rect.left-bounds.width-4,rect.right+4]))addPosition(x,y);
+      }
       const clearPositions=positions.filter(position=>overlap(position.rect)===0);
       const best=(clearPositions.length?clearPositions:positions).reduce((a,b)=>a.score<=b.score?a:b),inverse=matrix.inverse();
       const placement={label,transform:`${this.labelOrigins.get(label)} translate(${inverse.a*best.dx+inverse.c*best.dy} ${inverse.b*best.dx+inverse.d*best.dy})`};
@@ -202,10 +214,11 @@ export class Board {
   renderArrivals() {
     const run=this.session.run;
     if(this.pictureRun!==run||run?.status==='stopped'){this.arrivalPictures.clear();this.pictureRun=run;}
-    this.effectsLayer.replaceChildren();
+    for(const art of this.effectsLayer.querySelectorAll('[data-arrival-key]'))if(!this.arrivalPictures.has(art.dataset.arrivalKey))art.remove();
     const now=performance.now();
     for(const [id,picture] of this.arrivalPictures){
-      if(now-picture.at>=picture.duration){this.arrivalPictures.delete(id);continue;}
+      if(now-picture.at>=picture.duration){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`)?.remove();continue;}
+      if(this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`))continue;
       const node=run.circuit.nodes.get(picture.node),draw=picture.kind==='prism'?prismArrival:constellation;
       const art=draw(this.position(node),this.fontFactor??1,this.angle,picture.particle,Math.max(0,now-picture.at));
       art.setAttribute('data-arrival-key',id);art.setAttribute('data-arrival-node',picture.node);
@@ -214,15 +227,20 @@ export class Board {
     this.placeConstellations();
   }
   placeConstellations() {
+    if(!this.effectsLayer.querySelector('.bell-constellation'))return;
     const area=this.element.getBoundingClientRect(),pad=8;
     if(area.width<1||area.height<1)return;
     const occupied=[...this.world.querySelectorAll('.node-symbol'),...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>e.getBoundingClientRect());
     const labels=[...this.world.querySelectorAll('.node-name,.edge-label-card')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>e.getBoundingClientRect());
     const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
-    for(const motif of this.effectsLayer.querySelectorAll('.bell-constellation')){
+    // Measure all existing artwork before writing any placements. Repeated SVG
+    // read/write cycles otherwise force a full layout for each concurrent bell.
+    const motifs=[...this.effectsLayer.querySelectorAll('.bell-constellation')].map(motif=>{
       const art=motif.parentElement,target=this.world.querySelector(`[data-node="${CSS.escape(art.dataset.arrivalNode)}"] .node-symbol`),matrix=art.getScreenCTM();
-      if(!target||!matrix)continue;
-      const bell=target.getBoundingClientRect(),cx=(bell.left+bell.right)/2,cy=(bell.top+bell.bottom)/2;
+      return target&&matrix?{motif,matrix,bell:target.getBoundingClientRect()}:null;
+    }).filter(Boolean),placements=[];
+    for(const {motif,matrix,bell} of motifs){
+      const cx=(bell.left+bell.right)/2,cy=(bell.top+bell.bottom)/2;
       const maximum=Math.min(156,area.height-2*pad,(area.width-2*pad)/.88),heights=[maximum,maximum*.85,maximum*.7,maximum*.55,maximum*.4,maximum*.25,maximum*.18,maximum*.12];
       let best=null,bestCost=Infinity;
       for(const height of heights){
@@ -242,9 +260,10 @@ export class Board {
       // An exceptionally small view still gets the complete silhouette, never a crop.
       best??={left:area.left+pad,top:area.top+pad,right:area.left+pad+maximum*.88,bottom:area.top+pad+maximum};
       const center=new DOMPoint((best.left+best.right)/2,(best.top+best.bottom)/2).matrixTransform(matrix.inverse()),scale=(best.bottom-best.top)/400/Math.hypot(matrix.a,matrix.b);
-      motif.setAttribute('transform',`translate(${center.x} ${center.y}) scale(${scale})`);
+      placements.push({motif,transform:`translate(${center.x} ${center.y}) scale(${scale})`});
       occupied.push(best);
     }
+    for(const {motif,transform} of placements)motif.setAttribute('transform',transform);
   }
   arrivals(entries) {
     if(this.pictureRun!==this.session.run){this.arrivalPictures.clear();this.pictureRun=this.session.run;}
@@ -267,8 +286,9 @@ export class Board {
     if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){this.timeLayoutSignature='';this.fitTimeLabels();}return;}
     const states=[];
     for(const group of this.world.querySelectorAll('[data-node]')){
-      group.querySelector('.node-state')?.remove();const gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
-      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);group.append(svg('text',{y:(group.classList.contains('source')?-160:130)*(this.fontFactor??1),class:'node-state'},text));}
+      const existing=group.querySelector('.node-state'),gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
+      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);if(existing){if(existing.textContent!==text)existing.textContent=text;}else group.append(svg('text',{y:(group.classList.contains('source')?-160:130)*(this.fontFactor??1),class:'node-state'},text));}
+      else existing?.remove();
     }
     const signature=states.join('/');if(this.timeLayoutSignature!==signature){this.timeLayoutSignature=signature;this.fitTimeLabels();}
     for(const particle of run.particles.values()) {

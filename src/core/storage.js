@@ -1,5 +1,6 @@
 import { createCircuit } from './circuit.js';
 import { compareScores } from './evaluation.js';
+import { challengeScoreId,RANDOM_CHALLENGE_REVISION } from './challenge-identity.js';
 
 export const CIRCUIT_FORMAT = 'prism-notes-circuit';
 export const RESULT_FORMAT = 'prism-notes-result';
@@ -10,6 +11,15 @@ function validScore(value) {
   if (!value || typeof value.numerator !== 'string' || typeof value.denominator !== 'string' || !/^\d+$/.test(value.numerator) || !/^[1-9]\d*$/.test(value.denominator)) return false;
   const numerator=BigInt(value.numerator), denominator=BigInt(value.denominator);
   return numerator > 50n * denominator && numerator <= 100n * denominator;
+}
+
+function validateProblem(problem,challenge,rule){
+  if(!problem?.draw||!/^[0-9a-f]{16}$/.test(problem.draw.id)||problem.draw.revision!==RANDOM_CHALLENGE_REVISION||!Number.isSafeInteger(problem.draw.number)||problem.draw.number<1||!Number.isSafeInteger(problem.version)||!Number.isSafeInteger(problem.limit)||problem.limit<1||!['interval','delivery-all'].includes(problem.type))throw new Error('出題条件が不正です。元の成績は保持しています。');
+  if(challenge!==challengeScoreId(problem)||rule!==`${problem.type}@1`)throw new Error('成績と出題条件が一致しません。');
+  const circuit=createCircuit({mode:'spread',target:problem.goal??'all',nodes:problem.nodes,edges:problem.candidates});
+  if(circuit.time.ticks(problem.baseline)<=0n||circuit.time.ticks(problem.maxDuration)<circuit.time.ticks(problem.baseline))throw new Error('出題の基準時間が不正です。');
+  if(problem.type==='interval'&&(!Number.isSafeInteger(problem.count)||problem.count<1||circuit.time.ticks(problem.interval)<=0n))throw new Error('出題の到達条件が不正です。');
+  if(problem.type==='delivery-all'&&(!Array.isArray(problem.goals)||!problem.goals.length||problem.goals.some(id=>!circuit.goals.includes(id))))throw new Error('出題の鐘が不正です。');
 }
 
 export function circuitFile(input, name = '') {
@@ -80,15 +90,17 @@ export class LocalRecords {
     if (!Array.isArray(values)) throw new Error('成績データが不正です。');
     for (const value of values) {
       if (!value || typeof value.challenge !== 'string' || !value.challenge || typeof value.rule !== 'string' || !value.rule || value.achieved !== true || !validScore(value.score)) throw new Error('成績データが不正です。元の成績は保持しています。');
+      if(value.problem!==undefined)validateProblem(value.problem,value.challenge,value.rule);
     }
     return values;
   }
-  saveScore(challenge, rule, candidate) {
+  saveScore(challenge, rule, candidate, problem) {
     if (typeof challenge !== 'string' || !challenge || typeof rule !== 'string' || !rule || !validScore(candidate)) throw new Error('今回の成績が不正です。');
+    if(problem!==undefined)validateProblem(problem,challenge,rule);
     const values = this.scores();
     const at = values.findIndex(value => value.challenge === challenge && value.rule === rule);
     if (at >= 0 && compareScores(candidate, values[at].score) <= 0) return false;
-    const next = { challenge, rule, achieved: true, score: structuredClone(candidate) };
+    const next = { challenge, rule, achieved: true, score: structuredClone(candidate),...(problem===undefined?{}:{problem:structuredClone(problem)}) };
     if (at < 0) values.push(next); else values[at] = next;
     this.write('scores', values);
     return true;

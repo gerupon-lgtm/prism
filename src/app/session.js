@@ -4,6 +4,8 @@ import { TimeScale } from '../core/time.js';
 import { faultCases, worstFault, timeScore, timeHopScore, compareScores } from '../core/evaluation.js';
 import { circuitFile, readCircuitFile, resultFile } from '../core/storage.js';
 import { challenges, challengeCircuit } from '../content/challenges.js';
+import { drawChallenge } from '../content/challenge-draw.js';
+import { challengeScoreId } from '../core/challenge-identity.js';
 import { sampleCircuit } from '../content/samples.js';
 
 const copy = value => structuredClone(value);
@@ -16,8 +18,9 @@ const stateFields = ['mode','challenge','circuit','name','dirty','run','runConte
 
 // Owns the user's editing and running state. No DOM, audio, or wall clock here.
 export class Session {
-  constructor(records) {
+  constructor(records,{random=Math.random}={}) {
     this.records = records;
+    this.random=random;this.lastDraws=new Map();
     this.mode = 'challenge';
     this.challenge = challengeById('Q1');
     this.circuit = createCircuit(challengeCircuit(this.challenge)).raw;
@@ -184,7 +187,12 @@ export class Session {
       if (choice === 'save') this.saveCircuit(save.name ?? this.name,save);
       else if (choice !== 'discard') throw new Error('読み込み前の保存方法を選んでください。');
     }
+    if(next.mode==='challenge'){
+      next.challenge=drawChallenge(next.challenge,{previousId:this.lastDraws.get(next.challenge.id),random:this.random});
+      next.circuit=createCircuit(challengeCircuit(next.challenge)).raw;
+    }
     Object.assign(this,next,{dirty:false,run:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
+    if(next.challenge?.draw)this.lastDraws.set(next.challenge.id,next.challenge.draw.id);
     return true;
   }
   saveCircuit(name = this.name, options = {}) {
@@ -197,7 +205,7 @@ export class Session {
   exportCircuit(name = this.name) { this.requireFree(); return circuitFile(this.circuit,name); }
   exportResult() {
     if (!this.run) throw new Error('書き出す実行記録がありません。');
-    return {...resultFile(this.run,this.result),originalConditions:copy(this.runContext.original),faultCases:copy(this.cases),replayCase:this.replayCase};
+    return {...resultFile(this.run,this.result),challenge:copy(this.runContext.challenge),originalConditions:copy(this.runContext.original),faultCases:copy(this.cases),replayCase:this.replayCase};
   }
 
   start({caseId = null} = {}) {
@@ -294,13 +302,13 @@ export class Session {
     if (this.guide?.mode === 'challenge' && this.guide.step === 1 && arrival) this.guide.step = 2;
     return this.result;
   }
-  scoreKey(challenge) { return `${challenge.id}@${challenge.version}/${challenge.type}@1`; }
+  scoreKey(challenge) { return `${challengeScoreId(challenge)}/${challenge.type}@1`; }
   offerScore(challenge, score) {
     const key = this.scoreKey(challenge), previous = this.pendingScores.get(key);
     if (previous && compareScores(previous.score,score) >= 0) return;
-    const candidate = {challenge:`${challenge.id}@${challenge.version}`,rule:`${challenge.type}@1`,score:copy(score)};
     // Do not write or retry the same achieved score on every animation frame.
     if (this.runContext.offered && compareScores(this.runContext.offered,score) >= 0) return;
+    const candidate = {challenge:challengeScoreId(challenge),rule:`${challenge.type}@1`,score:copy(score),...(challenge.draw?{problem:copy(challenge)}:{})};
     this.runContext.offered = copy(score);
     this.pendingScores.set(key,candidate);
     this.retryScore(key);
@@ -309,7 +317,7 @@ export class Session {
     const candidate = this.pendingScores.get(key);
     if (!candidate) return true;
     try {
-      this.records.saveScore(candidate.challenge,candidate.rule,candidate.score);
+      this.records.saveScore(candidate.challenge,candidate.rule,candidate.score,candidate.problem);
       this.pendingScores.delete(key); this.scoreErrors.delete(key); return true;
     } catch (error) {
       this.scoreErrors.set(key,error.message); return false;

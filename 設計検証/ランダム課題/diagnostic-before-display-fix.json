@@ -1,0 +1,55 @@
+{
+  "evidence": "Pre-fix normal playback in PC WebKit; protection paused and retained state. Not a current/device performance claim.",
+  "sourceFile": "failed-1792085147309.json",
+  "version": "0.33.0",
+  "passed": false,
+  "failure": "locator.waitFor: Timeout 5500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#clear-toast') to be visible\u001b[22m\n\u001b[2m    14 × locator resolved to hidden <section hidden=\"\" id=\"clear-toast\" aria-label=\"クリア後の操作\">…</section>\u001b[22m\n\n    at waitClear (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_random_challenges.cjs:29:42)\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_random_challenges.cjs:60:50",
+  "performance": {
+    "last": {
+      "milliseconds": 125,
+      "phases": {
+        "calculation": 0,
+        "display": 125
+      },
+      "counts": {
+        "records": 21,
+        "retainedParticles": 6,
+        "active": 4,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 1,
+        "milliseconds": 0,
+        "maximum": 0
+      },
+      "calculation": {
+        "calls": 84,
+        "milliseconds": 20,
+        "maximum": 6
+      },
+      "display": {
+        "calls": 88,
+        "milliseconds": 500,
+        "maximum": 125
+      },
+      "audio": {
+        "calls": 4,
+        "milliseconds": 1,
+        "maximum": 1
+      }
+    },
+    "slowFrames": 1,
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "clock": "4.5",
+      "records": 21,
+      "retainedParticles": 6,
+      "active": 4,
+      "waiting": 0
+    },
+    "audioVoices": 0
+  }
+}

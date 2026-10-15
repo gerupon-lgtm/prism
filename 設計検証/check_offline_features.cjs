@@ -1,5 +1,5 @@
 const {setSound}=require('./browser_wait.cjs');
-const {enterApp,startGuide,skipGuide,wiringBounds,chooseChallenge}=require('./browser_wait.cjs');
+const {enterApp,startGuide,skipGuide,wiringBounds,chooseChallenge,challengeSolution,dragConnection}=require('./browser_wait.cjs');
 // Actual UI flows after prepared-asset startup with no reachable origin.
 // PC engines and synthetic fixtures; this does not prove physical-device acceptance.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
@@ -82,8 +82,8 @@ async function exercise(page,engine){
  // Exercise all introductory and practical challenges, including every independently replayed fault.
  for(const id of Object.keys(challengeFixtures)){
   await selectChallenge(page,id);
-  const routes=await page.evaluate(async({id,edges})=>{const entry=document.querySelector('script[type=module]').src,{challenges}=await import(new URL('../content/challenges.js',entry));const challenge=challenges.find(c=>c.id===id);return edges.map(id=>{const edge=challenge.candidates.find(e=>e.id===id);return [edge.from,edge.to];});},{id,edges:challengeFixtures[id]});
-  for(const [from,to] of routes)await drag(page,from,to);
+  const routes=await page.evaluate(async({id,edges})=>{const entry=document.querySelector('script[type=module]').src,{challenges}=await import(new URL('../content/challenges.js',entry));const challenge=challenges.find(c=>c.id===id);return edges.map(id=>{const edge=challenge.candidates.find(e=>e.id===id);return [edge.from,edge.to];});},{id,edges:await challengeSolution(page,id)});
+  for(const [from,to] of routes)await dragConnection(page,from,to);
   if(id==='Q1')await blockStorageWrites(page,'prism-notes.scores.v1');
   await pauseStart(page);await finish(page);assert((await page.locator('#result').textContent()).includes('100.00点'));
   if(id==='Q1'){
@@ -94,7 +94,7 @@ async function exercise(page,engine){
   const exported=await result(page);assert.equal(exported.evaluation.state,'achieved');assert.deepEqual(exported.evaluation.score,{numerator:'100',denominator:'1'});
   if(['Q1','Q2','Q3'].includes(id))assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['2.5']);
   if(id==='Q6')assert.deepEqual(exported.records.filter(r=>r.type==='goal').map(r=>r.time),['1','3','5']);
-  if(['Q7','Q8'].includes(id)){assert(exported.evaluation.goals.every(goal=>goal.first!==null));assert.equal(exported.evaluation.evaluatedTime,'4');}
+  if(['Q7','Q8'].includes(id)){assert(exported.evaluation.goals.every(goal=>goal.first!==null));assert.equal(exported.evaluation.evaluatedTime,exported.challenge.baseline);}
   if(['Q11','Q12'].includes(id))assert(exported.records.some(row=>row.type==='process-start'&&Number(row.wait)>0));
   if(['Q4','Q5'].includes(id)){
    const cases=exported.faultCases;assert.equal(cases.length,id==='Q4'?4:3);assert(cases.every(c=>c.reachable&&c.time==='2.5'));

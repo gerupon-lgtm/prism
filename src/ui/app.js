@@ -1,7 +1,8 @@
 import { Session } from '../app/session.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
-import { displayScore,perfectScore } from '../core/evaluation.js';
+import { displayScore,perfectScore,compareScores } from '../core/evaluation.js';
+import { matchesChallengeScore } from '../core/challenge-identity.js';
 import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
@@ -15,6 +16,7 @@ import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
 
 const $ = id => document.getElementById(id);
+function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
 function element(tag,text='',attributes={}) {
   const item=document.createElement(tag);item.textContent=text;
   for(const [name,value] of Object.entries(attributes))item.setAttribute(name,value);
@@ -95,47 +97,52 @@ function render(redraw=true,{records=true}={}) {
   $('app').classList.toggle('text-enlarged',textEnlarged);
   $('app').classList.toggle('compact',compact);
   const narrowControls=textEnlarged||compact||Math.abs(orientation.rotation)===90;
-  $('add-prism').textContent=narrowControls?'◇＋':'＋プリズム';$('add-goal').textContent=narrowControls?'鐘＋':'＋鐘';
+  setText('add-prism',narrowControls?'◇＋':'＋プリズム');setText('add-goal',narrowControls?'鐘＋':'＋鐘');
   const canRestore=clearedConnections?.cleared===session.circuit;
-  $('clear-wires').textContent=canRestore?'戻す':textEnlarged?'消去':'クリア';$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
+  setText('clear-wires',canRestore?'戻す':textEnlarged?'消去':'クリア');$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
   $('clear-wires').disabled=Boolean(startPrelude)||!session.editable||(!canRestore&&!session.circuit.edges.length);
   $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
-  $('magnifier-toggle').textContent=textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF';
+  setText('magnifier-toggle',textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF');
   const allTimes=session.view.showAllTimes!==false;
   $('candidate-times').hidden=session.mode!=='challenge';$('candidate-times').setAttribute('aria-pressed',String(allTimes));
-  $('candidate-times').textContent=textEnlarged?(allTimes?'全秒':'候補'):(allTimes?'秒数 全体':'秒数 候補');
+  setText('candidate-times',textEnlarged?(allTimes?'全秒':'候補'):(allTimes?'秒数 全体':'秒数 候補'));
   $('candidate-times').title=allTimes?'進める候補の秒数だけに絞る':'全候補の秒数を表示する';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
-  $('title').textContent=session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由';
+  setText('title',session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由');
+  $('app').dataset.problemId=session.challenge?.draw?.id??'';
   const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
-  $('condition').textContent=session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`;
+  setText('condition',session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
   $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide&&textEnlarged&&innerHeight<=600);
-  $('challenge-goal').textContent=textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'';
+  setText('challenge-goal',textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'');
   $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
   if(session.mode==='challenge'){
     const used=session.circuit.edges.length,limit=session.challenge.limit;
     const shortCounters=textEnlarged&&Math.abs(orientation.rotation)===90;
     const counter=(label,value)=>{const part=element('span');part.append(document.createTextNode(label),element('b',String(value),{class:'wire-count'}),document.createTextNode(shortCounters?'':'本'));return part;};
     $('wire-budget').style.setProperty('--wire-digits',Math.max(1,String(limit).length));
-    $('wire-budget').replaceChildren(counter(`${textEnlarged?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
+    const budgetKey=JSON.stringify([shortCounters,textEnlarged,limit,used]);
+    if($('wire-budget').dataset.layout!==budgetKey){
+      $('wire-budget').replaceChildren(counter(`${textEnlarged?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
+      $('wire-budget').dataset.layout=budgetKey;
+    }
     $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
-    if(compact)$('title').textContent=`課題${session.challenge.id.slice(1)}`;
-    else if(shortCounters)$('title').textContent=`課題${session.challenge.id.slice(1)}`;
+    if(compact)setText('title',`課題${session.challenge.id.slice(1)}`);
+    else if(shortCounters)setText('title',`課題${session.challenge.id.slice(1)}`);
   }
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
   const run=session.run;
   const startBlockedReason=session.editable?session.startBlockedReason:'';
   $('stage').inert=Boolean(startPrelude);$('stage').classList.toggle('launching',Boolean(startPrelude));
-  $('play').textContent=startPrelude?'準備中':session.editable?'鐘を鳴らす':run.exhausted?'終了':run.status==='running'?'一時停止':'再開';
+  setText('play',startPrelude?'準備中':session.editable?'鐘を鳴らす':run.exhausted?'終了':run.status==='running'?'一時停止':'再開');
   $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
   $('play').title=startBlockedReason||(!session.editable&&run?.exhausted?'動作は終了しています。停止で編集へ戻れます。':'');
   $('stop').disabled=session.editable&&!startPrelude;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
   $('play').dataset.state=startPrelude?'preparing':run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
-  $('next').textContent=narrowControls?'次へ':'次の動き';
+  setText('next',narrowControls?'次へ':'次の動き');
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
-  $('sound-label').textContent=chime.muted?'音なし':'音あり';$('sound').setAttribute('aria-pressed',String(!chime.muted));$('sound').setAttribute('aria-label',chime.muted?'音なし':'音あり');
+  setText('sound-label',chime.muted?'音なし':'音あり');$('sound').setAttribute('aria-pressed',String(!chime.muted));$('sound').setAttribute('aria-label',chime.muted?'音なし':'音あり');
   const execution=run?(run.status==='stopped'?'編集可能':run.exhausted?'動作終了':run.status==='running'?'実行中':'一時停止'):'';
   let text=run?`${execution}｜${run.format()}秒・${run.activeCount}光線`:'';
   if(session.result){
@@ -147,13 +154,13 @@ function render(redraw=true,{records=true}={}) {
   if(run?.pauseReason==='load')text+='　負荷のため一時停止。状態を保持しています。';
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
-  $('result').textContent=[text,message||startBlockedReason].filter(Boolean).join('　');$('result').classList.toggle('error',Boolean(message));
-  $('hint').textContent=board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：ダブルタップで設定`:'起点から候補をなぞって結線';
+  setText('result',[text,message||startBlockedReason].filter(Boolean).join('　'));$('result').classList.toggle('error',Boolean(message));
+  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：ダブルタップで設定`:'起点から候補をなぞって結線');
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
     const guide=session.guide,steps=guide.mode==='challenge'?['星から候補へドラッグしてつなぎます。','鐘までつないで「鐘を鳴らす」を押します。','鐘への到着と点数を見て、上の「記録」を開きます。']:['「鐘を鳴らす」で2.5秒後に鐘が鳴る様子を見ます。','停止してプリズムAをダブルタップ。処理時間を1.5秒へ。','もう一度「鐘を鳴らす」を押して、プリズムB経由で3秒後に鐘が鳴る様子を見ます。'];
-    $('guide-text').textContent=`${guide.step+1}/3 ${steps[guide.step]}`;$('guide-finish').hidden=!guide.readyToFinish;
-    if(compact)$('hint').textContent=`案内 ${$('guide-text').textContent}`;
+    setText('guide-text',`${guide.step+1}/3 ${steps[guide.step]}`);$('guide-finish').hidden=!guide.readyToFinish;
+    if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   if(redraw)board.render();else board.particles();
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
@@ -361,12 +368,12 @@ function chooseMode(after=null) {
   let scores=[];
   try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
   listPage(challenges,challenge=>{
-    const best=scores.find(score=>score.challenge===`${challenge.id}@${challenge.version}`&&score.rule===`${challenge.type}@1`);
+    const best=scores.filter(score=>matchesChallengeScore(score,challenge)).sort((a,b)=>compareScores(b.score,a.score))[0];
     const text=`${challenge.id} ${challenge.name}${Number(challenge.id.slice(1))>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`;
     const row=button(text,()=>replace({challengeId:challenge.id}),{class:'challenge-row','data-challenge':challenge.id});row.replaceChildren();
     const name=element('span','',{class:'challenge-name'});name.append(element('span',challenge.id+' ',{class:'challenge-number'}),document.createTextNode(challenge.name));
     if(Number(challenge.id.slice(1))>6)name.append(element('small','実践',{class:'challenge-tier'}));
-    const score=element('span','',{class:'challenge-score'});score.append(element('small','最高点'),element('strong',best?displayScore(best.score)+'点':'未達成'));
+    const score=element('span','',{class:'challenge-score'});score.append(element('small',Number(challenge.id.slice(1))>6?'最高点（全出題）':'最高点'),element('strong',best?displayScore(best.score)+'点':'未達成'));
     row.append(name,score);return row;
   });
 }
@@ -498,9 +505,13 @@ function slotActions(slot) {
 }
 function pendingScores() {
   open('成績の保存を再試行');
-  listPage([...session.pendingScores.entries()],([key,candidate])=>button(`${candidate.challenge} ${displayScore(candidate.score)}点`,()=>{
-    if(!session.retryScore(key))throw new Error(session.scoreErrors.get(key));pendingScores();render(false);
-  }),'未保存の成績はありません。');actions.append(button('閉じる',close));
+  listPage([...session.pendingScores.entries()],([key,candidate])=>{
+    const problem=candidate.problem??challenges.find(c=>`${c.id}@${c.version}`===candidate.challenge);
+    const label=problem?`${problem.id} ${problem.name}${problem.draw?' 出題'+problem.draw.number:''}`:'成績';
+    return button(`${label} ${displayScore(candidate.score)}点`,()=>{
+      if(!session.retryScore(key))throw new Error(session.scoreErrors.get(key));pendingScores();render(false);
+    },{class:'challenge-row'});
+  },'未保存の成績はありません。');actions.append(button('閉じる',close));
 }
 
 function offlineStatus() {
