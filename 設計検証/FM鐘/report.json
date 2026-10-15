@@ -1,0 +1,943 @@
+{
+  "checkedAt": "2026-10-15T23:17:50.312Z",
+  "evidence": "Actual Web Audio synthesis in a disposable PC browser. No physical-device or listening acceptance.",
+  "checks": [
+    {
+      "label": "small two-operator bell fades to silence within 2.62s at the existing master volume",
+      "passed": true,
+      "peak": 0.11176197230815887,
+      "last": 1.7606458333333332,
+      "attackRms": 0.0735632103879092,
+      "lateRms": 0.0004476434432955229
+    },
+    {
+      "label": "small single bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0004476434432955229,
+      "failureRms": 0.00988347006340661,
+      "peak": 0.11176197230815887
+    },
+    {
+      "label": "small three simultaneous bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0013429303274786154,
+      "failureRms": 0.009891250532326762,
+      "peak": 0.2530004680156708
+    },
+    {
+      "label": "small explicit stop cancels both oscillators before their natural end",
+      "passed": true
+    },
+    {
+      "label": "small clear mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.1259247064590454,
+      "notes": 4
+    },
+    {
+      "label": "small perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.13536931574344635,
+      "notes": 11
+    },
+    {
+      "label": "chime two-operator bell fades to silence within 2.62s at the existing master volume",
+      "passed": true,
+      "peak": 0.11496101319789886,
+      "last": 1.7873125,
+      "attackRms": 0.07541860790593939,
+      "lateRms": 0.0005236830817821509
+    },
+    {
+      "label": "chime single bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0005236830817821509,
+      "failureRms": 0.009879294792038088,
+      "peak": 0.11496101319789886
+    },
+    {
+      "label": "chime three simultaneous bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0015710492435787773,
+      "failureRms": 0.009879467848998383,
+      "peak": 0.2604323923587799
+    },
+    {
+      "label": "chime explicit stop cancels both oscillators before their natural end",
+      "passed": true
+    },
+    {
+      "label": "chime clear mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.12610353529453278,
+      "notes": 4
+    },
+    {
+      "label": "chime perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.13530419766902924,
+      "notes": 11
+    },
+    {
+      "label": "large two-operator bell fades to silence within 2.62s at the existing master volume",
+      "passed": true,
+      "peak": 0.11798200756311417,
+      "last": 1.8113125,
+      "attackRms": 0.07721736898875096,
+      "lateRms": 0.0005946357583232172
+    },
+    {
+      "label": "large single bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0005946357583232172,
+      "failureRms": 0.009878581845764723,
+      "peak": 0.11798200756311417
+    },
+    {
+      "label": "large three simultaneous bell leaves room for both failure notes after 1.5s",
+      "passed": true,
+      "quietRms": 0.0017839072740860188,
+      "failureRms": 0.009878237602547964,
+      "peak": 0.2682293951511383
+    },
+    {
+      "label": "large explicit stop cancels both oscillators before their natural end",
+      "passed": true
+    },
+    {
+      "label": "large clear mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.1383342444896698,
+      "notes": 4
+    },
+    {
+      "label": "large perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "passed": true,
+      "peak": 0.13540633022785187,
+      "notes": 11
+    },
+    {
+      "label": "comparison controls fit width 320",
+      "passed": true
+    },
+    {
+      "label": "comparison controls fit width 390",
+      "passed": true
+    },
+    {
+      "label": "comparison controls fit width 844",
+      "passed": true
+    },
+    {
+      "label": "all three generated WAVs are readable by the preview player",
+      "passed": true,
+      "media": [
+        {
+          "duration": 3
+        },
+        {
+          "duration": 3
+        },
+        {
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "label": "playing another comparison stops and resets the previous sound",
+      "passed": true,
+      "oldPaused": true,
+      "oldTime": 0,
+      "newPlaying": true
+    }
+  ],
+  "pending": [
+    "Human listening and target-device playback; adoption remains unselected."
+  ],
+  "browser": {
+    "channel": "chrome",
+    "version": "155.0.8059.40"
+  },
+  "version": "2026.10.16-1",
+  "volume": 0.7,
+  "measurements": [
+    {
+      "id": "small",
+      "solo": {
+        "peak": 0.11176197230815887,
+        "last": 1.7606458333333332
+      },
+      "mixes": [
+        {
+          "peak": 0.11176197230815887,
+          "quietRms": 0.0004476434432955229,
+          "failureRms": 0.00988347006340661,
+          "ratio": 22.07888937375051
+        },
+        {
+          "peak": 0.2530004680156708,
+          "quietRms": 0.0013429303274786154,
+          "failureRms": 0.009891250532326762,
+          "ratio": 7.365423454914319
+        }
+      ]
+    },
+    {
+      "id": "chime",
+      "solo": {
+        "peak": 0.11496101319789886,
+        "last": 1.7873125
+      },
+      "mixes": [
+        {
+          "peak": 0.11496101319789886,
+          "quietRms": 0.0005236830817821509,
+          "failureRms": 0.009879294792038088,
+          "ratio": 18.865025691526576
+        },
+        {
+          "peak": 0.2604323923587799,
+          "quietRms": 0.0015710492435787773,
+          "failureRms": 0.009879467848998383,
+          "ratio": 6.288452057997503
+        }
+      ]
+    },
+    {
+      "id": "large",
+      "solo": {
+        "peak": 0.11798200756311417,
+        "last": 1.8113125
+      },
+      "mixes": [
+        {
+          "peak": 0.11798200756311417,
+          "quietRms": 0.0005946357583232172,
+          "failureRms": 0.009878581845764723,
+          "ratio": 16.612828454213428
+        },
+        {
+          "peak": 0.2682293951511383,
+          "quietRms": 0.0017839072740860188,
+          "failureRms": 0.009878237602547964,
+          "ratio": 5.5374165160064495
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "version": "2026.10.16-1",
+    "rate": 48000,
+    "rows": [
+      {
+        "id": "small",
+        "preset": {
+          "label": "小さなベル・高め",
+          "frequency": 880,
+          "ratio": 1.4142135623730951,
+          "index": 2.8,
+          "tailIndex": 0.65,
+          "modDecay": 0.26,
+          "ampDecay": 0.3
+        },
+        "solo": {
+          "peak": 0.11176197230815887,
+          "last": 1.7606458333333332,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.0735632103879092,
+          "lateRms": 0.0004476434432955229,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.00008368541461330946
+        },
+        "failure": {
+          "peak": 0.11176197230815887,
+          "last": 2.0859791666666667,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.0735632103879092,
+          "lateRms": 0.0004476434432955229,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.00988347006340661
+        },
+        "triple": {
+          "peak": 0.2530004680156708,
+          "last": 2.5727708333333332,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 6,
+          "finite": true,
+          "attackRms": 0.16836634354398566,
+          "lateRms": 0.0013429303274786154,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.009891250532326762
+        },
+        "stopped": {
+          "silent": 0,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 0.4
+            },
+            {
+              "start": 0,
+              "stop": 0.4
+            }
+          ]
+        },
+        "successMixes": [
+          {
+            "method": "clear",
+            "peak": 0.1259247064590454,
+            "last": 1.7606458333333332,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 1.06
+              },
+              {
+                "start": 0.58,
+                "stop": 1.22
+              },
+              {
+                "start": 0.74,
+                "stop": 1.38
+              },
+              {
+                "start": 0.98,
+                "stop": 1.62
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.0735632103879092,
+            "lateRms": 0.0023182937537283687,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.00011849643094551331
+          },
+          {
+            "method": "perfect",
+            "peak": 0.13536931574344635,
+            "last": 2.2759791666666667,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 0.79
+              },
+              {
+                "start": 0.56,
+                "stop": 0.93
+              },
+              {
+                "start": 0.7,
+                "stop": 1.0699999999999998
+              },
+              {
+                "start": 0.84,
+                "stop": 1.21
+              },
+              {
+                "start": 1.02,
+                "stop": 1.3900000000000001
+              },
+              {
+                "start": 1.2,
+                "stop": 1.5699999999999998
+              },
+              {
+                "start": 1.38,
+                "stop": 1.75
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.0735632103879092,
+            "lateRms": 0.012610979408151165,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.03113640600489138
+          }
+        ],
+        "wav": {
+          "bytes": 288044,
+          "sha256": "b08f253a025ea86de5175c2efdfac5ac0b2459c8af1a86d50f135234dc60ce95"
+        }
+      },
+      {
+        "id": "chime",
+        "preset": {
+          "label": "チャイム・単音",
+          "frequency": 440,
+          "ratio": 1.4142135623730951,
+          "index": 5.2,
+          "tailIndex": 0.9,
+          "modDecay": 0.42,
+          "ampDecay": 0.325
+        },
+        "solo": {
+          "peak": 0.11496101319789886,
+          "last": 1.7873125,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.07541860790593939,
+          "lateRms": 0.0005236830817821509,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.0000971354817233552
+        },
+        "failure": {
+          "peak": 0.11496101319789886,
+          "last": 2.0859791666666667,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.07541860790593939,
+          "lateRms": 0.0005236830817821509,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.009879294792038088
+        },
+        "triple": {
+          "peak": 0.2604323923587799,
+          "last": 2.577583333333333,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 6,
+          "finite": true,
+          "attackRms": 0.17177925766490784,
+          "lateRms": 0.0015710492435787773,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.009879467848998383
+        },
+        "stopped": {
+          "silent": 0,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 0.4
+            },
+            {
+              "start": 0,
+              "stop": 0.4
+            }
+          ]
+        },
+        "successMixes": [
+          {
+            "method": "clear",
+            "peak": 0.12610353529453278,
+            "last": 1.7873125,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 1.06
+              },
+              {
+                "start": 0.58,
+                "stop": 1.22
+              },
+              {
+                "start": 0.74,
+                "stop": 1.38
+              },
+              {
+                "start": 0.98,
+                "stop": 1.62
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.07541860790593939,
+            "lateRms": 0.002392036107624548,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.00012302781906393858
+          },
+          {
+            "method": "perfect",
+            "peak": 0.13530419766902924,
+            "last": 2.2759791666666667,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 0.79
+              },
+              {
+                "start": 0.56,
+                "stop": 0.93
+              },
+              {
+                "start": 0.7,
+                "stop": 1.0699999999999998
+              },
+              {
+                "start": 0.84,
+                "stop": 1.21
+              },
+              {
+                "start": 1.02,
+                "stop": 1.3900000000000001
+              },
+              {
+                "start": 1.2,
+                "stop": 1.5699999999999998
+              },
+              {
+                "start": 1.38,
+                "stop": 1.75
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.07541860790593939,
+            "lateRms": 0.012617091569516762,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.031133569995235737
+          }
+        ],
+        "wav": {
+          "bytes": 288044,
+          "sha256": "f5fbb514ea4509e4b7f833bbd8c2f427a68712b07dd565f75b8bd55b6800f6f2"
+        }
+      },
+      {
+        "id": "large",
+        "preset": {
+          "label": "大きな鐘・低め",
+          "frequency": 146.8323839587,
+          "ratio": 1.4142135623730951,
+          "index": 9,
+          "tailIndex": 1.2,
+          "modDecay": 0.6,
+          "ampDecay": 0.35
+        },
+        "solo": {
+          "peak": 0.11798200756311417,
+          "last": 1.8113125,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.07721736898875096,
+          "lateRms": 0.0005946357583232172,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.00011147712469451649
+        },
+        "failure": {
+          "peak": 0.11798200756311417,
+          "last": 2.0859791666666667,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 2,
+          "finite": true,
+          "attackRms": 0.07721736898875096,
+          "lateRms": 0.0005946357583232172,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.009878581845764723
+        },
+        "triple": {
+          "peak": 0.2682293951511383,
+          "last": 2.579083333333333,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 0,
+              "stop": 2.62
+            },
+            {
+              "start": 1.5,
+              "stop": 1.8
+            },
+            {
+              "start": 1.78,
+              "stop": 2.08
+            }
+          ],
+          "bellCalls": 6,
+          "finite": true,
+          "attackRms": 0.17567761242125532,
+          "lateRms": 0.0017839072740860188,
+          "nearEndRms": 0,
+          "silence": 0,
+          "failureRms": 0.009878237602547964
+        },
+        "stopped": {
+          "silent": 0,
+          "calls": [
+            {
+              "start": 0,
+              "stop": 0.4
+            },
+            {
+              "start": 0,
+              "stop": 0.4
+            }
+          ]
+        },
+        "successMixes": [
+          {
+            "method": "clear",
+            "peak": 0.1383342444896698,
+            "last": 1.8113125,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 1.06
+              },
+              {
+                "start": 0.58,
+                "stop": 1.22
+              },
+              {
+                "start": 0.74,
+                "stop": 1.38
+              },
+              {
+                "start": 0.98,
+                "stop": 1.62
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.07721736898875096,
+            "lateRms": 0.00235313936004646,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.00014053761590170045
+          },
+          {
+            "method": "perfect",
+            "peak": 0.13540633022785187,
+            "last": 2.2759791666666667,
+            "calls": [
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0,
+                "stop": 2.62
+              },
+              {
+                "start": 0.42,
+                "stop": 0.79
+              },
+              {
+                "start": 0.56,
+                "stop": 0.93
+              },
+              {
+                "start": 0.7,
+                "stop": 1.0699999999999998
+              },
+              {
+                "start": 0.84,
+                "stop": 1.21
+              },
+              {
+                "start": 1.02,
+                "stop": 1.3900000000000001
+              },
+              {
+                "start": 1.2,
+                "stop": 1.5699999999999998
+              },
+              {
+                "start": 1.38,
+                "stop": 1.75
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              },
+              {
+                "start": 1.6,
+                "stop": 2.27
+              }
+            ],
+            "bellCalls": 2,
+            "finite": true,
+            "attackRms": 0.07721736898875096,
+            "lateRms": 0.012614544514807171,
+            "nearEndRms": 0,
+            "silence": 0,
+            "failureRms": 0.031136146056242972
+          }
+        ],
+        "wav": {
+          "bytes": 288044,
+          "sha256": "dfb1e8c2a2e250582fb7a3071abb12f588d8aa95a25938cbb30ec7222eba38ae"
+        }
+      }
+    ],
+    "reference": {
+      "peak": 0.1178978979587555,
+      "last": 2.6259791666666668,
+      "calls": [
+        {
+          "start": 0,
+          "stop": 2.62
+        }
+      ],
+      "bellCalls": 1,
+      "finite": true,
+      "attackRms": 0.077262649948986,
+      "lateRms": 0.003483968925119289,
+      "nearEndRms": 0.00010645572607668532,
+      "silence": 0,
+      "failureRms": 0.0014349954165593787
+    },
+    "volume": 0.7
+  },
+  "passed": true
+}
