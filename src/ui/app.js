@@ -82,6 +82,7 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title) {
+  settingsTapGuard=null;
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
