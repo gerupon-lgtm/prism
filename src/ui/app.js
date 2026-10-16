@@ -610,7 +610,14 @@ function showWireDelete(id,pointer){
   wireDelete.showModal();positionWireDelete();
 }
 wireDelete.addEventListener('pointerdown',()=>{deleteNeedsPress=false;},true);
-wireDelete.addEventListener('click',event=>{if(deleteNeedsPress&&event.detail!==0){event.preventDefault();event.stopImmediatePropagation();}},true);
+wireDelete.addEventListener('click',event=>{
+  if(deleteNeedsPress&&event.detail!==0){event.preventDefault();event.stopImmediatePropagation();return;}
+  const rect=wireDelete.getBoundingClientRect();
+  if(event.target===wireDelete&&(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)){
+    // Dismiss on click so the same touch cannot activate a control underneath.
+    event.preventDefault();event.stopImmediatePropagation();cancelWireDelete();
+  }
+},true);
 function abortHeldDelete(event){cancelWireDelete();event.preventDefault();event.stopImmediatePropagation();}
 document.addEventListener('pointermove',event=>{const hold=pendingWireDelete?.hold;if(hold&&event.pointerId===hold.id&&Math.hypot(event.clientX-hold.x,event.clientY-hold.y)>12)abortHeldDelete(event);},true);
 document.addEventListener('pointerdown',event=>{const hold=pendingWireDelete?.hold;if(hold&&event.pointerId!==hold.id)abortHeldDelete(event);},true);
@@ -771,7 +778,9 @@ function runCounts(){
   return {records:run.records.length,retainedParticles:run.particles.size,active:run.activeCount,waiting};
 }
 function finishLoad(){
-  if(load.finish(runCounts())&&session.run?.status!=='stopped'){
+  // A slow final picture has no calculation left to pause or resume.
+  // Keep completed results, outcome audio and the normal editing return alive.
+  if(load.finish(runCounts())&&session.run?.status!=='stopped'&&!session.run?.exhausted){
     interruptRun('load');render(false);
   }
 }
