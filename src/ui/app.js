@@ -32,17 +32,19 @@ const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
-let wireDialogTap=null;
+const wireDelete=$('wire-delete-toast');
+let pendingWireDelete=null,deleteNeedsPress=false;
+let settingsTapGuard=null;
 // A second tap at the same board position must not activate the new dialog behind it.
 for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
-  if(wireDialogTap&&performance.now()<wireDialogTap.until&&Math.hypot(event.clientX-wireDialogTap.x,event.clientY-wireDialogTap.y)<24){event.preventDefault();event.stopImmediatePropagation();}
+  if(settingsTapGuard&&performance.now()<settingsTapGuard.until&&Math.hypot(event.clientX-settingsTapGuard.x,event.clientY-settingsTapGuard.y)<24){event.preventDefault();event.stopImmediatePropagation();}
 },true);
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
 const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
-const board=new Board($('board'),session,render,settings,notify,()=>chime.wire());
+const board=new Board($('board'),session,render,settings,notify,()=>chime.wire(),showWireDelete);
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
 const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
@@ -80,9 +82,10 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title) {
+  board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -90,6 +93,14 @@ function close() { if(updating)return;dialog.close();document.body.classList.rem
 dialog.addEventListener('close',()=>{if(dialog.open)return;document.body.classList.remove('input-focus');dialogPage=null;render(false);});
 dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();return;}document.body.classList.remove('input-focus');});
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
+// Safari can collapse focus-time selection during the pointer's default click.
+// Reapply it only for a newly focused field; later clicks can position the caret.
+let selectAfterClick=null;
+document.addEventListener('pointerdown',event=>{const field=event.target.closest('input[type=text],input:not([type])');selectAfterClick=field&&document.activeElement!==field?field:null;},true);
+document.addEventListener('click',event=>{
+  const field=selectAfterClick;selectAfterClick=null;
+  if(field===event.target)requestAnimationFrame(()=>{if(document.activeElement===field)field.select();});
+});
 
 function challengeGoal(challenge){
   const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
@@ -163,7 +174,7 @@ function render(redraw=true,{records=true}={}) {
   $('retry-result').hidden=session.pendingScores.size===0;
   setText('result',[text,message||startBlockedReason].filter(Boolean).join('　'));$('result').classList.toggle('error',Boolean(message));
   const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
-  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで変更・削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
+  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
     const guide=session.guide,steps=guide.mode==='challenge'?['星から候補へドラッグしてつなぎます。','鐘までつないで「鐘を鳴らす」を押します。','鐘への到着と点数を見て、上の「記録」を開きます。']:['「鐘を鳴らす」で2.5秒後に鐘が鳴る様子を見ます。','停止してプリズムAをダブルタップ。処理時間を1.5秒へ。','もう一度「鐘を鳴らす」を押して、プリズムB経由で3秒後に鐘が鳴る様子を見ます。'];
@@ -429,7 +440,7 @@ function partsExplanation() {
 }
 function aboutGame() {
   open('遊び方と概要');
-  body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点や道をダブルタップすると設定を開きます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
+  body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点はダブルタップ、結線済みの道はタップで設定を開きます。結線済みの道を長押しすると、赤い線を確認して1本だけ削除できます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
   actions.append(button('閉じる',close));fitDialogForm();
 }
 function menu() {
@@ -577,6 +588,44 @@ async function applyUpdate(discard) {
   catch(error){updating=false;$('app').inert=!$('title-screen').hidden;$('title-screen').inert=false;controls.forEach(({control,disabled})=>control.disabled=disabled);throw error;}
 }
 
+function cancelWireDelete(){
+  if(!pendingWireDelete&&!wireDelete.open)return;
+  pendingWireDelete=null;deleteNeedsPress=false;board.removalId=null;board.cancelAll();
+  if(wireDelete.open)wireDelete.close();board.render();
+}
+function positionWireDelete(){
+  if(!wireDelete.open)return;
+  const rect=wireDelete.getBoundingClientRect(),line=board.world.querySelector(`[data-edge="${CSS.escape(pendingWireDelete.id)}"] .edge-line`)?.getBoundingClientRect();
+  const gap=8,bottom=Math.max(gap,innerHeight-rect.height-gap),overlap=top=>line?Math.max(0,Math.min(top+rect.height,line.bottom)-Math.max(top,line.top)):0;
+  wireDelete.style.top=`${overlap(bottom)<=overlap(gap)?bottom:gap}px`;
+  wireDelete.style.left=`${Math.max(gap,(innerWidth-rect.width)/2)}px`;
+}
+function showWireDelete(id,pointer){
+  session.requireEditable();if(!session.circuit.edges.some(edge=>edge.id===id))return;
+  cancelWireDelete();board.cancelAll();if(dialog.open)dialog.close();
+  pendingWireDelete={id,circuit:session.circuit,hold:pointer?{id:pointer.pointerId,x:pointer.clientX,y:pointer.clientY}:null};deleteNeedsPress=Boolean(pointer);
+  board.removalId=id;session.selection=id;board.render();
+  $('wire-delete-target').textContent=objectName(id,session.circuit);
+  wireDelete.showModal();positionWireDelete();
+}
+wireDelete.addEventListener('pointerdown',()=>{deleteNeedsPress=false;},true);
+wireDelete.addEventListener('click',event=>{if(deleteNeedsPress&&event.detail!==0){event.preventDefault();event.stopImmediatePropagation();}},true);
+function abortHeldDelete(event){cancelWireDelete();event.preventDefault();event.stopImmediatePropagation();}
+document.addEventListener('pointermove',event=>{const hold=pendingWireDelete?.hold;if(hold&&event.pointerId===hold.id&&Math.hypot(event.clientX-hold.x,event.clientY-hold.y)>12)abortHeldDelete(event);},true);
+document.addEventListener('pointerdown',event=>{const hold=pendingWireDelete?.hold;if(hold&&event.pointerId!==hold.id)abortHeldDelete(event);},true);
+document.addEventListener('pointerup',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)pendingWireDelete.hold=null;},true);
+document.addEventListener('pointercancel',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)abortHeldDelete(event);},true);
+wireDelete.addEventListener('close',()=>{if(!wireDelete.open)cancelWireDelete();});
+$('wire-delete-cancel').addEventListener('click',cancelWireDelete);
+$('wire-delete-target').addEventListener('click',()=>{
+  const {id,circuit}=pendingWireDelete;cancelWireDelete();fullText('対象の名前',objectName(id,circuit),()=>showWireDelete(id));
+});
+$('wire-delete-ok').addEventListener('click',()=>attempt(()=>{
+  const pending=pendingWireDelete;if(!pending)return;
+  if(!session.editable||session.circuit!==pending.circuit){cancelWireDelete();notify('配線が変わったため、もう一度選んでください。');return;}
+  session.remove(pending.id,true);cancelWireDelete();message='';render();
+}));
+
 function settings(pointer) {
   const id=session.selection;if(!id)return;
   const input=session.circuit,edge=input.edges.find(item=>item.id===id),node=input.nodes.find(item=>item.id===id);
@@ -586,7 +635,8 @@ function settings(pointer) {
     return;
   }
   open(`${objectName(id,input)}の設定`);
-  if(edge&&pointer)wireDialogTap={x:pointer.clientX,y:pointer.clientY,until:performance.now()+400};
+  dialog.classList.add('settings-dialog');
+  if(pointer)settingsTapGuard={x:pointer.clientX,y:pointer.clientY,until:performance.now()+400};
   const items=[];
   items.push(['名前の全文',()=>fullText('対象の名前',objectName(id,input),settings)]);
   if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
@@ -604,6 +654,7 @@ function settings(pointer) {
     actions.append(button('確定',()=>{const next=structuredClone(session.circuit);next.nodes.find(n=>n.id===id).name=field.value;session.commitEdit(next);close();}),button('取消',close));
   }]);
   const remove=()=>{
+    if(edge){showWireDelete(id);return;}
     session.requireEditable();const related=node?input.edges.filter(path=>path.from===id||path.to===id):[edge];
     open('選んだパーツを削除');body.append(element('p',node?`このパーツと、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
     listPage(related,path=>element('p',objectName(path.id,input)),'接続する道はありません。');
@@ -611,8 +662,13 @@ function settings(pointer) {
     fitDialogForm();
   };
   if(edge)actions.append(button(session.editable?'削除':'停止して編集',()=>{if(session.editable)remove();else{stopRun();settings();}}));
-  else if(node.kind!=='source')items.push(['削除',remove]);
-  listPage(items,item=>button(item[0],item[1]));actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
+  else if(node.kind!=='source'&&session.mode==='free')items.push(['削除',remove]);
+  listPage(items,item=>{
+    const row=button(item[0],item[1],{class:'setting-option'});
+    const value=item[0]==='時間'?`${edge?.time??node.process}秒`:null;
+    if(value){const label=element('span','時間'),current=element('span',value.length>18?value.slice(0,16)+'…':value,{class:'setting-value','aria-hidden':'true'});row.replaceChildren(label,current);row.title=`時間：${value}`;}
+    return row;
+  });actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
 }
 function fullText(title,text,back=close){
   open(title);const chunks=Array.from(String(text));const parts=[];
@@ -627,6 +683,7 @@ function objects(){
 function timeInput(id,initial) {
   const editing=session.mode==='free'&&session.editable;
   open(`${objectName(id,session.circuit)}の時間`);
+  dialog.classList.add('time-dialog');
   if(!editing){body.append(element('p',`${initial}秒。${session.mode==='challenge'?'課題の時間は固定です。':'停止後に編集できます。'}`));actions.append(button('戻る',settings));return;}
   const input=element('input','',{type:'text',inputmode:'decimal',value:initial,'aria-label':'秒数',enterkeyhint:'done'});
   const row=element('div','',{class:'dialog-row'}),scale=new TimeScale(['0.1']);
@@ -844,8 +901,9 @@ $('hint').addEventListener('click',()=>{
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
   }else fullText('操作の案内',$('hint').textContent);
 });
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
   if(celebration.run){celebration.cancel();chime.stop();}cancelStart();
@@ -857,7 +915,7 @@ function viewport(){
   orientation.update({width,height,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
   const state={direction:screen.orientation?.type??null,angle:screen.orientation?.angle??window.orientation??null,frame:orientation.rotation,width,height,scale:visual?.scale??1};
   const previous=viewport.history?.at(-1);if(JSON.stringify(previous)!==JSON.stringify(state)){viewport.history??=[];viewport.history.push(state);if(viewport.history.length>8)viewport.history.shift();}
-  board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
+  cancelWireDelete();board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
 }
 document.querySelector('.app-version').addEventListener('click',()=>{
   fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}`);

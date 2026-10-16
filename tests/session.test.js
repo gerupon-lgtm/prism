@@ -68,7 +68,7 @@ test('配線クリアは点・保存回路・停止後の記録を保持し、�
   const f=fixture(),s=free(f);s.setTime('A','1.5');s.moveNode('B',.8,.4);s.setEnabled('B',false);s.setTime(s.circuit.edges[0].id,'1.2');s.saveCircuit('元回路');const nodes=structuredClone(s.circuit.nodes),saved=structuredClone(f.records.slots());
   s.start();assert.throws(()=>s.clearConnections());s.pause();assert.throws(()=>s.clearConnections());s.stop();
   const run=s.run,oldCircuit=structuredClone(run.circuit.raw),result=structuredClone(s.exportResult());
-  s.clearConnections();assert.equal(s.circuit.edges.length,0);assert.equal(s.dirty,true);assert.deepEqual(s.circuit.nodes,nodes);assert.deepEqual(f.records.slots(),saved);
+  s.view.showAllTimes=false;s.clearConnections();assert.equal(s.view.showAllTimes,true);assert.equal(s.circuit.edges.length,0);assert.equal(s.dirty,true);assert.deepEqual(s.circuit.nodes,nodes);assert.deepEqual(f.records.slots(),saved);
   assert.equal(s.run,run);assert.deepEqual(run.circuit.raw,oldCircuit);assert.deepEqual(s.exportResult(),result);
 });
 

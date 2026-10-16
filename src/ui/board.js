@@ -9,8 +9,8 @@ const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMin:20,passMa
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
-  constructor(element, session, changed, openSettings, notify, connected=()=>{}) {
-    Object.assign(this,{element,session,changed,openSettings,notify,connected});
+  constructor(element, session, changed, openSettings, notify, connected=()=>{},requestDelete=()=>{}) {
+    Object.assign(this,{element,session,changed,openSettings,notify,connected,requestDelete});
     this.orientation = svg('g',{class:'board-orientation',id:'board-detail'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
     this.fireworksLayer=svg('g',{class:'fireworks-layer','aria-hidden':'true'});
     this.orientation.append(this.fireworksLayer,this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
@@ -22,6 +22,7 @@ export class Board {
     element.addEventListener('pointermove',event=>this.move(event));
     element.addEventListener('pointerup',event=>this.up(event));
     element.addEventListener('pointercancel',event=>this.cancel(event));
+    element.addEventListener('lostpointercapture',event=>{if(this.pointers.has(event.pointerId))this.cancel(event);});
     element.addEventListener('contextmenu',event=>event.preventDefault());
     element.addEventListener('wheel',event=>{event.preventDefault();this.zoom(event.deltaY<0?1.15:1/1.15,event.clientX,event.clientY);},{passive:false});
     this.resizeObserver = new ResizeObserver(()=>this.resize()); this.resizeObserver.observe(element);
@@ -100,7 +101,7 @@ export class Board {
       const control=length ? {x:(a.x+b.x)/2-(b.y-a.y)/length*normal,y:(a.y+b.y)/2+(b.x-a.x)/length*normal} : {x:a.x+160+offset,y:a.y-160-offset};
       const curve={a,b,control}; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
-      const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}`,tabindex:0,role:'button','aria-label':`${candidate?'未結線の候補':'結線済みの配線'}：${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}へ、${edge.time}秒`});
+      const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}${!candidate&&this.removalId===edge.id?' pending-delete':''}`,tabindex:0,role:'button','aria-label':`${candidate?'未結線の候補':'結線済みの配線'}：${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}へ、${edge.time}秒`});
       group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=edge.id;this.openSettings();}});
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
@@ -340,6 +341,7 @@ export class Board {
   }
   down(event) {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
+    this.stopHold();
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
     if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
     const directEdge=event.target.closest('[data-edge]');
@@ -351,6 +353,14 @@ export class Board {
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
     this.gesture={kind:event.target.dataset.move?'move':node?'wire':event.pointerType==='touch'?'idle':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
+    if(edge&&!node&&!this.addKind&&this.session.editable&&this.session.circuit.edges.some(item=>item.id===edge)){
+      const gesture=this.gesture;
+      this.holdTimer=setTimeout(()=>{
+        this.holdTimer=null;
+        if(this.gesture!==gesture||gesture.moved||this.pointers.size!==1||!this.session.editable)return;
+        gesture.kind='held';this.lastTap=null;this.requestDelete(edge,event);
+      },550);
+    }
     if(node&&this.session.editable)this.magnifier.show(event,`${objectName(node,this.session.circuit)}から結線`);
   }
   distance() {const [a,b]=[...this.pointers.values()];return Math.hypot(a.x-b.x,a.y-b.y);}
@@ -396,6 +406,7 @@ export class Board {
     }
     const threshold=event.pointerType==='touch'&&this.session.circuit.edges.some(edge=>edge.id===gesture.id)?12:7;
     gesture.moved ||= Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>threshold;
+    if(gesture.moved)this.stopHold();
     gesture.last=this.location(event.clientX,event.clientY,gesture.matrix);
     if(gesture.kind==='pan'&&gesture.moved) {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
@@ -420,8 +431,9 @@ export class Board {
     points.push(gesture.last);this.wire.setAttribute('d',points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' '));
   }
   up(event) {
+    this.stopHold();
     this.move(event,true);const gesture=this.gesture;this.pointers.delete(event.pointerId);this.magnifier.hide();
-    if(!gesture)return;
+    if(!gesture||gesture.kind==='held'){this.gesture=null;return;}
     if(gesture.kind==='pinch'){if(this.pointers.size===0)this.cancelAll();return;}
     this.gesture=null;this.wire?.setAttribute('d','');
     try {
@@ -435,7 +447,7 @@ export class Board {
         else if(gesture.id) {
           const now=performance.now();
           const built=this.session.circuit.edges.some(edge=>edge.id===gesture.id);
-          if(built||(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400)){this.lastTap=null;this.openSettings(built?event:undefined);}
+          if(built||(this.lastTap?.id===gesture.id&&now-this.lastTap.time<400)){this.lastTap=null;this.openSettings(event);}
           else this.lastTap={id:gesture.id,time:now};
         }
       }
@@ -443,5 +455,6 @@ export class Board {
     this.render();this.changed();
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
-  cancelAll() {this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
+  stopHold() {clearTimeout(this.holdTimer);this.holdTimer=null;}
+  cancelAll() {this.stopHold();this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
 }

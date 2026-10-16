@@ -194,7 +194,7 @@ async function connection(context,engine,offline){
         const startup=await context.newPage();observeErrors(startup);await startup.goto(url);await enterApp(startup);await prepared(startup);
         await startup.locator('#update-notice').waitFor({state:'visible',timeout:15000});
         assert.equal(await startup.locator('meta[name=prism-version]').getAttribute('content'),version);
-        assert.equal(await startup.evaluate(()=>document.querySelector('dialog').open),false,'Startup update must not interrupt play');
+        assert.equal(await startup.evaluate(()=>Boolean(document.querySelector('dialog[open]'))),false,'Startup update must not interrupt play');
         assert.equal(await startup.evaluate(()=>localStorage.getItem('prism-notes.scores.v1')),scoreBefore);
         assert.equal(await other.getByRole('textbox',{name:'秒数'}).inputValue(),'2.7');
         // A single click applies the prepared version when there is no work to lose.

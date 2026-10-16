@@ -95,7 +95,7 @@ export class Session {
     return added;
   }
   clearConnections() {
-    this.commitEdit({...this.circuit,edges:[]});this.selection=null;
+    this.commitEdit({...this.circuit,edges:[]});this.selection=null;this.view.showAllTimes=true;
   }
   nextId(prefix,circuit=this.circuit) {
     const used = new Set([...circuit.nodes,...circuit.edges].map(item => item.id));

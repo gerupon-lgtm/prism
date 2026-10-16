@@ -475,3 +475,30 @@ html:not(.device-landscape) body:not(.records-fullscreen) .compact #board{grid-c
 .bell-arrival-ray{fill:none;stroke:#fff0c1;stroke-width:2px;stroke-linecap:round;vector-effect:non-scaling-stroke}
 @keyframes bell-beacon{0%{opacity:0;transform:scale(.75)}12%,30%{opacity:1}100%{opacity:0;transform:scale(1.22)}}
 @media(prefers-reduced-motion:reduce){.bell-arrival-beacon{animation:none;opacity:.65}.goal.arrived .node-symbol{filter:drop-shadow(0 0 9px #f3dca5)}}
+
+/* Keep the selected path visible behind a small, explicit confirmation. */
+.edge.pending-delete:not(.candidate) .edge-line{stroke:#ff9488;stroke-width:6px}
+.edge.pending-delete:not(.candidate) .edge-core{stroke:#ffe4df;opacity:1}
+.edge.pending-delete:not(.candidate) .edge-backdrop{stroke:#381721;stroke-width:11px;stroke-opacity:1}
+.edge.pending-delete .edge-label-card{fill:#382330;stroke:#f2ada1}
+.edge.pending-delete.unavailable{opacity:1}
+#wire-delete-toast{position:fixed;inset:auto;width:min(430px,calc(100vw - 16px));height:auto;max-height:calc(100dvh - 16px);margin:0;padding:12px;overflow:hidden;border-color:#cf9288;box-shadow:0 8px 28px #02061177}
+#wire-delete-toast[open]{display:flex;flex-direction:column;gap:8px}
+#wire-delete-toast::backdrop{background:#05091318}
+#wire-delete-title{font-size:1rem;line-height:1.35}
+#wire-delete-target{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:44px;margin:0;padding:5px 8px;text-align:left;line-height:1.3;overflow-wrap:anywhere;color:#dae2f2;background:#152035;border-color:#40506c}
+.wire-delete-actions{display:flex;gap:10px}
+.wire-delete-actions button{flex:1;min-width:0;min-height:52px;font-size:1rem}
+#wire-delete-ok{background:#6d353a;border-color:#e3aaa0;color:#fff4ee;font-weight:600}
+#wire-delete-cancel{border-color:#8d9bb7}
+dialog.settings-dialog{width:min(540px,calc(100vw - 18px));height:min(560px,calc(var(--app-height) - 20px))}
+dialog.settings-dialog .panel-heading button,dialog.time-dialog .panel-heading button{min-width:44px;min-height:44px}
+dialog.settings-dialog #dialog-actions button,dialog.time-dialog #dialog-actions button{min-height:48px;font-size:1rem}
+dialog.settings-dialog .setting-option{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:10px 14px;white-space:normal;font-size:1rem}
+dialog.settings-dialog .pager button{min-height:44px;min-width:60px}
+.setting-value{font-variant-numeric:tabular-nums;font-weight:600;color:#ead39b;overflow-wrap:anywhere;text-align:right}
+dialog.time-dialog{width:min(520px,calc(100vw - 18px));height:min(360px,calc(var(--app-height) - 20px))}
+dialog.time-dialog #dialog-body{justify-content:center}
+dialog.time-dialog .dialog-row{gap:10px;align-items:stretch}
+dialog.time-dialog .dialog-row button{min-height:56px;flex:1;font-size:1rem;padding:8px 5px}
+dialog.time-dialog .dialog-row input{flex:1.6;min-height:56px;font-size:1.4rem;text-align:center;font-variant-numeric:tabular-nums}
