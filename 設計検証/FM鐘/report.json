@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-16T06:51:44.120Z",
+  "checkedAt": "2026-10-16T21:58:03.900Z",
   "evidence": "Actual Web Audio synthesis in a disposable PC browser. No physical-device or listening acceptance.",
   "checks": [
     {
@@ -11,17 +11,17 @@
       "lateRms": 0.0004476434432955229
     },
     {
-      "label": "small single bell leaves room for both failure notes after 1.5s",
+      "label": "small single bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0004476434432955229,
-      "failureRms": 0.03496888431682111,
-      "peak": 0.11176197230815887
+      "failureRms": 0.07342434469244508,
+      "peak": 0.13400907814502716
     },
     {
-      "label": "small three simultaneous bell leaves room for both failure notes after 1.5s",
+      "label": "small three simultaneous bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0013429303274786154,
-      "failureRms": 0.03497211289371273,
+      "failureRms": 0.07342571565106054,
       "peak": 0.2530004680156708
     },
     {
@@ -31,8 +31,8 @@
     {
       "label": "small clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.18517708778381348,
-      "notes": 4
+      "peak": 0.17559899389743805,
+      "notes": 6
     },
     {
       "label": "small perfect mixes with the delayed result melody before the 2.7s clear return",
@@ -49,17 +49,17 @@
       "lateRms": 0.0005236830817821509
     },
     {
-      "label": "chime single bell leaves room for both failure notes after 1.5s",
+      "label": "chime single bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0005236830817821509,
-      "failureRms": 0.034966590534732764,
-      "peak": 0.11496101319789886
+      "failureRms": 0.0734255632365687,
+      "peak": 0.13406018912792206
     },
     {
-      "label": "chime three simultaneous bell leaves room for both failure notes after 1.5s",
+      "label": "chime three simultaneous bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0015710492435787773,
-      "failureRms": 0.034965440407611535,
+      "failureRms": 0.07342432885300217,
       "peak": 0.2604323923587799
     },
     {
@@ -69,8 +69,8 @@
     {
       "label": "chime clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.1875460147857666,
-      "notes": 4
+      "peak": 0.173554927110672,
+      "notes": 6
     },
     {
       "label": "chime perfect mixes with the delayed result melody before the 2.7s clear return",
@@ -87,17 +87,17 @@
       "lateRms": 0.0005946357583232172
     },
     {
-      "label": "large single bell leaves room for both failure notes after 1.5s",
+      "label": "large single bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0005946357583232172,
-      "failureRms": 0.03496734161413523,
-      "peak": 0.11798200756311417
+      "failureRms": 0.07342743609715237,
+      "peak": 0.1340523660182953
     },
     {
-      "label": "large three simultaneous bell leaves room for both failure notes after 1.5s",
+      "label": "large three simultaneous bell leaves room for all failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0017839072740860188,
-      "failureRms": 0.034967950256054335,
+      "failureRms": 0.07343446496991092,
       "peak": 0.2682293951511383
     },
     {
@@ -107,8 +107,8 @@
     {
       "label": "large clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.18437564373016357,
-      "notes": 4
+      "peak": 0.1779603809118271,
+      "notes": 6
     },
     {
       "label": "large perfect mixes with the delayed result melody before the 2.7s clear return",
@@ -169,16 +169,16 @@
       },
       "mixes": [
         {
-          "peak": 0.11176197230815887,
+          "peak": 0.13400907814502716,
           "quietRms": 0.0004476434432955229,
-          "failureRms": 0.03496888431682111,
-          "ratio": 78.11771810926656
+          "failureRms": 0.07342434469244508,
+          "ratio": 164.02417100516354
         },
         {
           "peak": 0.2530004680156708,
           "quietRms": 0.0013429303274786154,
-          "failureRms": 0.03497211289371273,
-          "ratio": 26.04164354480975
+          "failureRms": 0.07342571565106054,
+          "ratio": 54.67574463741475
         }
       ]
     },
@@ -190,16 +190,16 @@
       },
       "mixes": [
         {
-          "peak": 0.11496101319789886,
+          "peak": 0.13406018912792206,
           "quietRms": 0.0005236830817821509,
-          "failureRms": 0.034966590534732764,
-          "ratio": 66.77051780198364
+          "failureRms": 0.0734255632365687,
+          "ratio": 140.20992044786604
         },
         {
           "peak": 0.2604323923587799,
           "quietRms": 0.0015710492435787773,
-          "failureRms": 0.034965440407611535,
-          "ratio": 22.256107216577046
+          "failureRms": 0.07342432885300217,
+          "ratio": 46.73585449539758
         }
       ]
     },
@@ -211,16 +211,16 @@
       },
       "mixes": [
         {
-          "peak": 0.11798200756311417,
+          "peak": 0.1340523660182953,
           "quietRms": 0.0005946357583232172,
-          "failureRms": 0.03496734161413523,
-          "ratio": 58.80463985673824
+          "failureRms": 0.07342743609715237,
+          "ratio": 123.48304835250174
         },
         {
           "peak": 0.2682293951511383,
           "quietRms": 0.0017839072740860188,
-          "failureRms": 0.034967950256054335,
-          "ratio": 19.601887813350665
+          "failureRms": 0.07343446496991092,
+          "ratio": 41.1649562937821
         }
       ]
     }
@@ -263,8 +263,8 @@
           "failureRms": 0.00008368541461330946
         },
         "failure": {
-          "peak": 0.11176197230815887,
-          "last": 2.08575,
+          "peak": 0.13400907814502716,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -276,25 +276,41 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 2,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.0735632103879092,
           "lateRms": 0.0004476434432955229,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.03496888431682111
+          "failureRms": 0.07342434469244508
         },
         "triple": {
           "peak": 0.2530004680156708,
-          "last": 2.5727708333333332,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -322,21 +338,37 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 6,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.16836634354398566,
           "lateRms": 0.0013429303274786154,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.03497211289371273
+          "failureRms": 0.07342571565106054
         },
         "stopped": {
           "silent": 0,
@@ -354,8 +386,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.18517708778381348,
-            "last": 1.9059583333333334,
+            "peak": 0.17559899389743805,
+            "last": 2.0759583333333333,
             "calls": [
               {
                 "start": 0,
@@ -367,45 +399,61 @@
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
               }
             ],
             "bellCalls": 2,
-            "noteCount": 4,
+            "noteCount": 6,
             "finite": true,
             "attackRms": 0.0735632103879092,
-            "lateRms": 0.06911240017039524,
+            "lateRms": 0.05508024409372361,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.038949979770304476
+            "failureRms": 0.05298216731046571
           },
           {
             "method": "perfect",
@@ -513,10 +561,10 @@
             "noteCount": 11,
             "finite": true,
             "attackRms": 0.0735632103879092,
-            "lateRms": 0.0524244500387966,
-            "nearEndRms": 0.004842035693830259,
+            "lateRms": 0.052424449845426595,
+            "nearEndRms": 0.004842035672242945,
             "silence": 0,
-            "failureRms": 0.046870495015245504
+            "failureRms": 0.04687049501583962
           }
         ],
         "wav": {
@@ -558,8 +606,8 @@
           "failureRms": 0.0000971354817233552
         },
         "failure": {
-          "peak": 0.11496101319789886,
-          "last": 2.08575,
+          "peak": 0.13406018912792206,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -571,25 +619,41 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 2,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.07541860790593939,
           "lateRms": 0.0005236830817821509,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.034966590534732764
+          "failureRms": 0.0734255632365687
         },
         "triple": {
           "peak": 0.2604323923587799,
-          "last": 2.577583333333333,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -617,21 +681,37 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 6,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.17177925766490784,
           "lateRms": 0.0015710492435787773,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.034965440407611535
+          "failureRms": 0.07342432885300217
         },
         "stopped": {
           "silent": 0,
@@ -649,8 +729,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.1875460147857666,
-            "last": 1.9059583333333334,
+            "peak": 0.173554927110672,
+            "last": 2.0759583333333333,
             "calls": [
               {
                 "start": 0,
@@ -662,45 +742,61 @@
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
               }
             ],
             "bellCalls": 2,
-            "noteCount": 4,
+            "noteCount": 6,
             "finite": true,
             "attackRms": 0.07541860790593939,
-            "lateRms": 0.06911657368009282,
+            "lateRms": 0.05507355178376323,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.038948904997525034
+            "failureRms": 0.052973274608742245
           },
           {
             "method": "perfect",
@@ -809,9 +905,9 @@
             "finite": true,
             "attackRms": 0.07541860790593939,
             "lateRms": 0.05243048119190253,
-            "nearEndRms": 0.004842035660182314,
+            "nearEndRms": 0.004842035682768503,
             "silence": 0,
-            "failureRms": 0.04686734744998506
+            "failureRms": 0.04686734748991298
           }
         ],
         "wav": {
@@ -853,8 +949,8 @@
           "failureRms": 0.00011147712469451649
         },
         "failure": {
-          "peak": 0.11798200756311417,
-          "last": 2.08575,
+          "peak": 0.1340523660182953,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -866,25 +962,41 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 2,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.07721736898875096,
           "lateRms": 0.0005946357583232172,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.03496734161413523
+          "failureRms": 0.07342743609715237
         },
         "triple": {
           "peak": 0.2682293951511383,
-          "last": 2.579083333333333,
+          "last": 2.6959583333333335,
           "calls": [
             {
               "start": 0,
@@ -912,21 +1024,37 @@
             },
             {
               "start": 1.5,
-              "stop": 1.8
+              "stop": 2.105
             },
             {
-              "start": 1.78,
-              "stop": 2.08
+              "start": 1.5,
+              "stop": 2.105
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 1.75,
+              "stop": 2.355
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
+            },
+            {
+              "start": 2.02,
+              "stop": 2.695
             }
           ],
           "bellCalls": 6,
-          "noteCount": 2,
+          "noteCount": 3,
           "finite": true,
           "attackRms": 0.17567761242125532,
           "lateRms": 0.0017839072740860188,
-          "nearEndRms": 0,
+          "nearEndRms": 0.0029484822227221893,
           "silence": 0,
-          "failureRms": 0.034967950256054335
+          "failureRms": 0.07343446496991092
         },
         "stopped": {
           "silent": 0,
@@ -944,8 +1072,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.18437564373016357,
-            "last": 1.9059583333333334,
+            "peak": 0.1779603809118271,
+            "last": 2.0759583333333333,
             "calls": [
               {
                 "start": 0,
@@ -957,45 +1085,61 @@
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
                 "start": 0.7,
-                "stop": 1.3399999999999999
+                "stop": 1.3049999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 0.8599999999999999,
-                "stop": 1.5
+                "start": 0.8799999999999999,
+                "stop": 1.4849999999999997
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.02,
-                "stop": 1.6600000000000001
+                "start": 1.1,
+                "stop": 1.7249999999999999
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
               },
               {
-                "start": 1.26,
-                "stop": 1.9
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
+              },
+              {
+                "start": 1.37,
+                "stop": 2.075
               }
             ],
             "bellCalls": 2,
-            "noteCount": 4,
+            "noteCount": 6,
             "finite": true,
             "attackRms": 0.07721736898875096,
-            "lateRms": 0.06910967322533244,
+            "lateRms": 0.05507050382931337,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.03895159337067706
+            "failureRms": 0.05299913217693942
           },
           {
             "method": "perfect",
@@ -1103,10 +1247,10 @@
             "noteCount": 11,
             "finite": true,
             "attackRms": 0.07721736898875096,
-            "lateRms": 0.05242137520587716,
-            "nearEndRms": 0.004842035665422288,
+            "lateRms": 0.052421375573397794,
+            "nearEndRms": 0.004842035672242945,
             "silence": 0,
-            "failureRms": 0.04687027721630485
+            "failureRms": 0.04687027722375695
           }
         ],
         "wav": {

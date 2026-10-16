@@ -1,7 +1,7 @@
 {
-  "version": "0.39.0",
+  "version": "0.40.0",
   "url": null,
-  "checkedAt": "2026-10-16T06:47:12.183Z",
+  "checkedAt": "2026-10-16T21:54:33.858Z",
   "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
   "checks": [
     {
@@ -24,7 +24,7 @@
           "kind": "clear",
           "muted": false,
           "state": "running",
-          "added": 4
+          "added": 6
         }
       ]
     },
@@ -36,7 +36,7 @@
           "kind": "failure",
           "muted": false,
           "state": "running",
-          "added": 2
+          "added": 3
         }
       ]
     },
@@ -44,167 +44,167 @@
       "label": "chromium perfect starts later and re-enables the bell button in 2.7s without cutting notes",
       "passed": true,
       "audioAvailable": true,
-      "elapsedMs": 2710.300000011921,
+      "elapsedMs": 2722.5999999940395,
       "probe": {
-        "at": 15756.899999976158,
-        "audioAt": 14.690666666666667,
+        "at": 14787.90000000596,
+        "audioAt": 13.981333333333334,
         "voices": [
           {
             "stops": [
-              15.760666666666665
+              15.051333333333332
             ],
-            "start": 15.390666666666666,
-            "endedAt": 15.770666666666667
+            "start": 14.681333333333333,
+            "endedAt": 15.061333333333334
           },
           {
             "stops": [
-              15.760666666666665
+              15.051333333333332
             ],
-            "start": 15.390666666666666,
-            "endedAt": 15.770666666666667
+            "start": 14.681333333333333,
+            "endedAt": 15.061333333333334
           },
           {
             "stops": [
-              15.900666666666666
+              15.191333333333333
             ],
-            "start": 15.530666666666667,
-            "endedAt": 15.901333333333334
+            "start": 14.821333333333333,
+            "endedAt": 15.192
           },
           {
             "stops": [
-              15.900666666666666
+              15.191333333333333
             ],
-            "start": 15.530666666666667,
-            "endedAt": 15.901333333333334
+            "start": 14.821333333333333,
+            "endedAt": 15.192
           },
           {
             "stops": [
-              16.040666666666667
+              15.331333333333331
             ],
-            "start": 15.670666666666666,
-            "endedAt": 16.042666666666666
+            "start": 14.961333333333332,
+            "endedAt": 15.330666666666668
           },
           {
             "stops": [
-              16.040666666666667
+              15.331333333333331
             ],
-            "start": 15.670666666666666,
-            "endedAt": 16.042666666666666
+            "start": 14.961333333333332,
+            "endedAt": 15.333333333333334
           },
           {
             "stops": [
-              16.180666666666667
+              15.471333333333332
             ],
-            "start": 15.810666666666666,
-            "endedAt": 16.181333333333335
+            "start": 15.101333333333333,
+            "endedAt": 15.472
           },
           {
             "stops": [
-              16.180666666666667
+              15.471333333333332
             ],
-            "start": 15.810666666666666,
-            "endedAt": 16.181333333333335
+            "start": 15.101333333333333,
+            "endedAt": 15.472
           },
           {
             "stops": [
-              16.360666666666667
+              15.651333333333332
             ],
-            "start": 15.990666666666666,
-            "endedAt": 16.370666666666665
+            "start": 15.281333333333333,
+            "endedAt": 15.661333333333333
           },
           {
             "stops": [
-              16.360666666666667
+              15.651333333333332
             ],
-            "start": 15.990666666666666,
-            "endedAt": 16.370666666666665
+            "start": 15.281333333333333,
+            "endedAt": 15.661333333333333
           },
           {
             "stops": [
-              16.540666666666667
+              15.831333333333331
             ],
-            "start": 16.170666666666666,
-            "endedAt": 16.541333333333334
+            "start": 15.461333333333332,
+            "endedAt": 15.832
           },
           {
             "stops": [
-              16.540666666666667
+              15.831333333333331
             ],
-            "start": 16.170666666666666,
-            "endedAt": 16.541333333333334
+            "start": 15.461333333333332,
+            "endedAt": 15.832
           },
           {
             "stops": [
-              16.720666666666666
+              16.011333333333333
             ],
-            "start": 16.350666666666665,
-            "endedAt": 16.72
+            "start": 15.641333333333332,
+            "endedAt": 16.013333333333332
           },
           {
             "stops": [
-              16.720666666666666
+              16.011333333333333
             ],
-            "start": 16.350666666666665,
-            "endedAt": 16.722666666666665
+            "start": 15.641333333333332,
+            "endedAt": 16.013333333333332
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.533333333333335
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.536
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.533333333333335
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.533333333333335
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.530666666666665
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.530666666666665
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.533333333333335
           },
           {
             "stops": [
-              17.24066666666667
+              16.531333333333333
             ],
-            "start": 16.570666666666668,
-            "endedAt": 17.250666666666667
+            "start": 15.861333333333333,
+            "endedAt": 16.533333333333335
           }
         ],
-        "readyAt": 18467.19999998808,
+        "readyAt": 17510.5,
         "button": "鐘を鳴らす"
       }
     },
@@ -212,101 +212,169 @@
       "label": "chromium clear starts later and re-enables the bell button in 2.7s without cutting notes",
       "passed": true,
       "audioAvailable": true,
-      "elapsedMs": 2725.9000000059605,
+      "elapsedMs": 2721.100000023842,
       "probe": {
-        "at": 22753.79999998212,
-        "audioAt": 21.690666666666665,
+        "at": 21789.09999999404,
+        "audioAt": 20.981333333333332,
         "voices": [
           {
             "stops": [
-              23.03066666666667
+              22.28633333333333
             ],
-            "start": 22.390666666666668,
-            "endedAt": 23.032
+            "start": 21.68133333333333,
+            "endedAt": 22.290666666666667
           },
           {
             "stops": [
-              23.03066666666667
+              22.28633333333333
             ],
-            "start": 22.390666666666668,
-            "endedAt": 23.032
+            "start": 21.68133333333333,
+            "endedAt": 22.290666666666667
           },
           {
             "stops": [
-              23.190666666666665
+              22.46633333333333
             ],
-            "start": 22.550666666666665,
-            "endedAt": 23.192
+            "start": 21.86133333333333,
+            "endedAt": 22.466666666666665
           },
           {
             "stops": [
-              23.190666666666665
+              22.46633333333333
             ],
-            "start": 22.550666666666665,
-            "endedAt": 23.192
+            "start": 21.86133333333333,
+            "endedAt": 22.466666666666665
           },
           {
             "stops": [
-              23.350666666666665
+              22.70633333333333
             ],
-            "start": 22.710666666666665,
-            "endedAt": 23.352
+            "start": 22.08133333333333,
+            "endedAt": 22.706666666666667
           },
           {
             "stops": [
-              23.350666666666665
+              22.70633333333333
             ],
-            "start": 22.710666666666665,
-            "endedAt": 23.352
+            "start": 22.08133333333333,
+            "endedAt": 22.706666666666667
           },
           {
             "stops": [
-              23.590666666666667
+              23.056333333333335
             ],
-            "start": 22.950666666666667,
-            "endedAt": 23.592
+            "start": 22.351333333333333,
+            "endedAt": 23.061333333333334
           },
           {
             "stops": [
-              23.590666666666667
+              23.056333333333335
             ],
-            "start": 22.950666666666667,
-            "endedAt": 23.592
+            "start": 22.351333333333333,
+            "endedAt": 23.061333333333334
+          },
+          {
+            "stops": [
+              23.056333333333335
+            ],
+            "start": 22.351333333333333,
+            "endedAt": 23.061333333333334
+          },
+          {
+            "stops": [
+              23.056333333333335
+            ],
+            "start": 22.351333333333333,
+            "endedAt": 23.061333333333334
+          },
+          {
+            "stops": [
+              23.056333333333335
+            ],
+            "start": 22.351333333333333,
+            "endedAt": 23.058666666666667
+          },
+          {
+            "stops": [
+              23.056333333333335
+            ],
+            "start": 22.351333333333333,
+            "endedAt": 23.058666666666667
           }
         ],
-        "readyAt": 25479.69999998808,
+        "readyAt": 24510.20000001788,
         "button": "鐘を鳴らす"
       }
     },
     {
-      "label": "chromium actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "label": "chromium actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records",
       "passed": true,
       "audioAvailable": true,
       "signal": {
-        "firstNoteAfterBell": 1.5000000000000036,
-        "lastNoteEndedAfterResult": 2.069333333333333,
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.690666666666665,
         "quietBell": 0.0017096858937293291,
-        "failurePeak": 0.08955018222332001,
+        "failurePeak": 0.16480201482772827,
         "voices": [
           {
             "stops": [
               {
-                "at": 28.46133333333334,
-                "calledAt": 26.672
+                "at": 27.99566666666667,
+                "calledAt": 25.901333333333334
               }
             ],
-            "start": 28.16133333333334,
-            "endedAt": 28.464
+            "start": 27.390666666666668,
+            "endedAt": 28
           },
           {
             "stops": [
               {
-                "at": 28.741333333333337,
-                "calledAt": 26.672
+                "at": 27.99566666666667,
+                "calledAt": 25.901333333333334
               }
             ],
-            "start": 28.441333333333336,
-            "endedAt": 28.741333333333333
+            "start": 27.390666666666668,
+            "endedAt": 28
+          },
+          {
+            "stops": [
+              {
+                "at": 28.24566666666667,
+                "calledAt": 25.901333333333334
+              }
+            ],
+            "start": 27.640666666666668,
+            "endedAt": 28.248
+          },
+          {
+            "stops": [
+              {
+                "at": 28.24566666666667,
+                "calledAt": 25.901333333333334
+              }
+            ],
+            "start": 27.640666666666668,
+            "endedAt": 28.250666666666667
+          },
+          {
+            "stops": [
+              {
+                "at": 28.58566666666667,
+                "calledAt": 25.901333333333334
+              }
+            ],
+            "start": 27.910666666666668,
+            "endedAt": 28.589333333333332
+          },
+          {
+            "stops": [
+              {
+                "at": 28.58566666666667,
+                "calledAt": 25.901333333333334
+              }
+            ],
+            "start": 27.910666666666668,
+            "endedAt": 28.592
           }
         ]
       }
@@ -336,25 +404,25 @@
       "passed": true,
       "buffers": {
         "clear": {
-          "peak": 0.1868487298488617,
+          "peak": 0.18888811767101288,
           "early": 0,
           "tail": 0,
-          "energy": 2250.978278695671,
-          "signature": 384997797
+          "energy": 2402.567564730762,
+          "signature": 1811626447
         },
         "perfect": {
           "peak": 0.18771938979625702,
           "early": 0,
           "tail": 0,
-          "energy": 3292.945357334072,
-          "signature": 3148475240
+          "energy": 3292.9453681415,
+          "signature": 431645587
         },
         "failure": {
-          "peak": 0.06257930397987366,
+          "peak": 0.13278828561306,
           "early": 0,
           "tail": 0,
-          "energy": 492.98181682769024,
-          "signature": 2838545327
+          "energy": 2031.138601946014,
+          "signature": 935357897
         }
       }
     },
@@ -367,8 +435,8 @@
     {
       "label": "chromium clear has a finite non-clipped signal and releases every voice",
       "passed": true,
-      "peak": 0.18495512008666992,
-      "oscillators": 8
+      "peak": 0.17329224944114685,
+      "oscillators": 12
     },
     {
       "label": "chromium perfect has a finite non-clipped signal and releases every voice",
@@ -379,8 +447,8 @@
     {
       "label": "chromium failure has a finite non-clipped signal and releases every voice",
       "passed": true,
-      "peak": 0.06268265098333359,
-      "oscillators": 2
+      "peak": 0.13368503749370575,
+      "oscillators": 6
     },
     {
       "label": "chromium relay has a finite non-clipped signal and releases every voice",
@@ -391,14 +459,14 @@
     {
       "label": "chromium wire has a finite non-clipped signal and releases every voice",
       "passed": true,
-      "peak": 0.07151629030704498,
-      "oscillators": 2
+      "peak": 0.06747684627771378,
+      "oscillators": 4
     },
     {
       "label": "chromium tap has a finite non-clipped signal and releases every voice",
       "passed": true,
-      "peak": 0.05541728436946869,
-      "oscillators": 1
+      "peak": 0.03462701663374901,
+      "oscillators": 2
     },
     {
       "label": "chromium selected 440Hz chime gains a short separate attack while retaining its late decay",
@@ -408,16 +476,17 @@
       "lateRms": 0.0005236830783533486
     },
     {
-      "label": "chromium result melodies use electric piano, brighter FM piano and a separate soft timbre",
+      "label": "chromium selected C1 and N2 use electric piano while the previous perfect timbre is retained",
       "passed": true,
-      "clearHarmonicRatio": 0.10856602317681395,
-      "perfectHarmonicRatio": 0.6426385032657611
+      "clearOscillators": 12,
+      "perfectOscillators": 22,
+      "failureOscillators": 6
     },
     {
       "label": "chromium three simultaneous chimes leave room for the failure notes",
       "passed": true,
       "quietRms": 0.0015710492363223282,
-      "failureRms": 0.03496544060954387
+      "failureRms": 0.07342432941730598
     },
     {
       "label": "chromium stop cancels layered bells and future FM notes without residual sound",
@@ -435,17 +504,179 @@
         {
           "name": "clear.wav",
           "bytes": 288044,
-          "sha256": "36892993fde498379cec194ce7ebfa8cdce312e4f129dd01aa38de150f4cad84"
+          "sha256": "3e3d7ccd8168359e2913641d10ed46b6c299e6ed8c8fb939c987f9d0320c1ff1"
         },
         {
           "name": "perfect.wav",
           "bytes": 288044,
-          "sha256": "b0fd0818c6feced78f43c5babf9130ae97535d942aad8831409a42fe4426b6db"
+          "sha256": "58b2571917255df031d8e42da316ebd99f30c3edbc3be2d95aca9474b4f0b499"
         },
         {
           "name": "failure.wav",
           "bytes": 288044,
-          "sha256": "0a91c3f42125aa859054d02e370dc36c3f4aa87101907d544b2490b2946938d9"
+          "sha256": "ae58fac9d8ebbc6ac6ab0e77ca94a3c3d381a6f2ad705f2d3c37352a894f0f64"
+        }
+      ]
+    },
+    {
+      "label": "chromium C1 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 3.725290298461914e-8,
+          "rmsDifference": 1.9674141894517283e-9
+        },
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.5580263651903743e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 1.0898469285061169e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.982653270539906e-9
+        }
+      ]
+    },
+    {
+      "label": "chromium N2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 2.2351741790771484e-8,
+          "rmsDifference": 8.592033575935785e-10
+        },
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 4.816573895367802e-10
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 2.2351741790771484e-8,
+          "rmsDifference": 5.536547472811915e-10
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium T2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "T2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "T2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium W2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "W2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "W2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium strike retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "strike",
+          "rate": 48000,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "method": "strike",
+          "rate": 44100,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium perfect retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "perfect",
+          "rate": 48000,
+          "maxDifference": 3.725290298461914e-8,
+          "rmsDifference": 2.1088522393501655e-9
+        },
+        {
+          "method": "perfect",
+          "rate": 44100,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 1.8996638790570223e-9
+        }
+      ]
+    },
+    {
+      "label": "chromium relay retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "relay",
+          "rate": 48000,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "method": "relay",
+          "rate": 44100,
+          "maxDifference": 0,
+          "rmsDifference": 0
         }
       ]
     },
@@ -486,11 +717,11 @@
       "label": "webkit perfect starts later and re-enables the bell button in 2.7s without cutting notes",
       "passed": true,
       "audioAvailable": false,
-      "elapsedMs": 2747,
+      "elapsedMs": 2718,
       "probe": {
-        "at": 18144,
+        "at": 19540,
         "voices": [],
-        "readyAt": 20891,
+        "readyAt": 22258,
         "button": "鐘を鳴らす"
       }
     },
@@ -498,16 +729,16 @@
       "label": "webkit clear starts later and re-enables the bell button in 2.7s without cutting notes",
       "passed": true,
       "audioAvailable": false,
-      "elapsedMs": 2744,
+      "elapsedMs": 2755,
       "probe": {
-        "at": 25361,
+        "at": 26831,
         "voices": [],
-        "readyAt": 28105,
+        "readyAt": 29586,
         "button": "鐘を鳴らす"
       }
     },
     {
-      "label": "webkit actual Q6 bell plus failure waits, completes both notes and returns to editing without changing records",
+      "label": "webkit actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records",
       "passed": true,
       "audioAvailable": false
     },
@@ -545,6 +776,10 @@
     {
       "label": "webkit",
       "reason": "OfflineAudioContext unavailable in this Windows engine. Actual-device audio remains pending."
+    },
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable; selected-sound matching and device listening remain pending."
     }
   ],
   "browsers": [
