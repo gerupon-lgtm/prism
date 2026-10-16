@@ -1,0 +1,335 @@
+{
+  "checkedAt": "2026-10-16T21:57:33.465Z",
+  "evidence": "Original synthesized audition candidates. Actual OfflineAudioContext and native player checks on disposable PC browsers; not human listening or physical-device acceptance.",
+  "checks": [
+    {
+      "label": "2 roles have three original candidates each",
+      "passed": true
+    },
+    {
+      "label": "F4.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 1.845,
+      "start": 0.06,
+      "noteEnd": 1.765,
+      "end": 1.765,
+      "peak": 0.17428536713123322,
+      "rms": 0.03947626024641153,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "F4-context.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 3,
+      "start": 0.7,
+      "noteEnd": 2.405,
+      "end": 2.62,
+      "peak": 0.17427580058574677,
+      "rms": 0.04096922447172674,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "F5.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 1.925,
+      "start": 0.06,
+      "noteEnd": 1.845,
+      "end": 1.845,
+      "peak": 0.1732512265443802,
+      "rms": 0.0392093500412885,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "F5-context.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 3,
+      "start": 0.7,
+      "noteEnd": 2.4849999999999994,
+      "end": 2.62,
+      "peak": 0.17326025664806366,
+      "rms": 0.041208417445230495,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "F6.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 1.9250208333333334,
+      "start": 0.06,
+      "noteEnd": 1.8450000000000002,
+      "end": 1.8450000000000002,
+      "peak": 0.1778242439031601,
+      "rms": 0.041156558989594694,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "F6-context.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 3,
+      "start": 0.7,
+      "noteEnd": 2.485,
+      "end": 2.62,
+      "peak": 0.17428536713123322,
+      "rms": 0.04256776894927177,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "R4.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 0.35,
+      "start": 0.06,
+      "noteEnd": 0.185,
+      "end": 0.185,
+      "peak": 0.10223900526762009,
+      "rms": 0.03197559976667866,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "R5.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 0.35,
+      "start": 0.06,
+      "noteEnd": 0.19,
+      "end": 0.19,
+      "peak": 0.10865037888288498,
+      "rms": 0.03408175203447834,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "R6.wav renders and ends cleanly",
+      "passed": true,
+      "rate": 48000,
+      "durationSeconds": 0.35,
+      "start": 0.06,
+      "noteEnd": 0.24,
+      "end": 0.24,
+      "peak": 0.11969104409217834,
+      "rms": 0.03645554113764115,
+      "tail": 0,
+      "finite": true,
+      "voicesRemaining": 0
+    },
+    {
+      "label": "All 9 individual and bell-context WAVs are distinct and readable",
+      "passed": true
+    },
+    {
+      "label": "2 ordered comparison tracks preserve individual audio levels",
+      "passed": true
+    },
+    {
+      "label": "chromium all 2 groups and narrow/landscape layouts work",
+      "passed": true
+    },
+    {
+      "label": "chromium WAV metadata, exclusive playback and switching stop correctly",
+      "passed": true,
+      "media": [
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        }
+      ]
+    },
+    {
+      "label": "chrome all 2 groups and narrow/landscape layouts work",
+      "passed": true
+    },
+    {
+      "label": "chrome WAV metadata, exclusive playback and switching stop correctly",
+      "passed": true,
+      "media": [
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        }
+      ]
+    },
+    {
+      "label": "Chrome extracted local-file preview plays without a server",
+      "passed": true
+    },
+    {
+      "label": "msedge all 2 groups and narrow/landscape layouts work",
+      "passed": true
+    },
+    {
+      "label": "msedge WAV metadata, exclusive playback and switching stop correctly",
+      "passed": true,
+      "media": [
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        },
+        {
+          "duration": 3,
+          "ready": 4
+        }
+      ]
+    },
+    {
+      "label": "webkit all 2 groups and narrow/landscape layouts work",
+      "passed": true
+    },
+    {
+      "label": "webkit WAV metadata, exclusive playback and switching stop correctly",
+      "passed": true,
+      "media": [
+        {
+          "duration": 3,
+          "ready": 3
+        },
+        {
+          "duration": 3,
+          "ready": 3
+        },
+        {
+          "duration": 3,
+          "ready": 3
+        }
+      ]
+    },
+    {
+      "label": "Accepted bell, game source, app version and timing remain unchanged",
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Human listening and Android/iPhone/macOS/iPad acceptance. Game adoption remains unselected."
+  ],
+  "protectedFiles": {
+    "src/ui/audio.js": "b46a56a0be02b89e2ce936f3f901df36c01249c8ad4ba300128a818067b35de2",
+    "src/ui/voices.js": "415eefa2332872638cc349b4bf5db76a835c747381233b8683a6ca9ee69b4c6b",
+    "src/ui/end-wait.js": "2f7f7ec7af4434f7e8a9027f909d2e30699c7b98575d0653d19946c3479477e9",
+    "src/ui/app.js": "719fd6689f3c1c1f34071794e366872e9533e45bb8fb0cc1db1b02698a79e1a2",
+    "index.html": "b1faf64238ccf31721e236c204502ffe5c261a90d12fa05e2434552d2371021d",
+    "package.json": "d3e25354eea020f13722488e9c1b6968b0cddb6e728093bd646ba572df229cc2"
+  },
+  "files": [
+    {
+      "name": "F4.wav",
+      "bytes": 177164,
+      "sha256": "bc936102adc9253b5dab11f234d475284f454f2d06d6905799d35643f6376f8d"
+    },
+    {
+      "name": "F4-context.wav",
+      "bytes": 288044,
+      "sha256": "fe525d3a5bc7421c7089ceeeed270e3f7287a18a6cfa42e4186f13f9c6aaf74f"
+    },
+    {
+      "name": "F5.wav",
+      "bytes": 184844,
+      "sha256": "cbd3d3b151d32ed626565d07a75693c2b67a24b1cf15bd9f7325f0a4a5ac1c98"
+    },
+    {
+      "name": "F5-context.wav",
+      "bytes": 288044,
+      "sha256": "06897f4bf4991880b325233378bb0c0493e32db36927e961da8e5b524549cd74"
+    },
+    {
+      "name": "F6.wav",
+      "bytes": 184846,
+      "sha256": "785de3d7c60260ac1a7cbe1ae18cffbf586cb97876791b99c1fbf87e4632e906"
+    },
+    {
+      "name": "F6-context.wav",
+      "bytes": 288044,
+      "sha256": "9287255e50c7204952464aecf8ca8ebed5f6c32bd5d778d21a4f76459647246c"
+    },
+    {
+      "name": "R4.wav",
+      "bytes": 33644,
+      "sha256": "6f60d69d396ebc1510aba9e38912ddaa25f82917d085d2e70f3a57c543648d38"
+    },
+    {
+      "name": "R5.wav",
+      "bytes": 33644,
+      "sha256": "f64369cf38ee8acca026a061d176edbf42837f5ce6547ca6c64c54da3acc9948"
+    },
+    {
+      "name": "R6.wav",
+      "bytes": 33644,
+      "sha256": "0a1069acd738954976f3df8d21b5831db444685cb6cc187d2580cbca8d8bbd07"
+    },
+    {
+      "name": "perfect-comparison.wav",
+      "bytes": 940844,
+      "sha256": "363e7a841697032510c6b929d71fc015a16d1b7e94c7e72e6e4118fb78198d29"
+    },
+    {
+      "name": "relay-comparison.wav",
+      "bytes": 401324,
+      "sha256": "2da5a98dc43e1c26a8424750f14c663915f92219cc0c0a0cbbd0f3e9659b3b7f"
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "155.0.8059.84"
+    },
+    {
+      "engine": "chromium",
+      "channel": "msedge",
+      "version": "155.0.4283.45"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5"
+    }
+  ],
+  "version": "2026.10.17-2",
+  "appVersion": "0.40.0",
+  "renderer": {
+    "channel": "chrome",
+    "version": "155.0.8059.84"
+  },
+  "passed": true
+}
