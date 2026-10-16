@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-15T23:37:51.100Z",
+  "checkedAt": "2026-10-16T06:51:44.120Z",
   "evidence": "Actual Web Audio synthesis in a disposable PC browser. No physical-device or listening acceptance.",
   "checks": [
     {
@@ -21,7 +21,7 @@
       "label": "small three simultaneous bell leaves room for both failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0013429303274786154,
-      "failureRms": 0.03497211285807716,
+      "failureRms": 0.03497211289371273,
       "peak": 0.2530004680156708
     },
     {
@@ -29,15 +29,15 @@
       "passed": true
     },
     {
-      "label": "small clear mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "small clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.19460329413414001,
+      "peak": 0.18517708778381348,
       "notes": 4
     },
     {
-      "label": "small perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "small perfect mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.18537573516368866,
+      "peak": 0.18534299731254578,
       "notes": 11
     },
     {
@@ -59,7 +59,7 @@
       "label": "chime three simultaneous bell leaves room for both failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0015710492435787773,
-      "failureRms": 0.034965440430854214,
+      "failureRms": 0.034965440407611535,
       "peak": 0.2604323923587799
     },
     {
@@ -67,15 +67,15 @@
       "passed": true
     },
     {
-      "label": "chime clear mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "chime clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.19332975149154663,
+      "peak": 0.1875460147857666,
       "notes": 4
     },
     {
-      "label": "chime perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "chime perfect mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.185227632522583,
+      "peak": 0.18534299731254578,
       "notes": 11
     },
     {
@@ -97,7 +97,7 @@
       "label": "large three simultaneous bell leaves room for both failure notes after 1.5s",
       "passed": true,
       "quietRms": 0.0017839072740860188,
-      "failureRms": 0.0349679502462636,
+      "failureRms": 0.034967950256054335,
       "peak": 0.2682293951511383
     },
     {
@@ -105,15 +105,15 @@
       "passed": true
     },
     {
-      "label": "large clear mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "large clear mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.19345073401927948,
+      "peak": 0.18437564373016357,
       "notes": 4
     },
     {
-      "label": "large perfect mixes with the unchanged result melody without clipping or extending the wait",
+      "label": "large perfect mixes with the delayed result melody before the 2.7s clear return",
       "passed": true,
-      "peak": 0.18530116975307465,
+      "peak": 0.18534299731254578,
       "notes": 11
     },
     {
@@ -156,7 +156,7 @@
   ],
   "browser": {
     "channel": "chrome",
-    "version": "155.0.8059.40"
+    "version": "155.0.8059.84"
   },
   "version": "2026.10.16-1",
   "volume": 0.7,
@@ -177,8 +177,8 @@
         {
           "peak": 0.2530004680156708,
           "quietRms": 0.0013429303274786154,
-          "failureRms": 0.03497211285807716,
-          "ratio": 26.041643518274068
+          "failureRms": 0.03497211289371273,
+          "ratio": 26.04164354480975
         }
       ]
     },
@@ -198,8 +198,8 @@
         {
           "peak": 0.2604323923587799,
           "quietRms": 0.0015710492435787773,
-          "failureRms": 0.034965440430854214,
-          "ratio": 22.256107231371413
+          "failureRms": 0.034965440407611535,
+          "ratio": 22.256107216577046
         }
       ]
     },
@@ -219,8 +219,8 @@
         {
           "peak": 0.2682293951511383,
           "quietRms": 0.0017839072740860188,
-          "failureRms": 0.0349679502462636,
-          "ratio": 19.601887807862298
+          "failureRms": 0.034967950256054335,
+          "ratio": 19.601887813350665
         }
       ]
     }
@@ -336,7 +336,7 @@
           "lateRms": 0.0013429303274786154,
           "nearEndRms": 0,
           "silence": 0,
-          "failureRms": 0.03497211285807716
+          "failureRms": 0.03497211289371273
         },
         "stopped": {
           "silent": 0,
@@ -354,8 +354,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.19460329413414001,
-            "last": 1.7606458333333332,
+            "peak": 0.18517708778381348,
+            "last": 1.9059583333333334,
             "calls": [
               {
                 "start": 0,
@@ -366,51 +366,51 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               }
             ],
             "bellCalls": 2,
             "noteCount": 4,
             "finite": true,
             "attackRms": 0.0735632103879092,
-            "lateRms": 0.041747591938291854,
+            "lateRms": 0.06911240017039524,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.001221652709153788
+            "failureRms": 0.038949979770304476
           },
           {
             "method": "perfect",
-            "peak": 0.18537573516368866,
-            "last": 2.2758958333333332,
+            "peak": 0.18534299731254578,
+            "last": 2.5558958333333335,
             "calls": [
               {
                 "start": 0,
@@ -421,22 +421,6 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
                 "start": 0.7,
                 "stop": 1.0699999999999998
               },
@@ -445,78 +429,94 @@
                 "stop": 1.0699999999999998
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               }
             ],
             "bellCalls": 2,
             "noteCount": 11,
             "finite": true,
             "attackRms": 0.0735632103879092,
-            "lateRms": 0.04954316568197024,
-            "nearEndRms": 0,
+            "lateRms": 0.0524244500387966,
+            "nearEndRms": 0.004842035693830259,
             "silence": 0,
-            "failureRms": 0.05245179363055679
+            "failureRms": 0.046870495015245504
           }
         ],
         "wav": {
@@ -631,7 +631,7 @@
           "lateRms": 0.0015710492435787773,
           "nearEndRms": 0,
           "silence": 0,
-          "failureRms": 0.034965440430854214
+          "failureRms": 0.034965440407611535
         },
         "stopped": {
           "silent": 0,
@@ -649,8 +649,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.19332975149154663,
-            "last": 1.7873125,
+            "peak": 0.1875460147857666,
+            "last": 1.9059583333333334,
             "calls": [
               {
                 "start": 0,
@@ -661,51 +661,51 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               }
             ],
             "bellCalls": 2,
             "noteCount": 4,
             "finite": true,
             "attackRms": 0.07541860790593939,
-            "lateRms": 0.041787892334846005,
+            "lateRms": 0.06911657368009282,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.0012106032602171217
+            "failureRms": 0.038948904997525034
           },
           {
             "method": "perfect",
-            "peak": 0.185227632522583,
-            "last": 2.2758958333333332,
+            "peak": 0.18534299731254578,
+            "last": 2.5559166666666666,
             "calls": [
               {
                 "start": 0,
@@ -716,22 +716,6 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
                 "start": 0.7,
                 "stop": 1.0699999999999998
               },
@@ -740,78 +724,94 @@
                 "stop": 1.0699999999999998
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               }
             ],
             "bellCalls": 2,
             "noteCount": 11,
             "finite": true,
             "attackRms": 0.07541860790593939,
-            "lateRms": 0.04956443758261559,
-            "nearEndRms": 0,
+            "lateRms": 0.05243048119190253,
+            "nearEndRms": 0.004842035660182314,
             "silence": 0,
-            "failureRms": 0.05245029375570776
+            "failureRms": 0.04686734744998506
           }
         ],
         "wav": {
@@ -926,7 +926,7 @@
           "lateRms": 0.0017839072740860188,
           "nearEndRms": 0,
           "silence": 0,
-          "failureRms": 0.0349679502462636
+          "failureRms": 0.034967950256054335
         },
         "stopped": {
           "silent": 0,
@@ -944,8 +944,8 @@
         "successMixes": [
           {
             "method": "clear",
-            "peak": 0.19345073401927948,
-            "last": 1.8113125,
+            "peak": 0.18437564373016357,
+            "last": 1.9059583333333334,
             "calls": [
               {
                 "start": 0,
@@ -956,51 +956,51 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.42,
-                "stop": 1.06
+                "start": 0.7,
+                "stop": 1.3399999999999999
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.58,
-                "stop": 1.22
+                "start": 0.8599999999999999,
+                "stop": 1.5
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.74,
-                "stop": 1.38
+                "start": 1.02,
+                "stop": 1.6600000000000001
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               },
               {
-                "start": 0.98,
-                "stop": 1.62
+                "start": 1.26,
+                "stop": 1.9
               }
             ],
             "bellCalls": 2,
             "noteCount": 4,
             "finite": true,
             "attackRms": 0.07721736898875096,
-            "lateRms": 0.0417413997455182,
+            "lateRms": 0.06910967322533244,
             "nearEndRms": 0,
             "silence": 0,
-            "failureRms": 0.0012264563370243495
+            "failureRms": 0.03895159337067706
           },
           {
             "method": "perfect",
-            "peak": 0.18530116975307465,
-            "last": 2.2758958333333332,
+            "peak": 0.18534299731254578,
+            "last": 2.5558958333333335,
             "calls": [
               {
                 "start": 0,
@@ -1011,22 +1011,6 @@
                 "stop": 2.62
               },
               {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.42,
-                "stop": 0.79
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
-                "start": 0.56,
-                "stop": 0.93
-              },
-              {
                 "start": 0.7,
                 "stop": 1.0699999999999998
               },
@@ -1035,78 +1019,94 @@
                 "stop": 1.0699999999999998
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 0.84,
+                "start": 0.8400000000000001,
                 "stop": 1.21
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.02,
-                "stop": 1.3900000000000001
+                "start": 0.98,
+                "stop": 1.35
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.2,
-                "stop": 1.5699999999999998
+                "start": 1.1199999999999999,
+                "stop": 1.4899999999999998
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.38,
-                "stop": 1.75
+                "start": 1.3,
+                "stop": 1.67
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.48,
+                "stop": 1.85
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.66,
+                "stop": 2.03
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               },
               {
-                "start": 1.6,
-                "stop": 2.27
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
+              },
+              {
+                "start": 1.8800000000000001,
+                "stop": 2.5500000000000003
               }
             ],
             "bellCalls": 2,
             "noteCount": 11,
             "finite": true,
             "attackRms": 0.07721736898875096,
-            "lateRms": 0.04954229124038313,
-            "nearEndRms": 0,
+            "lateRms": 0.05242137520587716,
+            "nearEndRms": 0.004842035665422288,
             "silence": 0,
-            "failureRms": 0.05244975472610126
+            "failureRms": 0.04687027721630485
           }
         ],
         "wav": {
