@@ -785,7 +785,7 @@ function launch(action){
   const token={view,original,frame:null,started:null};
   return new Promise((resolve,reject)=>{
     token.cancel=()=>resolve(false);
-    startPrelude=token;board.cancelAll();render(false);
+    startPrelude=token;board.cancelAll();session.selection=null;board.render();render(false);
     const step=now=>{
       if(startPrelude!==token)return;
       token.started??=now;const progress=Math.min(1,(now-token.started)/LAUNCH_DELAY_MS),ease=1-(1-progress)**3;
