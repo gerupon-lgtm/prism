@@ -1,0 +1,1466 @@
+{
+  "version": "0.44.0",
+  "checks": [
+    {
+      "label": "chrome starting removes part selection during the prelude and running",
+      "passed": true
+    },
+    {
+      "label": "chrome holding a built wire highlights exactly one target and asks before changing it",
+      "passed": true
+    },
+    {
+      "label": "chrome delete confirmation",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 679.109375,
+        "width": 372,
+        "height": 156.890625,
+        "right": 381,
+        "bottom": 836
+      },
+      "scroll": [
+        370,
+        155
+      ],
+      "client": [
+        370,
+        155
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 22,
+            "y": 719,
+            "width": 346,
+            "height": 44,
+            "right": 368,
+            "bottom": 763
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 22,
+            "y": 771,
+            "width": 168,
+            "height": 52,
+            "right": 190,
+            "bottom": 823
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 200,
+            "y": 771,
+            "width": 168,
+            "height": 52,
+            "right": 368,
+            "bottom": 823
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome cancel keeps the wiring and complete previous result",
+      "passed": true
+    },
+    {
+      "label": "chrome Escape clears the red target without deleting",
+      "passed": true
+    },
+    {
+      "label": "chrome built wire settings",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 142,
+        "width": 372,
+        "height": 560,
+        "right": 381,
+        "bottom": 702
+      },
+      "scroll": [
+        370,
+        558
+      ],
+      "client": [
+        370,
+        558
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 324,
+            "y": 155,
+            "width": 44,
+            "height": 44,
+            "right": 368,
+            "bottom": 199
+          }
+        },
+        {
+          "id": "",
+          "name": "名前の全文",
+          "rect": {
+            "x": 22,
+            "y": 207,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 259
+          }
+        },
+        {
+          "id": "",
+          "name": "時間",
+          "rect": {
+            "x": 22,
+            "y": 264,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 316
+          }
+        },
+        {
+          "id": "",
+          "name": "前へ",
+          "rect": {
+            "x": 22,
+            "y": 589,
+            "width": 60,
+            "height": 44,
+            "right": 82,
+            "bottom": 633
+          }
+        },
+        {
+          "id": "",
+          "name": "次へ",
+          "rect": {
+            "x": 308,
+            "y": 589,
+            "width": 60,
+            "height": 44,
+            "right": 368,
+            "bottom": 633
+          }
+        },
+        {
+          "id": "",
+          "name": "削除",
+          "rect": {
+            "x": 22,
+            "y": 641,
+            "width": 107.328125,
+            "height": 48,
+            "right": 129.328125,
+            "bottom": 689
+          }
+        },
+        {
+          "id": "",
+          "name": "記録",
+          "rect": {
+            "x": 134.328125,
+            "y": 641,
+            "width": 107.34375,
+            "height": 48,
+            "right": 241.671875,
+            "bottom": 689
+          }
+        },
+        {
+          "id": "",
+          "name": "閉じる",
+          "rect": {
+            "x": 246.671875,
+            "y": 641,
+            "width": 121.328125,
+            "height": 48,
+            "right": 368,
+            "bottom": 689
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome rapid taps show large settings with the current time and the shared delete confirmation",
+      "passed": true
+    },
+    {
+      "label": "chrome OK removes exactly the selected wire and retains the result and current time display mode",
+      "passed": true
+    },
+    {
+      "label": "chrome clearing every wire shows every candidate time and undo restores the wires without changing records",
+      "passed": true
+    },
+    {
+      "label": "chrome real touch hold and release do not confirm deletion",
+      "passed": true
+    },
+    {
+      "label": "chrome drag, two fingers, pointer cancellation and focus loss cancel the touch hold",
+      "passed": true
+    },
+    {
+      "label": "chrome moving, adding a finger or cancelling after confirmation appears also cancels deletion",
+      "passed": true
+    },
+    {
+      "label": "chrome rotation cancels an open deletion confirmation",
+      "passed": true
+    },
+    {
+      "label": "chrome confirmation 320x480 0 CSS=",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "page": [
+        320,
+        480
+      ],
+      "rect": {
+        "x": 9,
+        "y": 315.109375,
+        "width": 302,
+        "height": 156.890625,
+        "right": 311,
+        "bottom": 472
+      },
+      "scroll": [
+        300,
+        155
+      ],
+      "client": [
+        300,
+        155
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 22,
+            "y": 355,
+            "width": 276,
+            "height": 44,
+            "right": 298,
+            "bottom": 399
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 22,
+            "y": 407,
+            "width": 133,
+            "height": 52,
+            "right": 155,
+            "bottom": 459
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 165,
+            "y": 407,
+            "width": 133,
+            "height": 52,
+            "right": 298,
+            "bottom": 459
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome confirmation 844x390 90 CSS=",
+      "passed": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "page": [
+        844,
+        390
+      ],
+      "rect": {
+        "x": 207,
+        "y": 8,
+        "width": 430,
+        "height": 156.890625,
+        "right": 637,
+        "bottom": 164.890625
+      },
+      "scroll": [
+        428,
+        155
+      ],
+      "client": [
+        428,
+        155
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 220,
+            "y": 47.890625,
+            "width": 404,
+            "height": 44,
+            "right": 624,
+            "bottom": 91.890625
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 220,
+            "y": 99.890625,
+            "width": 197,
+            "height": 52,
+            "right": 417,
+            "bottom": 151.890625
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 427,
+            "y": 99.890625,
+            "width": 197,
+            "height": 52,
+            "right": 624,
+            "bottom": 151.890625
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome confirmation 844x390 270 CSS=",
+      "passed": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "page": [
+        844,
+        390
+      ],
+      "rect": {
+        "x": 207,
+        "y": 225.109375,
+        "width": 430,
+        "height": 156.890625,
+        "right": 637,
+        "bottom": 382
+      },
+      "scroll": [
+        428,
+        155
+      ],
+      "client": [
+        428,
+        155
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 220,
+            "y": 265,
+            "width": 404,
+            "height": 44,
+            "right": 624,
+            "bottom": 309
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 220,
+            "y": 317,
+            "width": 197,
+            "height": 52,
+            "right": 417,
+            "bottom": 369
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 427,
+            "y": 317,
+            "width": 197,
+            "height": 52,
+            "right": 624,
+            "bottom": 369
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome confirmation 390x844 0 CSS=28px",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 654.625,
+        "width": 372,
+        "height": 181.375,
+        "right": 381,
+        "bottom": 836
+      },
+      "scroll": [
+        370,
+        179
+      ],
+      "client": [
+        370,
+        179
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 22,
+            "y": 713.421875,
+            "width": 346,
+            "height": 48.390625,
+            "right": 368,
+            "bottom": 761.8125
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 22,
+            "y": 769.8125,
+            "width": 168,
+            "height": 53.1875,
+            "right": 190,
+            "bottom": 823
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 200,
+            "y": 769.8125,
+            "width": 168,
+            "height": 53.1875,
+            "right": 368,
+            "bottom": 823
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome prism settings",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 142,
+        "width": 372,
+        "height": 560,
+        "right": 381,
+        "bottom": 702
+      },
+      "scroll": [
+        370,
+        558
+      ],
+      "client": [
+        370,
+        558
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 324,
+            "y": 155,
+            "width": 44,
+            "height": 44,
+            "right": 368,
+            "bottom": 199
+          }
+        },
+        {
+          "id": "",
+          "name": "名前の全文",
+          "rect": {
+            "x": 22,
+            "y": 207,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 259
+          }
+        },
+        {
+          "id": "",
+          "name": "時間",
+          "rect": {
+            "x": 22,
+            "y": 264,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 316
+          }
+        },
+        {
+          "id": "",
+          "name": "使用：可",
+          "rect": {
+            "x": 22,
+            "y": 321,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 373
+          }
+        },
+        {
+          "id": "",
+          "name": "名前",
+          "rect": {
+            "x": 22,
+            "y": 378,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 430
+          }
+        },
+        {
+          "id": "",
+          "name": "削除",
+          "rect": {
+            "x": 22,
+            "y": 435,
+            "width": 346,
+            "height": 52,
+            "right": 368,
+            "bottom": 487
+          }
+        },
+        {
+          "id": "",
+          "name": "前へ",
+          "rect": {
+            "x": 22,
+            "y": 589,
+            "width": 60,
+            "height": 44,
+            "right": 82,
+            "bottom": 633
+          }
+        },
+        {
+          "id": "",
+          "name": "次へ",
+          "rect": {
+            "x": 308,
+            "y": 589,
+            "width": 60,
+            "height": 44,
+            "right": 368,
+            "bottom": 633
+          }
+        },
+        {
+          "id": "",
+          "name": "記録",
+          "rect": {
+            "x": 22,
+            "y": 641,
+            "width": 163.5,
+            "height": 48,
+            "right": 185.5,
+            "bottom": 689
+          }
+        },
+        {
+          "id": "",
+          "name": "閉じる",
+          "rect": {
+            "x": 190.5,
+            "y": 641,
+            "width": 177.5,
+            "height": 48,
+            "right": 368,
+            "bottom": 689
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome time input",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 242,
+        "width": 372,
+        "height": 360,
+        "right": 381,
+        "bottom": 602
+      },
+      "scroll": [
+        370,
+        358
+      ],
+      "client": [
+        370,
+        358
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 324,
+            "y": 255,
+            "width": 44,
+            "height": 44,
+            "right": 368,
+            "bottom": 299
+          }
+        },
+        {
+          "id": "",
+          "name": "−0.1",
+          "rect": {
+            "x": 22,
+            "y": 404.59375,
+            "width": 90.890625,
+            "height": 56,
+            "right": 112.890625,
+            "bottom": 460.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "秒数",
+          "rect": {
+            "x": 122.890625,
+            "y": 404.59375,
+            "width": 144.21875,
+            "height": 56,
+            "right": 267.109375,
+            "bottom": 460.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "＋0.1",
+          "rect": {
+            "x": 277.109375,
+            "y": 404.59375,
+            "width": 90.890625,
+            "height": 56,
+            "right": 368,
+            "bottom": 460.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "確定",
+          "rect": {
+            "x": 22,
+            "y": 541,
+            "width": 170.5,
+            "height": 48,
+            "right": 192.5,
+            "bottom": 589
+          }
+        },
+        {
+          "id": "",
+          "name": "取消",
+          "rect": {
+            "x": 197.5,
+            "y": 541,
+            "width": 170.5,
+            "height": 48,
+            "right": 368,
+            "bottom": 589
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 320x480 CSS=",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "page": [
+        320,
+        480
+      ],
+      "rect": {
+        "x": 9,
+        "y": 11,
+        "width": 302,
+        "height": 458,
+        "right": 311,
+        "bottom": 469
+      },
+      "scroll": [
+        300,
+        456
+      ],
+      "client": [
+        300,
+        456
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 254,
+            "y": 24,
+            "width": 44,
+            "height": 44,
+            "right": 298,
+            "bottom": 68
+          }
+        },
+        {
+          "id": "",
+          "name": "名前の全文",
+          "rect": {
+            "x": 22,
+            "y": 76,
+            "width": 276,
+            "height": 52,
+            "right": 298,
+            "bottom": 128
+          }
+        },
+        {
+          "id": "",
+          "name": "時間",
+          "rect": {
+            "x": 22,
+            "y": 133,
+            "width": 276,
+            "height": 52,
+            "right": 298,
+            "bottom": 185
+          }
+        },
+        {
+          "id": "",
+          "name": "使用：可",
+          "rect": {
+            "x": 22,
+            "y": 190,
+            "width": 276,
+            "height": 52,
+            "right": 298,
+            "bottom": 242
+          }
+        },
+        {
+          "id": "",
+          "name": "名前",
+          "rect": {
+            "x": 22,
+            "y": 247,
+            "width": 276,
+            "height": 52,
+            "right": 298,
+            "bottom": 299
+          }
+        },
+        {
+          "id": "",
+          "name": "前へ",
+          "rect": {
+            "x": 22,
+            "y": 356,
+            "width": 60,
+            "height": 44,
+            "right": 82,
+            "bottom": 400
+          }
+        },
+        {
+          "id": "",
+          "name": "次へ",
+          "rect": {
+            "x": 238,
+            "y": 356,
+            "width": 60,
+            "height": 44,
+            "right": 298,
+            "bottom": 400
+          }
+        },
+        {
+          "id": "",
+          "name": "記録",
+          "rect": {
+            "x": 22,
+            "y": 408,
+            "width": 128.5,
+            "height": 48,
+            "right": 150.5,
+            "bottom": 456
+          }
+        },
+        {
+          "id": "",
+          "name": "閉じる",
+          "rect": {
+            "x": 155.5,
+            "y": 408,
+            "width": 142.5,
+            "height": 48,
+            "right": 298,
+            "bottom": 456
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome time 320x480 CSS=",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "page": [
+        320,
+        480
+      ],
+      "rect": {
+        "x": 9,
+        "y": 60,
+        "width": 302,
+        "height": 360,
+        "right": 311,
+        "bottom": 420
+      },
+      "scroll": [
+        300,
+        358
+      ],
+      "client": [
+        300,
+        358
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 254,
+            "y": 73,
+            "width": 44,
+            "height": 44,
+            "right": 298,
+            "bottom": 117
+          }
+        },
+        {
+          "id": "",
+          "name": "−0.1",
+          "rect": {
+            "x": 22,
+            "y": 222.59375,
+            "width": 71.453125,
+            "height": 56,
+            "right": 93.453125,
+            "bottom": 278.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "秒数",
+          "rect": {
+            "x": 103.453125,
+            "y": 222.59375,
+            "width": 113.109375,
+            "height": 56,
+            "right": 216.5625,
+            "bottom": 278.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "＋0.1",
+          "rect": {
+            "x": 226.5625,
+            "y": 222.59375,
+            "width": 71.4375,
+            "height": 56,
+            "right": 298,
+            "bottom": 278.59375
+          }
+        },
+        {
+          "id": "",
+          "name": "確定",
+          "rect": {
+            "x": 22,
+            "y": 359,
+            "width": 135.5,
+            "height": 48,
+            "right": 157.5,
+            "bottom": 407
+          }
+        },
+        {
+          "id": "",
+          "name": "取消",
+          "rect": {
+            "x": 162.5,
+            "y": 359,
+            "width": 135.5,
+            "height": 48,
+            "right": 298,
+            "bottom": 407
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 480x240 CSS=",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "page": [
+        480,
+        240
+      ],
+      "rect": {
+        "x": 9,
+        "y": 10,
+        "width": 462,
+        "height": 220,
+        "right": 471,
+        "bottom": 230
+      },
+      "scroll": [
+        460,
+        218
+      ],
+      "client": [
+        460,
+        218
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 419,
+            "y": 18,
+            "width": 44,
+            "height": 44,
+            "right": 463,
+            "bottom": 62
+          }
+        },
+        {
+          "id": "",
+          "name": "名前の全文",
+          "rect": {
+            "x": 17,
+            "y": 66,
+            "width": 446,
+            "height": 52,
+            "right": 463,
+            "bottom": 118
+          }
+        },
+        {
+          "id": "",
+          "name": "前へ",
+          "rect": {
+            "x": 17,
+            "y": 126,
+            "width": 60,
+            "height": 44,
+            "right": 77,
+            "bottom": 170
+          }
+        },
+        {
+          "id": "",
+          "name": "次へ",
+          "rect": {
+            "x": 403,
+            "y": 126,
+            "width": 60,
+            "height": 44,
+            "right": 463,
+            "bottom": 170
+          }
+        },
+        {
+          "id": "",
+          "name": "記録",
+          "rect": {
+            "x": 17,
+            "y": 174,
+            "width": 213.5,
+            "height": 48,
+            "right": 230.5,
+            "bottom": 222
+          }
+        },
+        {
+          "id": "",
+          "name": "閉じる",
+          "rect": {
+            "x": 235.5,
+            "y": 174,
+            "width": 227.5,
+            "height": 48,
+            "right": 463,
+            "bottom": 222
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome time 480x240 CSS=",
+      "passed": true,
+      "viewport": [
+        480,
+        240
+      ],
+      "page": [
+        480,
+        240
+      ],
+      "rect": {
+        "x": 9,
+        "y": 10,
+        "width": 462,
+        "height": 220,
+        "right": 471,
+        "bottom": 230
+      },
+      "scroll": [
+        460,
+        218
+      ],
+      "client": [
+        460,
+        218
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 419,
+            "y": 18,
+            "width": 44,
+            "height": 44,
+            "right": 463,
+            "bottom": 62
+          }
+        },
+        {
+          "id": "",
+          "name": "−0.1",
+          "rect": {
+            "x": 17,
+            "y": 101.09375,
+            "width": 120.890625,
+            "height": 56,
+            "right": 137.890625,
+            "bottom": 157.09375
+          }
+        },
+        {
+          "id": "",
+          "name": "秒数",
+          "rect": {
+            "x": 147.890625,
+            "y": 101.09375,
+            "width": 184.21875,
+            "height": 56,
+            "right": 332.109375,
+            "bottom": 157.09375
+          }
+        },
+        {
+          "id": "",
+          "name": "＋0.1",
+          "rect": {
+            "x": 342.109375,
+            "y": 101.09375,
+            "width": 120.890625,
+            "height": 56,
+            "right": 463,
+            "bottom": 157.09375
+          }
+        },
+        {
+          "id": "",
+          "name": "確定",
+          "rect": {
+            "x": 17,
+            "y": 174,
+            "width": 220.5,
+            "height": 48,
+            "right": 237.5,
+            "bottom": 222
+          }
+        },
+        {
+          "id": "",
+          "name": "取消",
+          "rect": {
+            "x": 242.5,
+            "y": 174,
+            "width": 220.5,
+            "height": 48,
+            "right": 463,
+            "bottom": 222
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 390x844 CSS=28px",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 142,
+        "width": 372,
+        "height": 560,
+        "right": 381,
+        "bottom": 702
+      },
+      "scroll": [
+        370,
+        558
+      ],
+      "client": [
+        370,
+        558
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 322,
+            "y": 155,
+            "width": 46,
+            "height": 47.1875,
+            "right": 368,
+            "bottom": 202.1875
+          }
+        },
+        {
+          "id": "",
+          "name": "名前の全文",
+          "rect": {
+            "x": 22,
+            "y": 210.1875,
+            "width": 346,
+            "height": 61.1875,
+            "right": 368,
+            "bottom": 271.375
+          }
+        },
+        {
+          "id": "",
+          "name": "時間",
+          "rect": {
+            "x": 22,
+            "y": 276.375,
+            "width": 346,
+            "height": 61.1875,
+            "right": 368,
+            "bottom": 337.5625
+          }
+        },
+        {
+          "id": "",
+          "name": "使用：可",
+          "rect": {
+            "x": 22,
+            "y": 342.5625,
+            "width": 346,
+            "height": 61.1875,
+            "right": 368,
+            "bottom": 403.75
+          }
+        },
+        {
+          "id": "",
+          "name": "名前",
+          "rect": {
+            "x": 22,
+            "y": 408.75,
+            "width": 346,
+            "height": 61.1875,
+            "right": 368,
+            "bottom": 469.9375
+          }
+        },
+        {
+          "id": "",
+          "name": "削除",
+          "rect": {
+            "x": 22,
+            "y": 474.9375,
+            "width": 346,
+            "height": 61.1875,
+            "right": 368,
+            "bottom": 536.125
+          }
+        },
+        {
+          "id": "",
+          "name": "前へ",
+          "rect": {
+            "x": 22,
+            "y": 580.21875,
+            "width": 70,
+            "height": 47.59375,
+            "right": 92,
+            "bottom": 627.8125
+          }
+        },
+        {
+          "id": "",
+          "name": "次へ",
+          "rect": {
+            "x": 298,
+            "y": 580.21875,
+            "width": 70,
+            "height": 47.59375,
+            "right": 368,
+            "bottom": 627.8125
+          }
+        },
+        {
+          "id": "",
+          "name": "記録",
+          "rect": {
+            "x": 22,
+            "y": 635.8125,
+            "width": 156.5,
+            "height": 53.1875,
+            "right": 178.5,
+            "bottom": 689
+          }
+        },
+        {
+          "id": "",
+          "name": "閉じる",
+          "rect": {
+            "x": 183.5,
+            "y": 635.8125,
+            "width": 184.5,
+            "height": 53.1875,
+            "right": 368,
+            "bottom": 689
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome time 390x844 CSS=28px",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 242,
+        "width": 372,
+        "height": 360,
+        "right": 381,
+        "bottom": 602
+      },
+      "scroll": [
+        370,
+        358
+      ],
+      "client": [
+        370,
+        358
+      ],
+      "controls": [
+        {
+          "id": "dialog-close",
+          "name": "閉じる",
+          "rect": {
+            "x": 322,
+            "y": 255,
+            "width": 46,
+            "height": 47.1875,
+            "right": 368,
+            "bottom": 302.1875
+          }
+        },
+        {
+          "id": "",
+          "name": "−0.1",
+          "rect": {
+            "x": 22,
+            "y": 404.25,
+            "width": 90.890625,
+            "height": 72.875,
+            "right": 112.890625,
+            "bottom": 477.125
+          }
+        },
+        {
+          "id": "",
+          "name": "秒数",
+          "rect": {
+            "x": 122.890625,
+            "y": 404.25,
+            "width": 144.21875,
+            "height": 72.875,
+            "right": 267.109375,
+            "bottom": 477.125
+          }
+        },
+        {
+          "id": "",
+          "name": "＋0.1",
+          "rect": {
+            "x": 277.109375,
+            "y": 404.25,
+            "width": 90.890625,
+            "height": 72.875,
+            "right": 368,
+            "bottom": 477.125
+          }
+        },
+        {
+          "id": "",
+          "name": "確定",
+          "rect": {
+            "x": 22,
+            "y": 535.8125,
+            "width": 170.5,
+            "height": 53.1875,
+            "right": 192.5,
+            "bottom": 589
+          }
+        },
+        {
+          "id": "",
+          "name": "取消",
+          "rect": {
+            "x": 197.5,
+            "y": 535.8125,
+            "width": 170.5,
+            "height": 53.1875,
+            "right": 368,
+            "bottom": 589
+          }
+        }
+      ]
+    },
+    {
+      "label": "chrome larger time controls preserve select-all, 0.1 adjustments, validation and cancellation",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "155.0.8059.84"
+    }
+  ],
+  "evidence": "Real PC pointer input and synthetic phone orientation; physical-device usability remains unconfirmed.",
+  "passed": true
+}

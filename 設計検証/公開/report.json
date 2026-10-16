@@ -1,269 +1,269 @@
 {
-  "version": "0.41.0",
+  "version": "0.44.0",
   "url": "https://gerupon-lgtm.github.io/prism/",
-  "checkedAt": "2026-10-16T22:44:51.052Z",
+  "checkedAt": "2026-10-16T23:33:07.601Z",
   "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
   "checks": [
     {
       "asset": "./index.html",
       "type": "text/html; charset=utf-8",
-      "sha256": "ba63e2c42e507b8d5e58f8037435d6bc156282abe3c91a42f07c7fd6abca7e5d",
+      "sha256": "125372114e4ed4ab5f01aefde2916cdb0dfa77dbeffcf36fa4fb3a298d88d336",
       "passed": true
     },
     {
       "asset": "./manifest.webmanifest",
       "type": "application/manifest+json; charset=utf-8",
-      "sha256": "288f7158ae5ffbbb5e4050ae67b7ab532306b1f88fbfba0cd84b23c1deace5dd",
+      "sha256": "ecaf7649ae83e77ced98781a6339145ede8c1b3f1e1da0b2302a831c1c6c5f69",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/app/session.js",
+      "asset": "./v0.44.0/src/app/session.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "eae8004956dd9ce44b09003fb60c6c747dc5e1345826d95e699ffb81d04c99de",
+      "sha256": "f762418fe98c1e629620a13215d791e9fc1d011a84acc8c54c4a3403cfeb6dde",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/app/update-safety.js",
+      "asset": "./v0.44.0/src/app/update-safety.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/content/challenge-draw.js",
+      "asset": "./v0.44.0/src/content/challenge-draw.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ba6c258ec1573eb231f44449d1364e5f795de821f110d61e3088c2089e4c6000",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/content/challenges.js",
+      "asset": "./v0.44.0/src/content/challenges.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ddedf2f5fee6e24369f2b1501d4ae5dac59c2aed21ef491ee1c095268b7d523b",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/content/random-variants.js",
+      "asset": "./v0.44.0/src/content/random-variants.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "28c5b629f564efdacbbb51684a5100982848c3ae4b5a383242c6b192691ba608",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/content/samples.js",
+      "asset": "./v0.44.0/src/content/samples.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/challenge-identity.js",
+      "asset": "./v0.44.0/src/core/challenge-identity.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "45a58336f7af211d72ac3c33024b8428206fec995e7b534ceba3ebabb11255d1",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/circuit.js",
+      "asset": "./v0.44.0/src/core/circuit.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/evaluation.js",
+      "asset": "./v0.44.0/src/core/evaluation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/heap.js",
+      "asset": "./v0.44.0/src/core/heap.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/simulation.js",
+      "asset": "./v0.44.0/src/core/simulation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "5a69db6dbdeb7d79aeeb11d3f9758db342323bc8e86174940da0b64c0f9167d4",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/storage.js",
+      "asset": "./v0.44.0/src/core/storage.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "6be45d1dcc30b849c1dce1ced923551efb5189eb9d6594104b2ba8d72e6c176c",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/core/time.js",
+      "asset": "./v0.44.0/src/core/time.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/app.css",
+      "asset": "./v0.44.0/src/ui/app.css",
       "type": "text/css; charset=utf-8",
-      "sha256": "7f9b1dedddf26fc268e1d6141cd9e0c0781bc265814b7e3e1b90869ea4d05833",
+      "sha256": "c9cdfed2e06b12bf410ed564d410f88b117f4ebac53a2efaa63942facd362f3f",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/app.js",
+      "asset": "./v0.44.0/src/ui/app.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "132ab301a89a27fddd61f207292045d64bd34f0b20c0efc47036ed6ce261b38f",
+      "sha256": "a328c44a0fdf738ce71aa672d3805b5231c20e5592de0873c761abc7d1368986",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/audio.js",
+      "asset": "./v0.44.0/src/ui/audio.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "16ec42d7e9b18dc8cb07962fafb46e1c0bc27ec5c065b01b13653ce216f3ebb0",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/board.js",
+      "asset": "./v0.44.0/src/ui/board.js",
       "type": "application/javascript; charset=utf-8",
-      "sha256": "f1a91c2787982f281f10830ffee4a8c9fe3061e5bfa95916241e05b5c3714942",
+      "sha256": "cc316ccae9e47f7b88d5874201968ffffc9d0fcdc4da7aa052aec7bc215d844b",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/celebration.js",
+      "asset": "./v0.44.0/src/ui/celebration.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "a054d28cc44a1c4226aa9908ff50678ed7b5ed006484a7d137f1bcab02a772e0",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/end-wait.js",
+      "asset": "./v0.44.0/src/ui/end-wait.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "d4ab506d6259073369a791b985362a4e352484a6ab6e650a2e0573cd016da6cd",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/labels.js",
+      "asset": "./v0.44.0/src/ui/labels.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "622cab9a32845486346f17a5692835ecbd1a14f00cb61a76dd8dc5ac990b67fb",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/load-meter.js",
+      "asset": "./v0.44.0/src/ui/load-meter.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/magnifier.js",
+      "asset": "./v0.44.0/src/ui/magnifier.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "acbd1538d586b6bec094ecfd741dbe907fa1d3a2caa1ae5700e5ce37f9b79493",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/offline.js",
+      "asset": "./v0.44.0/src/ui/offline.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "8446bb5e958272239b8c3892ed1a68efc81d3d950f1afc8ab8182de4f9e30f17",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/orientation.js",
+      "asset": "./v0.44.0/src/ui/orientation.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "984bbf87bfee5921a73f1e2e21eb2c42de81e158f1d087b4c47b09be35d4fdf0",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/outcome-sound.js",
+      "asset": "./v0.44.0/src/ui/outcome-sound.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "601352e67d4e1e990cf935191c4415fdf006e74795ace507d3048bce18ecbf71",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/reverb.js",
+      "asset": "./v0.44.0/src/ui/reverb.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "c06869c5199d347d646ea44c16d69b0b452bbd043af5a125cfc4e410b1d196d4",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/scene.js",
+      "asset": "./v0.44.0/src/ui/scene.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "124096e487a80876f8ea71dc2bb7b77e6c32f158a29365f908378d93278a4a49",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/sound-cues.js",
+      "asset": "./v0.44.0/src/ui/sound-cues.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "3c3fc0de065ae0fe83fde29e81f36204dd54281fed9c085526d695f5a2cf5f24",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/svg.js",
+      "asset": "./v0.44.0/src/ui/svg.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/src/ui/voices.js",
+      "asset": "./v0.44.0/src/ui/voices.js",
       "type": "application/javascript; charset=utf-8",
       "sha256": "5eef4512dc86e285d73a371678f2a135e7a3e62e3558ac7686ad4c7a55edba82",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/画面案/ロゴ/fonts/OFL.txt",
+      "asset": "./v0.44.0/画面案/ロゴ/fonts/OFL.txt",
       "type": "text/plain; charset=utf-8",
       "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "asset": "./v0.44.0/画面案/ロゴ/fonts/montserrat-500.ttf",
       "type": "font/ttf",
       "sha256": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "asset": "./v0.44.0/画面案/ロゴ/fonts/montserrat-600.ttf",
       "type": "font/ttf",
       "sha256": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/apple-touch-icon.png",
+      "asset": "./v0.44.0/public/apple-touch-icon.png",
       "type": "image/png",
       "sha256": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/graphics/goal.png",
+      "asset": "./v0.44.0/public/graphics/goal.png",
       "type": "image/png",
       "sha256": "79ef581e9d6db0211fe7cc06eb642749d989517a9d0081f827e6e03378f85558",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/graphics/observatory.png",
+      "asset": "./v0.44.0/public/graphics/observatory.png",
       "type": "image/png",
       "sha256": "2628c2ccdbd8a83f3f37fd7f8f707309a96fc8e5c08a6edbdb97e7e427373b47",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/graphics/prism.png",
+      "asset": "./v0.44.0/public/graphics/prism.png",
       "type": "image/png",
       "sha256": "aff97d60401b20d0c603ad9f1b6193f0ea12d6de193d5d328943270a663053d6",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/graphics/ruins.png",
+      "asset": "./v0.44.0/public/graphics/ruins.png",
       "type": "image/png",
       "sha256": "0cf8246eb08f8369148b2373f1c68ddce5ededf9dca30460f86d9b4bef5222ca",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/graphics/source.png",
+      "asset": "./v0.44.0/public/graphics/source.png",
       "type": "image/png",
       "sha256": "9806dd69e14dee5fc2113715b6281c31e30d0e45f294fb7c00cc5c063879e1fc",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/icon-192.png",
+      "asset": "./v0.44.0/public/icon-192.png",
       "type": "image/png",
       "sha256": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/icon-512.png",
+      "asset": "./v0.44.0/public/icon-512.png",
       "type": "image/png",
       "sha256": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
       "passed": true
     },
     {
-      "asset": "./v0.41.0/public/spirit-guide.png",
+      "asset": "./v0.44.0/public/spirit-guide.png",
       "type": "image/png",
       "sha256": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
       "passed": true
@@ -478,10 +478,10 @@
       "passed": true
     }
   ],
-  "commit": "a3812b0b8ae113eaff686f3a7ec3d17e999dda36",
+  "commit": "778542fe94adef8fe822ef0fc400f66910cf983e",
   "cacheAfterHTTPClear": {
     "keys": [
-      "prism-notes:/prism/:0.41.0"
+      "prism-notes:/prism/:0.44.0"
     ],
     "registrations": [
       {

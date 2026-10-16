@@ -1,0 +1,14 @@
+{
+  "version": "0.41.0",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "155.0.8059.84"
+    }
+  ],
+  "evidence": "Real PC pointer input and synthetic phone orientation; physical-device usability remains unconfirmed.",
+  "passed": false,
+  "failure": "page.waitForFunction: Timeout 1600ms exceeded.\n    at hold (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wire_touch.cjs:14:99)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wire_touch.cjs:18:33"
+}

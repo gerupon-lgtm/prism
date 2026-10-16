@@ -1,0 +1,14 @@
+{
+  "version": "0.42.0",
+  "checks": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "evidence": "Real PC pointer input and synthetic phone orientation; physical-device usability remains unconfirmed.",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Launching clears selection before the simulation begins\n+ actual - expected\n\n  [\n+   1\n-   0\n  ]\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wire_touch.cjs:34:35"
+}
