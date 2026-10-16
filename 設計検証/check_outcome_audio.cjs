@@ -14,6 +14,33 @@ const check=(label,data={})=>{report.checks.push({label,passed:true,...data});co
 async function wire(page,id,route){if(await page.locator('#stop').isEnabled())await page.locator('#stop').click();await selectChallenge(page,id);for(let i=1;i<route.length;i++)await dragConnection(page,route[i-1],route[i]);}
 async function finish(page,kind){await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('play').dataset.state!=='preparing');await page.waitForFunction(kind=>__outcomes.some(c=>c.kind===kind),kind,{timeout:18000});assert(!(await page.locator('#result').textContent()).includes('負荷のため'));}
 async function exported(page){await page.locator('#menu').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'実行結果を書き出す',exact:true}).click();const chunks=[],stream=await(await pending).createReadStream();for await(const c of stream)chunks.push(c);await page.locator('#dialog-close').click();return JSON.parse(Buffer.concat(chunks).toString('utf8'));}
+async function successTiming(page,label,audio,id,route,kind){
+ await wire(page,id,route);await page.evaluate(async kind=>{
+  window.__outcomes=[];window.__successTiming=null;
+  const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src)),original=Chime.prototype[kind];
+  Chime.prototype[kind]=function(){
+   Chime.prototype[kind]=original;
+   const c=this.context,probe={at:performance.now(),audioAt:c?.currentTime,voices:[]};window.__successTiming=probe;
+   const create=c?.createOscillator;
+   if(create)c.createOscillator=function(){
+    const voice=create.call(this),row={stops:[]},start=voice.start.bind(voice),stop=voice.stop.bind(voice);probe.voices.push(row);
+    voice.start=at=>{row.start=at;return start(at);};voice.stop=at=>{row.stops.push(at);return at===undefined?stop():stop(at);};voice.addEventListener('ended',()=>{row.endedAt=c.currentTime;});return voice;
+   };
+   try{original.call(this);}finally{if(create)c.createOscillator=create;}
+   const watch=()=>{if(document.getElementById('stop').disabled&&!document.getElementById('play').disabled){probe.readyAt=performance.now();probe.button=document.getElementById('play').textContent;}else if(performance.now()-probe.at<5000)requestAnimationFrame(watch);};requestAnimationFrame(watch);
+  };
+ },kind);
+ await finish(page,kind);await page.waitForFunction(()=>__successTiming?.readyAt,null,{timeout:5000});
+ const probe=await page.evaluate(()=>__successTiming),elapsed=probe.readyAt-probe.at;
+ assert(elapsed>=2670&&elapsed<2990,'Clear controls return after 2.7s, earlier than the old 3s');assert.equal(probe.button,'鐘を鳴らす');
+ if(audio){
+  assert.equal(probe.voices.length,kind==='perfect'?22:8);
+  const first=Math.min(...probe.voices.map(v=>v.start));assert(first-probe.audioAt>=.7-1e-7&&first-probe.audioAt<.76,'Success notes start after 0.7s, allowing one audio clock quantum');
+  assert(probe.voices.every(v=>v.stops.length===1&&v.endedAt>=v.stops[0]-.02&&v.endedAt-probe.audioAt<2.65),'Every note ends naturally before controls return');
+ }
+ const result=await exported(page);assert.equal(result.evaluation.state,'achieved');assert.equal(result.records.filter(r=>r.type==='goal').length,1);assert.equal(await page.evaluate(()=>__outcomes.length),1);
+ check(label+' '+kind+' starts later and re-enables the bell button in 2.7s without cutting notes',{audioAvailable:audio,elapsedMs:elapsed,probe});
+}
 async function failureWithBell(page,label,audio){
  await wire(page,'Q6',['S','A','G']);
  await page.evaluate(async()=>{
@@ -80,6 +107,7 @@ async function offlineAudio(page,label){
   await page.locator('#records').click();await page.locator('#close-records').click();await page.locator('#fit').click();const after=await exported(page);assert.deepEqual({...after,status:before.status},before);assert.equal(await page.evaluate(()=>__outcomes.length),1);
   check((channel||engine)+' '+kind+' actual result selects one sound, retains full records and never repeats on reopening',{calls});
  }
+ await successTiming(page,channel||engine,audio,'Q1',['S','A','G'],'perfect');await successTiming(page,channel||engine,audio,'Q2',['S','C','G'],'clear');
  await failureWithBell(page,channel||engine,audio);
  await wire(page,'Q7',['S','A','B','D','G1']);await page.evaluate(()=>__outcomes=[]);await startAndPause(page);assert((await page.locator('#result').textContent()).includes('未達成'));assert.equal(await page.evaluate(()=>__outcomes.length),0);await page.locator('#play').click();await page.waitForFunction(()=>__outcomes.length===1,null,{timeout:16000});assert.equal(await page.evaluate(()=>__outcomes[0].kind),'failure');check((channel||engine)+' known failure waits until active light finishes');
  await wire(page,'Q1',['S','A','G']);await page.evaluate(()=>__outcomes=[]);await startAndPause(page);await page.locator('#stop').click();assert.equal(await page.evaluate(()=>__outcomes.length),0);check((channel||engine)+' stopping an unfinished trial does not play a result');

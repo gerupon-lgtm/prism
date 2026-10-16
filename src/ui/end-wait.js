@@ -1,10 +1,11 @@
 // Display-only wait; never advances the simulation or adds record time.
 export const END_WAIT_MS = 3000;
+export const CLEAR_END_WAIT_MS = 2700;
 
 export class EndWait {
   constructor() { this.run = null; this.deadline = null; this.checked = false; this.interrupted = new WeakSet(); }
   interrupt(run) { if (run?.exhausted) this.interrupted.add(run); }
-  ready(run, now, {allowNoArrival=false} = {}) {
+  ready(run, now, {allowNoArrival=false,cleared=false} = {}) {
     if (run !== this.run) {
       this.run = run; this.deadline = null; this.checked = false;
     }
@@ -16,7 +17,7 @@ export class EndWait {
     // Scan the finished run once, including runs finished by the next-event button.
     if (!this.checked) {
       this.checked = true;
-      if (allowNoArrival || run.records.some(entry => entry.type === 'goal')) this.deadline = now + END_WAIT_MS;
+      if (allowNoArrival || run.records.some(entry => entry.type === 'goal')) this.deadline = now + (cleared?CLEAR_END_WAIT_MS:END_WAIT_MS);
     }
     return this.deadline !== null && now >= this.deadline;
   }

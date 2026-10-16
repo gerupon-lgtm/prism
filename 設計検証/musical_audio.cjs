@@ -4,7 +4,7 @@ function wav(samples,rate){const b=Buffer.alloc(44+samples.length*2);b.write('RI
 exports.checkMusicalAudio=async(page,label,{out,check,pending})=>{
  const data=await page.evaluate(async()=>{
   if(typeof OfflineAudioContext!=='function')return null;
-  const entry=document.querySelector('script[type=module]').src,{Chime,DEFAULT_EFFECT_VOLUME,RESULT_BASE_FREQUENCY_HZ}=await import(new URL('./audio.js',entry)),{bellVoice}=await import(new URL('./voices.js',entry));
+  const entry=document.querySelector('script[type=module]').src,{Chime,DEFAULT_EFFECT_VOLUME,RESULT_BASE_FREQUENCY_HZ,SUCCESS_JINGLE_DELAY_SECONDS}=await import(new URL('./audio.js',entry)),{bellVoice}=await import(new URL('./voices.js',entry));
   const rate=48000,rms=(pcm,a,b)=>{let sum=0,n=0;for(let i=Math.round(a*rate);i<Math.round(b*rate);i++){sum+=pcm[i]**2;n++;}return Math.sqrt(sum/n);};
   async function render(method,{bodyOnly=false,bells=0,stopAt=null}={}){
    const ctx=new OfflineAudioContext(1,3*rate,rate),compressor=ctx.createDynamicsCompressor(),master=ctx.createGain();master.gain.value=DEFAULT_EFFECT_VOLUME;compressor.connect(master);master.connect(ctx.destination);
@@ -14,7 +14,7 @@ exports.checkMusicalAudio=async(page,label,{out,check,pending})=>{
    const scheduled=chime.voices.size;
    let buffer;if(stopAt!==null){const paused=ctx.suspend(stopAt),rendering=ctx.startRendering();await paused;body?.stop();chime.stop();await ctx.resume();buffer=await rendering;}else buffer=await ctx.startRendering();
    const pcm=buffer.getChannelData(0);let peak=0;for(const v of pcm)peak=Math.max(peak,Math.abs(v));
-   const projection=frequency=>{let re=0,im=0;const a=Math.round(.46*rate),b=Math.round(.52*rate);for(let i=a;i<b;i++){const angle=2*Math.PI*frequency*i/rate;re+=pcm[i]*Math.cos(angle);im+=pcm[i]*Math.sin(angle);}return 2*Math.hypot(re,im)/(b-a);};
+   const projection=frequency=>{let re=0,im=0;const a=Math.round((SUCCESS_JINGLE_DELAY_SECONDS+.04)*rate),b=Math.round((SUCCESS_JINGLE_DELAY_SECONDS+.1)*rate);for(let i=a;i<b;i++){const angle=2*Math.PI*frequency*i/rate;re+=pcm[i]*Math.cos(angle);im+=pcm[i]*Math.sin(angle);}return 2*Math.hypot(re,im)/(b-a);};
    return {pcm:Array.from(pcm),peak,finite:pcm.every(Number.isFinite),attackRms:rms(pcm,.008,.05),bodyRms:rms(pcm,.15,.3),quietRms:rms(pcm,1.25,1.35),failureRms:rms(pcm,1.54,1.67),tailRms:rms(pcm,2.7,2.95),stoppedRms:stopAt===null?null:rms(pcm,stopAt+.1,2.95),fundamental:projection(RESULT_BASE_FREQUENCY_HZ),harmonic:projection(RESULT_BASE_FREQUENCY_HZ*2),count,scheduled,remaining:chime.voices.size};
   }
   const rows={};for(const method of ['strike','clear','perfect','failure','relay','wire','tap'])rows[method]=await render(method);

@@ -11,7 +11,7 @@ import { Offline } from './offline.js';
 import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
 import { OrientationLayout } from './orientation.js';
-import { EndWait } from './end-wait.js';
+import { EndWait, END_WAIT_MS, CLEAR_END_WAIT_MS } from './end-wait.js';
 import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
 import { OutcomeSound } from './outcome-sound.js';
@@ -777,14 +777,14 @@ function frame(now){
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
-  if(!document.hidden&&endWait.ready(session.run,now,{allowNoArrival:session.runContext?.mode==='challenge'}))attempt(stopRun);
+  if(!document.hidden&&endWait.ready(session.run,now,{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)}))attempt(stopRun);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後3秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
   fullText('現在の条件',detail);
 }
 $('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);

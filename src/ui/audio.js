@@ -4,6 +4,7 @@ export const BELL_SOUND=Object.freeze({frequencyHz:BELL_TIMBRE.frequencyHz,durat
 // Keep the established melodies independent of the selected bell's pitch.
 export const RESULT_BASE_FREQUENCY_HZ=174.6*2**(7/12)*2;
 export const RESULT_TIMBRES=Object.freeze({clear:'piano',perfect:'fm-piano',failure:'soft'});
+export const SUCCESS_JINGLE_DELAY_SECONDS=.7;
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME=.7;
 export const WIRING_SOUND=Object.freeze({frequencyHz:880,endFrequencyHz:1174.66,durationSeconds:.1});
@@ -53,8 +54,8 @@ export class Chime {
     const time=this.context.currentTime;this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,time+BELL_SOUND.durationSeconds);
     const voice=bellVoice(this.context,this.output,{time,onended:()=>this.voices.delete(voice)});this.voices.add(voice);
   }
-  clear(){this.sequence(CLEAR_SOUND,0,RESULT_TIMBRES.clear);}
-  perfect(){this.sequence(PERFECT_SOUND,0,RESULT_TIMBRES.perfect);}
+  clear(){this.sequence(CLEAR_SOUND,SUCCESS_JINGLE_DELAY_SECONDS-CLEAR_SOUND[0].offsetSeconds,RESULT_TIMBRES.clear);}
+  perfect(){this.sequence(PERFECT_SOUND,SUCCESS_JINGLE_DELAY_SECONDS-PERFECT_SOUND[0].offsetSeconds,RESULT_TIMBRES.perfect);}
   failure(){
     const now=this.context?.currentTime??0,lastBell=this.bellUntil-BELL_SOUND.durationSeconds;
     const delay=Math.max(0,lastBell+FAILURE_BELL_DELAY_SECONDS-now-FAILURE_SOUND[0].offsetSeconds);

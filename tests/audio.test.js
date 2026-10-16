@@ -65,17 +65,17 @@ test('音声が休止している間は鐘と打音の予約を残さない',()=
   const {chime,voices}=fixture();chime.context.state='suspended';chime.strike();assert.equal(voices.length,0);assert.equal(chime.bellUntil,0);
 });
 
-test('通常クリアのエレピ4音は鐘の選択後も従来の音程と時刻を保つ',()=>{
+test('通常クリアのエレピ4音は0.7秒待って始まり、音程と音の間隔を保つ',()=>{
   const {chime,voices,notes}=fixture();chime.context.currentTime=5;chime.strike();const bellUntil=chime.bellUntil;chime.clear();
   assert.equal(notes().length,5);assert.equal(chime.bellUntil,bellUntil);assert(Math.abs(RESULT_BASE_FREQUENCY_HZ-523.22)<.04);assert.equal(BELL_SOUND.frequencyHz,440);
-  notes().slice(1).forEach((voice,index)=>{assert.equal(voice.frequencyHz,RESULT_BASE_FREQUENCY_HZ*[1,1.25,1.5,2][index]);assert.equal(voice.time,5+[.42,.58,.74,.98][index]);assert(Math.abs(voice.endTime-voice.time-.64)<1e-9);});
+  notes().slice(1).forEach((voice,index)=>{assert.equal(voice.frequencyHz,RESULT_BASE_FREQUENCY_HZ*[1,1.25,1.5,2][index]);assert(Math.abs(voice.time-(5+[.7,.86,1.02,1.26][index]))<1e-9);assert(Math.abs(voice.endTime-voice.time-.64)<1e-9);});
   chime.stop();assert(voices.every(v=>v.stopped));assert.equal(chime.voices.size,0);
 });
 
-test('満点の明るいFMエレピは8音と3和音で、3秒の待機内に収まる',()=>{
+test('満点の明るいFMエレピは0.7秒後から8音と3和音を鳴らし、2.7秒の待機内に収まる',()=>{
   const {chime,voices,notes}=fixture();chime.context.currentTime=5;chime.perfect();assert.equal(notes().length,11);assert.equal(voices.length,22);
   const melody=notes().slice(0,8),chord=notes().slice(8);assert.deepEqual(melody.map(v=>v.frequencyHz/RESULT_BASE_FREQUENCY_HZ),[1,1.25,1.5,1.5,2,2.5,2.25,2]);
-  assert(melody.every((v,i)=>v.time>=5.4&&(i===0||v.time>melody[i-1].time)));assert.deepEqual(chord.map(v=>v.frequencyHz/RESULT_BASE_FREQUENCY_HZ),[1,1.25,1.5]);assert(chord.every(v=>v.time===melody.at(-1).time));assert(notes().every(v=>v.endTime<8));chime.stop();assert(voices.every(v=>v.stopped));
+  assert(Math.abs(melody[0].time-5.7)<1e-9);assert(melody.every((v,i)=>i===0||v.time>melody[i-1].time));assert.deepEqual(chord.map(v=>v.frequencyHz/RESULT_BASE_FREQUENCY_HZ),[1,1.25,1.5]);assert(chord.every(v=>v.time===melody.at(-1).time));assert(notes().every(v=>v.endTime<7.7));chime.stop();assert(voices.every(v=>v.stopped));
 });
 
 test('満点ジングルは消音・休止中には予約せず、消音で予約済みも止める',()=>{
