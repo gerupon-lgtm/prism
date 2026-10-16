@@ -35,7 +35,7 @@ async function successTiming(page,label,audio,id,route,kind){
  const probe=await page.evaluate(()=>__successTiming),elapsed=probe.readyAt-probe.at;
  assert(elapsed>=2670&&elapsed<2990,'Clear controls return after 2.7s, earlier than the old 3s');assert.equal(probe.button,'鐘を鳴らす');
  if(audio){
-  assert.equal(probe.voices.length,kind==='perfect'?22:12);
+  assert.equal(probe.voices.length,kind==='perfect'?29:12);
   const first=Math.min(...probe.voices.map(v=>v.start));assert(first-probe.audioAt>=.7-1e-7&&first-probe.audioAt<.76,'Success notes start after 0.7s, allowing one audio clock quantum');
   assert(probe.voices.every(v=>v.stops.length===1&&v.endedAt>=v.stops[0]-.02&&v.endedAt-probe.audioAt<2.65),'Every note ends naturally before controls return');
  }
@@ -85,7 +85,7 @@ async function offlineAudio(page,label){
    const context=new OfflineAudioContext(1,3*44100,44100),chime=new Chime(),output=context.createDynamicsCompressor(),master=context.createGain();master.gain.value=.7;output.connect(master);master.connect(context.destination);chime.context=context;chime.output=output;
    // Offline contexts report suspended until rendering starts; scheduling is
    // exercised through the same host API with its running state made explicit.
-   chime.context={state:'running',currentTime:0,createOscillator:()=>context.createOscillator(),createGain:()=>context.createGain(),createBiquadFilter:()=>context.createBiquadFilter()};
+   chime.context={state:'running',currentTime:0,sampleRate:context.sampleRate,createBuffer:(...args)=>context.createBuffer(...args),createBufferSource:()=>context.createBufferSource(),createConvolver:()=>context.createConvolver(),createOscillator:()=>context.createOscillator(),createGain:()=>context.createGain(),createBiquadFilter:()=>context.createBiquadFilter()};
    chime[method]();const data=(await context.startRendering()).getChannelData(0);let peak=0,early=0,tail=0,energy=0,signature=2166136261;
    for(let i=0;i<data.length;i++){const value=Math.abs(data[i]);peak=Math.max(peak,value);energy+=value;if(i<.4*44100)early=Math.max(early,value);if(i>2.8*44100)tail=Math.max(tail,value);signature=Math.imul(signature^Math.round(data[i]*1e6),16777619)>>>0;}
    results[method]={peak,early,tail,energy,signature};
@@ -102,7 +102,7 @@ async function offlineAudio(page,label){
  if(signalOnly){await checkMusicalAudio(page,channel||engine,{out,check,pending:report.pending});await checkSelectedAudio(page,channel||engine,{check,pending:report.pending});assert.deepEqual(errors,[]);await page.close();continue;}
  const audio=await page.evaluate(async()=>{window.__outcomes=[];const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src));for(const kind of ['clear','perfect','failure']){const original=Chime.prototype[kind];Chime.prototype[kind]=function(){window.__lastChime=this;const before=new Set(this.voices);original.call(this);__outcomes.push({kind,muted:this.muted,state:this.context?.state,added:[...this.voices].filter(v=>!before.has(v)).length});};}return typeof(window.AudioContext??window.webkitAudioContext)==='function';});
  if(!audio)report.pending.push({engine,label:'Real-time audio output',reason:'API unavailable in this Windows engine; Android/iPhone/macOS/iPad listening remains included and unconfirmed.'});
- for(const [id,route,kind,count] of [['Q1',['S','A','G'],'perfect',11],['Q2',['S','C','G'],'clear',6],['Q1',['S','A'],'failure',3]]){
+ for(const [id,route,kind,count] of [['Q1',['S','A','G'],'perfect',19],['Q2',['S','C','G'],'clear',6],['Q1',['S','A'],'failure',3]]){
   await wire(page,id,route);await page.evaluate(()=>__outcomes=[]);await finish(page,kind);
   const calls=await page.evaluate(()=>__outcomes);assert.equal(calls.length,1);assert.equal(calls[0].kind,kind);if(audio)assert.equal(calls[0].added,count);
   const before=await exported(page);assert.equal(before.evaluation.state,kind==='failure'?'failed':'achieved');if(kind==='perfect')assert.deepEqual(before.evaluation.score,{numerator:'100',denominator:'1'});if(kind==='clear')assert(Number(before.evaluation.score.numerator)/Number(before.evaluation.score.denominator)<100);

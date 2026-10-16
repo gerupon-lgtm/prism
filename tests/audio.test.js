@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {Chime,RELAY_SOUND,BELL_SOUND,RESULT_BASE_FREQUENCY_HZ,DEFAULT_EFFECT_VOLUME} from '../src/ui/audio.js';
+import {Chime,BELL_SOUND,DEFAULT_EFFECT_VOLUME} from '../src/ui/audio.js';
 
 function fixture(){
-  const chime=new Chime(),voices=[];
+  const chime=new Chime(),voices=[],sources=[];
   const parameter=()=>({value:0,events:[],setValueAtTime(value,at){this.events.push({kind:'set',value,at});},setTargetAtTime(value,at,decay){this.events.push({kind:'target',value,at,decay});},linearRampToValueAtTime(value,at){this.events.push({kind:'linear',value,at});},exponentialRampToValueAtTime(value,at){this.events.push({kind:'exponential',value,at});},cancelScheduledValues(){}});
-  chime.context={state:'running',currentTime:0,createGain:()=>({gain:parameter(),connect(){},disconnect(){}}),createBiquadFilter:()=>({frequency:parameter(),Q:{value:0},connect(){},disconnect(){}}),createOscillator:()=>{const voice={frequency:parameter(),connect(){},disconnect(){this.disconnected=true;},start(at){this.startedAt=at;},stop(at){this.stopAt=at;if(at===undefined||at<=chime.context.currentTime){this.stopped=true;this.onended?.();}}};voices.push(voice);return voice;}};
-  chime.output={};return {chime,voices,notes:()=>[...chime.voices]};
+  chime.context={state:'running',currentTime:0,sampleRate:48000,createBuffer:(channels,length)=>({getChannelData:()=>new Float32Array(length)}),createConvolver:()=>({connect(){},disconnect(){}}),createBufferSource:()=>{const source={connect(){},disconnect(){this.disconnected=true;},start(at){this.startedAt=at;},stop(at){this.stopAt=at;if(at<=chime.context.currentTime){this.stopped=true;this.onended?.();}}};sources.push(source);return source;},createGain:()=>({gain:parameter(),connect(){},disconnect(){}}),createBiquadFilter:()=>({frequency:parameter(),Q:{value:0},connect(){},disconnect(){}}),createOscillator:()=>{const voice={frequency:parameter(),detune:parameter(),connect(){},disconnect(){this.disconnected=true;},start(at){this.startedAt=at;},stop(at){this.stopAt=at;if(at===undefined||at<=chime.context.currentTime){this.stopped=true;this.onended?.();}}};voices.push(voice);return voice;}};
+  chime.output={};return {chime,voices,sources,notes:()=>[...chime.voices].filter(v=>v.frequencyHz!==undefined)};
 }
 
 test('結線音はW2の高い2音で、停止・消音・鐘の余韻では重ならない',()=>{
@@ -22,9 +22,9 @@ test('操作音はT2の澄んだ880Hzで、短い余韻のあと終わる',()=>{
   const {chime,voices,notes}=fixture();chime.tap();assert.equal(notes().length,1);assert.equal(voices.length,2);assert.equal(notes()[0].frequencyHz,880);assert(Math.abs(notes()[0].endTime-.075)<1e-9);chime.mute();assert(voices.every(v=>v.stopped));
 });
 
-test('中継点は到着1回につき短いエレピ1音を鳴らし、時間だけでは繰り返さない',()=>{
+test('中継点は選ばれたR4の短い結晶音を到着1回につき1音鳴らす',()=>{
   const {chime,voices,notes}=fixture();chime.relay();assert.equal(notes().length,1);assert.equal(voices.length,2);
-  assert.equal(notes()[0].frequencyHz,RELAY_SOUND.frequencyHz);assert(voices[0].frequency.events.some(e=>e.value===880));assert(Math.abs(notes()[0].endTime-.2)<1e-9);
+  assert(Math.abs(notes()[0].frequencyHz-329.6275569128699)<1e-7);assert(Math.abs(notes()[0].endTime-.125)<1e-9);
   chime.context.currentTime=5;assert.equal(voices.length,2);chime.relay();assert.equal(notes().length,2);assert.equal(notes()[1].time,5);
 });
 
@@ -76,15 +76,18 @@ test('通常クリアは選ばれたC1の6音を0.7秒後から鳴らし、鐘�
   chime.stop();assert(voices.every(v=>v.stopped));assert.equal(chime.voices.size,0);
 });
 
-test('満点の明るいFMエレピは0.7秒後から8音と3和音を鳴らし、2.7秒の待機内に収まる',()=>{
-  const {chime,voices,notes}=fixture();chime.context.currentTime=5;chime.perfect();assert.equal(notes().length,11);assert.equal(voices.length,22);
-  const melody=notes().slice(0,8),chord=notes().slice(8);assert.deepEqual(melody.map(v=>v.frequencyHz/RESULT_BASE_FREQUENCY_HZ),[1,1.25,1.5,1.5,2,2.5,2.25,2]);
-  assert(Math.abs(melody[0].time-5.7)<1e-9);assert(melody.every((v,i)=>i===0||v.time>melody[i-1].time));assert.deepEqual(chord.map(v=>v.frequencyHz/RESULT_BASE_FREQUENCY_HZ),[1,1.25,1.5]);assert(chord.every(v=>v.time===melody.at(-1).time));assert(notes().every(v=>v.endTime<7.7));chime.stop();assert(voices.every(v=>v.stopped));
+test('満点はF4のブラス7音とStrings11音を0.7秒後から鳴らす',()=>{
+  const {chime,voices,notes}=fixture();chime.context.currentTime=5;chime.perfect();assert.equal(notes().length,18);assert.equal(voices.length,29);
+  const melody=notes().slice(0,7),chords=notes().slice(7);
+  assert.deepEqual(melody.map(v=>Math.round(69+12*Math.log2(v.frequencyHz/440))),[69,73,76,81,85,83,81]);
+  assert.deepEqual(melody.map(v=>Math.round((v.time-5)*100)),[70,82,94,112,136,150,170]);
+  assert.deepEqual(chords.map(v=>Math.round(69+12*Math.log2(v.frequencyHz/440))),[57,61,64,59,68,71,76,57,69,73,76]);
+  assert(notes().every(v=>v.endTime<7.41));assert(voices.every(v=>v.type==='sawtooth'));chime.stop();assert(voices.every(v=>v.stopped&&v.disconnected));
 });
 
 test('満点ジングルは消音・休止中には予約せず、消音で予約済みも止める',()=>{
   const {chime,voices,notes}=fixture();chime.muted=true;chime.perfect();assert.equal(voices.length,0);chime.muted=false;chime.context.state='suspended';chime.perfect();assert.equal(voices.length,0);
-  chime.context.state='running';chime.perfect();assert.equal(notes().length,11);chime.mute();assert(voices.every(v=>v.stopped));
+  chime.context.state='running';chime.perfect();assert.equal(notes().length,18);chime.mute();assert(voices.every(v=>v.stopped));
 });
 
 test('未達成はN2のエレピ下降3音で、消音・休止・停止を守る',()=>{
@@ -102,4 +105,10 @@ test('未達成3音は最後の鐘から1.5秒空け、3秒待機内に終わる
 
 test('開始前の予約を止めても全発振器を解放し、新しい音を再生できる',()=>{
   const {chime,voices,notes}=fixture();chime.perfect();assert(voices.every(v=>v.startedAt>.4));chime.stop();assert(voices.every(v=>v.stopped&&v.disconnected));assert.equal(notes().length,0);chime.clear();assert.equal(notes().length,6);
+});
+
+test('ファンファーレの残響も2.7秒以内で終了し、停止・消音で即時解放する',()=>{
+  const {chime,sources,notes}=fixture();chime.perfect();assert.equal(notes().length,18);assert.equal(chime.voices.size,19);assert.equal(sources.length,1);
+  assert(sources[0].stopAt>2.4&&sources[0].stopAt<2.65);chime.stop();assert(sources.every(s=>s.stopped&&s.disconnected));assert.equal(chime.voices.size,0);
+  chime.perfect();chime.mute();assert(sources.every(s=>s.stopped&&s.disconnected));assert.equal(chime.voices.size,0);
 });

@@ -6,6 +6,8 @@ const timbres={
   'fm-piano':{wave:'sine',attack:.005,decay:.95,sustain:.055,ratio:3,depth:3.8,modDecay:.35,modSustain:.06},
   soft:{wave:'triangle',attack:.018,decay:.3,sustain:.62,cutoff:5},
   wood:{wave:'sine',attack:.004,decay:.5,sustain:.012,ratio:3.5,depth:5.25,modDecay:.5,modSustain:.22},
+  brass:{wave:'sawtooth',attack:.035,decay:.18,sustain:.7,cutoff:7,filterFloor:4.5,filterDecay:.22},
+  strings:{wave:'sawtooth',attack:.12,decay:.5,sustain:.82,cutoff:5,filterFloor:4,detune:5},
 };
 export const BELL_TIMBRE=Object.freeze({frequencyHz:440,durationSeconds:2.62,ratio:Math.SQRT2,index:5.2,tailIndex:.9,modDecay:.42,ampDecay:.325,attackFrequencyHz:880,attackDurationSeconds:.06,attackGain:.12});
 
@@ -34,7 +36,12 @@ export function musicalVoice(context,output,{timbre='piano',frequencyHz,time=con
     modulator.connect(modulation);modulation.connect(carrier.frequency);oscillators.push(modulator);nodes.push(modulator,modulation);
   }
   if(preset.cutoff){
-    const filter=context.createBiquadFilter();filter.type='lowpass';filter.Q.value=.55;filter.frequency.setValueAtTime(frequencyHz*preset.cutoff,time);filter.frequency.setTargetAtTime(frequencyHz*2.5,time+preset.attack,.15);carrier.connect(filter);path=filter;nodes.push(filter);
+    const filter=context.createBiquadFilter();filter.type='lowpass';filter.Q.value=.55;
+    const high=auditionTiming?Math.min(context.sampleRate*.4,frequencyHz*preset.cutoff):frequencyHz*preset.cutoff;
+    filter.frequency.setValueAtTime(high,time);filter.frequency.setTargetAtTime(auditionTiming?Math.min(high,frequencyHz*(preset.filterFloor??2.5)):frequencyHz*2.5,time+preset.attack,preset.filterDecay??.15);carrier.connect(filter);path=filter;nodes.push(filter);
+  }
+  if(preset.detune){
+    const second=context.createOscillator();second.type=preset.wave;carrier.detune.setValueAtTime(-preset.detune,time);second.frequency.setValueAtTime(frequencyHz,time);second.detune.setValueAtTime(preset.detune,time);second.connect(path);oscillators.push(second);nodes.push(second);gain/=2;
   }
   path.connect(level);level.connect(output);
   const release=releaseSeconds??Math.min(.12,durationSeconds*.4),off=auditionTiming?time+durationSeconds:time+durationSeconds-release-.005;

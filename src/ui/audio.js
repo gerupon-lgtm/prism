@@ -1,20 +1,12 @@
 import {BELL_TIMBRE,bellVoice,musicalVoice} from './voices.js';
 import {SOUND_CUES} from './sound-cues.js';
+import {fanfareReverb} from './reverb.js';
 
 export const BELL_SOUND=Object.freeze({frequencyHz:BELL_TIMBRE.frequencyHz,durationSeconds:BELL_TIMBRE.durationSeconds});
-// Keep the established melodies independent of the selected bell's pitch.
-export const RESULT_BASE_FREQUENCY_HZ=174.6*2**(7/12)*2;
 export const SUCCESS_JINGLE_DELAY_SECONDS=.7;
 // Common effect volume: 0 is silent, 1 is the app's maximum (not device volume).
 export const DEFAULT_EFFECT_VOLUME=.7;
-const note=(ratio,offsetSeconds,durationSeconds,volume)=>Object.freeze({ratio,offsetSeconds,durationSeconds,volume});
-export const PERFECT_SOUND=Object.freeze([
-  note(1,.42,.35,.065),note(1.25,.56,.35,.065),note(1.5,.70,.35,.065),note(1.5,.84,.35,.065),
-  note(2,1.02,.35,.065),note(2.5,1.20,.35,.065),note(2.25,1.38,.35,.065),note(2,1.60,.65,.065),
-  note(1,1.60,.65,.025),note(1.25,1.60,.65,.025),note(1.5,1.60,.65,.025),
-]);
 export const FAILURE_BELL_DELAY_SECONDS=1.5;
-export const RELAY_SOUND=Object.freeze({frequencyHz:659.26,endFrequencyHz:880,durationSeconds:.18});
 
 export class Chime {
   constructor(){this.muted=false;this.context=null;this.voices=new Set();this.relayVoices=new Set();this.wireVoices=new Set();this.bellUntil=0;}
@@ -27,14 +19,14 @@ export class Chime {
     await this.context.resume();
   }
   mute(){this.muted=true;this.stop();}
-  musical(timbre,options,family){
-    const voice=musicalVoice(this.context,this.output,{...options,timbre,onended:()=>{this.voices.delete(voice);family?.delete(voice);}});
+  musical(timbre,options,family,output=this.output){
+    const voice=musicalVoice(this.context,output,{...options,timbre,onended:()=>{this.voices.delete(voice);family?.delete(voice);}});
     this.voices.add(voice);family?.add(voice);
   }
-  cue({timbre,releaseSeconds,notes},delay=0,family){
+  cue({notes},delay=0,family,output=this.output){
     if(this.muted||!this.context||this.context.state!=='running')return;
     const now=this.context.currentTime;
-    for(const {midi,offsetSeconds,durationSeconds,volume} of notes)this.musical(timbre,{time:now+delay+offsetSeconds,frequencyHz:440*2**((midi-69)/12),durationSeconds,gain:volume,releaseSeconds},family);
+    for(const {midi,offsetSeconds,durationSeconds,volume,timbre,releaseSeconds} of notes)this.musical(timbre,{time:now+delay+offsetSeconds,frequencyHz:440*2**((midi-69)/12),durationSeconds,gain:volume,releaseSeconds},family,output);
   }
   tap(){
     if(this.muted||!this.context||this.context.state!=='running')return;
@@ -47,7 +39,7 @@ export class Chime {
   }
   relay(){
     if(this.muted||!this.context||this.context.state!=='running'||this.context.currentTime<this.bellUntil)return;
-    this.musical('piano',{frequencyHz:RELAY_SOUND.frequencyHz,endFrequencyHz:RELAY_SOUND.endFrequencyHz,glideStart:.06,glideEnd:.08,time:this.context.currentTime,durationSeconds:RELAY_SOUND.durationSeconds+.02,gain:.1},this.relayVoices);
+    this.cue(SOUND_CUES.relay,0,this.relayVoices);
   }
   strike(){
     if(this.muted||!this.context||this.context.state!=='running')return;
@@ -55,16 +47,15 @@ export class Chime {
     const voice=bellVoice(this.context,this.output,{time,onended:()=>this.voices.delete(voice)});this.voices.add(voice);
   }
   clear(){this.cue(SOUND_CUES.clear,SUCCESS_JINGLE_DELAY_SECONDS);}
-  perfect(){this.sequence(PERFECT_SOUND,SUCCESS_JINGLE_DELAY_SECONDS-PERFECT_SOUND[0].offsetSeconds,'fm-piano');}
+  perfect(){
+    if(this.muted||!this.context||this.context.state!=='running')return;
+    const effect=fanfareReverb(this.context,this.output,{onended:()=>this.voices.delete(effect)});this.voices.add(effect);
+    this.cue(SOUND_CUES.perfect,SUCCESS_JINGLE_DELAY_SECONDS,undefined,effect.input);
+  }
   failure(){
     const now=this.context?.currentTime??0,lastBell=this.bellUntil-BELL_SOUND.durationSeconds;
     const delay=Math.max(.42,lastBell+FAILURE_BELL_DELAY_SECONDS-now);
     this.cue(SOUND_CUES.failure,delay);
-  }
-  sequence(notes,delay=0,timbre='piano'){
-    if(this.muted||!this.context||this.context.state!=='running')return;
-    const now=this.context.currentTime;
-    for(const {ratio,offsetSeconds,durationSeconds,volume} of notes)this.musical(timbre,{time:now+delay+offsetSeconds,frequencyHz:RESULT_BASE_FREQUENCY_HZ*ratio,durationSeconds:durationSeconds+.02,gain:volume});
   }
   stop(){this.silenceRelay();this.bellUntil=0;for(const voice of [...this.voices])voice.stop();this.voices.clear();}
 }
