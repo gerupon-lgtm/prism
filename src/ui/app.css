@@ -158,6 +158,9 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 /* Only the line being approached gets a gold time card; no motion or resizing. */
 .edge.wiring-focus .edge-label-card{fill:#f1d28b;stroke:#fff3cc}
 .edge.wiring-focus .edge-time{fill:#152035;stroke:none;text-shadow:none}
+/* Cyan dashed plans remain distinct from grey candidates and solid gold wires. */
+.edge.candidate:is(.wiring-focus,.wiring-planned) .edge-line,.wire-preview{fill:none;stroke:#8fe4ff;stroke-width:3.5px;stroke-dasharray:9 6;stroke-linecap:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.edge.candidate:is(.wiring-focus,.wiring-planned) .edge-backdrop,.wire-preview-backdrop{fill:none;stroke:#030a17;stroke-opacity:.9;stroke-width:7.5px;stroke-dasharray:9 6;stroke-linecap:round;vector-effect:non-scaling-stroke;pointer-events:none}
 .floating-ruin{opacity:.6}.observatory{opacity:.55}
 .stone{fill:#223854;stroke:#8ea4d1}.stone-line{stroke:#adc8f3}
 .dome-shell{fill:#263953;stroke:#d4b77f}.dome-line,.armillary{stroke:#e3c98c}

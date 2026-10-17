@@ -1,0 +1,42 @@
+{
+  "version": "0.54.0",
+  "sequential": true,
+  "syntax": "60 files passed",
+  "build": "51 offline assets",
+  "jobs": [
+    {
+      "name": "unit",
+      "exit": 0,
+      "seconds": 49
+    },
+    {
+      "name": "chromium",
+      "exit": 0,
+      "seconds": 20
+    },
+    {
+      "name": "webkit",
+      "exit": 0,
+      "seconds": 19
+    },
+    {
+      "name": "chrome",
+      "exit": 0,
+      "seconds": 17
+    },
+    {
+      "name": "msedge",
+      "exit": 0,
+      "seconds": 19
+    },
+    {
+      "name": "wiring-regression",
+      "exit": 0,
+      "seconds": 23
+    }
+  ],
+  "unit": "All 18 test files passed",
+  "passed": true,
+  "focusChecks": 410,
+  "wiringChecks": 52
+}

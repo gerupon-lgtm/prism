@@ -151,7 +151,8 @@ export class Board {
         if(candidates.some(edge=>edge.from===this.session.selection&&edge.to===group.dataset.node)) group.classList.add('choice');
       }
     }
-    this.wire=svg('path',{class:'wire-preview'});this.world.append(this.wire);this.previewWire();
+    this.wireBackdrop=svg('path',{class:'wire-preview-backdrop'});this.wire=svg('path',{class:'wire-preview'});
+    const firstPart=this.world.querySelector('[data-node]');this.world.insertBefore(this.wireBackdrop,firstPart);this.world.insertBefore(this.wire,firstPart);this.previewWire();
     this.timeLayoutSignature=null;this.labelOrigins=new Map();
     this.particles();
     this.effectsLayer.replaceChildren();
@@ -353,7 +354,7 @@ export class Board {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.stopHold();
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.updateWireTimeFocus();this.wire?.setAttribute('d','');this.magnifier.hide();return;}
+    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.updateWireTimeFocus();this.setWirePreview('');this.magnifier.hide();return;}
     const directEdge=event.target.closest('[data-edge]');
     const directNode=event.target.closest('[data-node]')?.dataset.node??(!directEdge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
     const card=event.target.closest('.edge-label')&&directEdge&&!directEdge.classList.contains('candidate');
@@ -469,21 +470,29 @@ export class Board {
     return nearest;
   }
   updateWireTimeFocus() {
-    const id=this.wireTimeTarget();
-    for(const group of this.world.querySelectorAll('[data-edge]'))group.classList.toggle('wiring-focus',group.dataset.edge===id);
+    const id=this.wireTimeTarget(),planned=new Set(this.gesture?.kind==='wire'?this.gesture.edges:[]);
+    for(const group of this.world.querySelectorAll('[data-edge]')){group.classList.toggle('wiring-focus',group.dataset.edge===id);group.classList.toggle('wiring-planned',planned.has(group.dataset.edge));}
+    return id;
+  }
+  setWirePreview(d) {
+    this.wire?.setAttribute('d',d);this.wireBackdrop?.setAttribute('d',d);
   }
   previewWire() {
-    this.updateWireTimeFocus();
-    const gesture=this.gesture;if(!this.wire||gesture?.kind!=='wire'||!gesture.moved)return;
-    const points=gesture.route.map(id=>this.position(this.session.circuit.nodes.find(n=>n.id===id)));
-    points.push(gesture.last);this.wire.setAttribute('d',points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' '));
+    const focused=this.updateWireTimeFocus(),gesture=this.gesture;
+    if(!this.wire||gesture?.kind!=='wire'||!gesture.moved){this.setWirePreview('');return;}
+    // Challenge previews colour the actual curved candidate, including parallel
+    // routes. Show the finger's free tail only when no next line is identified.
+    if(this.session.mode==='challenge'&&focused&&!gesture.edges?.includes(focused)){this.setWirePreview('');return;}
+    const route=this.session.mode==='challenge'?gesture.route.slice(-1):gesture.route;
+    const points=route.map(id=>this.position(this.session.circuit.nodes.find(n=>n.id===id)));
+    points.push(gesture.last);this.setWirePreview(points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' '));
   }
   up(event) {
     this.stopHold();
     this.move(event,true);const gesture=this.gesture;this.pointers.delete(event.pointerId);this.magnifier.hide();
     if(!gesture||gesture.kind==='held'){this.gesture=null;return;}
     if(gesture.kind==='pinch'){if(this.pointers.size===0)this.cancelAll();return;}
-    this.gesture=null;this.wire?.setAttribute('d','');
+    this.gesture=null;this.setWirePreview('');
     try {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
         if(gesture.route.length>1&&gesture.releaseTarget===gesture.route.at(-1)){
@@ -504,5 +513,5 @@ export class Board {
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
   stopHold() {clearTimeout(this.holdTimer);this.holdTimer=null;}
-  cancelAll() {this.stopHold();this.gesture=null;this.updateWireTimeFocus();this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
+  cancelAll() {this.stopHold();this.gesture=null;this.updateWireTimeFocus();this.pointers.clear();this.lastTap=null;this.setWirePreview('');this.magnifier.hide();}
 }
