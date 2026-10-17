@@ -98,7 +98,7 @@ export class Board {
     const candidates=this.session.mode==='challenge' ? this.session.challenge.candidates.filter(edge=>!input.edges.some(built=>built.id===edge.id)) : [];
     const all=[...input.edges,...candidates];
     const timeOrigin=nodes.has(this.session.selection)?this.session.selection:input.nodes.find(node=>node.kind==='source')?.id;
-    const timeCards=[];
+    const timeCards=[],previewEdges=new Set(this.gesture?.kind==='wire'?this.gesture.edges:[]);
     const parallels=new Map();
     for(const edge of all){const key=JSON.stringify([edge.from,edge.to].sort());let list=parallels.get(key);if(!list){list=[];parallels.set(key,list);}list.push(edge);}
     for (const edge of all) {
@@ -118,7 +118,7 @@ export class Board {
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{class:'edge-label',transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
       const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},secondsLabel(edge.time));
-      label.append(card,text);if(candidate&&this.session.view.showAllTimes===false&&edge.from!==timeOrigin&&!(edge.bidirectional&&edge.to===timeOrigin))label.setAttribute('hidden','');group.append(label);
+      label.append(card,text);if(candidate&&this.session.view.showAllTimes===false&&!previewEdges.has(edge.id)&&edge.from!==timeOrigin&&!(edge.bidirectional&&edge.to===timeOrigin))label.setAttribute('hidden','');group.append(label);
       this.world.append(group);
       timeCards.push({card,text,factor});
     }
@@ -353,7 +353,7 @@ export class Board {
     if(event.button!==0)return;event.preventDefault();this.element.setPointerCapture(event.pointerId);
     this.stopHold();
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.wire?.setAttribute('d','');this.magnifier.hide();return;}
+    if(this.pointers.size>=2){if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.updateWireTimeFocus();this.wire?.setAttribute('d','');this.magnifier.hide();return;}
     const directEdge=event.target.closest('[data-edge]');
     const directNode=event.target.closest('[data-node]')?.dataset.node??(!directEdge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
     const card=event.target.closest('.edge-label')&&directEdge&&!directEdge.classList.contains('candidate');
@@ -426,7 +426,7 @@ export class Board {
       if(final)gesture.releaseTarget=target;
       if(target&&target!==from&&!terminal){
         // Cue each accepted target; the stroke stays provisional until release.
-        try{this.session.planConnections([...gesture.route,target]);gesture.route.push(target);this.session.selection=target;this.connected(target);this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
+        try{const plan=this.session.planConnections([...gesture.route,target]);gesture.edges=plan.added;gesture.route.push(target);this.session.selection=target;this.connected(target);this.render();this.changed(false);}catch{/* An invalid intermediate target does not commit part of the stroke. */}
       }
       this.previewWire();this.magnifier.show(event,`${gesture.route.map(id=>partName(this.session.circuit.nodes.find(node=>node.id===id),this.session.circuit.nodes,true)).join('→')}`);
     } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {
@@ -435,7 +435,38 @@ export class Board {
       this.magnifier.show(event,`${objectName(gesture.id,this.session.circuit)}を移動`);
     }
   }
+  wireTimeTarget() {
+    const gesture=this.gesture;
+    if(gesture?.kind!=='wire'||!gesture.moved||!this.session.editable)return null;
+    const matrix=this.world.getScreenCTM();if(!matrix)return null;
+    const point=at=>({x:matrix.a*at.x+matrix.c*at.y+matrix.e,y:matrix.b*at.x+matrix.d*at.y+matrix.f});
+    const cursor=point(gesture.last),from=gesture.route.at(-1),node=this.session.circuit.nodes.find(item=>item.id===from);
+    const origin=point(this.position(node));
+    // At an accepted part, keep the arriving line readable until the next leg.
+    const hit=this.world.querySelector(`[data-node="${CSS.escape(from)}"] .node-hit`)?.getBoundingClientRect();
+    if(Math.hypot(cursor.x-origin.x,cursor.y-origin.y)<Math.max(14,(hit?Math.min(hit.width,hit.height)/2:22)+WIRING_HIT.releaseMargin))return gesture.edges?.at(-1)??null;
+    if(node.kind==='goal')return null;
+    let nearest=null,distance=26;
+    const destinations=new Set((this.session.mode==='challenge'?this.session.challenge.candidates:[]).filter(edge=>edge.from===from).map(edge=>edge.to));
+    for(const to of destinations){
+      let id;try{id=this.session.planConnections([...gesture.route,to]).added.at(-1);}catch{continue;}
+      const curve=this.curves.get(id);if(!curve)continue;
+      let previous=point(curve.a);
+      for(let n=1;n<=24;n++){
+        const current=point(this.onCurve(curve,n/24)),dx=current.x-previous.x,dy=current.y-previous.y,length=dx*dx+dy*dy;
+        const fraction=length?Math.max(0,Math.min(1,((cursor.x-previous.x)*dx+(cursor.y-previous.y)*dy)/length)):0;
+        const gap=Math.hypot(cursor.x-previous.x-dx*fraction,cursor.y-previous.y-dy*fraction);
+        if(gap<distance){distance=gap;nearest=id;}previous=current;
+      }
+    }
+    return nearest;
+  }
+  updateWireTimeFocus() {
+    const id=this.wireTimeTarget();
+    for(const group of this.world.querySelectorAll('[data-edge]'))group.classList.toggle('wiring-focus',group.dataset.edge===id);
+  }
   previewWire() {
+    this.updateWireTimeFocus();
     const gesture=this.gesture;if(!this.wire||gesture?.kind!=='wire'||!gesture.moved)return;
     const points=gesture.route.map(id=>this.position(this.session.circuit.nodes.find(n=>n.id===id)));
     points.push(gesture.last);this.wire.setAttribute('d',points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' '));
@@ -466,5 +497,5 @@ export class Board {
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
   stopHold() {clearTimeout(this.holdTimer);this.holdTimer=null;}
-  cancelAll() {this.stopHold();this.gesture=null;this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
+  cancelAll() {this.stopHold();this.gesture=null;this.updateWireTimeFocus();this.pointers.clear();this.lastTap=null;this.wire?.setAttribute('d','');this.magnifier.hide();}
 }

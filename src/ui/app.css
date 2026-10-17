@@ -155,6 +155,9 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 .edge-label-card{fill:#18243b;fill-opacity:1;stroke:#8198bf;stroke-width:calc(2px * var(--board-factor,1))}
 .candidate .edge-line{stroke:#a3b8de;stroke-width:calc(3px * var(--board-factor,1));stroke-dasharray:12 10}
 .candidate .edge-label-card{fill:#142139;stroke:#738eb8}
+/* Only the line being approached gets a gold time card; no motion or resizing. */
+.edge.wiring-focus .edge-label-card{fill:#f1d28b;stroke:#fff3cc}
+.edge.wiring-focus .edge-time{fill:#152035;stroke:none;text-shadow:none}
 .floating-ruin{opacity:.6}.observatory{opacity:.55}
 .stone{fill:#223854;stroke:#8ea4d1}.stone-line{stroke:#adc8f3}
 .dome-shell{fill:#263953;stroke:#d4b77f}.dome-line,.armillary{stroke:#e3c98c}
