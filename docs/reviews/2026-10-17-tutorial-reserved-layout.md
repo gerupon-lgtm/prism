@@ -1,6 +1,6 @@
 # チュートリアルの案内と盤面の分離
 
-対象：0.47.0の案内が経路や鐘を隠すという実機報告。修正版は0.48.0。公開結果は確認後に追記する。
+対象：0.47.0の案内が経路や鐘を隠すという実機報告。修正版は0.48.0。両URLで公開確認済み。
 
 ## 原因と修正
 
@@ -34,4 +34,14 @@ PCブラウザの画像と実際の操作を検査する。スマホ相当のタ
 
 通常操作・記録・保存・入力・負荷停止・方向保持も、Chromium／WebKitの70項目が合格。結果は`設計検証/アプリ/0.48.0/report.json`。
 
-公開結果は確認完了後に追記する。
+## 公開結果
+
+ソース：`415086326a7f1c755c6eef7d27d4b41d1ce3c3e1`。GitHub Pagesはジョブ38996654038、Cloudflare Pagesは配信1516b8aa-0304-44c0-94a9-d7c0be5b27a6が成功。Cloudflareは今回も対象コミットの配信がないことを確認し、mainを指定してAPIから開始した。
+
+- https://prism.sikumilab.com/ と https://gerupon-lgtm.github.io/prism/ ：各61項目が合格。版・コミット、配信資材のハッシュと形式、実際の更新確認、結線・100点・記録・保存・書出し、通常HTTPキャッシュを消した通信なし再起動を確認した。
+- 独自ドメインのHTTPSとキャッシュ設定：5項目が合格。
+- 独自ドメインの実際のチュートリアル：Windows Chrome、PC1600×1000・スマホ相当390×844の計9項目が合格。結線・実行・記録・完了まで操作し、案内が盤面を覆わないことを再確認した。
+
+配信直後の最初の検査ではbuild-infoが一度0.47.0を返したため不合格として保存した。その後、両URLで3回ずつ新版を取得し、全公開検査をやり直して合格を確認。独自ドメインの版情報はno-store／DYNAMICで配信されていた。旧版が返った原因は断定しない。途中の結果は`failed-deployment-048-*.json`、再取得は`deployment-readiness.json`、最終結果は`public-verification.json`と各公開ホストのreport.jsonを参照。
+
+[公開版のスマホ相当画像](../../設計検証/案内配置/0.48.0/public/prism.sikumilab.com/chrome/pair/390-tutorial-connect.png)・[公開版のPC画像](../../設計検証/案内配置/0.48.0/public/prism.sikumilab.com/chrome/pair/1600-tutorial-connect.png)。PCでの確認であり、修正版のスマホ実機の表示・指操作・聴感は未確認。

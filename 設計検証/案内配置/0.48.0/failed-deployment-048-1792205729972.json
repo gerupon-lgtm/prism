@@ -1,0 +1,28 @@
+{
+  "version": "0.48.0",
+  "commit": "415086326a7f1c755c6eef7d27d4b41d1ce3c3e1",
+  "sequential": true,
+  "readiness": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "version": "0.48.0",
+      "commit": "415086326a7f1c755c6eef7d27d4b41d1ce3c3e1",
+      "at": "2026-10-17T02:54:43.394Z"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "version": "0.48.0",
+      "commit": "415086326a7f1c755c6eef7d27d4b41d1ce3c3e1",
+      "at": "2026-10-17T02:54:43.674Z"
+    }
+  ],
+  "jobs": [
+    {
+      "name": "public-cloudflare",
+      "exit": 1,
+      "seconds": 1
+    }
+  ],
+  "passed": false,
+  "error": "Error: Public check failed\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\local-tools\\public-048.cjs:8:560\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+}
