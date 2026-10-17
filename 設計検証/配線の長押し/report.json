@@ -1,5 +1,5 @@
 {
-  "version": "0.43.0",
+  "version": "0.45.0",
   "checks": [
     {
       "label": "chromium starting removes part selection during the prelude and running",
@@ -81,6 +81,10 @@
     },
     {
       "label": "chromium Escape clears the red target without deleting",
+      "passed": true
+    },
+    {
+      "label": "chromium tapping outside dismisses deletion without changing wiring, opening settings or altering previous results",
       "passed": true
     },
     {
@@ -1533,6 +1537,10 @@
     },
     {
       "label": "webkit Escape clears the red target without deleting",
+      "passed": true
+    },
+    {
+      "label": "webkit tapping outside dismisses deletion without changing wiring, opening settings or altering previous results",
       "passed": true
     },
     {

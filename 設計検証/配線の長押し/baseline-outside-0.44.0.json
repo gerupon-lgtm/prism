@@ -1,0 +1,97 @@
+{
+  "version": "0.44.0",
+  "checks": [
+    {
+      "label": "chromium starting removes part selection during the prelude and running",
+      "passed": true
+    },
+    {
+      "label": "chromium holding a built wire highlights exactly one target and asks before changing it",
+      "passed": true
+    },
+    {
+      "label": "chromium delete confirmation",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "rect": {
+        "x": 9,
+        "y": 679.109375,
+        "width": 372,
+        "height": 156.890625,
+        "right": 381,
+        "bottom": 836
+      },
+      "scroll": [
+        370,
+        155
+      ],
+      "client": [
+        370,
+        155
+      ],
+      "controls": [
+        {
+          "id": "wire-delete-target",
+          "name": "削除する配線の名前を全文で読む",
+          "rect": {
+            "x": 22,
+            "y": 719,
+            "width": 346,
+            "height": 44,
+            "right": 368,
+            "bottom": 763
+          }
+        },
+        {
+          "id": "wire-delete-cancel",
+          "name": "取消",
+          "rect": {
+            "x": 22,
+            "y": 771,
+            "width": 168,
+            "height": 52,
+            "right": 190,
+            "bottom": 823
+          }
+        },
+        {
+          "id": "wire-delete-ok",
+          "name": "OK",
+          "rect": {
+            "x": 200,
+            "y": 771,
+            "width": 168,
+            "height": 52,
+            "right": 368,
+            "bottom": 823
+          }
+        }
+      ]
+    },
+    {
+      "label": "chromium cancel keeps the wiring and complete previous result",
+      "passed": true
+    },
+    {
+      "label": "chromium Escape clears the red target without deleting",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    }
+  ],
+  "evidence": "Real PC pointer input and synthetic phone orientation; physical-device usability remains unconfirmed.",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Touching outside the deletion confirmation dismisses it\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_wire_touch.cjs:39:257"
+}

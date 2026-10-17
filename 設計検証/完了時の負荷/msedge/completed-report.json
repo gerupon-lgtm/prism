@@ -1,0 +1,139 @@
+{
+  "version": "0.45.0",
+  "syntheticDelay": 135,
+  "checks": [
+    {
+      "label": "msedge completed preserves the complete reference records, 3.8 seconds and 100 points",
+      "passed": true,
+      "completed": {
+        "last": {
+          "milliseconds": 179.69999998807907,
+          "phases": {
+            "records": 0.09999999403953552,
+            "calculation": 1.5999999940395355,
+            "audio": 1.5999999940395355,
+            "display": 176.19999998807907
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.5999999940395355,
+            "maximum": 0.5
+          },
+          "calculation": {
+            "calls": 230,
+            "milliseconds": 21.300000071525574,
+            "maximum": 1.800000011920929
+          },
+          "display": {
+            "calls": 235,
+            "milliseconds": 446.90000012516975,
+            "maximum": 164.2999999821186
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.0999999344348907,
+            "maximum": 1.5999999940395355
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 22,
+        "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+        "toast": true,
+        "perfectCalls": [
+          7853.699999988079
+        ],
+        "stops": []
+      },
+      "returned": {
+        "last": {
+          "milliseconds": 179.69999998807907,
+          "phases": {
+            "records": 0.09999999403953552,
+            "calculation": 1.5999999940395355,
+            "audio": 1.5999999940395355,
+            "display": 176.19999998807907
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.5999999940395355,
+            "maximum": 0.5
+          },
+          "calculation": {
+            "calls": 230,
+            "milliseconds": 21.300000071525574,
+            "maximum": 1.800000011920929
+          },
+          "display": {
+            "calls": 235,
+            "milliseconds": 446.90000012516975,
+            "maximum": 164.2999999821186
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.0999999344348907,
+            "maximum": 1.5999999940395355
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "達成 100.00点・編集可能｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+        "toast": true,
+        "perfectCalls": [
+          7853.699999988079
+        ],
+        "stops": [
+          10524.399999976158
+        ]
+      }
+    },
+    {
+      "label": "msedge outside touch dismisses deletion without passing through or changing wires and records",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "msedge",
+      "version": "155.0.4283.45"
+    }
+  ],
+  "evidence": "Synthetic single presentation delay or handled exception, real Q8 draw 2 wiring; PC browsers only.",
+  "passed": true
+}

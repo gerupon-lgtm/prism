@@ -1,0 +1,126 @@
+{
+  "version": "0.44.0",
+  "engine": "chromium",
+  "syntheticDelay": 135,
+  "checks": [],
+  "completed": {
+    "last": {
+      "milliseconds": 174.30000001192093,
+      "phases": {
+        "records": 0.09999999403953552,
+        "calculation": 1.0999999940395355,
+        "audio": 0.9000000059604645,
+        "display": 172.09999999403954
+      },
+      "counts": {
+        "records": 32,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 3,
+        "milliseconds": 0.4000000059604645,
+        "maximum": 0.30000001192092896
+      },
+      "calculation": {
+        "calls": 230,
+        "milliseconds": 23.20000010728836,
+        "maximum": 1.5
+      },
+      "display": {
+        "calls": 235,
+        "milliseconds": 431.2000000476837,
+        "maximum": 163.5
+      },
+      "audio": {
+        "calls": 5,
+        "milliseconds": 2.699999988079071,
+        "maximum": 0.9000000059604645
+      }
+    },
+    "slowFrames": 1,
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "clock": "3.8",
+      "records": 32,
+      "retainedParticles": 5,
+      "active": 0,
+      "waiting": 0
+    },
+    "audioVoices": 0,
+    "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒　負荷のため一時停止。状態を保持しています。",
+    "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+    "toast": false,
+    "perfectCalls": [
+      7424.399999976158
+    ],
+    "stops": [
+      7569.5
+    ]
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Confirmed clear must remain visible after a slow presentation frame\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_completion_load.cjs:19:77",
+  "failureState": {
+    "last": {
+      "milliseconds": 174.30000001192093,
+      "phases": {
+        "records": 0.09999999403953552,
+        "calculation": 1.0999999940395355,
+        "audio": 0.9000000059604645,
+        "display": 172.09999999403954
+      },
+      "counts": {
+        "records": 32,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 3,
+        "milliseconds": 0.4000000059604645,
+        "maximum": 0.30000001192092896
+      },
+      "calculation": {
+        "calls": 230,
+        "milliseconds": 23.20000010728836,
+        "maximum": 1.5
+      },
+      "display": {
+        "calls": 235,
+        "milliseconds": 431.2000000476837,
+        "maximum": 163.5
+      },
+      "audio": {
+        "calls": 5,
+        "milliseconds": 2.699999988079071,
+        "maximum": 0.9000000059604645
+      }
+    },
+    "slowFrames": 1,
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "clock": "3.8",
+      "records": 32,
+      "retainedParticles": 5,
+      "active": 0,
+      "waiting": 0
+    },
+    "audioVoices": 0,
+    "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒　負荷のため一時停止。状態を保持しています。",
+    "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+    "toast": false,
+    "perfectCalls": [
+      7424.399999976158
+    ],
+    "stops": [
+      7569.5
+    ]
+  }
+}

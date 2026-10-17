@@ -1,0 +1,128 @@
+{
+  "version": "0.44.0",
+  "engine": "chromium",
+  "syntheticDelay": 0,
+  "checks": [
+    {
+      "label": "Q8 draw 2 perfect clear retains its notice, result and records and returns to editing after presentation delay",
+      "passed": true
+    }
+  ],
+  "completed": {
+    "last": {
+      "milliseconds": 37.20000001788139,
+      "phases": {
+        "records": 0,
+        "calculation": 1.7000000178813934,
+        "audio": 1.2999999821186066,
+        "display": 34.20000001788139
+      },
+      "counts": {
+        "records": 32,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 3,
+        "milliseconds": 0.29999998211860657,
+        "maximum": 0.29999998211860657
+      },
+      "calculation": {
+        "calls": 230,
+        "milliseconds": 22.19999983906746,
+        "maximum": 1.7000000178813934
+      },
+      "display": {
+        "calls": 235,
+        "milliseconds": 320.0000001192093,
+        "maximum": 23.599999994039536
+      },
+      "audio": {
+        "calls": 5,
+        "milliseconds": 3.4999999701976776,
+        "maximum": 1.2999999821186066
+      }
+    },
+    "slowFrames": 0,
+    "run": {
+      "status": "paused",
+      "pauseReason": null,
+      "clock": "3.8",
+      "records": 32,
+      "retainedParticles": 5,
+      "active": 0,
+      "waiting": 0
+    },
+    "audioVoices": 22,
+    "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+    "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+    "toast": true,
+    "perfectCalls": [
+      7386.5
+    ],
+    "stops": []
+  },
+  "returned": {
+    "last": {
+      "milliseconds": 37.20000001788139,
+      "phases": {
+        "records": 0,
+        "calculation": 1.7000000178813934,
+        "audio": 1.2999999821186066,
+        "display": 34.20000001788139
+      },
+      "counts": {
+        "records": 32,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 3,
+        "milliseconds": 0.29999998211860657,
+        "maximum": 0.29999998211860657
+      },
+      "calculation": {
+        "calls": 230,
+        "milliseconds": 22.19999983906746,
+        "maximum": 1.7000000178813934
+      },
+      "display": {
+        "calls": 235,
+        "milliseconds": 320.0000001192093,
+        "maximum": 23.599999994039536
+      },
+      "audio": {
+        "calls": 5,
+        "milliseconds": 3.4999999701976776,
+        "maximum": 1.2999999821186066
+      }
+    },
+    "slowFrames": 0,
+    "run": {
+      "status": "stopped",
+      "pauseReason": null,
+      "clock": "3.8",
+      "records": 32,
+      "retainedParticles": 0,
+      "active": 0,
+      "waiting": 0
+    },
+    "audioVoices": 0,
+    "result": "達成 100.00点・編集可能｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+    "toast": true,
+    "perfectCalls": [
+      7386.5
+    ],
+    "stops": [
+      10076.700000017881
+    ]
+  },
+  "passed": true
+}

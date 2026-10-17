@@ -1,0 +1,432 @@
+{
+  "version": "0.45.0",
+  "syntheticDelay": 135,
+  "checks": [
+    {
+      "label": "msedge completed preserves the complete reference records, 3.8 seconds and 100 points",
+      "passed": true,
+      "completed": {
+        "last": {
+          "milliseconds": 176.80000001192093,
+          "phases": {
+            "records": 0.10000002384185791,
+            "calculation": 1.7999999821186066,
+            "audio": 1.4000000059604645,
+            "display": 173.40000000596046
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 1.100000023841858,
+            "maximum": 1
+          },
+          "calculation": {
+            "calls": 228,
+            "milliseconds": 24.299999922513962,
+            "maximum": 1.7999999821186066
+          },
+          "display": {
+            "calls": 233,
+            "milliseconds": 482.19999995827675,
+            "maximum": 163.30000001192093
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.4000000059604645,
+            "maximum": 1.4000000059604645
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 22,
+        "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+        "toast": true,
+        "perfectCalls": [
+          8024.5999999940395
+        ],
+        "stops": []
+      },
+      "returned": {
+        "last": {
+          "milliseconds": 176.80000001192093,
+          "phases": {
+            "records": 0.10000002384185791,
+            "calculation": 1.7999999821186066,
+            "audio": 1.4000000059604645,
+            "display": 173.40000000596046
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 1.100000023841858,
+            "maximum": 1
+          },
+          "calculation": {
+            "calls": 228,
+            "milliseconds": 24.299999922513962,
+            "maximum": 1.7999999821186066
+          },
+          "display": {
+            "calls": 233,
+            "milliseconds": 482.19999995827675,
+            "maximum": 163.30000001192093
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.4000000059604645,
+            "maximum": 1.4000000059604645
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "達成 100.00点・編集可能｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+        "toast": true,
+        "perfectCalls": [
+          8024.5999999940395
+        ],
+        "stops": [
+          10697.700000017881
+        ]
+      }
+    },
+    {
+      "label": "msedge unfinished calculation still pauses for load and can resume",
+      "passed": true,
+      "paused": {
+        "last": {
+          "milliseconds": 151.09999999403954,
+          "phases": {
+            "calculation": 0.7000000178813934,
+            "audio": 135.2999999821186,
+            "display": 15
+          },
+          "counts": {
+            "records": 4,
+            "retainedParticles": 1,
+            "active": 1,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 1,
+            "milliseconds": 0.7000000178813934,
+            "maximum": 0.7000000178813934
+          },
+          "calculation": {
+            "calls": 62,
+            "milliseconds": 8.099999964237213,
+            "maximum": 1.5
+          },
+          "display": {
+            "calls": 63,
+            "milliseconds": 49.999999940395355,
+            "maximum": 13.899999976158142
+          },
+          "audio": {
+            "calls": 1,
+            "milliseconds": 135.2999999821186,
+            "maximum": 135.2999999821186
+          }
+        },
+        "slowFrames": 1,
+        "run": {
+          "status": "paused",
+          "pauseReason": "load",
+          "clock": "1",
+          "records": 4,
+          "retainedParticles": 1,
+          "active": 1,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "判定待ち・一時停止｜1秒・1光線　鐘 0/3　負荷のため一時停止。状態を保持しています。",
+        "play": "<button id=\"play\" title=\"\" data-state=\"paused\" aria-pressed=\"false\" class=\"\">再開</button>",
+        "toast": false,
+        "perfectCalls": [],
+        "stops": []
+      }
+    },
+    {
+      "label": "msedge unfinished preserves the complete reference records, 3.8 seconds and 100 points",
+      "passed": true,
+      "completed": {
+        "last": {
+          "milliseconds": 41.29999998211861,
+          "phases": {
+            "records": 0.20000001788139343,
+            "calculation": 1.5999999642372131,
+            "audio": 1.2000000178813934,
+            "display": 38.29999998211861
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.9000000357627869,
+            "maximum": 0.7000000178813934
+          },
+          "calculation": {
+            "calls": 231,
+            "milliseconds": 20.799999743700027,
+            "maximum": 1.5999999642372131
+          },
+          "display": {
+            "calls": 236,
+            "milliseconds": 282.50000005960464,
+            "maximum": 28.900000005960464
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 137.59999999403954,
+            "maximum": 135.2999999821186
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 22,
+        "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+        "toast": true,
+        "perfectCalls": [
+          8084
+        ],
+        "stops": []
+      },
+      "returned": {
+        "last": {
+          "milliseconds": 41.29999998211861,
+          "phases": {
+            "records": 0.20000001788139343,
+            "calculation": 1.5999999642372131,
+            "audio": 1.2000000178813934,
+            "display": 38.29999998211861
+          },
+          "counts": {
+            "records": 32,
+            "retainedParticles": 5,
+            "active": 0,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.9000000357627869,
+            "maximum": 0.7000000178813934
+          },
+          "calculation": {
+            "calls": 231,
+            "milliseconds": 20.799999743700027,
+            "maximum": 1.5999999642372131
+          },
+          "display": {
+            "calls": 236,
+            "milliseconds": 282.50000005960464,
+            "maximum": 28.900000005960464
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 137.59999999403954,
+            "maximum": 135.2999999821186
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "達成 100.00点・編集可能｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+        "toast": true,
+        "perfectCalls": [
+          8084
+        ],
+        "stops": [
+          10757.799999982119
+        ]
+      }
+    },
+    {
+      "label": "msedge error preserves the complete reference records, 3.8 seconds and 100 points",
+      "passed": true,
+      "completed": {
+        "last": {
+          "milliseconds": 1.0999999940395355,
+          "phases": {
+            "calculation": 0.09999999403953552,
+            "display": 1
+          },
+          "counts": {
+            "records": 26,
+            "retainedParticles": 5,
+            "active": 3,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.8999999761581421,
+            "maximum": 0.699999988079071
+          },
+          "calculation": {
+            "calls": 230,
+            "milliseconds": 22.099999994039536,
+            "maximum": 1.5000000298023224
+          },
+          "display": {
+            "calls": 235,
+            "milliseconds": 346.6999997794628,
+            "maximum": 43.80000001192093
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.099999964237213,
+            "maximum": 1.2999999821186066
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "paused",
+          "pauseReason": "error",
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "達成 100.00点・動作終了｜3.8秒・0光線　鐘 3/3・全到達 3.8秒　Synthetic outcome failure",
+        "play": "<button id=\"play\" title=\"動作は終了しています。停止で編集へ戻れます。\" data-state=\"paused\" aria-pressed=\"false\" class=\"\" disabled=\"\">終了</button>",
+        "toast": false,
+        "perfectCalls": [
+          7721.199999988079
+        ],
+        "stops": [
+          7737.199999988079
+        ]
+      },
+      "returned": {
+        "last": {
+          "milliseconds": 1.0999999940395355,
+          "phases": {
+            "calculation": 0.09999999403953552,
+            "display": 1
+          },
+          "counts": {
+            "records": 26,
+            "retainedParticles": 5,
+            "active": 3,
+            "waiting": 0
+          }
+        },
+        "totals": {
+          "records": {
+            "calls": 3,
+            "milliseconds": 0.8999999761581421,
+            "maximum": 0.699999988079071
+          },
+          "calculation": {
+            "calls": 230,
+            "milliseconds": 22.099999994039536,
+            "maximum": 1.5000000298023224
+          },
+          "display": {
+            "calls": 235,
+            "milliseconds": 346.6999997794628,
+            "maximum": 43.80000001192093
+          },
+          "audio": {
+            "calls": 5,
+            "milliseconds": 3.099999964237213,
+            "maximum": 1.2999999821186066
+          }
+        },
+        "slowFrames": 0,
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "3.8",
+          "records": 32,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "audioVoices": 0,
+        "result": "達成 100.00点・編集可能｜3.8秒・0光線　鐘 3/3・全到達 3.8秒",
+        "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+        "toast": true,
+        "perfectCalls": [
+          7721.199999988079
+        ],
+        "stops": [
+          7737.199999988079,
+          10814.299999982119
+        ]
+      }
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "msedge",
+      "version": "155.0.4283.45"
+    }
+  ],
+  "evidence": "Synthetic single presentation delay or handled exception, real Q8 draw 2 wiring; PC browsers only.",
+  "passed": true
+}
