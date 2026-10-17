@@ -1,6 +1,6 @@
 # プリズム到達音をR2へ変更
 
-2026-10-17 / 0.49.0。公開前の検証記録。公開結果は確認後に追記する。
+2026-10-17 / 0.49.0。両URLで公開確認済み。
 
 ## 指定と実装
 
@@ -17,8 +17,17 @@
 
 音声の既存テストをR2に合わせ、試聴原本との比較検査もR4からR2へ切り替えた。自動テスト145件（17ファイルを最大5ファイルずつ・並列度1）、構文56ファイル、48資材のビルドは合格した。
 
-Chromeの音声信号22項目は合格。R2を48kHzと44.1kHzで合成し、原本と同じ信号であること、既存の鐘と他の採用音が保たれることを確認した。Chromium／WebKitの実画面と信号は45項目、Windows Edgeの信号は22項目が合格した。Windows用WebKitは音声APIと信号生成機能がなく、実画面だけの確認と区別して未確認を残す。R2の試聴波形との差はChrome・Chromium・Edgeの両サンプルレートとも0だった。公開結果は確認後に追記する。
+Chromeの音声信号22項目は合格。R2を48kHzと44.1kHzで合成し、原本と同じ信号であること、既存の鐘と他の採用音が保たれることを確認した。Chromium／WebKitの実画面と信号は45項目、Windows Edgeの信号は22項目が合格した。Windows用WebKitは音声APIと信号生成機能がなく、実画面だけの確認と区別して未確認を残す。R2の試聴波形との差はChrome・Chromium・Edgeの両サンプルレートとも0だった。公開結果は次節。
 
 記録は`設計検証/R2到達音/0.49.0/`。PC内で生成した音声信号の検査であり、実スピーカーの聴感、Android Chrome／iPhone Safari／macOS Safari／iPadの実機確認とは分ける。これらを対象から外さない。
 
 初回のChromium検査では、変更していないF4の44.1kHz・鐘なし比較で最大約3.64e-6の差（RMS約6.66e-8）が出て不合格だった。R2はその時点でも差0。元の閾値を変更せず信号単体と実画面一式を再検査し合格した。途中の不合格はfirst-f4-difference.json、最終の再検査はrecheck.jsonに保存した。一度の微小差の原因は断定しない。
+
+## 公開
+
+ソース：`cf99a5f7cc1f663414348c79c69ec619a2b4e452`。GitHub Pagesの[公開ジョブ39007556299](https://github.com/gerupon-lgtm/prism/actions/runs/39007556299)と、Cloudflare Pagesの配信`c0ea3702-23f2-45f6-b695-6dc73041ad8d`が成功した。Cloudflareは対象コミットの配信が未作成であることを確認し、既存の手順どおりmainの配信をAPIから開始した。
+
+- https://prism.sikumilab.com/ と https://gerupon-lgtm.github.io/prism/ ：各61項目が合格。版とコミット、48資材のハッシュ・配信形式、更新確認、結線と100点・全記録・保存・書出し、通信なし再起動を確認した。
+- 独自ドメインの公開音声信号：Windows Chromeの22項目が合格。R2が試聴原本と48kHz／44.1kHzで一致し、他の採用音と鐘が保たれることを再確認した。
+
+証拠は`public-verification.json`、`cloudflare-public.json`、`github-public.json`、`cloudflare-signal.json`。スマホなどの実機聴感を確認済みには変更しない。
