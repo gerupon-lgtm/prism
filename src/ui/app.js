@@ -17,6 +17,7 @@ import { PerfectCelebration } from './celebration.js';
 import { OutcomeSound } from './outcome-sound.js';
 import { DesktopLayout } from './desktop-layout.js';
 import { TutorialGuide } from './tutorial-guide.js';
+import { MotionPreference,MOTION_OPTIONS,MOTION_STORAGE_KEY } from './motion.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -34,6 +35,9 @@ const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const session=new Session(new LocalRecords(storage)),chime=new Chime();
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
+const motion=new MotionPreference(storage,document.documentElement,matchMedia('(prefers-reduced-motion:reduce)'));
+motion.changed=refreshMotionSettings;
+window.addEventListener('storage',event=>{if(event.key===MOTION_STORAGE_KEY||event.key===null)motion.reload();});
 const wireDelete=$('wire-delete-toast');
 let pendingWireDelete=null,deleteNeedsPress=false;
 let settingsTapGuard=null;
@@ -71,7 +75,7 @@ function updateNotice(){
 
 document.addEventListener('click',event=>{
   const target=event.target.closest('button');if(!target||target.disabled)return;
-  target.classList.remove('button-response');void target.offsetWidth;target.classList.add('button-response');
+  target.classList.remove('button-response');if(!motion.reduced){void target.offsetWidth;target.classList.add('button-response');}
   if(target.id!=='sound')chime.tap();
 });
 document.addEventListener('animationend',event=>{if(event.animationName==='button-response')event.target.classList.remove('button-response');});
@@ -90,7 +94,7 @@ function open(title) {
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -458,7 +462,30 @@ function partsExplanation() {
 function aboutGame() {
   open('遊び方と概要');
   body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点はダブルタップ、結線済みの道はタップで設定を開きます。結線済みの道を長押しすると、赤い線を確認して1本だけ削除できます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
-  actions.append(button('オフラインと更新',offlineDialog),button('閉じる',close));fitDialogForm();
+  actions.append(button('表示・演出',()=>motionSettings(aboutGame)),button('オフラインと更新',offlineDialog),button('閉じる',close));fitDialogForm();
+}
+function refreshMotionSettings(){
+  if(!dialog.open||$('dialog-title').textContent!=='表示・演出')return;
+  for(const input of body.querySelectorAll('input[name=motion]'))input.checked=input.value===motion.preference;
+  const select=$('motion-select');if(select)select.value=motion.preference;
+  const status=$('motion-status');if(status)status.textContent=motion.warning||(motion.preference==='auto'?'端末設定：':'現在：')+(motion.reduced?'控えめな演出':'通常の演出');
+}
+function motionSettings(back=menu){
+  open('表示・演出');dialog.classList.add('motion-dialog');
+  const field=element('fieldset','',{class:'motion-options'}),legend=element('legend','演出の動き');
+  field.append(legend);
+  for(const option of MOTION_OPTIONS){
+    const label=element('label'),input=element('input','',{type:'radio',name:'motion',value:option.value});
+    input.addEventListener('change',()=>{try{motion.select(option.value);$('dialog-error').textContent='';}catch(error){refreshMotionSettings();failure(error);}});
+    label.append(input,element('span',option.label));field.append(label);
+  }
+  const compact=element('div','',{class:'motion-compact',hidden:''}),select=element('select','',{id:'motion-select','aria-label':'演出の動き'});
+  for(const option of MOTION_OPTIONS)select.append(element('option',option.value==='auto'?'端末に合わせる':option.label,{value:option.value}));
+  select.addEventListener('change',()=>{try{motion.select(select.value);$('dialog-error').textContent='';}catch(error){refreshMotionSettings();failure(error);}});
+  compact.append(element('label','演出の動き',{for:'motion-select'}),select);
+  body.append(field,compact,element('p','',{id:'motion-status',role:'status'}),element('p','花火・鐘・星座・プリズムなどの演出を切り替えます。光の移動・時間・音はそのままです。選択はこのブラウザに保存します。'));
+  actions.append(button('戻る',back),button('閉じる',close));refreshMotionSettings();
+  fitDialogForm(small=>{field.hidden=small;compact.hidden=!small;},[...body.querySelectorAll('p')],refreshMotionSettings);
 }
 function menu() {
   open('メニュー');
@@ -470,13 +497,14 @@ function menu() {
     ['保存回路',slots],
     ['実行結果を書き出す',()=>download('prism-notes-result.json',session.exportResult())],
     ['成績未保存を再試行',pendingScores],
+    ['表示・演出',()=>motionSettings(menu)],
     ['オフラインと更新',offlineDialog],
   ];
   if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
   if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
   const short=['遊ぶ','案内','一覧','回路','結果','成績','更新'];
   const aliases=new Map(['課題と自由','操作の案内','点と道の一覧','保存回路','実行結果を書き出す','成績未保存を再試行','オフラインと更新'].map((name,index)=>[name,short[index]]));
-  [['タイトルへ','表紙'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
+  [['タイトルへ','表紙'],['表示・演出','演出'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
   dialog.classList.add('menu-dialog');body.className='menu-grid';
   const entries=items.map(([name,action])=>button(name,action));body.append(...entries);actions.append(button('閉じる',close));
   const layout=()=>{
@@ -807,7 +835,7 @@ function cancelStart(){
 }
 function launch(action){
   const view=session.view,original={zoom:view.zoom,panX:view.panX,panY:view.panY},target=board.fitView();
-  const animated=view.zoom>Math.max(1,target.zoom)+.0001,reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const animated=view.zoom>Math.max(1,target.zoom)+.0001;
   const token={view,original,frame:null,started:null};
   return new Promise((resolve,reject)=>{
     token.cancel=()=>resolve(false);
@@ -816,7 +844,7 @@ function launch(action){
       if(startPrelude!==token)return;
       token.started??=now;const progress=Math.min(1,(now-token.started)/LAUNCH_DELAY_MS),ease=1-(1-progress)**3;
       $('stage').style.setProperty('--launch-progress',progress);
-      if(animated&&(!reduced||progress===1)){for(const key of ['zoom','panX','panY'])view[key]=original[key]+(target[key]-original[key])*ease;board.transform();board.render();}
+      if(animated&&(!motion.reduced||progress===1)){for(const key of ['zoom','panX','panY'])view[key]=original[key]+(target[key]-original[key])*ease;board.transform();board.render();}
       if(progress<1){token.frame=requestAnimationFrame(step);return;}
       startPrelude=null;$('stage').style.removeProperty('--launch-progress');render(false);
       try{action();resolve(true);}catch(error){Object.assign(view,original);board.transform();board.render();load.current=null;reject(error);}

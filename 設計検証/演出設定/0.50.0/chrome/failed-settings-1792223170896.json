@@ -1,0 +1,851 @@
+{
+  "version": "0.50.0",
+  "url": "local build",
+  "checks": [
+    {
+      "label": "chrome title settings desktop",
+      "passed": true,
+      "viewport": [
+        1600,
+        1000
+      ],
+      "page": [
+        1600,
+        1000
+      ],
+      "body": {
+        "x": 501,
+        "y": 257,
+        "w": 598,
+        "h": 486,
+        "right": 1099,
+        "bottom": 743
+      },
+      "dialog": {
+        "x": 480,
+        "y": 180,
+        "w": 640,
+        "h": 640,
+        "right": 1120,
+        "bottom": 820
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 1063,
+          "y": 201,
+          "w": 36,
+          "h": 48,
+          "right": 1099,
+          "bottom": 249,
+          "sw": 34,
+          "cw": 34,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 501,
+          "y": 290.1875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 339.875,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "通常の演出",
+          "x": 501,
+          "y": 347.875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 397.5625,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "控えめな演出",
+          "x": 501,
+          "y": 405.5625,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 455.25,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "戻る",
+          "x": 501,
+          "y": 751,
+          "w": 287.5,
+          "h": 48,
+          "right": 788.5,
+          "bottom": 799,
+          "sw": 286,
+          "cw": 286,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 793.5,
+          "y": 751,
+          "w": 305.5,
+          "h": 48,
+          "right": 1099,
+          "bottom": 799,
+          "sw": 304,
+          "cw": 304,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    },
+    {
+      "label": "chrome explicit full survives restart while OS remains reduced",
+      "passed": true
+    },
+    {
+      "label": "chrome menu choice overrides OS; auto tracks live OS changes",
+      "passed": true
+    },
+    {
+      "label": "chrome explicit choice synchronizes to another open tab",
+      "passed": true
+    },
+    {
+      "label": "chrome settings 1366x768 font 14",
+      "passed": true,
+      "viewport": [
+        1366,
+        768
+      ],
+      "page": [
+        1366,
+        768
+      ],
+      "body": {
+        "x": 384,
+        "y": 141,
+        "w": 598,
+        "h": 486,
+        "right": 982,
+        "bottom": 627
+      },
+      "dialog": {
+        "x": 363,
+        "y": 64,
+        "w": 640,
+        "h": 640,
+        "right": 1003,
+        "bottom": 704
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 946,
+          "y": 85,
+          "w": 36,
+          "h": 48,
+          "right": 982,
+          "bottom": 133,
+          "sw": 34,
+          "cw": 34,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 384,
+          "y": 174.1875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 223.875,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "通常の演出",
+          "x": 384,
+          "y": 231.875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 281.5625,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "控えめな演出",
+          "x": 384,
+          "y": 289.5625,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 339.25,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "戻る",
+          "x": 384,
+          "y": 635,
+          "w": 287.5,
+          "h": 48,
+          "right": 671.5,
+          "bottom": 683,
+          "sw": 286,
+          "cw": 286,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 676.5,
+          "y": 635,
+          "w": 305.5,
+          "h": 48,
+          "right": 982,
+          "bottom": 683,
+          "sw": 304,
+          "cw": 304,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 390x844 font 14",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "body": {
+        "x": 22,
+        "y": 260,
+        "w": 346,
+        "h": 318,
+        "right": 368,
+        "bottom": 578
+      },
+      "dialog": {
+        "x": 9,
+        "y": 207,
+        "w": 372,
+        "h": 430,
+        "right": 381,
+        "bottom": 637
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 336,
+          "y": 220,
+          "w": 32,
+          "h": 32,
+          "right": 368,
+          "bottom": 252,
+          "sw": 30,
+          "cw": 30,
+          "sh": 30,
+          "ch": 30
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 22,
+          "y": 287.59375,
+          "w": 346,
+          "h": 48,
+          "right": 368,
+          "bottom": 335.59375,
+          "sw": 344,
+          "cw": 344,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "通常の演出",
+          "x": 22,
+          "y": 343.59375,
+          "w": 346,
+          "h": 48,
+          "right": 368,
+          "bottom": 391.59375,
+          "sw": 344,
+          "cw": 344,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "控えめな演出",
+          "x": 22,
+          "y": 399.59375,
+          "w": 346,
+          "h": 48,
+          "right": 368,
+          "bottom": 447.59375,
+          "sw": 344,
+          "cw": 344,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "戻る",
+          "x": 22,
+          "y": 586,
+          "w": 164.5,
+          "h": 38,
+          "right": 186.5,
+          "bottom": 624,
+          "sw": 163,
+          "cw": 163,
+          "sh": 36,
+          "ch": 36
+        },
+        {
+          "text": "閉じる",
+          "x": 191.5,
+          "y": 586,
+          "w": 176.5,
+          "h": 38,
+          "right": 368,
+          "bottom": 624,
+          "sw": 175,
+          "cw": 175,
+          "sh": 36,
+          "ch": 36
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 320x480 font 14",
+      "passed": true,
+      "viewport": [
+        320,
+        480
+      ],
+      "page": [
+        320,
+        480
+      ],
+      "body": {
+        "x": 22,
+        "y": 78,
+        "w": 276,
+        "h": 318,
+        "right": 298,
+        "bottom": 396
+      },
+      "dialog": {
+        "x": 9,
+        "y": 25,
+        "w": 302,
+        "h": 430,
+        "right": 311,
+        "bottom": 455
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 266,
+          "y": 38,
+          "w": 32,
+          "h": 32,
+          "right": 298,
+          "bottom": 70,
+          "sw": 30,
+          "cw": 30,
+          "sh": 30,
+          "ch": 30
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 22,
+          "y": 105.59375,
+          "w": 276,
+          "h": 48,
+          "right": 298,
+          "bottom": 153.59375,
+          "sw": 274,
+          "cw": 274,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "通常の演出",
+          "x": 22,
+          "y": 161.59375,
+          "w": 276,
+          "h": 48,
+          "right": 298,
+          "bottom": 209.59375,
+          "sw": 274,
+          "cw": 274,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "控えめな演出",
+          "x": 22,
+          "y": 217.59375,
+          "w": 276,
+          "h": 48,
+          "right": 298,
+          "bottom": 265.59375,
+          "sw": 274,
+          "cw": 274,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "戻る",
+          "x": 22,
+          "y": 404,
+          "w": 129.5,
+          "h": 38,
+          "right": 151.5,
+          "bottom": 442,
+          "sw": 128,
+          "cw": 128,
+          "sh": 36,
+          "ch": 36
+        },
+        {
+          "text": "閉じる",
+          "x": 156.5,
+          "y": 404,
+          "w": 141.5,
+          "h": 38,
+          "right": 298,
+          "bottom": 442,
+          "sw": 140,
+          "cw": 140,
+          "sh": 36,
+          "ch": 36
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 844x310 font 14",
+      "passed": true,
+      "viewport": [
+        844,
+        310
+      ],
+      "page": [
+        844,
+        310
+      ],
+      "body": {
+        "x": 190,
+        "y": 50.59375,
+        "w": 464,
+        "h": 205.609375,
+        "right": 654,
+        "bottom": 256.203125
+      },
+      "dialog": {
+        "x": 182,
+        "y": 11,
+        "w": 480,
+        "h": 288,
+        "right": 662,
+        "bottom": 299
+      },
+      "compact": true,
+      "controls": [
+        {
+          "text": "説明を読む",
+          "x": 585,
+          "y": 19,
+          "w": 32,
+          "h": 27.59375,
+          "right": 617,
+          "bottom": 46.59375,
+          "sw": 30,
+          "cw": 30,
+          "sh": 26,
+          "ch": 26
+        },
+        {
+          "text": "閉じる",
+          "x": 622,
+          "y": 19,
+          "w": 32,
+          "h": 27.59375,
+          "right": 654,
+          "bottom": 46.59375,
+          "sw": 30,
+          "cw": 30,
+          "sh": 26,
+          "ch": 26
+        },
+        {
+          "text": "演出の動き",
+          "x": 190,
+          "y": 73.78125,
+          "w": 464,
+          "h": 32,
+          "right": 654,
+          "bottom": 105.78125,
+          "sw": 462,
+          "cw": 462,
+          "sh": 30,
+          "ch": 30
+        },
+        {
+          "text": "戻る",
+          "x": 190,
+          "y": 260.203125,
+          "w": 223.5,
+          "h": 30.796875,
+          "right": 413.5,
+          "bottom": 291,
+          "sw": 222,
+          "cw": 222,
+          "sh": 29,
+          "ch": 29
+        },
+        {
+          "text": "閉じる",
+          "x": 418.5,
+          "y": 260.203125,
+          "w": 235.5,
+          "h": 30.796875,
+          "right": 654,
+          "bottom": 291,
+          "sw": 234,
+          "cw": 234,
+          "sh": 29,
+          "ch": 29
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 390x310 font 14",
+      "passed": true,
+      "viewport": [
+        390,
+        310
+      ],
+      "page": [
+        390,
+        310
+      ],
+      "body": {
+        "x": 17,
+        "y": 50.59375,
+        "w": 356,
+        "h": 205.609375,
+        "right": 373,
+        "bottom": 256.203125
+      },
+      "dialog": {
+        "x": 9,
+        "y": 11,
+        "w": 372,
+        "h": 288,
+        "right": 381,
+        "bottom": 299
+      },
+      "compact": true,
+      "controls": [
+        {
+          "text": "説明を読む",
+          "x": 304,
+          "y": 19,
+          "w": 32,
+          "h": 27.59375,
+          "right": 336,
+          "bottom": 46.59375,
+          "sw": 30,
+          "cw": 30,
+          "sh": 26,
+          "ch": 26
+        },
+        {
+          "text": "閉じる",
+          "x": 341,
+          "y": 19,
+          "w": 32,
+          "h": 27.59375,
+          "right": 373,
+          "bottom": 46.59375,
+          "sw": 30,
+          "cw": 30,
+          "sh": 26,
+          "ch": 26
+        },
+        {
+          "text": "演出の動き",
+          "x": 17,
+          "y": 73.78125,
+          "w": 356,
+          "h": 32,
+          "right": 373,
+          "bottom": 105.78125,
+          "sw": 354,
+          "cw": 354,
+          "sh": 30,
+          "ch": 30
+        },
+        {
+          "text": "戻る",
+          "x": 17,
+          "y": 260.203125,
+          "w": 169.5,
+          "h": 30.796875,
+          "right": 186.5,
+          "bottom": 291,
+          "sw": 168,
+          "cw": 168,
+          "sh": 29,
+          "ch": 29
+        },
+        {
+          "text": "閉じる",
+          "x": 191.5,
+          "y": 260.203125,
+          "w": 181.5,
+          "h": 30.796875,
+          "right": 373,
+          "bottom": 291,
+          "sw": 180,
+          "cw": 180,
+          "sh": 29,
+          "ch": 29
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 390x844 font 28",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "body": {
+        "x": 22,
+        "y": 275.1875,
+        "w": 346,
+        "h": 293.21875,
+        "right": 368,
+        "bottom": 568.40625
+      },
+      "dialog": {
+        "x": 9,
+        "y": 207,
+        "w": 372,
+        "h": 430,
+        "right": 381,
+        "bottom": 637
+      },
+      "compact": true,
+      "controls": [
+        {
+          "text": "説明を読む",
+          "x": 271,
+          "y": 220,
+          "w": 46,
+          "h": 47.1875,
+          "right": 317,
+          "bottom": 267.1875,
+          "sw": 44,
+          "cw": 44,
+          "sh": 45,
+          "ch": 45
+        },
+        {
+          "text": "閉じる",
+          "x": 322,
+          "y": 220,
+          "w": 46,
+          "h": 47.1875,
+          "right": 368,
+          "bottom": 267.1875,
+          "sw": 44,
+          "cw": 44,
+          "sh": 45,
+          "ch": 45
+        },
+        {
+          "text": "演出の動き",
+          "x": 22,
+          "y": 316.578125,
+          "w": 346,
+          "h": 60,
+          "right": 368,
+          "bottom": 376.578125,
+          "sw": 344,
+          "cw": 344,
+          "sh": 58,
+          "ch": 58
+        },
+        {
+          "text": "戻る",
+          "x": 22,
+          "y": 576.40625,
+          "w": 158.5,
+          "h": 47.59375,
+          "right": 180.5,
+          "bottom": 624,
+          "sw": 157,
+          "cw": 157,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 185.5,
+          "y": 576.40625,
+          "w": 182.5,
+          "h": 47.59375,
+          "right": 368,
+          "bottom": 624,
+          "sw": 181,
+          "cw": 181,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    },
+    {
+      "label": "chrome settings 844x390 font 28",
+      "passed": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "page": [
+        844,
+        390
+      ],
+      "body": {
+        "x": 195,
+        "y": 79.1875,
+        "w": 454,
+        "h": 231.21875,
+        "right": 649,
+        "bottom": 310.40625
+      },
+      "dialog": {
+        "x": 182,
+        "y": 11,
+        "w": 480,
+        "h": 368,
+        "right": 662,
+        "bottom": 379
+      },
+      "compact": true,
+      "controls": [
+        {
+          "text": "説明を読む",
+          "x": 552,
+          "y": 24,
+          "w": 46,
+          "h": 47.1875,
+          "right": 598,
+          "bottom": 71.1875,
+          "sw": 44,
+          "cw": 44,
+          "sh": 45,
+          "ch": 45
+        },
+        {
+          "text": "閉じる",
+          "x": 603,
+          "y": 24,
+          "w": 46,
+          "h": 47.1875,
+          "right": 649,
+          "bottom": 71.1875,
+          "sw": 44,
+          "cw": 44,
+          "sh": 45,
+          "ch": 45
+        },
+        {
+          "text": "演出の動き",
+          "x": 195,
+          "y": 120.578125,
+          "w": 454,
+          "h": 60,
+          "right": 649,
+          "bottom": 180.578125,
+          "sw": 452,
+          "cw": 452,
+          "sh": 58,
+          "ch": 58
+        },
+        {
+          "text": "戻る",
+          "x": 195,
+          "y": 318.40625,
+          "w": 212.5,
+          "h": 47.59375,
+          "right": 407.5,
+          "bottom": 366,
+          "sw": 211,
+          "cw": 211,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 412.5,
+          "y": 318.40625,
+          "w": 236.5,
+          "h": 47.59375,
+          "right": 649,
+          "bottom": 366,
+          "sw": 235,
+          "cw": 235,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    },
+    {
+      "label": "chrome changing motion retains completed records, score, wiring and unrelated saved keys",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "name": "chrome",
+      "version": "155.0.8059.84"
+    }
+  ],
+  "evidence": "Real UI selection and localStorage in disposable PC profiles. Phone viewports and OS media preferences are emulated; no device or user preference changes.",
+  "passed": false,
+  "failure": "locator.check: Clicking the checkbox did not change its state\nCall log:\n\u001b[2m  - waiting for locator('input[name=motion][value=full]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"radio\" value=\"full\" name=\"motion\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n\n    at choose (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_motion_settings.cjs:12:138)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_motion_settings.cjs:41:23"
+}

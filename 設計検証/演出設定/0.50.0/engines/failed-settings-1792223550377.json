@@ -1,0 +1,245 @@
+{
+  "version": "0.50.0",
+  "url": "local build",
+  "checks": [
+    {
+      "label": "chromium title settings desktop",
+      "passed": true,
+      "viewport": [
+        1600,
+        1000
+      ],
+      "page": [
+        1600,
+        1000
+      ],
+      "body": {
+        "x": 501,
+        "y": 257,
+        "w": 598,
+        "h": 486,
+        "right": 1099,
+        "bottom": 743
+      },
+      "dialog": {
+        "x": 480,
+        "y": 180,
+        "w": 640,
+        "h": 640,
+        "right": 1120,
+        "bottom": 820
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 1063,
+          "y": 201,
+          "w": 36,
+          "h": 48,
+          "right": 1099,
+          "bottom": 249,
+          "sw": 34,
+          "cw": 34,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 501,
+          "y": 290.1875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 339.875,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "通常の演出",
+          "x": 501,
+          "y": 347.875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 397.5625,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "控えめな演出",
+          "x": 501,
+          "y": 405.5625,
+          "w": 598,
+          "h": 49.6875,
+          "right": 1099,
+          "bottom": 455.25,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "戻る",
+          "x": 501,
+          "y": 751,
+          "w": 287.5,
+          "h": 48,
+          "right": 788.5,
+          "bottom": 799,
+          "sw": 286,
+          "cw": 286,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 793.5,
+          "y": 751,
+          "w": 305.5,
+          "h": 48,
+          "right": 1099,
+          "bottom": 799,
+          "sw": 304,
+          "cw": 304,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    },
+    {
+      "label": "chromium explicit full survives restart while OS remains reduced",
+      "passed": true
+    },
+    {
+      "label": "chromium menu choice overrides OS; auto tracks live OS changes",
+      "passed": true
+    },
+    {
+      "label": "chromium explicit choice synchronizes to another open tab",
+      "passed": true
+    },
+    {
+      "label": "chromium settings 1366x768 font 14",
+      "passed": true,
+      "viewport": [
+        1366,
+        768
+      ],
+      "page": [
+        1366,
+        768
+      ],
+      "body": {
+        "x": 384,
+        "y": 141,
+        "w": 598,
+        "h": 486,
+        "right": 982,
+        "bottom": 627
+      },
+      "dialog": {
+        "x": 363,
+        "y": 64,
+        "w": 640,
+        "h": 640,
+        "right": 1003,
+        "bottom": 704
+      },
+      "compact": false,
+      "controls": [
+        {
+          "text": "閉じる",
+          "x": 946,
+          "y": 85,
+          "w": 36,
+          "h": 48,
+          "right": 982,
+          "bottom": 133,
+          "sw": 34,
+          "cw": 34,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "端末設定に合わせる（初期値）",
+          "x": 384,
+          "y": 174.1875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 223.875,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "通常の演出",
+          "x": 384,
+          "y": 231.875,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 281.5625,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "控えめな演出",
+          "x": 384,
+          "y": 289.5625,
+          "w": 598,
+          "h": 49.6875,
+          "right": 982,
+          "bottom": 339.25,
+          "sw": 596,
+          "cw": 596,
+          "sh": 48,
+          "ch": 48
+        },
+        {
+          "text": "戻る",
+          "x": 384,
+          "y": 635,
+          "w": 287.5,
+          "h": 48,
+          "right": 671.5,
+          "bottom": 683,
+          "sw": 286,
+          "cw": 286,
+          "sh": 46,
+          "ch": 46
+        },
+        {
+          "text": "閉じる",
+          "x": 676.5,
+          "y": 635,
+          "w": 305.5,
+          "h": 48,
+          "right": 982,
+          "bottom": 683,
+          "sw": 304,
+          "cw": 304,
+          "sh": 46,
+          "ch": 46
+        }
+      ]
+    }
+  ],
+  "browsers": [
+    {
+      "name": "chromium",
+      "version": "151.0.7922.34"
+    }
+  ],
+  "evidence": "Real UI selection and localStorage in disposable PC profiles. Phone viewports and OS media preferences are emulated; no device or user preference changes.",
+  "passed": false,
+  "failure": "page.evaluate: TypeError: Cannot read properties of null (reading 'hidden')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:431)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at layout (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_motion_settings.cjs:18:25)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_motion_settings.cjs:36:83"
+}

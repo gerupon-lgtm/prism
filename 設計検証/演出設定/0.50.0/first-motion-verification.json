@@ -1,0 +1,50 @@
+{
+  "version": "0.50.0",
+  "checkedAt": "2026-10-17T07:47:12.565Z",
+  "unit": {
+    "files": 18,
+    "tests": 151,
+    "passed": true
+  },
+  "syntax": {
+    "files": 58,
+    "passed": true
+  },
+  "build": {
+    "assets": 49,
+    "passed": true
+  },
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "chrome-motion",
+      "exit": 0,
+      "seconds": 99
+    },
+    {
+      "name": "edge-motion",
+      "exit": 0,
+      "seconds": 102
+    },
+    {
+      "name": "chrome-settings",
+      "exit": 0,
+      "seconds": 16
+    },
+    {
+      "name": "edge-settings",
+      "exit": 0,
+      "seconds": 19
+    },
+    {
+      "name": "engine-settings",
+      "exit": 0,
+      "seconds": 51
+    },
+    {
+      "name": "engine-motion",
+      "exit": 1,
+      "seconds": 110
+    }
+  ]
+}
