@@ -7,9 +7,10 @@ const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.ar
 if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
 const channel=arg('--channel');if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use --channel chrome or msedge');
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'PWA',channel||'');fs.mkdirSync(out,{recursive:true});
+const redirectIndex=process.argv.includes('--redirect-index');
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'PWA',...(redirectIndex?['redirect-index']:[]),channel||'');fs.mkdirSync(out,{recursive:true});
 const version=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
-const report={version,evidence:'PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.',checks:[],errors:[],windowErrors:[]};
+const report={version,redirectIndex,evidence:'PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.',checks:[],errors:[],windowErrors:[]};
 if(channel)report.evidence=`Installed Windows ${channel}: disposable browser context, actual worker/cache and offline operations under /prism/. Later releases/errors are synthetic. No OS installation/shutdown or phone evidence.`;
 report.browsers=[];
 const parts=version.split('.').map(Number),later=offset=>[parts[0],parts[1],parts[2]+offset].join('.');
@@ -26,6 +27,7 @@ const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=
 const server=http.createServer((request,response)=>{
   const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);
   if(!pathname.startsWith('/prism/')){response.writeHead(404).end();return;}
+  if(redirectIndex&&pathname==='/prism/index.html'){response.writeHead(308,{Location:'/prism/','Cache-Control':'no-store'}).end();return;}
   const base=fixtures[current].output,file=path.resolve(base,pathname.slice('/prism/'.length)||'index.html');
   if(file!==base&&!file.startsWith(base+path.sep)){response.writeHead(403).end();return;}
   let content;try{content=fs.readFileSync(file);}catch{response.writeHead(404).end();return;}
@@ -116,6 +118,7 @@ async function connection(context,engine,offline){
         const page=await context.newPage();
         const observeErrors=target=>target.on('pageerror',e=>{const detail={engine,message:e.message,name:e.name,stack:e.stack,url:target.url(),originOffline};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);errors.push(detail);report.errors.push(detail);});observeErrors(page);
         await page.goto(url);await prepared(page);await page.waitForFunction(()=>!document.getElementById('title-update').disabled);
+        if(redirectIndex){const index=await page.evaluate(async()=>{const v=document.querySelector('meta[name=prism-version]').content,c=await caches.open(`prism-notes:/prism/:${v}`),r=await c.match(new URL('index.html',document.baseURI));return {redirected:r.redirected,url:r.url,status:r.status};});assert.equal(index.redirected,true);assert.equal(index.status,200);report.checks.push({label:engine+' fixture really caches redirected index HTML before offline navigation',...index,passed:true});}
         assert.equal(await page.locator('#title-update').isVisible(),false);
         await page.locator('#title-about').click();await page.getByRole('button',{name:'オフラインと更新',exact:true}).click();await page.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
         assert.equal(await page.locator('#title-screen').isVisible(),true);await fit(page,`${engine} title manual update check returns latest version without leaving title`);

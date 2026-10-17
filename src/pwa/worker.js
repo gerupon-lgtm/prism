@@ -54,7 +54,14 @@ self.addEventListener('fetch',event=>{
     }
     const cache=await caches.open(cacheName(VERSION));
     if(request.mode==='navigate'){
-      const index=await cache.match(cacheURL('./index.html'));if(index&&await ready(VERSION))return index;
+      const index=await cache.match(cacheURL('./index.html'));
+      if(index&&await ready(VERSION)){
+        // Static hosts may redirect index.html to /. Navigations use manual
+        // redirects and reject a cached Response whose redirected flag is true.
+        // Keep the prepared HTML bytes and headers without redirect metadata.
+        if(index.redirected){const headers=new Headers(index.headers);headers.delete('content-encoding');headers.delete('content-length');return new Response(index.body,{status:index.status,statusText:index.statusText,headers});}
+        return index;
+      }
       try{return await fetch(request);}catch{return unavailable();}
     }
     const cached=await cache.match(request);if(cached)return cached;

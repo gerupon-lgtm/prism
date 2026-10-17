@@ -172,3 +172,11 @@ html:not(.desktop-layout) .challenge-tier{display:inline;font-size:.857143rem;ma
 html:not(.desktop-layout) .challenge-score{grid-column:1;flex-direction:row;align-items:baseline;justify-content:space-between;gap:9px}
 html:not(.desktop-layout) .challenge-score small{font-size:.857143rem}
 html:not(.desktop-layout) .challenge-score strong{font-size:1rem}
+
+@media(pointer:coarse){
+  html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions{gap:6px}
+  html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions button{min-height:40px;height:40px;padding:6px 10px;white-space:nowrap}
+  html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #records,html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #update-notice{min-width:52px}
+  html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #sound{min-width:64px}
+  html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #menu{min-width:40px;padding-inline:10px}
+}

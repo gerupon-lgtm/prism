@@ -1,0 +1,42 @@
+[
+  {
+    "script": "check_mobile_header.cjs",
+    "args": [
+      "--channel",
+      "chrome"
+    ],
+    "exit": 0,
+    "elapsedMs": 8295,
+    "log": "設計検証\\0.47.0実行ログ\\check_mobile_header-chrome.log"
+  },
+  {
+    "script": "check_mobile_header.cjs",
+    "args": [
+      "--channel",
+      "msedge"
+    ],
+    "exit": 0,
+    "elapsedMs": 6866,
+    "log": "設計検証\\0.47.0実行ログ\\check_mobile_header-msedge.log"
+  },
+  {
+    "script": "check_mobile_header.cjs",
+    "args": [
+      "--engine",
+      "chromium"
+    ],
+    "exit": 0,
+    "elapsedMs": 5169,
+    "log": "設計検証\\0.47.0実行ログ\\check_mobile_header-chromium.log"
+  },
+  {
+    "script": "check_mobile_header.cjs",
+    "args": [
+      "--engine",
+      "webkit"
+    ],
+    "exit": 0,
+    "elapsedMs": 5669,
+    "log": "設計検証\\0.47.0実行ログ\\check_mobile_header-webkit.log"
+  }
+]

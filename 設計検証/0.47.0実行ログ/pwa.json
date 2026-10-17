@@ -1,0 +1,33 @@
+[
+  {
+    "script": "check_pwa.cjs",
+    "args": [
+      "--redirect-index"
+    ],
+    "exit": 0,
+    "elapsedMs": 81138,
+    "log": "設計検証\\0.47.0実行ログ\\check_pwa---redirect-index.log"
+  },
+  {
+    "script": "check_pwa.cjs",
+    "args": [
+      "--redirect-index",
+      "--channel",
+      "chrome"
+    ],
+    "exit": 0,
+    "elapsedMs": 157051,
+    "log": "設計検証\\0.47.0実行ログ\\check_pwa-chrome.log"
+  },
+  {
+    "script": "check_pwa.cjs",
+    "args": [
+      "--redirect-index",
+      "--channel",
+      "msedge"
+    ],
+    "exit": 0,
+    "elapsedMs": 152374,
+    "log": "設計検証\\0.47.0実行ログ\\check_pwa-msedge.log"
+  }
+]
