@@ -22,6 +22,10 @@ async function focus(page,id,label){
 async function down(page,id){const p=await center(page,id);await page.mouse.move(p.x,p.y);await page.mouse.down();}
 async function moveTo(page,id){const p=await center(page,id);await page.mouse.move(p.x,p.y);}
 async function moveLine(page,id){const p=await curvePoint(page,id);await page.mouse.move(p.x,p.y);}
+async function earlyPoint(page,id,from){
+ const origin=await center(page,from),toward=await curvePoint(page,id),dx=toward.x-origin.x,dy=toward.y-origin.y,length=Math.hypot(dx,dy);
+ return{x:origin.x+dx/length*18,y:origin.y+dy/length*18};
+}
 async function cancel(page){await page.evaluate(()=>document.getElementById('board').dispatchEvent(new PointerEvent('pointercancel',{pointerId:__pointer,bubbles:true})));await page.mouse.up();}
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;try{
  browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});
@@ -34,6 +38,12 @@ async function cancel(page){await page.evaluate(()=>document.getElementById('boa
    assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),version);
    const original=await page.locator('#board [data-edge="SA"] .edge-label-card').boundingBox();
    await focus(page,null,scenario.name+' idle');await down(page,'S');await focus(page,null,scenario.name+' origin has no arbitrary highlight');
+    const earlyA=await earlyPoint(page,'SA','S'),earlyB=await earlyPoint(page,'SB','S');
+    await page.mouse.move(earlyA.x,earlyA.y);await focus(page,'SA',scenario.name+' highlights after only 18px toward A');
+    const origin=await center(page,'S');await page.mouse.move(origin.x,origin.y);await focus(page,null,scenario.name+' return to centre clears early focus');
+    const bisector={x:(earlyA.x+earlyB.x)/2-origin.x,y:(earlyA.y+earlyB.y)/2-origin.y},bisectorLength=Math.hypot(bisector.x,bisector.y);
+    await page.mouse.move(origin.x+bisector.x/bisectorLength*18,origin.y+bisector.y/bisectorLength*18);await focus(page,null,scenario.name+' ambiguous branch does not choose arbitrarily');
+    await page.mouse.move(earlyB.x,earlyB.y);await focus(page,'SB',scenario.name+' early direction switches to B');
    await moveLine(page,'SA');await focus(page,'SA',scenario.name+' approach A');
    const active=await page.locator('#board [data-edge="SA"] .edge-label-card').boundingBox();assert(Math.abs(active.width-original.width)<.1&&Math.abs(active.height-original.height)<.1,'Focus does not resize the card');
    assert.notEqual(await page.locator('#board [data-edge="SB"] .edge-label-card').evaluate(e=>getComputedStyle(e).fill),'rgb(241, 210, 139)');
@@ -41,6 +51,7 @@ async function cancel(page){await page.evaluate(()=>document.getElementById('boa
    await moveLine(page,'SB');await focus(page,'SB',scenario.name+' change approach to B');
    const area=await page.locator('#board').boundingBox();await page.mouse.move(area.x+8,area.y+8);await focus(page,null,scenario.name+' off route');
    await moveLine(page,'SA');await moveTo(page,'A');await focus(page,'SA',scenario.name+' accepted prism keeps incoming seconds visible');
+   const earlyNext=await earlyPoint(page,'AG','A');await page.mouse.move(earlyNext.x,earlyNext.y);await focus(page,'AG',scenario.name+' continuous next leg highlights after 18px');
    await moveLine(page,'AG');await focus(page,'AG',scenario.name+' continuous next leg');await moveTo(page,'G');await focus(page,'AG',scenario.name+' accepted bell');
    await page.mouse.up();await focus(page,null,scenario.name+' release clears highlight');assert.equal(await page.locator('#board .edge:not(.candidate)').count(),2);
    await down(page,'S');await moveLine(page,'SB');await focus(page,null,scenario.name+' wire limit does not highlight a rejected candidate');await page.mouse.up();assert.equal(await page.locator('#board .edge:not(.candidate)').count(),2);

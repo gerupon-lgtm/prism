@@ -442,23 +442,30 @@ export class Board {
     const point=at=>({x:matrix.a*at.x+matrix.c*at.y+matrix.e,y:matrix.b*at.x+matrix.d*at.y+matrix.f});
     const cursor=point(gesture.last),from=gesture.route.at(-1),node=this.session.circuit.nodes.find(item=>item.id===from);
     const origin=point(this.position(node));
-    // At an accepted part, keep the arriving line readable until the next leg.
+    // Start the preview after a small move, even while the finger covers the part.
     const hit=this.world.querySelector(`[data-node="${CSS.escape(from)}"] .node-hit`)?.getBoundingClientRect();
-    if(Math.hypot(cursor.x-origin.x,cursor.y-origin.y)<Math.max(14,(hit?Math.min(hit.width,hit.height)/2:22)+WIRING_HIT.releaseMargin))return gesture.edges?.at(-1)??null;
-    if(node.kind==='goal')return null;
-    let nearest=null,distance=26;
+    const nearPart=Math.hypot(cursor.x-origin.x,cursor.y-origin.y)<Math.max(14,(hit?Math.min(hit.width,hit.height)/2:22)+WIRING_HIT.releaseMargin),previousEdge=gesture.edges?.at(-1)??null;
+    if(Math.hypot(cursor.x-origin.x,cursor.y-origin.y)<14||node.kind==='goal')return nearPart?previousEdge:null;
+    let nearest=null,distance=26,secondDistance=Infinity;
     const destinations=new Set((this.session.mode==='challenge'?this.session.challenge.candidates:[]).filter(edge=>edge.from===from).map(edge=>edge.to));
     for(const to of destinations){
       let id;try{id=this.session.planConnections([...gesture.route,to]).added.at(-1);}catch{continue;}
       const curve=this.curves.get(id);if(!curve)continue;
-      let previous=point(curve.a);
+      if(nearPart){
+        const tangent=point(curve.control),dx=tangent.x-origin.x,dy=tangent.y-origin.y,length=Math.hypot(dx,dy);
+        if(!length||((cursor.x-origin.x)*dx+(cursor.y-origin.y)*dy)/length<6)continue;
+      }
+      let previous=point(curve.a),edgeDistance=Infinity;
       for(let n=1;n<=24;n++){
         const current=point(this.onCurve(curve,n/24)),dx=current.x-previous.x,dy=current.y-previous.y,length=dx*dx+dy*dy;
         const fraction=length?Math.max(0,Math.min(1,((cursor.x-previous.x)*dx+(cursor.y-previous.y)*dy)/length)):0;
         const gap=Math.hypot(cursor.x-previous.x-dx*fraction,cursor.y-previous.y-dy*fraction);
-        if(gap<distance){distance=gap;nearest=id;}previous=current;
+        edgeDistance=Math.min(edgeDistance,gap);previous=current;
       }
+      if(edgeDistance<distance){secondDistance=nearest?distance:Infinity;distance=edgeDistance;nearest=id;}else secondDistance=Math.min(secondDistance,edgeDistance);
     }
+    // At a branch, wait for a clear direction instead of choosing an arbitrary tie.
+    if(nearPart&&(!nearest||secondDistance-distance<3))return previousEdge;
     return nearest;
   }
   updateWireTimeFocus() {
