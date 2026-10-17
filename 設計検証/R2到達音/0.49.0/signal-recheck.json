@@ -1,0 +1,333 @@
+{
+  "version": "0.49.0",
+  "url": null,
+  "checkedAt": "2026-10-17T05:44:06.075Z",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "chromium strike has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.11765115708112717,
+      "oscillators": 4
+    },
+    {
+      "label": "chromium clear has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17329224944114685,
+      "oscillators": 12
+    },
+    {
+      "label": "chromium perfect has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17271816730499268,
+      "oscillators": 29
+    },
+    {
+      "label": "chromium failure has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.13368503749370575,
+      "oscillators": 6
+    },
+    {
+      "label": "chromium relay has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.05761413648724556,
+      "oscillators": 2
+    },
+    {
+      "label": "chromium wire has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.06747684627771378,
+      "oscillators": 4
+    },
+    {
+      "label": "chromium tap has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.03462701663374901,
+      "oscillators": 2
+    },
+    {
+      "label": "chromium selected 440Hz chime gains a short separate attack while retaining its late decay",
+      "passed": true,
+      "attackRms": 0.0510408379538617,
+      "bodyOnlyAttackRms": 0.046992142428041485,
+      "lateRms": 0.0005236830783533486
+    },
+    {
+      "label": "chromium selected C1 and N2 use electric piano and F4 uses brass plus strings",
+      "passed": true,
+      "clearOscillators": 12,
+      "perfectOscillators": 29,
+      "failureOscillators": 6
+    },
+    {
+      "label": "chromium three simultaneous chimes leave room for the failure notes",
+      "passed": true,
+      "quietRms": 0.0015710492363223282,
+      "failureRms": 0.07342432941730598
+    },
+    {
+      "label": "chromium stop cancels layered bells and future FM notes without residual sound",
+      "passed": true
+    },
+    {
+      "label": "chromium F4 has an audible reverb tail beyond the dry notes and is silent before 2.7s",
+      "passed": true,
+      "dryTailRms": 0,
+      "wetTailRms": 0.00009598687517879793
+    },
+    {
+      "label": "chromium stopping or muting an active reverb tail clears all residual audio",
+      "passed": true
+    },
+    {
+      "label": "chromium accepted chime followed by F4 and reverb stays bounded and releases every voice",
+      "passed": true,
+      "peak": 0.17271816730499268
+    },
+    {
+      "label": "chromium seven audition WAVs are generated from the same shipped audio code",
+      "passed": true,
+      "files": [
+        {
+          "name": "strike.wav",
+          "bytes": 288044,
+          "sha256": "f1e420775f8e6fce849f1d8e0a4551a71bbc51c43f83418b27587d12d5d142e5"
+        },
+        {
+          "name": "clear.wav",
+          "bytes": 288044,
+          "sha256": "92cae69c9f100466f99e40b0896a998b9e0eb62501ca88213aabbf130447b5c5"
+        },
+        {
+          "name": "perfect.wav",
+          "bytes": 288044,
+          "sha256": "e0d0690e1d3a815c133407fbdbbaa66a3fb6d233443858e2343231757a8d497b"
+        },
+        {
+          "name": "failure.wav",
+          "bytes": 288044,
+          "sha256": "ae58fac9d8ebbc6ac6ab0e77ca94a3c3d381a6f2ad705f2d3c37352a894f0f64"
+        },
+        {
+          "name": "relay.wav",
+          "bytes": 288044,
+          "sha256": "d647ed6278bcdbdb11797abc8cb00157cd7847c13886531170f960e0c2a85ae0"
+        },
+        {
+          "name": "perfect-dry.wav",
+          "bytes": 288044,
+          "sha256": "677dd56db393a81635f419e72e7540c31dfd0f2e225c9857f2b33678ef6ea64f"
+        },
+        {
+          "name": "perfect-with-bell.wav",
+          "bytes": 288044,
+          "sha256": "fa202c1954442ce835bb2027d835a323fa52ee56441f980fbbe83fa1b5a71902"
+        }
+      ]
+    },
+    {
+      "label": "chromium C1 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.9856267631362767e-9
+        },
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 3.725290298461914e-8,
+          "rmsDifference": 2.0074137427187726e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.9784061165240544e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.4092080924466466e-9
+        }
+      ]
+    },
+    {
+      "label": "chromium N2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 8.141182035347528e-10
+        },
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 2.2351741790771484e-8,
+          "rmsDifference": 6.107403768139637e-10
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium T2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "T2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "T2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium W2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "W2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "W2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium R2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "R2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "R2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chromium F4 dry music matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.4912984791211464e-9
+        },
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.4835546971684346e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.463500576400811e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.443542308854175e-9
+        }
+      ]
+    },
+    {
+      "label": "chromium strike retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "strike",
+          "rate": 48000,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "method": "strike",
+          "rate": 44100,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable in this Windows engine. Actual-device audio remains pending."
+    },
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable; selected-sound matching and device listening remain pending."
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

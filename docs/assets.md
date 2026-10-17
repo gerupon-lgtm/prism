@@ -43,3 +43,6 @@ Edit target: the attached adopted character comparison image. Extract ONLY the h
 ## 操作補助の拡大表示の由来
 
 2026-10-17、発案者の補足：結線時の拡大表示（操作補助）は、SIKUMI LABのLPに掲載している **パルムグラム** の拡大表示を応用したもの。現行実装は `src/ui/magnifier.js`。指付近の盤面を指から離れた場所に拡大して示し、利用者がON/OFFできる。
+
+
+2026-10-17：発案者の指定によりプリズム到達音をR4から、初回試聴版のR2「光片のきらめき」へ変更。音程・音符長・音量・余韻を試聴原本にそろえる。他の採用音と原本資料を保持する。[点検](reviews/2026-10-17-prism-arrival-r2.md)。

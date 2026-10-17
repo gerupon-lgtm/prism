@@ -1,0 +1,319 @@
+{
+  "version": "0.49.0",
+  "url": null,
+  "checkedAt": "2026-10-17T05:41:32.382Z",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "chrome strike has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.11765117198228836,
+      "oscillators": 4
+    },
+    {
+      "label": "chrome clear has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17329221963882446,
+      "oscillators": 12
+    },
+    {
+      "label": "chrome perfect has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17271815240383148,
+      "oscillators": 29
+    },
+    {
+      "label": "chrome failure has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.13368505239486694,
+      "oscillators": 6
+    },
+    {
+      "label": "chrome relay has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.05761413648724556,
+      "oscillators": 2
+    },
+    {
+      "label": "chrome wire has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.06747685372829437,
+      "oscillators": 4
+    },
+    {
+      "label": "chrome tap has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.03462701290845871,
+      "oscillators": 2
+    },
+    {
+      "label": "chrome selected 440Hz chime gains a short separate attack while retaining its late decay",
+      "passed": true,
+      "attackRms": 0.05104083780151952,
+      "bodyOnlyAttackRms": 0.04699214236578394,
+      "lateRms": 0.0005236830817821509
+    },
+    {
+      "label": "chrome selected C1 and N2 use electric piano and F4 uses brass plus strings",
+      "passed": true,
+      "clearOscillators": 12,
+      "perfectOscillators": 29,
+      "failureOscillators": 6
+    },
+    {
+      "label": "chrome three simultaneous chimes leave room for the failure notes",
+      "passed": true,
+      "quietRms": 0.0015710492435787773,
+      "failureRms": 0.07342432931837721
+    },
+    {
+      "label": "chrome stop cancels layered bells and future FM notes without residual sound",
+      "passed": true
+    },
+    {
+      "label": "chrome F4 has an audible reverb tail beyond the dry notes and is silent before 2.7s",
+      "passed": true,
+      "dryTailRms": 0,
+      "wetTailRms": 0.00009598690935358353
+    },
+    {
+      "label": "chrome stopping or muting an active reverb tail clears all residual audio",
+      "passed": true
+    },
+    {
+      "label": "chrome accepted chime followed by F4 and reverb stays bounded and releases every voice",
+      "passed": true,
+      "peak": 0.17271819710731506
+    },
+    {
+      "label": "chrome seven audition WAVs are generated from the same shipped audio code",
+      "passed": true,
+      "files": [
+        {
+          "name": "strike.wav",
+          "bytes": 288044,
+          "sha256": "39fe0bf3cca7803a63b9dd911d952bcbcb494b52f0cc6796f7219f10066c5f6b"
+        },
+        {
+          "name": "clear.wav",
+          "bytes": 288044,
+          "sha256": "542a19a62bb9aba27a005bb9626b5f746a6b7b91f905df697e0019a1190edfbe"
+        },
+        {
+          "name": "perfect.wav",
+          "bytes": 288044,
+          "sha256": "c15417cf82e03ecf05df2e656a8daee4984baddd65b1372efe0f884fc88cce24"
+        },
+        {
+          "name": "failure.wav",
+          "bytes": 288044,
+          "sha256": "bc27deccef4ccf7f30493543bc31165ef84813456a7660e76337d9e5cad69496"
+        },
+        {
+          "name": "relay.wav",
+          "bytes": 288044,
+          "sha256": "d647ed6278bcdbdb11797abc8cb00157cd7847c13886531170f960e0c2a85ae0"
+        },
+        {
+          "name": "perfect-dry.wav",
+          "bytes": 288044,
+          "sha256": "3dbd8002e59d750ecf86a37c1d66fc12753213b50185f8bdf498b7fa0f972fe2"
+        },
+        {
+          "name": "perfect-with-bell.wav",
+          "bytes": 288044,
+          "sha256": "71daeaab85b8ac6969eb22ae9a06aa832e80de7750f2d2af911ffbf0dc36048a"
+        }
+      ]
+    },
+    {
+      "label": "chrome C1 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.8247496590126088e-9
+        },
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.0870693645063972e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.6229665139997332e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.873908520537157e-9
+        }
+      ]
+    },
+    {
+      "label": "chrome N2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 3.725290298461914e-8,
+          "rmsDifference": 8.521830143641115e-10
+        },
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 5.39542638909474e-10
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.0915150171966538e-9
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 7.687610053650508e-10
+        }
+      ]
+    },
+    {
+      "label": "chrome T2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "T2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "T2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chrome W2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "W2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "W2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chrome R2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "R2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "R2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "chrome F4 dry music matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.5196074117120418e-9
+        },
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.563279885044715e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.4130391438630522e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.6239837731355256e-9
+        }
+      ]
+    },
+    {
+      "label": "chrome strike retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "strike",
+          "rate": 48000,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "method": "strike",
+          "rate": 44100,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    }
+  ],
+  "pending": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "chrome",
+      "version": "155.0.8059.84"
+    }
+  ],
+  "passed": true
+}

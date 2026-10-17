@@ -1,0 +1,55 @@
+{
+  "version": "0.49.0",
+  "passed": true,
+  "checkedAt": "2026-10-17T05:46:59.213Z",
+  "unit": {
+    "files": 17,
+    "tests": 145,
+    "passed": true
+  },
+  "syntax": {
+    "files": 56,
+    "passed": true
+  },
+  "build": {
+    "assets": 48,
+    "passed": true
+  },
+  "browserChecks": [
+    {
+      "name": "chrome-signal",
+      "checks": 22,
+      "pending": []
+    },
+    {
+      "name": "chromium-webkit",
+      "checks": 45,
+      "pending": [
+        {
+          "engine": "webkit",
+          "label": "Real-time audio output",
+          "reason": "API unavailable in this Windows engine; Android/iPhone/macOS/iPad listening remains included and unconfirmed."
+        },
+        {
+          "label": "webkit three actual offline-rendered audio signals",
+          "reason": "OfflineAudioContext unavailable; actual target-device listening remains pending."
+        },
+        {
+          "label": "webkit",
+          "reason": "OfflineAudioContext unavailable in this Windows engine. Actual-device audio remains pending."
+        },
+        {
+          "label": "webkit",
+          "reason": "OfflineAudioContext unavailable; selected-sound matching and device listening remain pending."
+        }
+      ]
+    },
+    {
+      "name": "edge-signal",
+      "checks": 22,
+      "pending": []
+    }
+  ],
+  "initialDifference": "first-f4-difference.json",
+  "recheck": "recheck.json"
+}

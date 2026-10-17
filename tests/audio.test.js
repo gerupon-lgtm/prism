@@ -22,9 +22,9 @@ test('操作音はT2の澄んだ880Hzで、短い余韻のあと終わる',()=>{
   const {chime,voices,notes}=fixture();chime.tap();assert.equal(notes().length,1);assert.equal(voices.length,2);assert.equal(notes()[0].frequencyHz,880);assert(Math.abs(notes()[0].endTime-.075)<1e-9);chime.mute();assert(voices.every(v=>v.stopped));
 });
 
-test('中継点は選ばれたR4の短い結晶音を到着1回につき1音鳴らす',()=>{
+test('中継点は選ばれたR2の光片のきらめきを到着1回につき1音鳴らす',()=>{
   const {chime,voices,notes}=fixture();chime.relay();assert.equal(notes().length,1);assert.equal(voices.length,2);
-  assert(Math.abs(notes()[0].frequencyHz-329.6275569128699)<1e-7);assert(Math.abs(notes()[0].endTime-.125)<1e-9);
+  assert(Math.abs(notes()[0].frequencyHz-1108.7305239074883)<1e-7);assert(Math.abs(notes()[0].endTime-.105)<1e-9);
   chime.context.currentTime=5;assert.equal(voices.length,2);chime.relay();assert.equal(notes().length,2);assert.equal(notes()[1].time,5);
 });
 

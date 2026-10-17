@@ -6,7 +6,7 @@ exports.checkSelectedAudio=async(page,label,{check,pending})=>{
  const baselineVoices=url(old('src/ui/voices.js')),baselineAudio=url(old('src/ui/audio.js').replace("'./voices.js'",JSON.stringify(baselineVoices)));
  const engine=url(fs.readFileSync(path.join(trial,'light-voice.js'),'utf8')),{CANDIDATES}=await import(pathToFileURL(path.join(trial,'catalog.js')));
  const {CANDIDATES:second}=await import(pathToFileURL(path.join(__dirname,'音の候補-20261017-2/catalog.js')));
- const items=[...CANDIDATES.filter(item=>['C1','N2','T2','W2'].includes(item.id)),...second.filter(item=>['F4','R4'].includes(item.id))];
+ const items=[...CANDIDATES.filter(item=>['C1','N2','T2','W2','R2'].includes(item.id)),...second.filter(item=>item.id==='F4')];
  const data=await page.evaluate(async({engine,baselineAudio,items})=>{
   if(typeof OfflineAudioContext!=='function')return null;
   const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src)),{Chime:OldChime}=await import(baselineAudio),{createLightVoice}=await import(engine);
@@ -24,7 +24,7 @@ exports.checkSelectedAudio=async(page,label,{check,pending})=>{
   const difference=(a,b)=>{let max=0,sum=0;for(let i=0;i<a.length;i++){const d=Math.abs(a[i]-b[i]);max=Math.max(max,d);sum+=d*d;}return {maxDifference:max,rmsDifference:Math.sqrt(sum/a.length)};};
   const selected=[],unchanged=[];
   for(const rate of [48000,44100]){
-   for(const item of items){const method={C1:'clear',N2:'failure',T2:'tap',W2:'wire',F4:'perfect',R4:'relay'}[item.id];for(const context of ['clear','failure','perfect'].includes(method)?[false,true]:[false])selected.push({id:item.id,rate,context,...difference(await render(rate,method,{context}),await render(rate,method,{reference:item,context}))});}
+   for(const item of items){const method={C1:'clear',N2:'failure',T2:'tap',W2:'wire',F4:'perfect',R2:'relay'}[item.id];for(const context of ['clear','failure','perfect'].includes(method)?[false,true]:[false])selected.push({id:item.id,rate,context,...difference(await render(rate,method,{context}),await render(rate,method,{reference:item,context}))});}
    for(const method of ['strike'])unchanged.push({method,rate,...difference(await render(rate,method),await render(rate,method,{legacy:true}))});
   }
   return {selected,unchanged};
