@@ -1,0 +1,44 @@
+{
+  "version": "0.52.0",
+  "commit": "4e28fd6c8e78d68683f1955d9862fc71794a2996",
+  "sequential": true,
+  "githubRun": 39045331023,
+  "cloudflareDeployment": "fb9bb5b0-7319-4aea-9847-222e274bdbdf",
+  "readiness": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "version": "0.52.0",
+      "commit": "4e28fd6c8e78d68683f1955d9862fc71794a2996",
+      "checkedAt": "2026-10-17T15:32:06.259Z"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "version": "0.52.0",
+      "commit": "4e28fd6c8e78d68683f1955d9862fc71794a2996",
+      "checkedAt": "2026-10-17T15:32:06.501Z"
+    }
+  ],
+  "jobs": [
+    {
+      "name": "cloudflare-public",
+      "exit": 0,
+      "seconds": 61
+    },
+    {
+      "name": "github-public",
+      "exit": 0,
+      "seconds": 32
+    },
+    {
+      "name": "cloudflare-focus",
+      "exit": 0,
+      "seconds": 31
+    },
+    {
+      "name": "github-focus",
+      "exit": 0,
+      "seconds": 19
+    }
+  ],
+  "passed": true
+}
