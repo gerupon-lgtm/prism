@@ -30,6 +30,8 @@ Edit target: the attached adopted character comparison image. Extract ONLY the h
 
 ## 0.38.0のFM音源と楽器音色
 
+2026-10-17、発案者の補足：FM音源の流用元の公開作品名は **FMオペラボ**（SIKUMI LABのLPに掲載）。以下のKoekit内のパスは参照したコード・原本の保存場所を示す記録として維持する。作品紹介では「FMオペラボからの流用」と明記する。
+
 発案者の指定により、Koekitの `probe/saezuri/light-voice.js`（2026-10-03-timbres-v2）のエレピ2種・柔らかい音の設定と発音・停止方法を参照し、`src/ui/voices.js` に必要な部分を取り込んだ。元の音符長に余韻を収める。原本の識別と確認範囲は[資料の確認](proposals/2026-10-16-fm-audio-reuse-review.md)を参照。6オペレーターの別音源や外部パッケージは利用しない。
 
 鐘はKoekit `.local-tools/two-op-bell-20261014/two-op-bells-20261014.zip` のチャイムを基準に、先の調整版と同じ2.62秒へ収めた。鳴り始めに880Hzの短いエレピ打音を重ねる。ジングル・結線・中継・操作音の楽器音色は役割ごとに選び、音高や再生時刻は保つ。すべて実行時のWeb Audio合成で、試聴用WAVを配信アプリの録音サンプルに使わない。実装と点検は[0.38.0の記録](reviews/2026-10-16-musical-timbres-chime.md)を参照。
