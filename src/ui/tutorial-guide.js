@@ -10,8 +10,8 @@ export class TutorialGuide {
   }
   highlight() {
     const targets=this.card.hidden&&!this.collapsed?[]:this.targets,names=new Set(targets);
-    for(const item of document.querySelectorAll('.tutorial-target'))if(!names.has(item.id)&&!names.has(item.dataset.node))item.classList.remove('tutorial-target');
-    for(const id of targets)(document.getElementById(id)||this.board.querySelector(`[data-node="${CSS.escape(id)}"]`))?.classList.add('tutorial-target');
+    for(const item of document.querySelectorAll('.tutorial-target'))if(!names.has(item.id)&&!names.has(item.dataset.node)&&!names.has(item.dataset.edge))item.classList.remove('tutorial-target');
+    for(const id of targets)(document.getElementById(id)||this.board.querySelector(`[data-node="${CSS.escape(id)}"],.edge:not(.candidate)[data-edge="${CSS.escape(id)}"]`))?.classList.add('tutorial-target');
   }
   update({guide,hidden,compact,targets=[]}) {
     this.targets=guide&&!hidden?targets:[];

@@ -18,6 +18,8 @@ import { OutcomeSound } from './outcome-sound.js';
 import { DesktopLayout } from './desktop-layout.js';
 import { TutorialGuide } from './tutorial-guide.js';
 import { MotionPreference,MOTION_OPTIONS,MOTION_STORAGE_KEY } from './motion.js';
+import { PARTS,PLAY_GUIDE,helpArt } from './help.js';
+import { tutorialContent } from './tutorial-content.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -94,7 +96,7 @@ function open(title) {
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','help-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -192,16 +194,17 @@ function render(redraw=true,{records=true}={}) {
   const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
   setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
   $('guide-bar').hidden=!session.guide;
+  const guideCopy=tutorialContent(session,matchMedia('(pointer:coarse)').matches);
   if(session.guide){
-    const guide=session.guide,coarse=matchMedia('(pointer:coarse)').matches,gesture=coarse?'ダブルタップ':'ダブルクリック',firstRelay=session.circuit.edges.find(edge=>edge.from==='S')?.to??'A',hasBell=session.circuit.edges.some(edge=>edge.to==='G');
-    const steps=guide.mode==='challenge'?[`星からプリズムAへドラッグして、${coarse?'指':'マウスボタン'}を離しましょう。`,hasBell?'「鐘を鳴らす」を押して、光が鐘に届くまで見てみましょう。':`プリズム${firstRelay}から鐘へつなぎ、「鐘を鳴らす」を押しましょう。`,'到着時間と点数を確かめて、ヘッダーの「記録」を開きましょう。']:['「鐘を鳴らす」を押して、光の進み方を見てみましょう。',`${session.editable?'':'「停止」で編集に戻り、'}プリズムAを${gesture}。「時間」を1.5秒に変えましょう。`,'もう一度「鐘を鳴らす」。プリズムB経由の3秒を確かめましょう。'];
-    setText('guide-heading',`チュートリアル ${guide.step+1}/3`);setText('guide-text',guide.readyToFinish?'練習が終わりました。「完了」で元の画面へ戻れます。':steps[guide.step]);$('guide-finish').hidden=!guide.readyToFinish;
+    setText('guide-heading',`チュートリアル ${session.guide.step+1}/${guideCopy.total}`);setText('guide-text',guideCopy.text);$('guide-finish').hidden=!session.guide.readyToFinish;
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
-  if(redraw)board.render();else board.particles();
-  const guide=session.guide,guideTargets=guide?(guide.readyToFinish?[]:guide.mode==='challenge'?(guide.step===0?['S','A']:guide.step===1?(session.circuit.edges.some(edge=>edge.to==='G')?['play']:[session.circuit.edges.find(edge=>edge.from==='S')?.to??'A','G']):['records']):guide.step===1?[session.editable?'A':'stop']:['play']):[];
-  tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideTargets});
-  if(guide&&tutorialGuide.collapsed)setText('hint',`チュートリアル ${guide.step+1}/3：案内を読む`);
+  const guide=session.guide;
+  tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideCopy?.targets??[]});
+  // Resolve the guide's reserved space before measuring SVG artwork sizes.
+  // A collapsed guide must not briefly shrink the field during a redraw.
+  if(redraw)board.render();else board.particles();tutorialGuide.highlight();
+  if(guide&&tutorialGuide.collapsed)setText('hint',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
@@ -451,18 +454,20 @@ function layoutTitle(width,height) {
 }
 function tutorial() {leaveTitle();if(!session.guide)session.beginGuide();message='';render();}
 function partsExplanation() {
-  open('パーツの説明');
-  listPage([
-    ['source','星の光','光の出発点。ここから鐘へ道をつなぎます。'],
-    ['prism','プリズム','光の中継点。道の時間に加え、ここでの処理時間もかかります。'],
-    ['goal','祭壇の鐘','光の到着先。光が届くと鐘が鳴り、星の光が浮かびます。'],
-  ],([asset,name,text])=>{const compact=body.clientHeight<180,item=button('',()=>fullText(name,text,partsExplanation)),copy=element('div');item.className=`part-description${compact?' compact':''}`;item.setAttribute('aria-label',`${name}の説明`);copy.append(element('strong',name));if(!compact)copy.append(element('p',text));item.append(element('img','',{src:new URL(`../../public/graphics/${asset}.png`,import.meta.url).href,alt:''}),copy);return item;});
+  open('パーツの説明');dialog.classList.add('help-dialog');
+  listPage(PARTS,item=>helpCard(item,partsExplanation));
   actions.append(button('閉じる',close));
 }
+function helpCard(item,back){
+  const compact=body.clientHeight<Math.max(230,parseFloat(getComputedStyle(document.documentElement).fontSize)*16),card=button('',()=>fullText(item.name,[item.summary,item.detail].filter(Boolean).join('\n\n'),back)),copy=element('div');
+  card.className=`help-card${compact?' compact':''}`;card.setAttribute('aria-label',`${item.name}の説明`);
+  copy.append(element('strong',item.name));if(!compact)copy.append(element('p',item.summary));copy.append(element('small','詳しく見る'));
+  card.append(helpArt(item.art),copy);return card;
+}
 function aboutGame() {
-  open('遊び方と概要');
-  body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点はダブルタップ、結線済みの道はタップで設定を開きます。結線済みの道を長押しすると、赤い線を確認して1本だけ削除できます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
-  actions.append(button('表示・演出',()=>motionSettings(aboutGame)),button('オフラインと更新',offlineDialog),button('閉じる',close));fitDialogForm();
+  open('遊び方と概要');dialog.classList.add('help-dialog');
+  listPage(PLAY_GUIDE,item=>helpCard(item,aboutGame));
+  actions.append(button('表示・演出',()=>motionSettings(aboutGame)),button('オフラインと更新',offlineDialog),button('閉じる',close));
 }
 function refreshMotionSettings(){
   if(!dialog.open||$('dialog-title').textContent!=='表示・演出')return;

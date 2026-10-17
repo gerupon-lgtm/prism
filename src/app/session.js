@@ -57,10 +57,14 @@ export class Session {
     const checked = createCircuit(input).raw;
     this.circuit = checked;
     this.dirty = true;
+    if(this.guide)this.guide.run=null;
+    if(this.guide?.mode==='challenge'&&this.guide.step===0&&checked.edges.length){
+      this.guide.wireId=checked.edges[0].id;this.guide.step=1;
+    }
     // Keep the previous run and its result available, but never change its conditions.
-    if (this.guide?.mode === 'free' && this.guide.step === 1) {
+    if (this.guide?.mode === 'free' && this.guide.step === 2) {
       const a = checked.nodes.find(node => node.id === 'A');
-      if (a?.process === '1.5') this.guide.step = 2;
+      if (a?.process === '1.5' && checked.edges.some(edge=>edge.from==='S'&&edge.to==='A')) this.guide.step = 3;
     }
   }
   connect(from, to, candidateId = null) {
@@ -90,12 +94,12 @@ export class Session {
   connectPath(path,candidateId=null) {
     const {next,added}=this.planConnections(path,candidateId);
     this.commitEdit(next);
-    if (this.guide?.mode === 'challenge' && this.guide.step === 0 && next.edges.length) this.guide.step = 1;
     this.selection=path.at(-1);
     return added;
   }
   clearConnections() {
     this.commitEdit({...this.circuit,edges:[]});this.selection=null;this.view.showAllTimes=true;
+    if(this.guide){this.guide.step=0;this.guide.wireId=null;this.guide.readyToFinish=false;}
   }
   nextId(prefix,circuit=this.circuit) {
     const used = new Set([...circuit.nodes,...circuit.edges].map(item => item.id));
@@ -164,6 +168,7 @@ export class Session {
     }
     this.commitEdit(next);
     if (this.selection === id) this.selection = null;
+    if(!node&&this.guide?.step===1&&this.guide.wireId===id)this.guide.step=2;
   }
 
   replacement({challengeId, sampleId, fileText, slotId} = {}) {
@@ -221,6 +226,7 @@ export class Session {
     } else if (caseId !== null) throw new Error('この実験には故障ケースがありません。');
     const run = new Simulation(conditions);
     this.run = run; this.cases = cases; this.replayCase = selected?.id ?? null;
+    if(this.guide)this.guide.run=run;
     this.runContext = {mode:this.mode,challenge:copy(this.challenge),original,guide:this.guide !== null};
     this.view.recordPage = 0; this.result = null;
     this.evaluate();
@@ -257,7 +263,7 @@ export class Session {
   }
   openRecords() {
     this.pause('records');
-    if (this.guide?.mode === 'challenge' && this.guide.step === 2) this.guide.readyToFinish = true;
+    if (this.guide?.mode === 'challenge' && this.guide.step === 3) this.guide.readyToFinish = true;
   }
 
   evaluate() {
@@ -265,9 +271,9 @@ export class Session {
     const {mode,challenge,guide} = this.runContext;
     if (mode === 'free') {
       this.result = {state:this.run.status === 'stopped' ? 'stopped' : this.run.exhausted ? 'finished' : 'running',arrivals:copy(this.run.arrivals())};
-      if (this.guide?.mode === 'free' && this.run.arrivals().length) {
-        if (this.guide.step === 0) this.guide.step = 1;
-        else if (this.guide.step === 2 && this.run.arrivals()[0].time === '3') this.guide.readyToFinish = true;
+      if (this.guide?.mode === 'free' && this.guide.run===this.run && this.run.arrivals().length) {
+        if (this.guide.step === 0) {this.guide.wireId=this.circuit.edges.find(edge=>edge.from==='S'&&edge.to==='A')?.id??this.circuit.edges[0]?.id;this.guide.step=1;}
+        else if (this.guide.step === 3 && this.run.arrivals()[0].time === '3') this.guide.readyToFinish = true;
       }
       return this.result;
     }
@@ -299,7 +305,7 @@ export class Session {
     if(state==='failed')this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
     if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
-    if (this.guide?.mode === 'challenge' && this.guide.step === 1 && arrival) this.guide.step = 2;
+    if (this.guide?.mode === 'challenge' && this.guide.run===this.run && this.guide.step === 2 && arrival) this.guide.step = 3;
     return this.result;
   }
   scoreKey(challenge) { return `${challengeScoreId(challenge)}/${challenge.type}@1`; }

@@ -92,4 +92,8 @@ async function dragConnection(page,from,to){
   }
   await page.mouse.move(start.x,start.y);await page.mouse.down();for(const point of route.slice(1))await page.mouse.move(point.x,point.y,{steps:10});await page.mouse.up();
 }
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound,challengeSolution,dragConnection};
+async function holdWire(page,id){
+  const point=await page.locator(`.edge:not(.candidate)[data-edge="${id}"] .edge-line`).evaluate(line=>{const p=line.getPointAtLength(line.getTotalLength()*.35).matrixTransform(line.getScreenCTM());return {x:p.x,y:p.y};});
+  await page.mouse.move(point.x,point.y);await page.mouse.down();try{await page.waitForFunction(()=>document.getElementById('wire-delete-toast').open,null,{timeout:2000});}finally{await page.mouse.up();}
+}
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound,challengeSolution,dragConnection,holdWire};

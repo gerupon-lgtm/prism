@@ -79,6 +79,13 @@ export class Board {
     const nodes=new Map(input.nodes.map(node=>[node.id,node]));
     let symbolFactor=this.fontFactor??1,sideNames=Boolean(this.desktop);
     const screenMatrix=this.world.getScreenCTM(),screenScale=screenMatrix?Math.hypot(screenMatrix.a,screenMatrix.b):0;
+    if(this.session.guide&&screenMatrix&&this.session.view.zoom===1&&this.session.view.panX===0&&this.session.view.panY===0){
+      // The practice field can be very short with enlarged text. Fit artwork
+      // inside it without moving saved points or reducing the 44px hit areas.
+      const area=this.element.getBoundingClientRect();let margin=Infinity;
+      for(const node of input.nodes){const at=this.position(node),x=screenMatrix.a*at.x+screenMatrix.c*at.y+screenMatrix.e,y=screenMatrix.b*at.x+screenMatrix.d*at.y+screenMatrix.f;margin=Math.min(margin,x-area.left,area.right-x,y-area.top,area.bottom-y);}
+      symbolFactor=Math.min(symbolFactor,Math.max(22,margin-3)/(65*screenScale));
+    }
     if(this.session.mode==='challenge'&&nodes.size>5&&screenMatrix){
       const positions=input.nodes.map(node=>this.position(node)),scale=Math.hypot(screenMatrix.a,screenMatrix.b);
       let spacing=Infinity;
