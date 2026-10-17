@@ -39,3 +39,7 @@ Edit target: the attached adopted character comparison image. Extract ONLY the h
 2026-10-17：試聴版のC1・N2・T2・W2を採用。譜面はsrc/ui/sound-cues.js、打鍵音woodと音符長に続く余韻はsrc/ui/voices.jsに取り込む。録音WAVは配信せず、その場で合成する。元の鐘・満点・プリズム到着の信号は保持し、未選定の新候補は本体へ混ぜない。[点検](reviews/2026-10-17-selected-jingles-se.md)。
 
 2026-10-17：試聴版2のF4とR4を採用。F4は7音のブラスと11音のStrings、R4はE4の短い結晶音。譜面はsrc/ui/sound-cues.js、音色はvoices.jsへ元の合成条件を移した。F4専用の短い残響はreverb.jsで生成し、外部の録音素材は使わない。元の試聴版2とZIPは試聴時点の記録として保持する。
+
+## 操作補助の拡大表示の由来
+
+2026-10-17、発案者の補足：結線時の拡大表示（操作補助）は、SIKUMI LABのLPに掲載している **パルムグラム** の拡大表示を応用したもの。現行実装は `src/ui/magnifier.js`。指付近の盤面を指から離れた場所に拡大して示し、利用者がON/OFFできる。
