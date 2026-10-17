@@ -6,13 +6,13 @@
 - Cloudflare Pagesプロジェクト：`prism-notes`、標準URL：`https://prism-notes.pages.dev/`
 - 従来の確認先：`https://gerupon-lgtm.github.io/prism/`
 
-2026-10-17、0.49.0を独自ドメインと従来URLで公開・確認済み。R2到達音・版・全資材・更新・操作・保存・通信なし再起動の証拠は[公開点検](reviews/2026-10-17-prism-arrival-r2.md)を参照する。0.48.0の案内配置と0.47.0のオフライン修正も維持する。
+2026-10-17、0.50.0を独自ドメインと従来URLで公開・確認済み。表示・演出の共通設定、版・全資材・更新・操作・保存・通信なし再起動の証拠は[公開点検](reviews/2026-10-17-motion-preference.md)を参照する。0.49.0のR2到達音、0.48.0の案内配置と0.47.0のオフライン修正も維持する。
 
 ## 自動配信
 
 `gerupon-lgtm/prism`のmainへの配信対象変更でGitHub Pagesへ自動配信する。Cloudflareもmainを配信する設定だが、自動起動と今回の実行結果は下記のとおり区別する。CloudflareはNode 24、ビルド命令は`npm run check && npm test && npm run build`、出力先は`dist`。プレビュー配信は無効。
 
-Cloudflareの自動配信設定は有効だが、今回のpushだけでは配信作成を確認できなかったため、0.46.0・0.47.0・0.48.0・0.49.0はmainを指定してPages APIから開始した。GitHub側の自動配信は成功を確認済み。Cloudflareのpushによる自動起動は後続確認として残し、設定済みという事実と動作確認済みを区別する。
+Cloudflareの自動配信設定は有効だが、今回のpushだけでは配信作成を確認できなかったため、0.46.0・0.47.0・0.48.0・0.49.0・0.50.0はmainを指定してPages APIから開始した。GitHub側の自動配信は成功を確認済み。Cloudflareのpushによる自動起動は後続確認として残し、設定済みという事実と動作確認済みを区別する。
 
 Cloudflareが未起動の場合は、対象コミットの配信が存在しないことを確認してから`POST /accounts/{account_id}/pages/projects/prism-notes/deployments`へmultipartの`branch=main`を送る。応答のコミットが対象と一致すること、ビルドと配信の成功、独自ドメインの実資材と動作を確認する。二重に同じ配信を作らない。
 
