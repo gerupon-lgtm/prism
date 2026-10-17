@@ -1,0 +1,41 @@
+{
+  "version": "0.48.0",
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "guide-chrome",
+      "exit": 0,
+      "seconds": 46
+    },
+    {
+      "name": "guide-msedge",
+      "exit": 0,
+      "seconds": 42
+    },
+    {
+      "name": "variants-msedge",
+      "exit": 0,
+      "seconds": 30
+    },
+    {
+      "name": "guide-chromium",
+      "exit": 0,
+      "seconds": 37
+    },
+    {
+      "name": "variants-chromium",
+      "exit": 0,
+      "seconds": 25
+    },
+    {
+      "name": "guide-webkit",
+      "exit": 0,
+      "seconds": 53
+    },
+    {
+      "name": "variants-webkit",
+      "exit": 1,
+      "seconds": 5
+    }
+  ]
+}

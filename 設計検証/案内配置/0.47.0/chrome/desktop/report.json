@@ -1,0 +1,95 @@
+{
+  "version": "0.47.0",
+  "checks": [
+    {
+      "label": "1600x1000 connect source",
+      "passed": false,
+      "card": {
+        "left": 37,
+        "top": 127,
+        "right": 477,
+        "bottom": 293.59375
+      },
+      "board": {
+        "left": 29,
+        "top": 101,
+        "right": 1195,
+        "bottom": 886
+      },
+      "parent": "",
+      "text": "星からプリズムAへドラッグして、マウスボタンを離しましょう。",
+      "font": 18,
+      "parts": [
+        {
+          "id": "S",
+          "rect": {
+            "left": 568,
+            "top": 683.0384521484375,
+            "right": 656,
+            "bottom": 787.0384521484375
+          }
+        },
+        {
+          "id": "A",
+          "rect": {
+            "left": 246.49264526367188,
+            "top": 471.6922912597656,
+            "right": 334.4926452636719,
+            "bottom": 575.6923217773438
+          }
+        },
+        {
+          "id": "B",
+          "rect": {
+            "left": 889.5073852539062,
+            "top": 471.6922912597656,
+            "right": 977.50732421875,
+            "bottom": 575.6923217773438
+          }
+        },
+        {
+          "id": "G",
+          "rect": {
+            "left": 568,
+            "top": 218.07691955566406,
+            "right": 656,
+            "bottom": 322.076904296875
+          }
+        }
+      ],
+      "targets": [
+        {
+          "id": "S",
+          "rect": {
+            "left": 568,
+            "top": 683.0384521484375,
+            "right": 656,
+            "bottom": 787.0384521484375
+          }
+        },
+        {
+          "id": "A",
+          "rect": {
+            "left": 246.49264526367188,
+            "top": 471.6922912597656,
+            "right": 334.4926452636719,
+            "bottom": 575.6923217773438
+          }
+        }
+      ],
+      "scroll": [
+        1600,
+        1000
+      ],
+      "viewport": [
+        1600,
+        1000
+      ],
+      "overflow": false
+    }
+  ],
+  "evidence": "Clean PC browser profiles; touch, viewport and enlarged CSS text are simulations, not physical-device acceptance.",
+  "browser": "155.0.8059.84",
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: 1600x1000 connect source guide must not cover the circuit field\n    at coach (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_mobile.cjs:17:2)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_mobile.cjs:27:349"
+}

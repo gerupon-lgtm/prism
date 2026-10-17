@@ -16,7 +16,7 @@ import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
 import { OutcomeSound } from './outcome-sound.js';
 import { DesktopLayout } from './desktop-layout.js';
-import { TutorialOverlay } from './tutorial-overlay.js';
+import { TutorialGuide } from './tutorial-guide.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -51,7 +51,7 @@ const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.
 const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
 const desktop=new DesktopLayout();
-const tutorialOverlay=new TutorialOverlay($('guide-bar'),$('board'));
+const tutorialGuide=new TutorialGuide($('guide-bar'),$('board'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 let soundUnlock=null,automaticSoundFailed=false;
 // Create/resume audio inside an actual user action. A pending resume must never
@@ -137,7 +137,7 @@ function render(redraw=true,{records=true}={}) {
   $('app').dataset.mode=session.mode;
   const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
   setText('condition',session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
-  $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide&&textEnlarged&&innerHeight<=600);
+  $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide);
   setText('challenge-goal',textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'');
   $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
   if(session.mode==='challenge'){
@@ -196,8 +196,8 @@ function render(redraw=true,{records=true}={}) {
   }
   if(redraw)board.render();else board.particles();
   const guide=session.guide,guideTargets=guide?(guide.readyToFinish?[]:guide.mode==='challenge'?(guide.step===0?['S','A']:guide.step===1?(session.circuit.edges.some(edge=>edge.to==='G')?['play']:[session.circuit.edges.find(edge=>edge.from==='S')?.to??'A','G']):['records']):guide.step===1?[session.editable?'A':'stop']:['play']):[];
-  tutorialOverlay.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,heading:$('guide-heading').textContent,text:$('guide-text').textContent,targets:guideTargets});
-  if(guide&&tutorialOverlay.collapsed)setText('hint',`チュートリアル ${guide.step+1}/3：案内を読む`);
+  tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideTargets});
+  if(guide&&tutorialGuide.collapsed)setText('hint',`チュートリアル ${guide.step+1}/3：案内を読む`);
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
@@ -918,7 +918,7 @@ $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
 $('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('completed');message='';render();}));
 $('hint').addEventListener('click',()=>{
-  if(session.guide&&($('app').classList.contains('compact')||tutorialOverlay.collapsed)){
+  if(session.guide&&($('app').classList.contains('compact')||tutorialGuide.collapsed)){
     fullText('操作の案内',$('guide-text').textContent);
     actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));

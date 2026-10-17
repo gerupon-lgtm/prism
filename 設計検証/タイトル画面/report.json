@@ -1,32 +1,32 @@
 {
-  "version": "0.46.0",
+  "version": "0.48.0",
   "evidence": "PC Chromium/WebKit, synthetic CSS 28px and viewports. Not physical phone acceptance.",
   "checks": [
     {
       "label": "chromium first launch shows adopted art title without changing tutorial history",
       "images": [
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/ruins.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/ruins.png",
           "width": 1672,
           "height": 941
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/observatory.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/observatory.png",
           "width": 1672,
           "height": 941
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/source.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/source.png",
           "width": 1254,
           "height": 1254
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/prism.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/prism.png",
           "width": 1254,
           "height": 1254
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/goal.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/goal.png",
           "width": 1024,
           "height": 1536
         }
@@ -1498,27 +1498,27 @@
       "label": "webkit first launch shows adopted art title without changing tutorial history",
       "images": [
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/ruins.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/ruins.png",
           "width": 1672,
           "height": 941
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/observatory.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/observatory.png",
           "width": 1672,
           "height": 941
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/source.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/source.png",
           "width": 1254,
           "height": 1254
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/prism.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/prism.png",
           "width": 1254,
           "height": 1254
         },
         {
-          "url": "http://127.0.0.1:51516/v0.46.0/public/graphics/goal.png",
+          "url": "http://127.0.0.1:63040/v0.48.0/public/graphics/goal.png",
           "width": 1024,
           "height": 1536
         }
@@ -1737,6 +1737,17 @@
           "h": 42,
           "sw": 398,
           "sh": 42
+        },
+        {
+          "id": "title-update",
+          "l": 370,
+          "t": 10,
+          "r": 424,
+          "b": 42,
+          "w": 52,
+          "h": 30,
+          "sw": 52,
+          "sh": 30
         }
       ],
       "passed": true
