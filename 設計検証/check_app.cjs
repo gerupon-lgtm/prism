@@ -5,7 +5,7 @@ function arg(name){const index=process.argv.indexOf(name);return index<0?null:pr
 const library=arg('--playwright-path');if(!library)throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
 const channel=arg('--channel');if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use --channel chrome or msedge');
-const pw=require(path.resolve(library)),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'アプリ',channel||'');fs.mkdirSync(out,{recursive:true});
+const pw=require(path.resolve(library)),root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'アプリ',...(process.argv.includes('--release-output')?[JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version]:[]),channel||'');fs.mkdirSync(out,{recursive:true});
 const report={version:JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json'),'utf8')).version,evidence:'PC Chromium/WebKit only. Real app actions with emulated viewport sizes. No real device or public deployment evidence.',checks:[]};
 if(channel)report.evidence=`Installed Windows ${channel}. Disposable browser context and emulated viewports; no phone, touch, or public deployment evidence.`;
 report.browsers=[];
@@ -41,6 +41,12 @@ async function drag(page,from,to){
   const center=async id=>{const box=await page.locator(`[data-node="${id}"] .node-hit`).boundingBox();return {x:box.x+box.width/2,y:box.y+box.height/2};};
   const a=await center(from),b=await center(to);await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:8});await page.mouse.up();await settle(page);
 }
+async function returnToEditing(page){
+  // Read and click in one task: the 2.7s automatic return may occur between
+  // separate browser calls while a completed result is being inspected.
+  await page.evaluate(()=>{const stop=document.getElementById('stop');if(!stop.disabled)stop.click();});
+  assert.equal(await page.locator('#play').getAttribute('data-state'),'stopped');assert.equal(await page.locator('#play').textContent(),'鐘を鳴らす');
+}
 (async()=>{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const url=`http://127.0.0.1:${server.address().port}/`;
   try{
@@ -63,7 +69,7 @@ async function drag(page,from,to){
         await page.evaluate(()=>{Storage.prototype.setItem=window.__prismStorageWrite;delete window.__prismStorageWrite;});await page.locator('#retry-result').click();assert(!(await page.locator('#retry-result').isVisible()));
         await page.locator('#records').click();assert(await page.locator('#record-page').textContent().then(text=>!text.includes('全0件')));await fit(page,`${engine} populated records`);
         await page.locator('#record-next').click();await page.locator('#record-list button').first().click();await fit(page,`${engine} record detail`);await page.locator('#dialog-close').click();
-        await page.locator('#close-records').click();await page.locator('#stop').click();
+        await page.locator('#close-records').click();await returnToEditing(page);
         await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await page.locator('[data-node="A"] .node-hit').dblclick();await page.getByRole('button',{name:'時間',exact:true}).click();
         await page.getByRole('button',{name:'＋0.1',exact:true}).click();await page.getByRole('button',{name:'取消',exact:true}).click();assert.equal(await page.locator('[data-node="A"] .node-time').textContent(),'0.5s');
@@ -71,7 +77,7 @@ async function drag(page,from,to){
         await page.getByRole('textbox',{name:'秒数'}).fill('0.15');await page.getByRole('button',{name:'確定',exact:true}).click();assert((await page.locator('#dialog-error').textContent()).includes('0.1秒'));
         for(const [width,height]of [[320,480],[480,240]]){await page.setViewportSize({width,height});await fit(page,`${engine} invalid time ${width}x${height}`);assert.equal(await page.getByRole('textbox',{name:'秒数'}).inputValue(),'0.15');}
         await page.getByRole('textbox',{name:'秒数'}).fill('1.5');await page.getByRole('button',{name:'確定',exact:true}).click();
-        await page.setViewportSize({width:390,height:664});await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('3秒')&&document.getElementById('result').textContent.includes('終了'),{},{timeout:6500});await page.locator('#stop').click();
+        await page.setViewportSize({width:390,height:664});await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('3秒')&&document.getElementById('result').textContent.includes('終了'),{},{timeout:6500});await returnToEditing(page);
         await page.locator('#menu').click();await page.getByRole('button',{name:'回路を保存',exact:true}).click();await page.getByRole('textbox',{name:'回路名'}).fill('<script>保存名</script>');await page.getByRole('button',{name:'保存',exact:true}).click();
         const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.circuits.v1')));assert.equal(saved.value.length,1);assert.equal(saved.value[0].name,'<script>保存名</script>');
         const coordinates=await page.locator('[data-node="A"]').getAttribute('transform');await page.setViewportSize({width:844,height:310});await settle(page);const rotated=await page.locator('[data-node="A"]').getAttribute('transform');const savedNodes=await page.evaluate(()=>JSON.parse(localStorage.getItem('prism-notes.circuits.v1')).value[0].circuit.nodes);assert.deepEqual(savedNodes.find(node=>node.id==='A'),{id:'A',kind:'prism',x:.25,y:.45,process:'1.5'});assert(/translate\([^ ]+ 880\)/.test(coordinates)&&/translate\([^ ]+ 880\)/.test(rotated));assert(rotated.includes('rotate(0)'));assert.equal(await page.locator('html').getAttribute('data-board-rotation'),'0');
@@ -91,6 +97,6 @@ async function drag(page,from,to){
       }finally{await browser.close();}
     }
     report.passed=true;fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(`App checks passed: ${report.checks.length}`);
-  }catch(error){report.passed=false;report.failure=error.stack;fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));throw error;}
+  }catch(error){console.error(error.stack);report.passed=false;report.failure=error.stack;fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));throw error;}
   finally{await new Promise(resolve=>server.close(resolve));}
 })();

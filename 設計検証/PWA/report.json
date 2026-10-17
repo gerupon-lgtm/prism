@@ -1,5 +1,5 @@
 {
-  "version": "0.44.0",
+  "version": "0.46.0",
   "evidence": "PC engines, not physical devices/production. Chromium: setOffline. WebKit: stopped origin (setOffline worker bug https://github.com/microsoft/playwright/issues/42775). Later releases synthetic. Exact stopped-origin worker diagnostics retained separately; browser window errors/rejections must remain empty.",
   "checks": [
     {
@@ -67,21 +67,21 @@
       "label": "chromium update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
       "label": "chromium update prepared status CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 7,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
       "label": "chromium update prepared status CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -95,7 +95,7 @@
       "label": "chromium dirty circuit update protection CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -137,14 +137,14 @@
       "label": "chromium failed pre-update save retains form CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 6,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
       "label": "chromium failed pre-update save retains form CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -158,7 +158,7 @@
       "label": "chromium saved circuit final update confirmation CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -190,7 +190,7 @@
       "label": "chromium incomplete update error and old assets status CSS root 28px 844x310",
       "passed": true,
       "issues": [],
-      "settlingFrames": 4,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -266,7 +266,7 @@
       "label": "webkit update prepared status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 6,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -357,7 +357,7 @@
       "label": "webkit saved circuit final update confirmation CSS root 28px 480x240",
       "passed": true,
       "issues": [],
-      "settlingFrames": 5,
+      "settlingFrames": 4,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {
@@ -375,7 +375,7 @@
       "label": "webkit incomplete update error and old assets status CSS root 28px 390x664",
       "passed": true,
       "issues": [],
-      "settlingFrames": 6,
+      "settlingFrames": 5,
       "method": "CSS simulation, not native OS or browser preferences; three unchanged layout frames before measurement, persistent overflow still fails"
     },
     {

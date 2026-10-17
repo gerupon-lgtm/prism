@@ -1,0 +1,42 @@
+[
+  {
+    "script": "check_tutorial_mobile.cjs",
+    "args": [
+      "--channel",
+      "chrome"
+    ],
+    "exit": 0,
+    "elapsedMs": 29322,
+    "log": "設計検証\\0.46.0実行ログ\\check_tutorial_mobile-chrome.log"
+  },
+  {
+    "script": "check_tutorial_mobile.cjs",
+    "args": [
+      "--channel",
+      "msedge"
+    ],
+    "exit": 0,
+    "elapsedMs": 32232,
+    "log": "設計検証\\0.46.0実行ログ\\check_tutorial_mobile-msedge.log"
+  },
+  {
+    "script": "check_tutorial_mobile.cjs",
+    "args": [
+      "--engine",
+      "chromium"
+    ],
+    "exit": 0,
+    "elapsedMs": 24907,
+    "log": "設計検証\\0.46.0実行ログ\\check_tutorial_mobile-chromium.log"
+  },
+  {
+    "script": "check_tutorial_mobile.cjs",
+    "args": [
+      "--engine",
+      "webkit"
+    ],
+    "exit": 1,
+    "elapsedMs": 19281,
+    "log": "設計検証\\0.46.0実行ログ\\check_tutorial_mobile-webkit.log"
+  }
+]

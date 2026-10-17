@@ -1,0 +1,14 @@
+node:fs:2422
+    return binding.writeFileUtf8(
+                   ^
+
+Error: UNKNOWN: unknown error, open 'C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\アプリ\report.json'
+    at Object.writeFileSync (node:fs:2422:20)
+    at C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_app.cjs:100:67 {
+  errno: -4094,
+  code: 'UNKNOWN',
+  syscall: 'open',
+  path: 'C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\アプリ\\report.json'
+}
+
+Node.js v24.18.0

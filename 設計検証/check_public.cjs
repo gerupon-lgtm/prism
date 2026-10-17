@@ -6,7 +6,7 @@ const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.ar
 if(!arg('--url')||!arg('--playwright-path'))throw new Error('Pass --url and --playwright-path');
 const base=new URL(arg('--url'));assert.equal(base.protocol,'https:');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'公開');fs.mkdirSync(out,{recursive:true});
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'公開',base.hostname);fs.mkdirSync(out,{recursive:true});
 const expected=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
 const report={version:expected,url:base.href,checkedAt:new Date().toISOString(),evidence:'Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.',checks:[]};
 async function get(asset){const response=await fetch(new URL(asset,base),{cache:'no-store',signal:AbortSignal.timeout(15000)});assert(response.ok,`${asset}: HTTP ${response.status}`);return response;}
@@ -43,8 +43,8 @@ async function contents(download){const stream=await download.createReadStream()
       try{
         const context=await browser.newContext({viewport:{width:390,height:664},acceptDownloads:true});let page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
         await page.goto(base.href);await prepared(page);await page.waitForFunction(()=>!document.getElementById('title-update').disabled);
-        assert.equal(await page.locator('#title-update').textContent(),'更新確認');assert(await page.locator('#title-screen').isVisible());
-        await page.locator('#title-update').click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
+        assert.equal(await page.locator('#title-update').isVisible(),false);assert(await page.locator('#title-screen').isVisible());
+        await page.locator('#title-about').click();await page.getByRole('button',{name:'オフラインと更新',exact:true}).click();await page.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
         assert.equal(await page.locator('#dialog-error').textContent(),'');await page.locator('#dialog-close').click();assert(await page.locator('#title-screen').isVisible());
         await page.screenshot({path:path.join(out,`${engine}-title-update.png`)});report.checks.push({label:`${engine} public title startup completes automatic check and manual latest-version check returns to title`,passed:true});
         await enterApp(page);assert.equal(await page.locator('meta[name=prism-version]').getAttribute('content'),expected);await skipGuide(page);

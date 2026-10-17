@@ -31,7 +31,9 @@ const manifest={id:'./',name:'プリズム・ノーツ',short_name:'PRISM NOTES'
 writeFileSync(join(output,'manifest.webmanifest'),JSON.stringify(manifest,null,2));
 const all=['./index.html','./manifest.webmanifest',...assets,'./build-info.json'];
 const hashes=Object.fromEntries(all.filter(asset=>asset!=='./build-info.json').map(asset=>[asset,createHash('sha256').update(readFileSync(join(output,asset))).digest('hex')]));
-writeFileSync(join(output,'build-info.json'),JSON.stringify({version,commit:process.env.GITHUB_SHA??null,assets:all,hashes},null,2));
+writeFileSync(join(output,'build-info.json'),JSON.stringify({version,commit:process.env.GITHUB_SHA??process.env.CF_PAGES_COMMIT_SHA??null,assets:all,hashes},null,2));
 const worker=readFileSync('src/pwa/worker.js','utf8').replace('__PRISM_VERSION__',version).replace('__PRISM_ASSETS__',JSON.stringify(all));
 writeFileSync(join(output,'sw.js'),worker);writeFileSync(join(output,'.nojekyll'),'');
+// Pages metadata is revalidated; only versioned files may be immutable.
+writeFileSync(join(output,'_headers'),`/\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n/sw.js\n  Cache-Control: no-store, must-revalidate\n/build-info.json\n  Cache-Control: no-store\n/manifest.webmanifest\n  Cache-Control: no-cache\n/v*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 console.log(`Built v${version}: ${all.length} offline assets. Versioned modules, fonts, manifest, and worker are ready.`);

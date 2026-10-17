@@ -1,0 +1,42 @@
+[
+  {
+    "script": "check_desktop_layout.cjs",
+    "args": [
+      "--channel",
+      "chrome"
+    ],
+    "exit": 0,
+    "elapsedMs": 16444,
+    "log": "設計検証\\0.46.0実行ログ\\check_desktop_layout-chrome.log"
+  },
+  {
+    "script": "check_desktop_layout.cjs",
+    "args": [
+      "--channel",
+      "msedge"
+    ],
+    "exit": 0,
+    "elapsedMs": 17593,
+    "log": "設計検証\\0.46.0実行ログ\\check_desktop_layout-msedge.log"
+  },
+  {
+    "script": "check_desktop_layout.cjs",
+    "args": [
+      "--engine",
+      "chromium"
+    ],
+    "exit": 0,
+    "elapsedMs": 14268,
+    "log": "設計検証\\0.46.0実行ログ\\check_desktop_layout-chromium.log"
+  },
+  {
+    "script": "check_desktop_layout.cjs",
+    "args": [
+      "--engine",
+      "webkit"
+    ],
+    "exit": 0,
+    "elapsedMs": 24741,
+    "log": "設計検証\\0.46.0実行ログ\\check_desktop_layout-webkit.log"
+  }
+]

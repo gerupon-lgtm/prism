@@ -15,6 +15,8 @@ import { EndWait, END_WAIT_MS, CLEAR_END_WAIT_MS } from './end-wait.js';
 import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
 import { OutcomeSound } from './outcome-sound.js';
+import { DesktopLayout } from './desktop-layout.js';
+import { TutorialOverlay } from './tutorial-overlay.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -48,6 +50,8 @@ const board=new Board($('board'),session,render,settings,notify,()=>chime.wire()
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
 const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
+const desktop=new DesktopLayout();
+const tutorialOverlay=new TutorialOverlay($('guide-bar'),$('board'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
 let soundUnlock=null,automaticSoundFailed=false;
 // Create/resume audio inside an actual user action. A pending resume must never
@@ -59,9 +63,9 @@ document.addEventListener('click',event=>{
 
 function updateNotice(){
   $('update-notice').hidden=!offline.state.update;
-  const control=$('title-update');control.hidden=false;control.disabled=offline.state.checking||updating;
-  control.textContent=offline.state.checking?'確認中':offline.state.update?'更新':$('title-screen').classList.contains('title-compact')?'確認':'更新確認';
-  control.setAttribute('aria-label',offline.state.checking?'更新を確認中':offline.state.update?'更新':'更新を確認');
+  const control=$('title-update');control.hidden=!offline.state.update;control.disabled=updating;
+  control.textContent='更新';
+  control.setAttribute('aria-label','準備できた更新を適用する');
   control.setAttribute('aria-busy',String(offline.state.checking));
 }
 
@@ -86,7 +90,7 @@ function open(title) {
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop();clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -118,10 +122,10 @@ function render(redraw=true,{records=true}={}) {
   const narrowControls=textEnlarged||compact||Math.abs(orientation.rotation)===90;
   setText('add-prism',narrowControls?'◇＋':'＋プリズム');setText('add-goal',narrowControls?'鐘＋':'＋鐘');
   const canRestore=clearedConnections?.cleared===session.circuit;
-  setText('clear-wires',canRestore?'戻す':textEnlarged?'消去':'クリア');$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
+  setText('clear-wires',canRestore?'戻す':desktop.active?'配線クリア':textEnlarged?'消去':'クリア');$('clear-wires').setAttribute('aria-label',canRestore?'クリアした配線を戻す':'配線をすべてクリア');
   $('clear-wires').disabled=Boolean(startPrelude)||!session.editable||(!canRestore&&!session.circuit.edges.length);
   $('magnifier-toggle').setAttribute('aria-pressed',String(board.magnifier.enabled));
-  setText('magnifier-toggle',textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF');
+  setText('magnifier-toggle',desktop.active?`操作補助 ${board.magnifier.enabled?'ON':'OFF'}`:textEnlarged?'補助':board.magnifier.enabled?'補助ON':'補助OFF');
   const allTimes=session.view.showAllTimes!==false;
   $('candidate-times').hidden=session.mode!=='challenge';$('candidate-times').setAttribute('aria-pressed',String(allTimes));
   setText('candidate-times',textEnlarged?(allTimes?'全秒':'候補'):(allTimes?'秒数 全体':'秒数 候補'));
@@ -130,6 +134,7 @@ function render(redraw=true,{records=true}={}) {
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
   setText('title',session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由');
   $('app').dataset.problemId=session.challenge?.draw?.id??'';
+  $('app').dataset.mode=session.mode;
   const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
   setText('condition',session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
   $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide&&textEnlarged&&innerHeight<=600);
@@ -138,11 +143,11 @@ function render(redraw=true,{records=true}={}) {
   if(session.mode==='challenge'){
     const used=session.circuit.edges.length,limit=session.challenge.limit;
     const shortCounters=textEnlarged&&Math.abs(orientation.rotation)===90;
-    const counter=(label,value)=>{const part=element('span');part.append(document.createTextNode(label),element('b',String(value),{class:'wire-count'}),document.createTextNode(shortCounters?'':'本'));return part;};
+    const counter=(label,value)=>{const part=element('span','',{class:'wire-counter'});part.append(element('span',label,{class:'wire-counter-label'}),element('b',String(value),{class:'wire-count'}),element('span',shortCounters?'':'本',{class:'wire-unit'}));return part;};
     $('wire-budget').style.setProperty('--wire-digits',Math.max(1,String(limit).length));
-    const budgetKey=JSON.stringify([shortCounters,textEnlarged,limit,used]);
+    const budgetKey=JSON.stringify([shortCounters,textEnlarged,desktop.active,limit,used]);
     if($('wire-budget').dataset.layout!==budgetKey){
-      $('wire-budget').replaceChildren(counter(`${textEnlarged?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
+      $('wire-budget').replaceChildren(counter(`${textEnlarged||desktop.active?'':'配線 '}上限`,limit),counter('使用',used),counter('残り',limit-used));
       $('wire-budget').dataset.layout=budgetKey;
     }
     $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
@@ -174,15 +179,25 @@ function render(redraw=true,{records=true}={}) {
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
   setText('result',[text,message||startBlockedReason].filter(Boolean).join('　'));$('result').classList.toggle('error',Boolean(message));
+  if(desktop.active){
+    setText('desktop-time',`${run?.format()??'0'}秒`);
+    $('desktop-score-row').hidden=!session.result?.score;
+    setText('desktop-score',session.result?.score?`${displayScore(session.result.score)}点`:'');
+    $('desktop-sidebar').classList.toggle('has-guide',Boolean(session.guide));
+  }
   const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
   setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
   $('guide-bar').hidden=!session.guide;
   if(session.guide){
-    const guide=session.guide,steps=guide.mode==='challenge'?['星から候補へドラッグしてつなぎます。','鐘までつないで「鐘を鳴らす」を押します。','鐘への到着と点数を見て、上の「記録」を開きます。']:['「鐘を鳴らす」で2.5秒後に鐘が鳴る様子を見ます。','停止してプリズムAをダブルタップ。処理時間を1.5秒へ。','もう一度「鐘を鳴らす」を押して、プリズムB経由で3秒後に鐘が鳴る様子を見ます。'];
-    setText('guide-text',`${guide.step+1}/3 ${steps[guide.step]}`);$('guide-finish').hidden=!guide.readyToFinish;
+    const guide=session.guide,coarse=matchMedia('(pointer:coarse)').matches,gesture=coarse?'ダブルタップ':'ダブルクリック',firstRelay=session.circuit.edges.find(edge=>edge.from==='S')?.to??'A',hasBell=session.circuit.edges.some(edge=>edge.to==='G');
+    const steps=guide.mode==='challenge'?[`星からプリズムAへドラッグして、${coarse?'指':'マウスボタン'}を離しましょう。`,hasBell?'「鐘を鳴らす」を押して、光が鐘に届くまで見てみましょう。':`プリズム${firstRelay}から鐘へつなぎ、「鐘を鳴らす」を押しましょう。`,'到着時間と点数を確かめて、ヘッダーの「記録」を開きましょう。']:['「鐘を鳴らす」を押して、光の進み方を見てみましょう。',`${session.editable?'':'「停止」で編集に戻り、'}プリズムAを${gesture}。「時間」を1.5秒に変えましょう。`,'もう一度「鐘を鳴らす」。プリズムB経由の3秒を確かめましょう。'];
+    setText('guide-heading',`チュートリアル ${guide.step+1}/3`);setText('guide-text',guide.readyToFinish?'練習が終わりました。「完了」で元の画面へ戻れます。':steps[guide.step]);$('guide-finish').hidden=!guide.readyToFinish;
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   if(redraw)board.render();else board.particles();
+  const guide=session.guide,guideTargets=guide?(guide.readyToFinish?[]:guide.mode==='challenge'?(guide.step===0?['S','A']:guide.step===1?(session.circuit.edges.some(edge=>edge.to==='G')?['play']:[session.circuit.edges.find(edge=>edge.from==='S')?.to??'A','G']):['records']):guide.step===1?[session.editable?'A':'stop']:['play']):[];
+  tutorialOverlay.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,heading:$('guide-heading').textContent,text:$('guide-text').textContent,targets:guideTargets});
+  if(guide&&tutorialOverlay.collapsed)setText('hint',`チュートリアル ${guide.step+1}/3：案内を読む`);
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
@@ -386,6 +401,7 @@ function chooseMode(after=null) {
   }
   if(after){after();return;}
   open('課題と自由');
+  dialog.classList.add('challenge-dialog');
   actions.append(button('自由へ',()=>replace({sampleId:'compare'})),button('閉じる',close));
   let scores=[];
   try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
@@ -442,7 +458,7 @@ function partsExplanation() {
 function aboutGame() {
   open('遊び方と概要');
   body.append(element('p','星の光をプリズムから鐘へ導くゲームです。お試し6問と実践6問で、候補の道をつないで「鐘を鳴らす」を押し、到着時間や記録を比べてつなぎ直します。'),element('p','道の秒数・プリズムの処理・合流先の待ち時間を考えます。実践では途中で分岐し、複数の鐘への到達や指定間隔を満たします。複数の鐘の点数は最後の鐘への到達時間で比べます。自由では自分の回路を作れます。'),element('p','1本指で点から候補へドラッグすると連続して結線できます。スマホの表示移動は2本指、拡大縮小は2本指の開閉または＋−。点はダブルタップ、結線済みの道はタップで設定を開きます。結線済みの道を長押しすると、赤い線を確認して1本だけ削除できます。「プレイ画面へ」は現在の配線・記録を残して画面へ戻る入口です。'));
-  actions.append(button('閉じる',close));fitDialogForm();
+  actions.append(button('オフラインと更新',offlineDialog),button('閉じる',close));fitDialogForm();
 }
 function menu() {
   open('メニュー');
@@ -868,10 +884,7 @@ $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
-$('title-update').addEventListener('click',()=>attempt(()=>{
-  if(offline.state.update)return requestUpdate();
-  offlineDialog();return offline.prepare();
-}));
+$('title-update').addEventListener('click',()=>attempt(requestUpdate));
 $('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id}))));
 $('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode()));
 $('title-free').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({sampleId:'compare'}))));
@@ -905,7 +918,7 @@ $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
 $('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('completed');message='';render();}));
 $('hint').addEventListener('click',()=>{
-  if(session.guide&&$('app').classList.contains('compact')){
+  if(session.guide&&($('app').classList.contains('compact')||tutorialOverlay.collapsed)){
     fullText('操作の案内',$('guide-text').textContent);
     actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
@@ -923,6 +936,7 @@ function viewport(){
   const width=visual?visual.width*visual.scale:innerWidth,height=visual?visual.height*visual.scale:innerHeight;
   layoutTitle(width,height);
   orientation.update({width,height,type:screen.orientation?.type,angle:screen.orientation?.angle,legacyAngle:window.orientation,coarse:matchMedia('(pointer:coarse)').matches,editing:document.activeElement?.matches('input,textarea')});
+  desktop.update({width,height,coarse:matchMedia('(pointer:coarse)').matches,rotation:orientation.rotation,fontSize:parseFloat(getComputedStyle(document.documentElement).fontSize)});
   const state={direction:screen.orientation?.type??null,angle:screen.orientation?.angle??window.orientation??null,frame:orientation.rotation,width,height,scale:visual?.scale??1};
   const previous=viewport.history?.at(-1);if(JSON.stringify(previous)!==JSON.stringify(state)){viewport.history??=[];viewport.history.push(state);if(viewport.history.length>8)viewport.history.shift();}
   cancelWireDelete();board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);

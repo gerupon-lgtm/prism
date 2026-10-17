@@ -252,7 +252,7 @@ html:not(.device-landscape) .header-content:has(#challenge-info:not([hidden])){d
 #challenge-goal{display:block;white-space:normal;font-size:.928571rem;line-height:1.35;overflow-wrap:anywhere}
 #wire-budget{display:flex;flex-wrap:wrap;gap:0 7px;margin-top:2px;font-size:.857143rem;line-height:1.4;color:#c4cde0}
 #wire-budget span{white-space:nowrap}
-#wire-budget span:first-child{color:var(--gold);font-weight:600}
+#wire-budget>span:first-child{color:var(--gold);font-weight:600}
 .compact #challenge-info{display:none}
 .device-landscape #challenge-info{text-align:center}
 .device-landscape #wire-budget{justify-content:center}

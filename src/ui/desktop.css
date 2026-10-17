@@ -1,0 +1,174 @@
+/* The phone layout remains in app.css; these controls are the same DOM nodes. */
+.desktop-only{display:none}
+.mobile-objective-label{display:none}
+#title-screen .title-menu #title-update{min-width:0;min-height:32px;padding:6px 13px;font-size:.928571rem;line-height:1.2;background:#172238e8;color:#f0d48e;border-color:#89764d;box-shadow:none;border-radius:9px}
+#title-screen.title-compact .title-menu #title-update{justify-self:end;align-self:center;max-width:max-content}
+
+html.desktop-layout #app{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,22vw,360px);grid-template-rows:100px minmax(0,1fr) 32px;gap:0 24px;padding:0 28px;max-width:2000px;left:0;right:0;margin:0 auto;font-size:18px}
+html.desktop-layout .desktop-only{display:block}
+html.desktop-layout #app>header{grid-column:1/-1;grid-row:1;align-items:center;border-bottom:1px solid #2c3a50;margin-bottom:17px}
+html.desktop-layout #app .header-content{display:flex;align-items:center;gap:28px}
+html.desktop-layout #home.logo{width:196px;height:78px;min-height:78px}
+html.desktop-layout .desktop-tagline{margin:0;color:#c0cee4;font-size:19px;letter-spacing:.04em;flex:1}
+html.desktop-layout .header-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+html.desktop-layout .header-actions button,html.desktop-layout .header-actions #update-notice{min-width:58px;min-height:54px;padding:10px 20px;font-size:18px;border-radius:12px}
+html.desktop-layout #sound .sound-icon{display:inline-block;vertical-align:middle;margin-right:5px;width:21px;height:21px}
+html.desktop-layout #sound-label{display:inline}
+html.desktop-layout #sound[aria-pressed=true]{background:#353024;color:#ffe2a2;border-color:#9c8658;box-shadow:none}
+html.desktop-layout .header-actions #menu{padding-inline:15px;font-size:23px}
+html.desktop-layout #workspace{grid-column:1;grid-row:2;gap:12px;min-width:0;min-height:0}
+html.desktop-layout #stage{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;overflow:hidden;border-radius:20px;border-color:#3b4b67}
+html.desktop-layout #board{grid-column:1;grid-row:1;min-width:0;min-height:0}
+html.desktop-layout #stage-controls{position:static;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;grid-column:1;grid-row:2;padding:13px 16px;border-top:1px solid #34425b;background:#0d172a}
+html.desktop-layout #edit-controls,html.desktop-layout .zoom-controls,html.desktop-layout #add-controls{position:static;max-width:none;padding:0;gap:9px;min-width:0}
+html.desktop-layout #edit-controls{grid-column:1;grid-row:1}
+html.desktop-layout .zoom-controls{grid-column:2;grid-row:1;justify-self:end}
+html.desktop-layout #add-controls{grid-column:1/-1;grid-row:2;justify-self:start}
+html.desktop-layout #stage-controls button{min-height:54px;padding:8px 16px;font-size:18px;border-radius:11px}
+html.desktop-layout .zoom-controls button:not(#fit){width:52px;padding-inline:0;font-size:24px}
+html.desktop-layout #magnifier-toggle[aria-pressed=true]{background:#3a3326;border-color:#bda36c;color:#ffe1a2;box-shadow:none}
+html.desktop-layout .board-legend{display:flex;gap:18px;position:absolute;left:20px;bottom:98px;pointer-events:none;padding:9px 13px;background:#081324c9;border:1px solid #52658055;border-radius:9px;color:#d4dfef;font-size:15px}
+html.desktop-layout .board-legend span{display:flex;align-items:center;gap:7px}
+html.desktop-layout .board-legend i{width:26px;border-top:3px solid #f1cd7d}
+html.desktop-layout .board-legend .candidate-key{border-top:2px dashed #bfd2ef}
+html.desktop-layout #stage:has(#add-controls:not([hidden])) .board-legend{bottom:162px}
+html.desktop-layout #app[data-mode=free] .board-legend span:last-child{display:none}
+html.desktop-layout .node-time{font-size:calc(24px * var(--board-factor,1));fill:#edf0f8;stroke:#081326;stroke-width:5;paint-order:stroke}
+html.desktop-layout .node-name{font-size:calc(28px * var(--board-factor,1))}
+html.desktop-layout .edge-time{font-size:calc(28px * var(--board-factor,1));fill:#f5f2e7}
+html.desktop-layout .node-label-right{text-anchor:start}
+html.desktop-layout .node-label-left{text-anchor:end}
+html.desktop-layout .candidate .edge-line{stroke:#b1c7e6;stroke-width:2px;stroke-dasharray:7 7;opacity:.72;vector-effect:non-scaling-stroke}
+html.desktop-layout .edge:not(.candidate) .edge-line{stroke-width:5px}
+html.desktop-layout .edge:not(.candidate) .edge-backdrop{stroke-width:10px}
+
+html.desktop-layout #desktop-sidebar{grid-column:2;grid-row:2;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:auto;scrollbar-width:thin;padding:5px 0 0}
+html.desktop-layout #desktop-heading{flex:none}
+html.desktop-layout #condition-info{display:flex;flex-direction:column;gap:12px;width:100%;margin-bottom:24px;padding:0;flex:none;align-items:stretch}
+html.desktop-layout #condition{order:-1;color:#d4bd85;font-size:17px;line-height:1.5;white-space:normal}
+html.desktop-layout .heading-title{gap:8px;align-items:start}
+html.desktop-layout .heading-title strong{font-size:27px;line-height:1.5;white-space:normal;overflow:visible;text-overflow:clip}
+html.desktop-layout .heading-title>span{font-size:20px;margin-top:7px;color:#b5c6e0}
+html.desktop-layout #challenge-info{display:block;width:100%;background:none;border:0;border-radius:0;padding:0;line-height:1.5}
+html.desktop-layout .desktop-objective-label{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #40516a;padding-top:19px;font-size:17px;color:#b8c9e1}
+html.desktop-layout #challenge-goal{font-size:24px;line-height:1.7;color:#fff1ce;padding:17px 0 22px;border-bottom:1px solid #40516a}
+html.desktop-layout .desktop-budget-label{font-size:18px;padding:20px 0 12px;color:#c7d4e8}
+html.desktop-layout #wire-budget{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;font-size:16px;line-height:1.4}
+html.desktop-layout #wire-budget>.wire-counter{display:grid;grid-template-columns:max-content 1fr;align-items:baseline;color:#f0f3fb;font-weight:400}
+html.desktop-layout #wire-budget>.wire-counter+.wire-counter{border-left:1px solid #33445e;padding-left:18px}
+html.desktop-layout #wire-budget .wire-counter-label{grid-column:1/-1;font-size:16px;color:#adbed8;margin-bottom:5px;font-weight:400}
+html.desktop-layout #wire-budget .wire-count{font-size:33px;font-weight:600;text-align:left;min-width:0}
+html.desktop-layout #wire-budget .wire-unit{font-size:16px;padding-left:3px;color:inherit}
+html.desktop-layout #wire-budget>.wire-counter:last-child .wire-count{color:#f0cf86}
+html.desktop-layout .desktop-guidance{margin:24px 0 18px;font-size:17px;line-height:1.85;color:#bacbe3}
+html.desktop-layout .has-guide .desktop-guidance{display:none}
+html.desktop-layout #desktop-runtime{margin-top:auto;padding-top:12px;flex:none}
+html.desktop-layout #result-line{min-height:30px;padding:0;margin:0 0 10px}
+html.desktop-layout .result-content{flex-wrap:wrap;align-items:center;gap:8px}
+html.desktop-layout #result{font-size:16px;line-height:1.6;white-space:normal;overflow:visible;text-overflow:clip}
+html.desktop-layout #retry-result{min-height:38px;padding:5px 10px;font-size:16px}
+html.desktop-layout #desktop-metrics{display:flex;gap:16px;flex:none;margin:0 0 16px;padding:12px 0 17px;border-bottom:1px solid #34445e}
+html.desktop-layout #desktop-metrics>div{flex:1;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px}
+html.desktop-layout #desktop-metrics dt{font-size:16px;color:#b6c7de}
+html.desktop-layout #desktop-metrics dd{margin:0;font-size:29px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums}
+html.desktop-layout #desktop-score{color:#f1cf87}
+html.desktop-layout #desktop-actions{flex:none}
+html.desktop-layout #play-controls{min-height:0}
+html.desktop-layout .play-content{display:grid;grid-template-columns:1fr 1.2fr;grid-template-rows:auto auto;gap:11px}
+html.desktop-layout #play-controls button{min-height:58px;padding:10px;font-size:18px;border-radius:12px}
+html.desktop-layout #play-controls #play{grid-column:1/-1;grid-row:1;min-height:76px;background:linear-gradient(130deg,#ebce88,#cda558);border-color:#edce88;box-shadow:inset 0 1px 0 #fff3be80;color:#172033;font-size:26px;letter-spacing:.035em}
+html.desktop-layout #play-controls #play[data-state=running]{background:#426e5f;color:#fff}
+html.desktop-layout #play-controls #play[data-state=paused]{background:#715c36;color:#fff}
+html.desktop-layout #play-controls #stop{grid-column:1;grid-row:2;border-color:#58647b}
+html.desktop-layout #play-controls #next{grid-column:2;grid-row:2}
+html.desktop-layout #guide-bar{margin-top:18px;font-size:17px}
+html.desktop-layout .guide-content{flex-wrap:wrap;align-items:center;gap:9px}
+html.desktop-layout #guide-text{font-size:17px;line-height:1.6;flex:1 1 220px}
+html.desktop-layout #guide-bar button{min-height:44px;font-size:16px}
+html.desktop-layout #app>footer{grid-column:1/-1;grid-row:3;align-items:center;font-size:13px;color:#9daec7}
+html.desktop-layout #hint{font-size:13px}
+html.desktop-layout #records-panel{width:44%;min-width:320px;padding:12px}
+html.desktop-layout #record-list .record-row{font-size:16px;min-height:42px}
+html.desktop-layout #records-panel .panel-heading,html.desktop-layout #records-panel .panel-heading strong{font-size:18px}
+html.desktop-layout #records-panel .panel-heading button,html.desktop-layout #records-panel .pager button{min-height:42px;font-size:16px}
+html.desktop-layout body.records-fullscreen #records-panel{width:100%}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) #stage-controls{grid-template-columns:minmax(0,1fr)}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) .zoom-controls{grid-column:1;grid-row:2}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) #add-controls{grid-row:3}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) .edit-content{flex-wrap:wrap}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) #edit-controls button{flex:1 0 auto}
+html.desktop-layout #workspace:has(#records-panel:not([hidden])) .board-legend{display:none}
+html.desktop-layout dialog:not(#wire-delete-toast){width:min(640px,calc(100vw - 36px));height:min(640px,calc(var(--app-height) - 50px));padding:20px;font-size:18px}
+html.desktop-layout dialog:not(#wire-delete-toast) .panel-heading h2{font-size:24px}
+html.desktop-layout dialog .panel-heading button,html.desktop-layout #dialog-actions button{min-height:48px;font-size:18px}
+html.desktop-layout #dialog-body p,html.desktop-layout #dialog-body label{font-size:18px;line-height:1.65}
+html.desktop-layout .dialog-list button{min-height:52px;font-size:18px;padding:10px 14px}
+html.desktop-layout .dialog-list .pager button,html.desktop-layout .pager span{font-size:16px}
+html.desktop-layout dialog.settings-dialog{height:min(640px,calc(var(--app-height) - 50px))}
+html.desktop-layout dialog.time-dialog{height:min(430px,calc(var(--app-height) - 50px))}
+html.desktop-layout dialog.settings-dialog .setting-option,html.desktop-layout dialog.time-dialog .dialog-row button{font-size:18px;min-height:56px}
+html.desktop-layout #clear-toast .clear-heading strong,html.desktop-layout #failure-toast .failure-heading strong{font-size:20px}
+html.desktop-layout #clear-toast:not(.slim) button,html.desktop-layout #failure-toast:not(.slim-notice) button{min-height:48px;font-size:17px}
+
+@media(max-width:1400px){
+  html.desktop-layout #app{padding-inline:21px;grid-template-rows:92px minmax(0,1fr) 31px;column-gap:20px}
+  html.desktop-layout #app .header-content{gap:22px}
+  html.desktop-layout .desktop-tagline{font-size:17px}
+  html.desktop-layout #home.logo{width:180px;height:72px;min-height:72px}
+  html.desktop-layout .heading-title strong{font-size:25px}
+  html.desktop-layout #stage-controls{padding:12px;gap:9px}
+  html.desktop-layout #stage-controls button{font-size:17px;padding-inline:12px}
+  html.desktop-layout #condition-info{margin-bottom:20px;gap:9px}
+  html.desktop-layout #challenge-goal{font-size:22px;padding:13px 0 18px}
+  html.desktop-layout .desktop-budget-label{padding-top:16px}
+  html.desktop-layout .desktop-guidance{font-size:16px;margin-top:20px}
+  html.desktop-layout #play-controls #play{min-height:70px;font-size:24px}
+}
+@media(max-height:820px){
+  html.desktop-layout #app{grid-template-rows:84px minmax(0,1fr) 28px}
+  html.desktop-layout #home.logo{height:66px;min-height:66px}
+  html.desktop-layout .desktop-guidance{display:none}
+  html.desktop-layout #condition-info{margin-bottom:15px;gap:7px}
+  html.desktop-layout .desktop-objective-label{padding-top:14px}
+  html.desktop-layout #challenge-goal{padding:11px 0 15px}
+  html.desktop-layout .desktop-budget-label{padding-top:14px}
+  html.desktop-layout #desktop-metrics{padding:8px 0 12px;margin-bottom:12px}
+  html.desktop-layout #play-controls button{min-height:50px}
+  html.desktop-layout #play-controls #play{min-height:64px}
+}
+
+/* Readable coaching stays upright even when the phone's play frame rotates. */
+#guide-bar.tutorial-overlay{position:fixed;z-index:6;inset:auto;display:flex;width:min(440px,calc(100vw - 20px));height:auto;min-height:0;margin:0;padding:13px 15px;background:linear-gradient(135deg,#1b2946fa,#111b30fa);border:1px solid #dfbd73;border-radius:15px;box-shadow:0 8px 30px #03081499,0 0 16px #c8a45b15;pointer-events:none}
+#guide-bar.tutorial-overlay>.guide-content{position:static;transform:none;width:auto!important;height:auto!important;display:grid;grid-template-columns:38px minmax(0,1fr);gap:8px 11px;align-items:start;justify-content:normal;flex:1}
+#guide-bar.tutorial-overlay #guide-spirit{width:38px;height:62px;margin-top:3px}
+#guide-bar.tutorial-overlay .guide-copy{min-width:0}
+#guide-bar.tutorial-overlay #guide-heading{display:block;color:#f1d693;font-size:16px;line-height:1.5;margin-bottom:5px}
+#guide-bar.tutorial-overlay #guide-text{display:block;width:auto;flex:none;color:#f4f5fb;font-size:max(18px,1.15rem);line-height:1.6;white-space:normal;overflow-wrap:anywhere}
+#guide-bar.tutorial-overlay .guide-actions{grid-column:1/-1;display:flex;justify-content:end;gap:9px}
+#guide-bar.tutorial-overlay button{min-height:40px;min-width:88px;font-size:16px;padding:6px 13px;pointer-events:auto}
+#guide-bar.tutorial-overlay #guide-finish{background:#d6b56a;color:#111827;border-color:#f1d28b}
+#guide-bar.tutorial-overlay.tight-coach{padding:10px 12px}
+#guide-bar.tutorial-overlay.tight-coach>.guide-content{grid-template-columns:minmax(0,1fr);gap:5px}
+#guide-bar.tutorial-overlay.tight-coach #guide-spirit{display:none}
+#guide-bar.tutorial-overlay.tight-coach #guide-heading{font-size:14px;line-height:1.3;margin-bottom:3px}
+#guide-bar.tutorial-overlay.tight-coach #guide-text{line-height:1.5}
+#guide-bar.tutorial-overlay.tight-coach button{min-height:34px;min-width:78px;font-size:14px;padding:4px 10px}
+.tutorial-target:not(.node){outline:2px solid #ffe2a0;outline-offset:3px;box-shadow:0 0 15px #e3c47150}
+.node.tutorial-target .node-halo{stroke:#ffe2a0;stroke-width:3;stroke-dasharray:5 4;filter:drop-shadow(0 0 6px #e3c471)}
+html.desktop-layout .mobile-objective-label{display:none}
+
+/* Short, separated labels; full challenge names have their own row in lists. */
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #challenge-info{padding:7px 10px;border-color:#60708c;background:#111c31}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .mobile-objective-label{display:flex;justify-content:space-between;gap:8px;color:#d3bd8c;font-size:.785714rem;line-height:1.4;margin-bottom:3px}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .mobile-objective-label>span{color:#b8c8df}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #challenge-goal{font-size:1.142857rem;line-height:1.5;color:#f1f3fa}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #wire-budget{font-size:1rem;line-height:1.6;gap:0 12px;margin-top:4px}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .wire-count{font-size:1.142857rem;font-weight:600}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .heading strong{font-size:1.142857rem;line-height:1.4}
+html:not(.desktop-layout) dialog.challenge-dialog{height:min(780px,calc(var(--app-height) - 26px));width:min(540px,calc(100vw - 20px))}
+html:not(.desktop-layout) .dialog-list button.challenge-row{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;padding:9px 12px;min-height:68px}
+html:not(.desktop-layout) .challenge-name{font-size:1.142857rem;line-height:1.45;grid-column:1;white-space:normal}
+html:not(.desktop-layout) .challenge-tier{display:inline;font-size:.857143rem;margin-left:8px;white-space:nowrap}
+html:not(.desktop-layout) .challenge-score{grid-column:1;flex-direction:row;align-items:baseline;justify-content:space-between;gap:9px}
+html:not(.desktop-layout) .challenge-score small{font-size:.857143rem}
+html:not(.desktop-layout) .challenge-score strong{font-size:1rem}

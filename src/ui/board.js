@@ -30,6 +30,7 @@ export class Board {
   }
   resize() {
     this.angle=Number(document.documentElement.dataset.boardRotation||0);
+    this.desktop=document.documentElement.classList.contains('desktop-layout');
     // Fill the available width instead of centering a narrow fixed-aspect diagram.
     this.frameWidth=2080*(this.element.clientWidth||1360)/(this.element.clientHeight||2080);
     this.displayWidthRatio=this.frameWidth/1360;
@@ -42,7 +43,7 @@ export class Board {
     const matrix=`translate(${panX} ${panY}) scale(${zoom})`;
     this.world.setAttribute('transform',matrix); this.particleLayer.setAttribute('transform',matrix);this.effectsLayer.setAttribute('transform',matrix);
     const screenMatrix=this.world.getScreenCTM();
-    if(screenMatrix){const scale=Math.hypot(screenMatrix.a,screenMatrix.b);this.fontFactor=Math.max(1,0.5/scale);this.particleRadius=Math.min(9,Math.max(6,18*scale))/scale;this.element.style.setProperty('--board-factor',this.fontFactor);}
+    if(screenMatrix){const scale=Math.hypot(screenMatrix.a,screenMatrix.b);this.fontFactor=Math.max(1,(this.desktop?0.8:0.5)/scale);this.particleRadius=Math.min(9,Math.max(6,18*scale))/scale;this.element.style.setProperty('--board-factor',this.fontFactor);}
   }
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
@@ -69,14 +70,14 @@ export class Board {
   render() {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
     const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
-    const sceneWidth=(this.frameWidth??1360)*.85;
-    this.scene.draw(sceneWidth,1600,kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} 0)`);
+    const sceneWidth=(this.frameWidth??1360)*(this.desktop?1:.85);
+    this.scene.draw(sceneWidth,this.desktop?2080:1600,kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} ${this.desktop?-240:0})`);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
     let extent=1;for(const node of input.nodes)extent=Math.max(extent,Math.abs(node.x??0.5),Math.abs(node.y??0.5));
     // Display projection only; original coordinates are retained in circuit files.
     this.projectionScale=extent>1000?extent:1;
     const nodes=new Map(input.nodes.map(node=>[node.id,node]));
-    let symbolFactor=this.fontFactor??1,sideNames=false;
+    let symbolFactor=this.fontFactor??1,sideNames=Boolean(this.desktop);
     const screenMatrix=this.world.getScreenCTM(),screenScale=screenMatrix?Math.hypot(screenMatrix.a,screenMatrix.b):0;
     if(this.session.mode==='challenge'&&nodes.size>5&&screenMatrix){
       const positions=input.nodes.map(node=>this.position(node)),scale=Math.hypot(screenMatrix.a,screenMatrix.b);
@@ -84,7 +85,7 @@ export class Board {
       for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++)spacing=Math.min(spacing,Math.hypot(positions[i].x-positions[j].x,positions[i].y-positions[j].y)*scale);
       // Keep dense small-screen parts apart; hit areas still have a 44px minimum.
       symbolFactor=Math.min(symbolFactor,Math.max(36,spacing*.8)/(130*scale),parseFloat(getComputedStyle(document.documentElement).fontSize)>=20?44/(130*scale):Infinity);
-      sideNames=symbolFactor<(this.fontFactor??1)&&spacing<75;
+      sideNames=this.desktop||symbolFactor<(this.fontFactor??1)&&spacing<75;
     }
 
     const candidates=this.session.mode==='challenge' ? this.session.challenge.candidates.filter(edge=>!input.edges.some(built=>built.id===edge.id)) : [];
@@ -122,9 +123,11 @@ export class Board {
       group.append(symbol(node.kind,symbolFactor));
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=partName(node,input.nodes,true);
-      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{x:sideNames?(node.x>.5?-1:1)*(65*symbolFactor+16*factor):0,y:sideNames?0:-80*factor,class:'node-name'},label.length>8?`${label.slice(0,7)}…`:label));
+      const side=sideNames&&(!this.desktop||node.kind!=='goal'),sideSign=node.x>(this.desktop?.7:.5)?-1:1;
+      const labelSide=this.desktop&&side?(sideSign<0?' node-label-left':' node-label-right'):'';
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{x:side?sideSign*(65*symbolFactor+16*factor):0,y:side?(this.desktop?-12*factor:0):-80*factor,class:'node-name'+labelSide},label.length>8?`${label.slice(0,7)}…`:label));
       if(node.kind!=='goal'){
-        const text=svg('text',{y:90*symbolFactor,class:'node-time'},secondsLabel(node.process));
+        const text=svg('text',{x:this.desktop?sideSign*(65*symbolFactor+16*factor):0,y:this.desktop?26*factor:90*symbolFactor,class:'node-time'+labelSide},secondsLabel(node.process));
         group.append(text);
       }else group.dataset.baseLabel=group.getAttribute('aria-label');
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));

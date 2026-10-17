@@ -116,8 +116,8 @@ async function connection(context,engine,offline){
         const page=await context.newPage();
         const observeErrors=target=>target.on('pageerror',e=>{const detail={engine,message:e.message,name:e.name,stack:e.stack,url:target.url(),originOffline};detail.expectedStoppedOrigin=expectedStoppedOriginWorkerError(detail);errors.push(detail);report.errors.push(detail);});observeErrors(page);
         await page.goto(url);await prepared(page);await page.waitForFunction(()=>!document.getElementById('title-update').disabled);
-        assert.equal(await page.locator('#title-update').isVisible(),true);assert.equal(await page.locator('#title-update').textContent(),'更新確認');
-        await page.locator('#title-update').click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
+        assert.equal(await page.locator('#title-update').isVisible(),false);
+        await page.locator('#title-about').click();await page.getByRole('button',{name:'オフラインと更新',exact:true}).click();await page.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#dialog-body [role="status"]')?.textContent==='最新版です。');
         assert.equal(await page.locator('#title-screen').isVisible(),true);await fit(page,`${engine} title manual update check returns latest version without leaving title`);
         await page.locator('#dialog-close').click();
         await page.evaluate(()=>{
@@ -127,8 +127,8 @@ async function connection(context,engine,offline){
             return post.call(this,data,ports);
           };
         });
-        await page.locator('#title-update').click();await page.waitForFunction(()=>typeof window.__finishTitlePreparation==='function');
-        assert.equal(await page.getByRole('button',{name:'確認中',exact:true}).isDisabled(),true);assert.equal(await page.locator('#title-update').isDisabled(),true);
+        await page.locator('#title-about').click();await page.getByRole('button',{name:'オフラインと更新',exact:true}).click();await page.getByRole('button',{name:'準備・更新を確認',exact:true}).click();await page.waitForFunction(()=>typeof window.__finishTitlePreparation==='function');
+        assert.equal(await page.getByRole('button',{name:'確認中',exact:true}).isDisabled(),true);assert.equal(await page.locator('#title-update').isVisible(),false);
         assert.equal(await page.locator('#dialog-body [role="status"]').textContent(),'更新を確認しています。');
         await page.evaluate(()=>window.__finishTitlePreparation());await page.waitForFunction(()=>document.getElementById('dialog-error').textContent.includes('資材の準備に失敗')&&document.querySelector('#dialog-body [role="status"]')?.textContent==='更新確認を完了できませんでした。');
         assert.equal(await page.locator('#dialog-body [role="status"]').textContent(),'更新確認を完了できませんでした。');assert.equal((await status(page)).ready,true);
