@@ -1,0 +1,117 @@
+{
+  "version": "0.63.0",
+  "url": null,
+  "checkedAt": "2026-10-18T10:57:57.034Z",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "webkit perfect actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "perfect",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit clear actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "clear",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit failure actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "failure",
+          "muted": false,
+          "added": 0
+        }
+      ]
+    },
+    {
+      "label": "webkit perfect starts later and re-enables the bell button in 2.7s without cutting notes",
+      "passed": true,
+      "audioAvailable": false,
+      "elapsedMs": 2753,
+      "probe": {
+        "at": 39934,
+        "voices": [],
+        "readyAt": 42687,
+        "button": "鐘を鳴らす"
+      }
+    },
+    {
+      "label": "webkit clear starts later and re-enables the bell button in 2.7s without cutting notes",
+      "passed": true,
+      "audioAvailable": false,
+      "elapsedMs": 2765,
+      "probe": {
+        "at": 49596,
+        "voices": [],
+        "readyAt": 52361,
+        "button": "鐘を鳴らす"
+      }
+    },
+    {
+      "label": "webkit actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": false
+    },
+    {
+      "label": "webkit known failure waits until active light finishes",
+      "passed": true
+    },
+    {
+      "label": "webkit stopping an unfinished trial does not play a result",
+      "passed": true
+    },
+    {
+      "label": "webkit stop cancels every scheduled result voice",
+      "passed": true
+    },
+    {
+      "label": "webkit muted result sounds schedule no voices",
+      "passed": true
+    },
+    {
+      "label": "webkit enabling sound after a muted clear does not replay the result",
+      "passed": true
+    }
+  ],
+  "pending": [
+    {
+      "engine": "webkit",
+      "label": "Real-time audio output",
+      "reason": "API unavailable in this Windows engine; Android/iPhone/macOS/iPad listening remains included and unconfirmed."
+    },
+    {
+      "label": "webkit three actual offline-rendered audio signals",
+      "reason": "OfflineAudioContext unavailable; actual target-device listening remains pending."
+    },
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable in this Windows engine. Actual-device audio remains pending."
+    },
+    {
+      "label": "webkit",
+      "reason": "OfflineAudioContext unavailable; selected-sound matching and device listening remain pending."
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

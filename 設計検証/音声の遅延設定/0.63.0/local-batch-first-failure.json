@@ -1,0 +1,43 @@
+{
+  "version": "0.63.0",
+  "passed": false,
+  "checks": [
+    {
+      "name": "unit",
+      "exit": 0,
+      "elapsedMs": 33678,
+      "passed": true,
+      "summary": "ℹ duration_ms 679.5848 All 20 test files passed.",
+      "tests": 174,
+      "files": 20
+    },
+    {
+      "name": "syntax",
+      "exit": 0,
+      "elapsedMs": 4946,
+      "passed": true,
+      "summary": "Syntax checks passed: 65 files"
+    },
+    {
+      "name": "build",
+      "exit": 0,
+      "elapsedMs": 537,
+      "passed": true,
+      "summary": "Built v0.63.0: 54 offline assets. Versioned modules, fonts, manifest, and worker are ready."
+    },
+    {
+      "name": "latency-chromium",
+      "exit": 0,
+      "elapsedMs": 55079,
+      "passed": true,
+      "summary": "Audio latency checks passed: 63"
+    },
+    {
+      "name": "sounds-chromium",
+      "exit": 1,
+      "elapsedMs": 54798,
+      "passed": false,
+      "summary": "    at exports.checkSelectedAudio (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\selected_audio.cjs:33:82)     at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_outcome_audio.cjs:121:173"
+    }
+  ]
+}

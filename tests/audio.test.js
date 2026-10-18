@@ -114,10 +114,10 @@ test('ファンファーレの残響も2.7秒以内で終了し、停止・消�
   chime.perfect();chime.mute();assert(sources.every(s=>s.stopped&&s.disconnected));assert.equal(chime.voices.size,0);
 });
 
-test('再生設定はplaybackを初期値にし、比較用interactiveも同じContextを再利用する',async()=>{
+test('再生設定は30msを初期値にし、明示した設定では同じContextを再利用する',async()=>{
   const original=globalThis.window,created=[];
   globalThis.window={AudioContext:class{constructor(options){created.push(options);this.state='running';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{},connect(){}};}async resume(){}}};
-  try{for(const value of [undefined,'playback','interactive','invalid']){const chime=new Chime({latencyHint:value});await chime.enable();await chime.enable();assert.equal(chime.latencyHint,value==='interactive'?'interactive':'playback');}assert.deepEqual(created,[{latencyHint:'playback'},{latencyHint:'playback'},{latencyHint:'interactive'},{latencyHint:'playback'}]);}finally{globalThis.window=original;}
+  try{for(const [value,expected] of [[undefined,.03],['playback','playback'],['interactive','interactive'],['invalid',.03],[0,0],[.075,.075]]){const chime=new Chime({latencyHint:value});await chime.enable();await chime.enable();assert.equal(chime.latencyHint,expected);}assert.deepEqual(created,[{latencyHint:.03},{latencyHint:'playback'},{latencyHint:'interactive'},{latencyHint:.03},{latencyHint:0},{latencyHint:.075}]);}finally{globalThis.window=original;}
 });
 
 test('音声統計は値の写しを取り、未対応・例外・無効値を0回へ読み替えない',()=>{
@@ -158,8 +158,10 @@ test('遅延の数値はミリ秒から秒へ変換し、空欄・負値・範�
 });
 
 test('遅延設定だけを保存・復元し、破損・未知版・保存失敗でも他の記録へ触れない',()=>{
-  const data=new Map([['records','retained']]),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};assert.equal(loadAudioLatency(storage),'playback');saveAudioLatency(storage,.075);assert.equal(loadAudioLatency(storage),.075);assert.equal(data.get('records'),'retained');
-  for(const raw of ['broken',JSON.stringify({version:2,latencyHint:'interactive'}),JSON.stringify({version:1,latencyHint:4})]){data.set(AUDIO_LATENCY_STORAGE_KEY,raw);assert.equal(loadAudioLatency(storage),'playback');assert.equal(data.get(AUDIO_LATENCY_STORAGE_KEY),raw);}
+  const data=new Map([['records','retained']]),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};assert.equal(loadAudioLatency(storage),.03);assert.equal(data.has(AUDIO_LATENCY_STORAGE_KEY),false);
+  for(const hint of ['playback','interactive',0,.03,.075,1]){saveAudioLatency(storage,hint);assert.equal(loadAudioLatency(storage),hint);assert.equal(data.get('records'),'retained');}
+  for(const raw of ['broken',JSON.stringify({version:2,latencyHint:'interactive'}),JSON.stringify({version:1,latencyHint:4})]){data.set(AUDIO_LATENCY_STORAGE_KEY,raw);assert.equal(loadAudioLatency(storage),.03);assert.equal(data.get(AUDIO_LATENCY_STORAGE_KEY),raw);}
+  assert.equal(loadAudioLatency({getItem(){throw Error('blocked');}}),.03);
   assert.throws(()=>saveAudioLatency({setItem(){throw Error('quota');}},'interactive'));
 });
 

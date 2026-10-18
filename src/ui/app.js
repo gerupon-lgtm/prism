@@ -7,7 +7,7 @@ import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
-import { playbackDiagnosticText,loadAudioLatency,saveAudioLatency,latencyFromMilliseconds } from './playback-diagnostics.js';
+import { playbackDiagnosticText,loadAudioLatency,saveAudioLatency,latencyFromMilliseconds,DEFAULT_AUDIO_LATENCY_SECONDS } from './playback-diagnostics.js';
 import { Offline } from './offline.js';
 import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
@@ -515,9 +515,9 @@ function aboutGame() {
 function audioSettings(back=menu){
   open('音声・レイテンシ');dialog.classList.add('settings-dialog');
   const select=element('select','',{id:'audio-latency-mode','aria-label':'音声の遅延設定'});
-  for(const [value,label]of [['playback','安定性優先（初期設定）'],['interactive','反応優先'],['custom','ミリ秒で指定']])select.append(element('option',label,{value}));
+  for(const [value,label]of [['playback','安定性優先'],['interactive','反応優先'],['custom','ミリ秒で指定（初期値30ms）']])select.append(element('option',label,{value}));
   select.value=typeof chime.latencyHint==='number'?'custom':chime.latencyHint;
-  const custom=element('div'),input=element('input','',{id:'audio-latency-ms',type:'text',inputmode:'decimal','aria-label':'指定する遅延（ミリ秒）'});input.value=typeof chime.latencyHint==='number'?String(chime.latencyHint*1000):'50';custom.append(element('label','指定する遅延（0〜1000ミリ秒）',{for:'audio-latency-ms'}),input);
+  const custom=element('div'),input=element('input','',{id:'audio-latency-ms',type:'text',inputmode:'decimal','aria-label':'指定する遅延（ミリ秒）'});input.value=String((typeof chime.latencyHint==='number'?chime.latencyHint:DEFAULT_AUDIO_LATENCY_SECONDS)*1000);custom.append(element('label','指定する遅延（0〜1000ミリ秒）',{for:'audio-latency-ms'}),input);
   const status=element('p','',{id:'audio-latency-status',role:'status'}),note=element('p','大きい値ほど音の準備に余裕ができ、反応は遅くなることがあります。指定は希望値で、実際の遅延は端末が決めます。変更時は音を止め、次の操作で新しい音声出力を準備します。鐘や音色・計算時間は変わりません。');
   const update=()=>{custom.hidden=select.value!=='custom';dialogLayout?.();};select.addEventListener('change',update);
   const info=chime.inspectPlayback().output;status.textContent=info.baseLatency===null?'音声出力は次の操作で準備します。':`ブラウザ報告：内部 ${(info.baseLatency*1000).toFixed(2)}ms／出力 ${info.outputLatency===null?'未計測':(info.outputLatency*1000).toFixed(2)+'ms'}`;

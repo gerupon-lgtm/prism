@@ -1,8 +1,9 @@
 // Read only at playback boundaries. No audio samples, storage or network use.
 export const AUDIO_LATENCY_STORAGE_KEY='prism-notes.audio-latency.v1';
+export const DEFAULT_AUDIO_LATENCY_SECONDS=.03;
 const validHint=value=>value==='interactive'||value==='playback'||typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<=1;
-export const playbackLatencyHint=value=>validHint(value)?value:'playback';
-export function loadAudioLatency(storage){try{const saved=JSON.parse(storage.getItem(AUDIO_LATENCY_STORAGE_KEY));return saved?.version===1&&validHint(saved.latencyHint)?saved.latencyHint:'playback';}catch{return 'playback';}}
+export const playbackLatencyHint=value=>validHint(value)?value:DEFAULT_AUDIO_LATENCY_SECONDS;
+export function loadAudioLatency(storage){try{const saved=JSON.parse(storage.getItem(AUDIO_LATENCY_STORAGE_KEY));return saved?.version===1&&validHint(saved.latencyHint)?saved.latencyHint:DEFAULT_AUDIO_LATENCY_SECONDS;}catch{return DEFAULT_AUDIO_LATENCY_SECONDS;}}
 export function saveAudioLatency(storage,latencyHint){if(!validHint(latencyHint))throw Error('音声の遅延設定が不正です。');storage.setItem(AUDIO_LATENCY_STORAGE_KEY,JSON.stringify({version:1,latencyHint}));}
 export function latencyFromMilliseconds(text){if(!String(text).trim())throw Error('遅延を0〜1000ミリ秒で入力してください。');const ms=Number(text);if(!Number.isFinite(ms)||ms<0||ms>1000)throw Error('遅延を0〜1000ミリ秒で入力してください。');return ms/1000;}
 const counters=['underrunEvents','underrunDuration','totalDuration'];

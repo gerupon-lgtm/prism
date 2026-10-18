@@ -1,0 +1,105 @@
+{
+  "version": "0.63.0",
+  "passed": true,
+  "publicVerified": false,
+  "sourceHashes": {
+    "package.json": "ee7c119ea7abbed4b34cc48a462a65182e17a90bfed60664775a072bc1c45767",
+    "index.html": "915cd2f3606701c78f718cb96ad4b2d4c520d5acc820d7d4237f9e1d395bb901",
+    "src/ui/app.js": "02b8ce1c1f98e633e6484dd59774d16c4d9ce1706dd486c140bc271d5b3b0381",
+    "src/ui/audio.js": "f28b5e22d8df8f81f0f3e2ba993d22737e33c8ffb197adda3f8c56f8fba21a86",
+    "src/ui/playback-diagnostics.js": "1e5899cd860d9392f0046f1e6ba2763df19ffdf1d182d5d1f59dc6baeed9d1c9"
+  },
+  "local": {
+    "version": "0.63.0",
+    "passed": true,
+    "checks": [
+      {
+        "name": "unit",
+        "exit": 0,
+        "elapsedMs": 33678,
+        "passed": true,
+        "summary": "ℹ duration_ms 679.5848 All 20 test files passed.",
+        "tests": 174,
+        "files": 20
+      },
+      {
+        "name": "syntax",
+        "exit": 0,
+        "elapsedMs": 4946,
+        "passed": true,
+        "summary": "Syntax checks passed: 65 files"
+      },
+      {
+        "name": "build",
+        "exit": 0,
+        "elapsedMs": 537,
+        "passed": true,
+        "summary": "Built v0.63.0: 54 offline assets. Versioned modules, fonts, manifest, and worker are ready."
+      },
+      {
+        "name": "latency-chromium",
+        "exit": 0,
+        "elapsedMs": 55079,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      },
+      {
+        "name": "sounds-chromium",
+        "exit": 0,
+        "elapsedMs": 54091,
+        "passed": true,
+        "summary": "chromium strike retains the previous audio signal Outcome audio checks passed: 34"
+      },
+      {
+        "name": "latency-webkit",
+        "exit": 0,
+        "elapsedMs": 89637,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      },
+      {
+        "name": "sounds-webkit",
+        "exit": 0,
+        "elapsedMs": 106838,
+        "passed": true,
+        "summary": "webkit enabling sound after a muted clear does not replay the result Outcome audio checks passed: 11"
+      },
+      {
+        "name": "latency-chrome",
+        "exit": 0,
+        "elapsedMs": 90110,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      },
+      {
+        "name": "sounds-chrome",
+        "exit": 0,
+        "elapsedMs": 66884,
+        "passed": true,
+        "summary": "chrome strike retains the previous audio signal Outcome audio checks passed: 34"
+      },
+      {
+        "name": "latency-msedge",
+        "exit": 0,
+        "elapsedMs": 118727,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      },
+      {
+        "name": "sounds-msedge",
+        "exit": 0,
+        "elapsedMs": 83292,
+        "passed": true,
+        "summary": "msedge strike retains the previous audio signal Outcome audio checks passed: 34"
+      },
+      {
+        "name": "wiring",
+        "exit": 0,
+        "elapsedMs": 22469,
+        "passed": true,
+        "summary": "Wiring help checks passed: 52"
+      }
+    ]
+  },
+  "evidence": "PC native audio APIs and UI; unsupported audio is recorded as pending, not successful listening. Physical Pixel/iPhone/macOS/iPad audio and response remain unverified."
+}

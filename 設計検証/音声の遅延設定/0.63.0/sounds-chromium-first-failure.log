@@ -1,0 +1,35 @@
+chromium perfect actual result selects one sound, retains full records and never repeats on reopening
+chromium clear actual result selects one sound, retains full records and never repeats on reopening
+chromium failure actual result selects one sound, retains full records and never repeats on reopening
+chromium perfect starts later and re-enables the bell button in 2.7s without cutting notes
+chromium clear starts later and re-enables the bell button in 2.7s without cutting notes
+chromium actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records
+chromium known failure waits until active light finishes
+chromium stopping an unfinished trial does not play a result
+chromium stop cancels every scheduled result voice
+chromium muted result sounds schedule no voices
+chromium enabling sound after a muted clear does not replay the result
+chromium three actual offline-rendered audio signals
+chromium strike has a finite non-clipped signal and releases every voice
+chromium clear has a finite non-clipped signal and releases every voice
+chromium perfect has a finite non-clipped signal and releases every voice
+chromium failure has a finite non-clipped signal and releases every voice
+chromium relay has a finite non-clipped signal and releases every voice
+chromium wire has a finite non-clipped signal and releases every voice
+chromium tap has a finite non-clipped signal and releases every voice
+chromium selected 440Hz chime gains a short separate attack while retaining its late decay
+chromium selected C1 and N2 use electric piano and F4 uses brass plus strings
+chromium three simultaneous chimes leave room for the failure notes
+chromium stop cancels layered bells and future FM notes without residual sound
+chromium F4 has an audible reverb tail beyond the dry notes and is silent before 2.7s
+chromium stopping or muting an active reverb tail clears all residual audio
+chromium accepted chime followed by F4 and reverb stays bounded and releases every voice
+chromium seven audition WAVs are generated from the same shipped audio code
+chromium C1 matches its audition at 48kHz and 44.1kHz
+chromium N2 matches its audition at 48kHz and 44.1kHz
+chromium T2 matches its audition at 48kHz and 44.1kHz
+chromium W2 matches its audition at 48kHz and 44.1kHz
+chromium R2 matches its audition at 48kHz and 44.1kHz
+AssertionError [ERR_ASSERTION]: F4 matches the selected audition signal: [{"id":"F4","rate":48000,"context":false,"maxDifference":2.9802322387695312e-8,"rmsDifference":2.292404938999468e-9},{"id":"F4","rate":48000,"context":true,"maxDifference":4.470348358154297e-8,"rmsDifference":2.5972593132843494e-9},{"id":"F4","rate":44100,"context":false,"maxDifference":0.0000036582350730895996,"rmsDifference":6.682300448458931e-8},{"id":"F4","rate":44100,"context":true,"maxDifference":4.470348358154297e-8,"rmsDifference":2.388543150005521e-9}]
+    at exports.checkSelectedAudio (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\selected_audio.cjs:33:82)
+    at async C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_outcome_audio.cjs:121:173
