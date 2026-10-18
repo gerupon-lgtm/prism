@@ -1,7 +1,7 @@
 {
   "version": "0.63.0",
   "passed": true,
-  "publicVerified": false,
+  "publicVerified": true,
   "sourceHashes": {
     "package.json": "ee7c119ea7abbed4b34cc48a462a65182e17a90bfed60664775a072bc1c45767",
     "index.html": "915cd2f3606701c78f718cb96ad4b2d4c520d5acc820d7d4237f9e1d395bb901",
@@ -101,5 +101,40 @@
       }
     ]
   },
-  "evidence": "PC native audio APIs and UI; unsupported audio is recorded as pending, not successful listening. Physical Pixel/iPhone/macOS/iPad audio and response remain unverified."
+  "evidence": "PC native audio APIs and UI; unsupported audio is recorded as pending, not successful listening. Physical Pixel/iPhone/macOS/iPad audio and response remain unverified.",
+  "public": {
+    "version": "0.63.0",
+    "commit": "12a2ad3832645985714721afbcc357f62d706017",
+    "checks": [
+      {
+        "name": "cloudflare-public",
+        "exit": 0,
+        "elapsedMs": 31514,
+        "passed": true,
+        "summary": "Public checks passed: 67"
+      },
+      {
+        "name": "cloudflare-latency",
+        "exit": 0,
+        "elapsedMs": 59105,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      },
+      {
+        "name": "github-public",
+        "exit": 0,
+        "elapsedMs": 35101,
+        "passed": true,
+        "summary": "Public checks passed: 67"
+      },
+      {
+        "name": "github-latency",
+        "exit": 0,
+        "elapsedMs": 58835,
+        "passed": true,
+        "summary": "Audio latency checks passed: 63"
+      }
+    ],
+    "passed": true
+  }
 }
