@@ -79,6 +79,17 @@ test('空き幅に合わせて横方向を広げても保存座標と点の形�
   assert.equal(right.x-left.x,1500);assert.deepEqual(Board.prototype.coordinates.call(view,left),{x:.25,y:.45});
 });
 
+test('スマホの下側の余白を盤面に戻しても追加・移動の座標は往復で保存値を保つ',()=>{
+  for(const projectionHeight of [1280,1600,1740])for(const projectionScale of [1,10000]){
+    const view={projectionHeight,projectionScale,displayWidthRatio:1.8};
+    for(const [x,y]of [[.5,.1],[.02,.97],[1.2,-.2]]){
+      const node={x:x*projectionScale,y:y*projectionScale},before={...node};
+      const restored=Board.prototype.coordinates.call(view,Board.prototype.position.call(view,node));
+      assert(Math.abs(restored.x-node.x)<1e-9);assert(Math.abs(restored.y-node.y)<1e-9);assert.deepEqual(node,before);
+    }
+  }
+});
+
 test('縦・左右の横置きは物理方向を保つ回転にする',()=>{
   const input={coarse:true,width:844,height:390};
   assert.equal(frameRotation({...input,type:'portrait-primary',angle:0}),0);

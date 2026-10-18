@@ -200,6 +200,8 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 
 /* Adopted painted artwork; only interactive routes carry diagram lines. */
 .scene-shade{fill:#090d1a;opacity:.22}
+.node-time.source-time-right{text-anchor:start}
+.node-time.source-time-left{text-anchor:end}
 .floating-ruin,.observatory{opacity:.72}
 .node-halo{fill:none;stroke:transparent;stroke-width:3}
 .selected .node-halo{stroke:#fff}

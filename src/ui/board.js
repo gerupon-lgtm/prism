@@ -31,11 +31,24 @@ export class Board {
   resize() {
     this.angle=Number(document.documentElement.dataset.boardRotation||0);
     this.desktop=document.documentElement.classList.contains('desktop-layout');
+    // Reuse the former under-star label space for the mobile circuit. This is
+    // display projection only; coordinates() applies the matching inverse.
+    this.projectionHeight=this.desktop?1600:1740;
     // Fill the available width instead of centering a narrow fixed-aspect diagram.
     this.frameWidth=2080*(this.element.clientWidth||1360)/(this.element.clientHeight||2080);
     this.displayWidthRatio=this.frameWidth/1360;
     this.liftKey=null;
     this.element.setAttribute('viewBox',`${500-this.frameWidth/2} -240 ${this.frameWidth} 2080`);
+    if(!this.desktop&&!this.angle&&this.element.clientHeight<400){
+      // Short portrait fields need the star's touch area above the overlaid
+      // edit buttons. Decide from layout only, never selection or execution.
+      const area=this.element.getBoundingClientRect();let bottom=area.bottom;
+      for(const control of this.element.parentElement.querySelectorAll('#stage-controls button')){
+        const box=control.getBoundingClientRect();
+        if(box.width&&box.height&&box.bottom>area.top&&box.top<area.bottom&&box.right>area.left&&box.left<area.right)bottom=Math.min(bottom,box.top);
+      }
+      if(area.height)this.projectionHeight=Math.min(1740,Math.max(800,((bottom-area.top-39)*2080/area.height-240)/.92));
+    }
     this.orientation.setAttribute('transform','');
     this.cancelAll(); this.transform(); this.render();
   }
@@ -49,8 +62,8 @@ export class Board {
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
   }
-  position(node) {return {x:500+(((node.x??0.5)/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:1600-((node.y??0.5)/(this.projectionScale??1))*1600};}
-  coordinates(at) {return {x:((at.x-500)/(CIRCUIT_WIDTH*(this.displayWidthRatio??1))+500)/1000*(this.projectionScale??1),y:(1600-at.y)/1600*(this.projectionScale??1)};}
+  position(node) {const height=this.projectionHeight??1600;return {x:500+(((node.x??0.5)/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:height-((node.y??0.5)/(this.projectionScale??1))*height};}
+  coordinates(at) {const height=this.projectionHeight??1600;return {x:((at.x-500)/(CIRCUIT_WIDTH*(this.displayWidthRatio??1))+500)/1000*(this.projectionScale??1),y:(height-at.y)/height*(this.projectionScale??1)};}
   zoom(factor,x,y) {
     const rect=this.element.getBoundingClientRect();
     x ??= rect.left+rect.width/2; y ??= rect.top+rect.height/2;
@@ -72,7 +85,7 @@ export class Board {
     this.world.replaceChildren(); this.curves = new Map(); this.transform();
     const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
     const sceneWidth=(this.frameWidth??1360)*(this.desktop?1:.85);
-    this.scene.draw(sceneWidth,this.desktop?2080:1600,kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} ${this.desktop?-240:0})`);
+    this.scene.draw(sceneWidth,this.desktop?2080:(this.projectionHeight??1600),kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} ${this.desktop?-240:0})`);
     const input=this.session.run && this.session.run.status!=='stopped' ? this.session.run.circuit.raw : this.session.circuit;
     let extent=1;for(const node of input.nodes)extent=Math.max(extent,Math.abs(node.x??0.5),Math.abs(node.y??0.5));
     // Display projection only; original coordinates are retained in circuit files.
@@ -137,7 +150,8 @@ export class Board {
       const name=svg('text',{x:overPrism?0:side?sideSign*(65*symbolFactor+16*factor):0,y:overPrism?6*symbolFactor:side?(this.desktop?-12*factor:0):-80*factor,class:'node-name'+(overPrism?' prism-name':labelSide)},label.length>8?`${label.slice(0,7)}…`:label);
       group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),name);
       if(node.kind!=='goal'){
-        const text=svg('text',{x:this.desktop?sideSign*(65*symbolFactor+16*factor):0,y:this.desktop?26*factor:90*symbolFactor,class:'node-time'+labelSide},secondsLabel(node.process));
+        const sourceSide=!this.desktop&&node.kind==='source';
+        const text=svg('text',{x:this.desktop||sourceSide?sideSign*(65*symbolFactor+16*factor):0,y:sourceSide?10*factor:this.desktop?26*factor:90*symbolFactor,class:'node-time'+labelSide+(sourceSide?(sideSign<0?' source-time-left':' source-time-right'):'')},secondsLabel(node.process));
         group.append(text);
       }else group.dataset.baseLabel=group.getAttribute('aria-label');
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
