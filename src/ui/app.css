@@ -532,4 +532,29 @@ html.desktop-layout dialog.help-dialog:not(#wire-delete-toast){width:min(900px,c
 .dialog-list .help-card.compact{min-height:60px;padding:5px 8px;grid-template-columns:85px minmax(0,1fr);gap:9px}.help-card.compact .help-art{height:48px}.help-card.compact small{margin-top:2px}
 @media(max-width:440px){.dialog-list .help-card:not(.compact){grid-template-columns:1fr;gap:5px;padding:10px;min-height:180px}.help-card .help-art{height:86px;max-width:260px;margin:auto}.help-card strong{font-size:1rem}}
 .title-compact .title-hero{padding-bottom:0;pointer-events:none}.title-compact .title-logo{height:100%;max-height:100%;min-height:0}.title-compact .title-logo svg{height:100%;max-height:100%}
+
+/* Selection play has one full-width heading row; arrows never truncate names. */
+#stage-heading{display:contents}
+.selection-play #stage-heading{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:center;gap:7px;min-width:0}
+html:not(.device-landscape) .selection-play .header-content #stage-heading{grid-column:1/-1;grid-row:2}
+html:not(.device-landscape) .selection-play .header-content #challenge-info{grid-row:3}
+.selection-play #stage-heading #condition-info{grid-column:2;grid-row:1;width:100%;min-width:0}
+html:not(.device-landscape) #app.selection-play #stage-heading #condition-info{grid-column:2;grid-row:1}
+.selection-play #stage-heading .heading strong,.selection-play #stage-heading .heading small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.selection-play #stage-heading .heading strong{line-height:1.5;text-wrap:balance}
+.selection-play #stage-heading>button:not(.heading){width:40px;min-width:40px;min-height:40px;padding:0;background:transparent;border-color:#394860;color:#d7c18b;font-size:26px;line-height:1}
+.selection-play #stage-heading>button:disabled{opacity:.3}
+.selection-play #stage-previous{grid-column:1;grid-row:1}
+.selection-play #stage-next{grid-column:3;grid-row:1}
+.selection-play #heading-symbol{color:#d7c18b;font-size:15px}
+.dialog-list button.challenge-row[aria-current]{border-color:#d6b56a;background:#272b35;box-shadow:inset 3px 0 #d6b56a}
+.challenge-current{display:inline-block;white-space:nowrap;color:#f4d790;font-size:.785714rem;margin-left:8px}
+.challenge-dialog .challenge-score{max-width:100%;flex-wrap:wrap}
+.challenge-dialog .challenge-score small{white-space:normal;overflow-wrap:anywhere}
+.device-landscape .selection-play #stage-heading{width:100%;grid-template-columns:1fr 1fr;gap:5px;flex:none}
+html.device-landscape #app.selection-play>header{height:clamp(170px,calc(12 * var(--layout-font)),300px)}
+.device-landscape .selection-play #challenge-info{flex-shrink:0}
+.device-landscape .selection-play #stage-heading #condition-info{grid-column:1/-1;grid-row:1}
+.device-landscape .selection-play #stage-heading #stage-previous{grid-column:1;grid-row:2;justify-self:end}
+.device-landscape .selection-play #stage-heading #stage-next{grid-column:2;grid-row:2;justify-self:start}
 .edge.tutorial-target{outline:none;box-shadow:none}.edge.tutorial-target:not(.pending-delete) .edge-line{stroke:#fff0be;stroke-width:6px;filter:drop-shadow(0 0 5px #e2bc60)}

@@ -3,7 +3,7 @@
 export class DesktopLayout {
   constructor(root=document) {
     this.root=root;this.active=false;this.sidebar=root.getElementById('desktop-sidebar');
-    this.slots=[['condition-info','desktop-heading'],['challenge-info','desktop-challenge'],['guide-bar','desktop-guide'],['result-line','desktop-runtime'],['play-controls','desktop-actions']].map(([id,target])=>{
+    this.slots=[['stage-heading','desktop-heading'],['challenge-info','desktop-challenge'],['guide-bar','desktop-guide'],['result-line','desktop-runtime'],['play-controls','desktop-actions']].map(([id,target])=>{
       const node=root.getElementById(id),slot=root.createComment(`Original ${id} position`);
       node.before(slot);return {node,slot,target:root.getElementById(target)};
     });

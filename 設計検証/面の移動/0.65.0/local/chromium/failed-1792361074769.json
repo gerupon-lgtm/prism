@@ -1,0 +1,146 @@
+{
+  "version": "0.65.0",
+  "passed": false,
+  "checks": [
+    {
+      "label": "phone continuous keeps original condition entry without navigation",
+      "passed": true
+    },
+    {
+      "label": "phone Q1 はじめの一音",
+      "passed": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": [
+        390,
+        844
+      ],
+      "title": "Q1 はじめの一音",
+      "parts": [
+        {
+          "id": "stage-previous",
+          "x": 7,
+          "y": 54,
+          "right": 47,
+          "bottom": 94,
+          "w": 40,
+          "h": 40,
+          "sw": 38,
+          "sh": 38,
+          "cw": 38,
+          "ch": 38,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "condition-info",
+          "x": 7,
+          "y": 101,
+          "right": 383,
+          "bottom": 141.140625,
+          "w": 376,
+          "h": 40.140625,
+          "sw": 376,
+          "sh": 40,
+          "cw": 376,
+          "ch": 40,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "stage-next",
+          "x": 343,
+          "y": 54,
+          "right": 383,
+          "bottom": 94,
+          "w": 40,
+          "h": 40,
+          "sw": 38,
+          "sh": 38,
+          "cw": 38,
+          "ch": 38,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "title",
+          "x": 7,
+          "y": 103,
+          "right": 371,
+          "bottom": 125.390625,
+          "w": 364,
+          "h": 22.390625,
+          "sw": 364,
+          "sh": 23,
+          "cw": 364,
+          "ch": 22,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "challenge-info",
+          "x": 7,
+          "y": 145.140625,
+          "right": 383,
+          "bottom": 233.125,
+          "w": 376,
+          "h": 87.984375,
+          "sw": 374,
+          "sh": 86,
+          "cw": 374,
+          "ch": 86,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "home",
+          "x": 7,
+          "y": 6,
+          "right": 107,
+          "bottom": 50,
+          "w": 100,
+          "h": 44,
+          "sw": 100,
+          "sh": 44,
+          "cw": 100,
+          "ch": 44,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        },
+        {
+          "id": "play",
+          "x": 107.5,
+          "y": 766,
+          "right": 282.5,
+          "bottom": 822,
+          "w": 175,
+          "h": 56,
+          "sw": 173,
+          "sh": 54,
+          "cw": 173,
+          "ch": 54,
+          "overflow": "visible",
+          "textOverflow": "clip",
+          "whiteSpace": "normal"
+        }
+      ]
+    }
+  ],
+  "pending": [
+    "Physical phones, iOS/iPadOS/macOS Safari."
+  ],
+  "browser": {
+    "engine": "chromium",
+    "channel": null,
+    "version": "151.0.7922.34"
+  },
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at currentList (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_stage_navigation.cjs:23:220)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_stage_navigation.cjs:37:155"
+}

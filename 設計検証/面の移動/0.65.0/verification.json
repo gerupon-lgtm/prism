@@ -1,0 +1,222 @@
+{
+  "version": "0.65.0",
+  "startedAt": "2026-10-18T22:10:55.667Z",
+  "passed": true,
+  "publicVerified": false,
+  "checks": [
+    {
+      "name": "syntax",
+      "args": [
+        "scripts/check-source.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 4843,
+      "log": "設計検証\\面の移動\\0.65.0\\syntax.log"
+    },
+    {
+      "name": "verifier-syntax",
+      "args": [
+        "--check",
+        "設計検証/check_stage_navigation.cjs"
+      ],
+      "exitCode": 0,
+      "milliseconds": 69,
+      "log": "設計検証\\面の移動\\0.65.0\\verifier-syntax.log"
+    },
+    {
+      "name": "unit",
+      "args": [
+        "scripts/run-tests.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 46620,
+      "log": "設計検証\\面の移動\\0.65.0\\unit.log"
+    },
+    {
+      "name": "build",
+      "args": [
+        "scripts/build.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 478,
+      "log": "設計検証\\面の移動\\0.65.0\\build.log"
+    },
+    {
+      "name": "chromium-navigation",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 29355,
+      "log": "設計検証\\面の移動\\0.65.0\\chromium-navigation.log"
+    },
+    {
+      "name": "chromium-offline",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 16013,
+      "log": "設計検証\\面の移動\\0.65.0\\chromium-offline.log"
+    },
+    {
+      "name": "chromium-header",
+      "args": [
+        "設計検証/check_mobile_header.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 3669,
+      "log": "設計検証\\面の移動\\0.65.0\\chromium-header.log"
+    },
+    {
+      "name": "webkit-navigation",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 70682,
+      "log": "設計検証\\面の移動\\0.65.0\\webkit-navigation.log"
+    },
+    {
+      "name": "webkit-offline",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 53318,
+      "log": "設計検証\\面の移動\\0.65.0\\webkit-offline.log"
+    },
+    {
+      "name": "webkit-header",
+      "args": [
+        "設計検証/check_mobile_header.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 93956,
+      "log": "設計検証\\面の移動\\0.65.0\\webkit-header.log"
+    },
+    {
+      "name": "chrome-navigation",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 32091,
+      "log": "設計検証\\面の移動\\0.65.0\\chrome-navigation.log"
+    },
+    {
+      "name": "chrome-offline",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 18170,
+      "log": "設計検証\\面の移動\\0.65.0\\chrome-offline.log"
+    },
+    {
+      "name": "chrome-header",
+      "args": [
+        "設計検証/check_mobile_header.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 6457,
+      "log": "設計検証\\面の移動\\0.65.0\\chrome-header.log"
+    },
+    {
+      "name": "msedge-navigation",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 28466,
+      "log": "設計検証\\面の移動\\0.65.0\\msedge-navigation.log"
+    },
+    {
+      "name": "msedge-offline",
+      "args": [
+        "設計検証/check_stage_navigation.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 17836,
+      "log": "設計検証\\面の移動\\0.65.0\\msedge-offline.log"
+    },
+    {
+      "name": "msedge-header",
+      "args": [
+        "設計検証/check_mobile_header.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 5099,
+      "log": "設計検証\\面の移動\\0.65.0\\msedge-header.log"
+    }
+  ],
+  "sourceSha256": {
+    "index.html": "15602641d527d338fb05a4504037787378b9516df583c85ab1f12ab5594f5b35",
+    "package.json": "569e860e9b3a738dacdee28a30f38e673d20a0a44e1b752dacb1aab16572ee78",
+    "src/ui/app.js": "79e7a31cd50be157d6feb90cdf5aae896bb31647da63530b943c27aa124f85eb",
+    "src/ui/app.css": "5f3072403582780762fd3bd30e516de215d6f39fb1c57a15df3fe293a0e145db",
+    "src/ui/desktop.css": "1c9428bd27f488b302321b840339c2d80e63e25216868247ab28b2ced4a2c853",
+    "src/ui/desktop-layout.js": "59452b4f35183cd55fa880bb433e50a72eb6a78b0abab67cea6a3aae0ac21def",
+    "設計検証/check_stage_navigation.cjs": "b199c098dcc6e48ecc9718a9d013b252134e962e34d2e3c56735e85fcb7007ae",
+    "設計検証/run_stage_navigation_verification.cjs": "2161c01861b34169bce784a84bb5d652382efd4f89443f9755d2a715b16dd4c4"
+  },
+  "finishedAt": "2026-10-18T22:18:02.800Z",
+  "headerReports": [
+    "設計検証/面の移動/0.65.0/header/chromium/report.json",
+    "設計検証/面の移動/0.65.0/header/webkit/report.json",
+    "設計検証/面の移動/0.65.0/header/chrome/report.json",
+    "設計検証/面の移動/0.65.0/header/msedge/report.json"
+  ]
+}

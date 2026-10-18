@@ -53,6 +53,8 @@ for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
   if(settingsTapGuard&&performance.now()<settingsTapGuard.until&&Math.hypot(event.clientX-settingsTapGuard.x,event.clientY-settingsTapGuard.y)<24){event.preventDefault();event.stopImmediatePropagation();}
 },true);
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
+// This is an entry choice, not a new circuit or saved-score mode.
+let selectionPlay=false;
 const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
@@ -168,6 +170,14 @@ function render(redraw=true,{records=true}={}) {
   setText('title',session.mode==='challenge'?`${challengeLabel(session.challenge)} ${session.challenge.name}`:session.name||'自由');
   $('app').dataset.problemId=session.challenge?.draw?.id??'';
   $('app').dataset.mode=session.mode;
+  const stageNavigation=selectionPlay&&session.mode==='challenge'&&!session.guide;
+  $('app').classList.toggle('selection-play',stageNavigation);
+  const stageIndex=challenges.findIndex(item=>item.id===session.challenge?.id);
+  $('stage-previous').hidden=$('stage-next').hidden=!stageNavigation;
+  $('stage-previous').disabled=Boolean(startPrelude)||stageIndex<=0;
+  $('stage-next').disabled=Boolean(startPrelude)||stageIndex<0||stageIndex===challenges.length-1;
+  $('condition-info').setAttribute('aria-label',stageNavigation?`${challengeLabel(session.challenge)} ${session.challenge.name}。課題を選ぶ`:'現在の条件を読む');
+  setText('heading-symbol',stageNavigation?'⌄':'ⓘ');
   const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
   setText('condition',session.mode==='challenge'?`${session.challenge.setName??'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
   $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide);
@@ -185,8 +195,7 @@ function render(redraw=true,{records=true}={}) {
     }
     $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
     $('wire-budget').dataset.remaining=String(limit-used);
-    if(compact)setText('title',`課題${challengeNumber(session.challenge)}`);
-    else if(shortCounters)setText('title',`課題${challengeNumber(session.challenge)}`);
+    if(!stageNavigation&&(compact||shortCounters))setText('title',`課題${challengeNumber(session.challenge)}`);
   }
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
@@ -400,14 +409,24 @@ function clearAction(next=false){
   if(next){if(choices.nextChallengeId)replace({challengeId:choices.nextChallengeId});else chooseMode();}
 }
 
-function listPage(items,makeRow,empty='まだありません。',{group}={}) {
+function listPage(items,makeRow,empty='まだありません。',{group,initialItem}={}) {
   const container=element('div','',{class:'dialog-list'}),rows=element('div','',{class:'dialog-list'}),pager=element('nav','',{class:'pager'});
-  let start=0,end=0;const history=[];
+  let start=0,end=0,initialIndex=items.indexOf(initialItem);const history=[];
   const previous=button('前へ',()=>{start=history.pop()??0;draw();}),position=element('span'),next=button('次へ',()=>{history.push(start);start=end;draw();});
   pager.append(previous,position,next);container.append(rows,pager);body.append(container);
   function draw(){
     if(!dialog.open||dialogPage!==draw)return;
-    start=Math.min(start,Math.max(0,items.length-1));rows.replaceChildren();end=start;
+    const focused=rows.contains(document.activeElement)?document.activeElement.dataset.challenge:null;
+    const focusIndex=initialIndex>=0?initialIndex:items.findIndex(item=>item.id===focused);
+    start=Math.min(start,Math.max(0,items.length-1));
+    fill();
+    while(focusIndex>=end&&end<items.length&&end>start){history.push(start);start=end;fill();}
+    previous.disabled=start===0;next.disabled=end===items.length;position.textContent=items.length?`${start+1}–${end}/${items.length}`:'0/0';
+    const target=initialIndex>=0?rows.querySelector('[aria-current]'):[...rows.querySelectorAll('[data-challenge]')].find(row=>row.dataset.challenge===focused);
+    target?.focus({preventScroll:true});initialIndex=-1;
+  }
+  function fill(){
+    rows.replaceChildren();end=start;
     if(!items.length)rows.append(element('p',empty));
     else while(end<items.length){
       if(group&&end>start&&group(items[end])!==group(items[start]))break;
@@ -416,7 +435,6 @@ function listPage(items,makeRow,empty='まだありません。',{group}={}) {
       end++;
       if(row.getBoundingClientRect().bottom>rows.getBoundingClientRect().bottom+.5)break;
     }
-    previous.disabled=start===0;next.disabled=end===items.length;position.textContent=items.length?`${start+1}–${end}/${items.length}`:'0/0';
   }
   dialogPage=draw;requestAnimationFrame(draw);
 }
@@ -439,18 +457,19 @@ function fitDialogForm(adapt=()=>{},notes=[...body.children].filter(node=>node.t
   requestAnimationFrame(dialogLayout);
 }
 
-function chooseMode(after=null) {
+function chooseMode(after=null,{selectPlay=selectionPlay}={}) {
   if(session.guide){
     open('案内を閉じますか？');body.append(element('p','案内を閉じると、案内を開く前の配線と記録へ戻ってから課題を選べます。'));
-    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode(after);}),button('案内を続ける',close));
+    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode(after,{selectPlay});}),button('案内を続ける',close));
     fitDialogForm();return;
   }
   if(!session.editable){
     open('停止して課題を選びますか？');body.append(element('p','課題を切り替える前に、現在の実行を停止します。配線と記録は停止後も確認できます。'));
-    actions.append(button('停止して課題を選ぶ',()=>{stopRun();chooseMode(after);}),button('戻る',close));
+    actions.append(button('停止して課題を選ぶ',()=>{stopRun();chooseMode(after,{selectPlay});}),button('戻る',close));
     fitDialogForm();return;
   }
   if(after){after();return;}
+  const current=selectPlay&&$('title-screen').hidden&&session.mode==='challenge'?session.challenge:null;
   open('課題と自由');
   dialog.classList.add('challenge-dialog');
   actions.append(button('自由へ',()=>replace({sampleId:'compare'})),button('閉じる',close));
@@ -459,23 +478,30 @@ function chooseMode(after=null) {
   listPage(challenges,challenge=>{
     const best=scores.filter(score=>matchesChallengeScore(score,challenge)).sort((a,b)=>compareScores(b.score,a.score))[0];
     const text=`${challengeLabel(challenge)} ${challenge.name}${challengeNumber(challenge)>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`;
-    const row=button(text,()=>replace({challengeId:challenge.id}),{class:'challenge-row','data-challenge':challenge.id});row.replaceChildren();
+    const isCurrent=challenge.id===current?.id;
+    const row=button(text,()=>isCurrent?close():replace({challengeId:challenge.id},{selectPlay}),{class:'challenge-row','data-challenge':challenge.id,...(isCurrent?{'aria-current':'step'}:{})});row.replaceChildren();
     const name=element('span','',{class:'challenge-name'});name.append(element('span',challengeLabel(challenge)+' ',{class:'challenge-number'}),document.createTextNode(challenge.name));
     if(challengeNumber(challenge)>6)name.append(element('small',challenge.setName,{class:'challenge-tier'}));
+    if(isCurrent)name.append(element('small','プレイ中',{class:'challenge-current'}));
     const score=element('span','',{class:'challenge-score'});score.append(element('small',Number(challenge.id.slice(1))>6?'最高点（全出題）':'最高点'),element('strong',best?displayScore(best.score)+'点':'未達成'));
     row.append(name,score);return row;
-  },'まだありません。',{group:challenge=>challenge.set});
+  },'まだありません。',{group:challenge=>challenge.set,initialItem:challenges.find(item=>item.id===current?.id)});
 }
-function replace(request) {
+function moveStage(direction){
+  if(!selectionPlay||session.mode!=='challenge'||session.guide||startPrelude)return;
+  const target=challenges[challenges.findIndex(item=>item.id===session.challenge.id)+direction];
+  if(target)chooseMode(()=>replace({challengeId:target.id}),{selectPlay:true});
+}
+function replace(request,{selectPlay=selectionPlay}={}) {
   session.requireEditable();session.replacement(request);
   if(session.mode==='free'&&session.dirty){
     open('現在の未保存回路');body.append(element('p','読み込み前に、現在の回路をどうしますか？'));
-    actions.append(button('保存して入替',()=>saveForm(()=>finishReplacement(request,{choice:'discard'}))),button('保存せず入替',()=>finishReplacement(request,{choice:'discard'})),button('取消',close));
+    actions.append(button('保存して入替',()=>saveForm(()=>finishReplacement(request,{choice:'discard'},selectPlay))),button('保存せず入替',()=>finishReplacement(request,{choice:'discard'},selectPlay)),button('取消',close));
     fitDialogForm();
-  }else finishReplacement(request);
+  }else finishReplacement(request,undefined,selectPlay);
 }
-function finishReplacement(request,options) {
-  session.replace(request,options);close();maybeGuide();
+function finishReplacement(request,options,selectPlay=selectionPlay) {
+  session.replace(request,options);selectionPlay=session.mode==='challenge'&&selectPlay;close();maybeGuide();
   if(!$('title-screen').hidden)leaveTitle();
 }
 function maybeGuide() {
@@ -971,7 +997,9 @@ function showConditions(){
   const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
   fullText('現在の条件',detail);
 }
-$('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);
+$('condition-info').addEventListener('click',()=>attempt(()=>selectionPlay&&session.mode==='challenge'&&!session.guide?chooseMode():showConditions()));$('challenge-info').addEventListener('click',showConditions);
+$('stage-previous').addEventListener('click',()=>attempt(()=>moveStage(-1)));
+$('stage-next').addEventListener('click',()=>attempt(()=>moveStage(1)));
 $('result-info').addEventListener('click',()=>session.result?.state==='failed'?failureDetails('実行状況',$('result').textContent+'\n'+failureResultText()):fullText('実行状況',$('result').textContent));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
@@ -987,8 +1015,8 @@ $('record-next').addEventListener('click',()=>moveRecordPage(1));
 $('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(requestUpdate));
-$('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id}))));
-$('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode()));
+$('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id},{selectPlay:false}))));
+$('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode(null,{selectPlay:true})));
 $('title-free').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({sampleId:'compare'}))));
 $('title-tutorial').addEventListener('click',()=>attempt(tutorial));
 $('title-parts').addEventListener('click',()=>attempt(partsExplanation));
