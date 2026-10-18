@@ -1,0 +1,252 @@
+{
+  "revision": "0.1.0",
+  "appVersion": "0.63.0",
+  "checkedAt": "2026-10-18T12:36:25.064Z",
+  "passed": true,
+  "protectedFiles": {
+    "src/ui/voices.js": "5eef4512dc86e285d73a371678f2a135e7a3e62e3558ac7686ad4c7a55edba82",
+    "src/ui/audio.js": "f28b5e22d8df8f81f0f3e2ba993d22737e33c8ffb197adda3f8c56f8fba21a86",
+    "src/ui/app.js": "02b8ce1c1f98e633e6484dd59774d16c4d9ce1706dd486c140bc271d5b3b0381",
+    "package.json": "ee7c119ea7abbed4b34cc48a462a65182e17a90bfed60664775a072bc1c45767",
+    "index.html": "915cd2f3606701c78f718cb96ad4b2d4c520d5acc820d7d4237f9e1d395bb901"
+  },
+  "samples": [
+    {
+      "id": "D1",
+      "name": "ドアチャイム風",
+      "file": "D1-door-chime.wav",
+      "description": "ミ → ド。2つの鐘へ0.5秒差で到達するイメージ。",
+      "notes": [
+        {
+          "name": "E5",
+          "midi": 76,
+          "at": 0,
+          "frequencyHz": 659.2551138257398
+        },
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0.5,
+          "frequencyHz": 523.2511306011972
+        }
+      ],
+      "seconds": 3.6700208333333335,
+      "metrics": {
+        "id": "D1",
+        "peak": 0.3161531686782837,
+        "rms": 0.04280817804704287,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          659.2551138257398,
+          523.2511306011972
+        ]
+      },
+      "bytes": 352366,
+      "sha256": "698b9bcba10b3468e63004dc845033d29eeeb8c1b215f428e492d9c7ec5df3f5"
+    },
+    {
+      "id": "H1",
+      "name": "3和音：短い時間差",
+      "file": "H1-major-triad-staggered.wav",
+      "description": "ド → ミ → ソを0.12秒ずつずらし、余韻を重ねます。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "E5",
+          "midi": 76,
+          "at": 0.12,
+          "frequencyHz": 659.2551138257398
+        },
+        {
+          "name": "G5",
+          "midi": 79,
+          "at": 0.24,
+          "frequencyHz": 783.9908719634985
+        }
+      ],
+      "seconds": 3.41,
+      "metrics": {
+        "id": "H1",
+        "peak": 0.4096550941467285,
+        "rms": 0.050010577575440855,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          659.2551138257398,
+          783.9908719634985
+        ]
+      },
+      "bytes": 327404,
+      "sha256": "49a6ca2d53ef6ad9aac8eb20b57eadacf08949b92fdd8d95bb9f3613b54da66f"
+    },
+    {
+      "id": "H2",
+      "name": "3和音：同時（比較用）",
+      "file": "H2-major-triad-together.wav",
+      "description": "同じド・ミ・ソを同時に鳴らします。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "E5",
+          "midi": 76,
+          "at": 0,
+          "frequencyHz": 659.2551138257398
+        },
+        {
+          "name": "G5",
+          "midi": 79,
+          "at": 0,
+          "frequencyHz": 783.9908719634985
+        }
+      ],
+      "seconds": 3.1700208333333335,
+      "metrics": {
+        "id": "H2",
+        "peak": 0.5271183848381042,
+        "rms": 0.04735440686995675,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          659.2551138257398,
+          783.9908719634985
+        ]
+      },
+      "bytes": 304366,
+      "sha256": "9a1f90252ef34a940a1f20c00f606b07ecf2c47eb435af8ef61b5a60b6fc2456"
+    }
+  ],
+  "browsers": [
+    {
+      "name": "chrome",
+      "version": "155.0.8059.84"
+    },
+    {
+      "name": "msedge",
+      "version": "155.0.4283.45"
+    },
+    {
+      "name": "webkit",
+      "version": "26.5"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Untransposed audition exactly matches the production bell signal",
+      "passed": true,
+      "maxDifference": 0
+    },
+    {
+      "name": "D1 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.3161531686782837,
+      "seconds": 3.6700000000000004,
+      "integerPeak": 10359
+    },
+    {
+      "name": "H1 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.4096550941467285,
+      "seconds": 3.41,
+      "integerPeak": 13423
+    },
+    {
+      "name": "H2 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.5271183848381042,
+      "seconds": 3.1700000000000004,
+      "integerPeak": 17272
+    },
+    {
+      "name": "All three WAVs differ",
+      "passed": true
+    },
+    {
+      "name": "chrome native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.41
+        },
+        {
+          "seconds": 3.170021
+        }
+      ]
+    },
+    {
+      "name": "chrome preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Extracted local-file preview plays without a server",
+      "passed": true
+    },
+    {
+      "name": "msedge native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.41
+        },
+        {
+          "seconds": 3.170021
+        }
+      ]
+    },
+    {
+      "name": "msedge preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "webkit native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.6700208
+        },
+        {
+          "seconds": 3.41
+        },
+        {
+          "seconds": 3.1700208
+        }
+      ]
+    },
+    {
+      "name": "webkit preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Production audio, UI and app version remain unchanged",
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Human listening and physical-device playback. These are audition files, not adopted game sounds."
+  ],
+  "renderer": {
+    "channel": "chrome",
+    "version": "155.0.8059.84"
+  }
+}
