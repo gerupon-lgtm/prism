@@ -20,6 +20,7 @@ import { TutorialGuide } from './tutorial-guide.js';
 import { MotionPreference,MOTION_OPTIONS,MOTION_STORAGE_KEY } from './motion.js';
 import { PARTS,PLAY_GUIDE,helpArt } from './help.js';
 import { tutorialContent } from './tutorial-content.js';
+import { TouchConfirm } from './touch-confirm.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -41,7 +42,7 @@ const motion=new MotionPreference(storage,document.documentElement,matchMedia('(
 motion.changed=refreshMotionSettings;
 window.addEventListener('storage',event=>{if(event.key===MOTION_STORAGE_KEY||event.key===null)motion.reload();});
 const wireDelete=$('wire-delete-toast');
-let pendingWireDelete=null,deleteNeedsPress=false;
+let pendingWireDelete=null,deleteNeedsPress=false,deleteTouchConfirm=null;
 let settingsTapGuard=null;
 // A second tap at the same board position must not activate the new dialog behind it.
 for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
@@ -62,10 +63,11 @@ const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').
 let soundUnlock=null,automaticSoundFailed=false;
 // Create/resume audio inside an actual user action. A pending resume must never
 // overwrite an explicit mute, and opening a page alone must not start audio.
-document.addEventListener('click',event=>{
+function prepareAutomaticSound(event){
   if(!event.isTrusted||event.target.closest('#sound')||chime.muted||automaticSoundFailed||chime.context?.state==='running')return;
   soundUnlock??=chime.unlock().catch(error=>{automaticSoundFailed=true;failure(error);}).finally(()=>{soundUnlock=null;});
-},true);
+}
+document.addEventListener('click',prepareAutomaticSound,true);
 
 function updateNotice(){
   $('update-notice').hidden=!offline.state.update;
@@ -640,7 +642,7 @@ async function applyUpdate(discard) {
 
 function cancelWireDelete(){
   if(!pendingWireDelete&&!wireDelete.open)return;
-  pendingWireDelete=null;deleteNeedsPress=false;board.removalId=null;board.cancelAll();
+  pendingWireDelete=null;deleteNeedsPress=false;deleteTouchConfirm?.reset();board.removalId=null;board.cancelAll();
   if(wireDelete.open)wireDelete.close();board.render();
 }
 function positionWireDelete(){
@@ -672,6 +674,7 @@ document.addEventListener('pointermove',event=>{const hold=pendingWireDelete?.ho
 document.addEventListener('pointerdown',event=>{const hold=pendingWireDelete?.hold;if(hold&&event.pointerId!==hold.id)abortHeldDelete(event);},true);
 document.addEventListener('pointerup',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)pendingWireDelete.hold=null;},true);
 document.addEventListener('pointercancel',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)abortHeldDelete(event);},true);
+deleteTouchConfirm=new TouchConfirm(wireDelete,{context:()=>pendingWireDelete,beforeActivate:prepareAutomaticSound});
 wireDelete.addEventListener('close',()=>{if(!wireDelete.open)cancelWireDelete();});
 $('wire-delete-cancel').addEventListener('click',cancelWireDelete);
 $('wire-delete-target').addEventListener('click',()=>{

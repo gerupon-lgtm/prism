@@ -1,0 +1,108 @@
+{
+  "version": "0.56.0",
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "syntax",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 4,
+      "reusedCompleted": true
+    },
+    {
+      "name": "build",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 0,
+      "reusedCompleted": true
+    },
+    {
+      "name": "unit",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 42,
+      "reusedCompleted": true
+    },
+    {
+      "name": "delete-chromium",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.56.0/local/chromium/report.json",
+      "seconds": 19,
+      "checks": 15,
+      "reusedCompleted": true
+    },
+    {
+      "name": "delete-webkit",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.56.0/local/webkit/report.json",
+      "seconds": 17,
+      "checks": 12,
+      "reusedCompleted": true
+    },
+    {
+      "name": "delete-chrome",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.56.0/local/chrome/report.json",
+      "seconds": 21,
+      "checks": 15,
+      "reusedCompleted": true
+    },
+    {
+      "name": "delete-msedge",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.56.0/local/msedge/report.json",
+      "seconds": 37,
+      "checks": 15,
+      "reusedCompleted": true
+    },
+    {
+      "name": "legacy-chromium",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の長押し/report.json",
+      "seconds": 20,
+      "checks": 27,
+      "reusedCompleted": true
+    },
+    {
+      "name": "legacy-webkit",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の長押し/report.json",
+      "seconds": 26,
+      "checks": 24
+    },
+    {
+      "name": "legacy-chrome",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の長押し/chrome/report.json",
+      "seconds": 25,
+      "checks": 27
+    },
+    {
+      "name": "legacy-msedge",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の長押し/msedge/report.json",
+      "seconds": 24,
+      "checks": 27
+    },
+    {
+      "name": "wiring-regression",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/結線補助/report.json",
+      "seconds": 29,
+      "checks": 52
+    }
+  ],
+  "passed": true
+}

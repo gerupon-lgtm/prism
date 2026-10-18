@@ -1,0 +1,88 @@
+{
+  "version": "0.56.0",
+  "checks": [
+    {
+      "label": "fresh OK with drift 0 deletes only BD and requests one operation sound",
+      "passed": true,
+      "sounds": [
+        {
+          "muted": false,
+          "created": 0
+        }
+      ],
+      "input": "native touch tap"
+    },
+    {
+      "label": "fresh OK with drift 6 deletes only BD and requests one operation sound",
+      "passed": true,
+      "sounds": [
+        {
+          "muted": false,
+          "created": 0
+        }
+      ],
+      "input": "synthetic pointer"
+    },
+    {
+      "label": "fresh OK with drift 16 deletes only BD and requests one operation sound",
+      "passed": true,
+      "sounds": [
+        {
+          "muted": false,
+          "created": 0
+        }
+      ],
+      "input": "synthetic pointer"
+    },
+    {
+      "label": "fresh OK with drift 24 deletes only BD and requests one operation sound",
+      "passed": true,
+      "sounds": [
+        {
+          "muted": false,
+          "created": 0
+        }
+      ],
+      "input": "synthetic pointer"
+    },
+    {
+      "label": "outside does not delete",
+      "passed": true
+    },
+    {
+      "label": "cancel does not delete",
+      "passed": true
+    },
+    {
+      "label": "multi does not delete",
+      "passed": true
+    },
+    {
+      "label": "Cancel accepts thumb drift, closes, and keeps all wiring",
+      "passed": true
+    },
+    {
+      "label": "outside tap closes and never activates controls behind",
+      "passed": true
+    },
+    {
+      "label": "keyboard confirmation still works",
+      "passed": true
+    },
+    {
+      "label": "mouse confirmation still works",
+      "passed": true
+    },
+    {
+      "label": "muted confirmation still deletes, without creating audio voices",
+      "passed": true
+    }
+  ],
+  "evidence": "Disposable PC browsers. Actual Chromium protocol touch and pen, WebKit native touch taps and synthetic drift. Physical phone usability and acoustic output remain unverified.",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "passed": true
+}
