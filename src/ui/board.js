@@ -5,7 +5,7 @@ import { partName,objectName } from './labels.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
-const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMin:20,passMax:26});
+const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMargin:4});
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
@@ -397,7 +397,7 @@ export class Board {
     for(const group of this.world.querySelectorAll('[data-node]')){
       const id=group.dataset.node,hit=group.querySelector('.node-hit')?.getBoundingClientRect();if(!hit?.width||!hit.height)continue;
       const radius=Math.min(hit.width,hit.height)/2;
-      const tolerance=route?(final?radius+WIRING_HIT.releaseMargin:Math.min(WIRING_HIT.passMax,Math.max(WIRING_HIT.passMin,radius*.7))):radius+WIRING_HIT.startMargin;
+      const tolerance=radius+(route?(final?WIRING_HIT.releaseMargin:WIRING_HIT.passMargin):WIRING_HIT.startMargin);
       const gap=Math.hypot(x-hit.left-hit.width/2,y-hit.top-hit.height/2);
       if(gap>tolerance||gap>=distance)continue;
       if(route&&id!==from){if(terminal)continue;try{this.session.planConnections([...route,id]);}catch{continue;}}
@@ -495,7 +495,9 @@ export class Board {
     this.gesture=null;this.setWirePreview('');
     try {
       if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
-        if(gesture.route.length>1&&gesture.releaseTarget===gesture.route.at(-1)){
+        // A missed final target discards only the unaccepted tail. Explicit
+        // cancellation still clears the entire provisional gesture in cancelAll.
+        if(gesture.route.length>1){
           this.session.connectPath(gesture.route);
         }
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
@@ -509,7 +511,7 @@ export class Board {
         }
       }
     } catch(error){this.notify(error.message);}
-    this.render();this.changed();
+    this.render();this.changed(false);
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
   stopHold() {clearTimeout(this.holdTimer);this.holdTimer=null;}

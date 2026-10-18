@@ -15,11 +15,27 @@ test('候補が重なっていても近い結線済みの線を選び、線か�
   assert.equal(Board.prototype.edgeTarget.call(board,50,80),null);
 });
 
-test('結線は点の手前や横で離しても受け付け、遠い余白では取り消す',()=>{
+test('結線は点の手前や横で離しても受け付け、遠い余白では次の対象を選ばない',()=>{
   const board=hitBoard(),target=(x,y,options)=>Board.prototype.wireTarget.call(board,x,y,options);
   assert.equal(target(29,100),'S');assert.equal(target(100,119,{route:['S']}),'A');
   assert.equal(target(131,100,{route:['S'],final:true}),'A');
   assert.equal(target(105,145,{route:['S'],final:true}),null);
+});
+
+test('連続結線の通過は操作範囲に余白を加え、拡大したパーツも同じ見た目の範囲で受け付ける',()=>{
+  const board=hitBoard();
+  assert.equal(Board.prototype.wireTarget.call(board,100,125,{route:['S']}),'A');
+  const query=board.world.querySelectorAll;
+  board.world.querySelectorAll=()=>query().map(group=>({...group,querySelector:()=>({getBoundingClientRect:()=>{const old=group.querySelector().getBoundingClientRect();return {left:old.left-28,top:old.top-28,width:100,height:100};}})}));
+  assert.equal(Board.prototype.wireTarget.call(board,100,149,{route:['S']}),'A');
+});
+
+test('最後を外して離しても受け付け済み区間を確定し、未到達なら線を増やさない',()=>{
+  for(const route of [['S','A'],['S','A','G'],['S']]){
+    const connected=[],board={gesture:{kind:'wire',moved:true,route,releaseTarget:null},pointers:new Map([[1,{}]]),magnifier:{hide(){}},stopHold(){},move(){},setWirePreview(){},session:{editable:true,connectPath:path=>connected.push([...path])},render(){},changed(){},notify:error=>assert.fail(error)};
+    Board.prototype.up.call(board,{pointerId:1});
+    assert.deepEqual(connected,route.length>1?[route]:[]);assert.equal(board.gesture,null);
+  }
 });
 
 test('近接候補では接続できる近い点を選び、近い候補外の点へは結線しない',()=>{

@@ -54,8 +54,8 @@ async function rotate(page,angle){await page.evaluate(angle=>{Object.assign(__di
       report.checks.push({label:engine+' near-miss start and release just outside the prism still connect to its centre',passed:true});
       await start(page,'S');const relay=await hit('A');await page.mouse.move(relay.x-21,relay.y,{steps:8});await settle(page);assert((await page.locator('#wire-magnifier span').textContent()).includes('A'));assert.equal(await count(page),0);const bell=await hit('G');await page.mouse.move(bell.x+bell.r+8,bell.y,{steps:8});await page.mouse.up();assert.equal(await count(page),2);await page.locator('#clear-wires').click();
       report.checks.push({label:engine+' off-centre intermediate and drifted bell release finish one continuous S-A-G stroke',passed:true});
-      await start(page,'S');await move(page,'A');await page.mouse.move(30,100);await page.mouse.up();assert.equal(await count(page),0);
-      report.checks.push({label:engine+' release on empty space cancels entire stroke',passed:true});
+      await start(page,'S');await move(page,'A');await page.mouse.move(30,100);await page.mouse.up();assert.equal(await count(page),1);await page.locator('#clear-wires').click();
+      report.checks.push({label:engine+' release on empty space keeps accepted S-A and discards only the unfinished tail',passed:true});
       await start(page,'S');await move(page,'A');await page.evaluate(()=>document.getElementById('board').dispatchEvent(new PointerEvent('pointercancel',{pointerId:__lastPointer,bubbles:true})));await page.mouse.up();assert.equal(await count(page),0);assert(await page.locator('#wire-magnifier').isHidden());
       report.checks.push({label:engine+' interrupted stroke leaves no partial edges',passed:true});
       await page.locator('#magnifier-toggle').click();await start(page,'S');await move(page,'A');assert(await page.locator('#wire-magnifier').isHidden());await page.mouse.up();assert.equal(await count(page),1);await start(page,'A');await move(page,'G');await page.mouse.up();assert.equal(await count(page),2);

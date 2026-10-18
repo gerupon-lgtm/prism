@@ -1,0 +1,81 @@
+{
+  "version": "0.55.0",
+  "sequential": true,
+  "syntax": "61 files passed",
+  "build": "51 offline assets",
+  "jobs": [
+    {
+      "name": "interaction-chromium",
+      "exit": 0,
+      "source": "設計検証/結線操作/0.55.0/local/chromium/report.json",
+      "passed": true,
+      "checks": 81,
+      "reusedCompleted": true
+    },
+    {
+      "name": "interaction-webkit",
+      "exit": 0,
+      "source": "設計検証/結線操作/0.55.0/local/webkit/report.json",
+      "passed": true,
+      "checks": 79,
+      "reusedCompleted": true
+    },
+    {
+      "name": "interaction-chrome",
+      "exit": 0,
+      "seconds": 30,
+      "source": "設計検証/結線操作/0.55.0/local/chrome/report.json",
+      "passed": true,
+      "checks": 81
+    },
+    {
+      "name": "interaction-msedge",
+      "exit": 0,
+      "seconds": 28,
+      "source": "設計検証/結線操作/0.55.0/local/msedge/report.json",
+      "passed": true,
+      "checks": 81
+    },
+    {
+      "name": "preview-chromium",
+      "exit": 0,
+      "seconds": 20,
+      "source": "設計検証/結線中の秒数/0.55.0/local/chromium/report.json",
+      "passed": true,
+      "checks": 103
+    },
+    {
+      "name": "preview-webkit",
+      "exit": 0,
+      "seconds": 28,
+      "source": "設計検証/結線中の秒数/0.55.0/local/webkit/report.json",
+      "passed": true,
+      "checks": 101
+    },
+    {
+      "name": "preview-chrome",
+      "exit": 0,
+      "seconds": 17,
+      "source": "設計検証/結線中の秒数/0.55.0/local/chrome/report.json",
+      "passed": true,
+      "checks": 103
+    },
+    {
+      "name": "preview-msedge",
+      "exit": 0,
+      "seconds": 21,
+      "source": "設計検証/結線中の秒数/0.55.0/local/msedge/report.json",
+      "passed": true,
+      "checks": 103
+    },
+    {
+      "name": "wiring-regression",
+      "exit": 0,
+      "seconds": 27,
+      "source": "設計検証/結線補助/report.json",
+      "passed": true,
+      "checks": 52
+    }
+  ],
+  "passed": true
+}
