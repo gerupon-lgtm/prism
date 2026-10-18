@@ -35,6 +35,7 @@ html.desktop-layout #stage:has(#add-controls:not([hidden])) .board-legend{bottom
 html.desktop-layout #app[data-mode=free] .board-legend span:last-child{display:none}
 html.desktop-layout .node-time{font-size:calc(24px * var(--board-factor,1));fill:#edf0f8;stroke:#081326;stroke-width:5;paint-order:stroke}
 html.desktop-layout .node-name{font-size:calc(28px * var(--board-factor,1))}
+html.desktop-layout .node-name.prism-name{font-size:calc(32px * var(--board-factor,1))}
 html.desktop-layout .edge-time{font-size:calc(28px * var(--board-factor,1));fill:#f5f2e7}
 html.desktop-layout .node-label-right{text-anchor:start}
 html.desktop-layout .node-label-left{text-anchor:end}

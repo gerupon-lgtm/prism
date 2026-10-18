@@ -1,0 +1,94 @@
+{
+  "version": "0.59.0",
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "syntax",
+      "signature": "2e622555c805efc964f8db33cb95a54c7b8d2411b2abe198d3305e1fd3831090",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 4
+    },
+    {
+      "name": "build",
+      "signature": "e5016bdc4abecc6c65337369b0f325d13f055c73c8b029c70655bd499c40173e",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 0
+    },
+    {
+      "name": "unit",
+      "signature": "19725e014894a36e92c60d6d7da3a225762f78330809440934109be34656fe34",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 38
+    },
+    {
+      "name": "names-chromium",
+      "signature": "687673e64e6bd2d5f72dd521d94c4ba551de7a4762ccfd5e63440f733cdb54f4",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/プリズム名の重ね表示/0.59.0/local/chromium/report.json",
+      "checks": 42,
+      "seconds": 20
+    },
+    {
+      "name": "names-webkit",
+      "signature": "18d8f154151060bcc80585f5d22ccd0e3aab4276dc906b2e9db75bfa71a27634",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/プリズム名の重ね表示/0.59.0/local/webkit/report.json",
+      "checks": 42,
+      "seconds": 33
+    },
+    {
+      "name": "names-chrome",
+      "signature": "33ad7272c7a74497aeed0b86094001bf8290870a6464964bd870cd4c61196b97",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/プリズム名の重ね表示/0.59.0/local/chrome/report.json",
+      "checks": 42,
+      "seconds": 21
+    },
+    {
+      "name": "names-msedge",
+      "signature": "7405064e06bddbccdf2a69e3dfab0612db307556053edbf89c9a95ac1e1d3159",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/プリズム名の重ね表示/0.59.0/local/msedge/report.json",
+      "checks": 42,
+      "seconds": 38
+    },
+    {
+      "name": "wiring-regression",
+      "signature": "ab3182f54f5445d3787347d4f50bff7de9a61385977f8ceaf8f4b7b82c7d1a93",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/結線補助/report.json",
+      "checks": 52,
+      "seconds": 30
+    },
+    {
+      "name": "rotation-regression",
+      "signature": "ef2ccb923420696fc19f97943e1a79be3d78655216a7c2da0c517f2746f73e8b",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/回転復帰/report.json",
+      "checks": 74,
+      "seconds": 24
+    },
+    {
+      "name": "clear-regression",
+      "signature": "424dfdcb697d3e1f253df386912dce55d8c1084bcd038080a1c6ab0e9a34ccc6",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/クリアと読みやすさ/report.json",
+      "checks": 48,
+      "seconds": 56
+    }
+  ],
+  "passed": true
+}

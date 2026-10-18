@@ -132,7 +132,9 @@ export class Board {
       const label=partName(node,input.nodes,true);
       const side=sideNames&&(!this.desktop||node.kind!=='goal'),sideSign=node.x>(this.desktop?.7:.5)?-1:1;
       const labelSide=this.desktop&&side?(sideSign<0?' node-label-left':' node-label-right'):'';
-      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),svg('text',{x:side?sideSign*(65*symbolFactor+16*factor):0,y:side?(this.desktop?-12*factor:0):-80*factor,class:'node-name'+labelSide},label.length>8?`${label.slice(0,7)}…`:label));
+      const overPrism=node.kind==='prism';
+      const name=svg('text',{x:overPrism?0:side?sideSign*(65*symbolFactor+16*factor):0,y:overPrism?6*symbolFactor:side?(this.desktop?-12*factor:0):-80*factor,class:'node-name'+(overPrism?' prism-name':labelSide)},label.length>8?`${label.slice(0,7)}…`:label);
+      group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),name);
       if(node.kind!=='goal'){
         const text=svg('text',{x:this.desktop?sideSign*(65*symbolFactor+16*factor):0,y:this.desktop?26*factor:90*symbolFactor,class:'node-time'+labelSide},secondsLabel(node.process));
         group.append(text);
@@ -142,6 +144,9 @@ export class Board {
         if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=node.id;this.render();this.openSettings();}
       });
       this.world.append(group);
+      // The overlaid name stays on the prism. Long custom names retain their
+      // complete title/accessible name and settings; only the drawing is short.
+      if(overPrism){const letters=Array.from(label);let count=Math.min(letters.length,8);while(count>0&&name.getComputedTextLength()>96*symbolFactor){count--;name.textContent=count?letters.slice(0,count).join('')+'…':'…';}}
     }
     const cardSizes=timeCards.map(item=>({...item,bounds:item.text.getBBox()}));
     for(const {card,factor,bounds} of cardSizes)for(const [name,value] of Object.entries({x:bounds.x-10*factor,y:bounds.y-6*factor,width:bounds.width+20*factor,height:bounds.height+12*factor}))card.setAttribute(name,value);
@@ -162,7 +167,7 @@ export class Board {
     const worldMatrix=this.world.getScreenCTM();
     if(!worldMatrix)return;
     const area=this.element.getBoundingClientRect();
-    const labels=[...this.world.querySelectorAll('.node-name'),...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item).filter(label=>!label.hasAttribute('hidden'));
+    const labels=[...this.world.querySelectorAll('.node-name:not(.prism-name)'),...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item).filter(label=>!label.hasAttribute('hidden'));
     this.world.querySelectorAll('.edge-label-leader').forEach(item=>item.remove());
     for(const label of labels){
       if(!this.labelOrigins.has(label))this.labelOrigins.set(label,label.getAttribute('transform')??'');

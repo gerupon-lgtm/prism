@@ -1,0 +1,1757 @@
+{
+  "version": "0.59.0",
+  "evidence": "PC engines, mouse pointer gestures in mobile emulation, Chromium protocol touch input, synthetic orientation and CSS text enlargement. No physical touch-device evidence.",
+  "checks": [
+    {
+      "label": "chromium portrait controls",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 283.328125,
+          "t": 674,
+          "r": 312,
+          "b": 714,
+          "client": [
+            27,
+            38
+          ],
+          "scroll": [
+            27,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 315,
+          "t": 674,
+          "r": 361,
+          "b": 714,
+          "client": [
+            44,
+            38
+          ],
+          "scroll": [
+            44,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 364,
+          "t": 674,
+          "r": 398,
+          "b": 714,
+          "client": [
+            32,
+            38
+          ],
+          "scroll": [
+            32,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 674,
+          "r": 64,
+          "b": 714,
+          "client": [
+            48,
+            38
+          ],
+          "scroll": [
+            48,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67,
+          "t": 674,
+          "r": 122.59375,
+          "b": 714,
+          "client": [
+            54,
+            38
+          ],
+          "scroll": [
+            54,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 125.59375,
+          "t": 674,
+          "r": 190.296875,
+          "b": 714,
+          "client": [
+            63,
+            38
+          ],
+          "scroll": [
+            63,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium continuous preview at A",
+      "hidden": false,
+      "rect": [
+        14,
+        243.125,
+        164,
+        416.125
+      ],
+      "board": [
+        8,
+        237.125,
+        404,
+        720
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.3250120192307692 0 0 0.3250120192307692 65.3220871554888 -211.01061636117788)",
+      "route": "星→A"
+    },
+    {
+      "label": "chromium continuous preview at G",
+      "hidden": false,
+      "rect": [
+        248,
+        243.125,
+        398,
+        416.125
+      ],
+      "board": [
+        8,
+        237.125,
+        404,
+        720
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.3250120192307692 0 0 0.3250120192307692 -87.50601953396432 7.397501314603346)",
+      "route": "星→A→鐘"
+    },
+    {
+      "label": "chromium single uninterrupted S-A-G stroke commits two edges on release",
+      "passed": true
+    },
+    {
+      "label": "chromium clear all edges and immediate undo",
+      "passed": true
+    },
+    {
+      "label": "chromium running and paused circuits reject clear",
+      "passed": true
+    },
+    {
+      "label": "chromium near-miss start and release just outside the prism still connect to its centre",
+      "passed": true
+    },
+    {
+      "label": "chromium off-centre intermediate and drifted bell release finish one continuous S-A-G stroke",
+      "passed": true
+    },
+    {
+      "label": "chromium release on empty space keeps accepted S-A and discards only the unfinished tail",
+      "passed": true
+    },
+    {
+      "label": "chromium interrupted stroke leaves no partial edges",
+      "passed": true
+    },
+    {
+      "label": "chromium magnifier OFF and separate consecutive drags",
+      "passed": true
+    },
+    {
+      "label": "chromium rotated 90",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 756,
+          "t": 126.671875,
+          "r": 805,
+          "b": 180,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 756,
+          "t": 70.328125,
+          "r": 805,
+          "b": 123.671875,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 756,
+          "t": 14,
+          "r": 805,
+          "b": 67.328125,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 709,
+          "t": 281.34375,
+          "r": 805,
+          "b": 316,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 709,
+          "t": 243.671875,
+          "r": 805,
+          "b": 278.34375,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 709,
+          "t": 206,
+          "r": 805,
+          "b": 240.671875,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium rotated loupe 90",
+      "hidden": false,
+      "rect": [
+        179,
+        14,
+        260.296875,
+        118.296875
+      ],
+      "board": [
+        173,
+        8,
+        811,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 -0.7922934998580754 0.7922934998580754 0 -622.2182556204316 247.50611240370452)",
+      "route": "星→A"
+    },
+    {
+      "label": "chromium rotated continuous stroke 90",
+      "passed": true
+    },
+    {
+      "label": "chromium rotated 270",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 110,
+          "t": 150,
+          "r": 159,
+          "b": 203.328125,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 110,
+          "t": 206.328125,
+          "r": 159,
+          "b": 259.671875,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 110,
+          "t": 262.671875,
+          "r": 159,
+          "b": 316,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 110,
+          "t": 14,
+          "r": 206,
+          "b": 48.65625,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 110,
+          "t": 51.65625,
+          "r": 206,
+          "b": 86.328125,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 110,
+          "t": 89.328125,
+          "r": 206,
+          "b": 124,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium rotated loupe 270",
+      "hidden": false,
+      "rect": [
+        654.6875,
+        14,
+        735.984375,
+        118.296875
+      ],
+      "board": [
+        104,
+        8,
+        742,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 0.7922934998580754 -0.7922934998580754 0 772.2182556204316 -97.50609269678137)",
+      "route": "星→A"
+    },
+    {
+      "label": "chromium rotated continuous stroke 270",
+      "passed": true
+    },
+    {
+      "label": "chromium Q3 individual drag does not detour through nearby C",
+      "passed": true
+    },
+    {
+      "label": "chromium protocol off-centre touch loupe",
+      "hidden": false,
+      "rect": [
+        14,
+        243.125,
+        164,
+        416.125
+      ],
+      "board": [
+        8,
+        237.125,
+        404,
+        720
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.3250120192307692 0 0 0.3250120192307692 94.7220871554888 -211.01061636117788)",
+      "route": "星→A"
+    },
+    {
+      "label": "chromium browser protocol touch connects and second finger cancels pending stroke; not physical-device evidence",
+      "passed": true
+    },
+    {
+      "label": "chromium saving cleared circuit then undo still protects unsaved restored edges",
+      "passed": true
+    },
+    {
+      "label": "chromium short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 191.328125,
+          "t": 438,
+          "r": 220,
+          "b": 478,
+          "client": [
+            27,
+            38
+          ],
+          "scroll": [
+            27,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 223,
+          "t": 438,
+          "r": 269,
+          "b": 478,
+          "client": [
+            44,
+            38
+          ],
+          "scroll": [
+            44,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 272,
+          "t": 438,
+          "r": 306,
+          "b": 478,
+          "client": [
+            32,
+            38
+          ],
+          "scroll": [
+            32,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 438,
+          "r": 64,
+          "b": 478,
+          "client": [
+            48,
+            38
+          ],
+          "scroll": [
+            48,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67,
+          "t": 438,
+          "r": 122.59375,
+          "b": 478,
+          "client": [
+            54,
+            38
+          ],
+          "scroll": [
+            54,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 125.59375,
+          "t": 438,
+          "r": 190,
+          "b": 478,
+          "client": [
+            62,
+            38
+          ],
+          "scroll": [
+            62,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 202.65625,
+          "t": 432,
+          "r": 221.984375,
+          "b": 472,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 224.984375,
+          "t": 432,
+          "r": 278.984375,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 281.984375,
+          "t": 432,
+          "r": 311.984375,
+          "b": 472,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 432,
+          "r": 62,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65,
+          "t": 432,
+          "r": 119,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 122,
+          "t": 432,
+          "r": 176,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged portrait",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 294.65625,
+          "t": 668,
+          "r": 313.984375,
+          "b": 708,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 316.984375,
+          "t": 668,
+          "r": 370.984375,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 373.984375,
+          "t": 668,
+          "r": 403.984375,
+          "b": 708,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 668,
+          "r": 62,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65,
+          "t": 668,
+          "r": 119,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 122,
+          "t": 668,
+          "r": 176,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium enlarged landscape",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 671,
+          "t": 112.671875,
+          "r": 739,
+          "b": 159,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 671,
+          "t": 63.328125,
+          "r": 739,
+          "b": 109.671875,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 671,
+          "t": 14,
+          "r": 739,
+          "b": 60.328125,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 671,
+          "t": 269.671875,
+          "r": 739,
+          "b": 316,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 671,
+          "t": 220.328125,
+          "r": 739,
+          "b": 266.671875,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 671,
+          "t": 171,
+          "r": 739,
+          "b": 217.328125,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "label": "chromium no browser script errors",
+      "passed": true
+    },
+    {
+      "label": "chromium desktop mouse starts with loupe OFF",
+      "passed": true
+    },
+    {
+      "label": "webkit portrait controls",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 283.296875,
+          "t": 674,
+          "r": 311.96875,
+          "b": 714,
+          "client": [
+            27,
+            38
+          ],
+          "scroll": [
+            27,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 314.96875,
+          "t": 674,
+          "r": 360.984375,
+          "b": 714,
+          "client": [
+            44,
+            38
+          ],
+          "scroll": [
+            44,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 363.984375,
+          "t": 674,
+          "r": 398,
+          "b": 714,
+          "client": [
+            32,
+            38
+          ],
+          "scroll": [
+            32,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 674,
+          "r": 64.015625,
+          "b": 714,
+          "client": [
+            48,
+            38
+          ],
+          "scroll": [
+            48,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67.015625,
+          "t": 674,
+          "r": 122.609375,
+          "b": 714,
+          "client": [
+            54,
+            38
+          ],
+          "scroll": [
+            54,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 125.609375,
+          "t": 674,
+          "r": 190.3125,
+          "b": 714,
+          "client": [
+            63,
+            38
+          ],
+          "scroll": [
+            63,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit continuous preview at A",
+      "hidden": false,
+      "rect": [
+        248,
+        243,
+        398,
+        416
+      ],
+      "board": [
+        8,
+        237,
+        404,
+        720
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.32509614242758433 0 0 0.32509614242758433 66.45191886506086 -210.97691394206748)",
+      "route": "星→A"
+    },
+    {
+      "label": "webkit continuous preview at G",
+      "hidden": false,
+      "rect": [
+        248,
+        243,
+        398,
+        416
+      ],
+      "board": [
+        8,
+        237,
+        404,
+        720
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0.32509614242758433 0 0 0.32509614242758433 -86.14808113493913 7.423086057932494)",
+      "route": "星→A→鐘"
+    },
+    {
+      "label": "webkit single uninterrupted S-A-G stroke commits two edges on release",
+      "passed": true
+    },
+    {
+      "label": "webkit clear all edges and immediate undo",
+      "passed": true
+    },
+    {
+      "label": "webkit running and paused circuits reject clear",
+      "passed": true
+    },
+    {
+      "label": "webkit near-miss start and release just outside the prism still connect to its centre",
+      "passed": true
+    },
+    {
+      "label": "webkit off-centre intermediate and drifted bell release finish one continuous S-A-G stroke",
+      "passed": true
+    },
+    {
+      "label": "webkit release on empty space keeps accepted S-A and discards only the unfinished tail",
+      "passed": true
+    },
+    {
+      "label": "webkit interrupted stroke leaves no partial edges",
+      "passed": true
+    },
+    {
+      "label": "webkit magnifier OFF and separate consecutive drags",
+      "passed": true
+    },
+    {
+      "label": "webkit rotated 90",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 756,
+          "t": 126.671875,
+          "r": 805,
+          "b": 180,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 756,
+          "t": 70.34375,
+          "r": 805,
+          "b": 123.671875,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 756,
+          "t": 14.015625,
+          "r": 805,
+          "b": 67.34375,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 709,
+          "t": 281.328125,
+          "r": 805,
+          "b": 316,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 709,
+          "t": 243.65625,
+          "r": 805,
+          "b": 278.328125,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 709,
+          "t": 205.984375,
+          "r": 805,
+          "b": 240.65625,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit rotated loupe 90",
+      "hidden": false,
+      "rect": [
+        179,
+        14,
+        260.296875,
+        118.296875
+      ],
+      "board": [
+        173,
+        8,
+        811,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 -0.7922934998580754 0.7922934998580754 0 -620.8274198126595 249.00651870415425)",
+      "route": "星→A"
+    },
+    {
+      "label": "webkit rotated continuous stroke 90",
+      "passed": true
+    },
+    {
+      "label": "webkit rotated 270",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 110,
+          "t": 150,
+          "r": 159,
+          "b": 203.328125,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 110,
+          "t": 206.328125,
+          "r": 159,
+          "b": 259.65625,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 110,
+          "t": 262.65625,
+          "r": 159,
+          "b": 315.984375,
+          "client": [
+            47,
+            51
+          ],
+          "scroll": [
+            47,
+            51
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 110,
+          "t": 14,
+          "r": 206,
+          "b": 48.671875,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 110,
+          "t": 51.671875,
+          "r": 206,
+          "b": 86.34375,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 110,
+          "t": 89.34375,
+          "r": 206,
+          "b": 124.015625,
+          "client": [
+            94,
+            33
+          ],
+          "scroll": [
+            94,
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit rotated loupe 270",
+      "hidden": false,
+      "rect": [
+        654.6875,
+        14,
+        735.984375,
+        118.296875
+      ],
+      "board": [
+        104,
+        8,
+        742,
+        322
+      ],
+      "avoidsFinger": true,
+      "use": "#board-detail",
+      "transform": "matrix(0 0.7922934998580754 -0.7922934998580754 0 773.4104456429178 -96.42349287389592)",
+      "route": "星→A"
+    },
+    {
+      "label": "webkit rotated continuous stroke 270",
+      "passed": true
+    },
+    {
+      "label": "webkit Q3 individual drag does not detour through nearby C",
+      "passed": true
+    },
+    {
+      "label": "webkit saving cleared circuit then undo still protects unsaved restored edges",
+      "passed": true
+    },
+    {
+      "label": "webkit short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 191.296875,
+          "t": 438,
+          "r": 219.96875,
+          "b": 478,
+          "client": [
+            27,
+            38
+          ],
+          "scroll": [
+            27,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 222.96875,
+          "t": 438,
+          "r": 268.984375,
+          "b": 478,
+          "client": [
+            44,
+            38
+          ],
+          "scroll": [
+            44,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 271.984375,
+          "t": 438,
+          "r": 306,
+          "b": 478,
+          "client": [
+            32,
+            38
+          ],
+          "scroll": [
+            32,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 14,
+          "t": 438,
+          "r": 64.015625,
+          "b": 478,
+          "client": [
+            48,
+            38
+          ],
+          "scroll": [
+            48,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 67.015625,
+          "t": 438,
+          "r": 122.609375,
+          "b": 478,
+          "client": [
+            54,
+            38
+          ],
+          "scroll": [
+            54,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 125.609375,
+          "t": 438,
+          "r": 190,
+          "b": 478,
+          "client": [
+            62,
+            38
+          ],
+          "scroll": [
+            62,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit enlarged short portrait",
+      "viewport": [
+        320,
+        568
+      ],
+      "scroll": [
+        320,
+        568
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 202.625,
+          "t": 432,
+          "r": 221.953125,
+          "b": 472,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 224.953125,
+          "t": 432,
+          "r": 278.96875,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 281.96875,
+          "t": 432,
+          "r": 311.984375,
+          "b": 472,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 432,
+          "r": 62.015625,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65.015625,
+          "t": 432,
+          "r": 119.03125,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 122.03125,
+          "t": 432,
+          "r": 176.046875,
+          "b": 472,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit enlarged portrait",
+      "viewport": [
+        412,
+        804
+      ],
+      "scroll": [
+        412,
+        804
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 294.640625,
+          "t": 668,
+          "r": 313.96875,
+          "b": 708,
+          "client": [
+            17,
+            38
+          ],
+          "scroll": [
+            17,
+            38
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 316.96875,
+          "t": 668,
+          "r": 370.984375,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 373.984375,
+          "t": 668,
+          "r": 404,
+          "b": 708,
+          "client": [
+            28,
+            38
+          ],
+          "scroll": [
+            28,
+            38
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 8,
+          "t": 668,
+          "r": 62.015625,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 65.015625,
+          "t": 668,
+          "r": 119.03125,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 122.03125,
+          "t": 668,
+          "r": 176.046875,
+          "b": 708,
+          "client": [
+            52,
+            38
+          ],
+          "scroll": [
+            52,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit enlarged landscape",
+      "viewport": [
+        915,
+        330
+      ],
+      "scroll": [
+        915,
+        330
+      ],
+      "buttons": [
+        {
+          "id": "zoom-out",
+          "l": 671,
+          "t": 112.671875,
+          "r": 739,
+          "b": 159,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "fit",
+          "l": 671,
+          "t": 63.34375,
+          "r": 739,
+          "b": 109.671875,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "zoom-in",
+          "l": 671,
+          "t": 14.015625,
+          "r": 739,
+          "b": 60.34375,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "clear-wires",
+          "l": 671,
+          "t": 269.671875,
+          "r": 739,
+          "b": 316,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "magnifier-toggle",
+          "l": 671,
+          "t": 220.34375,
+          "r": 739,
+          "b": 266.671875,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        },
+        {
+          "id": "candidate-times",
+          "l": 671,
+          "t": 171.015625,
+          "r": 739,
+          "b": 217.34375,
+          "client": [
+            66,
+            44
+          ],
+          "scroll": [
+            66,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "label": "webkit no browser script errors",
+      "passed": true
+    },
+    {
+      "label": "webkit desktop mouse starts with loupe OFF",
+      "passed": true
+    }
+  ],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "passed": true
+}

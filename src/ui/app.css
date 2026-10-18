@@ -205,6 +205,7 @@ body.records-fullscreen #app>:not(#workspace){display:none}
 .selected .node-halo{stroke:#fff}
 .choice .node-halo{stroke:#f3d68e;stroke-dasharray:7 5}
 .node-name{font-size:calc(2rem * var(--board-factor,1));font-weight:600;stroke:#090d1a;stroke-width:5;paint-order:stroke}
+.node-name.prism-name{font-size:calc(32px * var(--board-factor,1));font-weight:700;fill:#fffaf0;stroke:#0a1429;stroke-width:calc(7px * var(--board-factor,1));stroke-linejoin:round;paint-order:stroke;text-anchor:middle;dominant-baseline:central;filter:drop-shadow(0 1px 2px #020511);pointer-events:none}
 .edge-line{stroke-width:calc(4px * var(--board-factor,1))}
 .node-separation{fill:url(#node-depth)}
 .node-symbol{filter:drop-shadow(0 0 3px #040b19) drop-shadow(0 4px 7px #020610b3)}
