@@ -6,7 +6,7 @@ const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),root=path.resolve(__dirname,'../dist'),channel=arg('--channel'),fontSetting=arg('--font-setting');
 if(fontSetting&&(!channel||!['minimumFontSize=24','defaultFontSize=32'].includes(fontSetting)))throw new Error('Native font setting requires a Windows Chromium channel');
-const out=path.join(__dirname,'未達成通知',arg('--url')?'public':channel||'',fontSetting||'');fs.mkdirSync(out,{recursive:true});
+const out=path.join(__dirname,'未達成通知',JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,arg('--url')?'public':channel||'',fontSetting||'');fs.mkdirSync(out,{recursive:true});
 const report={fontSetting,version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,evidence:'PC real mouse wiring, exported records, synthetic phone viewports/orientation/CSS28; not physical-device acceptance.',checks:[],browsers:[]};
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.ttf':'font/ttf'};
 const server=http.createServer((req,res)=>{let f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(f===root)f=path.join(root,'index.html');if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}try{res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});

@@ -11,15 +11,20 @@ export function magnifierPlacement({area,obstacles,pointer,previous=null}) {
   let size=previous?.size??Math.min(maximum,Math.max(55,Math.min(150,area.width*.45,area.height*.45)));
   if(size<55||size>maximum||area.height<size+35)return null;
   const overlap=p=>obstacles.reduce((sum,b)=>sum+Math.max(0,Math.min(p.x+p.size,b.right)-Math.max(p.x,b.left))*Math.max(0,Math.min(p.y+p.height,b.bottom)-Math.max(p.y,b.top)),0);
+  const choose=(positions,size)=>positions.reduce((best,p)=>p.y<best.y-1||Math.abs(p.y-best.y)<=1&&Math.hypot(p.x+size/2-pointer.x,p.y+p.height/2-pointer.y)>Math.hypot(best.x+size/2-pointer.x,best.y+best.height/2-pointer.y)?p:best);
   for(;;){
     const height=size+23,left=area.left+6,right=area.right-size-6,top=area.top+6,bottom=area.bottom-height-6;
-    const positions=Array.from({length:5},(_,i)=>left+(right-left)*i/4).flatMap(x=>Array.from({length:5},(_,i)=>({x,y:top+(bottom-top)*i/4,size,height}))).filter(away);
+    const upperBottom=Math.max(top,Math.min(bottom,area.top+area.height*.35));
+    const positions=Array.from({length:13},(_,i)=>left+(right-left)*i/12).flatMap(x=>Array.from({length:7},(_,i)=>({x,y:top+(upperBottom-top)*i/6,size,height}))).filter(away);
     const empty=positions.filter(p=>overlap(p)===0);
-    if(empty.length||previous||size<=55){
-      const choices=empty.length?empty:positions;
-      if(!choices.length)return null;
-      const score=p=>Math.hypot(p.x+size/2-pointer.x,p.y+height/2-pointer.y)-overlap(p)/20;
-      return choices.reduce((best,p)=>score(p)>score(best)?p:best);
+    if(empty.length)return choose(empty,size);
+    if(previous||size<=55){
+      // Very short/dense fields may have no clear upper location. Keep the
+      // current size and avoid the finger; prefer parts/labels over empty scenery.
+      const all=Array.from({length:13},(_,i)=>left+(right-left)*i/12).flatMap(x=>Array.from({length:9},(_,i)=>({x,y:top+(bottom-top)*i/8,size,height}))).filter(away);
+      if(!all.length)return null;
+      const clear=all.filter(p=>overlap(p)===0);if(clear.length)return choose(clear,size);
+      return all.reduce((best,p)=>overlap(p)<overlap(best)?p:best);
     }
     size=Math.max(55,size-20);
   }
@@ -41,7 +46,7 @@ export class Magnifier {
     if(!this.layout){
       const matrix=this.board.orientation.getScreenCTM();if(!matrix)return;
       const area=this.board.element.getBoundingClientRect();
-      const obstacles=[...this.board.world.querySelectorAll('.node-hit'),...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
+      const obstacles=[...this.board.world.querySelectorAll('.node-hit,.node-name,.node-time,.edge-label-card'),...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>e.getBoundingClientRect());
       this.layout={matrix,area,obstacles};
     }
     const placement=magnifierPlacement({...this.layout,pointer:{x:event.clientX,y:event.clientY},previous:this.placement});

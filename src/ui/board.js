@@ -34,6 +34,7 @@ export class Board {
     // Fill the available width instead of centering a narrow fixed-aspect diagram.
     this.frameWidth=2080*(this.element.clientWidth||1360)/(this.element.clientHeight||2080);
     this.displayWidthRatio=this.frameWidth/1360;
+    this.liftKey=null;
     this.element.setAttribute('viewBox',`${500-this.frameWidth/2} -240 ${this.frameWidth} 2080`);
     this.orientation.setAttribute('transform','');
     this.cancelAll(); this.transform(); this.render();
@@ -159,9 +160,28 @@ export class Board {
     this.wireBackdrop=svg('path',{class:'wire-preview-backdrop'});this.wire=svg('path',{class:'wire-preview'});
     const firstPart=this.world.querySelector('[data-node]');this.world.insertBefore(this.wireBackdrop,firstPart);this.world.insertBefore(this.wire,firstPart);this.previewWire();
     this.timeLayoutSignature=null;this.labelOrigins=new Map();
+    this.liftLayout(input);
     this.particles();
     this.effectsLayer.replaceChildren();
     this.renderArrivals();
+  }
+  liftLayout(input) {
+    // Decide once for a field/layout, never as wires are added or execution starts.
+    // Only the SVG view changes: saved coordinates, pan/zoom and inverse input stay intact.
+    if(!this.frameWidth)return;
+    const key=JSON.stringify([this.element.clientWidth,this.element.clientHeight,this.angle,this.desktop,getComputedStyle(document.documentElement).fontSize,Boolean(this.session.guide),input.nodes.map(n=>[n.id,n.kind,n.x,n.y,n.name,n.process])]);
+    if(this.liftKey===key)return;this.liftKey=key;
+    const height=this.element.clientHeight;if(!height)return;
+    this.element.setAttribute('viewBox',`${500-this.frameWidth/2} -240 ${this.frameWidth} 2080`);
+    const original=this.world.getAttribute('transform');this.world.setAttribute('transform','');
+    const inverse=this.element.getScreenCTM()?.inverse();let top=Infinity;
+    if(inverse)for(const item of this.world.querySelectorAll('.node-symbol,.node-name,.node-time')){
+      const b=item.getBBox(),m=item.getScreenCTM();if(!m)continue;
+      for(const x of [b.x,b.x+b.width])for(const y of [b.y,b.y+b.height])top=Math.min(top,new DOMPoint(x,y).matrixTransform(m).matrixTransform(inverse).y);
+    }
+    this.world.setAttribute('transform',original??'');
+    const unit=2080/height,lift=Number.isFinite(top)?Math.max(0,Math.min(24*unit,top+240-8*unit)):0;
+    this.element.setAttribute('viewBox',`${500-this.frameWidth/2} ${-240+lift} ${this.frameWidth} 2080`);
   }
   fitTimeLabels() {
     const worldMatrix=this.world.getScreenCTM();

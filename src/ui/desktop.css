@@ -232,3 +232,24 @@ html.desktop-layout .desktop-guidance{display:none}
   html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #sound{min-width:64px}
   html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions #menu{min-width:40px;padding-inline:10px}
 }
+
+/* P4: a permanent lower strip. Switching its contents never moves the field. */
+html:not(.desktop-layout):not(.device-landscape) #result-line{height:44px;min-height:44px}
+html:not(.desktop-layout) .result-content{border:1px solid #354662;border-radius:10px;background:#111a2a}
+#wire-limit-notice{padding:2px 9px;background:#29241e;border-color:#b6965b;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;font-size:15px;line-height:1.2}
+#wire-limit-notice span{font-size:13px;line-height:1.3;color:#eadac3}
+html:not(.device-landscape) #result-line:has(#wire-limit-notice:not([hidden])):has(#result-info:not([hidden])) #wire-limit-notice{width:calc(100% - 90px)}
+#result-line:has(#wire-limit-notice:not([hidden])) #result-info:not([hidden]){visibility:visible;flex:0 0 86px;margin-left:auto;text-align:center;font-size:14px}
+#result-line:has(#result-info:not([hidden])) #wire-limit-notice span{display:none}
+.device-landscape .result-content:has(#wire-limit-notice:not([hidden])){flex-direction:column;justify-content:center;gap:8px}
+.device-landscape #result-line:has(#wire-limit-notice:not([hidden])) #hint{display:none}
+.device-landscape #result-line:has(#wire-limit-notice:not([hidden])) #wire-limit-notice{position:static;inset:auto;width:100%;height:auto;min-height:48px;flex:none;align-items:center;padding:2px 3px}
+.device-landscape #result-line:has(#wire-limit-notice:not([hidden])) #result-info:not([hidden]){flex:0 0 auto;margin:0;min-height:44px}
+#result-summary .elapsed{font-size:1.4rem;font-weight:700;color:#fff2ce;font-variant-numeric:tabular-nums}
+#result-summary .execution{font-size:1rem;color:#d5deef}
+.device-landscape #result-summary .elapsed{font-size:1.15rem}
+.text-enlarged #result-summary .elapsed{font-size:1rem}
+.text-enlarged #result-summary .execution{font-size:.8rem}
+.text-enlarged #wire-limit-notice{font-size:1rem}
+html.desktop-layout #wire-limit-notice{font-size:17px}
+html.desktop-layout #wire-limit-notice span{font-size:14px}

@@ -1,0 +1,201 @@
+{
+  "version": "0.60.0",
+  "passed": true,
+  "scope": "local verification",
+  "publicVerified": false,
+  "sourceHashes": {
+    "package.json": "9e59cea44c9583b854fa2ee5195e444513b408f2d29d23a016a90f0e2854838d",
+    "index.html": "b324f9149d1fcf8f2085eaeada3d39076a4365e3687e81f769b3802362295c37",
+    "src/ui/app.js": "58591fc85875601395db64e7908c1cf87dcc35f89d203723e9117862bc17b44b",
+    "src/ui/board.js": "3e27a126340e63360f6316db263e1aba337c55392c1189bb81f5d85af5cccd32",
+    "src/ui/desktop.css": "794e302ccd8146501b3293b8272652327b06943425e34d8ca2a1ef683d835ddb",
+    "src/ui/magnifier.js": "d13d86452215541cd931ba6b2588fe768d3351680311e26365f621473f2582d3",
+    "src/ui/tutorial-guide.js": "4f24ca8df407b268fd6310ac7bd597f5834c5415a9add5d414667b436b00ae66",
+    "src/ui/wire-limit-notice.js": "357192a707026bd6c490ebf83eb3950424130ad18c1810e4db7b051435bf5dc2"
+  },
+  "local": [
+    {
+      "name": "lower-chromium",
+      "exit": 0,
+      "elapsedMs": 21634,
+      "summary": "Lower strip and magnifier checks passed: 60",
+      "passed": true
+    },
+    {
+      "name": "lower-webkit",
+      "exit": 0,
+      "elapsedMs": 40482,
+      "summary": "Lower strip and magnifier checks passed: 60",
+      "passed": true
+    },
+    {
+      "name": "lower-chrome",
+      "exit": 0,
+      "elapsedMs": 28554,
+      "summary": "Lower strip and magnifier checks passed: 60",
+      "passed": true
+    },
+    {
+      "name": "lower-msedge",
+      "exit": 0,
+      "elapsedMs": 29916,
+      "summary": "Lower strip and magnifier checks passed: 60",
+      "passed": true
+    },
+    {
+      "name": "status-chromium",
+      "exit": 0,
+      "elapsedMs": 17349,
+      "summary": "Status strip checks passed: 33",
+      "passed": true
+    },
+    {
+      "name": "status-webkit",
+      "exit": 0,
+      "elapsedMs": 101262,
+      "summary": "Status strip checks passed: 33",
+      "passed": true
+    },
+    {
+      "name": "status-chrome",
+      "exit": 0,
+      "elapsedMs": 23574,
+      "summary": "Status strip checks passed: 33",
+      "passed": true
+    },
+    {
+      "name": "status-msedge",
+      "exit": 0,
+      "elapsedMs": 22200,
+      "summary": "Status strip checks passed: 33",
+      "passed": true
+    },
+    {
+      "name": "budget-chromium",
+      "exit": 0,
+      "elapsedMs": 30674,
+      "summary": "Wire budget checks passed: 66",
+      "passed": true
+    },
+    {
+      "name": "budget-webkit",
+      "exit": 0,
+      "elapsedMs": 41962,
+      "summary": "Wire budget checks passed: 65",
+      "passed": true
+    },
+    {
+      "name": "budget-chrome",
+      "exit": 0,
+      "elapsedMs": 35642,
+      "summary": "Wire budget checks passed: 66",
+      "passed": true
+    },
+    {
+      "name": "budget-msedge",
+      "exit": 0,
+      "elapsedMs": 35705,
+      "summary": "Wire budget checks passed: 66",
+      "passed": true
+    },
+    {
+      "name": "wiring",
+      "exit": 0,
+      "elapsedMs": 21428,
+      "summary": "Wiring help checks passed: 52",
+      "passed": true
+    },
+    {
+      "name": "forgiving-chromium",
+      "exit": 0,
+      "elapsedMs": 19695,
+      "summary": "Forgiving wiring checks passed: 81",
+      "passed": true
+    },
+    {
+      "name": "forgiving-webkit",
+      "exit": 0,
+      "elapsedMs": 30148,
+      "summary": "Forgiving wiring checks passed: 79",
+      "passed": true
+    },
+    {
+      "name": "guide",
+      "exit": 0,
+      "elapsedMs": 24826,
+      "summary": "Tutorial variant checks passed: 19",
+      "passed": true
+    },
+    {
+      "name": "rotation",
+      "exit": 0,
+      "elapsedMs": 21859,
+      "summary": "Mobile rotation checks passed: 74",
+      "passed": true
+    },
+    {
+      "name": "clear",
+      "exit": 0,
+      "elapsedMs": 39051,
+      "summary": "Clear/readability checks passed: 48",
+      "passed": true
+    },
+    {
+      "name": "names",
+      "exit": 0,
+      "elapsedMs": 15652,
+      "summary": "Prism name checks passed: 42",
+      "passed": true
+    },
+    {
+      "name": "delete-chromium",
+      "exit": 0,
+      "elapsedMs": 18224,
+      "summary": "Delete button checks passed: 15",
+      "passed": true
+    },
+    {
+      "name": "delete-webkit",
+      "exit": 0,
+      "elapsedMs": 14240,
+      "summary": "Delete button checks passed: 12",
+      "passed": true
+    },
+    {
+      "name": "failure",
+      "exit": 0,
+      "elapsedMs": 73405,
+      "summary": "Failure notice checks passed: 46",
+      "passed": true
+    },
+    {
+      "name": "names-webkit",
+      "exit": 0,
+      "elapsedMs": 28798,
+      "summary": "Prism name checks passed: 42",
+      "passed": true
+    },
+    {
+      "name": "guide-webkit",
+      "exit": 0,
+      "elapsedMs": 31279,
+      "summary": "Tutorial variant checks passed: 19",
+      "passed": true
+    }
+  ],
+  "unit": {
+    "command": "npm.cmd test",
+    "files": 20,
+    "tests": 162,
+    "exit": 0,
+    "evidence": "Completed unified command session 32951, all four batches exited successfully."
+  },
+  "syntax": {
+    "files": 64,
+    "exit": 0
+  },
+  "build": {
+    "assets": 53
+  },
+  "evidence": "PC browsers and emulated screens/orientation/fonts. Physical devices, hand occlusion and listening remain unverified."
+}

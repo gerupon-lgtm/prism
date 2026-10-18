@@ -8,7 +8,7 @@ if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),channel=arg('--channel'),root=path.resolve(__dirname,'../dist');
 if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use chrome or msedge');
-const out=path.join(__dirname,'クリアと読みやすさ',arg('--url')?'public':channel||'');fs.mkdirSync(out,{recursive:true});
+const out=arg('--out-dir')?path.resolve(arg('--out-dir')):path.join(__dirname,'クリアと読みやすさ',arg('--url')?'public':channel||'');fs.mkdirSync(out,{recursive:true});
 const reportFile=path.join(out,'report.json');
 if(fs.existsSync(reportFile)&&JSON.parse(fs.readFileSync(reportFile)).passed===false)fs.copyFileSync(reportFile,path.join(out,'failed-'+Date.now()+'.json'),fs.constants.COPYFILE_EXCL);
 const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,evidence:'PC disposable browsers, synthetic Screen Orientation and CSS 28px text. Visual geometry and application state; not physical device or acoustic evidence.',checks:[],browsers:[]};

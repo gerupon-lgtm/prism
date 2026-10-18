@@ -6,7 +6,7 @@ const arg=name=>{const at=process.argv.indexOf(name);return at<0?null:process.ar
 if(!arg('--url')||!arg('--playwright-path'))throw new Error('Pass --url and --playwright-path');
 const base=new URL(arg('--url'));assert.equal(base.protocol,'https:');
 process.env.PLAYWRIGHT_BROWSERS_PATH=arg('--browser-cache')||'C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=path.join(__dirname,'公開',base.hostname);fs.mkdirSync(out,{recursive:true});
+const pw=require(path.resolve(arg('--playwright-path'))),root=path.resolve(__dirname,'..'),out=arg('--out-dir')?path.resolve(arg('--out-dir')):path.join(__dirname,'公開',base.hostname);fs.mkdirSync(out,{recursive:true});
 const expected=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
 const report={version:expected,url:base.href,checkedAt:new Date().toISOString(),evidence:'Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.',checks:[]};
 async function get(asset){const response=await fetch(new URL(asset,base),{cache:'no-store',signal:AbortSignal.timeout(15000)});assert(response.ok,`${asset}: HTTP ${response.status}`);return response;}

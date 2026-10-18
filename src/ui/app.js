@@ -214,7 +214,13 @@ function render(redraw=true,{records=true}={}) {
   // The play screen needs the current state, not duplicate score/particle text.
   const active=run&&run.status!=='stopped'&&!run.exhausted;
   const summary=session.pendingScores.size&&!active?'成績未保存':message?'状況を確認':startBlockedReason?'点をつないでください':['load','error'].includes(run?.pauseReason)?'一時停止：状況を確認':active?(textEnlarged?execution:`${execution} · ${run.format()}秒`):session.result?'結果を見る':'';
-  setText('result-summary',summary);$('result-info').hidden=!summary||Boolean(session.guide);
+  $('result-info').hidden=!summary||Boolean(session.guide);
+  if(active&&!message&&!['load','error'].includes(run.pauseReason)){
+    const host=$('result-summary');let time=host.querySelector('.elapsed'),state=host.querySelector('.execution');
+    if(!time||!state){time=element('span','',{class:'elapsed'});state=element('span','',{class:'execution'});host.replaceChildren(time,state);}
+    if(time.textContent!==`${run.format()}秒`)time.textContent=`${run.format()}秒`;
+    if(state.textContent!==` ｜ ${execution}`)state.textContent=` ｜ ${execution}`;
+  }else setText('result-summary',summary);
   $('result-info').classList.toggle('error',Boolean(message));
   if(desktop.active){
     setText('desktop-time',`${run?.format()??'0'}秒`);
@@ -234,8 +240,7 @@ function render(redraw=true,{records=true}={}) {
   }
   const guide=session.guide;
   tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideCopy?.targets??[]});
-  const noticeHost=guide&&!tutorialGuide.collapsed?$('guide-bar').querySelector('.guide-content'):$('result-line').querySelector('.result-content');
-  if($('wire-limit-notice').parentElement!==noticeHost){wireLimitNotice.hide();noticeHost.append($('wire-limit-notice'));}
+  wireLimitNotice.update({active:session.mode==='challenge'&&session.editable&&!startPrelude&&!guide&&!session.pendingScores.size&&session.circuit.edges.length>=session.challenge.limit,limit:session.challenge?.limit});
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.
   if(redraw)board.render();else board.particles();tutorialGuide.highlight();

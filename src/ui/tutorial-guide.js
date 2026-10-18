@@ -19,7 +19,7 @@ export class TutorialGuide {
     const enlarged=parseFloat(getComputedStyle(root).fontSize)>=20;
     this.collapsed=Boolean(guide&&(compact||rotated&&innerHeight<=360||enlarged&&(rotated||innerHeight<700)));
     this.status?.classList.toggle('tutorial-status',Boolean(guide));
-    if(this.status)this.status.hidden=Boolean(guide&&!this.collapsed);
+    if(this.status)this.status.hidden=false;
     this.card.hidden=!guide||this.collapsed;
     // Reading a dialog must not resize the circuit behind it.
     this.card.style.visibility=hidden?'hidden':'';

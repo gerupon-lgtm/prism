@@ -6,7 +6,7 @@ if(!arg('--playwright-path'))throw new Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),channel=arg('--channel');
 if(channel&&!['chrome','msedge'].includes(channel))throw new Error('Use chrome or msedge');
-const root=path.resolve(__dirname,'../dist'),out=path.join(__dirname,'結線補助',arg('--url')?'public':channel||'');
+const root=path.resolve(__dirname,'../dist'),out=arg('--out-dir')?path.resolve(arg('--out-dir')):path.join(__dirname,'結線補助',arg('--url')?'public':channel||'');
 fs.mkdirSync(out,{recursive:true});
 const reportFile=path.join(out,'report.json');
 if(fs.existsSync(reportFile)&&JSON.parse(fs.readFileSync(reportFile)).passed===false)fs.copyFileSync(reportFile,path.join(out,'failed-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json'),fs.constants.COPYFILE_EXCL);

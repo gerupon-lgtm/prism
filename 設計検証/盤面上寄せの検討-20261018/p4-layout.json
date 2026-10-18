@@ -1,0 +1,81 @@
+{
+  "version": "0.59.0-P4",
+  "proposalOnly": true,
+  "sourceModified": false,
+  "viewport": {
+    "width": 412,
+    "height": 844
+  },
+  "evidence": "Static Chromium screenshots, using existing app graphics and circuit geometry. Gestures, audio, small screens, and physical devices are not validated.",
+  "states": [
+    {
+      "state": "editing",
+      "bar": {
+        "x": 7,
+        "y": 717,
+        "width": 398,
+        "height": 44
+      },
+      "board": {
+        "x": 8,
+        "y": 192.125,
+        "width": 396,
+        "height": 518.875
+      },
+      "play": {
+        "x": 7,
+        "y": 766,
+        "width": 398,
+        "height": 56
+      },
+      "scroll": false,
+      "notice": "起点から候補をなぞって結線"
+    },
+    {
+      "state": "limit",
+      "bar": {
+        "x": 7,
+        "y": 717,
+        "width": 398,
+        "height": 44
+      },
+      "board": {
+        "x": 8,
+        "y": 192.125,
+        "width": 396,
+        "height": 518.875
+      },
+      "play": {
+        "x": 7,
+        "y": 766,
+        "width": 398,
+        "height": 56
+      },
+      "scroll": false,
+      "notice": "残り0本\n追加するには、線を長押しして削除"
+    },
+    {
+      "state": "running",
+      "bar": {
+        "x": 7,
+        "y": 717,
+        "width": 398,
+        "height": 44
+      },
+      "board": {
+        "x": 8,
+        "y": 192.125,
+        "width": 396,
+        "height": 518.875
+      },
+      "play": {
+        "x": 7,
+        "y": 766,
+        "width": 398,
+        "height": 56
+      },
+      "scroll": false,
+      "notice": "1.2秒\n｜\n実行中"
+    }
+  ]
+}
