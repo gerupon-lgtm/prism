@@ -1,7 +1,7 @@
 // Isolated WAV audition. Production voices and game assets are read, never edited.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
-const root=path.resolve(__dirname,'..'),revisionAt=process.argv.indexOf('--revision'),revision=revisionAt<0?'0.2.0':process.argv[revisionAt+1],rate=48000,lead=.2,tail=.35;
-assert(['0.1.0','0.2.0'].includes(revision),'Unknown audition revision');
+const root=path.resolve(__dirname,'..'),revisionAt=process.argv.indexOf('--revision'),revision=revisionAt<0?'0.3.0':process.argv[revisionAt+1],rate=48000,lead=.2,tail=.35;
+assert(['0.1.0','0.2.0','0.3.0'].includes(revision),'Unknown audition revision');
 const out=path.join(__dirname,'鐘の音程試作-20261018',...(revision==='0.1.0'?[]:['v'+revision]));
 const at=process.argv.indexOf('--playwright-path');if(at<0)throw Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
@@ -14,10 +14,17 @@ const samples=revision==='0.1.0'?[
  {id:'D1',name:'ドアチャイム風',file:'D1-door-chime.wav',description:'ミ → ド。2つの鐘へ0.5秒差で到達するイメージ。',notes:[{name:'E5',midi:76,at:0},{name:'C5',midi:72,at:.5}]},
  {id:'H1',name:'3和音：短い時間差',file:'H1-major-triad-staggered.wav',description:'ド → ミ → ソを0.12秒ずつずらし、余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'E5',midi:76,at:.12},{name:'G5',midi:79,at:.24}]},
  {id:'H2',name:'3和音：同時（比較用）',file:'H2-major-triad-together.wav',description:'同じド・ミ・ソを同時に鳴らします。',notes:[{name:'C5',midi:72,at:0},{name:'E5',midi:76,at:0},{name:'G5',midi:79,at:0}]},
-]:[
+]:revision==='0.2.0'?[
  {id:'D2',name:'ドアチャイム：1オクターブ上',file:'D2-door-chime-octave-up.wav',description:'前回のミ → ドを1オクターブ上へ。間隔は0.5秒のまま。',notes:[{name:'E6',midi:88,at:0},{name:'C6',midi:84,at:.5}]},
  {id:'H3',name:'ド → ソ → 上のド',file:'H3-C5-G5-C6.wav',description:'C5 → G5 → C6。0.25秒ずつずらして余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'G5',midi:79,at:.25},{name:'C6',midi:84,at:.5}]},
  {id:'H4',name:'ド → ファ → ラ',file:'H4-C5-F5-A5.wav',description:'C5 → F5 → A5。0.25秒ずつずらして余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'F5',midi:77,at:.25},{name:'A5',midi:81,at:.5}]},
+]:[
+ {id:'H3a',name:'ド → ソ → 上のド：1秒間隔',file:'H3a-C5-G5-C6-1sec.wav',description:'C5 → G5 → C6。1秒ずつ間隔を空けます。',notes:[{name:'C5',midi:72,at:0},{name:'G5',midi:79,at:1},{name:'C6',midi:84,at:2}]},
+ {id:'H3b',name:'上のド → ソ → ド：1秒間隔',file:'H3b-C6-G5-C5-1sec.wav',description:'C6 → G5 → C5。H3aを高い音から逆順に鳴らします。',notes:[{name:'C6',midi:84,at:0},{name:'G5',midi:79,at:1},{name:'C5',midi:72,at:2}]},
+ {id:'H3c',name:'H3aの1オクターブ上',file:'H3c-C6-G6-C7-1sec.wav',description:'C6 → G6 → C7。1秒間隔の上行を1オクターブ上へ。',notes:[{name:'C6',midi:84,at:0},{name:'G6',midi:91,at:1},{name:'C7',midi:96,at:2}]},
+ {id:'H3d',name:'H3bの1オクターブ上',file:'H3d-C7-G6-C6-1sec.wav',description:'C7 → G6 → C6。1秒間隔の下行を1オクターブ上へ。',notes:[{name:'C7',midi:96,at:0},{name:'G6',midi:91,at:1},{name:'C6',midi:84,at:2}]},
+ {id:'H4a',name:'ド → ファ → ラ：0.5秒間隔',file:'H4a-C5-F5-A5-halfsec.wav',description:'C5 → F5 → A5。0.5秒ずつ間隔を空けます。',notes:[{name:'C5',midi:72,at:0},{name:'F5',midi:77,at:.5},{name:'A5',midi:81,at:1}]},
+ {id:'H4b',name:'H4aの1オクターブ上',file:'H4b-C6-F6-A6-halfsec.wav',description:'C6 → F6 → A6。0.5秒間隔を保ち1オクターブ上へ。',notes:[{name:'C6',midi:84,at:0},{name:'F6',midi:89,at:.5},{name:'A6',midi:93,at:1}]},
 ];
 for(const item of samples){item.seconds=lead+Math.max(...item.notes.map(n=>n.at))+2.62+tail;for(const note of item.notes)note.frequencyHz=440*2**((note.midi-69)/12);}
 const report={revision,appVersion:JSON.parse(fs.readFileSync(path.join(root,'package.json'))).version,checkedAt:new Date().toISOString(),passed:false,protectedFiles:before,samples:[],browsers:[],checks:[],pending:['Human listening and physical-device playback. These are audition files, not adopted game sounds.']};
@@ -27,6 +34,15 @@ if(revision==='0.2.0'){
  assert.deepEqual(samples[0].notes.map((n,i)=>n.midi-door.notes[i].midi),[12,12]);assert.deepEqual(samples[0].notes.map(n=>n.at),door.notes.map(n=>n.at));
  assert.deepEqual(samples[1].notes.map(n=>n.midi),[72,79,84]);assert.deepEqual(samples[2].notes.map(n=>n.midi),[72,77,81]);for(const item of samples.slice(1))assert.deepEqual(item.notes.map(n=>n.at),[0,.25,.5]);
  check('Requested octave-up, unchanged door timing and both 0.25-second voicings match the user request');
+}
+if(revision==='0.3.0'){
+ const previous=JSON.parse(fs.readFileSync(path.join(__dirname,'鐘の音程試作-20261018/v0.2.0/verification.json')));assert.equal(before['src/ui/voices.js'],previous.protectedFiles['src/ui/voices.js']);
+ for(const old of previous.samples)assert.equal(sha(fs.readFileSync(path.join(__dirname,'鐘の音程試作-20261018/v0.2.0',old.file))),old.sha256);
+ const h3=previous.samples.find(s=>s.id==='H3'),h4=previous.samples.find(s=>s.id==='H4');
+ assert.deepEqual(samples[0].notes.map(n=>n.midi),h3.notes.map(n=>n.midi));assert.deepEqual(samples[1].notes.map(n=>n.midi),h3.notes.map(n=>n.midi).reverse());assert.deepEqual(samples[4].notes.map(n=>n.midi),h4.notes.map(n=>n.midi));
+ for(const [higher,lower] of [[2,0],[3,1],[5,4]])assert.deepEqual(samples[higher].notes.map((n,i)=>n.midi-samples[lower].notes[i].midi),[12,12,12]);
+ for(const item of samples.slice(0,4))assert.deepEqual(item.notes.map(n=>n.at),[0,1,2]);for(const item of samples.slice(4))assert.deepEqual(item.notes.map(n=>n.at),[0,.5,1]);
+ check('Requested H3 ascent/descent at 1 second, H4 at 0.5 second and all octave-up comparisons match; previous WAVs retained');
 }
 const mime={'.html':'text/html; charset=utf-8','.wav':'audio/wav','.js':'text/javascript; charset=utf-8','.json':'application/json'};
 const server=http.createServer((req,res)=>{try{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(name==='/render'){res.setHeader('Content-Type','text/html');res.end('<!doctype html><meta charset="utf-8"><title>Bell audition renderer</title>');return;}let f=path.resolve(root,'.'+name);if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
@@ -51,11 +67,11 @@ ${samples.map(item=>`<article><h2>${item.id}　${item.name}</h2><p>${item.descri
   },{source,samples,rate,lead});
   assert.equal(data.referenceDifference,0);check('Untransposed audition exactly matches the production bell signal',{maxDifference:data.referenceDifference});
   for(const item of samples){const row=data.rows.find(r=>r.id===item.id);assert(row.finite&&row.peak>.01&&row.peak<.98,item.id+' finite audible unclipped PCM');assert.equal(row.tailPeak,0);assert.equal(row.active,0);assert.deepEqual(row.pitches,item.notes.map(n=>n.frequencyHz));const bytes=wav(row.pcm),file=path.join(out,item.file);fs.writeFileSync(file,bytes);assert.equal(bytes.length,44+Math.ceil(item.seconds*rate)*2);assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.equal(bytes.readUInt32LE(24),rate);assert.equal(bytes.readUInt32LE(40),bytes.length-44);const quantized=bytes.subarray(44);let integerPeak=0;for(let i=0;i<quantized.length;i+=2)integerPeak=Math.max(integerPeak,Math.abs(quantized.readInt16LE(i)));assert(integerPeak<32767);const {pcm,...metrics}=row;report.samples.push({...item,seconds:(bytes.length-44)/(rate*2),metrics,bytes:bytes.length,sha256:sha(bytes)});check(item.id+' WAV has requested notes, intact tail and no clipping',{peak:row.peak,seconds:item.seconds,integerPeak});}
-  assert.equal(new Set(report.samples.map(s=>s.sha256)).size,samples.length);check('All three WAVs differ');await browser.close();browser=null;
+  assert.equal(new Set(report.samples.map(s=>s.sha256)).size,samples.length);check('All '+samples.length+' WAVs differ');await browser.close();browser=null;
   fs.writeFileSync(path.join(out,'index.html'),preview());
   for(const target of [{engine:'chromium',channel:'chrome'},{engine:'chromium',channel:'msedge'},{engine:'webkit'}]){
-   browser=await pw[target.engine].launch({headless:true,...(target.channel?{channel:target.channel}:{})});const name=target.channel||target.engine,p=await browser.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/'+path.relative(root,out).split(path.sep).join('/')+'/');assert.equal(await p.locator('audio').count(),3);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)||a.error),null,{timeout:15000});
-   const media=await p.locator('audio').evaluateAll(as=>as.map(a=>({seconds:a.duration,error:a.error?.code})));if(media.every(a=>Number.isFinite(a.seconds)&&!a.error)){for(let i=0;i<3;i++)assert(Math.abs(media[i].seconds-samples[i].seconds)<.001);const playing=await p.evaluate(async()=>{const [a,b]=document.querySelectorAll('audio');await a.play();await b.play();return {firstPaused:a.paused,firstTime:a.currentTime,secondPaused:b.paused};});assert(playing.firstPaused&&playing.firstTime===0&&!playing.secondPaused);check(name+' native WAV playback, duration and exclusive switching',{media});}else if(target.engine==='webkit'){report.pending.push({browser:name,reason:'Native WAV decoding unavailable in this Windows WebKit build; physical Safari playback pending.',media});}else throw Error(name+' WAV playback failed');
+   browser=await pw[target.engine].launch({headless:true,...(target.channel?{channel:target.channel}:{})});const name=target.channel||target.engine,p=await browser.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/'+path.relative(root,out).split(path.sep).join('/')+'/');assert.equal(await p.locator('audio').count(),samples.length);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)||a.error),null,{timeout:15000});
+   const media=await p.locator('audio').evaluateAll(as=>as.map(a=>({seconds:a.duration,error:a.error?.code})));if(media.every(a=>Number.isFinite(a.seconds)&&!a.error)){for(let i=0;i<samples.length;i++)assert(Math.abs(media[i].seconds-samples[i].seconds)<.001);const playing=await p.evaluate(async()=>{const [a,b]=document.querySelectorAll('audio');await a.play();await b.play();return {firstPaused:a.paused,firstTime:a.currentTime,secondPaused:b.paused};});assert(playing.firstPaused&&playing.firstTime===0&&!playing.secondPaused);check(name+' native WAV playback, duration and exclusive switching',{media});}else if(target.engine==='webkit'){report.pending.push({browser:name,reason:'Native WAV decoding unavailable in this Windows WebKit build; physical Safari playback pending.',media});}else throw Error(name+' WAV playback failed');
    for(const width of [320,390,844]){await p.setViewportSize({width,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}check(name+' preview fits narrow and wide screens');
    if(name==='chrome'){await p.goto(pathToFileURL(path.join(out,'index.html')).href);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)));await p.locator('audio').first().evaluate(a=>a.play());assert.equal(await p.locator('audio').first().evaluate(a=>a.paused),false);await p.screenshot({path:path.join(out,'preview-phone.png'),fullPage:true});check('Extracted local-file preview plays without a server');}
    assert.deepEqual(errors,[]);report.browsers.push({name,version:browser.version()});await browser.close();browser=null;

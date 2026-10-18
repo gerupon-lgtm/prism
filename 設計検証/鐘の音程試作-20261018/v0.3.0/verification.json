@@ -1,0 +1,437 @@
+{
+  "revision": "0.3.0",
+  "appVersion": "0.63.0",
+  "checkedAt": "2026-10-18T13:02:54.935Z",
+  "passed": true,
+  "protectedFiles": {
+    "src/ui/voices.js": "5eef4512dc86e285d73a371678f2a135e7a3e62e3558ac7686ad4c7a55edba82",
+    "src/ui/audio.js": "f28b5e22d8df8f81f0f3e2ba993d22737e33c8ffb197adda3f8c56f8fba21a86",
+    "src/ui/app.js": "02b8ce1c1f98e633e6484dd59774d16c4d9ce1706dd486c140bc271d5b3b0381",
+    "package.json": "ee7c119ea7abbed4b34cc48a462a65182e17a90bfed60664775a072bc1c45767",
+    "index.html": "915cd2f3606701c78f718cb96ad4b2d4c520d5acc820d7d4237f9e1d395bb901"
+  },
+  "samples": [
+    {
+      "id": "H3a",
+      "name": "ド → ソ → 上のド：1秒間隔",
+      "file": "H3a-C5-G5-C6-1sec.wav",
+      "description": "C5 → G5 → C6。1秒ずつ間隔を空けます。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "G5",
+          "midi": 79,
+          "at": 1,
+          "frequencyHz": 783.9908719634985
+        },
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 2,
+          "frequencyHz": 1046.5022612023945
+        }
+      ],
+      "seconds": 5.17,
+      "metrics": {
+        "id": "H3a",
+        "peak": 0.2858637571334839,
+        "rms": 0.04437817862547042,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          783.9908719634985,
+          1046.5022612023945
+        ]
+      },
+      "bytes": 496364,
+      "sha256": "6d8d5c43d5c556787a5f0bc48551ea6d976c544b605484e0d69ab4c3516610d4"
+    },
+    {
+      "id": "H3b",
+      "name": "上のド → ソ → ド：1秒間隔",
+      "file": "H3b-C6-G5-C5-1sec.wav",
+      "description": "C6 → G5 → C5。H3aを高い音から逆順に鳴らします。",
+      "notes": [
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 0,
+          "frequencyHz": 1046.5022612023945
+        },
+        {
+          "name": "G5",
+          "midi": 79,
+          "at": 1,
+          "frequencyHz": 783.9908719634985
+        },
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 2,
+          "frequencyHz": 523.2511306011972
+        }
+      ],
+      "seconds": 5.17,
+      "metrics": {
+        "id": "H3b",
+        "peak": 0.283358633518219,
+        "rms": 0.044392643834237244,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          1046.5022612023945,
+          783.9908719634985,
+          523.2511306011972
+        ]
+      },
+      "bytes": 496364,
+      "sha256": "ebc2a30193cdc467debfceef90a88bb6f3e1854c7c3fa78275a38c0185e5fa7b"
+    },
+    {
+      "id": "H3c",
+      "name": "H3aの1オクターブ上",
+      "file": "H3c-C6-G6-C7-1sec.wav",
+      "description": "C6 → G6 → C7。1秒間隔の上行を1オクターブ上へ。",
+      "notes": [
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 0,
+          "frequencyHz": 1046.5022612023945
+        },
+        {
+          "name": "G6",
+          "midi": 91,
+          "at": 1,
+          "frequencyHz": 1567.981743926997
+        },
+        {
+          "name": "C7",
+          "midi": 96,
+          "at": 2,
+          "frequencyHz": 2093.004522404789
+        }
+      ],
+      "seconds": 5.17,
+      "metrics": {
+        "id": "H3c",
+        "peak": 0.2847314774990082,
+        "rms": 0.04439452651780131,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          1046.5022612023945,
+          1567.981743926997,
+          2093.004522404789
+        ]
+      },
+      "bytes": 496364,
+      "sha256": "855ac81bf22cc60db12eb1ca7f7327a39edcbbe7bac513fc2904fd2eb3f5e014"
+    },
+    {
+      "id": "H3d",
+      "name": "H3bの1オクターブ上",
+      "file": "H3d-C7-G6-C6-1sec.wav",
+      "description": "C7 → G6 → C6。1秒間隔の下行を1オクターブ上へ。",
+      "notes": [
+        {
+          "name": "C7",
+          "midi": 96,
+          "at": 0,
+          "frequencyHz": 2093.004522404789
+        },
+        {
+          "name": "G6",
+          "midi": 91,
+          "at": 1,
+          "frequencyHz": 1567.981743926997
+        },
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 2,
+          "frequencyHz": 1046.5022612023945
+        }
+      ],
+      "seconds": 5.17,
+      "metrics": {
+        "id": "H3d",
+        "peak": 0.2846541106700897,
+        "rms": 0.044383444222536705,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          2093.004522404789,
+          1567.981743926997,
+          1046.5022612023945
+        ]
+      },
+      "bytes": 496364,
+      "sha256": "88e0c695ea5fbb62c66791dcb3e0b53f11b5a164453bda2f82177432d822a44c"
+    },
+    {
+      "id": "H4a",
+      "name": "ド → ファ → ラ：0.5秒間隔",
+      "file": "H4a-C5-F5-A5-halfsec.wav",
+      "description": "C5 → F5 → A5。0.5秒ずつ間隔を空けます。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "F5",
+          "midi": 77,
+          "at": 0.5,
+          "frequencyHz": 698.4564628660078
+        },
+        {
+          "name": "A5",
+          "midi": 81,
+          "at": 1,
+          "frequencyHz": 880
+        }
+      ],
+      "seconds": 4.17,
+      "metrics": {
+        "id": "H4a",
+        "peak": 0.31316694617271423,
+        "rms": 0.048949569174052375,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          698.4564628660078,
+          880
+        ]
+      },
+      "bytes": 400364,
+      "sha256": "a9a1f7f7c0d3e16d099eb1122df47b082ecc67ae6694b9fbf111ba66deb50ba2"
+    },
+    {
+      "id": "H4b",
+      "name": "H4aの1オクターブ上",
+      "file": "H4b-C6-F6-A6-halfsec.wav",
+      "description": "C6 → F6 → A6。0.5秒間隔を保ち1オクターブ上へ。",
+      "notes": [
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 0,
+          "frequencyHz": 1046.5022612023945
+        },
+        {
+          "name": "F6",
+          "midi": 89,
+          "at": 0.5,
+          "frequencyHz": 1396.9129257320155
+        },
+        {
+          "name": "A6",
+          "midi": 93,
+          "at": 1,
+          "frequencyHz": 1760
+        }
+      ],
+      "seconds": 4.17,
+      "metrics": {
+        "id": "H4b",
+        "peak": 0.31698957085609436,
+        "rms": 0.0488901121944888,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          1046.5022612023945,
+          1396.9129257320155,
+          1760
+        ]
+      },
+      "bytes": 400364,
+      "sha256": "955ffcc8f3fbda39a46e0755106dbd4df9cffd547222678d7b9e6da9eeb08e0e"
+    }
+  ],
+  "browsers": [
+    {
+      "name": "chrome",
+      "version": "155.0.8059.84"
+    },
+    {
+      "name": "msedge",
+      "version": "155.0.4283.45"
+    },
+    {
+      "name": "webkit",
+      "version": "26.5"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Requested H3 ascent/descent at 1 second, H4 at 0.5 second and all octave-up comparisons match; previous WAVs retained",
+      "passed": true
+    },
+    {
+      "name": "Untransposed audition exactly matches the production bell signal",
+      "passed": true,
+      "maxDifference": 0
+    },
+    {
+      "name": "H3a WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.2858637571334839,
+      "seconds": 5.17,
+      "integerPeak": 9367
+    },
+    {
+      "name": "H3b WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.283358633518219,
+      "seconds": 5.17,
+      "integerPeak": 9285
+    },
+    {
+      "name": "H3c WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.2847314774990082,
+      "seconds": 5.17,
+      "integerPeak": 9330
+    },
+    {
+      "name": "H3d WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.2846541106700897,
+      "seconds": 5.17,
+      "integerPeak": 9327
+    },
+    {
+      "name": "H4a WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.31316694617271423,
+      "seconds": 4.17,
+      "integerPeak": 10262
+    },
+    {
+      "name": "H4b WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.31698957085609436,
+      "seconds": 4.17,
+      "integerPeak": 10387
+    },
+    {
+      "name": "All 6 WAVs differ",
+      "passed": true
+    },
+    {
+      "name": "chrome native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 4.17
+        },
+        {
+          "seconds": 4.17
+        }
+      ]
+    },
+    {
+      "name": "chrome preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Extracted local-file preview plays without a server",
+      "passed": true
+    },
+    {
+      "name": "msedge native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 4.17
+        },
+        {
+          "seconds": 4.17
+        }
+      ]
+    },
+    {
+      "name": "msedge preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "webkit native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 5.17
+        },
+        {
+          "seconds": 4.17
+        },
+        {
+          "seconds": 4.17
+        }
+      ]
+    },
+    {
+      "name": "webkit preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Production audio, UI and app version remain unchanged",
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Human listening and physical-device playback. These are audition files, not adopted game sounds."
+  ],
+  "renderer": {
+    "channel": "chrome",
+    "version": "155.0.8059.84"
+  }
+}
