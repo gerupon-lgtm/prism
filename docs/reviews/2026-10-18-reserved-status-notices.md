@@ -27,7 +27,7 @@ check_clear_readability.cjsは、短い通知になった場合に既存の「�
 
 未達成通知の検査は、ランダム化前の固定秒数ではなく、現在の出題で書き出した実記録と表示される全時刻・間隔を照合する。5回の到達、足りない3回目、旧成績・保存回路・全記録の保持を検査し、満点の確認には出題別の検査済み解を使う。鐘の周りを避ける領域は、実際に表示されるSVG盤面内で保護し、描画されない盤面の外側まで通知禁止領域を広げない。
 
-ローカル検証済み、公開確認待ち。証拠は設計検証/盤面外の通知/0.58.0/。PCブラウザの模擬とスマホ実機の視認性・指操作を区別し、Android Chrome・iPhone Safari・macOS/iPadを含む実機確認の対象は保持する。今回の実機確認は未実施。
+両URLで公開確認済み。証拠は設計検証/盤面外の通知/0.58.0/。PCブラウザの模擬とスマホ実機の視認性・指操作を区別し、Android Chrome・iPhone Safari・macOS/iPadを含む実機確認の対象は保持する。今回の実機確認は未実施。
 
 ## ローカル結果
 
@@ -46,3 +46,16 @@ check_clear_readability.cjsは、短い通知になった場合に既存の「�
 - rotation-regression：74項目合格。
 - failure-regression：46項目合格。
 - 全20テストファイル・161項目、構文64ファイル、53資材の生成が合格。
+
+## 公開確認
+
+ソース 0e5f311cf670f2dfddfbf477cdf2c4335d67253d。[GitHub Pages](https://github.com/gerupon-lgtm/prism/actions/runs/39093824763)とCloudflareの配信 343a2bb6-69de-4b4f-bab4-419d2ee0d2f7 が成功した。Cloudflareは同じコミットの配信が存在しないことを確認してからmainを指定して開始した。
+
+- cloudflare-public：66項目合格。
+- cloudflare-budget：66項目合格。
+- cloudflare-status：33項目合格。
+- github-public：66項目合格。
+- github-budget：66項目合格。
+- github-status：33項目合格。
+
+両URLのHTTPS・版・コミット・全資材の形式とSHA-256、更新確認・結線・採点・保存・書出し・通信なし再起動と、盤面外の0本通知・一時停止・結果への導線を確認した。スマホ等の実機の今回の見え方・指操作は未確認。
