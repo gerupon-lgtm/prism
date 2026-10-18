@@ -181,6 +181,49 @@ html:not(.desktop-layout) .challenge-score{grid-column:1;flex-direction:row;alig
 html:not(.desktop-layout) .challenge-score small{font-size:.857143rem}
 html:not(.desktop-layout) .challenge-score strong{font-size:1rem}
 
+/* One reserved information strip above the field replaces the lower status row.
+   Messages replace this strip's contents; they never resize or cover the field. */
+#result-line{height:40px;min-height:0;margin:0;position:relative}
+.result-content{position:relative;width:100%;height:100%;align-items:center;gap:6px}
+#result-info,#hint{flex:1;min-width:0;min-height:38px;padding:2px 6px;text-align:left;font-size:1rem;line-height:1.2;background:transparent;border-color:transparent;white-space:nowrap;overflow-wrap:anywhere}
+#result-info:not([hidden])~#hint{display:none}
+#result-line:has(#wire-limit-notice:not([hidden])) #result-info,#result-line:has(#wire-limit-notice:not([hidden])) #hint,#result-line:has(#wire-limit-notice:not([hidden])) #retry-result{visibility:hidden}
+#result-info.error{color:#ffc1af}
+/* Full details stay available to announcements and the existing results button. */
+#result{position:absolute!important;clip-path:inset(50%);width:1px!important;height:1px!important;min-height:0!important;overflow:hidden;white-space:nowrap!important;padding:0;border:0}
+#result-summary{display:block;max-height:2.8em;overflow:hidden}
+#result-info,#hint{max-height:100%;overflow:hidden}
+.footer-content{justify-content:flex-end}
+.compact #result-line{height:40px}
+.compact #wire-limit-notice span{display:none}
+html:not(.device-landscape) #app:is(.compact,.text-enlarged) #play-controls button{flex:0 0 auto;min-width:max-content;padding:2px;white-space:nowrap}
+html:not(.device-landscape) #app:is(.compact,.text-enlarged) #play-controls #play{flex:1 0 auto}
+html:not(.device-landscape) #app.compact .header-actions button,html:not(.device-landscape) #app.compact .header-actions #update-notice{height:40px;min-height:40px;padding:2px 4px;line-height:1.2;white-space:nowrap}
+html:not(.device-landscape) #app.compact .header-content{grid-template-columns:44px minmax(0,1fr) auto}
+html:not(.device-landscape) #app.text-enlarged.compact #stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+html:not(.device-landscape) #app.text-enlarged.compact #board{grid-column:1;grid-row:1}
+html:not(.device-landscape) #app.text-enlarged.compact #stage-controls button{font-size:max(14px,.714286rem);min-height:40px}
+#result-line.tutorial-status{height:40px}
+.tutorial-status #wire-limit-notice span{display:none}
+.text-enlarged #wire-limit-notice span{display:none}
+.guide-content:has(#wire-limit-notice:not([hidden]))>:not(#wire-limit-notice){visibility:hidden}
+.device-landscape #result-line,.device-landscape .compact #result-line,.device-landscape .text-enlarged #result-line{height:70px}
+.device-landscape header:has(#update-notice:not([hidden])){min-height:104px}
+.device-landscape header:has(#update-notice:not([hidden])) .header-content{min-width:104px}
+.device-landscape .text-enlarged header:has(#update-notice:not([hidden])){min-height:120px}
+.device-landscape .text-enlarged header:has(#update-notice:not([hidden])) .header-content{min-width:120px}
+.device-landscape .result-content{justify-content:center}
+.device-landscape #wire-limit-notice{font-size:max(14px,.857143rem);flex-direction:column;justify-content:center;white-space:normal}
+.device-landscape #result-info,.device-landscape #hint{flex:none;max-height:100%;overflow:hidden;white-space:normal}
+.device-landscape footer{height:28px}
+.device-landscape .footer-content{justify-content:center}
+html.desktop-layout #result-line{height:64px;min-height:64px;padding:0;margin:8px 0 10px}
+html.desktop-layout #result-info,html.desktop-layout #hint{font-size:16px}
+html.desktop-layout #wire-limit-notice{font-size:16px}
+html.desktop-layout #desktop-runtime{margin-top:0;padding-top:0}
+html.desktop-layout #desktop-metrics{margin-top:auto}
+html.desktop-layout .desktop-guidance{display:none}
+
 @media(pointer:coarse){
   html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions{gap:6px}
   html:not(.desktop-layout) #app:not(.text-enlarged) .header-actions button{min-height:40px;height:40px;padding:6px 10px;white-space:nowrap}

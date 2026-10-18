@@ -1,0 +1,157 @@
+{
+  "version": "0.58.0",
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "syntax",
+      "signature": "a457b1e740b7aebf58917f7c9d6fa341b10f1386bc7c3825c13ec98089fb74db",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 6
+    },
+    {
+      "name": "build",
+      "signature": "ebdfb1c3bee67429625583295dcfc3c1d6e0e761b14d191b2a01206b3958c1bb",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 1
+    },
+    {
+      "name": "unit",
+      "signature": "5e02dedfa0aa45d0540704d83c2e86ab11c6232bf3dcf517d586d15ea7c8758b",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 123
+    },
+    {
+      "name": "budget-chromium",
+      "signature": "a38b1844120fbec7e767d4a33b5eb8fc0cfb1453c8e7a79d75eeabfcdc7d120a",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.58.0/local/chromium/report.json",
+      "seconds": 39,
+      "checks": 66
+    },
+    {
+      "name": "budget-webkit",
+      "signature": "4d3168a15d2c2f1caeb4356d08f0ee736d007ce53b9f61fd76b08bc72d8b70cc",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.58.0/local/webkit/report.json",
+      "seconds": 36,
+      "checks": 65
+    },
+    {
+      "name": "budget-chrome",
+      "signature": "6d4e9ce99186f4b78ba9daa398ca4be4c2d8d5f97d02b48ff162b68274cbb590",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.58.0/local/chrome/report.json",
+      "seconds": 32,
+      "checks": 66
+    },
+    {
+      "name": "budget-msedge",
+      "signature": "ca8eb18b002731702d7c0fb49753a02e38c38279ec78fe2bc2d7e49cfb0babb5",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.58.0/local/msedge/report.json",
+      "seconds": 32,
+      "checks": 66
+    },
+    {
+      "name": "status-chromium",
+      "signature": "5d1df7a0ed042bc8f49d0052dc70e908cb98d4a15e0ed2532a6896e71cf69f95",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/盤面外の通知/0.58.0/local/chromium/report.json",
+      "seconds": 15,
+      "checks": 33
+    },
+    {
+      "name": "status-webkit",
+      "signature": "f9413df5a6ac697771c34adee34ec10227c3c8612eaa7b178bc51e4c8f3b54af",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/盤面外の通知/0.58.0/local/webkit/report.json",
+      "seconds": 22,
+      "checks": 33
+    },
+    {
+      "name": "status-chrome",
+      "signature": "3d0b722ef58858dd1aa15307dd2c79577f79031cd9f354f84226e84724af9939",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/盤面外の通知/0.58.0/local/chrome/report.json",
+      "seconds": 18,
+      "checks": 33
+    },
+    {
+      "name": "status-msedge",
+      "signature": "de2d52a76546e00f39f1098314899297803a008d3b451ab0a46ee497beeeba51",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/盤面外の通知/0.58.0/local/msedge/report.json",
+      "seconds": 18,
+      "checks": 33
+    },
+    {
+      "name": "guide-chromium",
+      "signature": "b088a5f4063f4a935a68a29121580d3fe54ac849413b18e8eee2a3ed1afa979d",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/図解と削除練習/0.58.0/chromium/report.json",
+      "seconds": 50,
+      "checks": 98
+    },
+    {
+      "name": "guide-webkit",
+      "signature": "cad98bf6c7bf22b77f824a7becf75389fe5bba6460b4b92fe6f5d5c0e7affa30",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/図解と削除練習/0.58.0/webkit/report.json",
+      "seconds": 80,
+      "checks": 98
+    },
+    {
+      "name": "wiring-regression",
+      "signature": "74278659e3ef8f846f87e02835159f602ef9a6dac911f063d9845fd75dbe15a9",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/結線補助/report.json",
+      "seconds": 19,
+      "checks": 52
+    },
+    {
+      "name": "clear-regression",
+      "signature": "b773fc8a549084927a08425f0f6bfc96bc9048e11d92cfec30a0eb7054b0f7bf",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/クリアと読みやすさ/report.json",
+      "seconds": 37,
+      "checks": 48
+    },
+    {
+      "name": "rotation-regression",
+      "signature": "30245b99708f0422bd97728f6b5e4c9e5a5e761534306046f137604c0b8f8e4a",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/回転復帰/report.json",
+      "seconds": 17,
+      "checks": 74
+    },
+    {
+      "name": "failure-regression",
+      "signature": "2deda78ca8718817bbbd2eefe4b6c4b84c58c7d0721e4fdc9c1eb60dd2e6a154",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/未達成通知/report.json",
+      "seconds": 71,
+      "checks": 46
+    }
+  ],
+  "passed": true
+}

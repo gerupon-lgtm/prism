@@ -1,0 +1,367 @@
+{
+  "version": "0.58.0",
+  "checks": [
+    {
+      "label": "desktop zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "desktop notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "desktop attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 1095.203125,
+        "y": 473.875,
+        "w": 316.796875,
+        "h": 64,
+        "scroll": true
+      },
+      "animation": "wire-limit-pulse"
+    },
+    {
+      "label": "desktop repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "desktop next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "desktop deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "desktop clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "desktop continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "desktop no script errors",
+      "passed": true
+    },
+    {
+      "label": "portrait zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "portrait notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "portrait attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 7,
+        "y": 191.125,
+        "w": 398,
+        "h": 40,
+        "scroll": true
+      },
+      "animation": "wire-limit-pulse"
+    },
+    {
+      "label": "portrait repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "portrait next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "portrait deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "portrait clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "portrait continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "message expires and a fresh attempt announces again",
+      "passed": true
+    },
+    {
+      "label": "native protocol touch at zero also gives feedback without overflow",
+      "passed": true
+    },
+    {
+      "label": "portrait no script errors",
+      "passed": true
+    },
+    {
+      "label": "left zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "left notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "left attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 101,
+        "y": 7,
+        "w": 70,
+        "h": 398,
+        "scroll": true
+      },
+      "animation": "wire-limit-pulse"
+    },
+    {
+      "label": "left repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "left next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "left deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "left clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "left continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "left no script errors",
+      "passed": true
+    },
+    {
+      "label": "right zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "right notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "right attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 673,
+        "y": 7,
+        "w": 70,
+        "h": 398,
+        "scroll": true
+      },
+      "animation": "wire-limit-pulse"
+    },
+    {
+      "label": "right repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "right next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "right deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "right clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "right continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "right no script errors",
+      "passed": true
+    },
+    {
+      "label": "short zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "short notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "short attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 7,
+        "y": 174.15625,
+        "w": 306,
+        "h": 40,
+        "scroll": true
+      },
+      "animation": "wire-limit-pulse"
+    },
+    {
+      "label": "short repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "short next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "short deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "short clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "short continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "short no script errors",
+      "passed": true
+    },
+    {
+      "label": "short-large zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "short-large notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "short-large attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 7,
+        "y": 82.1875,
+        "w": 306,
+        "h": 40,
+        "scroll": true
+      },
+      "animation": "none"
+    },
+    {
+      "label": "short-large repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "short-large next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "short-large deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "short-large clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "short-large continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "short-large no script errors",
+      "passed": true
+    },
+    {
+      "label": "large-reduced zero stays visibly distinct",
+      "passed": true,
+      "text": "残り0本",
+      "color": "rgb(255, 208, 179)",
+      "bg": "rgb(80, 52, 50)"
+    },
+    {
+      "label": "large-reduced notice has a reserved area outside every circuit part; lower duplicate rows removed",
+      "passed": true
+    },
+    {
+      "label": "large-reduced attempt shows nonmodal message and respects motion",
+      "passed": true,
+      "feedback": {
+        "role": "status",
+        "events": "none",
+        "x": 7,
+        "y": 184.875,
+        "w": 398,
+        "h": 40,
+        "scroll": true
+      },
+      "animation": "none"
+    },
+    {
+      "label": "large-reduced repeated movement never adds wires or moves board",
+      "passed": true
+    },
+    {
+      "label": "large-reduced next control works immediately and dismisses message",
+      "passed": true
+    },
+    {
+      "label": "large-reduced deleting one frees a slot that can immediately be reused",
+      "passed": true
+    },
+    {
+      "label": "large-reduced clear restores count and normal appearance",
+      "passed": true
+    },
+    {
+      "label": "large-reduced continuous overflow keeps accepted route within limit",
+      "passed": true
+    },
+    {
+      "label": "large-reduced no script errors",
+      "passed": true
+    },
+    {
+      "label": "free creation has no budget warning",
+      "passed": true
+    }
+  ],
+  "evidence": "Disposable PC browsers. Mouse and Chromium protocol touch; phone orientation and text size emulated. Real-device usability remains unverified.",
+  "browser": {
+    "engine": "chromium",
+    "channel": "msedge",
+    "version": "155.0.4283.45"
+  },
+  "passed": true
+}

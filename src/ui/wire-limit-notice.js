@@ -1,21 +1,27 @@
 // A short, non-interactive explanation. It never changes the gesture or game.
 export class WireLimitNotice {
   constructor(notice,budget,board) {
-    Object.assign(this,{notice,budget,board});this.timer=null;
-    document.addEventListener('pointerdown',event=>{if(!board.contains(event.target))this.hide();},true);
-    document.addEventListener('keydown',()=>this.hide(),true);
+    Object.assign(this,{notice,budget,board});this.timer=null;this.noticePress=false;
+    document.addEventListener('pointerdown',event=>{
+      this.noticePress=!notice.hidden&&Boolean(notice.closest('.orientation-region')?.contains(event.target));
+      if(!board.contains(event.target)&&!this.noticePress)this.hide();
+    },true);
+    // A tap on the non-interactive notice must not activate the status button
+    // that reappears beneath it, including when the timer expires mid-press.
+    // A fresh press elsewhere or keyboard input immediately clears this guard.
+    document.addEventListener('click',event=>{if(this.noticePress){this.noticePress=false;event.preventDefault();event.stopImmediatePropagation();}},true);
+    document.addEventListener('keydown',()=>{this.noticePress=false;this.hide();},true);
     window.addEventListener('resize',()=>this.hide());
     document.addEventListener('visibilitychange',()=>{if(document.hidden)this.hide();});
   }
   show(limit) {
     this.hide();
-    this.notice.querySelector('strong').textContent=`配線は上限${limit}本までです`;
+    const large=document.getElementById('app').classList.contains('text-enlarged');
+    this.notice.querySelector('strong').textContent=`${large?'':'配線は'}上限${limit}本までです`;
+    this.notice.querySelector('span').textContent='長押しで削除';
     this.notice.hidden=false;
-    const anchor=this.budget.getBoundingClientRect(),fallback=this.board.getBoundingClientRect();
-    const at=anchor.width&&anchor.height?anchor:fallback;
-    const width=document.documentElement.clientWidth,height=innerHeight,rect=this.notice.getBoundingClientRect();
-    this.notice.style.left=`${Math.max(8,Math.min(width-rect.width-8,at.left+(at.width-rect.width)/2))}px`;
-    this.notice.style.top=`${Math.max(8,Math.min(height-rect.height-8,at.bottom+8))}px`;
+    // The reserved status region sits outside the field in every orientation.
+    // Showing the notice must never resize or cover the circuit.
     // Restart only for a new attempt, never on each pointer move.
     void this.budget.offsetWidth;this.budget.classList.add('wire-limit-attention');
     this.timer=setTimeout(()=>this.hide(),3200);

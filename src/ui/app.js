@@ -60,8 +60,25 @@ const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.
 const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
 const desktop=new DesktopLayout();
-const tutorialGuide=new TutorialGuide($('guide-bar'),$('board'));
+const tutorialGuide=new TutorialGuide($('guide-bar'),$('board'),$('result-line'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
+// Font, orientation and update-button changes can finish laying out after render.
+// Reposition existing result notices from the final bounds, without redrawing
+// or moving the circuit and without replaying any result sound.
+let noticesFrame=null;
+function scheduleNotices(){
+  if(noticesFrame!==null)return;
+  noticesFrame=requestAnimationFrame(()=>{noticesFrame=requestAnimationFrame(()=>{
+    noticesFrame=null;
+    // WebKit may report the preceding SVG scale while the rotated layout is
+    // changing. Refresh only display sizes once its screen matrix has settled.
+    const matrix=board.world.getScreenCTM(),scale=matrix&&Math.hypot(matrix.a,matrix.b);
+    if(scale&&!board.gesture&&Math.abs(Math.max(1,(board.desktop?0.8:0.5)/scale)-board.fontFactor)>0.001)board.render();
+    renderClearToast();renderFailureToast();
+  });});
+}
+const noticesResize=new ResizeObserver(scheduleNotices);
+for(const node of [$('board'),$('result-line'),document.querySelector('header')])noticesResize.observe(node);
 let soundUnlock=null,automaticSoundFailed=false;
 // Create/resume audio inside an actual user action. A pending resume must never
 // overwrite an explicit mute, and opening a page alone must not start audio.
@@ -124,7 +141,10 @@ function challengeGoal(challenge){
   return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
 }
 function render(redraw=true,{records=true}={}) {
-  const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20,compact=innerHeight<=300||(innerHeight<=360&&textEnlarged);
+  const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
+  // Enlarged text on a short portrait screen needs the existing full-text
+  // entries, rather than a heading that leaves too little room to connect parts.
+  const compact=innerHeight<=300||textEnlarged&&(innerHeight<=360||innerHeight<=480&&innerWidth<innerHeight);
   document.documentElement.style.setProperty('--layout-font',`${readableFont}px`);
   document.documentElement.style.setProperty('--layout-footer-font',getComputedStyle(document.querySelector('footer')).fontSize);
   $('app').classList.toggle('text-enlarged',textEnlarged);
@@ -190,6 +210,12 @@ function render(redraw=true,{records=true}={}) {
   if(session.pendingScores.size)text+=`　成績${session.pendingScores.size}件未保存`;
   $('retry-result').hidden=session.pendingScores.size===0;
   setText('result',[text,message||startBlockedReason].filter(Boolean).join('　'));$('result').classList.toggle('error',Boolean(message));
+  // Keep complete details for the existing results dialog and announcements.
+  // The play screen needs the current state, not duplicate score/particle text.
+  const active=run&&run.status!=='stopped'&&!run.exhausted;
+  const summary=session.pendingScores.size&&!active?'成績未保存':message?'状況を確認':startBlockedReason?'点をつないでください':['load','error'].includes(run?.pauseReason)?'一時停止：状況を確認':active?(textEnlarged?execution:`${execution} · ${run.format()}秒`):session.result?'結果を見る':'';
+  setText('result-summary',summary);$('result-info').hidden=!summary||Boolean(session.guide);
+  $('result-info').classList.toggle('error',Boolean(message));
   if(desktop.active){
     setText('desktop-time',`${run?.format()??'0'}秒`);
     $('desktop-score-row').hidden=!session.result?.score;
@@ -197,7 +223,9 @@ function render(redraw=true,{records=true}={}) {
     $('desktop-sidebar').classList.toggle('has-guide',Boolean(session.guide));
   }
   const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
-  setText('hint',board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線');
+  const completeHint=board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線';
+  $('hint').dataset.fullText=completeHint;$('hint').setAttribute('aria-label',completeHint);
+  setText('hint',board.addKind?'位置を選択':session.selection?'設定を開く':'結線の案内');
   $('guide-bar').hidden=!session.guide;
   const guideCopy=tutorialContent(session,matchMedia('(pointer:coarse)').matches);
   if(session.guide){
@@ -206,10 +234,12 @@ function render(redraw=true,{records=true}={}) {
   }
   const guide=session.guide;
   tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideCopy?.targets??[]});
+  const noticeHost=guide&&!tutorialGuide.collapsed?$('guide-bar').querySelector('.guide-content'):$('result-line').querySelector('.result-content');
+  if($('wire-limit-notice').parentElement!==noticeHost){wireLimitNotice.hide();noticeHost.append($('wire-limit-notice'));}
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.
   if(redraw)board.render();else board.particles();tutorialGuide.highlight();
-  if(guide&&tutorialGuide.collapsed)setText('hint',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);
+  if(guide&&tutorialGuide.collapsed){setText('hint','案内を読む');$('hint').setAttribute('aria-label',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);}
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
@@ -257,7 +287,7 @@ function renderFailureToast(){
   }
   const boardBox=$('board').getBoundingClientRect(),resultBox=$('result-line').getBoundingClientRect();
   const controls=[...document.querySelectorAll('#stage-controls button')].filter(e=>e.getClientRects().length).map(e=>e.getBoundingClientRect());
-  const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:r.left-44,right:r.right+44,top:r.top-44,bottom:r.bottom+44};});
+  const goals=[...$('board').querySelectorAll('.goal .node-symbol')].map(e=>{const r=e.getBoundingClientRect();return {left:Math.max(boardBox.left,r.left-44),right:Math.min(boardBox.right,r.right+44),top:Math.max(boardBox.top,r.top-44),bottom:Math.min(boardBox.bottom,r.bottom+44)};});
   for(const mark of $('board').querySelectorAll('.bell-constellation')){const r=mark.getBoundingClientRect();goals.push({left:r.left-6,right:r.right+6,top:r.top-6,bottom:r.bottom+6});}
   const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
   // Full reason in ordinary viewports. Compact notices expose a complete,
@@ -961,7 +991,7 @@ $('hint').addEventListener('click',()=>{
     fullText('操作の案内',$('guide-text').textContent);
     actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
-  }else fullText('操作の案内',$('hint').textContent);
+  }else fullText('操作の案内',$('hint').dataset.fullText||$('hint').textContent);
 });
 document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
@@ -978,7 +1008,7 @@ function viewport(){
   desktop.update({width,height,coarse:matchMedia('(pointer:coarse)').matches,rotation:orientation.rotation,fontSize:parseFloat(getComputedStyle(document.documentElement).fontSize)});
   const state={direction:screen.orientation?.type??null,angle:screen.orientation?.angle??window.orientation??null,frame:orientation.rotation,width,height,scale:visual?.scale??1};
   const previous=viewport.history?.at(-1);if(JSON.stringify(previous)!==JSON.stringify(state)){viewport.history??=[];viewport.history.push(state);if(viewport.history.length>8)viewport.history.shift();}
-  cancelWireDelete();board.resize();render(false);if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
+  cancelWireDelete();board.resize();render(false);scheduleNotices();if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
 }
 document.querySelector('.app-version').addEventListener('click',()=>{
   fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}`);
