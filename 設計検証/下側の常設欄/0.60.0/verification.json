@@ -1,8 +1,8 @@
 {
   "version": "0.60.0",
   "passed": true,
-  "scope": "local verification",
-  "publicVerified": false,
+  "scope": "local and public URL verification",
+  "publicVerified": true,
   "sourceHashes": {
     "package.json": "9e59cea44c9583b854fa2ee5195e444513b408f2d29d23a016a90f0e2854838d",
     "index.html": "b324f9149d1fcf8f2085eaeada3d39076a4365e3687e81f769b3802362295c37",
@@ -197,5 +197,40 @@
   "build": {
     "assets": 53
   },
-  "evidence": "PC browsers and emulated screens/orientation/fonts. Physical devices, hand occlusion and listening remain unverified."
+  "evidence": "PC browsers and emulated screens/orientation/fonts. Physical devices, hand occlusion and listening remain unverified.",
+  "public": {
+    "version": "0.60.0",
+    "commit": "d16a94bbfc646e4ca1da6682f2120c9378684c5e",
+    "checks": [
+      {
+        "name": "cloudflare-public",
+        "exit": 0,
+        "elapsedMs": 30790,
+        "passed": true,
+        "summary": "Public checks passed: 66"
+      },
+      {
+        "name": "cloudflare-lower",
+        "exit": 0,
+        "elapsedMs": 20914,
+        "passed": true,
+        "summary": "Lower strip and magnifier checks passed: 60"
+      },
+      {
+        "name": "github-public",
+        "exit": 0,
+        "elapsedMs": 32619,
+        "passed": true,
+        "summary": "Public checks passed: 66"
+      },
+      {
+        "name": "github-lower",
+        "exit": 0,
+        "elapsedMs": 23999,
+        "passed": true,
+        "summary": "Lower strip and magnifier checks passed: 60"
+      }
+    ],
+    "passed": true
+  }
 }
