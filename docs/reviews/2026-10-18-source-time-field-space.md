@@ -30,4 +30,10 @@
 
 `verification.json`と`wiring-regression.json`の版・合格状態、個別のブラウザ報告、静的検証の終了コードを機械的に照合してからコミットする。
 
-公開確認は未実施。
+## 公開確認
+
+ソースは`2789bb9e2efcbc146fb1027849b0d7156a16078c`。[GitHub Pages](https://github.com/gerupon-lgtm/prism/actions/runs/39111472497)とCloudflare配信`45d93c9b-ff70-4fe0-ac66-517884ad73ac`の成功を確認した。Cloudflareは対象コミットの配信がないことを確認してからmainを指定し、返されたコミットも照合した。
+
+両URLで公開確認各66項目、常設欄・拡大窓・位置保持各60項目、今回の星の秒数・全12課題・縦横・小画面・文字拡大・PCの配置各90項目が合格。HTTPS、0.61.0、配信コミット、全資材の形式とSHA-256、更新・結線・採点・保存・書出し・通信なし再起動を確認した。
+
+[公開版Q2のスマホサイズ画像](../../設計検証/星の秒数と盤面余白/0.61.0/prism.sikumilab.com/chromium/portrait-Q2.png)。検証と公開の証拠は`verification.json`（`publicVerified:true`）、`deployment.json`、個別の公開報告へ保存した。実機の指操作・見え方・聴感は未確認。
