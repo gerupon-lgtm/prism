@@ -1,0 +1,516 @@
+{
+  "authored": {
+    "id": "Q21",
+    "version": 1,
+    "name": "三つの出口を探して",
+    "type": "delivery-all",
+    "limit": 6,
+    "baseline": "5",
+    "maxDuration": "14",
+    "goals": [
+      "G1",
+      "G2",
+      "G3"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.28,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.25,
+        "y": 0.52,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.7,
+        "y": 0.71,
+        "process": "0.5"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.82,
+        "y": 0.41,
+        "process": "0.5"
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "x": 0.16,
+        "y": 0.94,
+        "process": "0"
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G3",
+        "kind": "goal",
+        "x": 0.84,
+        "y": 0.94,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "BG1",
+        "from": "B",
+        "to": "G1",
+        "time": "1"
+      },
+      {
+        "id": "BC",
+        "from": "B",
+        "to": "C",
+        "time": "0.5"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "0.5"
+      },
+      {
+        "id": "CG3",
+        "from": "C",
+        "to": "G3",
+        "time": "1"
+      },
+      {
+        "id": "AD",
+        "from": "A",
+        "to": "D",
+        "time": "0.5"
+      },
+      {
+        "id": "DC",
+        "from": "D",
+        "to": "C",
+        "time": "2"
+      },
+      {
+        "id": "DG3",
+        "from": "D",
+        "to": "G3",
+        "time": "3"
+      },
+      {
+        "id": "AG2",
+        "from": "A",
+        "to": "G2",
+        "time": "4"
+      },
+      {
+        "id": "BG3",
+        "from": "B",
+        "to": "G3",
+        "time": "4"
+      }
+    ],
+    "number": 11,
+    "set": "delivery",
+    "setName": "すべての鐘へ",
+    "world": "starwalk",
+    "stage": "星渡りの回廊",
+    "bellPitches": [
+      84,
+      79,
+      72
+    ]
+  },
+  "families": [
+    {
+      "problem": {
+        "id": "Q21",
+        "version": 1,
+        "name": "三つの出口を探して",
+        "type": "delivery-all",
+        "limit": 6,
+        "baseline": "5",
+        "maxDuration": "14",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.28,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.25,
+            "y": 0.52,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.7,
+            "y": 0.71,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.82,
+            "y": 0.41,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.94,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.94,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "1"
+          },
+          {
+            "id": "BC",
+            "from": "B",
+            "to": "C",
+            "time": "0.5"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "0.5"
+          },
+          {
+            "id": "CG3",
+            "from": "C",
+            "to": "G3",
+            "time": "1"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "0.5"
+          },
+          {
+            "id": "DC",
+            "from": "D",
+            "to": "C",
+            "time": "2"
+          },
+          {
+            "id": "DG3",
+            "from": "D",
+            "to": "G3",
+            "time": "3"
+          },
+          {
+            "id": "AG2",
+            "from": "A",
+            "to": "G2",
+            "time": "4"
+          },
+          {
+            "id": "BG3",
+            "from": "B",
+            "to": "G3",
+            "time": "4"
+          }
+        ],
+        "number": 11,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          84,
+          79,
+          72
+        ]
+      },
+      "result": {
+        "baseline": "4",
+        "maxDuration": "6",
+        "achieved": 11,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "BG1",
+          "BC",
+          "CG2",
+          "CG3"
+        ],
+        "partial": {
+          "time": "5",
+          "edges": [
+            "SA",
+            "AB",
+            "BG1",
+            "BC",
+            "CG3",
+            "AG2"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q21",
+        "version": 1,
+        "name": "三つの出口を探して",
+        "type": "delivery-all",
+        "limit": 6,
+        "baseline": "5",
+        "maxDuration": "14",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.28,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.25,
+            "y": 0.52,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.7,
+            "y": 0.71,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.82,
+            "y": 0.41,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.94,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.94,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "1"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "2.1"
+          },
+          {
+            "id": "BC",
+            "from": "B",
+            "to": "C",
+            "time": "0.7"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "0.1"
+          },
+          {
+            "id": "CG3",
+            "from": "C",
+            "to": "G3",
+            "time": "1.9"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "0.2"
+          },
+          {
+            "id": "DC",
+            "from": "D",
+            "to": "C",
+            "time": "3.3"
+          },
+          {
+            "id": "DG3",
+            "from": "D",
+            "to": "G3",
+            "time": "2.6"
+          },
+          {
+            "id": "AG2",
+            "from": "A",
+            "to": "G2",
+            "time": "3.8"
+          },
+          {
+            "id": "BG3",
+            "from": "B",
+            "to": "G3",
+            "time": "4.6"
+          }
+        ],
+        "number": 11,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          84,
+          79,
+          72
+        ]
+      },
+      "result": {
+        "baseline": "4.8",
+        "maxDuration": "7.4",
+        "achieved": 11,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "BG1",
+          "AD",
+          "DG3",
+          "AG2"
+        ],
+        "partial": {
+          "time": "5.6",
+          "edges": [
+            "SA",
+            "AB",
+            "BG1",
+            "BC",
+            "CG2",
+            "CG3"
+          ]
+        },
+        "traps": [
+          "BC"
+        ],
+        "valid": true
+      }
+    }
+  ]
+}

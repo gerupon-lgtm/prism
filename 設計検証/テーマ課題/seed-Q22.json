@@ -1,0 +1,578 @@
+{
+  "authored": {
+    "id": "Q22",
+    "version": 1,
+    "name": "響きをつなぐ回廊",
+    "type": "delivery-all",
+    "limit": 8,
+    "baseline": "5",
+    "maxDuration": "16",
+    "goals": [
+      "G1",
+      "G2",
+      "G3"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.27,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.2,
+        "y": 0.49,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.8,
+        "y": 0.49,
+        "process": "0.5"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.23,
+        "y": 0.73,
+        "process": "0.5"
+      },
+      {
+        "id": "E",
+        "kind": "prism",
+        "x": 0.77,
+        "y": 0.73,
+        "process": "0.5"
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "x": 0.16,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G3",
+        "kind": "goal",
+        "x": 0.84,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "1"
+      },
+      {
+        "id": "BD",
+        "from": "B",
+        "to": "D",
+        "time": "0.5"
+      },
+      {
+        "id": "CE",
+        "from": "C",
+        "to": "E",
+        "time": "0.5"
+      },
+      {
+        "id": "DG1",
+        "from": "D",
+        "to": "G1",
+        "time": "0.5"
+      },
+      {
+        "id": "DG2",
+        "from": "D",
+        "to": "G2",
+        "time": "1"
+      },
+      {
+        "id": "EG3",
+        "from": "E",
+        "to": "G3",
+        "time": "1"
+      },
+      {
+        "id": "BE",
+        "from": "B",
+        "to": "E",
+        "time": "2"
+      },
+      {
+        "id": "CD",
+        "from": "C",
+        "to": "D",
+        "time": "2"
+      },
+      {
+        "id": "EG2",
+        "from": "E",
+        "to": "G2",
+        "time": "2"
+      },
+      {
+        "id": "AG1",
+        "from": "A",
+        "to": "G1",
+        "time": "4"
+      },
+      {
+        "id": "BG3",
+        "from": "B",
+        "to": "G3",
+        "time": "4"
+      }
+    ],
+    "number": 12,
+    "set": "delivery",
+    "setName": "すべての鐘へ",
+    "world": "starwalk",
+    "stage": "星渡りの回廊",
+    "bellPitches": [
+      72,
+      77,
+      81
+    ]
+  },
+  "families": [
+    {
+      "problem": {
+        "id": "Q22",
+        "version": 1,
+        "name": "響きをつなぐ回廊",
+        "type": "delivery-all",
+        "limit": 8,
+        "baseline": "5",
+        "maxDuration": "16",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.27,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.2,
+            "y": 0.49,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.8,
+            "y": 0.49,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.23,
+            "y": 0.73,
+            "process": "0.5"
+          },
+          {
+            "id": "E",
+            "kind": "prism",
+            "x": 0.77,
+            "y": 0.73,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "1"
+          },
+          {
+            "id": "BD",
+            "from": "B",
+            "to": "D",
+            "time": "0.5"
+          },
+          {
+            "id": "CE",
+            "from": "C",
+            "to": "E",
+            "time": "0.5"
+          },
+          {
+            "id": "DG1",
+            "from": "D",
+            "to": "G1",
+            "time": "0.5"
+          },
+          {
+            "id": "DG2",
+            "from": "D",
+            "to": "G2",
+            "time": "1"
+          },
+          {
+            "id": "EG3",
+            "from": "E",
+            "to": "G3",
+            "time": "1"
+          },
+          {
+            "id": "BE",
+            "from": "B",
+            "to": "E",
+            "time": "2"
+          },
+          {
+            "id": "CD",
+            "from": "C",
+            "to": "D",
+            "time": "2"
+          },
+          {
+            "id": "EG2",
+            "from": "E",
+            "to": "G2",
+            "time": "2"
+          },
+          {
+            "id": "AG1",
+            "from": "A",
+            "to": "G1",
+            "time": "4"
+          },
+          {
+            "id": "BG3",
+            "from": "B",
+            "to": "G3",
+            "time": "4"
+          }
+        ],
+        "number": 12,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          72,
+          77,
+          81
+        ]
+      },
+      "result": {
+        "baseline": "4.5",
+        "maxDuration": "6.5",
+        "achieved": 190,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CE",
+          "DG1",
+          "DG2",
+          "EG3"
+        ],
+        "partial": {
+          "time": "5",
+          "edges": [
+            "SA",
+            "AB",
+            "AC",
+            "BD",
+            "CE",
+            "DG2",
+            "EG3",
+            "AG1"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q22",
+        "version": 1,
+        "name": "響きをつなぐ回廊",
+        "type": "delivery-all",
+        "limit": 8,
+        "baseline": "5",
+        "maxDuration": "16",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.27,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.2,
+            "y": 0.49,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.8,
+            "y": 0.49,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.23,
+            "y": 0.73,
+            "process": "0.5"
+          },
+          {
+            "id": "E",
+            "kind": "prism",
+            "x": 0.77,
+            "y": 0.73,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.4"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "0.5"
+          },
+          {
+            "id": "BD",
+            "from": "B",
+            "to": "D",
+            "time": "1.4"
+          },
+          {
+            "id": "CE",
+            "from": "C",
+            "to": "E",
+            "time": "0.1"
+          },
+          {
+            "id": "DG1",
+            "from": "D",
+            "to": "G1",
+            "time": "0.2"
+          },
+          {
+            "id": "DG2",
+            "from": "D",
+            "to": "G2",
+            "time": "1.3"
+          },
+          {
+            "id": "EG3",
+            "from": "E",
+            "to": "G3",
+            "time": "1.1"
+          },
+          {
+            "id": "BE",
+            "from": "B",
+            "to": "E",
+            "time": "2.6"
+          },
+          {
+            "id": "CD",
+            "from": "C",
+            "to": "D",
+            "time": "1.9"
+          },
+          {
+            "id": "EG2",
+            "from": "E",
+            "to": "G2",
+            "time": "1.5"
+          },
+          {
+            "id": "AG1",
+            "from": "A",
+            "to": "G1",
+            "time": "5.1"
+          },
+          {
+            "id": "BG3",
+            "from": "B",
+            "to": "G3",
+            "time": "3.5"
+          }
+        ],
+        "number": 12,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          72,
+          77,
+          81
+        ]
+      },
+      "result": {
+        "baseline": "4.1",
+        "maxDuration": "6.5",
+        "achieved": 190,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CE",
+          "DG1",
+          "EG3",
+          "EG2"
+        ],
+        "partial": {
+          "time": "4.6",
+          "edges": [
+            "SA",
+            "AC",
+            "CE",
+            "DG1",
+            "EG3",
+            "CD",
+            "EG2"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    }
+  ]
+}

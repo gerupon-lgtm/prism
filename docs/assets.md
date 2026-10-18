@@ -46,3 +46,21 @@ Edit target: the attached adopted character comparison image. Extract ONLY the h
 
 
 2026-10-17：発案者の指定によりプリズム到達音をR4から、初回試聴版のR2「光片のきらめき」へ変更。音程・音符長・音量・余韻を試聴原本にそろえる。他の採用音と原本資料を保持する。[点検](reviews/2026-10-17-prism-arrival-r2.md)。
+
+## 0.64.0のテーマ背景と鐘の音程
+
+発案者の本体実装指示に基づき、組み込みimage_genで背景2種を制作。`public/graphics/ruins.png`を世界観・画風の参照に使い、既存資材を上書きせず、新しい構図を担当側で選択した。以前の比較A/B/Cの採用を発案者が確定したという意味ではない。両画像を目視確認し、追加加工せずリポジトリへコピーした。画面では中央寄せで切り抜き、既存の陰影・パーツの縁取りを保つ。
+
+| 保存先 | 対象 | 生成原本 |
+|---|---|---|
+| `public/graphics/starwalk.png` | 7〜12面「星渡りの回廊」 | `.codex/generated_images/01a12f22-62a3-7341-b0e3-243e8e36ca81/exec-ce785db6-f538-4c61-9a64-f05cf0bd3565.png` |
+| `public/graphics/moonwater.png` | 13〜18面「月映りの水殿」 | `.codex/generated_images/01a12f22-62a3-7341-b0e3-243e8e36ca81/exec-73e6506c-5161-4288-b571-b4306f26b7c8.png` |
+
+原本パスの`.codex`はユーザーフォルダ内。両画像は1672×941のPNG。本体は上表のworkspace内のコピーのみ参照し、版付き配信・オフライン資材へ含める。
+
+生成指示は共通して、`illustration-story`、横長16:9、参照画像と同じ美しい絵画調の静謐な夜空、濃紺・藍・白い古代石造り・控えめな金色。中央65%と中央上部を暗い開けた空にし、配線とパーツのために低いコントラストを保つ。人物・鐘・プリズム・回路・文字・ロゴ・枠を描かない。
+
+- 星渡り：`Starwalk cloister: a sequence of small ancient floating colonnades and broken celestial bridges receding through starry clouds at the left and far right edges, tiny distant lights linking the sense of travel across many places. Ruins belong around edges and lower corners, enough texture but no clutter. Elegant quiet beautiful mature fantasy, not cartoon.`
+- 月映り：`Moonlit echo sanctuary: ancient ruined stone arcade on the far left and far right surrounding a dark still lake floating among clouds, small reflecting pools and a very distant moonlit terrace, faint concentric reflections at bottom suggesting time and echoes. Architecture mostly at edges and lower corners. Rich but restrained moonlit indigo, silvery reflections, quiet elegant mature fantasy. No giant moon.`
+
+鐘は採用済みD2・H3a・H3b・H4aの音程を実行時に合成する。WAVを再生する方式へ変えず、基音と短い打音を同じ比率で移す。本体の合成信号と試聴WAVを実ブラウザで照合する。[点検](reviews/2026-10-18-themed-sets-bell-pitches.md)。

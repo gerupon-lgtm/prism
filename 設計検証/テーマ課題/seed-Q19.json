@@ -1,0 +1,388 @@
+{
+  "authored": {
+    "id": "Q19",
+    "version": 1,
+    "name": "分かれ道の先に",
+    "type": "delivery-all",
+    "limit": 5,
+    "baseline": "4",
+    "maxDuration": "12",
+    "goals": [
+      "G1",
+      "G2"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.3,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.22,
+        "y": 0.6,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.78,
+        "y": 0.6,
+        "process": "0.5"
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "x": 0.2,
+        "y": 0.94,
+        "process": "0"
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "x": 0.8,
+        "y": 0.94,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "1"
+      },
+      {
+        "id": "BG1",
+        "from": "B",
+        "to": "G1",
+        "time": "0.5"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "0.5"
+      },
+      {
+        "id": "BG2",
+        "from": "B",
+        "to": "G2",
+        "time": "3"
+      },
+      {
+        "id": "CG1",
+        "from": "C",
+        "to": "G1",
+        "time": "3"
+      }
+    ],
+    "number": 7,
+    "set": "delivery",
+    "setName": "すべての鐘へ",
+    "world": "starwalk",
+    "stage": "星渡りの回廊",
+    "bellPitches": [
+      88,
+      84
+    ]
+  },
+  "families": [
+    {
+      "problem": {
+        "id": "Q19",
+        "version": 1,
+        "name": "分かれ道の先に",
+        "type": "delivery-all",
+        "limit": 5,
+        "baseline": "4",
+        "maxDuration": "12",
+        "goals": [
+          "G1",
+          "G2"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.3,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.22,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.78,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.2,
+            "y": 0.94,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.8,
+            "y": 0.94,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "1"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "0.5"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "0.5"
+          },
+          {
+            "id": "BG2",
+            "from": "B",
+            "to": "G2",
+            "time": "3"
+          },
+          {
+            "id": "CG1",
+            "from": "C",
+            "to": "G1",
+            "time": "3"
+          }
+        ],
+        "number": 7,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          88,
+          84
+        ]
+      },
+      "result": {
+        "baseline": "3",
+        "maxDuration": "5.5",
+        "achieved": 10,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG2"
+        ],
+        "partial": {
+          "time": "5",
+          "edges": [
+            "SA",
+            "AB",
+            "BG1",
+            "BG2"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q19",
+        "version": 1,
+        "name": "分かれ道の先に",
+        "type": "delivery-all",
+        "limit": 5,
+        "baseline": "4",
+        "maxDuration": "12",
+        "goals": [
+          "G1",
+          "G2"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.3,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.22,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.78,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.2,
+            "y": 0.94,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.8,
+            "y": 0.94,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "1.5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "0.9"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "2.7"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "3.2"
+          },
+          {
+            "id": "BG2",
+            "from": "B",
+            "to": "G2",
+            "time": "2.5"
+          },
+          {
+            "id": "CG1",
+            "from": "C",
+            "to": "G1",
+            "time": "2.3"
+          }
+        ],
+        "number": 7,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          88,
+          84
+        ]
+      },
+      "result": {
+        "baseline": "5.5",
+        "maxDuration": "5.7",
+        "achieved": 10,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BG2",
+          "CG1"
+        ],
+        "partial": {
+          "time": "5.6",
+          "edges": [
+            "SA",
+            "AC",
+            "CG2",
+            "CG1"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    }
+  ]
+}

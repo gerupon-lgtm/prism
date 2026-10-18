@@ -82,7 +82,7 @@ test('固定版と各出題の成績を別々に残し、元の秒数・条件�
 });
 
 test('Q7の旧ランダム版の条件と満点成績を新版の課題と分けて保持する',()=>{
-  const f=fixture(),old={...structuredClone(challenges[6]),version:1};
+  const f=fixture(),old={...structuredClone(challenges.find(c=>c.id==='Q7')),version:1};
   const times=['0.7','0.5','0.7','0.7','0.1','0.1','0.5','1.4','1.2','1.8','1.4','0.4'];
   old.candidates=old.candidates.filter(e=>e.id!=='CD').map((e,i)=>({...e,time:times[i]}));
   Object.assign(old,{baseline:'3.5',maxDuration:'4.5',draw:{id:'ba52aaa9f2a997c3',revision:1,number:1}});
@@ -101,15 +101,15 @@ test('成績の保存失敗から別出題へ進んでも、二つの元条件�
   assert.equal(s.pendingScores.size,0);assert.equal(f.records.scores().length,2);assert.equal(f.records.scores()[0].problem.draw.id,first);
 });
 
-test('全48出題の全配線で唯一の満点・部分点・分岐や合流待ちと上限を確認する',()=>{
+test('全96出題の全配線で唯一の満点・部分点・分岐や合流待ちと上限を確認する',()=>{
   let count=0;
   for(const authored of challenges.slice(6))for(const variant of randomVariants[authored.id]){
     const problem={...authored,candidates:authored.candidates.map((edge,i)=>({...edge,time:variant.times[i]}))};
     const result=inspectProblem(problem);
     assert(result.valid,authored.id+' '+variant.id);assert.equal(result.winners,1);assert.equal(result.purposeFailures,0);
-    assert(result.traps.length>0);assert.equal(result.baseline,variant.baseline);assert.equal(result.maxDuration,variant.maxDuration);
+    if(['Q7','Q8','Q9','Q10','Q11','Q12'].includes(authored.id))assert(result.traps.length>0);assert.equal(result.baseline,variant.baseline);assert.equal(result.maxDuration,variant.maxDuration);
     assert.deepEqual(result.winner,proof.stages.find(p=>p.id===variant.id).winner);
     count++;
   }
-  assert.equal(count,48);
+  assert.equal(count,96);
 });

@@ -22,7 +22,7 @@ export class Scene {
     const layers=kind==='sky'?['ruins','observatory']:[kind];
     for(const [index,name] of layers.entries()){
       const panelWidth=width/layers.length,panel=svg('svg',{x:index*panelWidth,y:0,width:panelWidth,height,viewBox:`0 0 ${panelWidth} ${height}`,overflow:'hidden'});
-      panel.append(svg('image',{href:art(name),x:0,y:0,width:panelWidth,height,preserveAspectRatio:`${name==='ruins'?'xMin':'xMax'}YMax slice`,class:name==='ruins'?'floating-ruin':'observatory'}));this.root.append(panel);
+      panel.append(svg('image',{href:art(name),x:0,y:0,width:panelWidth,height,preserveAspectRatio:`${name==='ruins'?'xMin':['starwalk','moonwater'].includes(name)?'xMid':'xMax'}YMax slice`,class:name==='ruins'?'floating-ruin':'observatory'}));this.root.append(panel);
     }
     this.root.append(svg('rect',{x:0,y:0,width,height,class:'scene-shade'}));
   }

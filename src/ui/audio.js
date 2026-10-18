@@ -52,10 +52,10 @@ export class Chime {
     if(this.muted||!this.context||this.context.state!=='running'||this.context.currentTime<this.bellUntil)return;
     this.cue(SOUND_CUES.relay,0,this.relayVoices);
   }
-  strike(){
+  strike({frequencyHz=BELL_SOUND.frequencyHz}={}){
     if(this.muted||!this.context||this.context.state!=='running')return;
     const time=this.context.currentTime;this.silenceRelay();this.bellUntil=Math.max(this.bellUntil,time+BELL_SOUND.durationSeconds);
-    const voice=bellVoice(this.context,this.output,{time,onended:()=>this.voices.delete(voice)});this.voices.add(voice);
+    const voice=bellVoice(this.context,this.output,{time,frequencyHz,onended:()=>this.voices.delete(voice)});this.voices.add(voice);
   }
   clear(){this.cue(SOUND_CUES.clear,SUCCESS_JINGLE_DELAY_SECONDS);}
   perfect(){

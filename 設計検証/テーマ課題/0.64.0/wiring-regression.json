@@ -1,0 +1,58 @@
+{
+  "version": "0.64.0",
+  "passed": true,
+  "checks": [
+    {
+      "name": "chrome-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 22689,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chrome-wiring.log"
+    },
+    {
+      "name": "msedge-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 21287,
+      "log": "設計検証\\テーマ課題\\0.64.0\\msedge-wiring.log"
+    },
+    {
+      "name": "chromium-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 15905,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chromium-wiring.log"
+    },
+    {
+      "name": "webkit-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 23690,
+      "log": "設計検証\\テーマ課題\\0.64.0\\webkit-wiring.log"
+    }
+  ]
+}

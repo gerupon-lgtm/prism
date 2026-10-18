@@ -1,0 +1,478 @@
+{
+  "authored": {
+    "id": "Q14",
+    "version": 1,
+    "name": "三つの流れ星",
+    "type": "interval",
+    "limit": 7,
+    "baseline": "3",
+    "maxDuration": "14",
+    "goal": "G",
+    "interval": "1",
+    "count": 3,
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.26,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.13,
+        "y": 0.55,
+        "process": "0"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.37,
+        "y": 0.7,
+        "process": "0"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.63,
+        "y": 0.7,
+        "process": "0"
+      },
+      {
+        "id": "E",
+        "kind": "prism",
+        "x": 0.87,
+        "y": 0.55,
+        "process": "0"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "1"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "1.5"
+      },
+      {
+        "id": "AD",
+        "from": "A",
+        "to": "D",
+        "time": "1.5"
+      },
+      {
+        "id": "DG",
+        "from": "D",
+        "to": "G",
+        "time": "2"
+      },
+      {
+        "id": "AE",
+        "from": "A",
+        "to": "E",
+        "time": "2"
+      },
+      {
+        "id": "EG",
+        "from": "E",
+        "to": "G",
+        "time": "2.5"
+      },
+      {
+        "id": "BC",
+        "from": "B",
+        "to": "C",
+        "time": "2.3"
+      },
+      {
+        "id": "DE",
+        "from": "D",
+        "to": "E",
+        "time": "2.3"
+      }
+    ],
+    "number": 14,
+    "set": "rhythm",
+    "setName": "響く間隔をつくる",
+    "world": "moonwater",
+    "stage": "月映りの水殿"
+  },
+  "families": [
+    {
+      "problem": {
+        "id": "Q14",
+        "version": 1,
+        "name": "三つの流れ星",
+        "type": "interval",
+        "limit": 7,
+        "baseline": "3",
+        "maxDuration": "14",
+        "goal": "G",
+        "interval": "1",
+        "count": 3,
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.26,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.13,
+            "y": 0.55,
+            "process": "0"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.37,
+            "y": 0.7,
+            "process": "0"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.63,
+            "y": 0.7,
+            "process": "0"
+          },
+          {
+            "id": "E",
+            "kind": "prism",
+            "x": 0.87,
+            "y": 0.55,
+            "process": "0"
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "1"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "1"
+          },
+          {
+            "id": "CG",
+            "from": "C",
+            "to": "G",
+            "time": "1.5"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "1.5"
+          },
+          {
+            "id": "DG",
+            "from": "D",
+            "to": "G",
+            "time": "2"
+          },
+          {
+            "id": "AE",
+            "from": "A",
+            "to": "E",
+            "time": "2"
+          },
+          {
+            "id": "EG",
+            "from": "E",
+            "to": "G",
+            "time": "2.5"
+          },
+          {
+            "id": "BC",
+            "from": "B",
+            "to": "C",
+            "time": "2.3"
+          },
+          {
+            "id": "DE",
+            "from": "D",
+            "to": "E",
+            "time": "2.3"
+          }
+        ],
+        "number": 14,
+        "set": "rhythm",
+        "setName": "響く間隔をつくる",
+        "world": "moonwater",
+        "stage": "月映りの水殿"
+      },
+      "result": {
+        "baseline": "2.5",
+        "maxDuration": "7.3",
+        "achieved": 2,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "BG",
+          "AC",
+          "CG",
+          "AD",
+          "DG"
+        ],
+        "partial": {
+          "time": "3.5",
+          "edges": [
+            "SA",
+            "AC",
+            "CG",
+            "AD",
+            "DG",
+            "AE",
+            "EG"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q14",
+        "version": 1,
+        "name": "三つの流れ星",
+        "type": "interval",
+        "limit": 7,
+        "baseline": "3",
+        "maxDuration": "14",
+        "goal": "G",
+        "interval": "1",
+        "count": 3,
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.26,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.13,
+            "y": 0.55,
+            "process": "0"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.37,
+            "y": 0.7,
+            "process": "0"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.63,
+            "y": 0.7,
+            "process": "0"
+          },
+          {
+            "id": "E",
+            "kind": "prism",
+            "x": 0.87,
+            "y": 0.55,
+            "process": "0"
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "1"
+          },
+          {
+            "id": "CG",
+            "from": "C",
+            "to": "G",
+            "time": "3.5"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "1.5"
+          },
+          {
+            "id": "DG",
+            "from": "D",
+            "to": "G",
+            "time": "2"
+          },
+          {
+            "id": "AE",
+            "from": "A",
+            "to": "E",
+            "time": "2"
+          },
+          {
+            "id": "EG",
+            "from": "E",
+            "to": "G",
+            "time": "0.5"
+          },
+          {
+            "id": "BC",
+            "from": "B",
+            "to": "C",
+            "time": "2.3"
+          },
+          {
+            "id": "DE",
+            "from": "D",
+            "to": "E",
+            "time": "2.3"
+          }
+        ],
+        "number": 14,
+        "set": "rhythm",
+        "setName": "響く間隔をつくる",
+        "world": "moonwater",
+        "stage": "月映りの水殿"
+      },
+      "result": {
+        "baseline": "3.5",
+        "maxDuration": "7.3",
+        "achieved": 2,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AC",
+          "CG",
+          "AD",
+          "DG",
+          "AE",
+          "EG"
+        ],
+        "partial": {
+          "time": "4.5",
+          "edges": [
+            "SA",
+            "AB",
+            "BG",
+            "AC",
+            "CG",
+            "AD",
+            "DG"
+          ]
+        },
+        "traps": [
+          "AB"
+        ],
+        "valid": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "version": "0.64.0",
+  "startedAt": "2026-10-18T13:44:42.763Z",
+  "passed": true,
+  "publicVerified": false,
+  "checks": [
+    {
+      "name": "syntax",
+      "args": [
+        "scripts/check-source.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 15555,
+      "log": "設計検証\\テーマ課題\\0.64.0\\syntax.log"
+    },
+    {
+      "name": "generate",
+      "args": [
+        "scripts/generate-random-challenges.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 95201,
+      "log": "設計検証\\テーマ課題\\0.64.0\\generate.log"
+    },
+    {
+      "name": "unit",
+      "args": [
+        "scripts/run-tests.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 75883,
+      "log": "設計検証\\テーマ課題\\0.64.0\\unit.log"
+    },
+    {
+      "name": "build",
+      "args": [
+        "scripts/build.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 1250,
+      "log": "設計検証\\テーマ課題\\0.64.0\\build.log"
+    },
+    {
+      "name": "chrome-sets",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 85195,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chrome-sets.log"
+    },
+    {
+      "name": "chrome-offline",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 61820,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chrome-offline.log"
+    },
+    {
+      "name": "chrome-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 22689,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chrome-wiring.log"
+    },
+    {
+      "name": "chrome-latency",
+      "args": [
+        "設計検証/check_audio_latency.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 70092,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chrome-latency.log"
+    },
+    {
+      "name": "msedge-sets",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 96958,
+      "log": "設計検証\\テーマ課題\\0.64.0\\msedge-sets.log"
+    },
+    {
+      "name": "msedge-offline",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 66203,
+      "log": "設計検証\\テーマ課題\\0.64.0\\msedge-offline.log"
+    },
+    {
+      "name": "msedge-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 21287,
+      "log": "設計検証\\テーマ課題\\0.64.0\\msedge-wiring.log"
+    },
+    {
+      "name": "msedge-latency",
+      "args": [
+        "設計検証/check_audio_latency.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 70233,
+      "log": "設計検証\\テーマ課題\\0.64.0\\msedge-latency.log"
+    },
+    {
+      "name": "chromium-sets",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 65085,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chromium-sets.log"
+    },
+    {
+      "name": "chromium-offline",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 54242,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chromium-offline.log"
+    },
+    {
+      "name": "chromium-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 15905,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chromium-wiring.log"
+    },
+    {
+      "name": "chromium-latency",
+      "args": [
+        "設計検証/check_audio_latency.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 59062,
+      "log": "設計検証\\テーマ課題\\0.64.0\\chromium-latency.log"
+    },
+    {
+      "name": "webkit-sets",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 112795,
+      "log": "設計検証\\テーマ課題\\0.64.0\\webkit-sets.log"
+    },
+    {
+      "name": "webkit-offline",
+      "args": [
+        "設計検証/check_themed_sets.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 82392,
+      "log": "設計検証\\テーマ課題\\0.64.0\\webkit-offline.log"
+    },
+    {
+      "name": "webkit-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 23690,
+      "log": "設計検証\\テーマ課題\\0.64.0\\webkit-wiring.log"
+    },
+    {
+      "name": "webkit-latency",
+      "args": [
+        "設計検証/check_audio_latency.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 99918,
+      "log": "設計検証\\テーマ課題\\0.64.0\\webkit-latency.log"
+    }
+  ],
+  "evidence": "Sequential Node tests and disposable PC browser checks; physical-device listening/operation and difficulty remain pending.",
+  "sha256": {
+    "package.json": "49b8e7e6a1ddbaf37716c2a40db0b1a586185224a310723675e4e7830c1b2381",
+    "index.html": "f5df09018175d6558f9ba974dca853e60a724da94e2a20b0f566e03255776853",
+    "src/content/challenges.js": "53e29bff69e3662b4c068ad6435acc13776616a54f4221127e5d0257d14b3175",
+    "src/content/themed-challenges.js": "9693abe76d73f076d908942284f9307d3f0a18cf1546789cbbb31916a9d9e1c0",
+    "src/content/random-variants.js": "b0beae6a5652241c1b99e468ef32581fa35fc8b31baaeb71fa3d9b80b09eba64",
+    "src/content/bell-pitches.js": "37e90c2090d6ffce4c92e7c39636e9ca3be67aac18b65a9792e0e5d1f7fb8d8e",
+    "src/ui/audio.js": "f163cf856115fb520c5e6270169841d9781bde8163b0ad43b014e39680c9aee8",
+    "src/ui/voices.js": "f6450d8948385079dc10f6c786c6507d73499b0750b23e0d1d89b6ed13831da2",
+    "src/ui/app.js": "12e4ae2d39e4cc55dcb585a72f235531be8690533aba710a1e07f2e3f0e310df",
+    "src/ui/scene.js": "39c2b9b967006a9ce8aa8ca19ac51483cdc9a1b3d44d8c1861046a0b76670511",
+    "public/graphics/starwalk.png": "d1e6b74dc5be815e65eeea57e503c3c55f07f068af9b27dcef315d5c59cf76fd",
+    "public/graphics/moonwater.png": "47f63ba4fcf28e982b54eff5516961cececc19aa06260e9fe878443962165a3c"
+  },
+  "finishedAt": "2026-10-18T14:04:38.278Z"
+}

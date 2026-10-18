@@ -1,0 +1,517 @@
+{
+  "authored": {
+    "id": "Q20",
+    "version": 1,
+    "name": "分岐を受け継ぐ光",
+    "type": "delivery-all",
+    "limit": 7,
+    "baseline": "5",
+    "maxDuration": "12",
+    "goals": [
+      "G1",
+      "G2",
+      "G3"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.27,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.22,
+        "y": 0.48,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.8,
+        "y": 0.6,
+        "process": "0.5"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.28,
+        "y": 0.72,
+        "process": "0.5"
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "x": 0.16,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G3",
+        "kind": "goal",
+        "x": 0.84,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "1.5"
+      },
+      {
+        "id": "BD",
+        "from": "B",
+        "to": "D",
+        "time": "0.5"
+      },
+      {
+        "id": "DG1",
+        "from": "D",
+        "to": "G1",
+        "time": "0.5"
+      },
+      {
+        "id": "DG2",
+        "from": "D",
+        "to": "G2",
+        "time": "1"
+      },
+      {
+        "id": "CG3",
+        "from": "C",
+        "to": "G3",
+        "time": "1"
+      },
+      {
+        "id": "AD",
+        "from": "A",
+        "to": "D",
+        "time": "3"
+      },
+      {
+        "id": "BG1",
+        "from": "B",
+        "to": "G1",
+        "time": "3"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "3"
+      },
+      {
+        "id": "DC",
+        "from": "D",
+        "to": "C",
+        "time": "1"
+      }
+    ],
+    "number": 10,
+    "set": "delivery",
+    "setName": "すべての鐘へ",
+    "world": "starwalk",
+    "stage": "星渡りの回廊",
+    "bellPitches": [
+      72,
+      79,
+      84
+    ]
+  },
+  "families": [
+    {
+      "problem": {
+        "id": "Q20",
+        "version": 1,
+        "name": "分岐を受け継ぐ光",
+        "type": "delivery-all",
+        "limit": 7,
+        "baseline": "5",
+        "maxDuration": "12",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.27,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.22,
+            "y": 0.48,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.8,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.28,
+            "y": 0.72,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "1.5"
+          },
+          {
+            "id": "BD",
+            "from": "B",
+            "to": "D",
+            "time": "0.5"
+          },
+          {
+            "id": "DG1",
+            "from": "D",
+            "to": "G1",
+            "time": "0.5"
+          },
+          {
+            "id": "DG2",
+            "from": "D",
+            "to": "G2",
+            "time": "1"
+          },
+          {
+            "id": "CG3",
+            "from": "C",
+            "to": "G3",
+            "time": "1"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "3"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "3"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "3"
+          },
+          {
+            "id": "DC",
+            "from": "D",
+            "to": "C",
+            "time": "1"
+          }
+        ],
+        "number": 10,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          72,
+          79,
+          84
+        ]
+      },
+      "result": {
+        "baseline": "4",
+        "maxDuration": "9",
+        "achieved": 36,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "DG1",
+          "DG2",
+          "CG3"
+        ],
+        "partial": {
+          "time": "5",
+          "edges": [
+            "SA",
+            "AB",
+            "AC",
+            "BD",
+            "DG2",
+            "CG3",
+            "BG1"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q20",
+        "version": 1,
+        "name": "分岐を受け継ぐ光",
+        "type": "delivery-all",
+        "limit": 7,
+        "baseline": "5",
+        "maxDuration": "12",
+        "goals": [
+          "G1",
+          "G2",
+          "G3"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.27,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.22,
+            "y": 0.48,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.8,
+            "y": 0.6,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.28,
+            "y": 0.72,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.16,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.5,
+            "y": 0.96,
+            "process": "0"
+          },
+          {
+            "id": "G3",
+            "kind": "goal",
+            "x": 0.84,
+            "y": 0.96,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "0.6"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "0.5"
+          },
+          {
+            "id": "BD",
+            "from": "B",
+            "to": "D",
+            "time": "1.2"
+          },
+          {
+            "id": "DG1",
+            "from": "D",
+            "to": "G1",
+            "time": "1.8"
+          },
+          {
+            "id": "DG2",
+            "from": "D",
+            "to": "G2",
+            "time": "1.1"
+          },
+          {
+            "id": "CG3",
+            "from": "C",
+            "to": "G3",
+            "time": "0.2"
+          },
+          {
+            "id": "AD",
+            "from": "A",
+            "to": "D",
+            "time": "3.2"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "2.2"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "3.4"
+          },
+          {
+            "id": "DC",
+            "from": "D",
+            "to": "C",
+            "time": "1.5"
+          }
+        ],
+        "number": 10,
+        "set": "delivery",
+        "setName": "すべての鐘へ",
+        "world": "starwalk",
+        "stage": "星渡りの回廊",
+        "bellPitches": [
+          72,
+          79,
+          84
+        ]
+      },
+      "result": {
+        "baseline": "4.9",
+        "maxDuration": "10.1",
+        "achieved": 36,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "DG2",
+          "CG3",
+          "BG1"
+        ],
+        "partial": {
+          "time": "5.4",
+          "edges": [
+            "SA",
+            "AB",
+            "AC",
+            "CG3",
+            "BG1",
+            "CG2"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    }
+  ]
+}

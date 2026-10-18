@@ -1,3 +1,4 @@
+import {themedChallenges} from './themed-challenges.js';
 const point = (id,kind,x,y,process='0') => ({id,kind,x,y,process});
 const path = (id,from,to,time) => ({id,from,to,time});
 const prism = (id,x,y,process='0.5') => point(id,'prism',x,y,process);
@@ -9,7 +10,7 @@ const resilientNodes = () => searchNodes().map(node=>node.id==='C'?{...node,proc
 const resilientEdges = () => [path('SA','S','A','0.5'),path('SB','S','B','0.5'),path('AC','A','C','0.5'),path('CG','C','G','1'),path('AG','A','G','1.5'),path('BG','B','G','1.5'),path('SC','S','C','1'),path('CB','C','B','0.5')];
 
 // Initial content values are implementation proposals; baseline validation is separate.
-export const challenges = [
+const originalChallenges = [
   {id:'Q1',maxDuration:'2.5',version:1,name:'はじめの一音',stage:'夜空の遺跡',type:'time',limit:2,baseline:'2.5',goal:'G',nodes:diamond(),candidates:diamondEdges()},
   {id:'Q2',maxDuration:'3',version:2,name:'早く届けよう',stage:'夜空の遺跡',type:'time',limit:3,baseline:'2.5',goal:'G',nodes:searchNodes(),candidates:searchEdges('2')},
   {id:'Q3',maxDuration:'2.5',version:2,name:'速く、少ない道で',stage:'夜空の遺跡',type:'time-hops',limit:3,baseline:'2.5',baselineHops:2,goal:'G',nodes:searchNodes(),candidates:searchEdges('1.5')},
@@ -44,6 +45,18 @@ export const challenges = [
     candidates:[path('SA','S','A','0.5'),path('AB','A','B','0.5'),path('BF','B','F','0.5'),path('AC','A','C','1'),path('CF','C','F','0.5'),path('AD','A','D','0.5'),path('DE','D','E','0.5'),path('EF','E','F','1'),path('FG','F','G','0.5'),path('AF','A','F','2'),path('AE','A','E','1'),path('BC','B','C','0.5'),path('AG','A','G','2.2')],
   },
 ];
+
+// Keep old IDs, content versions, graphs and random draws attached to old scores.
+// Only presentation metadata changes when an existing problem moves to a set.
+const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10'];
+const themes=[{id:'intro',name:'お試し'},{id:'delivery',name:'すべての鐘へ',world:'starwalk',stage:'星渡りの回廊'},{id:'rhythm',name:'響く間隔をつくる',world:'moonwater',stage:'月映りの水殿'}];
+export const challenges=order.map((id,index)=>{
+ const original=[...originalChallenges,...themedChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)];
+ return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),
+  ...(original.type==='delivery-all'?{bellPitches:original.goals.length===2?[88,84]:id==='Q21'?[84,79,72]:id==='Q22'?[72,77,81]:[72,79,84]}:{})};
+});
+export const challengeNumber=challenge=>challenge.number??Number(challenge.id.slice(1));
+export const challengeLabel=challenge=>'Q'+challengeNumber(challenge);
 
 export function challengeObjective(challenge) {
   if(challenge.type==='delivery-all')return `祭壇${challenge.goals.join('・')}すべてに届ける`;

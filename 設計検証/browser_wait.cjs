@@ -52,11 +52,13 @@ async function startAndPause(page) {
   await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
 }
 async function chooseChallenge(page,id) {
+  // Helpers take stable IDs. The human-facing Q number can move across sets.
+  const number=await page.evaluate(async id=>{const {challenges}=await import(new URL('../content/challenges.js',document.querySelector('script[type=module]').src));const c=challenges.find(c=>c.id===id);return c?.number??Number(id.slice(1));},id);
   await page.locator('#dialog-body .dialog-list button').first().waitFor({state:'visible'});
   for(let n=0;n<30;n++){
-    const item=page.getByRole('button',{name:new RegExp('^'+id+' ')});if(await item.count()){await item.click();return;}
+    const item=page.locator(`[data-challenge="${id}"]`);if(await item.count()){await item.click();return;}
     const names=await page.locator('#dialog-body .dialog-list button').allTextContents(),first=names.map(name=>/^Q(\d+) /.exec(name)).find(Boolean);
-    const pager=page.locator('#dialog-body .pager button'),next=first&&Number(id.slice(1))<Number(first[1])?pager.first():pager.last();if(await next.isDisabled())break;
+    const pager=page.locator('#dialog-body .pager button'),next=first&&number<Number(first[1])?pager.first():pager.last();if(await next.isDisabled())break;
     await next.click();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
   }
   throw new Error('Challenge not available in selector: '+id+' '+await page.locator('#dialog-body').innerText());

@@ -10,6 +10,17 @@ function fixture(){
   chime.output={};return {chime,voices,sources,notes:()=>[...chime.voices].filter(v=>v.frequencyHz!==undefined)};
 }
 
+test('採用した複数音程は本体と打音を同比率で変え、長さ・停止・消音を保つ',()=>{
+ const {chime,voices,notes}=fixture();
+ for(const midi of [72,79,84,77,81,88]){
+  const frequencyHz=440*2**((midi-69)/12);chime.strike({frequencyHz});
+  assert.equal(notes().at(-1).frequencyHz,frequencyHz);assert.equal(notes().at(-1).endTime,2.62);
+  const [carrier,modulator,attack]=[voices.at(-4),voices.at(-3),voices.at(-2)];
+  assert.equal(carrier.frequency.events[0].value,frequencyHz);assert.equal(modulator.frequency.events[0].value,frequencyHz*Math.SQRT2);assert.equal(attack.frequency.events[0].value,frequencyHz*2);
+ }
+ chime.stop();assert(voices.every(v=>v.stopped));const count=voices.length;chime.mute();chime.strike({frequencyHz:880});assert.equal(voices.length,count);
+});
+
 test('結線音はW2の高い2音で、停止・消音・鐘の余韻では重ならない',()=>{
   const {chime,voices,notes}=fixture();chime.wire();assert.equal(notes().length,2);assert.equal(voices.length,4);
   assert.equal(notes()[0].frequencyHz,880);assert(Math.abs(notes()[1].frequencyHz-1108.7305239074883)<1e-7);assert.equal(notes()[1].time,.055);assert(Math.abs(notes()[1].endTime-.14)<1e-9);

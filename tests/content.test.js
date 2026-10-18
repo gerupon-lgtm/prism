@@ -31,9 +31,9 @@ function selections(candidates,limit) {
 }
 
 test('追加6課題は分岐が必須で、複数の最高評価構成と実現できる基準時間を持つ',()=>{
-  assert.equal(challenges.length,12);
+  assert.equal(challenges.length,18);
   const summaries=[];
-  for(const challenge of challenges.slice(6)){
+  for(const challenge of challenges.filter(c=>['Q7','Q8','Q9','Q10','Q11','Q12'].includes(c.id))){
     let best=Infinity,winners=0,achieved=0,maxDuration=0n;
     for(const edges of selections(challenge.candidates,challenge.limit)){
       const run=new Simulation(challengeCircuit(challenge,edges.map(e=>e.id)));

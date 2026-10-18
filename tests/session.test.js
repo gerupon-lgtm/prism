@@ -44,7 +44,7 @@ test('達成した課題だけに次の選択を出し、停止しても配線�
   assert.equal(s.clearChoices.nextChallengeId,'Q2');s.replace({challengeId:'Q2'});assert.equal(s.clearChoices,null);
   s.connect('S','C');s.start();s.stop();assert.equal(s.clearChoices,null);
   s.replace({challengeId:'Q6'});for(const id of ['A','B','C'])s.connectPath(['S',id,'G']);
-  s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:'Q7'});s.stop();
+  s.start();s.advance('1');assert.equal(s.clearChoices,null);s.advance('5');assert.deepEqual(s.clearChoices,{challengeId:'Q6',nextChallengeId:challenges[6].id});s.stop();
   s.replace({sampleId:'compare'});s.start();s.advance('3');assert.equal(s.clearChoices,null);s.stop();
   s.replace({challengeId:'Q1'});s.beginGuide();s.connectPath(['S','A','G']);s.start();s.advance('2.5');assert.equal(s.clearChoices,null);
 });

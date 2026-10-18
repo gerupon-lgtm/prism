@@ -3,7 +3,8 @@ import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
 import { displayScore,perfectScore,compareScores } from '../core/evaluation.js';
 import { matchesChallengeScore } from '../core/challenge-identity.js';
-import { challenges } from '../content/challenges.js';
+import { challenges,challengeLabel,challengeNumber } from '../content/challenges.js';
+import {arrivalFrequencies} from '../content/bell-pitches.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
@@ -164,11 +165,11 @@ function render(redraw=true,{records=true}={}) {
   $('candidate-times').title=allTimes?'進める候補の秒数だけに絞る':'全候補の秒数を表示する';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
-  setText('title',session.mode==='challenge'?`${session.challenge.id} ${session.challenge.name}`:session.name||'自由');
+  setText('title',session.mode==='challenge'?`${challengeLabel(session.challenge)} ${session.challenge.name}`:session.name||'自由');
   $('app').dataset.problemId=session.challenge?.draw?.id??'';
   $('app').dataset.mode=session.mode;
   const goal=session.mode==='challenge'?challengeGoal(session.challenge):'';
-  setText('condition',session.mode==='challenge'?`${Number(session.challenge.id.slice(1))<=6?'お試し':'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
+  setText('condition',session.mode==='challenge'?`${session.challenge.setName??'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
   $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide);
   setText('challenge-goal',textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'');
   $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
@@ -184,8 +185,8 @@ function render(redraw=true,{records=true}={}) {
     }
     $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
     $('wire-budget').dataset.remaining=String(limit-used);
-    if(compact)setText('title',`課題${session.challenge.id.slice(1)}`);
-    else if(shortCounters)setText('title',`課題${session.challenge.id.slice(1)}`);
+    if(compact)setText('title',`課題${challengeNumber(session.challenge)}`);
+    else if(shortCounters)setText('title',`課題${challengeNumber(session.challenge)}`);
   }
   $('add-controls').hidden=session.mode!=='free'||!session.editable||Boolean(session.guide);
   for(const kind of ['prism','goal'])$('add-'+kind).setAttribute('aria-pressed',String(board.addKind===kind));
@@ -399,7 +400,7 @@ function clearAction(next=false){
   if(next){if(choices.nextChallengeId)replace({challengeId:choices.nextChallengeId});else chooseMode();}
 }
 
-function listPage(items,makeRow,empty='まだありません。') {
+function listPage(items,makeRow,empty='まだありません。',{group}={}) {
   const container=element('div','',{class:'dialog-list'}),rows=element('div','',{class:'dialog-list'}),pager=element('nav','',{class:'pager'});
   let start=0,end=0;const history=[];
   const previous=button('前へ',()=>{start=history.pop()??0;draw();}),position=element('span'),next=button('次へ',()=>{history.push(start);start=end;draw();});
@@ -409,6 +410,7 @@ function listPage(items,makeRow,empty='まだありません。') {
     start=Math.min(start,Math.max(0,items.length-1));rows.replaceChildren();end=start;
     if(!items.length)rows.append(element('p',empty));
     else while(end<items.length){
+      if(group&&end>start&&group(items[end])!==group(items[start]))break;
       const row=makeRow(items[end]);rows.append(row);
       if(end>start&&row.getBoundingClientRect().bottom>rows.getBoundingClientRect().bottom+.5){row.remove();break;}
       end++;
@@ -456,13 +458,13 @@ function chooseMode(after=null) {
   try{scores=session.records.scores();}catch(error){$('dialog-error').textContent=error.message;}
   listPage(challenges,challenge=>{
     const best=scores.filter(score=>matchesChallengeScore(score,challenge)).sort((a,b)=>compareScores(b.score,a.score))[0];
-    const text=`${challenge.id} ${challenge.name}${Number(challenge.id.slice(1))>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`;
+    const text=`${challengeLabel(challenge)} ${challenge.name}${challengeNumber(challenge)>6?'［実践］':''}${best?'　'+displayScore(best.score)+'点':''}`;
     const row=button(text,()=>replace({challengeId:challenge.id}),{class:'challenge-row','data-challenge':challenge.id});row.replaceChildren();
-    const name=element('span','',{class:'challenge-name'});name.append(element('span',challenge.id+' ',{class:'challenge-number'}),document.createTextNode(challenge.name));
-    if(Number(challenge.id.slice(1))>6)name.append(element('small','実践',{class:'challenge-tier'}));
+    const name=element('span','',{class:'challenge-name'});name.append(element('span',challengeLabel(challenge)+' ',{class:'challenge-number'}),document.createTextNode(challenge.name));
+    if(challengeNumber(challenge)>6)name.append(element('small',challenge.setName,{class:'challenge-tier'}));
     const score=element('span','',{class:'challenge-score'});score.append(element('small',Number(challenge.id.slice(1))>6?'最高点（全出題）':'最高点'),element('strong',best?displayScore(best.score)+'点':'未達成'));
     row.append(name,score);return row;
-  });
+  },'まだありません。',{group:challenge=>challenge.set});
 }
 function replace(request) {
   session.requireEditable();session.replacement(request);
@@ -639,7 +641,7 @@ function pendingScores() {
   open('成績の保存を再試行');
   listPage([...session.pendingScores.entries()],([key,candidate])=>{
     const problem=candidate.problem??challenges.find(c=>`${c.id}@${c.version}`===candidate.challenge);
-    const label=problem?`${problem.id} ${problem.name}${problem.draw?' 出題'+problem.draw.number:''}`:'成績';
+    const label=problem?`${challengeLabel(problem)} ${problem.name}${problem.draw?' 出題'+problem.draw.number:''}`:'成績';
     return button(`${label} ${displayScore(candidate.score)}点`,()=>{
       if(!session.retryScore(key))throw new Error(session.scoreErrors.get(key));pendingScores();render(false);
     },{class:'challenge-row'});
@@ -932,7 +934,11 @@ function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
-  if(goals.length||relays.length)load.measure('audio',()=>{for(const _entry of goals)chime.strike();for(const _entry of relays)chime.relay();});
+  if(goals.length||relays.length)load.measure('audio',()=>{
+    const challenge=session.runContext?.mode==='challenge'?session.runContext.challenge:null;
+    const frequencies=goals.length&&challenge?.bellPitches?arrivalFrequencies(challenge,session.run.arrivals(),session.run.circuit.time):null;
+    for(const entry of goals)chime.strike({frequencyHz:frequencies?.get(entry)});for(const _entry of relays)chime.relay();
+  });
   if(!goals.length&&!relays.length)return;
   load.measure('display',()=>{
     board.arrivals([...goals,...relays]);
@@ -962,7 +968,7 @@ requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challenge.id} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
   fullText('現在の条件',detail);
 }
 $('condition-info').addEventListener('click',showConditions);$('challenge-info').addEventListener('click',showConditions);
