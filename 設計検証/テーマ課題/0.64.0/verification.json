@@ -2,7 +2,7 @@
   "version": "0.64.0",
   "startedAt": "2026-10-18T13:44:42.763Z",
   "passed": true,
-  "publicVerified": false,
+  "publicVerified": true,
   "checks": [
     {
       "name": "syntax",
@@ -268,5 +268,49 @@
     "public/graphics/starwalk.png": "d1e6b74dc5be815e65eeea57e503c3c55f07f068af9b27dcef315d5c59cf76fd",
     "public/graphics/moonwater.png": "47f63ba4fcf28e982b54eff5516961cececc19aa06260e9fe878443962165a3c"
   },
-  "finishedAt": "2026-10-18T14:04:38.278Z"
+  "finishedAt": "2026-10-18T14:04:38.278Z",
+  "publicVerifiedAt": "2026-10-18T14:16:15.658Z",
+  "sourceCommit": "e70b1b124554cf2978406a9160402fc227db799a",
+  "publicReports": [
+    {
+      "host": "prism.sikumilab.com",
+      "kind": "deployment",
+      "file": "設計検証/テーマ課題/0.64.0/public/prism.sikumilab.com/report.json",
+      "checks": 71,
+      "passed": true
+    },
+    {
+      "host": "prism.sikumilab.com",
+      "kind": "themedPlay",
+      "file": "設計検証/テーマ課題/0.64.0/prism.sikumilab.com/chromium/report.json",
+      "checks": 56,
+      "passed": true
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "kind": "deployment",
+      "file": "設計検証/テーマ課題/0.64.0/public/gerupon-lgtm.github.io/report.json",
+      "checks": 71,
+      "passed": true
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "kind": "themedPlay",
+      "file": "設計検証/テーマ課題/0.64.0/gerupon-lgtm.github.io/chromium/report.json",
+      "checks": 56,
+      "passed": true
+    }
+  ],
+  "deployments": {
+    "github": {
+      "runId": 39134560127,
+      "url": "https://github.com/gerupon-lgtm/prism/actions/runs/39134560127",
+      "status": "success"
+    },
+    "cloudflare": {
+      "id": "751d2b15-c0e1-46ee-8b21-185865292c59",
+      "project": "prism-notes",
+      "status": "success"
+    }
+  }
 }
