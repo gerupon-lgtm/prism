@@ -1,6 +1,8 @@
 // Isolated WAV audition. Production voices and game assets are read, never edited.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
-const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'鐘の音程試作-20261018'),revision='0.1.0',rate=48000,lead=.2,tail=.35;
+const root=path.resolve(__dirname,'..'),revisionAt=process.argv.indexOf('--revision'),revision=revisionAt<0?'0.2.0':process.argv[revisionAt+1],rate=48000,lead=.2,tail=.35;
+assert(['0.1.0','0.2.0'].includes(revision),'Unknown audition revision');
+const out=path.join(__dirname,'鐘の音程試作-20261018',...(revision==='0.1.0'?[]:['v'+revision]));
 const at=process.argv.indexOf('--playwright-path');if(at<0)throw Error('Pass --playwright-path');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(process.argv[at+1]),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -8,14 +10,24 @@ const protectedFiles=['src/ui/voices.js','src/ui/audio.js','src/ui/app.js','pack
 const before=Object.fromEntries(protectedFiles.map(f=>[f,sha(fs.readFileSync(path.join(root,f)))]));
 const source=fs.readFileSync(path.join(root,'src/ui/voices.js'),'utf8');
 for(const needle of ['frequencyHz:440,','attackFrequencyHz:880,'])assert.equal(source.split(needle).length,2,'Unexpected bell constants: '+needle);
-const samples=[
+const samples=revision==='0.1.0'?[
  {id:'D1',name:'ドアチャイム風',file:'D1-door-chime.wav',description:'ミ → ド。2つの鐘へ0.5秒差で到達するイメージ。',notes:[{name:'E5',midi:76,at:0},{name:'C5',midi:72,at:.5}]},
  {id:'H1',name:'3和音：短い時間差',file:'H1-major-triad-staggered.wav',description:'ド → ミ → ソを0.12秒ずつずらし、余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'E5',midi:76,at:.12},{name:'G5',midi:79,at:.24}]},
  {id:'H2',name:'3和音：同時（比較用）',file:'H2-major-triad-together.wav',description:'同じド・ミ・ソを同時に鳴らします。',notes:[{name:'C5',midi:72,at:0},{name:'E5',midi:76,at:0},{name:'G5',midi:79,at:0}]},
+]:[
+ {id:'D2',name:'ドアチャイム：1オクターブ上',file:'D2-door-chime-octave-up.wav',description:'前回のミ → ドを1オクターブ上へ。間隔は0.5秒のまま。',notes:[{name:'E6',midi:88,at:0},{name:'C6',midi:84,at:.5}]},
+ {id:'H3',name:'ド → ソ → 上のド',file:'H3-C5-G5-C6.wav',description:'C5 → G5 → C6。0.25秒ずつずらして余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'G5',midi:79,at:.25},{name:'C6',midi:84,at:.5}]},
+ {id:'H4',name:'ド → ファ → ラ',file:'H4-C5-F5-A5.wav',description:'C5 → F5 → A5。0.25秒ずつずらして余韻を重ねます。',notes:[{name:'C5',midi:72,at:0},{name:'F5',midi:77,at:.25},{name:'A5',midi:81,at:.5}]},
 ];
 for(const item of samples){item.seconds=lead+Math.max(...item.notes.map(n=>n.at))+2.62+tail;for(const note of item.notes)note.frequencyHz=440*2**((note.midi-69)/12);}
 const report={revision,appVersion:JSON.parse(fs.readFileSync(path.join(root,'package.json'))).version,checkedAt:new Date().toISOString(),passed:false,protectedFiles:before,samples:[],browsers:[],checks:[],pending:['Human listening and physical-device playback. These are audition files, not adopted game sounds.']};
 const check=(name,data={})=>{report.checks.push({name,passed:true,...data});console.log(name);};
+if(revision==='0.2.0'){
+ const previous=JSON.parse(fs.readFileSync(path.join(__dirname,'鐘の音程試作-20261018/verification.json'))),door=previous.samples.find(s=>s.id==='D1');assert.equal(before['src/ui/voices.js'],previous.protectedFiles['src/ui/voices.js']);
+ assert.deepEqual(samples[0].notes.map((n,i)=>n.midi-door.notes[i].midi),[12,12]);assert.deepEqual(samples[0].notes.map(n=>n.at),door.notes.map(n=>n.at));
+ assert.deepEqual(samples[1].notes.map(n=>n.midi),[72,79,84]);assert.deepEqual(samples[2].notes.map(n=>n.midi),[72,77,81]);for(const item of samples.slice(1))assert.deepEqual(item.notes.map(n=>n.at),[0,.25,.5]);
+ check('Requested octave-up, unchanged door timing and both 0.25-second voicings match the user request');
+}
 const mime={'.html':'text/html; charset=utf-8','.wav':'audio/wav','.js':'text/javascript; charset=utf-8','.json':'application/json'};
 const server=http.createServer((req,res)=>{try{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(name==='/render'){res.setHeader('Content-Type','text/html');res.end('<!doctype html><meta charset="utf-8"><title>Bell audition renderer</title>');return;}let f=path.resolve(root,'.'+name);if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
 function wav(pcm){const b=Buffer.alloc(44+pcm.length*2);b.write('RIFF');b.writeUInt32LE(b.length-8,4);b.write('WAVEfmt ',8);b.writeUInt32LE(16,16);b.writeUInt16LE(1,20);b.writeUInt16LE(1,22);b.writeUInt32LE(rate,24);b.writeUInt32LE(rate*2,28);b.writeUInt16LE(2,32);b.writeUInt16LE(16,34);b.write('data',36);b.writeUInt32LE(pcm.length*2,40);for(let i=0;i<pcm.length;i++)b.writeInt16LE(Math.round(pcm[i]*32767),44+i*2);return b;}
@@ -42,14 +54,14 @@ ${samples.map(item=>`<article><h2>${item.id}　${item.name}</h2><p>${item.descri
   assert.equal(new Set(report.samples.map(s=>s.sha256)).size,samples.length);check('All three WAVs differ');await browser.close();browser=null;
   fs.writeFileSync(path.join(out,'index.html'),preview());
   for(const target of [{engine:'chromium',channel:'chrome'},{engine:'chromium',channel:'msedge'},{engine:'webkit'}]){
-   browser=await pw[target.engine].launch({headless:true,...(target.channel?{channel:target.channel}:{})});const name=target.channel||target.engine,p=await browser.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/設計検証/鐘の音程試作-20261018/');assert.equal(await p.locator('audio').count(),3);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)||a.error),null,{timeout:15000});
+   browser=await pw[target.engine].launch({headless:true,...(target.channel?{channel:target.channel}:{})});const name=target.channel||target.engine,p=await browser.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/'+path.relative(root,out).split(path.sep).join('/')+'/');assert.equal(await p.locator('audio').count(),3);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)||a.error),null,{timeout:15000});
    const media=await p.locator('audio').evaluateAll(as=>as.map(a=>({seconds:a.duration,error:a.error?.code})));if(media.every(a=>Number.isFinite(a.seconds)&&!a.error)){for(let i=0;i<3;i++)assert(Math.abs(media[i].seconds-samples[i].seconds)<.001);const playing=await p.evaluate(async()=>{const [a,b]=document.querySelectorAll('audio');await a.play();await b.play();return {firstPaused:a.paused,firstTime:a.currentTime,secondPaused:b.paused};});assert(playing.firstPaused&&playing.firstTime===0&&!playing.secondPaused);check(name+' native WAV playback, duration and exclusive switching',{media});}else if(target.engine==='webkit'){report.pending.push({browser:name,reason:'Native WAV decoding unavailable in this Windows WebKit build; physical Safari playback pending.',media});}else throw Error(name+' WAV playback failed');
    for(const width of [320,390,844]){await p.setViewportSize({width,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}check(name+' preview fits narrow and wide screens');
    if(name==='chrome'){await p.goto(pathToFileURL(path.join(out,'index.html')).href);await p.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)));await p.locator('audio').first().evaluate(a=>a.play());assert.equal(await p.locator('audio').first().evaluate(a=>a.paused),false);await p.screenshot({path:path.join(out,'preview-phone.png'),fullPage:true});check('Extracted local-file preview plays without a server');}
    assert.deepEqual(errors,[]);report.browsers.push({name,version:browser.version()});await browser.close();browser=null;
   }
   for(const file of protectedFiles)assert.equal(sha(fs.readFileSync(path.join(root,file))),before[file],file+' unchanged');check('Production audio, UI and app version remain unchanged');report.passed=true;
-  fs.writeFileSync(path.join(out,'README.md'),'# 鐘の音程試作 v'+revision+'\n\n2026-10-18。発案者の依頼により、採用済みの鐘からWAVを生成。アプリ本体へ未採用。\n\n| ID | 内容 | 到達の間隔 |\n|---|---|---|\n'+samples.map(s=>'| '+s.id+' | '+s.description+' | '+s.notes.map(n=>n.at+'秒').join(' / ')+' |').join('\n')+'\n\n`index.html`で試聴・保存できる。WAVは48kHz・16bit・モノラル。頭に0.2秒、最後の音の2.62秒の余韻の後に0.35秒を確保。同じ70%音量とコンプレッサーを通し、ファイルごとの音量正規化や追加残響は行わない。\n\n採用済みの `src/ui/voices.js` を読み、試作内だけで基音とアタック音の周波数を同比率で変更する。音源の別実装や、既存WAVの速度変更ではない。440Hzの比較信号が元の音源と完全一致することを検査。各音程・長さ・有限値・クリッピングなし・末尾の無音・音源の終了、PCブラウザのWAV読込と再生、ローカルファイルの試聴ページを確認。人の聴感、物理端末の音は未確認。詳細はverification.json。\n\n再生成：`node 設計検証/build_bell_harmony_samples.cjs --playwright-path <playwright-coreのパス>`。試聴版と読込クエリは0.1.0。本体の版・音色・資材は変更しない。\n');
+  fs.writeFileSync(path.join(out,'README.md'),'# 鐘の音程試作 v'+revision+'\n\n2026-10-18。発案者の依頼により、採用済みの鐘からWAVを生成。アプリ本体へ未採用。\n\n| ID | 内容 | 到達の間隔 |\n|---|---|---|\n'+samples.map(s=>'| '+s.id+' | '+s.description+' | '+s.notes.map(n=>n.at+'秒').join(' / ')+' |').join('\n')+'\n\n`index.html`で試聴・保存できる。WAVは48kHz・16bit・モノラル。頭に0.2秒、最後の音の2.62秒の余韻の後に0.35秒を確保。同じ70%音量とコンプレッサーを通し、ファイルごとの音量正規化や追加残響は行わない。\n\n採用済みの `src/ui/voices.js` を読み、試作内だけで基音とアタック音の周波数を同比率で変更する。音源の別実装や、既存WAVの速度変更ではない。倍音を作る設定は変更せず、指定した音程と間隔の比較とする。440Hzの比較信号が元の音源と完全一致することを検査。各音程・長さ・有限値・クリッピングなし・末尾の無音・音源の終了、PCブラウザのWAV読込と再生、ローカルファイルの試聴ページを確認。人の聴感、物理端末の音は未確認。詳細はverification.json。\n\n再生成：`node 設計検証/build_bell_harmony_samples.cjs --playwright-path <playwright-coreのパス> --revision '+revision+'`。試聴版と読込クエリは'+revision+'。0.1.0の資料は元のフォルダへ保持し、新版は版ごとのサブフォルダへ出力する。本体の版・音色・資材は変更しない。\n');
   console.log('Bell harmony audition passed: '+report.checks.length+' checks; '+samples.length+' WAVs');
  }catch(error){report.failure=error.stack;process.exitCode=1;console.error(error.stack);}finally{fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify(report,null,2));await browser?.close();await new Promise(r=>server.close(r));}
 })();

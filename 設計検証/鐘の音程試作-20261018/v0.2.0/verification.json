@@ -1,0 +1,256 @@
+{
+  "revision": "0.2.0",
+  "appVersion": "0.63.0",
+  "checkedAt": "2026-10-18T12:50:36.143Z",
+  "passed": true,
+  "protectedFiles": {
+    "src/ui/voices.js": "5eef4512dc86e285d73a371678f2a135e7a3e62e3558ac7686ad4c7a55edba82",
+    "src/ui/audio.js": "f28b5e22d8df8f81f0f3e2ba993d22737e33c8ffb197adda3f8c56f8fba21a86",
+    "src/ui/app.js": "02b8ce1c1f98e633e6484dd59774d16c4d9ce1706dd486c140bc271d5b3b0381",
+    "package.json": "ee7c119ea7abbed4b34cc48a462a65182e17a90bfed60664775a072bc1c45767",
+    "index.html": "915cd2f3606701c78f718cb96ad4b2d4c520d5acc820d7d4237f9e1d395bb901"
+  },
+  "samples": [
+    {
+      "id": "D2",
+      "name": "ドアチャイム：1オクターブ上",
+      "file": "D2-door-chime-octave-up.wav",
+      "description": "前回のミ → ドを1オクターブ上へ。間隔は0.5秒のまま。",
+      "notes": [
+        {
+          "name": "E6",
+          "midi": 88,
+          "at": 0,
+          "frequencyHz": 1318.5102276514797
+        },
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 0.5,
+          "frequencyHz": 1046.5022612023945
+        }
+      ],
+      "seconds": 3.6700208333333335,
+      "metrics": {
+        "id": "D2",
+        "peak": 0.30424121022224426,
+        "rms": 0.04274774184985361,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          1318.5102276514797,
+          1046.5022612023945
+        ]
+      },
+      "bytes": 352366,
+      "sha256": "dd2859184efab85087b03829798098663303d2fe80d715fd89c2dbcf8dbcbcb4"
+    },
+    {
+      "id": "H3",
+      "name": "ド → ソ → 上のド",
+      "file": "H3-C5-G5-C6.wav",
+      "description": "C5 → G5 → C6。0.25秒ずつずらして余韻を重ねます。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "G5",
+          "midi": 79,
+          "at": 0.25,
+          "frequencyHz": 783.9908719634985
+        },
+        {
+          "name": "C6",
+          "midi": 84,
+          "at": 0.5,
+          "frequencyHz": 1046.5022612023945
+        }
+      ],
+      "seconds": 3.6700208333333335,
+      "metrics": {
+        "id": "H3",
+        "peak": 0.3695896565914154,
+        "rms": 0.05050718862485124,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          783.9908719634985,
+          1046.5022612023945
+        ]
+      },
+      "bytes": 352366,
+      "sha256": "62bb4182d558d9bb2162fd77da966d21b1f26d4054366de4a7a918db79265d84"
+    },
+    {
+      "id": "H4",
+      "name": "ド → ファ → ラ",
+      "file": "H4-C5-F5-A5.wav",
+      "description": "C5 → F5 → A5。0.25秒ずつずらして余韻を重ねます。",
+      "notes": [
+        {
+          "name": "C5",
+          "midi": 72,
+          "at": 0,
+          "frequencyHz": 523.2511306011972
+        },
+        {
+          "name": "F5",
+          "midi": 77,
+          "at": 0.25,
+          "frequencyHz": 698.4564628660078
+        },
+        {
+          "name": "A5",
+          "midi": 81,
+          "at": 0.5,
+          "frequencyHz": 880
+        }
+      ],
+      "seconds": 3.6700208333333335,
+      "metrics": {
+        "id": "H4",
+        "peak": 0.3527016043663025,
+        "rms": 0.05066461942723626,
+        "finite": true,
+        "tailPeak": 0,
+        "active": 0,
+        "pitches": [
+          523.2511306011972,
+          698.4564628660078,
+          880
+        ]
+      },
+      "bytes": 352366,
+      "sha256": "bbfbfa87c300d517e6e1f97f3f0150be20e40ae9d5f235cb9ab857e92a3939e0"
+    }
+  ],
+  "browsers": [
+    {
+      "name": "chrome",
+      "version": "155.0.8059.84"
+    },
+    {
+      "name": "msedge",
+      "version": "155.0.4283.45"
+    },
+    {
+      "name": "webkit",
+      "version": "26.5"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Requested octave-up, unchanged door timing and both 0.25-second voicings match the user request",
+      "passed": true
+    },
+    {
+      "name": "Untransposed audition exactly matches the production bell signal",
+      "passed": true,
+      "maxDifference": 0
+    },
+    {
+      "name": "D2 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.30424121022224426,
+      "seconds": 3.6700000000000004,
+      "integerPeak": 9969
+    },
+    {
+      "name": "H3 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.3695896565914154,
+      "seconds": 3.6700000000000004,
+      "integerPeak": 12110
+    },
+    {
+      "name": "H4 WAV has requested notes, intact tail and no clipping",
+      "passed": true,
+      "peak": 0.3527016043663025,
+      "seconds": 3.6700000000000004,
+      "integerPeak": 11557
+    },
+    {
+      "name": "All three WAVs differ",
+      "passed": true
+    },
+    {
+      "name": "chrome native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.670021
+        }
+      ]
+    },
+    {
+      "name": "chrome preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Extracted local-file preview plays without a server",
+      "passed": true
+    },
+    {
+      "name": "msedge native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.670021
+        },
+        {
+          "seconds": 3.670021
+        }
+      ]
+    },
+    {
+      "name": "msedge preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "webkit native WAV playback, duration and exclusive switching",
+      "passed": true,
+      "media": [
+        {
+          "seconds": 3.6700208
+        },
+        {
+          "seconds": 3.6700208
+        },
+        {
+          "seconds": 3.6700208
+        }
+      ]
+    },
+    {
+      "name": "webkit preview fits narrow and wide screens",
+      "passed": true
+    },
+    {
+      "name": "Production audio, UI and app version remain unchanged",
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Human listening and physical-device playback. These are audition files, not adopted game sounds."
+  ],
+  "renderer": {
+    "channel": "chrome",
+    "version": "155.0.8059.84"
+  }
+}
