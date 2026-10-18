@@ -1,0 +1,12 @@
+webkit perfect actual result selects one sound, retains full records and never repeats on reopening
+webkit clear actual result selects one sound, retains full records and never repeats on reopening
+webkit failure actual result selects one sound, retains full records and never repeats on reopening
+webkit perfect starts later and re-enables the bell button in 2.7s without cutting notes
+webkit clear starts later and re-enables the bell button in 2.7s without cutting notes
+webkit actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records
+webkit known failure waits until active light finishes
+webkit stopping an unfinished trial does not play a result
+webkit stop cancels every scheduled result voice
+webkit muted result sounds schedule no voices
+webkit enabling sound after a muted clear does not replay the result
+Outcome audio checks passed: 11

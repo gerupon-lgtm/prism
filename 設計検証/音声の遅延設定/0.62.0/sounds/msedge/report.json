@@ -1,0 +1,790 @@
+{
+  "version": "0.62.0",
+  "url": null,
+  "checkedAt": "2026-10-18T10:02:12.960Z",
+  "evidence": "Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.",
+  "checks": [
+    {
+      "label": "msedge perfect actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "perfect",
+          "muted": false,
+          "state": "running",
+          "added": 19
+        }
+      ]
+    },
+    {
+      "label": "msedge clear actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "clear",
+          "muted": false,
+          "state": "running",
+          "added": 6
+        }
+      ]
+    },
+    {
+      "label": "msedge failure actual result selects one sound, retains full records and never repeats on reopening",
+      "passed": true,
+      "calls": [
+        {
+          "kind": "failure",
+          "muted": false,
+          "state": "running",
+          "added": 3
+        }
+      ]
+    },
+    {
+      "label": "msedge perfect starts later and re-enables the bell button in 2.7s without cutting notes",
+      "passed": true,
+      "audioAvailable": true,
+      "elapsedMs": 2705.5,
+      "probe": {
+        "at": 17207.5,
+        "audioAt": 15.52,
+        "voices": [
+          {
+            "stops": [
+              16.499999999999996
+            ],
+            "start": 16.22,
+            "endedAt": 16.501333333333335
+          },
+          {
+            "stops": [
+              16.619999999999997
+            ],
+            "start": 16.34,
+            "endedAt": 16.621333333333332
+          },
+          {
+            "stops": [
+              16.754999999999995
+            ],
+            "start": 16.459999999999997,
+            "endedAt": 16.754666666666665
+          },
+          {
+            "stops": [
+              16.985
+            ],
+            "start": 16.64,
+            "endedAt": 17
+          },
+          {
+            "stops": [
+              17.164999999999996
+            ],
+            "start": 16.88,
+            "endedAt": 17.162666666666667
+          },
+          {
+            "stops": [
+              17.304999999999996
+            ],
+            "start": 17.02,
+            "endedAt": 17.32
+          },
+          {
+            "stops": [
+              17.804999999999996
+            ],
+            "start": 17.22,
+            "endedAt": 17.802666666666667
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              16.665
+            ],
+            "start": 16.22,
+            "endedAt": 16.664
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.095
+            ],
+            "start": 16.64,
+            "endedAt": 17.101333333333333
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          },
+          {
+            "stops": [
+              17.924999999999997
+            ],
+            "start": 17.22,
+            "endedAt": 17.922666666666668
+          }
+        ],
+        "readyAt": 19913,
+        "button": "鐘を鳴らす"
+      }
+    },
+    {
+      "label": "msedge clear starts later and re-enables the bell button in 2.7s without cutting notes",
+      "passed": true,
+      "audioAvailable": true,
+      "elapsedMs": 2711.800000011921,
+      "probe": {
+        "at": 24240.400000035763,
+        "audioAt": 22.56,
+        "voices": [
+          {
+            "stops": [
+              23.865
+            ],
+            "start": 23.259999999999998,
+            "endedAt": 23.864
+          },
+          {
+            "stops": [
+              23.865
+            ],
+            "start": 23.259999999999998,
+            "endedAt": 23.864
+          },
+          {
+            "stops": [
+              24.044999999999998
+            ],
+            "start": 23.439999999999998,
+            "endedAt": 24.042666666666666
+          },
+          {
+            "stops": [
+              24.044999999999998
+            ],
+            "start": 23.439999999999998,
+            "endedAt": 24.045333333333332
+          },
+          {
+            "stops": [
+              24.284999999999997
+            ],
+            "start": 23.659999999999997,
+            "endedAt": 24.282666666666668
+          },
+          {
+            "stops": [
+              24.284999999999997
+            ],
+            "start": 23.659999999999997,
+            "endedAt": 24.282666666666668
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.634666666666668
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.634666666666668
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.64
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.64
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.637333333333334
+          },
+          {
+            "stops": [
+              24.635
+            ],
+            "start": 23.93,
+            "endedAt": 24.637333333333334
+          }
+        ],
+        "readyAt": 26952.200000047684,
+        "button": "鐘を鳴らす"
+      }
+    },
+    {
+      "label": "msedge actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records",
+      "passed": true,
+      "audioAvailable": true,
+      "signal": {
+        "firstNoteAfterBell": 1.5,
+        "lastNoteEndedAfterResult": 2.6773333333333333,
+        "quietBell": 0.0016036508604884148,
+        "failurePeak": 0.16480199992656708,
+        "voices": [
+          {
+            "stops": [
+              {
+                "at": 29.545,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 28.94,
+            "endedAt": 29.546666666666667
+          },
+          {
+            "stops": [
+              {
+                "at": 29.545,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 28.94,
+            "endedAt": 29.549333333333333
+          },
+          {
+            "stops": [
+              {
+                "at": 29.795,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 29.19,
+            "endedAt": 29.797333333333334
+          },
+          {
+            "stops": [
+              {
+                "at": 29.795,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 29.19,
+            "endedAt": 29.8
+          },
+          {
+            "stops": [
+              {
+                "at": 30.135,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 29.46,
+            "endedAt": 30.136
+          },
+          {
+            "stops": [
+              {
+                "at": 30.135,
+                "calledAt": 27.461333333333332
+              }
+            ],
+            "start": 29.46,
+            "endedAt": 30.138666666666666
+          }
+        ]
+      }
+    },
+    {
+      "label": "msedge known failure waits until active light finishes",
+      "passed": true
+    },
+    {
+      "label": "msedge stopping an unfinished trial does not play a result",
+      "passed": true
+    },
+    {
+      "label": "msedge stop cancels every scheduled result voice",
+      "passed": true
+    },
+    {
+      "label": "msedge muted result sounds schedule no voices",
+      "passed": true
+    },
+    {
+      "label": "msedge enabling sound after a muted clear does not replay the result",
+      "passed": true
+    },
+    {
+      "label": "msedge three actual offline-rendered audio signals",
+      "passed": true,
+      "buffers": {
+        "clear": {
+          "peak": 0.18888810276985168,
+          "early": 0,
+          "tail": 0,
+          "energy": 2402.567564581844,
+          "signature": 2901898530
+        },
+        "perfect": {
+          "peak": 0.17703598737716675,
+          "early": 0,
+          "tail": 0,
+          "energy": 2345.756284395076,
+          "signature": 2159564976
+        },
+        "failure": {
+          "peak": 0.13278828561306,
+          "early": 0,
+          "tail": 0,
+          "energy": 2031.138574319659,
+          "signature": 617910597
+        }
+      }
+    },
+    {
+      "label": "msedge strike has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.11765117198228836,
+      "oscillators": 4
+    },
+    {
+      "label": "msedge clear has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17329221963882446,
+      "oscillators": 12
+    },
+    {
+      "label": "msedge perfect has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.17271819710731506,
+      "oscillators": 29
+    },
+    {
+      "label": "msedge failure has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.13368505239486694,
+      "oscillators": 6
+    },
+    {
+      "label": "msedge relay has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.05761413648724556,
+      "oscillators": 2
+    },
+    {
+      "label": "msedge wire has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.06747685372829437,
+      "oscillators": 4
+    },
+    {
+      "label": "msedge tap has a finite non-clipped signal and releases every voice",
+      "passed": true,
+      "peak": 0.03462701290845871,
+      "oscillators": 2
+    },
+    {
+      "label": "msedge selected 440Hz chime gains a short separate attack while retaining its late decay",
+      "passed": true,
+      "attackRms": 0.05104083780151952,
+      "bodyOnlyAttackRms": 0.04699214236578394,
+      "lateRms": 0.0005236830817821509
+    },
+    {
+      "label": "msedge selected C1 and N2 use electric piano and F4 uses brass plus strings",
+      "passed": true,
+      "clearOscillators": 12,
+      "perfectOscillators": 29,
+      "failureOscillators": 6
+    },
+    {
+      "label": "msedge three simultaneous chimes leave room for the failure notes",
+      "passed": true,
+      "quietRms": 0.0015710492435787773,
+      "failureRms": 0.07342432931837721
+    },
+    {
+      "label": "msedge stop cancels layered bells and future FM notes without residual sound",
+      "passed": true
+    },
+    {
+      "label": "msedge F4 has an audible reverb tail beyond the dry notes and is silent before 2.7s",
+      "passed": true,
+      "dryTailRms": 0,
+      "wetTailRms": 0.00009598690433473036
+    },
+    {
+      "label": "msedge stopping or muting an active reverb tail clears all residual audio",
+      "passed": true
+    },
+    {
+      "label": "msedge accepted chime followed by F4 and reverb stays bounded and releases every voice",
+      "passed": true,
+      "peak": 0.17271819710731506
+    },
+    {
+      "label": "msedge seven audition WAVs are generated from the same shipped audio code",
+      "passed": true,
+      "files": [
+        {
+          "name": "strike.wav",
+          "bytes": 288044,
+          "sha256": "39fe0bf3cca7803a63b9dd911d952bcbcb494b52f0cc6796f7219f10066c5f6b"
+        },
+        {
+          "name": "clear.wav",
+          "bytes": 288044,
+          "sha256": "884e216ea22a5830725a9c04975d8afb54dcf0c1e9154b354a2ce5ee60815cdf"
+        },
+        {
+          "name": "perfect.wav",
+          "bytes": 288044,
+          "sha256": "b94c38bdca8aa6d42d2b6f9fce8e9d53582406448fd8eaf26c44533ad351a92b"
+        },
+        {
+          "name": "failure.wav",
+          "bytes": 288044,
+          "sha256": "7997c5fa5b943fbcd3ca87d932392f68e6271c7f8d2b5d6ea33d62924db1ba7c"
+        },
+        {
+          "name": "relay.wav",
+          "bytes": 288044,
+          "sha256": "d647ed6278bcdbdb11797abc8cb00157cd7847c13886531170f960e0c2a85ae0"
+        },
+        {
+          "name": "perfect-dry.wav",
+          "bytes": 288044,
+          "sha256": "1d4823e31eb2d67c9ee29bc38fb143dcec04e86def1b654ad10149f298adf34d"
+        },
+        {
+          "name": "perfect-with-bell.wav",
+          "bytes": 288044,
+          "sha256": "140ff903d0ca455981b13d53b902d68c214b5416f1985bd7a402a0f0cba00578"
+        }
+      ]
+    },
+    {
+      "label": "msedge C1 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.6144717010760477e-9
+        },
+        {
+          "id": "C1",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.1230436614850927e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.7159358478340314e-9
+        },
+        {
+          "id": "C1",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.1125377665325615e-9
+        }
+      ]
+    },
+    {
+      "label": "msedge N2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "N2",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 6.273385799811278e-10
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 1.0915150171966538e-9
+        },
+        {
+          "id": "N2",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 2.9802322387695312e-8,
+          "rmsDifference": 7.762553750878563e-10
+        }
+      ]
+    },
+    {
+      "label": "msedge T2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "T2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "T2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "msedge W2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "W2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "W2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "msedge R2 matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "R2",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "id": "R2",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    },
+    {
+      "label": "msedge F4 dry music matches its audition at 48kHz and 44.1kHz",
+      "passed": true,
+      "rows": [
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.533452816543092e-9
+        },
+        {
+          "id": "F4",
+          "rate": 48000,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.262940764540046e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": false,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.525398176996686e-9
+        },
+        {
+          "id": "F4",
+          "rate": 44100,
+          "context": true,
+          "maxDifference": 4.470348358154297e-8,
+          "rmsDifference": 2.023855165946497e-9
+        }
+      ]
+    },
+    {
+      "label": "msedge strike retains the previous audio signal",
+      "passed": true,
+      "rows": [
+        {
+          "method": "strike",
+          "rate": 48000,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        },
+        {
+          "method": "strike",
+          "rate": 44100,
+          "maxDifference": 0,
+          "rmsDifference": 0
+        }
+      ]
+    }
+  ],
+  "pending": [],
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": "msedge",
+      "version": "155.0.4283.45"
+    }
+  ],
+  "passed": true
+}

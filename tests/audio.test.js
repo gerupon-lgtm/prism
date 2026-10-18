@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Chime,BELL_SOUND,DEFAULT_EFFECT_VOLUME} from '../src/ui/audio.js';
+import {PlaybackDiagnostics,readPlaybackStats,playbackStatsDelta,playbackDiagnosticText,audioOutputInfo,loadAudioLatency,saveAudioLatency,latencyFromMilliseconds,AUDIO_LATENCY_STORAGE_KEY} from '../src/ui/playback-diagnostics.js';
 
 function fixture(){
   const chime=new Chime(),voices=[],sources=[];
@@ -111,4 +112,59 @@ test('ファンファーレの残響も2.7秒以内で終了し、停止・消�
   const {chime,sources,notes}=fixture();chime.perfect();assert.equal(notes().length,18);assert.equal(chime.voices.size,19);assert.equal(sources.length,1);
   assert(sources[0].stopAt>2.4&&sources[0].stopAt<2.65);chime.stop();assert(sources.every(s=>s.stopped&&s.disconnected));assert.equal(chime.voices.size,0);
   chime.perfect();chime.mute();assert(sources.every(s=>s.stopped&&s.disconnected));assert.equal(chime.voices.size,0);
+});
+
+test('再生設定はplaybackを初期値にし、比較用interactiveも同じContextを再利用する',async()=>{
+  const original=globalThis.window,created=[];
+  globalThis.window={AudioContext:class{constructor(options){created.push(options);this.state='running';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{},connect(){}};}async resume(){}}};
+  try{for(const value of [undefined,'playback','interactive','invalid']){const chime=new Chime({latencyHint:value});await chime.enable();await chime.enable();assert.equal(chime.latencyHint,value==='interactive'?'interactive':'playback');}assert.deepEqual(created,[{latencyHint:'playback'},{latencyHint:'playback'},{latencyHint:'interactive'},{latencyHint:'playback'}]);}finally{globalThis.window=original;}
+});
+
+test('音声統計は値の写しを取り、未対応・例外・無効値を0回へ読み替えない',()=>{
+  const native={underrunEvents:2,underrunDuration:.02,totalDuration:8},copy=readPlaybackStats({playbackStats:native});native.underrunEvents=9;assert.equal(copy.underrunEvents,2);
+  for(const context of [null,{},Object.defineProperty({},'playbackStats',{get(){throw Error('unavailable');}}),{playbackStats:{...native,underrunDuration:NaN}},{playbackStats:{...native,totalDuration:-1}}])assert.equal(readPlaybackStats(context),null);
+});
+
+test('音声統計は累積値の差を取り、値が戻った場合と未計測を区別する',()=>{
+  const before={underrunEvents:2,underrunDuration:.02,totalDuration:8},after={underrunEvents:3,underrunDuration:.04,totalDuration:12};assert.deepEqual(playbackStatsDelta(before,after),{status:'measured',underrunEvents:1,underrunDuration:.02,totalDuration:4});
+  assert.equal(playbackStatsDelta(before,{...after,totalDuration:0}).status,'counter-reset');assert.equal(playbackStatsDelta(null,after).status,'unavailable');assert.equal(playbackStatsDelta(before,{...after,underrunEvents:undefined}).status,'unavailable');
+});
+
+test('診断は再生の開始・終了だけで読み、同じ区間を二重開始せず累積値の差を取る',()=>{
+  let reads=0;const context={currentTime:1,sampleRate:48000,baseLatency:.02,outputLatency:.1,get playbackStats(){reads++;return {underrunEvents:reads,underrunDuration:reads*.01,totalDuration:reads*5};}},d=new PlaybackDiagnostics();d.begin(context,'Q1');d.begin(context,'Q1');for(let i=0;i<10;i++)d.snapshot();assert.equal(reads,1);context.currentTime=5;d.finish('completed');d.finish();assert.equal(reads,2);const row=d.snapshot().recent[0];assert.equal(row.stats.underrunEvents,1);assert.equal(row.stats.totalDuration,5);assert.equal(row.reason,'completed');assert.equal(row.endedAt,5);
+});
+
+test('診断の停止と再開は別区間になり、別Contextの累積値を差し引かない',()=>{
+  const d=new PlaybackDiagnostics(),a={playbackStats:{underrunEvents:8,underrunDuration:.1,totalDuration:8}},b={playbackStats:{underrunEvents:0,underrunDuration:0,totalDuration:0}};d.begin(a);d.finish();d.begin(b);b.playbackStats.totalDuration=3;d.finish();assert.equal(d.snapshot().recent[0].stats.totalDuration,3);assert.equal(d.snapshot().recent[0].stats.underrunEvents,0);
+});
+
+test('診断は直近8区間だけをメモリに保ち、取得した表示用データの変更は記録を壊さない',()=>{
+  const d=new PlaybackDiagnostics();for(let i=0;i<12;i++){d.begin({});d.finish();}const copy=d.snapshot();assert.equal(copy.recent.length,8);assert.equal(copy.recent[0].id,12);copy.recent[0].stats.status='changed';assert.equal(d.snapshot().recent[0].stats.status,'unavailable');
+});
+
+test('停止・消音で診断を一度だけ終え、消音中は新しい区間を始めない',()=>{
+  const {chime}=fixture();chime.beginPlayback('Q1');chime.mute();chime.beginPlayback('Q1');chime.stop();assert.equal(chime.inspectPlayback().recent.length,1);assert.equal(chime.inspectPlayback().recent[0].reason,'muted');assert.equal(chime.inspectPlayback().active,null);chime.muted=false;chime.beginPlayback('Q1');chime.stop('completed');assert.equal(chime.inspectPlayback().recent.length,2);
+});
+
+test('遅延の未対応・取得失敗を0msと表示せず、統計の0回にも限界を併記する',()=>{
+  const context=Object.defineProperty({sampleRate:48000},'outputLatency',{get(){throw Error('missing');}});assert.deepEqual(audioOutputInfo(context),{sampleRate:48000,baseLatency:null,outputLatency:null});
+  const chime=new Chime(),unknown=playbackDiagnosticText(chime.inspectPlayback());assert.match(unknown,/未計測/);chime.context={currentTime:0,playbackStats:{underrunEvents:0,underrunDuration:0,totalDuration:0}};chime.beginPlayback('Q1');chime.stop();const text=playbackDiagnosticText(chime.inspectPlayback());assert.match(text,/出力不足 0回/);assert.match(text,/0回は音欠けがなかった証明ではありません/);
+});
+
+test('遅延の数値はミリ秒から秒へ変換し、空欄・負値・範囲外では保存しない',()=>{
+  assert.equal(latencyFromMilliseconds('25'),.025);assert.equal(latencyFromMilliseconds('0'),0);assert.equal(latencyFromMilliseconds('1000'),1);
+  for(const value of ['', '-1','1001','NaN','Infinity','abc'])assert.throws(()=>latencyFromMilliseconds(value));
+  let writes=0;assert.throws(()=>saveAudioLatency({setItem(){writes++;}},-1));assert.equal(writes,0);
+});
+
+test('遅延設定だけを保存・復元し、破損・未知版・保存失敗でも他の記録へ触れない',()=>{
+  const data=new Map([['records','retained']]),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};assert.equal(loadAudioLatency(storage),'playback');saveAudioLatency(storage,.075);assert.equal(loadAudioLatency(storage),.075);assert.equal(data.get('records'),'retained');
+  for(const raw of ['broken',JSON.stringify({version:2,latencyHint:'interactive'}),JSON.stringify({version:1,latencyHint:4})]){data.set(AUDIO_LATENCY_STORAGE_KEY,raw);assert.equal(loadAudioLatency(storage),'playback');assert.equal(data.get(AUDIO_LATENCY_STORAGE_KEY),raw);}
+  assert.throws(()=>saveAudioLatency({setItem(){throw Error('quota');}},'interactive'));
+});
+
+test('遅延の変更は古いContextの終了を待ち、次の操作で一つだけ作り直し、消音を保つ',async()=>{
+  const original=globalThis.window,created=[];let close;
+  globalThis.window={AudioContext:class{constructor(options){created.push(options);this.state='running';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{},connect(){}};}async resume(){}}};
+  try{const chime=new Chime();chime.context={close:()=>new Promise(resolve=>close=resolve)};chime.muted=true;const changing=chime.configureLatency(.05),unlock=chime.unlock();assert.equal(created.length,0);close();await changing;await unlock;assert.deepEqual(created,[{latencyHint:.05}]);assert.equal(chime.muted,true);await chime.configureLatency(.05);assert.equal(created.length,1);}finally{globalThis.window=original;}
 });

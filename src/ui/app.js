@@ -7,6 +7,7 @@ import { challenges } from '../content/challenges.js';
 import { samples } from '../content/samples.js';
 import { Board } from './board.js';
 import { Chime } from './audio.js';
+import { playbackDiagnosticText,loadAudioLatency,saveAudioLatency,latencyFromMilliseconds } from './playback-diagnostics.js';
 import { Offline } from './offline.js';
 import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
@@ -37,7 +38,8 @@ const load=new LoadMeter();
 const endWait=new EndWait();
 const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
-const session=new Session(new LocalRecords(storage)),chime=new Chime();
+const audioComparison=new URL(location.href).searchParams.get('audioLatency');
+const session=new Session(new LocalRecords(storage)),chime=new Chime({latencyHint:['interactive','playback'].includes(audioComparison)?audioComparison:loadAudioLatency(storage)});
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 const motion=new MotionPreference(storage,document.documentElement,matchMedia('(prefers-reduced-motion:reduce)'));
 motion.changed=refreshMotionSettings;
@@ -508,6 +510,24 @@ function aboutGame() {
   open('遊び方と概要');dialog.classList.add('help-dialog');
   listPage(PLAY_GUIDE,item=>helpCard(item,aboutGame));
   actions.append(button('表示・演出',()=>motionSettings(aboutGame)),button('オフラインと更新',offlineDialog),button('閉じる',close));
+  body.querySelector('.dialog-list').prepend(button('音声・レイテンシ',()=>audioSettings(aboutGame)));
+}
+function audioSettings(back=menu){
+  open('音声・レイテンシ');dialog.classList.add('settings-dialog');
+  const select=element('select','',{id:'audio-latency-mode','aria-label':'音声の遅延設定'});
+  for(const [value,label]of [['playback','安定性優先（初期設定）'],['interactive','反応優先'],['custom','ミリ秒で指定']])select.append(element('option',label,{value}));
+  select.value=typeof chime.latencyHint==='number'?'custom':chime.latencyHint;
+  const custom=element('div'),input=element('input','',{id:'audio-latency-ms',type:'text',inputmode:'decimal','aria-label':'指定する遅延（ミリ秒）'});input.value=typeof chime.latencyHint==='number'?String(chime.latencyHint*1000):'50';custom.append(element('label','指定する遅延（0〜1000ミリ秒）',{for:'audio-latency-ms'}),input);
+  const status=element('p','',{id:'audio-latency-status',role:'status'}),note=element('p','大きい値ほど音の準備に余裕ができ、反応は遅くなることがあります。指定は希望値で、実際の遅延は端末が決めます。変更時は音を止め、次の操作で新しい音声出力を準備します。鐘や音色・計算時間は変わりません。');
+  const update=()=>{custom.hidden=select.value!=='custom';dialogLayout?.();};select.addEventListener('change',update);
+  const info=chime.inspectPlayback().output;status.textContent=info.baseLatency===null?'音声出力は次の操作で準備します。':`ブラウザ報告：内部 ${(info.baseLatency*1000).toFixed(2)}ms／出力 ${info.outputLatency===null?'未計測':(info.outputLatency*1000).toFixed(2)+'ms'}`;
+  body.append(element('label','音の準備と反応のバランス',{for:'audio-latency-mode'}),select,custom,status,note);
+  const apply=button('適用して保存',async()=>{
+    const hint=select.value==='custom'?latencyFromMilliseconds(input.value):select.value;
+    apply.disabled=true;try{saveAudioLatency(storage,hint);await chime.configureLatency(hint);const url=new URL(location.href);url.searchParams.delete('audioLatency');history.replaceState(history.state,'',url);status.textContent='保存しました。次の操作から適用します。';$('dialog-error').textContent='';}finally{apply.disabled=false;}
+  },{id:'audio-latency-apply'});
+  actions.append(apply,button('戻る',back));
+  fitDialogForm(()=>{custom.hidden=select.value!=='custom';},[status,note]);update();
 }
 function refreshMotionSettings(){
   if(!dialog.open||$('dialog-title').textContent!=='表示・演出')return;
@@ -543,13 +563,14 @@ function menu() {
     ['実行結果を書き出す',()=>download('prism-notes-result.json',session.exportResult())],
     ['成績未保存を再試行',pendingScores],
     ['表示・演出',()=>motionSettings(menu)],
+    ['音声・レイテンシ',()=>audioSettings(menu)],
     ['オフラインと更新',offlineDialog],
   ];
   if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
   if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
   const short=['遊ぶ','案内','一覧','回路','結果','成績','更新'];
   const aliases=new Map(['課題と自由','操作の案内','点と道の一覧','保存回路','実行結果を書き出す','成績未保存を再試行','オフラインと更新'].map((name,index)=>[name,short[index]]));
-  [['タイトルへ','表紙'],['表示・演出','演出'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
+  [['タイトルへ','表紙'],['表示・演出','演出'],['音声・レイテンシ','音声'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
   dialog.classList.add('menu-dialog');body.className='menu-grid';
   const entries=items.map(([name,action])=>button(name,action));body.append(...entries);actions.append(button('閉じる',close));
   const layout=()=>{
@@ -861,7 +882,7 @@ function caseDetails(item){
 }
 
 function interruptRun(reason){celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
-function startClock(){clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
+function startClock(){chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
   let waiting=0;for(const gate of run.gates.values())waiting+=gate.queue.length-gate.head;
@@ -907,7 +928,7 @@ function play(){
   else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop();clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop();clockAnchor=null;message='';render();}
+function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(session.run?.exhausted?'completed':'stopped');clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
@@ -949,6 +970,7 @@ $('result-info').addEventListener('click',()=>session.result?.state==='failed'?f
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
+  chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');
   try{reactions(load.measure('calculation',()=>session.next({shouldPause:()=>load.calculationExceeded()})));load.measure('display',()=>render(false,{records:false}));if(session.view.recordsOpen)load.measure('records',renderRecords);finishLoad();}
   catch(error){load.current=null;interruptRun('error');throw error;}
 }));
@@ -956,7 +978,7 @@ $('records').addEventListener('click',()=>attempt(showRecords));$('close-records
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
-$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;chime.tap();}else chime.mute();render(false);}));
+$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');chime.tap();}else chime.mute();render(false);}));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(requestUpdate));
 $('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id}))));
@@ -1016,7 +1038,8 @@ function viewport(){
   cancelWireDelete();board.resize();render(false);scheduleNotices();if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
 }
 document.querySelector('.app-version').addEventListener('click',()=>{
-  fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}`);
+  chime.stop();
+  fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}\n\n${playbackDiagnosticText(chime.inspectPlayback())}`);
 });
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);screen.orientation?.addEventListener('change',viewport);window.addEventListener('orientationchange',viewport);viewport();render();maybeGuide();
 // Root font changes can resize text without dispatching a window resize event.
@@ -1028,3 +1051,4 @@ if(offline.enabled)offline.prepare();
 
 // Local inspection for performance verification; never stores or uploads data.
 export function inspectPerformance(){return {...load.snapshot(),run:session.run?{status:session.run.status,pauseReason:session.run.pauseReason,clock:session.run.format(),...runCounts()}:null,audioVoices:chime.voices.size};}
+export function inspectAudioPlayback(){return chime.inspectPlayback();}

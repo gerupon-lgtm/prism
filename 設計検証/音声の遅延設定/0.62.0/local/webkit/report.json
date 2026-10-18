@@ -1,0 +1,2786 @@
+{
+  "version": "0.62.0",
+  "checks": [
+    {
+      "label": "portrait default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "portrait challenge menu fits with audio settings",
+      "passed": true,
+      "w": 368,
+      "h": 710,
+      "sw": 368,
+      "sh": 710,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 64,
+          "right": 203.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 64,
+          "right": 390,
+          "bottom": 102
+        },
+        {
+          "name": "操作の案内",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 107,
+          "right": 203.5,
+          "bottom": 145
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 107,
+          "right": 390,
+          "bottom": 145
+        },
+        {
+          "name": "保存回路",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 150,
+          "right": 203.5,
+          "bottom": 188
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 150,
+          "right": 390,
+          "bottom": 188
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 193,
+          "right": 203.5,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 193,
+          "right": 390,
+          "bottom": 231
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 236,
+          "right": 203.5,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 236,
+          "right": 390,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "portrait latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 9,
+          "y": 142,
+          "w": 394,
+          "h": 560,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 22,
+          "y": 207,
+          "w": 368,
+          "h": 426,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 22,
+          "y": 232.171875,
+          "w": 368,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 22,
+          "y": 305.34375,
+          "w": 368,
+          "h": 38,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 22,
+          "y": 641,
+          "w": 368,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 22,
+          "y": 641,
+          "w": 209.5,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "portrait invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "portrait numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "failed preference save retains the current output and input",
+      "passed": true
+    },
+    {
+      "label": "portrait native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "portrait output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "portrait preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "comparison URL does not overwrite saved preference; explicit setting removes override",
+      "passed": true
+    },
+    {
+      "label": "changing latency preserves explicit mute",
+      "passed": true
+    },
+    {
+      "label": "portrait free menu fits with audio settings",
+      "passed": true,
+      "w": 368,
+      "h": 710,
+      "sw": 368,
+      "sh": 710,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 64,
+          "right": 203.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 64,
+          "right": 390,
+          "bottom": 102
+        },
+        {
+          "name": "回路を保存",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 107,
+          "right": 203.5,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 107,
+          "right": 390,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 150,
+          "right": 203.5,
+          "bottom": 188
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 150,
+          "right": 390,
+          "bottom": 188
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 193,
+          "right": 203.5,
+          "bottom": 231
+        },
+        {
+          "name": "操作の案内",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 193,
+          "right": 390,
+          "bottom": 231
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 236,
+          "right": 203.5,
+          "bottom": 274
+        },
+        {
+          "name": "保存回路",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 236,
+          "right": 390,
+          "bottom": 274
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 279,
+          "right": 203.5,
+          "bottom": 317
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 279,
+          "right": 390,
+          "bottom": 317
+        },
+        {
+          "name": "表示・演出",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 322,
+          "right": 203.5,
+          "bottom": 360
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 208.5,
+          "y": 322,
+          "right": 390,
+          "bottom": 360
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 180,
+          "h": 36,
+          "sw": 180,
+          "sh": 36,
+          "x": 22,
+          "y": 365,
+          "right": 203.5,
+          "bottom": 403
+        }
+      ]
+    },
+    {
+      "label": "portrait no browser errors",
+      "passed": true
+    },
+    {
+      "label": "small default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "small challenge menu fits with audio settings",
+      "passed": true,
+      "w": 276,
+      "h": 434,
+      "sw": 276,
+      "sh": 434,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 64,
+          "right": 157.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 64,
+          "right": 298,
+          "bottom": 102
+        },
+        {
+          "name": "操作の案内",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 107,
+          "right": 157.5,
+          "bottom": 145
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 107,
+          "right": 298,
+          "bottom": 145
+        },
+        {
+          "name": "保存回路",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 150,
+          "right": 157.5,
+          "bottom": 188
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 150,
+          "right": 298,
+          "bottom": 188
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 193,
+          "right": 157.5,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 193,
+          "right": 298,
+          "bottom": 231
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 236,
+          "right": 157.5,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 236,
+          "right": 298,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "small latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 9,
+          "y": 11,
+          "w": 302,
+          "h": 546,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 22,
+          "y": 76,
+          "w": 276,
+          "h": 412,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 22,
+          "y": 101.171875,
+          "w": 276,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 22,
+          "y": 174.34375,
+          "w": 276,
+          "h": 38,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 22,
+          "y": 496,
+          "w": 276,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 22,
+          "y": 496,
+          "w": 163.5,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "small invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "small numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "small native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "small output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "small preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "small free menu fits with audio settings",
+      "passed": true,
+      "w": 276,
+      "h": 434,
+      "sw": 276,
+      "sh": 434,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 64,
+          "right": 157.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 64,
+          "right": 298,
+          "bottom": 102
+        },
+        {
+          "name": "回路を保存",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 107,
+          "right": 157.5,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 107,
+          "right": 298,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 150,
+          "right": 157.5,
+          "bottom": 188
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 150,
+          "right": 298,
+          "bottom": 188
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 193,
+          "right": 157.5,
+          "bottom": 231
+        },
+        {
+          "name": "操作の案内",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 193,
+          "right": 298,
+          "bottom": 231
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 236,
+          "right": 157.5,
+          "bottom": 274
+        },
+        {
+          "name": "保存回路",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 236,
+          "right": 298,
+          "bottom": 274
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 279,
+          "right": 157.5,
+          "bottom": 317
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 279,
+          "right": 298,
+          "bottom": 317
+        },
+        {
+          "name": "表示・演出",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 322,
+          "right": 157.5,
+          "bottom": 360
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 322,
+          "right": 298,
+          "bottom": 360
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 365,
+          "right": 157.5,
+          "bottom": 403
+        }
+      ]
+    },
+    {
+      "label": "small no browser errors",
+      "passed": true
+    },
+    {
+      "label": "large-text default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "large-text challenge menu fits with audio settings",
+      "passed": true,
+      "w": 276,
+      "h": 321,
+      "sw": 276,
+      "sh": 321,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 22,
+          "y": 79.1875,
+          "right": 157.5,
+          "bottom": 126.375
+        },
+        {
+          "name": "課題と自由",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 162.5,
+          "y": 79.1875,
+          "right": 298,
+          "bottom": 126.375
+        },
+        {
+          "name": "操作の案内",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 22,
+          "y": 131.375,
+          "right": 157.5,
+          "bottom": 178.5625
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 162.5,
+          "y": 131.375,
+          "right": 298,
+          "bottom": 178.5625
+        },
+        {
+          "name": "保存回路",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 22,
+          "y": 183.5625,
+          "right": 157.5,
+          "bottom": 230.75
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 162.5,
+          "y": 183.5625,
+          "right": 298,
+          "bottom": 230.75
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 22,
+          "y": 235.75,
+          "right": 157.5,
+          "bottom": 282.9375
+        },
+        {
+          "name": "表示・演出",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 162.5,
+          "y": 235.75,
+          "right": 298,
+          "bottom": 282.9375
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 22,
+          "y": 287.9375,
+          "right": 157.5,
+          "bottom": 335.125
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 134,
+          "h": 45,
+          "sw": 134,
+          "sh": 45,
+          "x": 162.5,
+          "y": 287.9375,
+          "right": 298,
+          "bottom": 335.125
+        }
+      ]
+    },
+    {
+      "label": "large-text latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 9,
+          "y": 11,
+          "w": 302,
+          "h": 458,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 22,
+          "y": 79.1875,
+          "w": 276,
+          "h": 315.625,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 22,
+          "y": 79.1875,
+          "w": 276,
+          "h": 68,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 22,
+          "y": 226.9375,
+          "w": 276,
+          "h": 58,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 22,
+          "y": 402.8125,
+          "w": 276,
+          "h": 53.1875,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 22,
+          "y": 402.8125,
+          "w": 191.5,
+          "h": 53.1875,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "large-text invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "large-text numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "large-text native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "large-text output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "large-text preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "large-text free menu fits with audio settings",
+      "passed": true,
+      "w": 276,
+      "h": 346,
+      "sw": 276,
+      "sh": 346,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 64,
+          "right": 157.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 64,
+          "right": 298,
+          "bottom": 102
+        },
+        {
+          "name": "回路を保存",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 107,
+          "right": 157.5,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 107,
+          "right": 298,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 150,
+          "right": 157.5,
+          "bottom": 188
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 150,
+          "right": 298,
+          "bottom": 188
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 193,
+          "right": 157.5,
+          "bottom": 231
+        },
+        {
+          "name": "操作の案内",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 193,
+          "right": 298,
+          "bottom": 231
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 236,
+          "right": 157.5,
+          "bottom": 274
+        },
+        {
+          "name": "保存回路",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 236,
+          "right": 298,
+          "bottom": 274
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 279,
+          "right": 157.5,
+          "bottom": 317
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 279,
+          "right": 298,
+          "bottom": 317
+        },
+        {
+          "name": "表示・演出",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 322,
+          "right": 157.5,
+          "bottom": 360
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 162.5,
+          "y": 322,
+          "right": 298,
+          "bottom": 360
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 134,
+          "h": 36,
+          "sw": 134,
+          "sh": 36,
+          "x": 22,
+          "y": 365,
+          "right": 157.5,
+          "bottom": 403
+        }
+      ]
+    },
+    {
+      "label": "large-text no browser errors",
+      "passed": true
+    },
+    {
+      "label": "left default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "left challenge menu fits with audio settings",
+      "passed": true,
+      "w": 454,
+      "h": 278,
+      "sw": 454,
+      "sh": 278,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 64,
+          "right": 419.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 64,
+          "right": 649,
+          "bottom": 102
+        },
+        {
+          "name": "操作の案内",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 107,
+          "right": 419.5,
+          "bottom": 145
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 107,
+          "right": 649,
+          "bottom": 145
+        },
+        {
+          "name": "保存回路",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 150,
+          "right": 419.5,
+          "bottom": 188
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 150,
+          "right": 649,
+          "bottom": 188
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 193,
+          "right": 419.5,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 193,
+          "right": 649,
+          "bottom": 231
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 236,
+          "right": 419.5,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 236,
+          "right": 649,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "left latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 152,
+          "y": 11,
+          "w": 540,
+          "h": 390,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 165,
+          "y": 76,
+          "w": 514,
+          "h": 256,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 165,
+          "y": 101.171875,
+          "w": 514,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 165,
+          "y": 174.34375,
+          "w": 514,
+          "h": 38,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 165,
+          "y": 340,
+          "w": 514,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 165,
+          "y": 340,
+          "w": 282.5,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "left invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "left numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "left native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "left output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "left preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "left free menu fits with audio settings",
+      "passed": true,
+      "w": 454,
+      "h": 278,
+      "sw": 454,
+      "sh": 278,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 64,
+          "right": 343,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 64,
+          "right": 496,
+          "bottom": 102
+        },
+        {
+          "name": "回路を保存",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 64,
+          "right": 649,
+          "bottom": 102
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 107,
+          "right": 343,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 107,
+          "right": 496,
+          "bottom": 145
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 107,
+          "right": 649,
+          "bottom": 145
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 150,
+          "right": 343,
+          "bottom": 188
+        },
+        {
+          "name": "操作の案内",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 150,
+          "right": 496,
+          "bottom": 188
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 150,
+          "right": 649,
+          "bottom": 188
+        },
+        {
+          "name": "保存回路",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 193,
+          "right": 343,
+          "bottom": 231
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 193,
+          "right": 496,
+          "bottom": 231
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 193,
+          "right": 649,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 236,
+          "right": 343,
+          "bottom": 274
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 236,
+          "right": 496,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 236,
+          "right": 649,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "left no browser errors",
+      "passed": true
+    },
+    {
+      "label": "right default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "right challenge menu fits with audio settings",
+      "passed": true,
+      "w": 454,
+      "h": 278,
+      "sw": 454,
+      "sh": 278,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 64,
+          "right": 419.5,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 64,
+          "right": 649,
+          "bottom": 102
+        },
+        {
+          "name": "操作の案内",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 107,
+          "right": 419.5,
+          "bottom": 145
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 107,
+          "right": 649,
+          "bottom": 145
+        },
+        {
+          "name": "保存回路",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 150,
+          "right": 419.5,
+          "bottom": 188
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 150,
+          "right": 649,
+          "bottom": 188
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 193,
+          "right": 419.5,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 193,
+          "right": 649,
+          "bottom": 231
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 195,
+          "y": 236,
+          "right": 419.5,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 223,
+          "h": 36,
+          "sw": 223,
+          "sh": 36,
+          "x": 424.5,
+          "y": 236,
+          "right": 649,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "right latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 152,
+          "y": 11,
+          "w": 540,
+          "h": 390,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 165,
+          "y": 76,
+          "w": 514,
+          "h": 256,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 165,
+          "y": 101.171875,
+          "w": 514,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 165,
+          "y": 174.34375,
+          "w": 514,
+          "h": 38,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 165,
+          "y": 340,
+          "w": 514,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 165,
+          "y": 340,
+          "w": 282.5,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "right invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "right numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "right native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "right output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "right preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "right free menu fits with audio settings",
+      "passed": true,
+      "w": 454,
+      "h": 278,
+      "sw": 454,
+      "sh": 278,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 64,
+          "right": 343,
+          "bottom": 102
+        },
+        {
+          "name": "課題と自由",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 64,
+          "right": 496,
+          "bottom": 102
+        },
+        {
+          "name": "回路を保存",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 64,
+          "right": 649,
+          "bottom": 102
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 107,
+          "right": 343,
+          "bottom": 145
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 107,
+          "right": 496,
+          "bottom": 145
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 107,
+          "right": 649,
+          "bottom": 145
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 150,
+          "right": 343,
+          "bottom": 188
+        },
+        {
+          "name": "操作の案内",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 150,
+          "right": 496,
+          "bottom": 188
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 150,
+          "right": 649,
+          "bottom": 188
+        },
+        {
+          "name": "保存回路",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 193,
+          "right": 343,
+          "bottom": 231
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 193,
+          "right": 496,
+          "bottom": 231
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 193,
+          "right": 649,
+          "bottom": 231
+        },
+        {
+          "name": "表示・演出",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 195,
+          "y": 236,
+          "right": 343,
+          "bottom": 274
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 348,
+          "y": 236,
+          "right": 496,
+          "bottom": 274
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 146,
+          "h": 36,
+          "sw": 146,
+          "sh": 36,
+          "x": 501,
+          "y": 236,
+          "right": 649,
+          "bottom": 274
+        }
+      ]
+    },
+    {
+      "label": "right no browser errors",
+      "passed": true
+    },
+    {
+      "label": "desktop default playback uses one lazy audio context",
+      "passed": true,
+      "native": false,
+      "initial": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": null,
+        "scores": null
+      }
+    },
+    {
+      "label": "desktop challenge menu fits with audio settings",
+      "passed": true,
+      "w": 598,
+      "h": 486,
+      "sw": 598,
+      "sh": 486,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 207,
+          "right": 717.5,
+          "bottom": 245
+        },
+        {
+          "name": "課題と自由",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 207,
+          "right": 1019,
+          "bottom": 245
+        },
+        {
+          "name": "操作の案内",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 250,
+          "right": 717.5,
+          "bottom": 288
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 250,
+          "right": 1019,
+          "bottom": 288
+        },
+        {
+          "name": "保存回路",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 293,
+          "right": 717.5,
+          "bottom": 331
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 293,
+          "right": 1019,
+          "bottom": 331
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 336,
+          "right": 717.5,
+          "bottom": 374
+        },
+        {
+          "name": "表示・演出",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 336,
+          "right": 1019,
+          "bottom": 374
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 379,
+          "right": 717.5,
+          "bottom": 417
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 379,
+          "right": 1019,
+          "bottom": 417
+        }
+      ]
+    },
+    {
+      "label": "desktop latency form with numeric input",
+      "passed": true,
+      "rows": [
+        {
+          "id": "dialog",
+          "x": 400,
+          "y": 130,
+          "w": 640,
+          "h": 640,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-body",
+          "x": 421,
+          "y": 207,
+          "w": 598,
+          "h": 486,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-mode",
+          "x": 421,
+          "y": 243.6875,
+          "w": 598,
+          "h": 54,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-ms",
+          "x": 421,
+          "y": 334.375,
+          "w": 598,
+          "h": 44,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "dialog-actions",
+          "x": 421,
+          "y": 701,
+          "w": 598,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        },
+        {
+          "id": "audio-latency-apply",
+          "x": 421,
+          "y": 701,
+          "w": 332.5,
+          "h": 48,
+          "overflowX": 0,
+          "overflowY": 0
+        }
+      ]
+    },
+    {
+      "label": "desktop invalid latency retains original preference",
+      "passed": true
+    },
+    {
+      "label": "desktop numeric setting persists and old output closes before replacement",
+      "passed": true,
+      "restored": {
+        "audio": {
+          "latencyHint": 0.025,
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": []
+        },
+        "run": null,
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":0.025}",
+        "scores": null
+      }
+    },
+    {
+      "label": "desktop native playback preserves 2.5-second 100-point result and closes one diagnostic interval",
+      "passed": true,
+      "finished": {
+        "audio": {
+          "latencyHint": "playback",
+          "output": {
+            "sampleRate": null,
+            "baseLatency": null,
+            "outputLatency": null
+          },
+          "active": null,
+          "recent": [
+            {
+              "id": 1,
+              "label": "Q1",
+              "reason": "completed",
+              "startedAt": null,
+              "endedAt": null,
+              "output": {
+                "sampleRate": null,
+                "baseLatency": null,
+                "outputLatency": null
+              },
+              "stats": {
+                "status": "unavailable"
+              }
+            }
+          ]
+        },
+        "run": {
+          "status": "stopped",
+          "pauseReason": null,
+          "clock": "2.5",
+          "records": 8,
+          "retainedParticles": 0,
+          "active": 0,
+          "waiting": 0
+        },
+        "created": [],
+        "stored": "{\"version\":1,\"latencyHint\":\"playback\"}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "desktop output information and recent counters remain accessible",
+      "passed": true
+    },
+    {
+      "label": "desktop preset switch retains score and logical clock",
+      "passed": true
+    },
+    {
+      "label": "desktop free menu fits with audio settings",
+      "passed": true,
+      "w": 598,
+      "h": 486,
+      "sw": 598,
+      "sh": 486,
+      "rows": [
+        {
+          "name": "タイトルへ",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 207,
+          "right": 717.5,
+          "bottom": 245
+        },
+        {
+          "name": "課題と自由",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 207,
+          "right": 1019,
+          "bottom": 245
+        },
+        {
+          "name": "回路を保存",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 250,
+          "right": 717.5,
+          "bottom": 288
+        },
+        {
+          "name": "回路ファイルを書き出す",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 250,
+          "right": 1019,
+          "bottom": 288
+        },
+        {
+          "name": "回路ファイルを読む",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 293,
+          "right": 717.5,
+          "bottom": 331
+        },
+        {
+          "name": "速い道を比べる",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 293,
+          "right": 1019,
+          "bottom": 331
+        },
+        {
+          "name": "分かれて、待って、巡る",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 336,
+          "right": 717.5,
+          "bottom": 374
+        },
+        {
+          "name": "操作の案内",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 336,
+          "right": 1019,
+          "bottom": 374
+        },
+        {
+          "name": "点と道の一覧",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 379,
+          "right": 717.5,
+          "bottom": 417
+        },
+        {
+          "name": "保存回路",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 379,
+          "right": 1019,
+          "bottom": 417
+        },
+        {
+          "name": "実行結果を書き出す",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 422,
+          "right": 717.5,
+          "bottom": 460
+        },
+        {
+          "name": "成績未保存を再試行",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 422,
+          "right": 1019,
+          "bottom": 460
+        },
+        {
+          "name": "表示・演出",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 465,
+          "right": 717.5,
+          "bottom": 503
+        },
+        {
+          "name": "音声・レイテンシ",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 722.5,
+          "y": 465,
+          "right": 1019,
+          "bottom": 503
+        },
+        {
+          "name": "オフラインと更新",
+          "w": 295,
+          "h": 36,
+          "sw": 295,
+          "sh": 36,
+          "x": 421,
+          "y": 508,
+          "right": 717.5,
+          "bottom": 546
+        }
+      ]
+    },
+    {
+      "label": "desktop no browser errors",
+      "passed": true
+    }
+  ],
+  "pending": [
+    {
+      "screen": "portrait",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    },
+    {
+      "screen": "small",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    },
+    {
+      "screen": "large-text",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    },
+    {
+      "screen": "left",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    },
+    {
+      "screen": "right",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    },
+    {
+      "screen": "desktop",
+      "reason": "This Windows engine has no real-time AudioContext; settings and fallback tested, device audio remains unverified."
+    }
+  ],
+  "evidence": "Real UI and native Web Audio configuration in disposable PC browsers. Phone sizes/orientation/fonts emulated; speaker listening and physical devices remain unverified.",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "passed": true
+}

@@ -1,0 +1,35 @@
+msedge perfect actual result selects one sound, retains full records and never repeats on reopening
+msedge clear actual result selects one sound, retains full records and never repeats on reopening
+msedge failure actual result selects one sound, retains full records and never repeats on reopening
+msedge perfect starts later and re-enables the bell button in 2.7s without cutting notes
+msedge clear starts later and re-enables the bell button in 2.7s without cutting notes
+msedge actual Q6 bell plus failure waits, completes all notes and returns to editing without changing records
+msedge known failure waits until active light finishes
+msedge stopping an unfinished trial does not play a result
+msedge stop cancels every scheduled result voice
+msedge muted result sounds schedule no voices
+msedge enabling sound after a muted clear does not replay the result
+msedge three actual offline-rendered audio signals
+msedge strike has a finite non-clipped signal and releases every voice
+msedge clear has a finite non-clipped signal and releases every voice
+msedge perfect has a finite non-clipped signal and releases every voice
+msedge failure has a finite non-clipped signal and releases every voice
+msedge relay has a finite non-clipped signal and releases every voice
+msedge wire has a finite non-clipped signal and releases every voice
+msedge tap has a finite non-clipped signal and releases every voice
+msedge selected 440Hz chime gains a short separate attack while retaining its late decay
+msedge selected C1 and N2 use electric piano and F4 uses brass plus strings
+msedge three simultaneous chimes leave room for the failure notes
+msedge stop cancels layered bells and future FM notes without residual sound
+msedge F4 has an audible reverb tail beyond the dry notes and is silent before 2.7s
+msedge stopping or muting an active reverb tail clears all residual audio
+msedge accepted chime followed by F4 and reverb stays bounded and releases every voice
+msedge seven audition WAVs are generated from the same shipped audio code
+msedge C1 matches its audition at 48kHz and 44.1kHz
+msedge N2 matches its audition at 48kHz and 44.1kHz
+msedge T2 matches its audition at 48kHz and 44.1kHz
+msedge W2 matches its audition at 48kHz and 44.1kHz
+msedge R2 matches its audition at 48kHz and 44.1kHz
+msedge F4 dry music matches its audition at 48kHz and 44.1kHz
+msedge strike retains the previous audio signal
+Outcome audio checks passed: 34

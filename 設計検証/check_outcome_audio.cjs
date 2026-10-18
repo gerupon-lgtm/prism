@@ -6,7 +6,7 @@ const {checkSelectedAudio}=require('./selected_audio.cjs');
 const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),channel=arg('--channel'),root=path.resolve(__dirname,'../dist');
-const out=path.join(__dirname,'結果のジングル',arg('--url')?'public':channel||'');fs.mkdirSync(out,{recursive:true});
+const out=arg('--out-dir')?path.resolve(arg('--out-dir')):path.join(__dirname,'結果のジングル',arg('--url')?'public':channel||'');fs.mkdirSync(out,{recursive:true});
 const signalOnly=process.argv.includes('--signal-only'),file=path.join(out,signalOnly?'signal-report.json':'report.json');if(fs.existsSync(file)&&JSON.parse(fs.readFileSync(file)).passed===false)fs.copyFileSync(file,path.join(out,'failed-'+Date.now()+'.json'));
 const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,url:arg('--url'),checkedAt:new Date().toISOString(),evidence:'Actual game UI, actual Web Audio scheduling and OfflineAudioContext where available. Disposable PC browsers, not speaker listening or physical phones.',checks:[],pending:[],browsers:[]};
 const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.ttf':'font/ttf','.json':'application/json'};
@@ -95,7 +95,7 @@ async function offlineAudio(page,label){
  for(const [kind,b] of Object.entries(buffers)){assert(b.peak>0&&b.peak<.9,kind+' bounded nonzero signal');assert(b.early<.00001&&b.tail<.00001,kind+' no sound before attack delay or after end wait');}
  assert.equal(new Set(Object.values(buffers).map(b=>b.signature)).size,3,'Three distinct actual synthesized signals');check(label,{buffers});
 }
-(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of channel?['chromium']:['chromium','webkit']){
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));try{for(const engine of channel?['chromium']:arg('--engine')?[arg('--engine')]:['chromium','webkit']){
  const browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browsers.push({engine,channel,version:browser.version()});try{
  const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await enterApp(page);

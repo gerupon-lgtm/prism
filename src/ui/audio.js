@@ -1,6 +1,7 @@
 import {BELL_TIMBRE,bellVoice,musicalVoice} from './voices.js';
 import {SOUND_CUES} from './sound-cues.js';
 import {fanfareReverb} from './reverb.js';
+import {PlaybackDiagnostics,playbackLatencyHint,audioOutputInfo} from './playback-diagnostics.js';
 
 export const BELL_SOUND=Object.freeze({frequencyHz:BELL_TIMBRE.frequencyHz,durationSeconds:BELL_TIMBRE.durationSeconds});
 export const SUCCESS_JINGLE_DELAY_SECONDS=.7;
@@ -9,16 +10,26 @@ export const DEFAULT_EFFECT_VOLUME=.7;
 export const FAILURE_BELL_DELAY_SECONDS=1.5;
 
 export class Chime {
-  constructor(){this.muted=false;this.context=null;this.voices=new Set();this.relayVoices=new Set();this.wireVoices=new Set();this.bellUntil=0;}
+  constructor({latencyHint}={}){this.latencyHint=playbackLatencyHint(latencyHint);this.playbackDiagnostics=new PlaybackDiagnostics();this.muted=false;this.context=null;this.voices=new Set();this.relayVoices=new Set();this.wireVoices=new Set();this.bellUntil=0;}
   async enable(){this.muted=false;await this.unlock();}
   async unlock(){
+    if(this.reconfiguring)await this.reconfiguring;
     const Audio=window.AudioContext??window.webkitAudioContext;
     if(!Audio)throw new Error('このブラウザでは音を開始できません。到着は画面と記録で確認できます。');
-    this.context??=new Audio();
+    this.context??=new Audio({latencyHint:this.latencyHint});
     if(!this.output){this.output=this.context.createDynamicsCompressor();const master=this.context.createGain();master.gain.value=DEFAULT_EFFECT_VOLUME;this.output.connect(master);master.connect(this.context.destination);}
     await this.context.resume();
   }
-  mute(){this.muted=true;this.stop();}
+  mute(){this.muted=true;this.stop('muted');}
+  beginPlayback(label){if(!this.muted)this.playbackDiagnostics.begin(this.context,label);}
+  inspectPlayback(){return {latencyHint:this.latencyHint,output:audioOutputInfo(this.context),...this.playbackDiagnostics.snapshot()};}
+  async configureLatency(value){
+    if(this.reconfiguring)await this.reconfiguring;
+    const hint=playbackLatencyHint(value);if(hint===this.latencyHint)return;
+    this.stop('settings');const previous=this.context;
+    const changing=(async()=>{if(previous)await previous.close();this.context=null;this.output=null;this.latencyHint=hint;})();
+    this.reconfiguring=changing;try{await changing;}finally{if(this.reconfiguring===changing)this.reconfiguring=null;}
+  }
   musical(timbre,options,family,output=this.output){
     const voice=musicalVoice(this.context,output,{...options,timbre,onended:()=>{this.voices.delete(voice);family?.delete(voice);}});
     this.voices.add(voice);family?.add(voice);
@@ -57,5 +68,5 @@ export class Chime {
     const delay=Math.max(.42,lastBell+FAILURE_BELL_DELAY_SECONDS-now);
     this.cue(SOUND_CUES.failure,delay);
   }
-  stop(){this.silenceRelay();this.bellUntil=0;for(const voice of [...this.voices])voice.stop();this.voices.clear();}
+  stop(reason='stopped'){this.playbackDiagnostics.finish(reason);this.silenceRelay();this.bellUntil=0;for(const voice of [...this.voices])voice.stop();this.voices.clear();}
 }
