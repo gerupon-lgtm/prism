@@ -259,6 +259,14 @@ html:not(.device-landscape) .header-content:has(#challenge-info:not([hidden])){d
 #challenge-goal{display:block;white-space:normal;font-size:.928571rem;line-height:1.35;overflow-wrap:anywhere}
 #wire-budget{display:flex;flex-wrap:wrap;gap:0 7px;margin-top:2px;font-size:.857143rem;line-height:1.4;color:#c4cde0}
 #wire-budget span{white-space:nowrap}
+#wire-budget[data-remaining="0"]>.wire-counter:last-child{color:#ffd0b3;background:#503432;border-radius:5px;box-shadow:0 0 0 3px #503432}
+#wire-budget[data-remaining="0"]>.wire-counter:last-child .wire-count,#wire-budget[data-remaining="0"]>.wire-counter:last-child .wire-counter-label{color:#ffd0b3}
+#wire-budget.wire-limit-attention>.wire-counter:last-child{color:#ffe4bd;background:#694932;box-shadow:0 0 0 3px #694932;border-radius:5px;animation:wire-limit-pulse .36s ease-in-out 2}
+@keyframes wire-limit-pulse{50%{background:#a27840;box-shadow:0 0 0 4px #a27840}}
+:root[data-motion=reduce] #wire-budget.wire-limit-attention>.wire-counter:last-child{animation:none}
+#wire-limit-notice{position:fixed;z-index:30;pointer-events:none;width:max-content;max-width:min(380px,calc(100vw - 16px));box-sizing:border-box;padding:10px 14px;border:1px solid #c9a96b;border-radius:12px;background:#111c30f7;color:#f5f0e7;box-shadow:0 5px 20px #0006;font-size:1rem;line-height:1.5;overflow-wrap:anywhere}
+#wire-limit-notice strong,#wire-limit-notice span{display:block}
+#wire-limit-notice strong{color:#ffddb0;font-weight:600}
 #wire-budget>span:first-child{color:var(--gold);font-weight:600}
 .compact #challenge-info{display:none}
 .device-landscape #challenge-info{text-align:center}

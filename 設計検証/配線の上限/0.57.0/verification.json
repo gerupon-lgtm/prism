@@ -1,0 +1,92 @@
+{
+  "version": "0.57.0",
+  "sequential": true,
+  "jobs": [
+    {
+      "name": "syntax",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 6
+    },
+    {
+      "name": "build",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 1
+    },
+    {
+      "name": "unit",
+      "exit": 0,
+      "passed": true,
+      "source": null,
+      "seconds": 69
+    },
+    {
+      "name": "budget-chromium",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.57.0/local/chromium/report.json",
+      "seconds": 33,
+      "checks": 51
+    },
+    {
+      "name": "budget-webkit",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.57.0/local/webkit/report.json",
+      "seconds": 46,
+      "checks": 50
+    },
+    {
+      "name": "budget-chrome",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.57.0/local/chrome/report.json",
+      "seconds": 39,
+      "checks": 51
+    },
+    {
+      "name": "budget-msedge",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/配線の上限/0.57.0/local/msedge/report.json",
+      "seconds": 37,
+      "checks": 51
+    },
+    {
+      "name": "delete-chromium",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.57.0/local/chromium/report.json",
+      "seconds": 20,
+      "checks": 15
+    },
+    {
+      "name": "delete-webkit",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/削除ボタン/0.57.0/local/webkit/report.json",
+      "seconds": 18,
+      "checks": 12
+    },
+    {
+      "name": "wiring-regression",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/結線補助/report.json",
+      "seconds": 28,
+      "checks": 52
+    },
+    {
+      "name": "focus-regression",
+      "exit": 0,
+      "passed": true,
+      "source": "設計検証/結線中の秒数/0.57.0/local/chromium/report.json",
+      "seconds": 17,
+      "checks": 103
+    }
+  ],
+  "passed": true
+}

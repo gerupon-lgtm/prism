@@ -21,6 +21,7 @@ import { MotionPreference,MOTION_OPTIONS,MOTION_STORAGE_KEY } from './motion.js'
 import { PARTS,PLAY_GUIDE,helpArt } from './help.js';
 import { tutorialContent } from './tutorial-content.js';
 import { TouchConfirm } from './touch-confirm.js';
+import { WireLimitNotice } from './wire-limit-notice.js';
 
 const $ = id => document.getElementById(id);
 function setText(id,value){const node=$(id);if(node.textContent!==value)node.textContent=value;}
@@ -53,7 +54,8 @@ const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
-const board=new Board($('board'),session,render,settings,notify,()=>chime.wire(),showWireDelete);
+const wireLimitNotice=new WireLimitNotice($('wire-limit-notice'),$('wire-budget'),$('board'));
+const board=new Board($('board'),session,render,settings,notify,()=>chime.wire(),showWireDelete,limit=>wireLimitNotice.show(limit));
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
 const outcomeSound=new OutcomeSound(chime);
 const orientation=new OrientationLayout($('app'));
@@ -159,6 +161,7 @@ function render(redraw=true,{records=true}={}) {
       $('wire-budget').dataset.layout=budgetKey;
     }
     $('wire-budget').setAttribute('aria-label',`配線：上限${limit}本、使用${used}本、残り${limit-used}本`);
+    $('wire-budget').dataset.remaining=String(limit-used);
     if(compact)setText('title',`課題${session.challenge.id.slice(1)}`);
     else if(shortCounters)setText('title',`課題${session.challenge.id.slice(1)}`);
   }

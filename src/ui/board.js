@@ -9,8 +9,8 @@ const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMargin:4});
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
-  constructor(element, session, changed, openSettings, notify, connected=()=>{},requestDelete=()=>{}) {
-    Object.assign(this,{element,session,changed,openSettings,notify,connected,requestDelete});
+  constructor(element, session, changed, openSettings, notify, connected=()=>{},requestDelete=()=>{},wireLimit=()=>{}) {
+    Object.assign(this,{element,session,changed,openSettings,notify,connected,requestDelete,wireLimit});
     this.orientation = svg('g',{class:'board-orientation',id:'board-detail'}); this.world = svg('g'); this.particleLayer = svg('g');this.effectsLayer=svg('g',{class:'arrival-layer'});
     this.fireworksLayer=svg('g',{class:'fireworks-layer','aria-hidden':'true'});
     this.orientation.append(this.fireworksLayer,this.effectsLayer,this.world,this.particleLayer); element.append(this.orientation);
@@ -422,6 +422,7 @@ export class Board {
     if(gesture.kind==='pan'&&gesture.moved) {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
     } else if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
+      this.checkWireLimit(event);
       const target=this.wireTarget(event.clientX,event.clientY,{route:gesture.route,final});
       const from=gesture.route.at(-1),terminal=gesture.route.length>1&&this.session.circuit.nodes.find(n=>n.id===from)?.kind==='goal';
       if(final)gesture.releaseTarget=target;
@@ -435,6 +436,19 @@ export class Board {
       group?.setAttribute('transform',`translate(${gesture.last.x} ${gesture.last.y}) rotate(${-this.angle})`);
       this.magnifier.show(event,`${objectName(gesture.id,this.session.circuit)}を移動`);
     }
+  }
+  checkWireLimit(event) {
+    const gesture=this.gesture,{session}=this;
+    if(session.mode!=='challenge'||gesture.limitNotified||session.circuit.edges.length+(gesture.edges?.length??0)<session.challenge.limit)return;
+    const from=gesture.route.at(-1);
+    if(gesture.route.length>1){
+      if(session.circuit.nodes.find(node=>node.id===from)?.kind==='goal')return;
+      const hit=this.world.querySelector(`[data-node="${CSS.escape(from)}"] .node-hit`)?.getBoundingClientRect();
+      // The last available section is valid. Warn only on a further attempt,
+      // after leaving that part, not on release at its centre.
+      if(!hit||Math.hypot(event.clientX-hit.left-hit.width/2,event.clientY-hit.top-hit.height/2)<=Math.min(hit.width,hit.height)/2+WIRING_HIT.passMargin)return;
+    }
+    gesture.limitNotified=true;this.wireLimit(session.challenge.limit);
   }
   wireTimeTarget() {
     const gesture=this.gesture;
