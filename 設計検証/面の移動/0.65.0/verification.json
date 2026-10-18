@@ -2,7 +2,7 @@
   "version": "0.65.0",
   "startedAt": "2026-10-18T22:10:55.667Z",
   "passed": true,
-  "publicVerified": false,
+  "publicVerified": true,
   "checks": [
     {
       "name": "syntax",
@@ -218,5 +218,49 @@
     "設計検証/面の移動/0.65.0/header/webkit/report.json",
     "設計検証/面の移動/0.65.0/header/chrome/report.json",
     "設計検証/面の移動/0.65.0/header/msedge/report.json"
-  ]
+  ],
+  "publicReports": [
+    {
+      "host": "prism.sikumilab.com",
+      "kind": "deployment",
+      "path": "設計検証/面の移動/0.65.0/public/prism.sikumilab.com/report.json",
+      "checks": 71,
+      "passed": true
+    },
+    {
+      "host": "prism.sikumilab.com",
+      "kind": "navigation",
+      "path": "設計検証/面の移動/0.65.0/prism.sikumilab.com/chromium/report.json",
+      "checks": 106,
+      "passed": true
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "kind": "deployment",
+      "path": "設計検証/面の移動/0.65.0/public/gerupon-lgtm.github.io/report.json",
+      "checks": 71,
+      "passed": true
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "kind": "navigation",
+      "path": "設計検証/面の移動/0.65.0/gerupon-lgtm.github.io/chromium/report.json",
+      "checks": 106,
+      "passed": true
+    }
+  ],
+  "publicVerifiedAt": "2026-10-18T22:24:10.221Z",
+  "sourceCommit": "2d4e7c7473167beb50f2677d4d056dacb93252d0",
+  "deployments": {
+    "github": {
+      "runId": 39171718966,
+      "url": "https://github.com/gerupon-lgtm/prism/actions/runs/39171718966",
+      "status": "success"
+    },
+    "cloudflare": {
+      "project": "prism-notes",
+      "id": "2f06dc8a-790d-48b8-9710-aec7df6a3083",
+      "status": "success"
+    }
+  }
 }
