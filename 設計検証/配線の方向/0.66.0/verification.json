@@ -2,7 +2,7 @@
   "version": "0.66.0",
   "startedAt": "2026-10-19T10:36:14.194Z",
   "passed": true,
-  "publicVerified": false,
+  "publicVerified": true,
   "checks": [
     {
       "name": "syntax",
@@ -212,5 +212,42 @@
     "設計検証/check_edge_directions.cjs": "3fe5bd360ad7e8f311c0c7e485805d3d5132efd3e50dcbd815e7fac3e5555754",
     "設計検証/run_edge_directions_verification.cjs": "13545944e3cc883f7210e344e0b40da75384c2986b1251fc9b5b375f336dc922"
   },
-  "finishedAt": "2026-10-19T10:43:52.220Z"
+  "finishedAt": "2026-10-19T10:43:52.22Z",
+  "sourceCommit": "d703a58364c1a692b8e3484c6d4cab63d4516cf5",
+  "publicChecks": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "label": "release",
+      "exitCode": 0,
+      "milliseconds": 32960,
+      "log": "設計検証\\配線の方向\\0.66.0\\prism.sikumilab.com-release.log"
+    },
+    {
+      "url": "https://prism.sikumilab.com/",
+      "label": "directions",
+      "exitCode": 0,
+      "milliseconds": 25079,
+      "log": "設計検証\\配線の方向\\0.66.0\\prism.sikumilab.com-directions.log"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "label": "release",
+      "exitCode": 0,
+      "milliseconds": 35980,
+      "log": "設計検証\\配線の方向\\0.66.0\\gerupon-lgtm.github.io-release.log"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "label": "directions",
+      "exitCode": 0,
+      "milliseconds": 24849,
+      "log": "設計検証\\配線の方向\\0.66.0\\gerupon-lgtm.github.io-directions.log"
+    }
+  ],
+  "publicCheckedAt": "2026-10-19T10:49:12.349Z",
+  "deployments": {
+    "githubRun": "39239683697",
+    "sourceCommit": "d703a58364c1a692b8e3484c6d4cab63d4516cf5",
+    "cloudflareDeployment": "44465525-2243-4dfe-8c00-234f68aeab7d"
+  }
 }
