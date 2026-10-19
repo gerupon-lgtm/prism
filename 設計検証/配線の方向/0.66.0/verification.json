@@ -1,0 +1,216 @@
+{
+  "version": "0.66.0",
+  "startedAt": "2026-10-19T10:36:14.194Z",
+  "passed": true,
+  "publicVerified": false,
+  "checks": [
+    {
+      "name": "syntax",
+      "args": [
+        "scripts/check-source.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 5610,
+      "log": "設計検証\\配線の方向\\0.66.0\\syntax.log"
+    },
+    {
+      "name": "verifier-syntax",
+      "args": [
+        "--check",
+        "設計検証/check_edge_directions.cjs"
+      ],
+      "exitCode": 0,
+      "milliseconds": 79,
+      "log": "設計検証\\配線の方向\\0.66.0\\verifier-syntax.log"
+    },
+    {
+      "name": "unit",
+      "args": [
+        "scripts/run-tests.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 44018,
+      "log": "設計検証\\配線の方向\\0.66.0\\unit.log"
+    },
+    {
+      "name": "build",
+      "args": [
+        "scripts/build.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 547,
+      "log": "設計検証\\配線の方向\\0.66.0\\build.log"
+    },
+    {
+      "name": "chromium-directions",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 25894,
+      "log": "設計検証\\配線の方向\\0.66.0\\chromium-directions.log"
+    },
+    {
+      "name": "chromium-offline",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 13140,
+      "log": "設計検証\\配線の方向\\0.66.0\\chromium-offline.log"
+    },
+    {
+      "name": "chromium-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 17364,
+      "log": "設計検証\\配線の方向\\0.66.0\\chromium-wiring.log"
+    },
+    {
+      "name": "webkit-directions",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 44162,
+      "log": "設計検証\\配線の方向\\0.66.0\\webkit-directions.log"
+    },
+    {
+      "name": "webkit-offline",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 20723,
+      "log": "設計検証\\配線の方向\\0.66.0\\webkit-offline.log"
+    },
+    {
+      "name": "webkit-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 21009,
+      "log": "設計検証\\配線の方向\\0.66.0\\webkit-wiring.log"
+    },
+    {
+      "name": "chrome-directions",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 28573,
+      "log": "設計検証\\配線の方向\\0.66.0\\chrome-directions.log"
+    },
+    {
+      "name": "chrome-offline",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 16906,
+      "log": "設計検証\\配線の方向\\0.66.0\\chrome-offline.log"
+    },
+    {
+      "name": "chrome-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 19341,
+      "log": "設計検証\\配線の方向\\0.66.0\\chrome-wiring.log"
+    },
+    {
+      "name": "msedge-directions",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 30283,
+      "log": "設計検証\\配線の方向\\0.66.0\\msedge-directions.log"
+    },
+    {
+      "name": "msedge-offline",
+      "args": [
+        "設計検証/check_edge_directions.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 19196,
+      "log": "設計検証\\配線の方向\\0.66.0\\msedge-offline.log"
+    },
+    {
+      "name": "msedge-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 19827,
+      "log": "設計検証\\配線の方向\\0.66.0\\msedge-wiring.log"
+    }
+  ],
+  "sourceSha256": {
+    "index.html": "4c0d5976a2346a0711c0ff57f9d11527227b7671c38f2269dea964ed66b77d01",
+    "package.json": "0bb4deeb708ac3fc95f54360e91957b2daaf1ef090f2286db1269c64138d8367",
+    "src/ui/board.js": "64de25141fed87fbc26127ac8bb6df4437235fe78a04040a3d69aa949173a66e",
+    "src/ui/app.css": "b937162453da8c236d929f164ec8b534dfe65c39c79639110e5cb93ca709d433",
+    "src/ui/edge-directions.js": "97f3d6c1be2fe83511131908f7775459fb1f62c20b3f7d2398313179cecd3ab9",
+    "tests/edge-directions.test.js": "b44cd131de0bb7b0928f053404626a3f00bce85a831995a307f061fd6b1f4556",
+    "設計検証/check_edge_directions.cjs": "3fe5bd360ad7e8f311c0c7e485805d3d5132efd3e50dcbd815e7fac3e5555754",
+    "設計検証/run_edge_directions_verification.cjs": "13545944e3cc883f7210e344e0b40da75384c2986b1251fc9b5b375f336dc922"
+  },
+  "finishedAt": "2026-10-19T10:43:52.220Z"
+}

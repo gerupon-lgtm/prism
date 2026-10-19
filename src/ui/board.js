@@ -2,6 +2,7 @@ import { svg } from './svg.js';
 import { Scene,symbol,constellation,prismArrival,ARRIVAL_DURATION_MS } from './scene.js';
 import { Magnifier } from './magnifier.js';
 import { partName,objectName } from './labels.js';
+import { directionMarkers } from './edge-directions.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
@@ -82,7 +83,7 @@ export class Board {
     Object.assign(this.session.view,this.fitView());this.transform();this.render();
   }
   render() {
-    this.world.replaceChildren(); this.curves = new Map(); this.transform();
+    this.world.replaceChildren(); this.curves = new Map();this.directionEdges=[]; this.transform();
     const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
     const sceneWidth=(this.frameWidth??1360)*(this.desktop?1:.85);
     this.scene.draw(sceneWidth,this.desktop?2080:(this.projectionHeight??1600),kind);this.scene.root.setAttribute('transform',`translate(${500-sceneWidth/2} ${this.desktop?-240:0})`);
@@ -128,6 +129,7 @@ export class Board {
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
       if(!candidate)group.append(svg('path',{d,class:'edge-core'}));
+      const directions=svg('g',{class:'edge-directions','aria-hidden':'true'});group.append(directions);this.directionEdges.push({directions,curve,bidirectional:edge.bidirectional});
       // Stagger parallel labels along the path, rather than stacking at its midpoint.
       const progress=parallel.length>1?.32+.36*at/(parallel.length-1):.5;
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{class:'edge-label',transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
@@ -217,6 +219,19 @@ export class Board {
     const measureOverlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
     for(const node of this.world.querySelectorAll('.node-symbol,.node-state'))reserve(node.getBoundingClientRect());
     for(const control of this.element.parentElement.querySelectorAll('#stage-controls button'))reserve(control.getBoundingClientRect());
+    let directionsReserved=false;
+    const reserveDirections=()=>{
+      if(directionsReserved)return;directionsReserved=true;
+      const obstacles=[...new Set([...occupied.values()].flat()),...[...this.world.querySelectorAll('.node-hit')].map(node=>node.getBoundingClientRect())],otherMarkers=[];
+      for(const edge of this.directionEdges){
+        const points=Array.from({length:33},(_,i)=>{const at=this.onCurve(edge.curve,i/32);return new DOMPoint(at.x,at.y).matrixTransform(worldMatrix);});
+        edge.markers=directionMarkers({points,obstacles,otherMarkers,area,bidirectional:edge.bidirectional});
+        for(const marker of edge.markers){reserve(marker.rect);otherMarkers.push(marker.rect);}
+      }
+    };
+    // Reserve a small visible part of each route before movable text. A star's
+    // name or an opaque card must not cover all of a short connection.
+    reserveDirections();
     for(const {label,bounds,matrix,card} of measurements){
       if(!matrix)continue;
       // Occupancy stays fixed while choosing this label. Reuse the same
@@ -267,7 +282,22 @@ export class Board {
       placements.push(placement);
       reserve(best.rect);
     }
+    reserveDirections();
     for(const {label,transform,leader} of placements){label.setAttribute('transform',transform);if(leader)label.parentElement.insertBefore(svg('path',{d:leader,class:'edge-label-leader'}),label);}
+    this.updateDirections();
+  }
+  updateDirections(){
+    const matrix=this.world.getScreenCTM();if(!matrix)return;
+    const inverse=matrix.inverse();
+    for(const {directions,markers} of this.directionEdges){
+      directions.replaceChildren();
+      for(const marker of markers??[]){
+        const vertices=marker.vertices.map(p=>new DOMPoint(p.x,p.y).matrixTransform(inverse));
+        const [a,tip,b]=vertices,notch={x:(a.x+b.x)*.35+tip.x*.3,y:(a.y+b.y)*.35+tip.y*.3};
+        const d=vertices.map((p,i)=>`${i?'L':'M'}${p.x} ${p.y}`).join(' ')+` L${notch.x} ${notch.y} Z`,group=svg('g',{class:'edge-direction-marker','data-direction':marker.direction,'data-display-size':marker.size});
+        group.append(svg('path',{d,class:'edge-direction-shadow'}),svg('path',{d,class:'edge-direction'}));directions.append(group);
+      }
+    }
   }
   renderArrivals() {
     const run=this.session.run;

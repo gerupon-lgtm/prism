@@ -558,3 +558,13 @@ html.device-landscape #app.selection-play>header{height:clamp(170px,calc(12 * va
 .device-landscape .selection-play #stage-heading #stage-previous{grid-column:1;grid-row:2;justify-self:end}
 .device-landscape .selection-play #stage-heading #stage-next{grid-column:2;grid-row:2;justify-self:start}
 .edge.tutorial-target{outline:none;box-shadow:none}.edge.tutorial-target:not(.pending-delete) .edge-line{stroke:#fff0be;stroke-width:6px;filter:drop-shadow(0 0 5px #e2bc60)}
+
+/* Direction follows the route, not the upright seconds card. Static and input-free. */
+.edge-directions,.edge-direction-marker,.edge-direction,.edge-direction-shadow{pointer-events:none}
+.edge-direction,.edge-direction-shadow{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.edge-direction-shadow{fill:#050c19;stroke:#050c19;stroke-width:2.5px;stroke-opacity:.9}
+.edge-direction{fill:#ffedb6;stroke:#ffedb6;stroke-width:.6px}
+.candidate .edge-direction{fill:#c5d9f4;stroke:#c5d9f4}
+.edge.candidate:is(.wiring-focus,.wiring-planned) .edge-direction{fill:#a6eeff;stroke:#a6eeff}
+.edge.selected:not(.candidate) .edge-direction{fill:#fff9df;stroke:#fff9df}
+.edge.pending-delete:not(.candidate) .edge-direction{fill:#ffd0c9;stroke:#ffd0c9}

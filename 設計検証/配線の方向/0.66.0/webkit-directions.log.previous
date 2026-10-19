@@ -1,0 +1,67 @@
+phone Q1 all candidate directions
+phone Q2 all candidate directions
+phone Q3 all candidate directions
+phone Q4 all candidate directions
+phone Q5 all candidate directions
+phone Q6 all candidate directions
+phone Q7 all candidate directions
+phone Q8 all candidate directions
+phone Q9 all candidate directions
+phone Q10 all candidate directions
+phone Q11 all candidate directions
+phone Q12 all candidate directions
+phone Q13 all candidate directions
+phone Q14 all candidate directions
+phone Q15 all candidate directions
+phone Q16 all candidate directions
+phone Q17 all candidate directions
+phone Q18 all candidate directions
+phone Q10 four wires
+phone D to C accepts; C to D refuses without adding a wire
+phone arrow is input-free; holding its line still deletes only that wire
+phone provisional cyan directions and same geometry in magnifier; unfinished tail adds no wire
+phone zoom keeps readable direction size
+phone 320x640 0 font14
+phone 390x844 0 font28
+phone 844x390 90 font14
+phone 844x390 270 font14
+phone 390x844 0 font14
+phone free bidirectional and opposite parallel routes
+phone no JavaScript errors
+desktop Q1 all candidate directions
+desktop Q2 all candidate directions
+desktop Q3 all candidate directions
+desktop Q4 all candidate directions
+desktop Q5 all candidate directions
+desktop Q6 all candidate directions
+desktop Q7 all candidate directions
+desktop Q8 all candidate directions
+desktop Q9 all candidate directions
+desktop Q10 all candidate directions
+desktop Q11 all candidate directions
+desktop Q12 all candidate directions
+desktop Q13 all candidate directions
+desktop Q14 all candidate directions
+desktop Q15 all candidate directions
+desktop Q16 all candidate directions
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('#dialog-body .pager button').last()[22m
+[2m    - locator resolved to <button title="次へ" type="button" aria-label="次へ">次へ</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    48 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at chooseChallenge (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\browser_wait.cjs:62:16)
+    at async selectChallenge (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\browser_wait.cjs:66:77)
+    at async C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_edge_directions.cjs:44:24
