@@ -6,6 +6,7 @@ import { circuitFile, readCircuitFile, resultFile } from '../core/storage.js';
 import { challenges, challengeCircuit } from '../content/challenges.js';
 import { drawChallenge } from '../content/challenge-draw.js';
 import { challengeScoreId } from '../core/challenge-identity.js';
+import {bellSequenceResult} from '../core/bell-sequence.js';
 import { sampleCircuit } from '../content/samples.js';
 
 const copy = value => structuredClone(value);
@@ -280,8 +281,11 @@ export class Session {
     const arrival = this.run.arrivals(challenge.goal)[0], scale = this.run.circuit.time;
     let state = arrival ? 'achieved' : this.run.status === 'stopped' ? (this.result?.state === 'failed' ? 'failed' : 'stopped') : this.run.exhausted ? 'failed' : 'pending';
     let actual = arrival?.time ?? null;
-    let goals;
-    if (challenge.type === 'delivery-all') {
+    let goals,sequence;
+    if(challenge.type==='bell-sequence'){
+      sequence=bellSequenceResult(challenge,this.run);({state,actual,goals}=sequence);
+      if(state==='stopped'&&this.result?.state==='failed'){state='failed';sequence.reason=this.result.reason;}
+    } else if (challenge.type === 'delivery-all') {
       goals=challenge.goals.map(id=>({id,first:this.run.arrivals(id)[0]?.time??null}));
       const missing=goals.filter(goal=>goal.first===null);
       if(!missing.length){state='achieved';actual=goals.reduce((latest,goal)=>scale.ticks(goal.first)>scale.ticks(latest)?goal.first:latest,goals[0].first);}
@@ -302,7 +306,8 @@ export class Session {
     }
     this.result = {state,first:arrival?.time ?? null,evaluatedTime:actual,score,challenge:challenge.id};
     if(goals)this.result.goals=goals;
-    if(state==='failed')this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
+    if(sequence){this.result.gaps=sequence.gaps;if(sequence.reason)this.result.reason=sequence.reason;}
+    if(state==='failed'&&!this.result.reason)this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
     if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
     if (this.guide?.mode === 'challenge' && this.guide.run===this.run && this.guide.step === 2 && arrival) this.guide.step = 3;

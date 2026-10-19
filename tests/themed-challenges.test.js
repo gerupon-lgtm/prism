@@ -11,11 +11,12 @@ import {LocalRecords} from '../src/core/storage.js';
 import {randomVariants} from '../src/content/random-variants.js';
 const proof=JSON.parse(readFileSync(new URL('../設計検証/ランダム課題/generation.json',import.meta.url)));
 
-test('18面を6面のテーマへ整理し、古い課題IDと版を番号から分離する',()=>{
- assert.deepEqual(challenges.map(challengeLabel),Array.from({length:18},(_,i)=>'Q'+(i+1)));
- assert.equal(new Set(challenges.map(c=>c.id)).size,18);
+test('24面を6面のテーマへ整理し、古い課題IDと版を番号から分離する',()=>{
+ assert.deepEqual(challenges.map(challengeLabel),Array.from({length:24},(_,i)=>'Q'+(i+1)));
+ assert.equal(new Set(challenges.map(c=>c.id)).size,24);
  assert(challenges.slice(6,12).every(c=>c.type==='delivery-all'&&c.world==='starwalk'));
- assert(challenges.slice(12).every(c=>c.type==='interval'&&c.world==='moonwater'));
+ assert(challenges.slice(12,18).every(c=>c.type==='interval'&&c.world==='moonwater'));
+ assert(challenges.slice(18).every(c=>c.type==='bell-sequence'&&c.world==='starecho'));
  assert.equal(challenges[14].id,'Q11');assert.equal(challenges[14].version,1);assert.equal(challenges[17].id,'Q10');
 });
 test('新しい6面は選び直すと満点配線の系統も変わり、再挑戦とクリアは出題を保つ',()=>{
@@ -27,7 +28,7 @@ test('新しい6面は選び直すと満点配線の系統も変わり、再挑�
   s.clearConnections();assert.deepEqual(s.challenge,c);s.replace({challengeId:id});const b=proof.stages.find(p=>p.id===s.challenge.draw.id);assert.notDeepEqual(a.winner,b.winner);
  }
  assert.deepEqual(records.scores()[0],previous);
- s.replace({challengeId:'Q10'});const c=s.challenge,a=proof.stages.find(p=>p.id===c.draw.id);s.circuit=challengeCircuit(c,a.winner);s.start();s.advance(c.maxDuration);assert.equal(s.clearChoices.nextChallengeId,null);
+ s.replace({challengeId:'Q10'});const c=s.challenge,a=proof.stages.find(p=>p.id===c.draw.id);s.circuit=challengeCircuit(c,a.winner);s.start();s.advance(c.maxDuration);assert.equal(s.clearChoices.nextChallengeId,'Q23');
 });
 test('既存48出題の秒数と識別子は再編前と同一で、同じ成績へ紐付く',()=>{
  const old=JSON.parse(readFileSync(new URL('../設計検証/テーマ課題/legacy-variants.json',import.meta.url)));

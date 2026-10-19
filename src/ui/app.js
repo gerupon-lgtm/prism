@@ -141,6 +141,10 @@ document.addEventListener('click',event=>{
 
 function challengeGoal(challenge){
   const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
+  if(challenge.type==='bell-sequence'){
+    const timing=challenge.intervals?(new Set(challenge.intervals).size===1?'約'+challenge.intervals[0]+'秒ずつ':'約'+challenge.intervals.join('秒 → 約')+'秒'):'';
+    return `${challenge.goals.map(bell).join('→')}の順に鳴らす${timing?'\n'+timing:''}`;
+  }
   if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
   if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
   return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
@@ -182,6 +186,7 @@ function render(redraw=true,{records=true}={}) {
   setText('condition',session.mode==='challenge'?`${session.challenge.setName??'実践'}${session.challenge.draw?'・出題'+session.challenge.draw.number:''}・${session.challenge.stage}`:`${session.circuit.mode==='spread'?'分かれて広がる':'最速経路'}・${session.circuit.nodes.length}点 ${session.circuit.edges.length}本${session.dirty?'・未保存':''}`);
   $('challenge-info').hidden=session.mode!=='challenge'||Boolean(session.guide);
   setText('challenge-goal',textEnlarged&&Math.abs(orientation.rotation)===90?'課題':goal?.replace(/^祭壇/,'')??'');
+  $('challenge-goal').classList.toggle('sequence-objective',session.challenge?.type==='bell-sequence');
   $('challenge-info').setAttribute('aria-label',`${goal}。課題と配線を全文で読む`);
   if(session.mode==='challenge'){
     const used=session.circuit.edges.length,limit=session.challenge.limit;
@@ -266,14 +271,15 @@ function render(redraw=true,{records=true}={}) {
 function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}
 function failureArrivalData(){
   const run=session.run,challenge=session.runContext.challenge,nodes=run.circuit.raw.nodes;
-  const goals=challenge.type==='delivery-all'?challenge.goals:[challenge.goal];
+  const goals=['delivery-all','bell-sequence'].includes(challenge.type)?challenge.goals:[challenge.goal];
   const rows=goals.flatMap(goal=>{
     const arrivals=run.arrivals(goal),required=challenge.type==='interval'?challenge.count:1;
     return Array.from({length:Math.max(required,arrivals.length)},(_,index)=>{
       const arrival=arrivals[index],previous=arrivals[index-1];
       const label=`${goals.length>1?partName(nodes.find(node=>node.id===goal),nodes)+' ':''}${index+1}回目`;
       const time=arrival?`${arrival.time}秒`:'到達なし';
-      const gap=arrival&&previous?`前回から${run.circuit.time.format(run.circuit.time.ticks(arrival.time)-run.circuit.time.ticks(previous.time))}秒`:'';
+      const priorBell=challenge.type==='bell-sequence'&&index===0&&goals.indexOf(goal)>0?run.arrivals(goals[goals.indexOf(goal)-1])[0]:null;
+      const gap=arrival&&(previous||priorBell)?`${previous?'前回':'前の鐘'}から${run.circuit.time.format(run.circuit.time.ticks(arrival.time)-run.circuit.time.ticks((previous||priorBell).time))}秒`:'';
       return {label,time,gap};
     });
   });
@@ -281,8 +287,9 @@ function failureArrivalData(){
 }
 function failureResultText(){
   const {condition,rows}=failureArrivalData();
-  return [playerReason(),condition,'鐘が鳴った時刻（開始から）',...rows.map(row=>`${row.label}：${row.time}${row.gap?`（${row.gap}）`:''}`)].join('\n');
+  return [playerReason(),condition,'鐘が鳴った時刻（開始から）',arrivalRowsText(rows)].join('\n');
 }
+function arrivalRowsText(rows){return rows.map(row=>`${row.label}：${row.time}${row.gap?'（'+row.gap+'）':''}`).join('\n');}
 function failureOutcome(){
   const run=session.run;
   return Boolean(run&&session.mode==='challenge'&&!session.guide&&!session.runContext?.guide&&session.result?.challenge===session.challenge.id&&session.result.state==='failed'&&(run.exhausted||run.status==='stopped'));
@@ -351,7 +358,7 @@ function outcomeDetails(title,text){
 
 function clearTimeLabel(){
   const type=session.runContext?.challenge?.type;
-  return type==='interval'?'初回到達':type==='delivery-all'?'全てに到達':'到達時間';
+  return type==='interval'?'初回到達':['delivery-all','bell-sequence'].includes(type)?'全てに到達':'到達時間';
 }
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
@@ -396,7 +403,8 @@ function renderClearToast() {
 }
 function clearDetails(){
   if(!session.clearChoices)return;
-  outcomeDetails('クリアの結果',`${clearTimeLabel()}：${session.result.evaluatedTime}秒\nスコア：${displayScore(session.result.score)}点`);
+  const sequence=session.runContext?.challenge?.type==='bell-sequence';
+  outcomeDetails('クリアの結果',`${clearTimeLabel()}：${session.result.evaluatedTime}秒\nスコア：${displayScore(session.result.score)}点${sequence?'\n'+arrivalRowsText(failureArrivalData().rows):''}`);
   actions.replaceChildren(button('もう一度',()=>{close();clearAction();}),button(session.clearChoices.nextChallengeId?'次の課題へ':'課題一覧へ',()=>{close();clearAction(true);}));
 }
 
@@ -994,13 +1002,13 @@ requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${challenge.type==='delivery-all'?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
-  fullText('現在の条件',detail);
+  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  fullText('現在の条件',detail+(session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定値の前後'+challenge.intervalTolerance+'秒まで。':''}`:''));
 }
 $('condition-info').addEventListener('click',()=>attempt(()=>selectionPlay&&session.mode==='challenge'&&!session.guide?chooseMode():showConditions()));$('challenge-info').addEventListener('click',showConditions);
 $('stage-previous').addEventListener('click',()=>attempt(()=>moveStage(-1)));
 $('stage-next').addEventListener('click',()=>attempt(()=>moveStage(1)));
-$('result-info').addEventListener('click',()=>session.result?.state==='failed'?failureDetails('実行状況',$('result').textContent+'\n'+failureResultText()):fullText('実行状況',$('result').textContent));
+$('result-info').addEventListener('click',()=>session.result?.state==='failed'?failureDetails('実行状況',$('result').textContent+'\n'+failureResultText()):fullText('実行状況',$('result').textContent+(session.runContext?.challenge?.type==='bell-sequence'?'\n'+arrivalRowsText(failureArrivalData().rows):'')));
 $('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();

@@ -1,6 +1,7 @@
 import { createCircuit } from './circuit.js';
 import { compareScores } from './evaluation.js';
 import { challengeScoreId,RANDOM_CHALLENGE_REVISION } from './challenge-identity.js';
+import {validateBellSequence} from './bell-sequence.js';
 
 export const CIRCUIT_FORMAT = 'prism-notes-circuit';
 export const RESULT_FORMAT = 'prism-notes-result';
@@ -14,12 +15,13 @@ function validScore(value) {
 }
 
 function validateProblem(problem,challenge,rule){
-  if(!problem?.draw||!/^[0-9a-f]{16}$/.test(problem.draw.id)||problem.draw.revision!==RANDOM_CHALLENGE_REVISION||!Number.isSafeInteger(problem.draw.number)||problem.draw.number<1||!Number.isSafeInteger(problem.version)||!Number.isSafeInteger(problem.limit)||problem.limit<1||!['interval','delivery-all'].includes(problem.type))throw new Error('出題条件が不正です。元の成績は保持しています。');
+  if(!problem?.draw||!/^[0-9a-f]{16}$/.test(problem.draw.id)||problem.draw.revision!==RANDOM_CHALLENGE_REVISION||!Number.isSafeInteger(problem.draw.number)||problem.draw.number<1||!Number.isSafeInteger(problem.version)||!Number.isSafeInteger(problem.limit)||problem.limit<1||!['interval','delivery-all','bell-sequence'].includes(problem.type))throw new Error('出題条件が不正です。元の成績は保持しています。');
   if(challenge!==challengeScoreId(problem)||rule!==`${problem.type}@1`)throw new Error('成績と出題条件が一致しません。');
   const circuit=createCircuit({mode:'spread',target:problem.goal??'all',nodes:problem.nodes,edges:problem.candidates});
   if(circuit.time.ticks(problem.baseline)<=0n||circuit.time.ticks(problem.maxDuration)<circuit.time.ticks(problem.baseline))throw new Error('出題の基準時間が不正です。');
   if(problem.type==='interval'&&(!Number.isSafeInteger(problem.count)||problem.count<1||circuit.time.ticks(problem.interval)<=0n))throw new Error('出題の到達条件が不正です。');
   if(problem.type==='delivery-all'&&(!Array.isArray(problem.goals)||!problem.goals.length||problem.goals.some(id=>!circuit.goals.includes(id))))throw new Error('出題の鐘が不正です。');
+  if(problem.type==='bell-sequence')validateBellSequence(problem,circuit.time,circuit.goals);
 }
 
 export function circuitFile(input, name = '') {

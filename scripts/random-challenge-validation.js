@@ -1,6 +1,7 @@
 // Build/test only. All selected and unselected candidate combinations count.
 import { Simulation } from '../src/core/simulation.js';
 import { challengeCircuit } from '../src/content/challenges.js';
+import {bellSequenceResult} from '../src/core/bell-sequence.js';
 
 export function legalWirings(challenge) {
   if(challenge.candidates.length>16)throw new Error('この全列挙検証器の規模を超えています。検証方法の拡張が必要です。');
@@ -25,7 +26,9 @@ export function inspectProblem(challenge,sets=legalWirings(challenge)){
     const run=simulateWiring(challenge,ids);
     if(run.clock>maximum)maximum=run.clock;
     let at=null;
-    if(challenge.type==='delivery-all'){
+    if(challenge.type==='bell-sequence'){
+      const result=bellSequenceResult(challenge,run);if(result.state==='achieved')at=scale.ticks(result.actual);
+    }else if(challenge.type==='delivery-all'){
       const arrivals=challenge.goals.map(id=>run.arrivals(id)[0]?.time);
       if(arrivals.every(t=>t!==undefined))at=arrivals.map(t=>scale.ticks(t)).reduce((a,b)=>a>b?a:b);
     }else{

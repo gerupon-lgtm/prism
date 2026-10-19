@@ -101,7 +101,7 @@ test('成績の保存失敗から別出題へ進んでも、二つの元条件�
   assert.equal(s.pendingScores.size,0);assert.equal(f.records.scores().length,2);assert.equal(f.records.scores()[0].problem.draw.id,first);
 });
 
-test('全96出題の全配線で唯一の満点・部分点・分岐や合流待ちと上限を確認する',()=>{
+test('全144出題の全配線で唯一の満点・部分点・分岐や合流待ちと上限を確認する',()=>{
   let count=0;
   for(const authored of challenges.slice(6))for(const variant of randomVariants[authored.id]){
     const problem={...authored,candidates:authored.candidates.map((edge,i)=>({...edge,time:variant.times[i]}))};
@@ -111,5 +111,5 @@ test('全96出題の全配線で唯一の満点・部分点・分岐や合流待
     assert.deepEqual(result.winner,proof.stages.find(p=>p.id===variant.id).winner);
     count++;
   }
-  assert.equal(count,96);
+  assert.equal(count,144);
 });

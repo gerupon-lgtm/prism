@@ -1,4 +1,5 @@
 import {themedChallenges} from './themed-challenges.js';
+import {sequenceChallenges} from './sequence-challenges.js';
 const point = (id,kind,x,y,process='0') => ({id,kind,x,y,process});
 const path = (id,from,to,time) => ({id,from,to,time});
 const prism = (id,x,y,process='0.5') => point(id,'prism',x,y,process);
@@ -48,10 +49,10 @@ const originalChallenges = [
 
 // Keep old IDs, content versions, graphs and random draws attached to old scores.
 // Only presentation metadata changes when an existing problem moves to a set.
-const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10'];
-const themes=[{id:'intro',name:'お試し'},{id:'delivery',name:'すべての鐘へ',world:'starwalk',stage:'星渡りの回廊'},{id:'rhythm',name:'響く間隔をつくる',world:'moonwater',stage:'月映りの水殿'}];
+const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10','Q23','Q24','Q25','Q26','Q27','Q28'];
+const themes=[{id:'intro',name:'お試し'},{id:'delivery',name:'すべての鐘へ',world:'starwalk',stage:'星渡りの回廊'},{id:'rhythm',name:'響く間隔をつくる',world:'moonwater',stage:'月映りの水殿'},{id:'sequence',name:'鐘の響きをつなぐ',world:'starecho',stage:'星響きの円環'}];
 export const challenges=order.map((id,index)=>{
- const original=[...originalChallenges,...themedChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)];
+ const original=[...originalChallenges,...themedChallenges,...sequenceChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)];
  return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),
   ...(original.type==='delivery-all'?{bellPitches:original.goals.length===2?[88,84]:id==='Q21'?[84,79,72]:id==='Q22'?[72,77,81]:[72,79,84]}:{})};
 });
@@ -59,6 +60,7 @@ export const challengeNumber=challenge=>challenge.number??Number(challenge.id.sl
 export const challengeLabel=challenge=>'Q'+challengeNumber(challenge);
 
 export function challengeObjective(challenge) {
+  if(challenge.type==='bell-sequence')return `${challenge.goals.join('→')}の順${challenge.intervals?'・約'+challenge.intervals.join('秒、約')+'秒間隔':''}`;
   if(challenge.type==='delivery-all')return `祭壇${challenge.goals.join('・')}すべてに届ける`;
   if(challenge.type==='interval')return `${challenge.interval}秒間隔で${challenge.count}回`;
   return '';
@@ -71,5 +73,5 @@ export function challengeCircuit(challenge, selected = []) {
     return structuredClone(edge);
   });
   if (new Set(selected).size !== selected.length || selected.length > challenge.limit) throw new Error('道の本数制限を超えています。');
-  return {mode:['interval','delivery-all'].includes(challenge.type)?'spread':'fastest',target:challenge.type==='delivery-all'?'all':challenge.goal,nodes:structuredClone(challenge.nodes),edges};
+  return {mode:['interval','delivery-all','bell-sequence'].includes(challenge.type)?'spread':'fastest',target:['delivery-all','bell-sequence'].includes(challenge.type)?'all':challenge.goal,nodes:structuredClone(challenge.nodes),edges};
 }

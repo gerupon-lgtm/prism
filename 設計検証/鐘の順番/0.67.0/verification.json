@@ -1,0 +1,237 @@
+{
+  "version": "0.67.0",
+  "startedAt": "2026-10-19T18:27:21.025Z",
+  "passed": true,
+  "publicVerified": false,
+  "checks": [
+    {
+      "name": "syntax",
+      "args": [
+        "scripts/check-source.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 6290,
+      "log": "設計検証\\鐘の順番\\0.67.0\\syntax.log"
+    },
+    {
+      "name": "verifier-syntax",
+      "args": [
+        "--check",
+        "設計検証/check_sequence_set.cjs"
+      ],
+      "exitCode": 0,
+      "milliseconds": 78,
+      "log": "設計検証\\鐘の順番\\0.67.0\\verifier-syntax.log"
+    },
+    {
+      "name": "generate",
+      "args": [
+        "scripts/generate-random-challenges.js",
+        "--sequence-only"
+      ],
+      "exitCode": 0,
+      "milliseconds": 35184,
+      "log": "設計検証\\鐘の順番\\0.67.0\\generate.log"
+    },
+    {
+      "name": "unit",
+      "args": [
+        "scripts/run-tests.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 90696,
+      "log": "設計検証\\鐘の順番\\0.67.0\\unit.log"
+    },
+    {
+      "name": "build",
+      "args": [
+        "scripts/build.js"
+      ],
+      "exitCode": 0,
+      "milliseconds": 629,
+      "log": "設計検証\\鐘の順番\\0.67.0\\build.log"
+    },
+    {
+      "name": "chromium-set",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 106503,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chromium-set.log"
+    },
+    {
+      "name": "chromium-offline",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 53640,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chromium-offline.log"
+    },
+    {
+      "name": "chromium-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "chromium"
+      ],
+      "exitCode": 0,
+      "milliseconds": 15409,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chromium-wiring.log"
+    },
+    {
+      "name": "webkit-set",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 180346,
+      "log": "設計検証\\鐘の順番\\0.67.0\\webkit-set.log"
+    },
+    {
+      "name": "webkit-offline",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 95582,
+      "log": "設計検証\\鐘の順番\\0.67.0\\webkit-offline.log"
+    },
+    {
+      "name": "webkit-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--engine",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "milliseconds": 23199,
+      "log": "設計検証\\鐘の順番\\0.67.0\\webkit-wiring.log"
+    },
+    {
+      "name": "chrome-set",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 116689,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chrome-set.log"
+    },
+    {
+      "name": "chrome-offline",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 60288,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chrome-offline.log"
+    },
+    {
+      "name": "chrome-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "chrome"
+      ],
+      "exitCode": 0,
+      "milliseconds": 21089,
+      "log": "設計検証\\鐘の順番\\0.67.0\\chrome-wiring.log"
+    },
+    {
+      "name": "msedge-set",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 115162,
+      "log": "設計検証\\鐘の順番\\0.67.0\\msedge-set.log"
+    },
+    {
+      "name": "msedge-offline",
+      "args": [
+        "設計検証/check_sequence_set.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge",
+        "--offline"
+      ],
+      "exitCode": 0,
+      "milliseconds": 59709,
+      "log": "設計検証\\鐘の順番\\0.67.0\\msedge-offline.log"
+    },
+    {
+      "name": "msedge-wiring",
+      "args": [
+        "設計検証/check_wire_time_focus.cjs",
+        "--playwright-path",
+        "C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core",
+        "--channel",
+        "msedge"
+      ],
+      "exitCode": 0,
+      "milliseconds": 19172,
+      "log": "設計検証\\鐘の順番\\0.67.0\\msedge-wiring.log"
+    }
+  ],
+  "sourceSha256": {
+    "package.json": "d873954b7e4f5f0ab32e65c9f58b03863f6bbf87f42780cfde7938b12ea8f252",
+    "index.html": "19a92f73a2ebfaa69bc0ac1b2a37bd839d4c816458f2dde44668d4a40556dab0",
+    "src/content/challenges.js": "fdaf15792e57bc252e51bda0e57a38d793527a7410d54b72cbf7441cf3fd82c9",
+    "src/content/sequence-challenges.js": "83f22fbc54191f53b26aff7b7b5624664e5ce52891a551d04d661a20ab38ce62",
+    "src/content/random-variants.js": "f91d5ac985cf5a641d27cbee435930879f4efcbe238ecde8a8930ae8ece7ce4b",
+    "src/core/bell-sequence.js": "007ccab962ca970e8bba6b2d0789f974b881166798f79e2022b9d001f56cc0f8",
+    "src/core/storage.js": "5dcad177cb54661e8d48d0880e576b044774480ef5993964534f8985f9e4c97d",
+    "src/app/session.js": "5be47a5e3271c4b71875cee7ca678d191489af61f55e68d5da5dfac7aac63561",
+    "src/ui/app.js": "3f0e84d55384343bc99b7a5f7b3253a54d067905a6efa4b9b5b042002acf03c2",
+    "src/ui/app.css": "283ed7d062199efd3464f694a6fa9d527fe3441eee09e6edf540fd3f2a37c9eb",
+    "src/ui/help.js": "bbef555a807eeacf9531254d350c2a896d9038a0d3ab6f7c0bfca6599bc54c2b",
+    "src/ui/scene.js": "66e12fe514d55cc29a9e5bda9a3e34051c110eba00eaab8bcfcb3ee1b6861e9b",
+    "public/graphics/starecho.png": "f41e76dc91292f9f7d0a742f8ab851b40354b9a71504978b00468f3735afe13d",
+    "scripts/generate-sequence-challenges.js": "3555f0aca69aeef7a575848577c60554b12e9b22ad69c21b08fcfc544a2c603b",
+    "scripts/generate-random-challenges.js": "f68c9d6b7be1e59c84acf18d98cf0f30982d1a7928cb89a5ae734161d4cf925f",
+    "scripts/random-challenge-validation.js": "4ce13b56443b6fc3bca63c5a0dcf8db71656b8f4387330488a2237bece77fa99",
+    "設計検証/check_sequence_set.cjs": "fde33408faa66d7eaaf6573ca7d93f487df71b50b1e861fa627afb5fea65f47c",
+    "設計検証/run_sequence_verification.cjs": "fbbcec7dd16744cfaad432d4af96b37da69e76943c39dd355042dad8d9603ddd",
+    "設計検証/browser_wait.cjs": "633a4ca38ccea5b733050ed8d87c7157bb513a158736853b6c263a7db57e98c9"
+  },
+  "finishedAt": "2026-10-19T18:44:00.730Z"
+}
