@@ -20,7 +20,15 @@
 - 旧版の再現結果：`設計検証/連続操作音/0.67.0/local/chromium/report.json`。修正版は版・ホスト・ブラウザ・入力方法別に記録する。
 - `node scripts/run-tests.js`：5ファイル以下ずつ直列で全24ファイル・201件合格。`node scripts/check-source.js`：76ファイル合格。ビルドは62資材を生成した。
 - Chromiumのクリックとタッチ、Chrome・Edge・Windows WebKitのクリックで各10項目、合計50項目合格。キーボード、表示情報・タイトル遷移、元から無効なボタンも検査した。
-- Windows WebKitは実音声APIがなく、UIからの呼出しまでを確認。残る4組では実Web Audioの生成・途中停止・自然解放を照合した。スピーカーの聴感やAndroid・iPhone実機の再確認とは区別する。macOS／iPadOS Safariも検証対象から外さない。公開はこのローカル検査の後に実施する。
+- Windows WebKitは実音声APIがなく、UIからの呼出しまでを確認。残る4組では実Web Audioの生成・途中停止・自然解放を照合した。スピーカーの聴感やAndroid・iPhone実機の再確認とは区別する。macOS／iPadOS Safariも検証対象から外さない。
+
+## 公開確認
+
+- 配信元：`f53f10e93be64ac7cc3b71627be5a8d2f43597d6`。GitHub Actions [39327231699](https://github.com/gerupon-lgtm/prism/actions/runs/39327231699) は検査・テスト・ビルド・配信すべて成功。
+- Cloudflare配信 `374f3520-3b74-49ca-9e05-276c574fb50a` は同じコミットで成功。重複配信がないことを確認後に既存のmainを配信した。
+- [独自ドメイン](https://prism.sikumilab.com/)と[従来URL](https://gerupon-lgtm.github.io/prism/)の両方で0.68.0を確認。`check_public.cjs` は各75項目合格。全資材の本文ハッシュ・形式・配信元コミット、実際の結線・採点・保存・オフライン起動を確認した。
+- 公開ページでの連続操作は、独自ドメインがChromiumのタッチ入力、従来URLがクリック入力で各10項目合格。合計20項目。いずれも使い捨てPCブラウザで、スマホ実機の聴感確認の代わりにはしない。
+- 証拠：`設計検証/連続操作音/0.68.0/public/<host>/report.json` と、同版の `<host>/chromium/<pointer>/report.json`。公開したアプリの音色・音量・30ms初期設定は保持している。
 
 ## レビュー
 
