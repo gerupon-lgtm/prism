@@ -10,7 +10,7 @@ export const DEFAULT_EFFECT_VOLUME=.7;
 export const FAILURE_BELL_DELAY_SECONDS=1.5;
 
 export class Chime {
-  constructor({latencyHint}={}){this.latencyHint=playbackLatencyHint(latencyHint);this.playbackDiagnostics=new PlaybackDiagnostics();this.muted=false;this.context=null;this.voices=new Set();this.relayVoices=new Set();this.wireVoices=new Set();this.bellUntil=0;}
+  constructor({latencyHint}={}){this.latencyHint=playbackLatencyHint(latencyHint);this.playbackDiagnostics=new PlaybackDiagnostics();this.muted=false;this.context=null;this.voices=new Set();this.tapVoices=new Set();this.relayVoices=new Set();this.wireVoices=new Set();this.bellUntil=0;}
   async enable(){this.muted=false;await this.unlock();}
   async unlock(){
     if(this.reconfiguring)await this.reconfiguring;
@@ -41,7 +41,7 @@ export class Chime {
   }
   tap(){
     if(this.muted||!this.context||this.context.state!=='running')return;
-    this.cue(SOUND_CUES.tap);
+    this.cue(SOUND_CUES.tap,0,this.tapVoices);
   }
   silenceRelay(){for(const voice of [...this.relayVoices,...this.wireVoices])voice.stop();this.relayVoices.clear();this.wireVoices.clear();}
   wire(){
@@ -68,5 +68,10 @@ export class Chime {
     const delay=Math.max(.42,lastBell+FAILURE_BELL_DELAY_SECONDS-now);
     this.cue(SOUND_CUES.failure,delay);
   }
-  stop(reason='stopped'){this.playbackDiagnostics.finish(reason);this.silenceRelay();this.bellUntil=0;for(const voice of [...this.voices])voice.stop();this.voices.clear();}
+  stop(reason='stopped',{preserveTap=false}={}){
+    this.playbackDiagnostics.finish(reason);this.silenceRelay();this.bellUntil=0;
+    // Navigation may immediately follow another press. Let its 75ms response
+    // finish; mute, hidden pages and output replacement still stop everything.
+    for(const voice of [...this.voices])if(!preserveTap||!this.tapVoices.has(voice))voice.stop();
+  }
 }

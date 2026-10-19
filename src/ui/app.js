@@ -92,6 +92,12 @@ function prepareAutomaticSound(event){
   soundUnlock??=chime.unlock().catch(error=>{automaticSoundFailed=true;failure(error);}).finally(()=>{soundUnlock=null;});
 }
 document.addEventListener('click',prepareAutomaticSound,true);
+// The action may disable its own button (notably Stop). Eligibility belongs
+// to the accepted press, before that action changes the controls.
+const buttonPresses=new WeakMap();
+document.addEventListener('click',event=>{
+  const target=event.target.closest('button');if(target&&!target.disabled)buttonPresses.set(event,target);
+},true);
 
 function updateNotice(){
   $('update-notice').hidden=!offline.state.update;
@@ -102,7 +108,7 @@ function updateNotice(){
 }
 
 document.addEventListener('click',event=>{
-  const target=event.target.closest('button');if(!target||target.disabled)return;
+  const target=buttonPresses.get(event);if(!target)return;
   target.classList.remove('button-response');if(!motion.reduced){void target.offsetWidth;target.classList.add('button-response');}
   if(target.id!=='sound')chime.tap();
 });
@@ -121,7 +127,7 @@ function open(title) {
   settingsTapGuard=null;
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
-  session.pause('dialog');chime.stop();clockAnchor=null;
+  session.pause('dialog');chime.stop('dialog',{preserveTap:true});clockAnchor=null;
   $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','help-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
@@ -468,7 +474,7 @@ function fitDialogForm(adapt=()=>{},notes=[...body.children].filter(node=>node.t
 function chooseMode(after=null,{selectPlay=selectionPlay}={}) {
   if(session.guide){
     open('案内を閉じますか？');body.append(element('p','案内を閉じると、案内を開く前の配線と記録へ戻ってから課題を選べます。'));
-    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop();session.endGuide('skipped');message='';render();chooseMode(after,{selectPlay});}),button('案内を続ける',close));
+    actions.append(button('案内を閉じて課題を選ぶ',()=>{board.cancelAll();chime.stop('dialog',{preserveTap:true});session.endGuide('skipped');message='';render();chooseMode(after,{selectPlay});}),button('案内を続ける',close));
     fitDialogForm();return;
   }
   if(!session.editable){
@@ -603,7 +609,7 @@ function menu() {
     ['オフラインと更新',offlineDialog],
   ];
   if(session.mode==='free')items.splice(2,0,['回路を保存',()=>saveForm()],['回路ファイルを書き出す',()=>download('prism-notes-circuit.json',session.exportCircuit())],['回路ファイルを読む',()=>{session.requireEditable();$('import').click();}],...samples.map(sample=>[sample.name,()=>replace({sampleId:sample.id})]));
-  if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop();message='';close();}]);
+  if(!session.editable)items.unshift(['停止して編集へ',()=>{session.stop();chime.stop('stopped',{preserveTap:true});message='';close();}]);
   const short=['遊ぶ','案内','一覧','回路','結果','成績','更新'];
   const aliases=new Map(['課題と自由','操作の案内','点と道の一覧','保存回路','実行結果を書き出す','成績未保存を再試行','オフラインと更新'].map((name,index)=>[name,short[index]]));
   [['タイトルへ','表紙'],['表示・演出','演出'],['音声・レイテンシ','音声'],['回路を保存','保存'],['回路ファイルを書き出す','出力'],['回路ファイルを読む','読込'],['停止して編集へ','停止'],...samples.map((sample,index)=>[sample.name,index?'循環':'比較'])].forEach(([name,label])=>aliases.set(name,label));
@@ -701,7 +707,7 @@ function requestUpdate() {
 function updateDialog() {
   const safety=updateSafety(session);open('更新の前に');body.append(element('p',safety.message));
   if(safety.kind==='guide')actions.append(button('案内を閉じて戻る',()=>{session.endGuide('interrupted');updateDialog();}));
-  else if(safety.kind==='running')actions.append(button('停止して更新へ',()=>{session.stop();chime.stop();clockAnchor=null;updateDialog();}));
+  else if(safety.kind==='running')actions.append(button('停止して更新へ',()=>{session.stop();chime.stop('stopped',{preserveTap:true});clockAnchor=null;updateDialog();}));
   else if(safety.kind==='scores')actions.append(button('成績の保存を再試行',()=>{
     for(const key of session.pendingScores.keys())session.retryScore(key);
     if(session.pendingScores.size)throw new Error('成績を保存できません。現在の結果と再試行候補を保持し、更新を延期します。');
@@ -869,7 +875,7 @@ function flow() {
 }
 
 const recordNames={send:'送出',travel:'移動',arrival:'到着',branch:'分岐',goal:'鐘が鳴る',deadend:'行き止まり',unreachable:'到達不能','process-start':'処理開始','process-end':'処理終了'};
-function showRecords(){cancelStart();session.openRecords();session.view.recordsOpen=true;chime.stop();clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
+function showRecords(){cancelStart();session.openRecords();session.view.recordsOpen=true;chime.stop('records',{preserveTap:true});clockAnchor=null;render(false);requestAnimationFrame(resizeRecords);}
 function resizeRecords(){
   document.body.classList.remove('records-fullscreen');
   orientation.syncRegions();
@@ -917,7 +923,7 @@ function caseDetails(item){
   actions.append(button('このケースで鐘を鳴らす',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
-function interruptRun(reason){celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop();clockAnchor=null;}
+function interruptRun(reason){celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
 function startClock(){chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
@@ -961,10 +967,10 @@ function startRun(options){
 function play(){
   if(startPrelude){cancelStart();return;}
   if(session.editable){return startRun();}
-  else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop();clockAnchor=null;render(false);}
+  else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop('paused',{preserveTap:true});clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(session.run?.exhausted?'completed':'stopped');clockAnchor=null;message='';render();}
+function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true});clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
@@ -1080,7 +1086,7 @@ function viewport(){
   cancelWireDelete();board.resize();render(false);scheduleNotices();if(session.view.recordsOpen)requestAnimationFrame(resizeRecords);
 }
 document.querySelector('.app-version').addEventListener('click',()=>{
-  chime.stop();
+  chime.stop('info',{preserveTap:true});
   fullText('表示情報',`検証 v${offline.version}\n${[...viewport.history].reverse().map(s=>`画面 ${s.width.toFixed(1)} × ${s.height.toFixed(1)} / 倍率 ${s.scale.toFixed(3)}\n向き ${s.direction??'不明'} / 端末 ${s.angle??'不明'}° / 配置 ${s.frame}°`).join('\n\n')}\n\n${playbackDiagnosticText(chime.inspectPlayback())}`);
 });
 window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);screen.orientation?.addEventListener('change',viewport);window.addEventListener('orientationchange',viewport);viewport();render();maybeGuide();

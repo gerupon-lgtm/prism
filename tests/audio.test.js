@@ -34,6 +34,18 @@ test('操作音はT2の澄んだ880Hzで、短い余韻のあと終わる',()=>{
   const {chime,voices,notes}=fixture();chime.tap();assert.equal(notes().length,1);assert.equal(voices.length,2);assert.equal(notes()[0].frequencyHz,880);assert(Math.abs(notes()[0].endTime-.075)<1e-9);chime.mute();assert(voices.every(v=>v.stopped));
 });
 
+test('素早い画面切替でも短い操作音を残し、消音と全停止では残さない',()=>{
+ const {chime,voices}=fixture();chime.tap();const first=voices.slice();
+ chime.context.currentTime=.01;chime.tap();const second=voices.slice(-2);
+ chime.strike();const bell=voices.slice(-4);chime.stop('dialog',{preserveTap:true});
+ assert(first.every(v=>!v.stopped));assert(second.every(v=>!v.stopped));assert(bell.every(v=>v.stopped));
+ assert.equal(chime.tapVoices.size,2);assert.equal(chime.voices.size,2);
+ chime.context.currentTime=.02;chime.tap();chime.stop('dialog',{preserveTap:true});
+ assert.equal(chime.tapVoices.size,3);chime.mute();assert(voices.every(v=>v.stopped));
+ assert.equal(chime.voices.size,0);assert.equal(chime.tapVoices.size,0);
+ chime.muted=false;chime.tap();chime.stop('hidden');assert(voices.every(v=>v.stopped));
+});
+
 test('中継点は選ばれたR2の光片のきらめきを到着1回につき1音鳴らす',()=>{
   const {chime,voices,notes}=fixture();chime.relay();assert.equal(notes().length,1);assert.equal(voices.length,2);
   assert(Math.abs(notes()[0].frequencyHz-1108.7305239074883)<1e-7);assert(Math.abs(notes()[0].endTime-.105)<1e-9);

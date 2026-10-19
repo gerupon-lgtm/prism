@@ -1,0 +1,705 @@
+{
+  "version": "0.68.0",
+  "checks": [
+    {
+      "label": "rapid zoom and fit",
+      "passed": true,
+      "presses": 12
+    },
+    {
+      "label": "rapid menu and close",
+      "passed": true,
+      "presses": 6
+    },
+    {
+      "label": "version information and title transitions",
+      "passed": true,
+      "presses": 6
+    },
+    {
+      "label": "keyboard activation",
+      "passed": true,
+      "presses": 2
+    },
+    {
+      "label": "play and pause",
+      "passed": true,
+      "presses": 2
+    },
+    {
+      "label": "resume and stop",
+      "passed": true,
+      "presses": 2
+    },
+    {
+      "label": "originally disabled buttons remain silent",
+      "passed": true
+    },
+    {
+      "label": "rapid records and return",
+      "passed": true,
+      "presses": 6
+    },
+    {
+      "label": "mute stops UI voices too, subsequent presses remain silent",
+      "passed": true
+    },
+    {
+      "label": "no leaked UI voices or browser errors",
+      "passed": true
+    }
+  ],
+  "traces": [
+    {
+      "label": "rapid zoom and fit",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "zoom-in",
+          "text": "＋",
+          "wall": 1646
+        },
+        {
+          "type": "tap",
+          "wall": 1688,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-out",
+          "text": "−",
+          "wall": 1896
+        },
+        {
+          "type": "tap",
+          "wall": 1925,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 1965
+        },
+        {
+          "type": "tap",
+          "wall": 2003,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-in",
+          "text": "＋",
+          "wall": 2035
+        },
+        {
+          "type": "tap",
+          "wall": 2067,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-out",
+          "text": "−",
+          "wall": 2094
+        },
+        {
+          "type": "tap",
+          "wall": 2118,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 2150
+        },
+        {
+          "type": "tap",
+          "wall": 2175,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-in",
+          "text": "＋",
+          "wall": 2204
+        },
+        {
+          "type": "tap",
+          "wall": 2228,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-out",
+          "text": "−",
+          "wall": 2257
+        },
+        {
+          "type": "tap",
+          "wall": 2279,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 2305
+        },
+        {
+          "type": "tap",
+          "wall": 2324,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-in",
+          "text": "＋",
+          "wall": 2354
+        },
+        {
+          "type": "tap",
+          "wall": 2380,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "zoom-out",
+          "text": "−",
+          "wall": 2409
+        },
+        {
+          "type": "tap",
+          "wall": 2432,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 2458
+        },
+        {
+          "type": "tap",
+          "wall": 2480,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "rapid menu and close",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 2624
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 2626,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 2649,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 2689
+        },
+        {
+          "type": "tap",
+          "wall": 2690,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 2736
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 2736,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 2756,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 2790
+        },
+        {
+          "type": "tap",
+          "wall": 2790,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 2829
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 2829,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 2844,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 2874
+        },
+        {
+          "type": "tap",
+          "wall": 2875,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "version information and title transitions",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 3039
+        },
+        {
+          "type": "tap",
+          "wall": 3059,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "",
+          "text": "v0.68.0",
+          "wall": 3087
+        },
+        {
+          "type": "stop",
+          "reason": "info",
+          "wall": 3087,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 3089,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 3105,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 3148
+        },
+        {
+          "type": "tap",
+          "wall": 3148,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 3186
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 3186,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 3200,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "",
+          "text": "タイトルへ",
+          "wall": 3419
+        },
+        {
+          "type": "stop",
+          "reason": "title",
+          "wall": 3420,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 3451,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "title-resume",
+          "text": "プレイ画面へ",
+          "wall": 3792
+        },
+        {
+          "type": "tap",
+          "wall": 3813,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "keyboard activation",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 3947
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 3948,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 3962,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 3986
+        },
+        {
+          "type": "tap",
+          "wall": 3986,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "play and pause",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "play",
+          "text": "鐘を鳴らす",
+          "wall": 5104
+        },
+        {
+          "type": "tap",
+          "wall": 5130,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "play",
+          "text": "一時停止",
+          "wall": 5459
+        },
+        {
+          "type": "stop",
+          "reason": "paused",
+          "wall": 5461,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 5465,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "resume and stop",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "play",
+          "text": "再開",
+          "wall": 5605
+        },
+        {
+          "type": "tap",
+          "wall": 5625,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "stop",
+          "text": "停止",
+          "wall": 5659
+        },
+        {
+          "type": "stop",
+          "reason": "completed",
+          "wall": 5681,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 5703,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "rapid records and return",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "records",
+          "text": "記録",
+          "wall": 5867
+        },
+        {
+          "type": "stop",
+          "reason": "records",
+          "wall": 5868,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 5875,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "close-records",
+          "text": "×",
+          "wall": 5952
+        },
+        {
+          "type": "tap",
+          "wall": 5955,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "records",
+          "text": "記録",
+          "wall": 6055
+        },
+        {
+          "type": "stop",
+          "reason": "records",
+          "wall": 6055,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 6059,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "close-records",
+          "text": "×",
+          "wall": 6120
+        },
+        {
+          "type": "tap",
+          "wall": 6121,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "records",
+          "text": "記録",
+          "wall": 6177
+        },
+        {
+          "type": "stop",
+          "reason": "records",
+          "wall": 6177,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 6182,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "close-records",
+          "text": "×",
+          "wall": 6245
+        },
+        {
+          "type": "tap",
+          "wall": 6247,
+          "muted": false,
+          "voices": 0
+        }
+      ]
+    },
+    {
+      "label": "explicit mute",
+      "events": [
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 6390
+        },
+        {
+          "type": "tap",
+          "wall": 6407,
+          "muted": false,
+          "voices": 0
+        },
+        {
+          "type": "stop",
+          "reason": "muted",
+          "wall": 6433,
+          "muted": true,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "fit",
+          "text": "全体",
+          "wall": 6457
+        },
+        {
+          "type": "tap",
+          "wall": 6475,
+          "muted": true,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "menu",
+          "text": "☰",
+          "wall": 6502
+        },
+        {
+          "type": "stop",
+          "reason": "dialog",
+          "wall": 6502,
+          "muted": true,
+          "voices": 0
+        },
+        {
+          "type": "tap",
+          "wall": 6520,
+          "muted": true,
+          "voices": 0
+        },
+        {
+          "type": "eligible",
+          "id": "dialog-close",
+          "text": "×",
+          "wall": 6546
+        },
+        {
+          "type": "tap",
+          "wall": 6547,
+          "muted": true,
+          "voices": 0
+        }
+      ]
+    }
+  ],
+  "evidence": "Trusted UI presses and native Web Audio scheduling on a disposable PC browser. Speaker listening and physical phones are not verified.",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "nativeAudio": false,
+  "pending": [
+    "This Windows engine has no native AudioContext. UI calls only; actual audio remains unverified."
+  ],
+  "initial": [
+    {
+      "type": "eligible",
+      "id": "title-resume",
+      "text": "プレイ画面へ",
+      "wall": 1179
+    },
+    {
+      "type": "tap",
+      "wall": 1226,
+      "muted": false,
+      "voices": 0
+    }
+  ],
+  "errors": [],
+  "status": "passed"
+}

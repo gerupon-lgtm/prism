@@ -1,0 +1,35 @@
+const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
+const {enterApp,selectChallenge,dragConnection}=require('./browser_wait.cjs');
+const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
+process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
+const pw=require(arg('--playwright-path')),engine=arg('--engine')||'chromium',channel=arg('--channel'),root=path.resolve(__dirname,'../dist'),version=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version;
+const pointer=arg('--pointer')||'mouse',out=path.join(__dirname,'連続操作音',version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine,pointer);fs.mkdirSync(out,{recursive:true});
+const report={version,checks:[],traces:[],evidence:'Trusted UI presses and native Web Audio scheduling on a disposable PC browser. Speaker listening and physical phones are not verified.'};
+const server=http.createServer((req,res)=>{let f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(f===root)f=path.join(root,'index.html');if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}try{res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.json':'application/json','.ttf':'font/ttf'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
+const trace=p=>p.evaluate(()=>window.__rapid);
+const reset=p=>p.evaluate(()=>window.__rapid=[]);
+async function press(p,selector){const r=await p.locator(selector).boundingBox();assert(r,'Visible button '+selector);await (pointer==='touch'?p.touchscreen:p.mouse)[pointer==='touch'?'tap':'click'](r.x+r.width/2,r.y+r.height/2);}
+async function check(p,label,action){await reset(p);await action();await p.waitForTimeout(100);const events=await trace(p);report.traces.push({label,events});const accepted=events.filter(e=>e.type==='eligible'),taps=events.filter(e=>e.type==='tap');assert.equal(taps.length,accepted.length,label+' accepted presses should each trigger tap sound');if(report.nativeAudio)for(const tap of taps)assert(tap.voices>0,label+' tap must schedule audio');assert.equal(events.filter(e=>e.type==='cut-tap'&&e.remaining>.005).length,0,label+' must not cut off preceding short button sound');report.checks.push({label,passed:true,presses:accepted.length});}
+(async()=>{let browser;await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
+ browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browser={engine,channel,version:browser.version()};
+ const context=await browser.newContext({viewport:{width:412,height:844},hasTouch:true,isMobile:true});
+ await context.addInitScript(()=>{window.__rapid=[];document.addEventListener('click',event=>{const b=event.target.closest('button');if(b&&!b.disabled&&b.id!=='sound')__rapid.push({type:'eligible',id:b.id,text:b.textContent,wall:performance.now()});},true);});
+ const p=await context.newPage();p.on('pageerror',e=>(report.errors??=[]).push(e.message));await p.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);report.nativeAudio=await p.evaluate(()=>!!(window.AudioContext??window.webkitAudioContext));if(!report.nativeAudio)report.pending=['This Windows engine has no native AudioContext. UI calls only; actual audio remains unverified.'];
+ await p.evaluate(async()=>{const entry=document.querySelector('script[type=module]'),{Chime}=await import(new URL('audio.js',entry.src));for(const method of ['tap','stop']){const previous=Chime.prototype[method];Chime.prototype[method]=function(...args){const before=new Set(this.voices),result=previous.apply(this,args);if(method==='tap')for(const voice of this.voices)if(!before.has(voice)){const stop=voice.stop;voice.stop=()=>{__rapid.push({type:'cut-tap',wall:performance.now(),remaining:voice.endTime-this.context.currentTime});return stop.call(voice);};}__rapid.push({type:method,reason:args[0],wall:performance.now(),state:this.context?.state,muted:this.muted,voices:this.voices.size-before.size});return result;};}});
+ await enterApp(p);await p.waitForTimeout(150);report.initial=await trace(p);
+ await check(p,'rapid zoom and fit',async()=>{for(let i=0;i<4;i++)for(const id of ['#zoom-in','#zoom-out','#fit'])await press(p,id);});
+ await check(p,'rapid menu and close',async()=>{for(let i=0;i<3;i++){await press(p,'#menu');await press(p,'#dialog-close');}});
+ await check(p,'version information and title transitions',async()=>{
+  await press(p,'#fit');await press(p,'.app-version');await press(p,'#dialog-close');
+  await press(p,'#menu');await p.getByRole('button',{name:'タイトルへ',exact:true}).click();await enterApp(p);
+ });
+ await check(p,'keyboard activation',async()=>{await p.locator('#menu').focus();await p.keyboard.press('Enter');await p.locator('#dialog-close').focus();await p.keyboard.press('Enter');});
+ await selectChallenge(p,'Q1');await dragConnection(p,'S','A');await dragConnection(p,'A','G');
+ await check(p,'play and pause',async()=>{await press(p,'#play');await p.waitForFunction(()=>document.getElementById('play').dataset.state==='running');await press(p,'#play');});
+ await check(p,'resume and stop',async()=>{await press(p,'#play');await press(p,'#stop');});
+ await reset(p);await p.locator('#stop').dispatchEvent('click');assert.equal((await trace(p)).filter(e=>e.type==='tap').length,0,'Already-disabled button must not sound');report.checks.push({label:'originally disabled buttons remain silent',passed:true});
+ await check(p,'rapid records and return',async()=>{for(let i=0;i<3;i++){await press(p,'#records');await p.locator('#close-records').waitFor({state:'visible'});await press(p,'#close-records');await p.locator('#records').waitFor({state:'visible'});}});
+ await reset(p);await press(p,'#fit');await press(p,'#sound');await press(p,'#fit');await press(p,'#menu');await press(p,'#dialog-close');const muted=await trace(p);report.traces.push({label:'explicit mute',events:muted});assert(muted.filter(e=>e.type==='tap').slice(1).every(e=>e.voices===0));report.checks.push({label:'mute stops UI voices too, subsequent presses remain silent',passed:true});
+ await press(p,'#sound');await p.waitForTimeout(120);const remaining=await p.evaluate(async()=>{const app=await import(document.querySelector('script[type=module]').src);return app.inspectPerformance().audioVoices;});assert.equal(remaining,0,'Short UI voices naturally release');assert.deepEqual(report.errors??=[],[]);report.checks.push({label:'no leaked UI voices or browser errors',passed:true});
+ await context.close();report.status='passed';
+ }catch(error){report.status='failed';report.failure=error.stack;process.exitCode=1;}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,checks:report.checks.length,failure:report.failure,out}));}})();
