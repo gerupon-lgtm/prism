@@ -2,7 +2,7 @@
   "version": "0.67.0",
   "startedAt": "2026-10-19T18:27:21.025Z",
   "passed": true,
-  "publicVerified": false,
+  "publicVerified": true,
   "checks": [
     {
       "name": "syntax",
@@ -233,5 +233,42 @@
     "設計検証/run_sequence_verification.cjs": "fbbcec7dd16744cfaad432d4af96b37da69e76943c39dd355042dad8d9603ddd",
     "設計検証/browser_wait.cjs": "633a4ca38ccea5b733050ed8d87c7157bb513a158736853b6c263a7db57e98c9"
   },
-  "finishedAt": "2026-10-19T18:44:00.730Z"
+  "finishedAt": "2026-10-19T18:44:00.73Z",
+  "sourceCommit": "11eebe27163f10a0c5e51428daff0aa24a2357db",
+  "publicChecks": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "label": "release",
+      "exitCode": 0,
+      "milliseconds": 32996,
+      "log": "設計検証\\鐘の順番\\0.67.0\\prism.sikumilab.com-release.log"
+    },
+    {
+      "url": "https://prism.sikumilab.com/",
+      "label": "sequence",
+      "exitCode": 0,
+      "milliseconds": 99130,
+      "log": "設計検証\\鐘の順番\\0.67.0\\prism.sikumilab.com-sequence.log"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "label": "release",
+      "exitCode": 0,
+      "milliseconds": 35917,
+      "log": "設計検証\\鐘の順番\\0.67.0\\gerupon-lgtm.github.io-release.log"
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "label": "sequence",
+      "exitCode": 0,
+      "milliseconds": 104682,
+      "log": "設計検証\\鐘の順番\\0.67.0\\gerupon-lgtm.github.io-sequence.log"
+    }
+  ],
+  "publicCheckedAt": "2026-10-19T18:53:56.485Z",
+  "deployments": {
+    "sourceCommit": "11eebe27163f10a0c5e51428daff0aa24a2357db",
+    "githubRun": "39305196977",
+    "cloudflareDeployment": "5380361e-350a-42bb-9a3b-3f8b6a3ccf9d"
+  }
 }

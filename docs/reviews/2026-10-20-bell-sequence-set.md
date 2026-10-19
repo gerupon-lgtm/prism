@@ -42,3 +42,11 @@ Chromium・PC WebKit・Windows Chrome・Edgeの全てで、全24面のスマホ�
 Chrome・Edge・Chromiumでは採用済みD2/H3a/H3b/H4aの合成信号が試聴WAVと16ビットの1段階以内で一致。Windows WebKitはOfflineAudioContext未対応のため、この合成比較を未確認として残し、呼出しと画面・計算の証拠へ広げない。新背景をスマホ相当とPCの画像で目視した。実機の操作・聴感・体感難易度は未確認。
 
 集約は`設計検証/鐘の順番/0.67.0/verification.json`（各ログ・終了コード・ソースSHA-256）、個別のレポートと画像は同版のlocal/offline。結線回帰は`設計検証/結線中の秒数/0.67.0/local`。公開結果は次節へ追記する。
+
+## 公開結果
+
+0.67.0を`https://prism.sikumilab.com/`と`https://gerupon-lgtm.github.io/prism/`で公開・確認済み。配信元は`11eebe27163f10a0c5e51428daff0aa24a2357db`。GitHub Actions `39305196977`とCloudflare Pages `5380361e-350a-42bb-9a3b-3f8b6a3ccf9d`が成功し、両URLの配信コミットも一致した。
+
+各URLで、版・配信元・全62資材のSHA-256と形式、更新・Q1の2.5秒100点・保存・書出し・通信なし再起動が75項目合格。公開画面のPC Chromiumでは全24面のPC／スマホ相当の配置、新旧実践18面のドラッグ・100点・音程呼出し・書出し、新6面の部分点と各鐘の結果、左右回転・縦復帰・文字拡大、18→19・最終24・選択一覧の現在行、未到達通知など97項目が各URLで合格。公開本体のD2/H3a/H3b/H4a合成も採用WAVと16ビットの1段階以内で一致した。
+
+証拠は同版の`public/<ホスト>/report.json`と`<ホスト>/chromium/report.json`・画像・ログ。集約の`publicVerified`はtrue。公開確認はPCの証拠で、実機の指操作・聴感・体感難易度やmacOS／iOS／iPadOS Safariの合格へ拡張しない。
