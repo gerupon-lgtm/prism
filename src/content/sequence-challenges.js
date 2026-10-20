@@ -10,11 +10,11 @@ const relayRoutes=()=>[e('S','A',.5),e('A','B',3),e('A','C',.5),e('C','B',.5),e(
 export const sequenceChallenges=[
  {id:'Q23',version:1,name:'ふたつの鐘の呼び声',type:'bell-sequence',limit:5,baseline:'4',maxDuration:'20',goals:['G1','G2'],bellPitches:[88,84],nodes:two(),
   candidates:[e('S','A',.5),e('A','B',.5),e('A','C',1),e('A','D',1.5),e('B','G1',.5),e('C','G2',1),e('D','G1',1),e('D','G2',2),e('B','G2',3),e('C','G1',2.5)]},
- {id:'Q24',version:1,name:'半秒あとに応えて',type:'bell-sequence',limit:6,baseline:'4',maxDuration:'20',goals:['G1','G2'],intervals:['0.5'],intervalTolerance:'0.1',bellPitches:[88,84],nodes:two(),
+ {id:'Q24',version:2,name:'半秒あとに応えて',type:'bell-sequence',limit:6,baseline:'4',maxDuration:'20',goals:['G1','G2'],intervals:['0.5'],bellPitches:[88,84],nodes:two(),
   candidates:[e('S','A',.5),e('A','B',.5),e('A','C',1),e('B','D',.5),e('C','D',1),e('D','G1',.5),e('D','G2',1),e('B','G1',2),e('C','G2',2),e('B','G2',2.5),e('C','G1',1.5)]},
  {id:'Q25',version:1,name:'三つの鐘を順番に',type:'bell-sequence',limit:8,baseline:'5',maxDuration:'25',goals:['G1','G2','G3'],bellPitches:[72,79,84],nodes:three(),candidates:routes()},
- {id:'Q26',version:1,name:'のぼる星の三音',type:'bell-sequence',limit:8,baseline:'5',maxDuration:'25',goals:['G1','G2','G3'],intervals:['1','1'],intervalTolerance:'0.1',bellPitches:[72,79,84],nodes:relayNodes(),candidates:relayRoutes()},
- {id:'Q27',version:1,name:'ひとつの分岐、三つの余韻',type:'bell-sequence',limit:8,baseline:'6',maxDuration:'30',goals:['G1','G2','G3'],intervals:['0.5','1'],intervalTolerance:'0.1',bellPitches:[72,77,81],
+ {id:'Q26',version:2,name:'のぼる星の三音',type:'bell-sequence',limit:8,baseline:'5',maxDuration:'25',goals:['G1','G2','G3'],intervals:['1','1'],bellPitches:[72,79,84],nodes:relayNodes(),candidates:relayRoutes()},
+ {id:'Q27',version:2,name:'ひとつの分岐、三つの余韻',type:'bell-sequence',limit:8,baseline:'6',maxDuration:'30',goals:['G1','G2','G3'],intervals:['0.5','1'],bellPitches:[72,77,81],
   nodes:relayNodes().map(node=>node.id==='D'?{...node,process:'1'}:node),candidates:relayRoutes().map(edge=>edge.id==='EG2'?{...edge,time:'1.5'}:edge.id==='DG2'?{...edge,time:'0.5'}:edge.id==='AG1'?{...edge,time:'5'}:edge)},
- {id:'Q28',version:1,name:'降りそそぐ星の余韻',type:'bell-sequence',limit:8,baseline:'6',maxDuration:'30',goals:['G3','G2','G1'],intervals:['0.5','1'],intervalTolerance:'0.1',bellPitches:[84,79,72],nodes:relayNodes(),candidates:relayRoutes().map(edge=>edge.id==='DG1'?{...edge,time:'2'}:edge.id==='EG3'?{...edge,time:'0.5'}:edge)},
+ {id:'Q28',version:2,name:'降りそそぐ星の余韻',type:'bell-sequence',limit:8,baseline:'6',maxDuration:'30',goals:['G3','G2','G1'],intervals:['0.5','1'],bellPitches:[84,79,72],nodes:relayNodes(),candidates:relayRoutes().map(edge=>edge.id==='DG1'?{...edge,time:'2'}:edge.id==='EG3'?{...edge,time:'0.5'}:edge)},
 ];

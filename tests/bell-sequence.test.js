@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Simulation} from '../src/core/simulation.js';
 import {bellSequenceResult,validateBellSequence} from '../src/core/bell-sequence.js';
-const challenge={goals:['G1','G2','G3'],intervals:['0.5','1'],intervalTolerance:'0.1'};
+const challenge={version:2,goals:['G1','G2','G3'],intervals:['0.5','1']};
 function run(times=['0.5','1','2']){
  const s=new Simulation({mode:'spread',target:'all',nodes:[{id:'S',kind:'source',process:'0.5'},{id:'A',kind:'prism',process:'0.5'},...['G1','G2','G3'].map(id=>({id,kind:'goal',process:'0'}))],edges:[{id:'SA',from:'S',to:'A',time:'0.5'},...times.map((time,i)=>({id:'AG'+(i+1),from:'A',to:'G'+(i+1),time}))]});while(!s.exhausted)s.advanceNext();return s;
 }
@@ -12,8 +12,16 @@ test('各鐘の初回到達から指定順と間隔を判定し、最後の鐘�
 test('描画やイベントの並びで同時到達を指定順へ変換しない。逆順も失敗する',()=>{
  assert.equal(bellSequenceResult(challenge,run(['0.5','0.5','2'])).state,'failed');assert.equal(bellSequenceResult(challenge,run(['1','0.5','2'])).state,'failed');
 });
-test('新セットの間隔だけ0.1秒の幅を認め、境界を越えたら失敗する',()=>{
- assert.equal(bellSequenceResult(challenge,run(['0.5','1.1','2.1'])).state,'achieved');assert.equal(bellSequenceResult(challenge,run(['0.5','1.11','2.11'])).state,'failed');assert.equal(bellSequenceResult({...challenge,intervalTolerance:'0'},run(['0.5','1.1','2.1'])).state,'failed');
+test('指定した間隔は完全一致だけ達成し、前後0.1秒も小さな差も認めない',()=>{
+ assert.equal(bellSequenceResult(challenge,run()).state,'achieved');
+ for(const times of [['0.5','0.9','1.9'],['0.5','1.1','2.1'],['0.5','0.999','1.999'],['0.5','1.001','2.001'],['0.5','1','2.001']])assert.equal(bellSequenceResult(challenge,run(times)).state,'failed');
+ const s=run();assert.throws(()=>validateBellSequence({...challenge,intervalTolerance:'0.1'},s.circuit.time,s.circuit.goals),/完全一致/);
+ assert.equal(bellSequenceResult({...challenge,intervals:['0.6','1']},run(['0.5','1.1','2.1'])).state,'achieved');
+ assert.equal(bellSequenceResult({...challenge,intervals:['0.6','1']},run(['0.5','1','2'])).state,'failed');
+});
+
+test('旧内容版に保存された許容幅だけは履歴の元条件として読み取れる',()=>{
+ assert.equal(bellSequenceResult({...challenge,version:1,intervalTolerance:'0.1'},run(['0.5','1.1','2.1'])).state,'achieved');
 });
 test('順番だけの課題へ間隔を追加せず、未到達・途中停止・到達待ちを区別する',()=>{
  const s=run(['0.5','1.2','4']);assert.equal(bellSequenceResult({goals:challenge.goals},s).state,'achieved');const s2=run();s2.records=s2.records.filter(r=>r.node!=='G3');assert.equal(bellSequenceResult(challenge,s2).state,'failed');s2.status='stopped';assert.equal(bellSequenceResult(challenge,s2).state,'stopped');

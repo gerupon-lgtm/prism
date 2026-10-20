@@ -60,7 +60,7 @@ export const challengeNumber=challenge=>challenge.number??Number(challenge.id.sl
 export const challengeLabel=challenge=>'Q'+challengeNumber(challenge);
 
 export function challengeObjective(challenge) {
-  if(challenge.type==='bell-sequence')return `${challenge.goals.join('→')}の順${challenge.intervals?'・約'+challenge.intervals.join('秒、約')+'秒間隔':''}`;
+  if(challenge.type==='bell-sequence')return `${challenge.goals.join('→')}の順${challenge.intervals?'・'+challenge.intervals.join('秒、')+'秒間隔':''}`;
   if(challenge.type==='delivery-all')return `祭壇${challenge.goals.join('・')}すべてに届ける`;
   if(challenge.type==='interval')return `${challenge.interval}秒間隔で${challenge.count}回`;
   return '';

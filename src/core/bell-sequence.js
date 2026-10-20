@@ -3,7 +3,10 @@ export function validateBellSequence(challenge,scale,availableGoals){
  const goals=challenge.goals;
  if(!Array.isArray(goals)||goals.length<2||new Set(goals).size!==goals.length||goals.some(id=>!availableGoals.includes(id)))throw Error('鐘の順番が不正です。');
  if(challenge.intervals!==undefined&&(!Array.isArray(challenge.intervals)||challenge.intervals.length!==goals.length-1||challenge.intervals.some(value=>scale.ticks(value)<=0n)))throw Error('鐘の間隔が不正です。');
- if(scale.ticks(challenge.intervalTolerance??'0')<0n)throw Error('間隔の許容幅が不正です。');
+ const tolerance=scale.ticks(challenge.intervalTolerance??'0');
+ if(tolerance<0n)throw Error('間隔の許容幅が不正です。');
+ // Content v1 may exist in saved results. New interval stages are exact.
+ if((challenge.version??1)>=2&&tolerance!==0n)throw Error('指定間隔は完全一致で判定します。');
 }
 export function bellSequenceResult(challenge,run){
  const scale=run.circuit.time;validateBellSequence(challenge,scale,run.circuit.goals);

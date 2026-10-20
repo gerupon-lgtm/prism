@@ -1,10 +1,10 @@
 {
-  "definition": "{\"id\":\"Q24\",\"version\":1,\"name\":\"半秒あとに応えて\",\"type\":\"bell-sequence\",\"limit\":6,\"baseline\":\"4\",\"maxDuration\":\"20\",\"goals\":[\"G1\",\"G2\"],\"intervals\":[\"0.5\"],\"intervalTolerance\":\"0.1\",\"bellPitches\":[88,84],\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"x\":0.5,\"y\":0.07,\"process\":\"0.5\"},{\"id\":\"A\",\"kind\":\"prism\",\"x\":0.5,\"y\":0.29,\"process\":\"0.5\"},{\"id\":\"B\",\"kind\":\"prism\",\"x\":0.19,\"y\":0.53,\"process\":\"0.5\"},{\"id\":\"C\",\"kind\":\"prism\",\"x\":0.81,\"y\":0.53,\"process\":\"0.5\"},{\"id\":\"D\",\"kind\":\"prism\",\"x\":0.5,\"y\":0.72,\"process\":\"0.5\"},{\"id\":\"G1\",\"kind\":\"goal\",\"x\":0.22,\"y\":0.95,\"process\":\"0\"},{\"id\":\"G2\",\"kind\":\"goal\",\"x\":0.78,\"y\":0.95,\"process\":\"0\"}],\"candidates\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"0.5\"},{\"id\":\"AB\",\"from\":\"A\",\"to\":\"B\",\"time\":\"0.5\"},{\"id\":\"AC\",\"from\":\"A\",\"to\":\"C\",\"time\":\"1\"},{\"id\":\"BD\",\"from\":\"B\",\"to\":\"D\",\"time\":\"0.5\"},{\"id\":\"CD\",\"from\":\"C\",\"to\":\"D\",\"time\":\"1\"},{\"id\":\"DG1\",\"from\":\"D\",\"to\":\"G1\",\"time\":\"0.5\"},{\"id\":\"DG2\",\"from\":\"D\",\"to\":\"G2\",\"time\":\"1\"},{\"id\":\"BG1\",\"from\":\"B\",\"to\":\"G1\",\"time\":\"2\"},{\"id\":\"CG2\",\"from\":\"C\",\"to\":\"G2\",\"time\":\"2\"},{\"id\":\"BG2\",\"from\":\"B\",\"to\":\"G2\",\"time\":\"2.5\"},{\"id\":\"CG1\",\"from\":\"C\",\"to\":\"G1\",\"time\":\"1.5\"}]}",
+  "definition": "{\"id\":\"Q24\",\"version\":2,\"name\":\"半秒あとに応えて\",\"type\":\"bell-sequence\",\"limit\":6,\"baseline\":\"4\",\"maxDuration\":\"20\",\"goals\":[\"G1\",\"G2\"],\"intervals\":[\"0.5\"],\"bellPitches\":[88,84],\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"x\":0.5,\"y\":0.07,\"process\":\"0.5\"},{\"id\":\"A\",\"kind\":\"prism\",\"x\":0.5,\"y\":0.29,\"process\":\"0.5\"},{\"id\":\"B\",\"kind\":\"prism\",\"x\":0.19,\"y\":0.53,\"process\":\"0.5\"},{\"id\":\"C\",\"kind\":\"prism\",\"x\":0.81,\"y\":0.53,\"process\":\"0.5\"},{\"id\":\"D\",\"kind\":\"prism\",\"x\":0.5,\"y\":0.72,\"process\":\"0.5\"},{\"id\":\"G1\",\"kind\":\"goal\",\"x\":0.22,\"y\":0.95,\"process\":\"0\"},{\"id\":\"G2\",\"kind\":\"goal\",\"x\":0.78,\"y\":0.95,\"process\":\"0\"}],\"candidates\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"0.5\"},{\"id\":\"AB\",\"from\":\"A\",\"to\":\"B\",\"time\":\"0.5\"},{\"id\":\"AC\",\"from\":\"A\",\"to\":\"C\",\"time\":\"1\"},{\"id\":\"BD\",\"from\":\"B\",\"to\":\"D\",\"time\":\"0.5\"},{\"id\":\"CD\",\"from\":\"C\",\"to\":\"D\",\"time\":\"1\"},{\"id\":\"DG1\",\"from\":\"D\",\"to\":\"G1\",\"time\":\"0.5\"},{\"id\":\"DG2\",\"from\":\"D\",\"to\":\"G2\",\"time\":\"1\"},{\"id\":\"BG1\",\"from\":\"B\",\"to\":\"G1\",\"time\":\"2\"},{\"id\":\"CG2\",\"from\":\"C\",\"to\":\"G2\",\"time\":\"2\"},{\"id\":\"BG2\",\"from\":\"B\",\"to\":\"G2\",\"time\":\"2.5\"},{\"id\":\"CG1\",\"from\":\"C\",\"to\":\"G1\",\"time\":\"1.5\"}]}",
   "families": [
     {
       "problem": {
         "id": "Q24",
-        "version": 1,
+        "version": 2,
         "name": "半秒あとに応えて",
         "type": "bell-sequence",
         "limit": 6,
@@ -17,7 +17,6 @@
         "intervals": [
           "0.5"
         ],
-        "intervalTolerance": "0.1",
         "bellPitches": [
           88,
           84
@@ -84,238 +83,61 @@
             "id": "AB",
             "from": "A",
             "to": "B",
-            "time": "0.1"
+            "time": "2.5"
           },
           {
             "id": "AC",
             "from": "A",
             "to": "C",
-            "time": "1"
+            "time": "0.5"
           },
           {
             "id": "BD",
             "from": "B",
             "to": "D",
-            "time": "0.1"
+            "time": "5.5"
           },
           {
             "id": "CD",
             "from": "C",
             "to": "D",
-            "time": "0.1"
+            "time": "2"
           },
           {
             "id": "DG1",
             "from": "D",
-            "to": "G1",
-            "time": "0.1"
-          },
-          {
-            "id": "DG2",
-            "from": "D",
-            "to": "G2",
-            "time": "1"
-          },
-          {
-            "id": "BG1",
-            "from": "B",
             "to": "G1",
             "time": "2.5"
           },
           {
-            "id": "CG2",
-            "from": "C",
-            "to": "G2",
-            "time": "3.5"
-          },
-          {
-            "id": "BG2",
-            "from": "B",
-            "to": "G2",
-            "time": "2"
-          },
-          {
-            "id": "CG1",
-            "from": "C",
-            "to": "G1",
-            "time": "0.1"
-          }
-        ],
-        "number": 20,
-        "set": "sequence",
-        "setName": "鐘の響きをつなぐ",
-        "world": "starecho",
-        "stage": "星響きの円環"
-      },
-      "result": {
-        "baseline": "3.2",
-        "maxDuration": "6",
-        "achieved": 2,
-        "winners": 1,
-        "purposeFailures": 0,
-        "winner": [
-          "SA",
-          "AB",
-          "AC",
-          "BD",
-          "DG2",
-          "CG1"
-        ],
-        "partial": {
-          "time": "3.6",
-          "edges": [
-            "SA",
-            "AB",
-            "AC",
-            "CD",
-            "DG1",
-            "BG2"
-          ]
-        },
-        "traps": [
-          "DG1"
-        ],
-        "valid": true
-      }
-    },
-    {
-      "problem": {
-        "id": "Q24",
-        "version": 1,
-        "name": "半秒あとに応えて",
-        "type": "bell-sequence",
-        "limit": 6,
-        "baseline": "4",
-        "maxDuration": "20",
-        "goals": [
-          "G1",
-          "G2"
-        ],
-        "intervals": [
-          "0.5"
-        ],
-        "intervalTolerance": "0.1",
-        "bellPitches": [
-          88,
-          84
-        ],
-        "nodes": [
-          {
-            "id": "S",
-            "kind": "source",
-            "x": 0.5,
-            "y": 0.07,
-            "process": "0.5"
-          },
-          {
-            "id": "A",
-            "kind": "prism",
-            "x": 0.5,
-            "y": 0.29,
-            "process": "0.5"
-          },
-          {
-            "id": "B",
-            "kind": "prism",
-            "x": 0.19,
-            "y": 0.53,
-            "process": "0.5"
-          },
-          {
-            "id": "C",
-            "kind": "prism",
-            "x": 0.81,
-            "y": 0.53,
-            "process": "0.5"
-          },
-          {
-            "id": "D",
-            "kind": "prism",
-            "x": 0.5,
-            "y": 0.72,
-            "process": "0.5"
-          },
-          {
-            "id": "G1",
-            "kind": "goal",
-            "x": 0.22,
-            "y": 0.95,
-            "process": "0"
-          },
-          {
-            "id": "G2",
-            "kind": "goal",
-            "x": 0.78,
-            "y": 0.95,
-            "process": "0"
-          }
-        ],
-        "candidates": [
-          {
-            "id": "SA",
-            "from": "S",
-            "to": "A",
-            "time": "0.5"
-          },
-          {
-            "id": "AB",
-            "from": "A",
-            "to": "B",
-            "time": "0.1"
-          },
-          {
-            "id": "AC",
-            "from": "A",
-            "to": "C",
-            "time": "1"
-          },
-          {
-            "id": "BD",
-            "from": "B",
-            "to": "D",
-            "time": "1.1"
-          },
-          {
-            "id": "CD",
-            "from": "C",
-            "to": "D",
-            "time": "0.1"
-          },
-          {
-            "id": "DG1",
-            "from": "D",
-            "to": "G1",
-            "time": "0.1"
-          },
-          {
             "id": "DG2",
             "from": "D",
             "to": "G2",
-            "time": "1"
+            "time": "0.5"
           },
           {
             "id": "BG1",
             "from": "B",
             "to": "G1",
-            "time": "2"
+            "time": "0.5"
           },
           {
             "id": "CG2",
             "from": "C",
             "to": "G2",
-            "time": "5"
+            "time": "6"
           },
           {
             "id": "BG2",
             "from": "B",
             "to": "G2",
-            "time": "3.5"
+            "time": "2.5"
           },
           {
             "id": "CG1",
             "from": "C",
             "to": "G1",
-            "time": "1.6"
+            "time": "5.5"
           }
         ],
         "number": 20,
@@ -325,9 +147,9 @@
         "stage": "星響きの円環"
       },
       "result": {
-        "baseline": "4.1",
-        "maxDuration": "7.5",
-        "achieved": 7,
+        "baseline": "5",
+        "maxDuration": "12.5",
+        "achieved": 26,
         "winners": 1,
         "purposeFailures": 0,
         "winner": [
@@ -339,18 +161,188 @@
           "BG1"
         ],
         "partial": {
-          "time": "4.2",
+          "time": "8",
+          "edges": [
+            "SA",
+            "AC",
+            "CG2",
+            "CG1"
+          ]
+        },
+        "traps": [],
+        "valid": true
+      }
+    },
+    {
+      "problem": {
+        "id": "Q24",
+        "version": 2,
+        "name": "半秒あとに応えて",
+        "type": "bell-sequence",
+        "limit": 6,
+        "baseline": "4",
+        "maxDuration": "20",
+        "goals": [
+          "G1",
+          "G2"
+        ],
+        "intervals": [
+          "0.5"
+        ],
+        "bellPitches": [
+          88,
+          84
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "x": 0.5,
+            "y": 0.07,
+            "process": "0.5"
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.29,
+            "process": "0.5"
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "x": 0.19,
+            "y": 0.53,
+            "process": "0.5"
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "x": 0.81,
+            "y": 0.53,
+            "process": "0.5"
+          },
+          {
+            "id": "D",
+            "kind": "prism",
+            "x": 0.5,
+            "y": 0.72,
+            "process": "0.5"
+          },
+          {
+            "id": "G1",
+            "kind": "goal",
+            "x": 0.22,
+            "y": 0.95,
+            "process": "0"
+          },
+          {
+            "id": "G2",
+            "kind": "goal",
+            "x": 0.78,
+            "y": 0.95,
+            "process": "0"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AB",
+            "from": "A",
+            "to": "B",
+            "time": "5"
+          },
+          {
+            "id": "AC",
+            "from": "A",
+            "to": "C",
+            "time": "4.5"
+          },
+          {
+            "id": "BD",
+            "from": "B",
+            "to": "D",
+            "time": "1.5"
+          },
+          {
+            "id": "CD",
+            "from": "C",
+            "to": "D",
+            "time": "7"
+          },
+          {
+            "id": "DG1",
+            "from": "D",
+            "to": "G1",
+            "time": "5"
+          },
+          {
+            "id": "DG2",
+            "from": "D",
+            "to": "G2",
+            "time": "2.5"
+          },
+          {
+            "id": "BG1",
+            "from": "B",
+            "to": "G1",
+            "time": "4.5"
+          },
+          {
+            "id": "CG2",
+            "from": "C",
+            "to": "G2",
+            "time": "0.5"
+          },
+          {
+            "id": "BG2",
+            "from": "B",
+            "to": "G2",
+            "time": "5"
+          },
+          {
+            "id": "CG1",
+            "from": "C",
+            "to": "G1",
+            "time": "4.5"
+          }
+        ],
+        "number": 20,
+        "set": "sequence",
+        "setName": "鐘の響きをつなぐ",
+        "world": "starecho",
+        "stage": "星響きの円環"
+      },
+      "result": {
+        "baseline": "11",
+        "maxDuration": "18.5",
+        "achieved": 27,
+        "winners": 1,
+        "purposeFailures": 0,
+        "winner": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "DG2",
+          "CG1"
+        ],
+        "partial": {
+          "time": "11.5",
           "edges": [
             "SA",
             "AB",
-            "BD",
-            "DG2",
-            "BG1"
+            "BG1",
+            "BG2"
           ]
         },
         "traps": [
-          "BD",
-          "DG1"
+          "CG2"
         ],
         "valid": true
       }

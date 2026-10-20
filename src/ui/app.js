@@ -148,7 +148,7 @@ document.addEventListener('click',event=>{
 function challengeGoal(challenge){
   const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
   if(challenge.type==='bell-sequence'){
-    const timing=challenge.intervals?(new Set(challenge.intervals).size===1?'約'+challenge.intervals[0]+'秒ずつ':'約'+challenge.intervals.join('秒 → 約')+'秒'):'';
+    const timing=challenge.intervals?(new Set(challenge.intervals).size===1?challenge.intervals[0]+'秒ずつ':challenge.intervals.join('秒 → ')+'秒'):'';
     return `${challenge.goals.map(bell).join('→')}の順に鳴らす${timing?'\n'+timing:''}`;
   }
   if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
@@ -1009,7 +1009,7 @@ $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventLi
 function showConditions(){
   const challenge=session.challenge;
   const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
-  fullText('現在の条件',detail+(session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定値の前後'+challenge.intervalTolerance+'秒まで。':''}`:''));
+  fullText('現在の条件',detail+(session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
 }
 $('condition-info').addEventListener('click',()=>attempt(()=>selectionPlay&&session.mode==='challenge'&&!session.guide?chooseMode():showConditions()));$('challenge-info').addEventListener('click',showConditions);
 $('stage-previous').addEventListener('click',()=>attempt(()=>moveStage(-1)));
