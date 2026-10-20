@@ -1,8 +1,8 @@
 // Native touch clicks can disappear after a small drift, even inside a button.
-// Confirm only a fresh, single-pointer press released inside the same button.
+// Confirm a fresh, single-pointer press. Callers may allow a small release drift.
 export class TouchConfirm {
-  constructor(root,{context,beforeActivate=()=>{},selector='.wire-delete-actions button'}) {
-    Object.assign(this,{root,context,beforeActivate,selector});this.pointers=new Set();this.press=null;this.consumedUntil=0;
+  constructor(root,{context,beforeActivate=()=>{},selector='.wire-delete-actions button',releaseTolerance=0}) {
+    Object.assign(this,{root,context,beforeActivate,selector,releaseTolerance});this.pointers=new Set();this.press=null;this.consumedUntil=0;
     const doc=root.ownerDocument;
     doc.addEventListener('pointerdown',event=>this.down(event),true);
     doc.addEventListener('pointerup',event=>this.up(event),true);
@@ -33,8 +33,12 @@ export class TouchConfirm {
     if(!press||press.id!==event.pointerId)return;
     this.press=null;this.consumedUntil=performance.now()+700;
     event.preventDefault();
-    const r=press.button.getBoundingClientRect();
-    if(press.cancelled||!this.root.open||press.button.disabled||this.context()!==press.context||event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)return;
+    const r=press.button.getBoundingClientRect(),t=this.releaseTolerance;
+    if(press.cancelled||!this.root.open||press.button.disabled||this.context()!==press.context||event.clientX<r.left-t||event.clientX>r.right+t||event.clientY<r.top-t||event.clientY>r.bottom+t)return;
+    // Pointer capture keeps event.target on the original button. Check the real
+    // release target so the drift allowance cannot steal a neighboring action.
+    const hit=this.root.ownerDocument.elementFromPoint?.(event.clientX,event.clientY)?.closest('button,a,input,select,textarea,[role=button]');
+    if(t&&hit&&hit!==press.button)return;
     this.beforeActivate(event,press.button);press.button.click();
   }
 }

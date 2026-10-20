@@ -2,15 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { TouchConfirm } from '../src/ui/touch-confirm.js';
 
-function fixture({selector='.wire-delete-actions button'}={}){
+function fixture({selector='.wire-delete-actions button',releaseTolerance=0}={}){
   const handlers=new Map(),doc={addEventListener(type,fn){const list=handlers.get(type)??[];list.push(fn);handlers.set(type,list);}};
   let context={},calls=0,unlocks=0;
   const root={ownerDocument:doc,open:true,contains:element=>element===button};
   const button={disabled:false,getBoundingClientRect:()=>({left:0,top:0,right:200,bottom:60}),closest:requested=>requested===selector?button:null,click(){const event=send('click',{detail:0});if(!event.stopped)calls++;}};
-  const controls=new TouchConfirm(root,{context:()=>context,beforeActivate:()=>unlocks++,selector});
+  let hit=button;doc.elementFromPoint=()=>hit;
+  const controls=new TouchConfirm(root,{context:()=>context,beforeActivate:()=>unlocks++,selector,releaseTolerance});
   function send(type,extra={}){const event={type,target:button,pointerType:'touch',pointerId:1,button:0,isPrimary:true,clientX:100,clientY:30,detail:0,preventDefault(){this.prevented=true;},stopImmediatePropagation(){this.stopped=true;},...extra};for(const fn of handlers.get(type)??[]){fn(event);if(event.stopped)break;}return event;}
-  return {root,button,controls,send,context:value=>context=value,calls:()=>calls,unlocks:()=>unlocks};
+  return {root,button,controls,send,hit:value=>hit=value,context:value=>context=value,calls:()=>calls,unlocks:()=>unlocks};
 }
+
+test('ページ送りは小さな指ずれを許すが、別の操作先や大きな移動は確定しない',()=>{
+  for(const [x,y,accepted] of [[100,61,true],[100,68,true],[-8,30,true],[208,30,true],[100,69,false],[209,30,false]]){
+    const f=fixture({selector:'.pager button',releaseTolerance:8});f.hit(null);f.send('pointerdown');f.send('pointerup',{clientX:x,clientY:y});assert.equal(f.calls(),accepted?1:0,`${x},${y}`);
+    assert.equal(f.unlocks(),accepted?1:0);assert.equal(f.send('click',{detail:1}).stopped,true);
+  }
+  const f=fixture({selector:'.pager button',releaseTolerance:8});f.send('pointerdown');f.hit({closest:()=>({})});f.send('pointerup',{clientY:64});assert.equal(f.calls(),0,'別の操作先へ離したら取り消す');
+  const strict=fixture();strict.hit(null);strict.send('pointerdown');strict.send('pointerup',{clientY:61});assert.equal(strict.calls(),0,'削除確認の既定の境界は広げない');
+});
 
 test('ページ送り用の指定領域だけを確定し、別のボタンへ広げない',()=>{
  const f=fixture({selector:'.pager button'});f.send('pointerdown',{target:{closest:()=>null}});f.send('pointerup');assert.equal(f.calls(),0);

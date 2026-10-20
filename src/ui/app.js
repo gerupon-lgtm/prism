@@ -151,7 +151,7 @@ function challengeGoal(challenge){
     const names=challenge.goals.map(bell);
     if(!challenge.intervals)return `${names.join('→')}の順に鳴らす`;
     if(new Set(challenge.intervals).size===1)return `${challenge.intervals[0]}秒間隔で${names.join('→')}の順に鳴らす`;
-    return `${names[0]}を鳴らし、${challenge.intervals.map((gap,index)=>`${index?'さらに':''}${gap}秒後に${names[index+1]}`).join('、')}を鳴らす`;
+    return `${names[0]}の${challenge.intervals.map((gap,index)=>`${index?'さらに':''}${gap}秒後に${names[index+1]}`).join('、')}を鳴らす`;
   }
   if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
   if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
@@ -778,7 +778,7 @@ document.addEventListener('pointerdown',event=>{const hold=pendingWireDelete?.ho
 document.addEventListener('pointerup',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)pendingWireDelete.hold=null;},true);
 document.addEventListener('pointercancel',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)abortHeldDelete(event);},true);
 deleteTouchConfirm=new TouchConfirm(wireDelete,{context:()=>pendingWireDelete,beforeActivate:prepareAutomaticSound});
-new TouchConfirm(dialog,{selector:'.pager button',context:()=>dialog.classList.contains('challenge-dialog')?dialogPage:null,beforeActivate:(event,control)=>{prepareAutomaticSound(event);control.focus({preventScroll:true});}});
+new TouchConfirm(dialog,{selector:'.pager button',releaseTolerance:8,context:()=>dialog.classList.contains('challenge-dialog')?dialogPage:null,beforeActivate:(event,control)=>{prepareAutomaticSound(event);control.focus({preventScroll:true});}});
 wireDelete.addEventListener('close',()=>{if(!wireDelete.open)cancelWireDelete();});
 $('wire-delete-cancel').addEventListener('click',cancelWireDelete);
 $('wire-delete-target').addEventListener('click',()=>{
