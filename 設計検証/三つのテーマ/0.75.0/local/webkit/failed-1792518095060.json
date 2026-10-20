@@ -1,0 +1,32 @@
+{
+  "version": "0.75.0",
+  "passed": false,
+  "checks": [
+    {
+      "label": "Q34 wired, exact full-score and result via UI",
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Physical phones, actual listening and subjective difficulty"
+  ],
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "step": "Q34 start and full score",
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#stop')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"stop\">停止</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    7 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_extension_sets.cjs:51:30",
+  "failureState": {
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+    "hint": "結線の案内",
+    "edges": [
+      "SM",
+      "MB",
+      "BN",
+      "NC",
+      "CG1",
+      "CG2"
+    ]
+  }
+}

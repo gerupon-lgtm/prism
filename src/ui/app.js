@@ -48,6 +48,12 @@ window.addEventListener('storage',event=>{if(event.key===MOTION_STORAGE_KEY||eve
 const wireDelete=$('wire-delete-toast');
 let pendingWireDelete=null,deleteNeedsPress=false,deleteTouchConfirm=null;
 let settingsTapGuard=null;
+let gatePreviewKey=null,gatePreviewStarted=0,gatePreviewFrame=-1,pendingGatePhase=null;
+function previewGatePhase(now=performance.now()){
+  const key=session.mode==='challenge'?session.challenge:session.circuit.nodes;
+  if(key!==gatePreviewKey){gatePreviewKey=key;gatePreviewStarted=now;gatePreviewFrame=-1;}
+  return String(Math.floor(Math.max(0,now-gatePreviewStarted)/100)/10);
+}
 // A second tap at the same board position must not activate the new dialog behind it.
 for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
   if(settingsTapGuard&&performance.now()<settingsTapGuard.until&&Math.hypot(event.clientX-settingsTapGuard.x,event.clientY-settingsTapGuard.y)<24){event.preventDefault();event.stopImmediatePropagation();}
@@ -125,6 +131,7 @@ function failure(error) {
 }
 function open(title) {
   settingsTapGuard=null;
+  board.mirrorPreview=null;
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop('dialog',{preserveTap:true});clockAnchor=null;
@@ -132,8 +139,8 @@ function open(title) {
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
-function close() { if(updating)return;dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
-dialog.addEventListener('close',()=>{if(dialog.open)return;document.body.classList.remove('input-focus');dialogPage=null;render(false);});
+function close() { if(updating)return;board.mirrorPreview=null;dialog.close();document.body.classList.remove('input-focus');dialogPage=null;render(); }
+dialog.addEventListener('close',()=>{if(dialog.open)return;board.mirrorPreview=null;document.body.classList.remove('input-focus');dialogPage=null;render();});
 dialog.addEventListener('cancel',event=>{if(updating){event.preventDefault();return;}document.body.classList.remove('input-focus');});
 document.addEventListener('focusin',event=>{if(event.target.matches('input[type=text],input:not([type])'))event.target.select();});
 // Safari can collapse focus-time selection during the pointer's default click.
@@ -147,6 +154,7 @@ document.addEventListener('click',event=>{
 
 function challengeGoal(challenge){
   const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
+  if(challenge.type==='return-pattern')return `星で再分岐し、鐘の最初の${challenge.count}回を${challenge.interval}秒間隔に`;
   if(challenge.type==='bell-sequence'){
     const names=challenge.goals.map(bell);
     if(!challenge.intervals)return `${names.join('→')}の順に鳴らす`;
@@ -261,7 +269,7 @@ function render(redraw=true,{records=true}={}) {
     if(!time||!state){time=element('span','',{class:'elapsed'});state=element('span','',{class:'execution'});host.replaceChildren(time,state);}
     if(time.textContent!==`${run.format()}秒`)time.textContent=`${run.format()}秒`;
     if(state.textContent!==` ｜ ${execution}`)state.textContent=` ｜ ${execution}`;
-  }else setText('result-summary',summary);
+  }else setText('result-summary',summary||(!session.guide&&session.circuit.nodes.some(n=>n.gate)?'開閉を見て、鐘を鳴らしてください':''));
   $('result-info').classList.toggle('error',Boolean(message));
   if(desktop.active){
     setText('desktop-time',`${run?.format()??'0'}秒`);
@@ -285,6 +293,7 @@ function render(redraw=true,{records=true}={}) {
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.
   if(redraw)board.render();else board.particles();tutorialGuide.highlight();
+  board.updateGates(pendingGatePhase??previewGatePhase());
   if(guide&&tutorialGuide.collapsed){setText('hint','案内を読む');$('hint').setAttribute('aria-label',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);}
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
@@ -297,7 +306,7 @@ function failureArrivalData(){
   const run=session.run,challenge=session.runContext.challenge,nodes=run.circuit.raw.nodes;
   const goals=['delivery-all','bell-sequence'].includes(challenge.type)?challenge.goals:[challenge.goal];
   const rows=goals.flatMap(goal=>{
-    const arrivals=run.arrivals(goal),required=challenge.type==='interval'?challenge.count:1;
+    const arrivals=run.arrivals(goal),required=['interval','return-pattern'].includes(challenge.type)?challenge.count:1;
     return Array.from({length:Math.max(required,arrivals.length)},(_,index)=>{
       const arrival=arrivals[index],previous=arrivals[index-1];
       const label=`${goals.length>1?partName(nodes.find(node=>node.id===goal),nodes)+' ':''}${index+1}回目`;
@@ -382,6 +391,7 @@ function outcomeDetails(title,text){
 
 function clearTimeLabel(){
   const type=session.runContext?.challenge?.type;
+  if(type==='return-pattern')return '指定回数まで';
   return type==='interval'?'初回到達':['delivery-all','bell-sequence'].includes(type)?'全てに到達':'到達時間';
 }
 function renderClearToast() {
@@ -427,7 +437,7 @@ function renderClearToast() {
 }
 function clearDetails(){
   if(!session.clearChoices)return;
-  const sequence=session.runContext?.challenge?.type==='bell-sequence';
+  const sequence=['bell-sequence','return-pattern'].includes(session.runContext?.challenge?.type);
   outcomeDetails('クリアの結果',`${clearTimeLabel()}：${session.result.evaluatedTime}秒\nスコア：${displayScore(session.result.score)}点${sequence?'\n'+arrivalRowsText(failureArrivalData().rows):''}`);
   actions.replaceChildren(button('もう一度',()=>{close();clearAction();}),button(session.clearChoices.nextChallengeId?'次の課題へ':'課題一覧へ',()=>{close();clearAction(true);}));
 }
@@ -819,6 +829,8 @@ function settings(pointer) {
   if(pointer)settingsTapGuard={x:pointer.clientX,y:pointer.clientY,until:performance.now()+400};
   const items=[];
   items.push(['名前の全文',()=>fullText('対象の名前',objectName(id,input),settings)]);
+  if(node?.kind==='mirror')items.push(['反射先を選ぶ',()=>mirrorDirection(node.id)]);
+  if(node?.gate)items.push(['開閉の周期',()=>fullText('プリズムの開閉',`${node.gate.period}秒周期で${node.gate.open}秒間開きます。閉じている間は光が順番待ちになり、次に開くと処理を始めます。処理を始めた光は、途中で閉じても最後まで進みます。`,settings)]);
   if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
   if(session.mode==='free'&&edge)items.push([edge.bidirectional?'向き：両方向':'向き：片方向',()=>{
     session.requireEditable();open('道の向き');
@@ -849,6 +861,17 @@ function settings(pointer) {
     if(value){const label=element('span','時間'),current=element('span',value.length>18?value.slice(0,16)+'…':value,{class:'setting-value','aria-hidden':'true'});row.replaceChildren(label,current);row.title=`時間：${value}`;}
     return row;
   });actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
+}
+function mirrorDirection(id){
+  session.requireEditable();open('鏡の反射先');dialog.classList.add('settings-dialog');
+  body.append(element('p','反射先は一つです。鏡から相手へドラッグしても変更できます。変更すると、前の反射先への配線を置き換えます。'));
+  const targets=session.mode==='challenge'
+    ?[...new Set(session.challenge.candidates.filter(e=>e.from===id).map(e=>e.to))]
+    :session.circuit.nodes.filter(node=>node.id!==id).map(node=>node.id);
+  listPage(targets,to=>{
+    const row=button(objectName(to,session.circuit),()=>{session.setMirrorDirection(id,to);chime.wire();close();},{class:'setting-option','data-mirror-target':to});
+    const preview=()=>{board.mirrorPreview={from:id,to};board.render();};row.addEventListener('pointerenter',preview);row.addEventListener('focus',preview);return row;
+  });actions.append(button('取消',close));fitDialogForm();
 }
 function fullText(title,text,back=close){
   open(title);const chunks=Array.from(String(text));const parts=[];
@@ -958,6 +981,7 @@ function finishLoad(){
 }
 function cancelStart(){
   const token=startPrelude;if(!token)return;startPrelude=null;cancelAnimationFrame(token.frame);
+  pendingGatePhase=null;
   if(token.view===session.view){Object.assign(session.view,token.original);board.transform();board.render();}
   $('stage').style.removeProperty('--launch-progress');token.cancel();render(false);
 }
@@ -981,7 +1005,8 @@ function launch(action){
 }
 function startRun(options){
   session.requireEditable();if(session.startBlockedReason)throw new Error(session.startBlockedReason);
-  return launch(()=>{load.begin();load.measure('calculation',()=>session.start(options));session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();});
+  const phaseOffset=session.circuit.nodes.some(n=>n.gate)?board.previewPhase??previewGatePhase():'0';pendingGatePhase=phaseOffset;
+  return launch(()=>{load.begin();load.measure('calculation',()=>session.start({...options,phaseOffset}));pendingGatePhase=null;session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();});
 }
 function play(){
   if(startPrelude){cancelStart();return;}
@@ -992,7 +1017,7 @@ function play(){
 function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true});clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
-  const relays=entries.filter(entry=>entry.type==='arrival'&&session.run.circuit.nodes.get(entry.node)?.kind==='prism');
+  const relays=entries.filter(entry=>entry.type==='arrival'&&['prism','source','mirror'].includes(session.run.circuit.nodes.get(entry.node)?.kind));
   if(goals.length||relays.length)load.measure('audio',()=>{
     const challenge=session.runContext?.mode==='challenge'?session.runContext.challenge:null;
     const frequencies=goals.length&&challenge?.bellPitches?arrivalFrequencies(challenge,session.run.arrivals(),session.run.circuit.time):null;
@@ -1008,6 +1033,9 @@ function reactions(entries){
   });
 }
 function frame(now){
+  if(!document.hidden&&$('title-screen').hidden&&!dialog.open&&session.editable&&session.circuit.nodes.some(n=>n.gate)){
+    const tick=Math.floor(now/100);if(tick!==gatePreviewFrame){gatePreviewFrame=tick;board.updateGates(pendingGatePhase??previewGatePhase(now));}
+  }
   if(session.run?.status==='running'){
     if(!clockAnchor||clockAnchor.run!==session.run)clockAnchor={run:session.run,clock:session.run.clock,wall:now};
     const run=session.run,elapsed=BigInt(Math.max(0,Math.floor(now-clockAnchor.wall)));
@@ -1028,7 +1056,8 @@ $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventLi
 function showConditions(){
   const challenge=session.challenge;
   const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
-  fullText('現在の条件',detail+(session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
+  const returning=session.mode==='challenge'&&challenge.type==='return-pattern';
+  fullText('現在の条件',detail+(returning?`\n最初の${challenge.count}回を比べ、指定回数に届いたら光を自動で止めます。光を星へ戻し、星でもう一度分岐させてください。間隔は指定した秒数との完全一致です。満点は指定回数目の到達が${challenge.baseline}秒の配線です。星の処理秒数は戻ってきた光にだけかかります。`:session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
 }
 $('condition-info').addEventListener('click',()=>attempt(()=>selectionPlay&&session.mode==='challenge'&&!session.guide?chooseMode():showConditions()));$('challenge-info').addEventListener('click',showConditions);
 $('stage-previous').addEventListener('click',()=>attempt(()=>moveStage(-1)));

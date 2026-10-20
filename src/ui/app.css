@@ -576,3 +576,13 @@ dialog.challenge-dialog .pager button{touch-action:pinch-zoom;min-height:44px;mi
 html:not(.device-landscape) .text-enlarged:not(.compact) #challenge-goal{block-size:4.05em}
 @media(max-width:360px){html:not(.device-landscape) #app.selection-play:not(.text-enlarged) #stage-heading{min-block-size:56px}}
 html:not(.device-landscape) #app.selection-play.text-enlarged:not(.compact) #stage-heading{min-block-size:3rem}
+/* A mirror's output is one optical route; its dashed preview remains provisional. */
+.edge.mirror-output:not(.candidate):not(.pending-delete) .edge-line{stroke:url(#mirror-rainbow);filter:drop-shadow(0 0 3px #c5d9ff)}
+.edge.mirror-output.candidate:is(.wiring-focus,.wiring-planned) .edge-line,.mirror-direction-preview{stroke:url(#mirror-rainbow);fill:none;stroke-width:4px;stroke-dasharray:9 6;stroke-linecap:round;vector-effect:non-scaling-stroke;pointer-events:none;filter:drop-shadow(0 0 3px #bde8ff)}
+.gate-ring{fill:none;stroke:#92b8c7;stroke-width:3px;vector-effect:non-scaling-stroke;pointer-events:none}
+.gate-open .gate-ring{stroke:#dbeab0;filter:drop-shadow(0 0 4px #d8e7ab)}
+.gate-closed .gate-ring{stroke:#aeb5dc;stroke-dasharray:4 5!important}
+.gate-closed .node-symbol{opacity:.72}
+.gate-status{fill:#c2d0eb;font-size:calc(24px * var(--board-factor,1));stroke-width:calc(4px * var(--board-factor,1));font-variant-numeric:tabular-nums}
+.gate-open .gate-status{fill:#e4eabd}
+.mirror .symbol-art{filter:drop-shadow(0 0 4px #9cb4db)}

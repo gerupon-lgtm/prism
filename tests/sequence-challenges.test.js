@@ -16,7 +16,7 @@ function fixture(){const values=new Map(),records=new LocalRecords({getItem:k=>v
 test('間隔指定の4課題だけ内容版2へ上げ、順番のみと既存112出題を保持する',()=>{
  const unchanged=JSON.parse(readFileSync(new URL('../設計検証/厳密な到達間隔/0.69.0/unchanged-draws.json',import.meta.url)));
  for(const [id,bank]of Object.entries(unchanged))assert.deepEqual(randomVariants[id],bank,id);
- for(const c of challenges.slice(18)){
+ for(const c of challenges.slice(18,24)){
   if(c.intervals){assert.equal(c.version,2);assert.equal(c.intervalTolerance,undefined);assert(randomVariants[c.id].every(v=>v.baseVersion===2));}
   else {assert.equal(c.version,1);assert.equal(c.intervals,undefined);}
  }
@@ -34,10 +34,10 @@ test('旧許容幅の成績と元条件を残し、新条件の最高点と混�
 });
 test('既存96出題の条件・識別子・基準・上限を一切変えず、新セットを6面追加する',()=>{
  for(const [id,variants]of Object.entries(legacyVariants))assert.deepEqual(randomVariants[id],variants,id);
- assert.deepEqual(challenges.slice(18).map(c=>c.number),[19,20,21,22,23,24]);assert.equal(challenges[18].intervals,undefined);assert.equal(challenges[20].intervals,undefined);assert(challenges.slice(18).every(c=>c.type==='bell-sequence'));
+ assert.deepEqual(challenges.slice(18,24).map(c=>c.number),[19,20,21,22,23,24]);assert.equal(challenges[18].intervals,undefined);assert.equal(challenges[20].intervals,undefined);assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'));
 });
 test('新48出題の満点と部分点を本体で採点・保存し、全到達時刻を結果へ保持する',()=>{
- for(const authored of challenges.slice(18))for(const variant of randomVariants[authored.id]){
+ for(const authored of challenges.slice(18,24))for(const variant of randomVariants[authored.id]){
   const f=fixture();f.s.replace({challengeId:authored.id});const c={...structuredClone(authored),candidates:authored.candidates.map((e,i)=>({...e,time:variant.times[i]})),baseline:variant.baseline,maxDuration:variant.maxDuration,draw:{id:variant.id,revision:1,number:randomVariants[authored.id].indexOf(variant)+1}};
   f.s.challenge=c;const row=proof.stages.find(p=>p.id===variant.id);assert(row);
   f.s.circuit=challengeCircuit(c,row.winner);f.s.start();f.s.advance(c.maxDuration);assert.equal(f.s.result.state,'achieved',variant.id);assert(perfectScore(f.s.result.score));assert.equal(f.s.result.evaluatedTime,row.baseline);assert.equal(f.s.result.goals.length,c.goals.length);assert.equal(f.records.scores()[0].problem.draw.id,variant.id);
@@ -45,12 +45,12 @@ test('新48出題の満点と部分点を本体で採点・保存し、全到達
  }
 });
 test('新しい6面は選び直しで満点配線が変わり、配線クリアでは同じ問題を保つ',()=>{
- for(const c of challenges.slice(18)){
+ for(const c of challenges.slice(18,24)){
   const {s}=fixture();s.replace({challengeId:c.id});const first=structuredClone(s.challenge),a=proof.stages.find(p=>p.id===first.draw.id);s.clearConnections();assert.deepEqual(s.challenge,first);s.replace({challengeId:c.id});const b=proof.stages.find(p=>p.id===s.challenge.draw.id);assert.notDeepEqual(a.winner,b.winner);
  }
 });
-test('18面クリアから19面へ続き、24面の次だけが一覧になる',()=>{
- const {s}=fixture();for(const [id,next]of [['Q10','Q23'],['Q23','Q24'],['Q28',null]]){s.stop();s.replace({challengeId:id});const row=proof.stages.find(p=>p.id===s.challenge.draw.id);s.circuit=challengeCircuit(s.challenge,row.winner);s.start();s.advance(s.challenge.maxDuration);assert.equal(s.clearChoices.nextChallengeId,next);}
+test('18面クリアから19面へ続き、24面から25面へ進める',()=>{
+ const {s}=fixture();for(const [id,next]of [['Q10','Q23'],['Q23','Q24'],['Q28','Q29']]){s.stop();s.replace({challengeId:id});const row=proof.stages.find(p=>p.id===s.challenge.draw.id);s.circuit=challengeCircuit(s.challenge,row.winner);s.start();s.advance(s.challenge.maxDuration);assert.equal(s.clearChoices.nextChallengeId,next);}
 });
 test('一部の鐘への配線だけでは未達成となり、成績を作らない',()=>{
  const {s,records}=fixture();s.replace({challengeId:'Q23'});s.circuit=challengeCircuit(s.challenge,['SA','AB','BG1']);s.start();s.advance(s.challenge.maxDuration);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/すべて/);assert.equal(records.scores().length,0);

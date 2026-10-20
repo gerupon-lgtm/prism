@@ -1,7 +1,9 @@
 import { createCircuit, shortestPath } from './circuit.js';
 import { Heap, compare } from './heap.js';
+import {nextGateOpen} from './periodic.js';
 
 const activeStates = new Set(['moving', 'waiting', 'processing']);
+const eventOrder = {finish:0,opening:1,arrival:2};
 
 export class Simulation {
   constructor(input) {
@@ -13,9 +15,9 @@ export class Simulation {
     this.particles = new Map();
     this.nextId = 1;
     this.intervalChecks = new Map();
-    this.gates = new Map([...this.circuit.nodes.keys()].map(id => [id, { current: null, queue: [], head: 0 }]));
-    // Finish before arrival at equal time; arrivals are ordered by generation ID.
-    this.events = new Heap((a, b) => compare(a.at, b.at) || compare(a.kind === 'finish' ? 0 : 1, b.kind === 'finish' ? 0 : 1) || compare(a.particle, b.particle));
+    this.gates = new Map([...this.circuit.nodes.keys()].map(id => [id, { current: null, queue: [], head: 0, opening:null }]));
+    // Finish, opening, arrival at equal time; particle/node IDs break ties.
+    this.events = new Heap((a, b) => compare(a.at, b.at) || compare(eventOrder[a.kind],eventOrder[b.kind]) || compare(a.particle??0,b.particle??0) || compare(a.node??'',b.node??''));
     if (this.circuit.raw.mode === 'spread') {
       const particle = this.newParticle(this.circuit.source, null, null);
       this.record('send', particle);
@@ -108,6 +110,14 @@ export class Simulation {
   startProcessing(node) {
     const gate = this.gates.get(node);
     if (gate.current !== null || gate.head >= gate.queue.length) return;
+    const schedule=this.circuit.nodes.get(node).gate;
+    if(schedule) {
+      const at=nextGateOpen(schedule,this.circuit.time,this.clock);
+      if(at>this.clock) {
+        if(gate.opening!==at){gate.opening=at;this.events.push({at,kind:'opening',node});}
+        return;
+      }
+    }
     const particle = this.particles.get(gate.queue[gate.head++]);
     if (gate.head === gate.queue.length) { gate.queue = []; gate.head = 0; }
     else if (gate.head > 1024 && gate.head * 2 > gate.queue.length) {
@@ -131,6 +141,15 @@ export class Simulation {
 
   pause(reason = null) { if (this.status !== 'stopped') { this.status = 'paused'; this.pauseReason = reason; } }
   resume() { if (this.status !== 'stopped') { this.status = 'running'; this.pauseReason = null; } }
+  complete() {
+    if (this.status === 'stopped') return;
+    // Completion keeps arrived particles and every record for the final picture.
+    for (const particle of this.particles.values()) if (activeStates.has(particle.status)) particle.status = 'ended';
+    this.events.items = [];
+    for (const gate of this.gates.values()) { gate.current = null; gate.queue = []; gate.head = 0; gate.opening = null; }
+    this.status = 'paused';
+    this.pauseReason = null;
+  }
   stop() {
     if (this.status === 'stopped') return;
     for (const check of this.intervalChecks.values()) check.result = this.calculateInterval(check.goal,check.interval,check.count);
@@ -139,7 +158,7 @@ export class Simulation {
     // Conditions and records remain; running and dead-end pictures disappear.
     this.particles.clear();
     this.events.items = [];
-    for (const gate of this.gates.values()) { gate.current = null; gate.queue = []; gate.head = 0; }
+    for (const gate of this.gates.values()) { gate.current = null; gate.queue = []; gate.head = 0; gate.opening = null; }
   }
   get nextTime() { return this.events.peek()?.at ?? null; }
   advanceNext({ shouldPause = () => false } = {}) {
@@ -150,9 +169,14 @@ export class Simulation {
       if (shouldPause(this)) { this.pause('load'); return this.records.slice(start); }
       const event = this.events.pop();
       this.clock = event.at;
-      const particle = this.particles.get(event.particle);
-      if (event.kind === 'arrival') this.arrive(particle);
-      else this.finish(particle);
+      if(event.kind==='opening') {
+        const gate=this.gates.get(event.node);
+        if(gate.opening===event.at){gate.opening=null;this.startProcessing(event.node);}
+      } else {
+        const particle = this.particles.get(event.particle);
+        if (event.kind === 'arrival') this.arrive(particle);
+        else this.finish(particle);
+      }
     }
     this.pause();
     return this.records.slice(start);

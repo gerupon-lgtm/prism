@@ -1,6 +1,8 @@
 export const PARTS=[
-  {art:'source',name:'星の光',summary:'光の出発点。ここから鐘へ配線をつなぎます。'},
+  {art:'source',name:'星の光',summary:'光の出発点。ここから鐘へ配線をつなぎます。',detail:'光が戻ってきた星は、表示された秒数で処理してから再び分岐します。最初の出発には、この処理時間はかかりません。帰還の課題は最初の指定回数までを判定し、光を自動で止めます。'},
   {art:'prism',name:'プリズム',summary:'光の中継点。道の時間に加え、表示された処理時間もかかります。'},
+  {art:'mirror',name:'鏡',summary:'反射先を一つ選び、光を導きます。鏡から相手へドラッグすると向きが変わります。',detail:'虹色の破線は反射先の予告です。相手に近づけて離すと確定します。細かい角度合わせは不要です。前の反射先への配線は置き換わるため、配線が上限でも向きを変更できます。鏡をダブルタップして「反射先を選ぶ」からも変更できます。'},
+  {art:'periodic',name:'開閉するプリズム',summary:'一定の周期で開閉します。閉じている間も光は消えず、次に開くまで待ちます。',detail:'輪と「開・閉」の残り秒数で状態を確認できます。開いている間に処理を始めた光は、途中で閉じても最後まで進みます。開始前も周期が進み、「鐘を鳴らす」を押した時の状態で実行します。開始演出や音の遅れは計算に加えません。待ってもクリアでき、より早い到達で満点を狙えます。'},
   {art:'goal',name:'祭壇の鐘',summary:'光の到着先。光が届くと鐘が鳴り、星の光が浮かびます。'},
   {art:'wire',name:'配線',summary:'光を運ぶ道。点線は候補、金色の線は結線済み。秒数は移動にかかる時間です。',detail:'点から候補へドラッグするとつながります。結線済みの線を長押しすると、その1本が赤くなり、削除確認が開きます。「OK」で削除、「取消」または確認の外側を押すと残します。「クリア」はすべての配線を消します。点の位置や設定は保持します。'},
 ];
@@ -9,7 +11,7 @@ export const PLAY_GUIDE=[
   {art:'travel',name:'2　鐘を鳴らす',summary:'道の秒数とプリズムの処理時間を考え、「鐘を鳴らす」を押します。',detail:'光は配線を進み、プリズムで処理されてから次へ向かいます。分岐や合流では到着時間や待ち時間も変わります。途中で見直すときは「停止」で編集へ戻ります。'},
   {art:'result',name:'3　結果を比べる',summary:'到着時間と点数を確認。「記録」で光が通った道も確かめられます。',detail:'課題は最短のほか、すべての鐘に届ける、間隔をそろえる、指定した順に鐘を鳴らす、故障に備えるものもあります。条件を読んで、別の配線も試しましょう。複数の鐘の時間は最後の鐘への到達で比べます。「もう一度」は今の配線を残し、「次へ」は次の課題へ進みます。'},
   {art:'remove',name:'4　つなぎ直す',summary:'線を長押し → 赤い線を確認 →「OK」。その1本だけ消せます。',detail:'削除確認で「取消」または外側を押すと、線を残して閉じます。「クリア」は配線をまとめて消します。点や設定は残ります。結線済みの線はタップ、点はダブルタップで設定を開けます。'},
-  {art:'view',name:'表示とモード',summary:'2本指で表示を動かし、＋／−で拡大縮小。練習や自由作成も選べます。',detail:'スマホでは2本指で表示移動・ピンチで拡大縮小、PCではマウスで表示移動できます。「全体」で回路を見渡せます。「補助」は指元の拡大表示を切り替えます。お試し6問と、6面ずつの実践3セット（全24面）があります。チュートリアルで練習し、連続プレイ・選択プレイ・自由作成から遊べます。「プレイ画面へ」は現在の配線・記録に戻る入口です。音はヘッダー、演出と更新はこの画面下のボタンから変更できます。'},
+  {art:'view',name:'表示とモード',summary:'2本指で表示を動かし、＋／−で拡大縮小。練習や自由作成も選べます。',detail:'スマホでは2本指で表示移動・ピンチで拡大縮小、PCではマウスで表示移動できます。「全体」で回路を見渡せます。「補助」は指元の拡大表示を切り替えます。お試し6問と、6面ずつの実践6セット（全42面）があります。チュートリアルで練習し、連続プレイ・選択プレイ・自由作成から遊べます。「プレイ画面へ」は現在の配線・記録に戻る入口です。音はヘッダー、演出と更新はこの画面下のボタンから変更できます。'},
 ];
 const ns='http://www.w3.org/2000/svg';
 export function helpArt(kind) {
@@ -18,7 +20,8 @@ export function helpArt(kind) {
   const line=(x1,y1,x2,y2,extra={})=>add('line',{x1,y1,x2,y2,stroke:'#ecd082','stroke-width':4,'stroke-linecap':'round',...extra});
   const label=(x,y,text,attrs={})=>add('text',{x,y,fill:'#f8f4e9','text-anchor':'middle','font-size':14,...attrs},text);
   const asset=(name,x,y,size=66)=>add('image',{href:new URL(`../../public/graphics/${name}.png`,import.meta.url).href,x:x-size/2,y:y-size/2,width:size,height:size});
-  if(['source','prism','goal'].includes(kind)){asset(kind,130,50,92);return svg;}
+  if(['source','prism','goal','mirror'].includes(kind)){asset(kind,130,50,92);return svg;}
+  if(kind==='periodic'){asset('prism',130,50,78);add('circle',{cx:130,cy:50,r:44,fill:'none',stroke:'#e3e8b0','stroke-width':3});label(49,55,'開');label(211,55,'閉');return svg;}
   if(kind==='wire'){line(24,28,236,28,{stroke:'#9aaaca','stroke-width':2,'stroke-dasharray':'6 6'});line(24,72,236,72);label(130,19,'候補');label(130,95,'結線済み');return svg;}
   if(kind==='remove'){
     line(20,36,164,36,{stroke:'#ff9d96'});add('circle',{cx:86,cy:36,r:19,fill:'#101827',stroke:'#ffcf97','stroke-width':2});add('circle',{cx:86,cy:36,r:6,fill:'#ffe3ae'});label(86,80,'長押し');add('rect',{x:186,y:20,width:58,height:35,rx:8,fill:'#d6b56a'});label(215,43,'OK',{fill:'#111827','font-weight':'bold'});return svg;

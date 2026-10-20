@@ -8,7 +8,7 @@ export function legalWirings(challenge) {
   const sets=[];
   for(let mask=0;mask<2**challenge.candidates.length;mask++){
     const ids=challenge.candidates.filter((_,i)=>mask&2**i).map(e=>e.id);
-    if(ids.length<=challenge.limit)sets.push(ids);
+    if(ids.length<=challenge.limit&&challenge.nodes.filter(n=>n.kind==='mirror').every(n=>challenge.candidates.filter(e=>ids.includes(e.id)&&e.from===n.id).length<=1))sets.push(ids);
   }
   return sets;
 }
@@ -39,7 +39,7 @@ export function inspectProblem(challenge,sets=legalWirings(challenge)){
     achieved++;
     const branches=new Set(run.records.filter(r=>r.type==='branch'&&run.circuit.nodes.get(r.node).kind==='prism').map(r=>r.node));
     const waiting=run.records.some(r=>r.type==='process-start'&&scale.ticks(r.wait)>0n);
-    if(!branches.size||(['Q9','Q10'].includes(challenge.id)&&branches.size<2)||(['Q11','Q12'].includes(challenge.id)&&!waiting))purposeFailures++;
+    if(Number(challenge.id.slice(1))<=28&&(!branches.size||(['Q9','Q10'].includes(challenge.id)&&branches.size<2)||(['Q11','Q12'].includes(challenge.id)&&!waiting)))purposeFailures++;
     if(!results.has(at))results.set(at,ids);
     if(best===null||at<best){best=at;winners=1;}else if(at===best)winners++;
   }

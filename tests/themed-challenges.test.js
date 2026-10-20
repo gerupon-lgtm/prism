@@ -11,12 +11,12 @@ import {LocalRecords} from '../src/core/storage.js';
 import {randomVariants} from '../src/content/random-variants.js';
 const proof=JSON.parse(readFileSync(new URL('../設計検証/ランダム課題/generation.json',import.meta.url)));
 
-test('24面を6面のテーマへ整理し、古い課題IDと版を番号から分離する',()=>{
- assert.deepEqual(challenges.map(challengeLabel),Array.from({length:24},(_,i)=>'Q'+(i+1)));
- assert.equal(new Set(challenges.map(c=>c.id)).size,24);
+test('42面を6面のテーマへ整理し、古い課題IDと版を番号から分離する',()=>{
+ assert.deepEqual(challenges.map(challengeLabel),Array.from({length:42},(_,i)=>'Q'+(i+1)));
+ assert.equal(new Set(challenges.map(c=>c.id)).size,42);
  assert(challenges.slice(6,12).every(c=>c.type==='delivery-all'&&c.world==='starwalk'));
  assert(challenges.slice(12,18).every(c=>c.type==='interval'&&c.world==='moonwater'));
- assert(challenges.slice(18).every(c=>c.type==='bell-sequence'&&c.world==='starecho'));
+ assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'&&c.world==='starecho'));
  assert.equal(challenges[14].id,'Q11');assert.equal(challenges[14].version,1);assert.equal(challenges[17].id,'Q10');
 });
 test('新しい6面は選び直すと満点配線の系統も変わり、再挑戦とクリアは出題を保つ',()=>{

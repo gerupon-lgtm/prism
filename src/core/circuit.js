@@ -1,5 +1,6 @@
 import { TimeScale } from './time.js';
 import { Heap, compare } from './heap.js';
+import {gateTimes,validateGate,nextGateOpen} from './periodic.js';
 
 export function createCircuit(input) {
   if (!input || !Array.isArray(input.nodes) || !Array.isArray(input.edges)) throw new Error('回路の点と道が必要です。');
@@ -9,7 +10,7 @@ export function createCircuit(input) {
   if ([...input.nodes,...input.edges].some(item => !item || typeof item !== 'object' || Array.isArray(item))) throw new Error('点または道の項目が不正です。');
   const raw = structuredClone({
     ...pick(input,['mode','target']),
-    nodes: input.nodes.map(node => pick(node,['id','kind','name','process','x','y','enabled'])),
+    nodes: input.nodes.map(node => pick(node,['id','kind','name','process','x','y','enabled','reflectTo','gate'])),
     edges: input.edges.map(edge => pick(edge,['id','from','to','time','bidirectional','enabled'])),
   });
   const ids = new Set();
@@ -20,13 +21,20 @@ export function createCircuit(input) {
     if (item.name !== undefined && typeof item.name !== 'string') throw new Error('点の名前が不正です。');
   }
   for (const node of raw.nodes) {
-    if (!['source', 'prism', 'goal'].includes(node.kind)) throw new Error('点の役割が不正です。');
+    if (!['source', 'prism', 'mirror', 'goal'].includes(node.kind)) throw new Error('点の役割が不正です。');
     node.process ??= node.kind === 'goal' ? '0' : '0.5';
-    if (node.kind !== 'prism' && node.enabled === false) throw new Error('出発点・祭壇を使用不可にはできません。');
+    if (!['prism','mirror'].includes(node.kind) && node.enabled === false) throw new Error('出発点・祭壇を使用不可にはできません。');
+    if (node.reflectTo != null && (typeof node.reflectTo !== 'string' || node.reflectTo === node.id || !raw.nodes.some(target => target.id === node.reflectTo))) throw new Error('鏡の反射先が不正です。');
+    if(node.gate!==undefined) {
+      if(node.kind!=='prism')throw new Error('周期開閉を設定できるのはプリズムです。');
+      gateTimes(node.gate);
+      node.gate=pick(node.gate,['period','open','phase']);
+    }
     for (const axis of ['x', 'y']) if (node[axis] !== undefined && (typeof node[axis] !== 'number' || !Number.isFinite(node[axis]))) throw new Error('配置の座標が不正です。');
   }
   if (raw.nodes.filter(n => n.kind === 'source').length !== 1) throw new Error('出発点は一つ必要です。');
-  const time = new TimeScale([...raw.nodes.map(n => n.process), ...raw.edges.map(e => e.time)]);
+  const time = new TimeScale([...raw.nodes.flatMap(n => [n.process,...(n.gate?gateTimes(n.gate):[])]), ...raw.edges.map(e => e.time)]);
+  for(const node of raw.nodes)if(node.gate)validateGate(node.gate,time);
   const nodes = new Map(raw.nodes.map(n => [n.id, { ...n, processing: time.ticks(n.process) }]));
   const edges = new Map();
   const outgoing = new Map([...nodes.keys()].map(id => [id, []]));
@@ -40,7 +48,13 @@ export function createCircuit(input) {
     outgoing.get(edge.from).push({ edge: compiled, to: edge.to });
     if (edge.bidirectional) outgoing.get(edge.to).push({ edge: compiled, to: edge.from });
   }
-  for (const list of outgoing.values()) list.sort((a, b) => compare(a.edge.id, b.edge.id) || compare(a.to, b.to));
+  for (const [id,list] of outgoing) {
+    const node=nodes.get(id);
+    const choices=node.kind==='mirror'?list.filter(choice=>choice.to===node.reflectTo):list;
+    if(node.kind==='mirror'&&choices.length>1)throw new Error('鏡の反射先への配線は一本にしてください。');
+    choices.sort((a,b)=>compare(a.edge.id,b.edge.id)||compare(a.to,b.to));
+    outgoing.set(id,choices);
+  }
   const goals = raw.nodes.filter(n => n.kind === 'goal').map(n => n.id).sort(compare);
   if (raw.target !== undefined && raw.target !== 'all' && !goals.includes(raw.target)) throw new Error('送信先の祭壇が不正です。');
   return { raw, time, nodes, edges, outgoing, source: raw.nodes.find(n => n.kind === 'source').id, goals };
@@ -63,7 +77,9 @@ export function shortestPath(circuit, goal) {
     if (circuit.nodes.get(current.node).kind === 'goal') continue;
     for (const { edge, to } of circuit.outgoing.get(current.node)) {
       const node = circuit.nodes.get(to);
-      const candidate = { node: to, time: current.time + edge.travel + (node.kind === 'goal' ? 0n : node.processing), edges: [...current.edges, edge.id], nodes: [...current.nodes, to] };
+      const arrival=current.time+edge.travel;
+      const start=node.gate?nextGateOpen(node.gate,circuit.time,arrival):arrival;
+      const candidate = { node: to, time: start + (node.kind === 'goal' ? 0n : node.processing), edges: [...current.edges, edge.id], nodes: [...current.nodes, to] };
       if (!best.has(to) || routeOrder(candidate, best.get(to)) < 0) {
         best.set(to, candidate);
         work.push(candidate);

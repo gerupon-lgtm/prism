@@ -3,6 +3,8 @@ import { Scene,symbol,constellation,prismArrival,ARRIVAL_DURATION_MS } from './s
 import { Magnifier } from './magnifier.js';
 import { partName,objectName } from './labels.js';
 import { directionMarkers } from './edge-directions.js';
+import { TimeScale } from '../core/time.js';
+import { gateState } from '../core/periodic.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
@@ -125,6 +127,7 @@ export class Board {
       const curve={a,b,control}; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
       const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}${!candidate&&this.removalId===edge.id?' pending-delete':''}`,tabindex:0,role:'button','aria-label':`${candidate?'未結線の候補':'結線済みの配線'}：${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}へ、${edge.time}秒`});
+      group.classList.toggle('mirror-output',nodes.get(edge.from).kind==='mirror');
       group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();this.session.selection=edge.id;this.openSettings();}});
       const d=`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`;
       group.append(svg('path',{d,class:'edge-hit'}),svg('path',{d,class:'edge-backdrop'}),svg('path',{d,class:'edge-line'}));
@@ -144,11 +147,15 @@ export class Board {
       const factor=this.fontFactor??1;
       group.append(svg('circle',{r:Math.max(65*symbolFactor,screenScale>0?22/screenScale:0),class:'node-hit'}));
       group.append(symbol(node.kind,symbolFactor));
+      if(node.gate){
+        group.classList.add('periodic-prism');
+        group.append(svg('circle',{r:78*symbolFactor,class:'gate-ring','aria-hidden':'true'}),svg('text',{y:130*symbolFactor,class:'node-time gate-status'},'周期開閉'));
+      }
       if(node.enabled===false)group.append(svg('path',{d:`M${-28*factor} ${-28*factor} L${28*factor} ${28*factor} M${28*factor} ${-28*factor} L${-28*factor} ${28*factor}`,class:'disabled-mark'}));
       const label=partName(node,input.nodes,true);
       const side=sideNames&&(!this.desktop||node.kind!=='goal'),sideSign=node.x>(this.desktop?.7:.5)?-1:1;
       const labelSide=this.desktop&&side?(sideSign<0?' node-label-left':' node-label-right'):'';
-      const overPrism=node.kind==='prism';
+      const overPrism=['prism','mirror'].includes(node.kind);
       const name=svg('text',{x:overPrism?0:side?sideSign*(65*symbolFactor+16*factor):0,y:overPrism?6*symbolFactor:side?(this.desktop?-12*factor:0):-80*factor,class:'node-name'+(overPrism?' prism-name':labelSide)},label.length>8?`${label.slice(0,7)}…`:label);
       group.append(svg('title',{},`${label}${node.kind==='goal'?'':`：${node.process}秒`}`),name);
       if(node.kind!=='goal'){
@@ -175,11 +182,33 @@ export class Board {
     }
     this.wireBackdrop=svg('path',{class:'wire-preview-backdrop'});this.wire=svg('path',{class:'wire-preview'});
     const firstPart=this.world.querySelector('[data-node]');this.world.insertBefore(this.wireBackdrop,firstPart);this.world.insertBefore(this.wire,firstPart);this.previewWire();
+    if(this.mirrorPreview){
+      const {from,to}=this.mirrorPreview,edge=all.find(e=>e.from===from&&e.to===to);
+      const a=nodes.has(from)&&this.position(nodes.get(from)),b=nodes.has(to)&&this.position(nodes.get(to));
+      const curve=(edge&&this.curves.get(edge.id))||(a&&b?{a,b,control:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}}:null);
+      if(curve){const {a,b,control}=curve;this.world.insertBefore(svg('path',{d:`M${a.x},${a.y} Q${control.x},${control.y} ${b.x},${b.y}`,class:'mirror-direction-preview'}),firstPart);}
+    }
     this.timeLayoutSignature=null;this.labelOrigins=new Map();
     this.liftLayout(input);
     this.particles();
     this.effectsLayer.replaceChildren();
     this.renderArrivals();
+    this.updateGates(this.previewPhase??'0');
+  }
+  updateGates(offset='0'){
+    this.previewPhase=offset;
+    const run=this.session.run,live=run&&run.status!=='stopped',input=live?run.circuit.raw:this.session.circuit;
+    const gated=input.nodes.filter(n=>n.gate);if(!gated.length)return;
+    const scale=live?run.circuit.time:new TimeScale(['0.1',offset,...gated.flatMap(n=>Object.values(n.gate))]);
+    const at=live?run.clock:scale.ticks(offset);
+    for(const node of gated){
+      const group=this.world.querySelector(`[data-node="${CSS.escape(node.id)}"]`);if(!group)continue;
+      const state=gateState(node.gate,scale,at),remaining=scale.format(state.remaining),text=`${state.open?'開':'閉'} · ${remaining}秒`;
+      group.classList.toggle('gate-open',state.open);group.classList.toggle('gate-closed',!state.open);
+      const label=group.querySelector('.gate-status');if(label&&label.textContent!==text)label.textContent=text;
+      group.setAttribute('aria-label',`${partName(node,input.nodes)}、${state.open?'開いています。閉じるまで':'閉じています。開くまで'}${remaining}秒`);
+      const circle=group.querySelector('.gate-ring');if(circle)circle.style.strokeDasharray=`${Math.max(.01,Number(state.phase*1000n/scale.ticks(node.gate.period))/1000)*490*(this.fontFactor??1)} ${490*(this.fontFactor??1)}`;
+    }
   }
   liftLayout(input) {
     // Decide once for a field/layout, never as wires are added or execution starts.
@@ -203,7 +232,7 @@ export class Board {
     const worldMatrix=this.world.getScreenCTM();
     if(!worldMatrix)return;
     const area=this.element.getBoundingClientRect();
-    const labels=[...this.world.querySelectorAll('.node-name:not(.prism-name)'),...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item).filter(label=>!label.hasAttribute('hidden'));
+    const labels=[...this.world.querySelectorAll('.node-name:not(.prism-name)'),...this.world.querySelectorAll('.node-time'),...this.world.querySelectorAll('.edge-label-card')].map(item=>item.classList.contains('edge-label-card')?item.parentElement:item).filter(label=>!label.hasAttribute('hidden')&&!(label.classList.contains('node-name')&&label.closest('.goal')));
     this.world.querySelectorAll('.edge-label-leader').forEach(item=>item.remove());
     for(const label of labels){
       if(!this.labelOrigins.has(label))this.labelOrigins.set(label,label.getAttribute('transform')??'');
@@ -217,7 +246,7 @@ export class Board {
     const cells=rect=>{const keys=[];for(let x=Math.floor(rect.left/cellSize);x<=Math.floor(rect.right/cellSize);x++)for(let y=Math.floor(rect.top/cellSize);y<=Math.floor(rect.bottom/cellSize);y++)keys.push(`${x}/${y}`);return keys;};
     const reserve=rect=>{for(const key of cells(rect)){if(!occupied.has(key))occupied.set(key,[]);occupied.get(key).push(rect);}};
     const measureOverlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
-    for(const node of this.world.querySelectorAll('.node-symbol,.node-state'))reserve(node.getBoundingClientRect());
+    for(const node of this.world.querySelectorAll('.node-symbol,.node-state,.goal .node-name'))reserve(node.getBoundingClientRect());
     for(const control of this.element.parentElement.querySelectorAll('#stage-controls button'))reserve(control.getBoundingClientRect());
     let directionsReserved=false;
     const reserveDirections=()=>{
@@ -307,7 +336,7 @@ export class Board {
     for(const [id,picture] of this.arrivalPictures){
       if(now-picture.at>=picture.duration){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`)?.remove();continue;}
       if(this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`))continue;
-      const node=run.circuit.nodes.get(picture.node),draw=picture.kind==='prism'?prismArrival:constellation;
+      const node=run.circuit.nodes.get(picture.node),draw=picture.kind==='goal'?constellation:prismArrival;
       const art=draw(this.position(node),this.fontFactor??1,this.angle,picture.particle,Math.max(0,now-picture.at));
       art.setAttribute('data-arrival-key',id);art.setAttribute('data-arrival-node',picture.node);
       this.effectsLayer.append(art);
@@ -357,8 +386,8 @@ export class Board {
     if(this.pictureRun!==this.session.run){this.arrivalPictures.clear();this.pictureRun=this.session.run;}
     for(const entry of entries){
       const kind=this.session.run.circuit.nodes.get(entry.node)?.kind;
-      if(entry.type!=='goal'&&!(entry.type==='arrival'&&kind==='prism'))continue;
-      const id=`${entry.particle}:${entry.node}:${entry.time}`,duration=ARRIVAL_DURATION_MS[kind];
+      if(entry.type!=='goal'&&!(entry.type==='arrival'&&['prism','source','mirror'].includes(kind)))continue;
+      const id=`${entry.particle}:${entry.node}:${entry.time}`,duration=ARRIVAL_DURATION_MS[kind==='goal'?'goal':'prism'];
       this.arrivalPictures.set(id,{node:entry.node,particle:entry.particle,kind,at:performance.now(),duration});
       const run=this.session.run;
       setTimeout(()=>{if(this.pictureRun===run){this.arrivalPictures.delete(id);this.effectsLayer.querySelector(`[data-arrival-key="${CSS.escape(id)}"]`)?.remove();}},duration);
@@ -508,6 +537,7 @@ export class Board {
   }
   checkWireLimit(event) {
     const gesture=this.gesture,{session}=this;
+    if(session.circuit.nodes.find(n=>n.id===gesture.route?.at(-1))?.kind==='mirror'&&session.circuit.edges.some(e=>e.from===gesture.route.at(-1)))return;
     if(session.mode!=='challenge'||gesture.limitNotified||session.circuit.edges.length+(gesture.edges?.length??0)<session.challenge.limit)return;
     const from=gesture.route.at(-1);
     if(gesture.route.length>1){
@@ -555,6 +585,7 @@ export class Board {
   updateWireTimeFocus() {
     const id=this.wireTimeTarget(),planned=new Set(this.gesture?.kind==='wire'?this.gesture.edges:[]);
     for(const group of this.world.querySelectorAll('[data-edge]')){group.classList.toggle('wiring-focus',group.dataset.edge===id);group.classList.toggle('wiring-planned',planned.has(group.dataset.edge));}
+    this.wire?.classList.toggle('mirror-direction-preview',this.session.circuit.nodes.find(n=>n.id===this.gesture?.route?.at(-1))?.kind==='mirror');
     return id;
   }
   setWirePreview(d) {

@@ -1,0 +1,1853 @@
+{
+  "version": "0.75.0",
+  "checks": [
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 4,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 4,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 10,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 10,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 18,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 22,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 22,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "top",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "top",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "bottom",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "bottom",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "left",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "left",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "right",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "right",
+        "hold": 100
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 25
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 25
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 250
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 250
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 600
+      },
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 600
+      },
+      "passed": true
+    },
+    {
+      "label": "Release on a neighboring button cancels instead of stealing its action",
+      "passed": true
+    },
+    {
+      "mode": "outside",
+      "passed": true
+    },
+    {
+      "mode": "cancel",
+      "passed": true
+    },
+    {
+      "mode": "multi",
+      "passed": true
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 18,
+      "direction": "next",
+      "options": {},
+      "passed": true
+    },
+    {
+      "label": "Disabled next stays inactive",
+      "passed": true
+    },
+    {
+      "label": "Current-row focus does not override page turns; draw and wiring retained",
+      "passed": true
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "passed": true
+    },
+    {
+      "label": "Disabled previous stays inactive",
+      "passed": true
+    },
+    {
+      "label": "Keyboard and mouse remain available",
+      "passed": true
+    },
+    {
+      "label": "No JavaScript errors",
+      "passed": true
+    }
+  ],
+  "traces": [
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {},
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 848.7000000476837
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 881.2000000476837
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 881.5
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 889.1000000238419
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 1032
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 1048.800000011921
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 1049.1000000238419
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 4,
+      "direction": "next",
+      "options": {},
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 1183
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 361,
+          "y": 731,
+          "trusted": true,
+          "wall": 1331
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 1331.2000000476837
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 1334.4000000357628
+        }
+      ]
+    },
+    {
+      "drift": 4,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 1481.300000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 59,
+          "y": 731,
+          "trusted": true,
+          "wall": 1631.800000011921
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 1632.1000000238419
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 10,
+      "direction": "next",
+      "options": {},
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 1765.2000000476837
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 367,
+          "y": 731,
+          "trusted": true,
+          "wall": 1914.1000000238419
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 1914.4000000357628
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 1917.300000011921
+        }
+      ]
+    },
+    {
+      "drift": 10,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 2048.300000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 65,
+          "y": 731,
+          "trusted": true,
+          "wall": 2197.400000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 2197.7000000476837
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 18,
+      "direction": "next",
+      "options": {},
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 2331.800000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 375,
+          "y": 731,
+          "trusted": true,
+          "wall": 2481.100000023842
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 2481.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 2615.2000000476837
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 73,
+          "y": 731,
+          "trusted": true,
+          "wall": 2764.400000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 2764.600000023842
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 22,
+      "direction": "next",
+      "options": {},
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 2899.2000000476837
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 379,
+          "y": 731,
+          "trusted": true,
+          "wall": 3031.7000000476837
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 3032.400000035763
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 22,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 3166.100000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 77,
+          "y": 731,
+          "trusted": true,
+          "wall": 3298.900000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 3299.800000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "top",
+        "hold": 100
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 3433.300000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 701,
+          "trusted": true,
+          "wall": 3580.400000035763
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 3580.7000000476837
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "top",
+        "hold": 100
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 3749.7000000476837
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 701,
+          "trusted": true,
+          "wall": 3899.5
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 3900.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "bottom",
+        "hold": 100
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 4066
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 754,
+          "trusted": true,
+          "wall": 4232
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 4232.700000047684
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "bottom",
+        "hold": 100
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 4398.900000035763
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 754,
+          "trusted": true,
+          "wall": 4547
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 4547.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "left",
+        "hold": 100
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 4681.700000047684
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 317,
+          "y": 731,
+          "trusted": true,
+          "wall": 4898.300000011921
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 4899
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "left",
+        "hold": 100
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 5050.300000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 15,
+          "y": 731,
+          "trusted": true,
+          "wall": 5280.400000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 5280.700000047684
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "edge": "right",
+        "hold": 100
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 5415.700000047684
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 397,
+          "y": 731,
+          "trusted": true,
+          "wall": 5632.5
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 5633
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "edge": "right",
+        "hold": 100
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 5765.300000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 95,
+          "y": 731,
+          "trusted": true,
+          "wall": 5980.900000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 5981.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 25
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 6116.100000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 6166.100000023842
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 6166.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 25
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 6316.100000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 6366.800000011921
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 6367.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 250
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 6498.600000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 6764.700000047684
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 6765
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 6770.200000047684
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 250
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 6898.800000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 7165.200000047684
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 7165.5
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "next",
+      "options": {
+        "hold": 600
+      },
+      "before": "1–6/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 7315.100000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 7930.900000035763
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 7931.100000023842
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 7934.300000011921
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {
+        "hold": 600
+      },
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 8066.100000023842
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 8680.800000011921
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 8681.200000047684
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "before": "37–42/42",
+      "after": "31–36/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 11115.400000035763
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 73,
+          "y": 731,
+          "trusted": true,
+          "wall": 11431.100000023842
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 11431.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 18,
+      "direction": "next",
+      "options": {},
+      "before": "31–36/42",
+      "after": "37–42/42",
+      "bounds": {
+        "x": 325,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "次へ",
+          "x": 357,
+          "y": 731,
+          "trusted": true,
+          "wall": 11615
+        },
+        {
+          "type": "pointerup",
+          "button": "次へ",
+          "x": 375,
+          "y": 731,
+          "trusted": true,
+          "wall": 11931.700000047684
+        },
+        {
+          "type": "click",
+          "button": "次へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 11932
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    },
+    {
+      "drift": 18,
+      "direction": "previous",
+      "options": {},
+      "before": "",
+      "after": "31–36/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 12381.800000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 73,
+          "y": 731,
+          "trusted": true,
+          "wall": 12631.900000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 12632.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 0,
+          "muted": true
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "",
+      "after": "31–36/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 12984.700000047684
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13036
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 13036.700000047684
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13045.800000011921
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "31–36/42",
+      "after": "25–30/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13232
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13283.5
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 13283.600000023842
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13291.5
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "25–30/42",
+      "after": "19–24/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13466
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13516.100000023842
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 13516.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13523.200000047684
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "19–24/42",
+      "after": "13–18/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13714.800000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13764.5
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 13764.700000047684
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13768.100000023842
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "13–18/42",
+      "after": "7–12/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13948.5
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 13998.400000035763
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 13998.5
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 14003.600000023842
+        }
+      ]
+    },
+    {
+      "drift": 0,
+      "direction": "previous",
+      "options": {},
+      "before": "7–12/42",
+      "after": "1–6/42",
+      "bounds": {
+        "x": 23,
+        "y": 709,
+        "width": 64,
+        "height": 44
+      },
+      "events": [
+        {
+          "type": "pointerdown",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 14198.800000011921
+        },
+        {
+          "type": "pointerup",
+          "button": "前へ",
+          "x": 55,
+          "y": 731,
+          "trusted": true,
+          "wall": 14249.200000047684
+        },
+        {
+          "type": "click",
+          "button": "前へ",
+          "x": 0,
+          "y": 0,
+          "trusted": false,
+          "wall": 14249.300000011921
+        },
+        {
+          "type": "tap",
+          "voices": 1,
+          "muted": false
+        }
+      ]
+    }
+  ],
+  "evidence": "Disposable PC browsers. Chromium uses real protocol touch; WebKit uses native taps and synthetic drift/cancellation. Physical devices and speaker listening remain unverified.",
+  "browser": {
+    "engine": "chromium",
+    "channel": null,
+    "version": "151.0.7922.34"
+  },
+  "nativeAudio": true,
+  "passed": true
+}

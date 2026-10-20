@@ -6,6 +6,8 @@ export const ARRIVAL_DURATION_MS=Object.freeze({prism:1000,goal:1800});
 export class Scene {
   constructor(board) {
     const defs=svg('defs');
+    const rainbow=svg('linearGradient',{id:'mirror-rainbow',gradientUnits:'userSpaceOnUse',x1:0,y1:0,x2:600,y2:600});
+    for(const [offset,color]of [[0,'#c3b9ff'],[.3,'#aee9ff'],[.6,'#fff5bd'],[1,'#ffc9ea']])rainbow.append(svg('stop',{offset,'stop-color':color}));defs.append(rainbow);
     for(const [id,color,stops] of [['node-depth','#040b19',[[0,.85],[.5,.65],[1,0]]],['altar-light','#f5ddb0',[[0,.95],[.35,.55],[1,0]]],['prism-light','#ccecff',[[0,.95],[.3,.65],[1,0]]],['particle-light','#ffe4a0',[[0,.8],[.3,.45],[.65,.12],[1,0]]]]){
       const gradient=svg('radialGradient',{id});for(const [offset,opacity] of stops)gradient.append(svg('stop',{offset,'stop-color':color,'stop-opacity':opacity}));defs.append(gradient);
     }
@@ -22,7 +24,7 @@ export class Scene {
     const layers=kind==='sky'?['ruins','observatory']:[kind];
     for(const [index,name] of layers.entries()){
       const panelWidth=width/layers.length,panel=svg('svg',{x:index*panelWidth,y:0,width:panelWidth,height,viewBox:`0 0 ${panelWidth} ${height}`,overflow:'hidden'});
-      panel.append(svg('image',{href:art(name),x:0,y:0,width:panelWidth,height,preserveAspectRatio:`${name==='ruins'?'xMin':['starwalk','moonwater','starecho'].includes(name)?'xMid':'xMax'}YMax slice`,class:name==='ruins'?'floating-ruin':'observatory'}));this.root.append(panel);
+      panel.append(svg('image',{href:art(name),x:0,y:0,width:panelWidth,height,preserveAspectRatio:`${name==='ruins'?'xMin':['starwalk','moonwater','starecho','starreturn','moonmirror','stargate'].includes(name)?'xMid':'xMax'}YMax slice`,class:name==='ruins'?'floating-ruin':'observatory'}));this.root.append(panel);
     }
     this.root.append(svg('rect',{x:0,y:0,width,height,class:'scene-shade'}));
   }

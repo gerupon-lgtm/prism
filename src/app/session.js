@@ -7,6 +7,8 @@ import { challenges, challengeCircuit } from '../content/challenges.js';
 import { drawChallenge } from '../content/challenge-draw.js';
 import { challengeScoreId } from '../core/challenge-identity.js';
 import {bellSequenceResult} from '../core/bell-sequence.js';
+import {returnPatternResult} from '../core/return-pattern.js';
+import {gateTimes} from '../core/periodic.js';
 import { sampleCircuit } from '../content/samples.js';
 
 const copy = value => structuredClone(value);
@@ -79,6 +81,15 @@ export class Session {
     for(let index=1;index<path.length;index++){
       const from=path[index-1],to=path[index];
       if(from===to||!next.nodes.some(n=>n.id===from)||!next.nodes.some(n=>n.id===to))throw new Error('接続する点が不正です。');
+      const source=next.nodes.find(node=>node.id===from);
+      const reused=source.kind==='mirror'&&this.mode==='free'?next.edges.find(edge=>(edge.from===from&&edge.to===to)||(edge.bidirectional&&edge.to===from&&edge.from===to)):null;
+      if(source.kind==='mirror') {
+        // Choose the reflected output and replace its wire as one local plan.
+        // A failed candidate/limit check never reaches commitEdit.
+        next.edges=next.edges.filter(edge=>edge.from!==from||edge===reused);
+        source.reflectTo=to;
+      }
+      if(reused){added.push(reused.id);continue;}
       if (this.mode === 'challenge') {
         const candidate = this.challenge.candidates.find(edge => edge.from === from && edge.to === to && !next.edges.some(built => built.id === edge.id) && (candidateId === null || edge.id === candidateId));
         if (!candidate) throw new Error('この向きの未接続の候補はありません。');
@@ -97,6 +108,15 @@ export class Session {
     this.commitEdit(next);
     this.selection=path.at(-1);
     return added;
+  }
+  setMirrorDirection(id,target) {
+    this.requireEditable();
+    const mirror=this.circuit.nodes.find(node=>node.id===id);
+    if(mirror?.kind!=='mirror')throw new Error('向きを選べるのは鏡です。');
+    if(typeof target!=='string'||target===id||!this.circuit.nodes.some(node=>node.id===target))throw new Error('鏡の反射先が不正です。');
+    const built=this.circuit.edges.find(edge=>(edge.from===id&&edge.to===target)||(edge.bidirectional&&edge.to===id&&edge.from===target));
+    if(mirror.reflectTo===target&&built){this.selection=id;return built.id;}
+    const edgeId=this.connect(id,target);this.selection=id;return edgeId;
   }
   clearConnections() {
     this.commitEdit({...this.circuit,edges:[]});this.selection=null;this.view.showAllTimes=true;
@@ -138,7 +158,7 @@ export class Session {
   setEnabled(id, enabled) {
     this.requireFree();
     const next = copy(this.circuit), item = next.edges.find(edge => edge.id === id) ?? next.nodes.find(node => node.id === id);
-    if (!item || (item.kind && item.kind !== 'prism')) throw new Error('使用状態を変えられるのは道とプリズムです。');
+    if (!item || (item.kind && !['prism','mirror'].includes(item.kind))) throw new Error('使用状態を変えられるのは道・プリズム・鏡です。');
     item.enabled = enabled; this.commitEdit(next);
   }
   setDirection(id, {bidirectional=false, reverse=false} = {}) {
@@ -160,6 +180,7 @@ export class Session {
       if (node.kind === 'source') throw new Error('出発点は削除できません。');
       if (!confirmed) throw new Error('点と接続している道の削除を確認してください。');
       next.nodes = next.nodes.filter(item => item.id !== id);
+      for(const item of next.nodes)if(item.kind==='mirror'&&item.reflectTo===id)item.reflectTo=null;
       next.edges = next.edges.filter(edge => edge.from !== id && edge.to !== id);
       if (next.target === id) next.target = 'all';
     } else {
@@ -211,25 +232,30 @@ export class Session {
   exportCircuit(name = this.name) { this.requireFree(); return circuitFile(this.circuit,name); }
   exportResult() {
     if (!this.run) throw new Error('書き出す実行記録がありません。');
-    return {...resultFile(this.run,this.result),challenge:copy(this.runContext.challenge),originalConditions:copy(this.runContext.original),faultCases:copy(this.cases),replayCase:this.replayCase};
+    return {...resultFile(this.run,this.result),challenge:copy(this.runContext.challenge),originalConditions:copy(this.runContext.original),faultCases:copy(this.cases),replayCase:this.replayCase,phaseOffset:this.runContext.phaseOffset??'0'};
   }
 
-  start({caseId = null} = {}) {
+  start({caseId = null,phaseOffset = '0'} = {}) {
     this.requireEditable();
     if (this.startBlockedReason) throw new Error(this.startBlockedReason);
+    if(typeof phaseOffset!=='string'||!/^\d+(?:\.\d+)?$/.test(phaseOffset))throw new Error('周期の開始位置は0以上の秒数で指定してください。');
     const original = createCircuit(this.circuit).raw;
-    let conditions = original, cases = [], selected = null;
+    const phaseScale=new TimeScale([phaseOffset,...original.nodes.flatMap(node=>[node.process,...(node.gate?gateTimes(node.gate):[])]),...original.edges.map(edge=>edge.time)]);
+    const offset=phaseScale.ticks(phaseOffset),captured=copy(original);
+    for(const node of captured.nodes)if(node.gate)node.gate.phase=phaseScale.format((phaseScale.ticks(node.gate.phase)+offset)%phaseScale.ticks(node.gate.period));
+    let conditions = captured, cases = [], selected = null;
     if (this.mode === 'challenge' && ['edge-fault','prism-fault'].includes(this.challenge.type)) {
-      cases = faultCases(original,this.challenge.type === 'edge-fault' ? 'edge' : 'prism',this.challenge.goal);
-      selected = caseId === null ? worstFault(cases,createCircuit(original).time) : cases.find(item => item.id === caseId);
+      cases = faultCases(captured,this.challenge.type === 'edge-fault' ? 'edge' : 'prism',this.challenge.goal);
+      selected = caseId === null ? worstFault(cases,createCircuit(captured).time) : cases.find(item => item.id === caseId);
       if (caseId !== null && !selected) throw new Error('故障ケースが見つかりません。');
-      conditions = selected?.conditions ?? original;
+      conditions = selected?.conditions ?? captured;
     } else if (caseId !== null) throw new Error('この実験には故障ケースがありません。');
     const run = new Simulation(conditions);
     this.run = run; this.cases = cases; this.replayCase = selected?.id ?? null;
     if(this.guide)this.guide.run=run;
-    this.runContext = {mode:this.mode,challenge:copy(this.challenge),original,guide:this.guide !== null};
+    this.runContext = {mode:this.mode,challenge:copy(this.challenge),original,guide:this.guide !== null,phaseOffset:phaseScale.format(offset)};
     this.view.recordPage = 0; this.result = null;
+    this.completeReturnPattern();
     this.evaluate();
     return run;
   }
@@ -249,16 +275,33 @@ export class Session {
     if(limit===null||this.run.exhausted||this.run.clock<limit||['load','error'].includes(this.run.pauseReason))return;
     this.runContext.timeLimitReached=true;this.stop();
   }
+  completeReturnPattern() {
+    const challenge=this.runContext?.challenge;
+    if(challenge?.type!=='return-pattern'||this.run.pauseReason==='load')return false;
+    if(this.run.arrivals(challenge.goal).length<challenge.count&&this.run.hasFutureArrival(challenge.goal))return false;
+    this.run.complete();return true;
+  }
+  advanceReturnPattern(seconds,options) {
+    const run=this.run,until=run.circuit.time.ticks(seconds),start=run.records.length;
+    if(until<run.clock)throw new Error('実験の時計を巻き戻すことはできません。');
+    while(run.nextTime!==null&&run.nextTime<=until) {
+      run.advanceNext(options);
+      if(run.pauseReason==='load'||this.completeReturnPattern())return run.records.slice(start);
+    }
+    run.advanceUntil(seconds,options);
+    return run.records.slice(start);
+  }
   next(options) {
     if (!this.run || this.run.status !== 'paused') throw new Error('一時停止中に次の動作へ進めます。');
     const limit=this.runTimeLimit;
     const entries=limit!==null&&this.run.nextTime!==null&&this.run.nextTime>limit?this.run.advanceUntil(this.run.circuit.time.format(limit),options):this.run.advanceNext(options);
-    this.evaluate();this.stopAtTimeLimit();return entries;
+    this.completeReturnPattern();this.evaluate();this.stopAtTimeLimit();return entries;
   }
   advance(seconds, options) {
     if (!this.run || this.run.status !== 'running') return [];
     const limit=this.runTimeLimit,scale=this.run.circuit.time,requested=scale.ticks(seconds);
-    const entries = this.run.advanceUntil(limit!==null&&requested>limit?scale.format(limit):seconds,options); this.evaluate();this.stopAtTimeLimit();
+    const until=limit!==null&&requested>limit?scale.format(limit):seconds;
+    const entries = this.runContext.challenge?.type==='return-pattern'?this.advanceReturnPattern(until,options):this.run.advanceUntil(until,options); this.evaluate();this.stopAtTimeLimit();
     if (this.run.status!=='stopped'&&!this.run.exhausted && this.run.pauseReason !== 'load') this.run.resume();
     return entries;
   }
@@ -281,8 +324,11 @@ export class Session {
     const arrival = this.run.arrivals(challenge.goal)[0], scale = this.run.circuit.time;
     let state = arrival ? 'achieved' : this.run.status === 'stopped' ? (this.result?.state === 'failed' ? 'failed' : 'stopped') : this.run.exhausted ? 'failed' : 'pending';
     let actual = arrival?.time ?? null;
-    let goals,sequence;
-    if(challenge.type==='bell-sequence'){
+    let goals,sequence,returnPattern;
+    if(challenge.type==='return-pattern'){
+      returnPattern=returnPatternResult(challenge,this.run);({state,actual}=returnPattern);
+      if(state==='stopped'&&this.result?.state==='failed'){state='failed';returnPattern.reason=this.result.reason;}
+    } else if(challenge.type==='bell-sequence'){
       sequence=bellSequenceResult(challenge,this.run);({state,actual,goals}=sequence);
       if(state==='stopped'&&this.result?.state==='failed'){state='failed';sequence.reason=this.result.reason;}
     } else if (challenge.type === 'delivery-all') {
@@ -295,7 +341,7 @@ export class Session {
       const interval = this.run.intervalResult(challenge.goal,challenge.interval,challenge.count);
       state = interval.state; actual = interval.first;
     } else if (['edge-fault','prism-fault'].includes(challenge.type)) {
-      const worst = worstFault(this.cases,createCircuit(this.runContext.original).time);
+      const worst = worstFault(this.cases,scale);
       if (!worst || !worst.reachable) state = 'failed';
       actual = worst?.time ?? null;
     }
@@ -307,6 +353,7 @@ export class Session {
     this.result = {state,first:arrival?.time ?? null,evaluatedTime:actual,score,challenge:challenge.id};
     if(goals)this.result.goals=goals;
     if(sequence){this.result.gaps=sequence.gaps;if(sequence.reason)this.result.reason=sequence.reason;}
+    if(returnPattern?.reason)this.result.reason=returnPattern.reason;
     if(state==='failed'&&!this.result.reason)this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
     if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
@@ -319,7 +366,9 @@ export class Session {
     if (previous && compareScores(previous.score,score) >= 0) return;
     // Do not write or retry the same achieved score on every animation frame.
     if (this.runContext.offered && compareScores(this.runContext.offered,score) >= 0) return;
-    const candidate = {challenge:challengeScoreId(challenge),rule:`${challenge.type}@1`,score:copy(score),...(challenge.draw?{problem:copy(challenge)}:{})};
+    const problem=challenge.draw?copy(challenge):null;
+    if(problem?.nodes.some(node=>node.gate))problem.capturedStartOffset=this.runContext.phaseOffset;
+    const candidate = {challenge:challengeScoreId(challenge),rule:`${challenge.type}@1`,score:copy(score),...(problem?{problem}:{})};
     this.runContext.offered = copy(score);
     this.pendingScores.set(key,candidate);
     this.retryScore(key);
