@@ -148,8 +148,10 @@ document.addEventListener('click',event=>{
 function challengeGoal(challenge){
   const bell=id=>partName(challenge.nodes.find(point=>point.id===id),challenge.nodes);
   if(challenge.type==='bell-sequence'){
-    const timing=challenge.intervals?(new Set(challenge.intervals).size===1?challenge.intervals[0]+'秒ずつ':challenge.intervals.join('秒 → ')+'秒'):'';
-    return `${challenge.goals.map(bell).join('→')}の順に鳴らす${timing?'\n'+timing:''}`;
+    const names=challenge.goals.map(bell);
+    if(!challenge.intervals)return `${names.join('→')}の順に鳴らす`;
+    if(new Set(challenge.intervals).size===1)return `${challenge.intervals[0]}秒間隔で${names.join('→')}の順に鳴らす`;
+    return `${names[0]}を鳴らし、${challenge.intervals.map((gap,index)=>`${index?'さらに':''}${gap}秒後に${names[index+1]}`).join('、')}を鳴らす`;
   }
   if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
   if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
