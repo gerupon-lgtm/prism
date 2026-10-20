@@ -1,0 +1,598 @@
+{
+  "version": "0.74.0",
+  "url": "https://gerupon-lgtm.github.io/prism/",
+  "checkedAt": "2026-10-20T16:14:52.382Z",
+  "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
+  "checks": [
+    {
+      "asset": "./index.html",
+      "type": "text/html; charset=utf-8",
+      "sha256": "354a58edf4fb9b11f926e12dcba3a23431887e314137d98f2fb65cf9244694d8",
+      "passed": true
+    },
+    {
+      "asset": "./manifest.webmanifest",
+      "type": "application/manifest+json; charset=utf-8",
+      "sha256": "484ad6d32e20d4b8f3f75995299493dcb29191df4608947d70ed9c6b71de46a8",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/app/session.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "0a1a2b94e0fcb83f92721ab872e27f0245682f8020a54826e65adbc38199de1f",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/app/update-safety.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/bell-pitches.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "37e90c2090d6ffce4c92e7c39636e9ca3be67aac18b65a9792e0e5d1f7fb8d8e",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/challenge-draw.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "ba6c258ec1573eb231f44449d1364e5f795de821f110d61e3088c2089e4c6000",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/challenges.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "1a663b011d689669ff73f6431f95396dfdb3d01d4b33160e7358cda2e68c4f3f",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/random-variants.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "be032a6d7955112516bc890deab0dd960bbdfdfb6ddc510a5e4db791f51f053b",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/samples.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/sequence-challenges.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "cb82fa613d9c2ea02709a1fe74bf3681462e3e19e86cf6bfb22b6cd8669f0068",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/content/themed-challenges.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "9693abe76d73f076d908942284f9307d3f0a18cf1546789cbbb31916a9d9e1c0",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/bell-sequence.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "d9e576b34f4d446c1835baaecfe91fb7de24f970f01143425becf01d11d0bad5",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/challenge-identity.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "45a58336f7af211d72ac3c33024b8428206fec995e7b534ceba3ebabb11255d1",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/circuit.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "2f07e742d03f007775a2091c0e30a321186073f944df2f23a4334625bcb76114",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/evaluation.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/heap.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/simulation.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "5a69db6dbdeb7d79aeeb11d3f9758db342323bc8e86174940da0b64c0f9167d4",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/storage.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "5dcad177cb54661e8d48d0880e576b044774480ef5993964534f8985f9e4c97d",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/core/time.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/app.css",
+      "type": "text/css; charset=utf-8",
+      "sha256": "877e8ceb04f9ea13c95fba5b34865307f5940bd529ccad644dd203c3ee3bc0b6",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/app.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "d336a9343aa8607a232deadeb63a42b84ea2ec9ebd1c2c97e22411a6ef969d58",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/audio.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "c311c24cc7a6a6a3d8ed686947c9ae615173f6fd6956f55379e04bebcd878d5c",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/board.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "58b4f4731f2b8db10c34628250b93b096b8f7d29319bdf197e1609b195ab8ea6",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/celebration.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "a054d28cc44a1c4226aa9908ff50678ed7b5ed006484a7d137f1bcab02a772e0",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/desktop-layout.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "59452b4f35183cd55fa880bb433e50a72eb6a78b0abab67cea6a3aae0ac21def",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/desktop.css",
+      "type": "text/css; charset=utf-8",
+      "sha256": "6a2c55c82775cbe1a03e78ed3240f01d1cae8ad1a1470e2e97fc3a0a8636617b",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/edge-directions.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "97f3d6c1be2fe83511131908f7775459fb1f62c20b3f7d2398313179cecd3ab9",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/end-wait.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "d4ab506d6259073369a791b985362a4e352484a6ab6e650a2e0573cd016da6cd",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/help.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "bbef555a807eeacf9531254d350c2a896d9038a0d3ab6f7c0bfca6599bc54c2b",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/labels.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "622cab9a32845486346f17a5692835ecbd1a14f00cb61a76dd8dc5ac990b67fb",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/load-meter.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/magnifier.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "d13d86452215541cd931ba6b2588fe768d3351680311e26365f621473f2582d3",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/motion.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "1c4ac03f906168d56b52bb1396f5203d6dd5354b0b1272acc547965b1d1e0ae2",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/offline.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "8446bb5e958272239b8c3892ed1a68efc81d3d950f1afc8ab8182de4f9e30f17",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/orientation.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "984bbf87bfee5921a73f1e2e21eb2c42de81e158f1d087b4c47b09be35d4fdf0",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/outcome-sound.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "601352e67d4e1e990cf935191c4415fdf006e74795ace507d3048bce18ecbf71",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/playback-diagnostics.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "1e5899cd860d9392f0046f1e6ba2763df19ffdf1d182d5d1f59dc6baeed9d1c9",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/reverb.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "c06869c5199d347d646ea44c16d69b0b452bbd043af5a125cfc4e410b1d196d4",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/scene.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "66e12fe514d55cc29a9e5bda9a3e34051c110eba00eaab8bcfcb3ee1b6861e9b",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/sound-cues.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "50d44f7f32100f4d8450cf19a6bc7ad54252b4386d4479690cedaf1cce46e231",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/svg.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/touch-confirm.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "cb1526e0e7dea51d714c449094e816f1eb3fe77d93f9aa36cb997c83f6ed36da",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/tutorial-content.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "bcfcc92e0a0ba217abe0fce6652d5eda4f8500d1198228b06775380d173801f5",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/tutorial-guide.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "4f24ca8df407b268fd6310ac7bd597f5834c5415a9add5d414667b436b00ae66",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/voices.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "f6450d8948385079dc10f6c786c6507d73499b0750b23e0d1d89b6ed13831da2",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/src/ui/wire-limit-notice.js",
+      "type": "application/javascript; charset=utf-8",
+      "sha256": "357192a707026bd6c490ebf83eb3950424130ad18c1810e4db7b051435bf5dc2",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/画面案/ロゴ/fonts/OFL.txt",
+      "type": "text/plain; charset=utf-8",
+      "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "type": "font/ttf",
+      "sha256": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "type": "font/ttf",
+      "sha256": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/apple-touch-icon.png",
+      "type": "image/png",
+      "sha256": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/goal.png",
+      "type": "image/png",
+      "sha256": "79ef581e9d6db0211fe7cc06eb642749d989517a9d0081f827e6e03378f85558",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/moonwater.png",
+      "type": "image/png",
+      "sha256": "47f63ba4fcf28e982b54eff5516961cececc19aa06260e9fe878443962165a3c",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/observatory.png",
+      "type": "image/png",
+      "sha256": "2628c2ccdbd8a83f3f37fd7f8f707309a96fc8e5c08a6edbdb97e7e427373b47",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/prism.png",
+      "type": "image/png",
+      "sha256": "aff97d60401b20d0c603ad9f1b6193f0ea12d6de193d5d328943270a663053d6",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/ruins.png",
+      "type": "image/png",
+      "sha256": "0cf8246eb08f8369148b2373f1c68ddce5ededf9dca30460f86d9b4bef5222ca",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/source.png",
+      "type": "image/png",
+      "sha256": "9806dd69e14dee5fc2113715b6281c31e30d0e45f294fb7c00cc5c063879e1fc",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/starecho.png",
+      "type": "image/png",
+      "sha256": "f41e76dc91292f9f7d0a742f8ab851b40354b9a71504978b00468f3735afe13d",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/graphics/starwalk.png",
+      "type": "image/png",
+      "sha256": "d1e6b74dc5be815e65eeea57e503c3c55f07f068af9b27dcef315d5c59cf76fd",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/icon-192.png",
+      "type": "image/png",
+      "sha256": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/icon-512.png",
+      "type": "image/png",
+      "sha256": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
+      "passed": true
+    },
+    {
+      "asset": "./v0.74.0/public/spirit-guide.png",
+      "type": "image/png",
+      "sha256": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
+      "passed": true
+    },
+    {
+      "label": "HTTPS worker MIME and release version",
+      "passed": true
+    },
+    {
+      "label": "chromium public title startup completes automatic check and manual latest-version check returns to title",
+      "passed": true
+    },
+    {
+      "label": "chromium public hamburger update check completes with explicit latest-version result",
+      "passed": true
+    },
+    {
+      "label": "chromium public layout 320x480",
+      "passed": true,
+      "w": 320,
+      "h": 480,
+      "sw": 320,
+      "sh": 480,
+      "rotation": 0,
+      "source": {
+        "x": 160,
+        "y": 260.57569122314453
+      },
+      "goal": {
+        "x": 160,
+        "y": 205.7471466064453
+      },
+      "header": {
+        "x": 160,
+        "y": 88.375
+      },
+      "board": {
+        "x": 160,
+        "y": 261.875
+      },
+      "play": {
+        "x": 160,
+        "y": 430
+      }
+    },
+    {
+      "label": "chromium public layout 390x664",
+      "passed": true,
+      "w": 390,
+      "h": 664,
+      "sw": 390,
+      "sh": 664,
+      "rotation": 0,
+      "source": {
+        "x": 195,
+        "y": 435.8749084472656
+      },
+      "goal": {
+        "x": 195,
+        "y": 256.10680389404297
+      },
+      "header": {
+        "x": 195,
+        "y": 96.0546875
+      },
+      "board": {
+        "x": 195,
+        "y": 361.5546875
+      },
+      "play": {
+        "x": 195,
+        "y": 614
+      }
+    },
+    {
+      "label": "chromium public layout 844x310",
+      "passed": true,
+      "w": 844,
+      "h": 310,
+      "sw": 844,
+      "sh": 310,
+      "rotation": 0,
+      "source": {
+        "x": 422,
+        "y": 163.62439727783203
+      },
+      "goal": {
+        "x": 422,
+        "y": 152.37054824829102
+      },
+      "header": {
+        "x": 422,
+        "y": 73.984375
+      },
+      "board": {
+        "x": 422,
+        "y": 165.0859375
+      },
+      "play": {
+        "x": 422,
+        "y": 263.203125
+      }
+    },
+    {
+      "label": "Public Chromium closed-page offline startup after clearing HTTP cache",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "status": 200,
+      "fromServiceWorker": true,
+      "passed": true
+    },
+    {
+      "label": "chromium public drag/run/score, result/circuit download and local manual save while offline",
+      "passed": true
+    },
+    {
+      "label": "webkit public title startup completes automatic check and manual latest-version check returns to title",
+      "passed": true
+    },
+    {
+      "label": "webkit public hamburger update check completes with explicit latest-version result",
+      "passed": true
+    },
+    {
+      "label": "webkit public layout 320x480",
+      "passed": true,
+      "w": 320,
+      "h": 480,
+      "sw": 320,
+      "sh": 480,
+      "rotation": 0,
+      "source": {
+        "x": 160,
+        "y": 260.57471466064453
+      },
+      "goal": {
+        "x": 160,
+        "y": 205.71359252929688
+      },
+      "header": {
+        "x": 160,
+        "y": 88.3359375
+      },
+      "board": {
+        "x": 160,
+        "y": 261.8359375
+      },
+      "play": {
+        "x": 160,
+        "y": 430
+      }
+    },
+    {
+      "label": "webkit public layout 390x664",
+      "passed": true,
+      "w": 390,
+      "h": 664,
+      "sw": 390,
+      "sh": 664,
+      "rotation": 0,
+      "source": {
+        "x": 195,
+        "y": 435.8544616699219
+      },
+      "goal": {
+        "x": 195,
+        "y": 256.0169372558594
+      },
+      "header": {
+        "x": 195,
+        "y": 96.0078125
+      },
+      "board": {
+        "x": 195,
+        "y": 361.5078125
+      },
+      "play": {
+        "x": 195,
+        "y": 614
+      }
+    },
+    {
+      "label": "webkit public layout 844x310",
+      "passed": true,
+      "w": 844,
+      "h": 310,
+      "sw": 844,
+      "sh": 310,
+      "rotation": 0,
+      "source": {
+        "x": 422,
+        "y": 163.60877990722656
+      },
+      "goal": {
+        "x": 422,
+        "y": 152.35493087768555
+      },
+      "header": {
+        "x": 422,
+        "y": 73.9609375
+      },
+      "board": {
+        "x": 422,
+        "y": 165.0703125
+      },
+      "play": {
+        "x": 422,
+        "y": 263.21875
+      }
+    },
+    {
+      "label": "webkit public drag/run/score, result/circuit download and local manual save",
+      "passed": true
+    }
+  ],
+  "commit": "7b4f79d8a21e9b1b49b712da45f7698d9c0a5316",
+  "cacheAfterHTTPClear": {
+    "keys": [
+      "prism-notes:/prism/:0.74.0"
+    ],
+    "registrations": [
+      {
+        "scope": "https://gerupon-lgtm.github.io/prism/",
+        "active": "activated",
+        "script": "https://gerupon-lgtm.github.io/prism/sw.js"
+      }
+    ],
+    "controller": "https://gerupon-lgtm.github.io/prism/sw.js"
+  },
+  "passed": true
+}

@@ -1,0 +1,212 @@
+{
+  "version": "0.74.0",
+  "checks": [
+    {
+      "scenario": "rotated",
+      "passed": true
+    }
+  ],
+  "layouts": [
+    {
+      "scenario": {
+        "name": "rotated",
+        "width": 844,
+        "height": 390,
+        "mobile": true
+      },
+      "rows": [
+        {
+          "card": {
+            "x": 6,
+            "y": 31.25,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "鐘1→鐘2の順に鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q23"
+        },
+        {
+          "card": {
+            "x": 6,
+            "y": 68.9375,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "0.5秒間隔で鐘1→鐘2の順に鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q24"
+        },
+        {
+          "card": {
+            "x": 6,
+            "y": 68.9375,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "鐘1→鐘2→鐘3の順に鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q25"
+        },
+        {
+          "card": {
+            "x": 6,
+            "y": 92.90625,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "1秒間隔で鐘1→鐘2→鐘3の順に鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q26"
+        },
+        {
+          "card": {
+            "x": 6,
+            "y": 68.9375,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "鐘1の0.5秒後に鐘2、さらに1秒後に鐘3を鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q27"
+        },
+        {
+          "card": {
+            "x": 6,
+            "y": 68.9375,
+            "w": 170,
+            "h": 78.6875
+          },
+          "board": {
+            "x": 182,
+            "y": 8,
+            "w": 479,
+            "h": 374
+          },
+          "text": "鐘3の0.5秒後に鐘2、さらに1秒後に鐘1を鳴らす",
+          "goal": {
+            "h": 35,
+            "sh": 35,
+            "w": 156,
+            "sw": 156,
+            "font": "12.999994px / 17.549994px Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif",
+            "lineHeight": "17.549994px"
+          },
+          "proposedWidth": 280.6436767578125,
+          "viewport": {
+            "w": 844,
+            "h": 390,
+            "sw": 844,
+            "sh": 390
+          },
+          "id": "Q28"
+        }
+      ]
+    }
+  ],
+  "pending": [
+    "Physical device display, accessibility text settings and touch feel remain unverified."
+  ],
+  "browser": "26.5",
+  "passed": true
+}
