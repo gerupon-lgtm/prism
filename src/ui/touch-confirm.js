@@ -1,8 +1,8 @@
 // Native touch clicks can disappear after a small drift, even inside a button.
 // Confirm only a fresh, single-pointer press released inside the same button.
 export class TouchConfirm {
-  constructor(root,{context,beforeActivate=()=>{}}) {
-    Object.assign(this,{root,context,beforeActivate});this.pointers=new Set();this.press=null;this.consumedUntil=0;
+  constructor(root,{context,beforeActivate=()=>{},selector='.wire-delete-actions button'}) {
+    Object.assign(this,{root,context,beforeActivate,selector});this.pointers=new Set();this.press=null;this.consumedUntil=0;
     const doc=root.ownerDocument;
     doc.addEventListener('pointerdown',event=>this.down(event),true);
     doc.addEventListener('pointerup',event=>this.up(event),true);
@@ -23,7 +23,7 @@ export class TouchConfirm {
     if(event.pointerType!=='touch'&&event.pointerType!=='pen')return;
     this.pointers.add(event.pointerId);if(this.press)this.press.cancelled=true;
     if(event.button!==0||event.isPrimary===false)return;
-    const button=event.target.closest?.('.wire-delete-actions button'),context=this.context();
+    const button=event.target.closest?.(this.selector),context=this.context();
     if(this.pointers.size===1&&button&&this.root.contains(button)&&this.root.open&&!button.disabled&&context){
       this.press={id:event.pointerId,button,context,cancelled:false};
     }
@@ -35,6 +35,6 @@ export class TouchConfirm {
     event.preventDefault();
     const r=press.button.getBoundingClientRect();
     if(press.cancelled||!this.root.open||press.button.disabled||this.context()!==press.context||event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)return;
-    this.beforeActivate(event);press.button.click();
+    this.beforeActivate(event,press.button);press.button.click();
   }
 }

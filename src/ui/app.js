@@ -776,6 +776,7 @@ document.addEventListener('pointerdown',event=>{const hold=pendingWireDelete?.ho
 document.addEventListener('pointerup',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)pendingWireDelete.hold=null;},true);
 document.addEventListener('pointercancel',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)abortHeldDelete(event);},true);
 deleteTouchConfirm=new TouchConfirm(wireDelete,{context:()=>pendingWireDelete,beforeActivate:prepareAutomaticSound});
+new TouchConfirm(dialog,{selector:'.pager button',context:()=>dialog.classList.contains('challenge-dialog')?dialogPage:null,beforeActivate:(event,control)=>{prepareAutomaticSound(event);control.focus({preventScroll:true});}});
 wireDelete.addEventListener('close',()=>{if(!wireDelete.open)cancelWireDelete();});
 $('wire-delete-cancel').addEventListener('click',cancelWireDelete);
 $('wire-delete-target').addEventListener('click',()=>{
