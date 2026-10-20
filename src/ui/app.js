@@ -157,6 +157,18 @@ function challengeGoal(challenge){
   if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
   return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
 }
+function fitConditionCard(){
+  const goal=$('challenge-goal');
+  if($('challenge-info').hidden||desktop.active||$('app').classList.contains('text-enlarged')||!goal.clientWidth)return;
+  const style=getComputedStyle(goal),key=JSON.stringify([goal.clientWidth,style.font,style.letterSpacing,document.fonts.status]);
+  if(fitConditionCard.key===key)return;
+  const context=fitConditionCard.context??=document.createElement('canvas').getContext('2d');
+  context.font=style.font||`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+  // Use the longest condition in the whole set, never the currently selected
+  // stage. Changing stages therefore cannot add or remove a reserved line.
+  const lines=challenges.every(challenge=>context.measureText(challengeGoal(challenge)).width<=goal.clientWidth-2)?1:2;
+  goal.style.setProperty('--condition-lines',lines);fitConditionCard.key=key;
+}
 function render(redraw=true,{records=true}={}) {
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
   // Enlarged text on a short portrait screen needs the existing full-text
@@ -1098,6 +1110,8 @@ const fontProbe=element('span','',{'aria-hidden':'true',style:'position:fixed;le
 document.body.append(fontProbe);let observedFont=parseFloat(getComputedStyle(document.documentElement).fontSize);
 const fontResize=new ResizeObserver(()=>{const next=parseFloat(getComputedStyle(document.documentElement).fontSize);if(next!==observedFont){observedFont=next;viewport();render();}});
 fontResize.observe(fontProbe);
+const conditionResize=new ResizeObserver(fitConditionCard);conditionResize.observe($('challenge-goal'));
+document.fonts.ready.then(()=>{fitConditionCard.key=null;fitConditionCard();});
 if(offline.enabled)offline.prepare();
 
 // Local inspection for performance verification; never stores or uploads data.

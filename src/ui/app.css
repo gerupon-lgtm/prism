@@ -572,7 +572,7 @@ html.device-landscape #app.selection-play>header{height:clamp(170px,calc(12 * va
 /* Keep an in-button thumb drift out of scrolling; two-finger zoom remains native. */
 dialog.challenge-dialog .pager button{touch-action:pinch-zoom;min-height:44px;min-width:64px;padding:8px 14px;font-size:.928571rem}
 /* Reserve the same condition space before the field is laid out, for every stage. */
-#challenge-goal{block-size:2.7em}
+#challenge-goal{block-size:calc(1.35em * var(--condition-lines,2))}
 html:not(.device-landscape) .text-enlarged:not(.compact) #challenge-goal{block-size:4.05em}
 @media(max-width:360px){html:not(.device-landscape) #app.selection-play:not(.text-enlarged) #stage-heading{min-block-size:56px}}
 html:not(.device-landscape) #app.selection-play.text-enlarged:not(.compact) #stage-heading{min-block-size:3rem}

@@ -7,7 +7,7 @@ const out=path.resolve('設計検証/課題カード',version,arg('--label')||'l
 const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(f===root)f=path.join(root,'index.html');if(!f.startsWith(root+path.sep))throw Error();res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.ttf':'font/ttf'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
 (async()=>{let browser;await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
  browser=await pw[engine].launch({headless:true,...(channel?{channel}:{})});report.browser=browser.version();
- for(const scenario of process.argv.includes('--rotated-only')?[{name:'rotated',width:844,height:390,mobile:true}]:[{name:'phone',width:412,height:844},{name:'pixel',width:390,height:844},{name:'small',width:320,height:480},{name:'desktop',width:1440,height:900},{name:'enlarged',width:390,height:844,font:28}]){
+ for(const scenario of process.argv.includes('--rotated-only')?[{name:'rotated',width:844,height:390,mobile:true}]:process.argv.includes('--resize-only')?[{name:'phone',width:412,height:844}]:[{name:'phone',width:412,height:844},{name:'pixel',width:390,height:844},{name:'small',width:320,height:480},{name:'desktop',width:1440,height:900},{name:'enlarged',width:390,height:844,font:28}]){
   const context=await browser.newContext({viewport:{width:scenario.width,height:scenario.height},isMobile:!!scenario.mobile,hasTouch:!!scenario.mobile});
   if(scenario.mobile)await context.addInitScript(()=>{const o=new EventTarget();Object.defineProperties(o,{type:{value:'landscape-primary'},angle:{value:90}});Object.defineProperty(screen,'orientation',{get:()=>o});});
   const p=await context.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(arg('--url')||'http://127.0.0.1:'+server.address().port);
@@ -21,9 +21,19 @@ const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decod
    if(['Q26','Q27'].includes(id))await p.screenshot({path:path.join(out,scenario.name+'-'+id+'.png')});
   }
   report.layouts.push({scenario,rows});const heights=rows.map(r=>r.card.h);assert(Math.max(...heights)-Math.min(...heights)<.6,scenario.name+' fixed card height '+JSON.stringify(heights));
-  for(const row of rows){assert(row.goal.sh<=row.goal.h+1&&row.goal.sw<=row.goal.w+1,scenario.name+' full text '+row.id);assert(row.viewport.sw<=row.viewport.w+1&&row.viewport.sh<=row.viewport.h+1,scenario.name+' page scroll');}
+  for(const row of rows){assert(row.goal.sh<=row.goal.h+1&&row.goal.sw<=row.goal.w+1,scenario.name+' full text '+row.id);assert(row.viewport.sw<=row.viewport.w+1&&row.viewport.sh<=row.viewport.h+1,scenario.name+' page scroll');if(['phone','pixel'].includes(scenario.name))assert(row.goal.h<=parseFloat(row.goal.lineHeight)+1,scenario.name+' no empty second line '+row.id);}
   const same=rows.filter(r=>['Q26','Q27','Q28'].includes(r.id));assert(Math.max(...same.map(r=>r.board.y))-Math.min(...same.map(r=>r.board.y))<.6,scenario.name+' stable board top');assert(Math.max(...same.map(r=>r.board.h))-Math.min(...same.map(r=>r.board.h))<.6,scenario.name+' stable board height');assert.deepEqual(errors,[]);
-  report.checks.push({scenario:scenario.name,passed:true});await context.close();
+  report.checks.push({scenario:scenario.name,passed:true});
+  if(scenario.name==='phone'){
+   const resized=[];
+   for(const width of [320,scenario.width]){
+    await p.setViewportSize({width,height:scenario.height});await p.evaluate(async()=>{for(let i=0;i<6;i++)await new Promise(requestAnimationFrame);});
+    const box=await p.evaluate(()=>{const c=document.getElementById('challenge-info'),g=document.getElementById('challenge-goal');return {card:c.getBoundingClientRect().height,goal:g.clientHeight,content:g.scrollHeight,line:parseFloat(getComputedStyle(g).lineHeight)};});
+    assert(box.content<=box.goal+1,'Resized full text');assert(Math.abs(box.goal-box.line*(width===320?2:1))<1,'Resized shared line count');if(width===scenario.width)assert(Math.abs(box.card-heights[0])<.6,'Original fixed height restored');resized.push({width,...box});
+   }
+   report.checks.push({scenario:'resize-and-return',passed:true,resized});
+  }
+  await context.close();
  }
  report.passed=true;
 }catch(error){report.passed=false;report.failure=error.stack;process.exitCode=1;}finally{await browser?.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks.length,failure:report.failure,out}));}})();

@@ -173,7 +173,7 @@ html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.c
 html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .mobile-objective-label{display:flex;justify-content:space-between;gap:8px;color:#d3bd8c;font-size:.785714rem;line-height:1.4;margin-bottom:3px}
 html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .mobile-objective-label>span{color:#b8c8df}
 html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #challenge-goal{font-size:1.142857rem;line-height:1.5;color:#f1f3fa}
-html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #challenge-goal{block-size:3em}
+html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #challenge-goal{block-size:calc(1.5em * var(--condition-lines,2))}
 html.desktop-layout #challenge-goal{block-size:calc(5.1em + 39px)}
 html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) #wire-budget{font-size:1rem;line-height:1.6;gap:0 12px;margin-top:4px}
 html:not(.desktop-layout):not(.device-landscape) #app:not(.text-enlarged):not(.compact) .wire-count{font-size:1.142857rem;font-weight:600}
