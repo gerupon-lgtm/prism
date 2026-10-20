@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": [
+    "First mirror visit explains rotation before playing",
+    "Single tap shows unaligned incident and reflected light without settings",
+    "Initial reflection misses all parts, including its incoming source",
+    "Repeated activation never opens a mirror settings dialog",
+    "Keyboard focus survives consecutive rotation steps",
+    "Selected mirror glows and its dedicated rotation pad is detached by over 100px",
+    "Rotating the surface snaps to C; output commits only on release",
+    "Rotation pad stays in place throughout target changes",
+    "Dragging across other parts remains rotation and never adds an unrelated wire",
+    "Releasing off target keeps the previous output",
+    "Explicit cancellation keeps the previous output and closes rotation controls",
+    "New reflected target replaces only the mirror output",
+    "A full wire budget still permits atomic output replacement",
+    "Clearing all wires restores an unaligned mirror",
+    "Zoom, shrink and fit preserve the rotation pad screen position",
+    "Wheel during a rotation cancels the provisional output",
+    "Touching another part only exits rotation and cannot start wiring or settings",
+    "Reaching a mirror never activates rotation while the wiring finger remains down",
+    "Confirmed wiring selects the mirror after a 200ms pause and retains the accepted prefix",
+    "Clearing wires during the pause prevents a stale mirror selection",
+    "Two-contact state cancellation also dismisses rotation controls (synthetic contacts)",
+    "Portrait and rotated wide screens preserve geometry without page scrolling",
+    "Later mirror stages do not repeat the introduction",
+    "Coarse rotation buttons work directly on the field",
+    "Coarse rotation reaches every near-collinear prism and bell without precise aiming",
+    "Parts explanation includes the new mirror controls",
+    "How-to-play contains illustrated optical aiming",
+    "A reverse bidirectional source wire supplies the actual incident preview",
+    "Free-mode mirror movement remains separate from rotation",
+    "Free-mode name and time settings remain available through the object list",
+    "Actual desktop layout presents the first-use introduction within the screen",
+    "Actual desktop layout supports direct mirror rotation",
+    "No uncaught browser errors"
+  ],
+  "pending": [
+    "Physical phone gestures and subjective appearance"
+  ]
+}
