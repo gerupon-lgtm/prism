@@ -2,16 +2,14 @@
 export const mirrorVariants = {
   "Q35": [
     {
-      "id": "1a74e35d01223ac7",
-      "baseVersion": 1,
+      "id": "3b252641557a95ae",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.5",
         "0.5",
         "0.5",
         "1",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -20,16 +18,14 @@ export const mirrorVariants = {
       "maxDuration": "6"
     },
     {
-      "id": "c4750d0ab62b531b",
-      "baseVersion": 1,
+      "id": "d635a067fa4c9272",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.7",
         "0.5",
         "0.5",
         "1",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -38,16 +34,14 @@ export const mirrorVariants = {
       "maxDuration": "6.2"
     },
     {
-      "id": "908945735e81fb28",
-      "baseVersion": 1,
+      "id": "503dbd3f18578849",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.9",
         "0.5",
         "0.5",
         "1",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -56,16 +50,14 @@ export const mirrorVariants = {
       "maxDuration": "6.4"
     },
     {
-      "id": "9be45898fdaacd37",
-      "baseVersion": 1,
+      "id": "8c9dc54bcfd3a7f8",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "1.1",
         "0.5",
         "0.5",
         "1",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -74,16 +66,14 @@ export const mirrorVariants = {
       "maxDuration": "6.6"
     },
     {
-      "id": "993c831a1e332998",
-      "baseVersion": 1,
+      "id": "e622921c93423c3d",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.5",
         "0.5",
         "1",
         "0.5",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -92,16 +82,14 @@ export const mirrorVariants = {
       "maxDuration": "6"
     },
     {
-      "id": "e03c456647bed81a",
-      "baseVersion": 1,
+      "id": "174d5181d3c82f72",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.7",
         "0.5",
         "1",
         "0.5",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -110,16 +98,14 @@ export const mirrorVariants = {
       "maxDuration": "6.2"
     },
     {
-      "id": "4d11a908142b0c13",
-      "baseVersion": 1,
+      "id": "b10033de56dab907",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.9",
         "0.5",
         "1",
         "0.5",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"
@@ -128,16 +114,14 @@ export const mirrorVariants = {
       "maxDuration": "6.4"
     },
     {
-      "id": "70067bc95bc18676",
-      "baseVersion": 1,
+      "id": "c2301a1e748931b8",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "1.1",
         "0.5",
         "1",
         "0.5",
-        "4",
-        "4",
         "0.5",
         "0.5",
         "4"

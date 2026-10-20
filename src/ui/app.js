@@ -184,7 +184,7 @@ function scheduleConditionFit(){
 function render(redraw=true,{records=true}={}) {
   const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&$('title-screen').hidden);
   $('mirror-controls').hidden=!aiming;
-  if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'回す／↶ ↷で照準');$('mirror-status').title=target?'指を離すと、この相手へつながります':'つまみをドラッグして回します。向きの近い相手は左右ボタンで順に選べます。';}
+  if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'離れた回転盤で操作');$('mirror-status').title='丸いつまみを回し、離すと結線します。周囲のタップか×で回転操作を終了。左右ボタンでも相手を選べます。';}
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
   // Enlarged text on a short portrait screen needs the existing full-text
   // entries, rather than a heading that leaves too little room to connect parts.
@@ -566,7 +566,7 @@ function maybeMirrorIntro(){
   if(mirrorIntroShown||dialog.open||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
   try{if(storage.getItem('prism-mirror-optics-intro-v1')==='seen')return;}catch{/* An unavailable store must not prevent playing. */}
   mirrorIntroShown=true;open('鏡を回して、光を導こう');dialog.classList.add('help-dialog','mirror-intro');
-  body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','丸いつまみをドラッグして鏡を回しましょう。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','最初はどこにも向いていません。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
+  body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','離れた回転盤のつまみをドラッグして鏡を回しましょう。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','最初はどこにも向いていません。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
   actions.append(button('やってみる',()=>{try{storage.setItem('prism-mirror-optics-intro-v1','seen');}catch{/* Read the help again whenever needed. */}close();},{id:'mirror-intro-start'}));fitDialogForm();
 }
 function layoutTitle(width,height) {

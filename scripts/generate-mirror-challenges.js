@@ -26,7 +26,7 @@ export function generateMirrorChallenges(){
    const problem=structuredClone(families[family].problem);problem.candidates[0].time=String(.5+variant*.2);
    const result=inspectProblem(problem,sets);if(!result.valid)throw Error('Invalid mirror variant '+authored.id);
    const id=createHash('sha256').update(JSON.stringify(problem)).digest('hex').slice(0,16);
-   bank.push({id,baseVersion:1,family,times:problem.candidates.map(e=>e.time),baseline:result.baseline,maxDuration:result.maxDuration});
+   bank.push({id,baseVersion:authored.version,family,times:problem.candidates.map(e=>e.time),baseline:result.baseline,maxDuration:result.maxDuration});
    proof.stages.push({challenge:problem.id,id,family,variant,...result});
   }
   banks[authored.id]=bank;

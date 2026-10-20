@@ -1,6 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {reflect,surfaceFor,angleGap,snapTarget,unalignedAngle} from '../src/ui/mirror-optics.js';
+import {reflect,surfaceFor,angleGap,snapTarget,unalignedAngle,placeMirrorControl} from '../src/ui/mirror-optics.js';
+
+test('離した回転盤は画面内でパーツを避け、同じ条件なら同じ場所を選ぶ',()=>{
+  const bounds={left:0,top:0,right:390,bottom:500},origin={x:195,y:250};
+  const obstacles=[{left:130,top:195,right:260,bottom:305},{left:20,top:20,right:150,bottom:150}];
+  const at=placeMirrorControl({bounds,origin,obstacles});
+  assert(at.x>=58&&at.x<=332&&at.y>=58&&at.y<=442);
+  assert(Math.hypot(at.x-origin.x,at.y-origin.y)>120);
+  assert(Math.hypot(at.x-origin.x,at.y-origin.y)<220);
+  assert(Math.hypot(Math.max(20-at.x,0,at.x-150),Math.max(20-at.y,0,at.y-150))>=58);
+  assert.deepEqual(placeMirrorControl({bounds,origin,obstacles}),at);
+  const small=placeMirrorControl({bounds:{left:0,top:0,right:180,bottom:160},origin,obstacles:[]});
+  assert(small.x>=58&&small.x<=122&&small.y>=58&&small.y<=102);
+});
 
 const rad=degrees=>degrees*Math.PI/180;
 const target=(id,degrees)=>({id,angle:rad(degrees)});

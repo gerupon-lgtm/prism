@@ -11,6 +11,7 @@ import {gateVariants} from '../src/content/gate-variants.js';
 import {Session} from '../src/app/session.js';
 import {LocalRecords} from '../src/core/storage.js';
 import {compareScores,perfectScore} from '../src/core/evaluation.js';
+import {matchesChallengeScore} from '../src/core/challenge-identity.js';
 
 const readProof=path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8'));
 const sets=[
@@ -19,6 +20,17 @@ const sets=[
   {name:'星刻の開廊',from:36,to:42,firstId:41,type:'delivery-all',world:'stargate',bank:gateVariants,proof:readProof('../設計検証/星刻の開廊/proof.json')},
 ];
 const oldProof=readProof('../設計検証/ランダム課題/generation.json');
+test('鏡の導入面は鏡を通らずに鐘へ届く候補を持たず、旧版の最高点は新版と区別する',()=>{
+  const c=challenges.find(c=>c.id==='Q35');assert.equal(c.version,2);
+  const seen=new Set(['S']);
+  for(let i=0;i<c.nodes.length;i++)for(const e of c.candidates)if(e.from!=='M'&&seen.has(e.from))seen.add(e.to);
+  assert(!seen.has('G'));
+  const {s,records}=fixture();records.saveScore('Q35@1/random-1-old','delivery-all@1',{numerator:'100',denominator:'1'});
+  s.replace({challengeId:'Q35'});assert.equal(records.scores().length,1);
+  const old=structuredClone(records.scores()[0]);assert(!matchesChallengeScore(old,s.challenge));
+  const row=proofRow(sets[1],s.challenge.draw.id);solve(s,s.challenge,row);
+  assert.equal(records.scores().length,2);assert.deepEqual(records.scores().find(r=>r.challenge===old.challenge),old);
+});
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function fixture(){
   const values=new Map(),records=new LocalRecords({getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)});

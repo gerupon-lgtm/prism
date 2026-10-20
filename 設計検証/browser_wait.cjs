@@ -82,6 +82,7 @@ async function challengeSolution(page,id,{partial=false}={}){
   return partial?row.partial.edges:row.winner;
 }
 async function dragConnection(page,from,to){
+  if(await page.locator('#mirror-controls').isVisible()&&!await page.locator(`[data-mirror-face="${from}"]`).count())await page.locator('#mirror-done').click();
   if(await page.locator(`[data-mirror-face="${from}"]`).count()){await rotateMirrorTo(page,from,to);return;}
   const {a,b}=await wiringBounds(page,from,to),start={x:a.x+a.width/2,y:a.y+a.height/2},end={x:b.x+b.width/2,y:b.y+b.height/2};
   const geometry=await page.locator('#board').evaluate((board,{from,to})=>{
@@ -108,7 +109,8 @@ async function rotateMirrorTo(page,id,to,{release=true}={}){
     else{const angles=[...document.querySelectorAll('[data-node]')].filter(n=>n.dataset.node!==face.dataset.mirrorFace).map(n=>{const p=new DOMPoint().matrixTransform(n.getScreenCTM()).matrixTransform(inverse);return(Math.atan2(p.y-origin.y,p.x-origin.x)+Math.PI*2)%(Math.PI*2);}).sort((a,b)=>a-b);let largest=-1;for(let i=0;i<angles.length;i++){const end=angles[(i+1)%angles.length]+(i===angles.length-1?Math.PI*2:0),gap=end-angles[i];if(gap>largest){largest=gap;angle=angles[i]+gap/2;}}}
     const surface=Number(face.dataset.surface),incident=Number(face.dataset.incident);
     let delta=(angle+incident)/2-surface;while(delta>Math.PI/2)delta-=Math.PI;while(delta< -Math.PI/2)delta+=Math.PI;
-    return {origin:{x:origin.x,y:origin.y},radius:Number(face.querySelector('.mirror-handle-hit').getAttribute('cx')),surface,delta,matrix:{a:matrix.a,b:matrix.b,c:matrix.c,d:matrix.d,e:matrix.e,f:matrix.f}};
+    const dial=document.querySelector(`[data-mirror-control="${face.dataset.mirrorFace}"]`),centre=new DOMPoint().matrixTransform(dial.getScreenCTM()).matrixTransform(inverse);
+    return {origin:{x:centre.x,y:centre.y},radius:Number(dial.querySelector('.mirror-handle-hit').getAttribute('cx')),surface,delta,matrix:{a:matrix.a,b:matrix.b,c:matrix.c,d:matrix.d,e:matrix.e,f:matrix.f}};
   },to);
   const {origin,radius,surface,delta,matrix:m}=geometry,point=t=>{const angle=surface+delta*t,x=origin.x+radius*Math.cos(angle),y=origin.y+radius*Math.sin(angle);return{x:m.a*x+m.c*y+m.e,y:m.b*x+m.d*y+m.f};};
   const start=point(0);await page.mouse.move(start.x,start.y);await page.mouse.down();const steps=Math.max(4,Math.ceil(Math.abs(delta)*180/Math.PI/3));for(let i=1;i<=steps;i++){const p=point(i/steps);await page.mouse.move(p.x,p.y);}
