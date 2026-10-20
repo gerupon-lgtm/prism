@@ -586,3 +586,11 @@ html:not(.device-landscape) #app.selection-play.text-enlarged:not(.compact) #sta
 .gate-status{fill:#c2d0eb;font-size:calc(24px * var(--board-factor,1));stroke-width:calc(4px * var(--board-factor,1));font-variant-numeric:tabular-nums}
 .gate-open .gate-status{fill:#e4eabd}
 .mirror .symbol-art{filter:drop-shadow(0 0 4px #9cb4db)}
+.mirror-face{cursor:grab}.mirror-face:active{cursor:grabbing}
+.mirror-surface{stroke:#ecf9ff;stroke-width:4px;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px #9cd5ff)}
+.mirror-handle-hit{fill:transparent;stroke:none;pointer-events:all}
+.mirror-handle,.mirror-handle-stem{fill:#203651;stroke:#bbe9ff;stroke-width:2px;vector-effect:non-scaling-stroke;pointer-events:none}
+.mirror-optics{pointer-events:none}
+.mirror-incident{stroke:#fae6ae;stroke-width:3px;stroke-dasharray:5 5;opacity:.75;fill:none;vector-effect:non-scaling-stroke}
+.mirror-reflection{stroke:url(#mirror-aim-rainbow);stroke-width:5px;stroke-dasharray:10 6;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px #b6e7ff)}
+.mirror-target .node-hit{stroke:#c9f3ff;stroke-width:3px;fill:#a6e8ff20;vector-effect:non-scaling-stroke}

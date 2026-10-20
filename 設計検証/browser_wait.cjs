@@ -51,13 +51,13 @@ async function startAndPause(page) {
   catch(error){const state=await page.evaluate(()=>({play:document.getElementById('play').outerHTML,hint:document.getElementById('hint').textContent,error:document.getElementById('dialog-error').textContent,edges:[...document.querySelectorAll('.edge:not(.candidate)')].map(e=>e.dataset.edge)}));throw new Error('Start did not reach running: '+JSON.stringify(state),{cause:error});}
   await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
 }
-async function chooseChallenge(page,id) {
+async function chooseChallenge(page,id,{dismissMirrorIntro=true}={}) {
   // Helpers take stable IDs. The human-facing Q number can move across sets.
   const number=await page.evaluate(async id=>{const {challenges}=await import(new URL('../content/challenges.js',document.querySelector('script[type=module]').src));const c=challenges.find(c=>c.id===id);return c?.number??Number(id.slice(1));},id);
   await page.locator('#dialog-body .dialog-list button').first().waitFor({state:'visible'});
   for(let n=0;n<30;n++){
     await page.evaluate(async()=>{await document.fonts.ready;for(let i=0;i<4;i++)await new Promise(requestAnimationFrame);});
-    const item=page.locator(`[data-challenge="${id}"]`);if(await item.count()){await item.click();return;}
+    const item=page.locator(`[data-challenge="${id}"]`);if(await item.count()){await item.click();if(dismissMirrorIntro&&await page.locator('#mirror-intro-start').isVisible())await page.locator('#mirror-intro-start').click();return;}
     const names=await page.locator('#dialog-body .dialog-list button').allTextContents(),first=names.map(name=>/^Q(\d+) /.exec(name)).find(Boolean);
     const pager=page.locator('#dialog-body .pager button'),next=first&&number<Number(first[1])?pager.first():pager.last();
     // Responsive pagination may change between measuring and clicking. Re-read
@@ -82,6 +82,7 @@ async function challengeSolution(page,id,{partial=false}={}){
   return partial?row.partial.edges:row.winner;
 }
 async function dragConnection(page,from,to){
+  if(await page.locator(`[data-mirror-face="${from}"]`).count()){await rotateMirrorTo(page,from,to);return;}
   const {a,b}=await wiringBounds(page,from,to),start={x:a.x+a.width/2,y:a.y+a.height/2},end={x:b.x+b.width/2,y:b.y+b.height/2};
   const geometry=await page.locator('#board').evaluate((board,{from,to})=>{
     const box=board.getBoundingClientRect();
@@ -98,8 +99,29 @@ async function dragConnection(page,from,to){
   }
   await page.mouse.move(start.x,start.y);await page.mouse.down();for(const point of route.slice(1))await page.mouse.move(point.x,point.y,{steps:10});await page.mouse.up();
 }
+async function rotateMirrorTo(page,id,to,{release=true}={}){
+  if(!await page.locator(`[data-mirror-handle="${id}"]`).count())await page.locator(`[data-node="${id}"]`).press('Enter');
+  const geometry=await page.locator(`[data-mirror-face="${id}"]`).evaluate((face,to)=>{
+    const matrix=face.parentNode.getScreenCTM(),inverse=matrix.inverse(),origin=new DOMPoint().matrixTransform(face.getScreenCTM()).matrixTransform(inverse);
+    let angle;
+    if(to){const target=new DOMPoint().matrixTransform(document.querySelector(`[data-node="${CSS.escape(to)}"]`).getScreenCTM()).matrixTransform(inverse);angle=Math.atan2(target.y-origin.y,target.x-origin.x);}
+    else{const angles=[...document.querySelectorAll('[data-node]')].filter(n=>n.dataset.node!==face.dataset.mirrorFace).map(n=>{const p=new DOMPoint().matrixTransform(n.getScreenCTM()).matrixTransform(inverse);return(Math.atan2(p.y-origin.y,p.x-origin.x)+Math.PI*2)%(Math.PI*2);}).sort((a,b)=>a-b);let largest=-1;for(let i=0;i<angles.length;i++){const end=angles[(i+1)%angles.length]+(i===angles.length-1?Math.PI*2:0),gap=end-angles[i];if(gap>largest){largest=gap;angle=angles[i]+gap/2;}}}
+    const surface=Number(face.dataset.surface),incident=Number(face.dataset.incident);
+    let delta=(angle+incident)/2-surface;while(delta>Math.PI/2)delta-=Math.PI;while(delta< -Math.PI/2)delta+=Math.PI;
+    return {origin:{x:origin.x,y:origin.y},radius:Number(face.querySelector('.mirror-handle-hit').getAttribute('cx')),surface,delta,matrix:{a:matrix.a,b:matrix.b,c:matrix.c,d:matrix.d,e:matrix.e,f:matrix.f}};
+  },to);
+  const {origin,radius,surface,delta,matrix:m}=geometry,point=t=>{const angle=surface+delta*t,x=origin.x+radius*Math.cos(angle),y=origin.y+radius*Math.sin(angle);return{x:m.a*x+m.c*y+m.e,y:m.b*x+m.d*y+m.f};};
+  const start=point(0);await page.mouse.move(start.x,start.y);await page.mouse.down();const steps=Math.max(4,Math.ceil(Math.abs(delta)*180/Math.PI/3));for(let i=1;i<=steps;i++){const p=point(i/steps);await page.mouse.move(p.x,p.y);}
+  if(release){await page.mouse.up();if(to&&await page.locator('.mirror-optics').getAttribute('data-target')!==to){
+    // Near-collinear recipients deliberately use the on-board coarse control,
+    // rather than requiring a sub-degree drag or selecting a hidden target.
+    console.log('Coarse mirror rotation: '+id+' -> '+to);
+    const limit=await page.locator('[data-node]').count()+1;for(let i=0;i<limit&&await page.locator('.mirror-optics').getAttribute('data-target')!==to;i++)await page.locator('#mirror-right').click();
+    if(await page.locator('.mirror-optics').getAttribute('data-target')!==to)throw Error('Mirror recipient unavailable: '+id+' -> '+to);
+  }}
+}
 async function holdWire(page,id){
   const point=await page.locator(`.edge:not(.candidate)[data-edge="${id}"] .edge-line`).evaluate(line=>{const p=line.getPointAtLength(line.getTotalLength()*.35).matrixTransform(line.getScreenCTM());return {x:p.x,y:p.y};});
   await page.mouse.move(point.x,point.y);await page.mouse.down();try{await page.waitForFunction(()=>document.getElementById('wire-delete-toast').open,null,{timeout:2000});}finally{await page.mouse.up();}
 }
-module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound,challengeSolution,dragConnection,holdWire};
+module.exports={waitForAsync,wiringBounds,enterApp,startGuide,skipGuide,startAndPause,chooseChallenge,selectChallenge,setSound,challengeSolution,dragConnection,rotateMirrorTo,holdWire};

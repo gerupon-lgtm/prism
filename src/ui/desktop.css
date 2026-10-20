@@ -257,3 +257,19 @@ html:not(.device-landscape) #result-line:has(#wire-limit-notice:not([hidden])):h
 .text-enlarged #wire-limit-notice{font-size:1rem}
 html.desktop-layout #wire-limit-notice{font-size:17px}
 html.desktop-layout #wire-limit-notice span{font-size:14px}
+
+/* Mirror controls share the reserved status space; the field never shifts. */
+#mirror-controls{position:absolute;inset:0;display:flex;align-items:center;gap:4px;padding:0 3px;z-index:4;background:#111c30;border-radius:9px;box-sizing:border-box}
+#mirror-controls[hidden]{display:none}
+#mirror-status{flex:1;min-width:0;font-size:14px;line-height:1.2;color:#d8edff;overflow-wrap:anywhere}
+#mirror-controls button{flex:none;min-width:44px;width:44px;min-height:44px;height:44px;padding:0;font-size:24px;line-height:1}
+#result-line:has(#mirror-controls:not([hidden])) :is(#hint,#result-info,#retry-result,#wire-limit-notice){visibility:hidden}
+.device-landscape #mirror-controls{flex-wrap:wrap;justify-content:center;padding:2px}
+.device-landscape #mirror-status{flex:0 0 100%;text-align:center;font-size:13px}
+.device-landscape #mirror-controls button{min-width:38px;width:38px;min-height:44px}
+html.desktop-layout #mirror-status{font-size:18px}
+html.desktop-layout #mirror-controls{max-width:100%;gap:8px}
+.mirror-intro .help-art{width:100%;height:100px;flex:none}
+dialog.mirror-intro,html.desktop-layout dialog.help-dialog.mirror-intro:not(#wire-delete-toast){height:fit-content;max-height:calc(100dvh - 24px)}
+.mirror-intro form{height:auto;max-height:calc(100dvh - 50px)}
+.mirror-intro #dialog-body{flex:0 1 auto}

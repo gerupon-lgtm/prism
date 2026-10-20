@@ -135,7 +135,7 @@ function open(title) {
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
   session.pause('dialog');chime.stop('dialog',{preserveTap:true});clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','help-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','help-dialog','mirror-intro');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -182,6 +182,9 @@ function scheduleConditionFit(){
   scheduleConditionFit.frame=requestAnimationFrame(()=>{scheduleConditionFit.frame=null;fitConditionCard();});
 }
 function render(redraw=true,{records=true}={}) {
+  const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&$('title-screen').hidden);
+  $('mirror-controls').hidden=!aiming;
+  if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'回す／↶ ↷で照準');$('mirror-status').title=target?'指を離すと、この相手へつながります':'つまみをドラッグして回します。向きの近い相手は左右ボタンで順に選べます。';}
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
   // Enlarged text on a short portrait screen needs the existing full-text
   // entries, rather than a heading that leaves too little room to connect parts.
@@ -278,7 +281,8 @@ function render(redraw=true,{records=true}={}) {
     $('desktop-sidebar').classList.toggle('has-guide',Boolean(session.guide));
   }
   const selectedWire=session.circuit.edges.some(edge=>edge.id===session.selection),selectedCandidate=!selectedWire&&session.challenge?.candidates.some(edge=>edge.id===session.selection);
-  const completeHint=board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':'ダブルタップで設定'}`:'起点から候補をなぞって結線';
+  const selectedMirror=session.circuit.nodes.find(n=>n.id===session.selection)?.kind==='mirror';
+  const completeHint=board.addKind?'追加する位置をタップ':session.selection?`${objectName(session.selection,session.circuit,session.challenge?.candidates)}：${selectedWire?'タップで設定・長押しで削除':selectedCandidate?'未結線の候補':selectedMirror?'タップして鏡を回す':'ダブルタップで設定'}`:'起点から候補をなぞって結線';
   $('hint').dataset.fullText=completeHint;$('hint').setAttribute('aria-label',completeHint);
   setText('hint',board.addKind?'位置を選択':session.selection?'設定を開く':'結線の案内');
   $('guide-bar').hidden=!session.guide;
@@ -545,6 +549,7 @@ function replace(request,{selectPlay=selectionPlay}={}) {
 function finishReplacement(request,options,selectPlay=selectionPlay) {
   session.replace(request,options);selectionPlay=session.mode==='challenge'&&selectPlay;close();maybeGuide();
   if(!$('title-screen').hidden)leaveTitle();
+  maybeMirrorIntro();
 }
 function maybeGuide() {
   // Guides are chosen explicitly from the title/menu, including first launch.
@@ -555,7 +560,15 @@ function showTitle() {
   if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;$('failure-toast').hidden=true;
   $('title-resume').focus();
 }
-function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render(); }
+function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render();maybeMirrorIntro(); }
+let mirrorIntroShown=false;
+function maybeMirrorIntro(){
+  if(mirrorIntroShown||dialog.open||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
+  try{if(storage.getItem('prism-mirror-optics-intro-v1')==='seen')return;}catch{/* An unavailable store must not prevent playing. */}
+  mirrorIntroShown=true;open('鏡を回して、光を導こう');dialog.classList.add('help-dialog','mirror-intro');
+  body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','丸いつまみをドラッグして鏡を回しましょう。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','最初はどこにも向いていません。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
+  actions.append(button('やってみる',()=>{try{storage.setItem('prism-mirror-optics-intro-v1','seen');}catch{/* Read the help again whenever needed. */}close();},{id:'mirror-intro-start'}));fitDialogForm();
+}
 function layoutTitle(width,height) {
   const compact=height<360||parseFloat(getComputedStyle(document.documentElement).fontSize)>=20;
   $('title-screen').classList.toggle('title-compact',compact);
@@ -829,7 +842,7 @@ function settings(pointer) {
   if(pointer)settingsTapGuard={x:pointer.clientX,y:pointer.clientY,until:performance.now()+400};
   const items=[];
   items.push(['名前の全文',()=>fullText('対象の名前',objectName(id,input),settings)]);
-  if(node?.kind==='mirror')items.push(['反射先を選ぶ',()=>mirrorDirection(node.id)]);
+  if(node?.kind==='mirror'&&session.editable)items.push(['盤面で鏡を回す',()=>{close();board.beginMirrorAim(id);board.render();render(false);}]);
   if(node?.gate)items.push(['開閉の周期',()=>fullText('プリズムの開閉',`${node.gate.period}秒周期で${node.gate.open}秒間開きます。閉じている間は光が順番待ちになり、次に開くと処理を始めます。処理を始めた光は、途中で閉じても最後まで進みます。`,settings)]);
   if(edge||node.kind!=='goal')items.push(['時間',()=>timeInput(id,edge?.time??node.process)]);
   if(session.mode==='free'&&edge)items.push([edge.bidirectional?'向き：両方向':'向き：片方向',()=>{
@@ -861,17 +874,6 @@ function settings(pointer) {
     if(value){const label=element('span','時間'),current=element('span',value.length>18?value.slice(0,16)+'…':value,{class:'setting-value','aria-hidden':'true'});row.replaceChildren(label,current);row.title=`時間：${value}`;}
     return row;
   });actions.append(button('記録',()=>{close();showRecords();}),button('閉じる',close));
-}
-function mirrorDirection(id){
-  session.requireEditable();open('鏡の反射先');dialog.classList.add('settings-dialog');
-  body.append(element('p','反射先は一つです。鏡から相手へドラッグしても変更できます。変更すると、前の反射先への配線を置き換えます。'));
-  const targets=session.mode==='challenge'
-    ?[...new Set(session.challenge.candidates.filter(e=>e.from===id).map(e=>e.to))]
-    :session.circuit.nodes.filter(node=>node.id!==id).map(node=>node.id);
-  listPage(targets,to=>{
-    const row=button(objectName(to,session.circuit),()=>{session.setMirrorDirection(id,to);chime.wire();close();},{class:'setting-option','data-mirror-target':to});
-    const preview=()=>{board.mirrorPreview={from:id,to};board.render();};row.addEventListener('pointerenter',preview);row.addEventListener('focus',preview);return row;
-  });actions.append(button('取消',close));fitDialogForm();
 }
 function fullText(title,text,back=close){
   open(title);const chunks=Array.from(String(text));const parts=[];
@@ -1116,6 +1118,9 @@ $('hint').addEventListener('click',()=>{
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
   }else fullText('操作の案内',$('hint').dataset.fullText||$('hint').textContent);
 });
+$('mirror-left').addEventListener('click',()=>attempt(()=>board.turnMirror(-1)));
+$('mirror-right').addEventListener('click',()=>attempt(()=>board.turnMirror(1)));
+$('mirror-done').addEventListener('click',()=>{board.cancelAll();board.render();render(false);});
 document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
 window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});

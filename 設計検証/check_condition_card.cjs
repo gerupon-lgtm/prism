@@ -16,6 +16,7 @@ const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decod
   await p.locator('#title-challenges').click();await chooseChallenge(p,ids[0]);const rows=[];
   for(const id of ids){
    if(id!==ids[0])await p.locator('#stage-next').click();
+   if(await p.locator('#mirror-intro-start').isVisible())await p.locator('#mirror-intro-start').click();
    await p.evaluate(async()=>{await document.fonts.ready;for(let i=0;i<6;i++)await new Promise(requestAnimationFrame);});
    const row=await p.evaluate(()=>{const rect=id=>{const r=document.getElementById(id).getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};},goal=document.getElementById('challenge-goal'),style=getComputedStyle(goal),c=document.createElement('canvas').getContext('2d');c.font=style.font;return {card:rect('challenge-info'),board:rect('board'),text:goal.textContent,goal:{h:goal.clientHeight,sh:goal.scrollHeight,w:goal.clientWidth,sw:goal.scrollWidth,font:style.font,lineHeight:style.lineHeight},proposedWidth:c.measureText('鐘1の0.5秒後に鐘2、さらに1秒後に鐘3を鳴らす').width,viewport:{w:innerWidth,h:innerHeight,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight}};});row.id=id;rows.push(row);
    if(['Q26','Q27'].includes(id))await p.screenshot({path:path.join(out,scenario.name+'-'+id+'.png')});
