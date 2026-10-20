@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#090d1a">
-  <meta name="prism-version" content="0.73.0">
+  <meta name="prism-version" content="0.74.0">
   <!-- OFFLINE_METADATA -->
   <title>プリズム・ノーツ</title>
-  <link rel="stylesheet" href="./src/ui/app.css?v=0.73.0">
-  <link rel="stylesheet" href="./src/ui/desktop.css?v=0.73.0">
+  <link rel="stylesheet" href="./src/ui/app.css?v=0.74.0">
+  <link rel="stylesheet" href="./src/ui/desktop.css?v=0.74.0">
 </head>
 <body>
   <section id="title-screen" aria-label="プリズム・ノーツのタイトル">
-    <div class="title-art" aria-hidden="true"><img class="title-ruins" src="./public/graphics/ruins.png?v=0.73.0" alt=""><img class="title-observatory" src="./public/graphics/observatory.png?v=0.73.0" alt=""></div>
+    <div class="title-art" aria-hidden="true"><img class="title-ruins" src="./public/graphics/ruins.png?v=0.74.0" alt=""><img class="title-observatory" src="./public/graphics/observatory.png?v=0.74.0" alt=""></div>
     <div class="title-layout">
-      <div class="title-hero"><h1 class="title-logo" aria-label="PRISM NOTES"><svg viewBox="0 0 1000 440" aria-hidden="true"><text class="prism" x="500" y="260">PRISM</text><text class="notes" x="500" y="420">NOTES</text></svg></h1><p>星の光をつなぎ、響きを見つける。</p><div class="title-symbols" aria-hidden="true"><img src="./public/graphics/source.png?v=0.73.0" alt=""><span></span><img src="./public/graphics/prism.png?v=0.73.0" alt=""><span></span><img src="./public/graphics/goal.png?v=0.73.0" alt=""></div></div>
-      <nav class="title-menu" aria-label="はじめのメニュー"><button id="title-tutorial">チュートリアル</button><button id="title-start" title="課題1から順にプレイ">連続プレイ</button><div class="title-modes"><button id="title-challenges">選択プレイ</button><button id="title-free">自由作成</button></div><div class="title-details"><button id="title-parts">パーツの説明</button><button id="title-about">遊び方と概要</button></div><button id="title-resume">プレイ画面へ</button><button id="title-update" aria-label="準備できた更新を適用する" hidden>更新</button><p id="title-error" role="status"></p><small class="title-credits"><span class="copyright">© SIKUMI LAB</span><span>検証 v0.73.0</span></small></nav>
+      <div class="title-hero"><h1 class="title-logo" aria-label="PRISM NOTES"><svg viewBox="0 0 1000 440" aria-hidden="true"><text class="prism" x="500" y="260">PRISM</text><text class="notes" x="500" y="420">NOTES</text></svg></h1><p>星の光をつなぎ、響きを見つける。</p><div class="title-symbols" aria-hidden="true"><img src="./public/graphics/source.png?v=0.74.0" alt=""><span></span><img src="./public/graphics/prism.png?v=0.74.0" alt=""><span></span><img src="./public/graphics/goal.png?v=0.74.0" alt=""></div></div>
+      <nav class="title-menu" aria-label="はじめのメニュー"><button id="title-tutorial">チュートリアル</button><button id="title-start" title="課題1から順にプレイ">連続プレイ</button><div class="title-modes"><button id="title-challenges">選択プレイ</button><button id="title-free">自由作成</button></div><div class="title-details"><button id="title-parts">パーツの説明</button><button id="title-about">遊び方と概要</button></div><button id="title-resume">プレイ画面へ</button><button id="title-update" aria-label="準備できた更新を適用する" hidden>更新</button><p id="title-error" role="status"></p><small class="title-credits"><span class="copyright">© SIKUMI LAB</span><span>検証 v0.74.0</span></small></nav>
     </div>
   </section>
   <main id="app" inert>
@@ -26,7 +26,7 @@
       <div class="header-actions"><button id="records" aria-label="記録">記録</button><button id="sound" aria-pressed="true" aria-label="音あり"><svg class="sound-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z"/><path class="sound-waves" d="M16 8c3 2 3 6 0 8M19 5c5 4 5 10 0 14"/><path class="sound-off" d="m16 8 6 8m0-8-6 8"/></svg><span id="sound-label">音あり</span></button><button id="update-notice" aria-label="準備できた更新を適用する" hidden>更新</button><button id="menu" aria-label="保存と見本のメニュー">☰</button></div>
       <button id="challenge-info" aria-describedby="wire-budget" aria-label="課題と配線を全文で読む" hidden><span class="desktop-only desktop-objective-label">この課題の条件 <span aria-hidden="true">ⓘ</span></span><span class="mobile-objective-label" aria-hidden="true">クリア条件 <span>詳しく ⓘ</span></span><span id="challenge-goal"></span><span class="desktop-only desktop-budget-label">配線の本数</span><span id="wire-budget"></span></button>
     </div></header>
-    <div id="guide-bar" class="orientation-region" hidden><div class="orientation-content guide-content"><img id="guide-spirit" src="./public/spirit-guide.png?v=0.73.0" alt="星の精霊" draggable="false"><div class="guide-copy"><strong id="guide-heading">チュートリアル</strong><span id="guide-text" aria-live="polite"></span></div><div class="guide-actions"><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div></div></div>
+    <div id="guide-bar" class="orientation-region" hidden><div class="orientation-content guide-content"><img id="guide-spirit" src="./public/spirit-guide.png?v=0.74.0" alt="星の精霊" draggable="false"><div class="guide-copy"><strong id="guide-heading">チュートリアル</strong><span id="guide-text" aria-live="polite"></span></div><div class="guide-actions"><button id="guide-finish" hidden>完了</button><button id="guide-skip">スキップ</button></div></div></div>
     <div id="workspace">
       <section id="stage" aria-label="星の光を導く盤面">
         <svg id="board" aria-label="プリズムと道" role="group"></svg>
@@ -50,7 +50,7 @@
     </aside>
     <div id="result-line" class="orientation-region"><div class="orientation-content result-content"><button id="result-info" aria-label="実行状況を全文で読む"><span id="result" role="status" aria-live="polite"></span><span id="result-summary" aria-hidden="true"></span></button><button id="hint">起点を選び、候補へドラッグ</button><button id="retry-result" hidden>成績再試行</button><div id="wire-limit-notice" role="status" aria-live="polite" aria-atomic="true" hidden><strong></strong><span>線を長押しして削除できます。</span></div></div></div>
     <nav id="play-controls" class="orientation-region" aria-label="実行操作"><div class="orientation-content play-content"><button id="stop">停止</button><button id="play">鐘を鳴らす</button><button id="next" aria-label="次の動きへ進む">次の動き</button></div></nav>
-    <footer class="orientation-region"><div class="orientation-content footer-content"><span class="version-tools"><span class="copyright">© SIKUMI LAB</span><span>検証 <button class="app-version" aria-label="表示情報を開く">v0.73.0</button></span></span></div></footer>
+    <footer class="orientation-region"><div class="orientation-content footer-content"><span class="version-tools"><span class="copyright">© SIKUMI LAB</span><span>検証 <button class="app-version" aria-label="表示情報を開く">v0.74.0</button></span></span></div></footer>
   </main>
   <section id="clear-toast" aria-label="クリア後の操作" hidden><div class="clear-heading"><strong role="status">課題クリア！</strong><button id="clear-dismiss" aria-label="クリア通知を閉じる">×</button></div><dl class="clear-summary"><div><dt id="clear-time-label">到達時間</dt><dd id="clear-time"></dd></div><div><dt>スコア</dt><dd id="clear-score"></dd></div></dl><button id="clear-details" hidden>結果を見る</button><div class="clear-actions"><button id="clear-again">もう一度</button><button id="clear-next">次へ</button></div></section>
   <section id="failure-toast" aria-labelledby="failure-title" hidden><div class="failure-heading"><strong id="failure-title" role="status">課題未達成</strong><button id="failure-dismiss" aria-label="未達成の通知を閉じる">×</button></div><p id="failure-reason"></p><div id="failure-timing"><p id="failure-condition"></p><p class="failure-caption">鐘が鳴った時刻（開始から）</p><ol id="failure-arrivals"></ol></div><div class="failure-actions"><button id="failure-edit">配線を見直す</button><button id="failure-details" aria-label="未達成の理由と結果を見る">結果を見る</button></div></section>
@@ -61,6 +61,6 @@
   </dialog>
   <dialog id="dialog"><form method="dialog"><div class="panel-heading"><h2 id="dialog-title"></h2><button id="dialog-info" type="button" aria-label="説明を読む" hidden>？</button><button id="dialog-close" aria-label="閉じる" value="cancel">×</button></div><div id="dialog-body"></div><p id="dialog-error" role="alert"></p><div id="dialog-actions"></div></form></dialog>
   <input id="import" type="file" accept=".json,application/json" hidden>
-  <script type="module" src="./src/ui/app.js?v=0.73.0"></script>
+  <script type="module" src="./src/ui/app.js?v=0.74.0"></script>
 </body>
 </html>

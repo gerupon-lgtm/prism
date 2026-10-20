@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),
 const {chooseChallenge}=require('./browser_wait.cjs');
 const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
-const pw=require(arg('--playwright-path')),engine=arg('--engine')||'chromium',channel=arg('--channel'),root=path.resolve('dist'),version=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version;
+const pw=require(arg('--playwright-path')),engine=arg('--engine')||'chromium',channel=arg('--channel'),root=path.resolve('dist'),version=arg('--expected-version')||JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version;
 const out=path.resolve('設計検証/課題カード',version,arg('--label')||'local',channel||engine);fs.mkdirSync(out,{recursive:true});const report={version,checks:[],layouts:[],pending:['Physical device display, accessibility text settings and touch feel remain unverified.']};
 const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(f===root)f=path.join(root,'index.html');if(!f.startsWith(root+path.sep))throw Error();res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.ttf':'font/ttf'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});
 (async()=>{let browser;await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
@@ -10,7 +10,7 @@ const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decod
  for(const scenario of process.argv.includes('--rotated-only')?[{name:'rotated',width:844,height:390,mobile:true}]:process.argv.includes('--resize-only')?[{name:'phone',width:412,height:844}]:[{name:'phone',width:412,height:844},{name:'pixel',width:390,height:844},{name:'small',width:320,height:480},{name:'desktop',width:1440,height:900},{name:'enlarged',width:390,height:844,font:28}]){
   const context=await browser.newContext({viewport:{width:scenario.width,height:scenario.height},isMobile:!!scenario.mobile,hasTouch:!!scenario.mobile});
   if(scenario.mobile)await context.addInitScript(()=>{const o=new EventTarget();Object.defineProperties(o,{type:{value:'landscape-primary'},angle:{value:90}});Object.defineProperty(screen,'orientation',{get:()=>o});});
-  const p=await context.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(arg('--url')||'http://127.0.0.1:'+server.address().port);
+  const p=await context.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(arg('--url')||'http://127.0.0.1:'+server.address().port);assert.equal(await p.locator('meta[name=prism-version]').getAttribute('content'),version);
   if(scenario.font)await p.addStyleTag({content:':root{font-size:'+scenario.font+'px!important}'});
   const ids=process.argv.includes('--all-stages')?await p.evaluate(async()=>{const {challenges}=await import(new URL('../content/challenges.js',document.querySelector('script[type=module]').src));return challenges.map(c=>c.id);}):['Q23','Q24','Q25','Q26','Q27','Q28'];
   await p.locator('#title-challenges').click();await chooseChallenge(p,ids[0]);const rows=[];
@@ -26,13 +26,14 @@ const server=http.createServer((req,res)=>{try{let f=path.resolve(root,'.'+decod
   report.checks.push({scenario:scenario.name,passed:true});
   if(scenario.name==='phone'){
    const resized=[];
-   for(const width of [320,scenario.width]){
-    await p.setViewportSize({width,height:scenario.height});await p.evaluate(async()=>{for(let i=0;i<6;i++)await new Promise(requestAnimationFrame);});
+   for(const width of [320,844,scenario.width]){
+    await p.setViewportSize({width,height:width===844?310:scenario.height});await p.evaluate(async()=>{for(let i=0;i<6;i++)await new Promise(requestAnimationFrame);});
     const box=await p.evaluate(()=>{const c=document.getElementById('challenge-info'),g=document.getElementById('challenge-goal');return {card:c.getBoundingClientRect().height,goal:g.clientHeight,content:g.scrollHeight,line:parseFloat(getComputedStyle(g).lineHeight)};});
     assert(box.content<=box.goal+1,'Resized full text');assert(Math.abs(box.goal-box.line*(width===320?2:1))<1,'Resized shared line count');if(width===scenario.width)assert(Math.abs(box.card-heights[0])<.6,'Original fixed height restored');resized.push({width,...box});
    }
    report.checks.push({scenario:'resize-and-return',passed:true,resized});
   }
+  assert.deepEqual(errors,[],'No errors after viewport changes');
   await context.close();
  }
  report.passed=true;

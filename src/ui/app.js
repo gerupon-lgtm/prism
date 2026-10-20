@@ -169,6 +169,10 @@ function fitConditionCard(){
   const lines=challenges.every(challenge=>context.measureText(challengeGoal(challenge)).width<=goal.clientWidth-2)?1:2;
   goal.style.setProperty('--condition-lines',lines);fitConditionCard.key=key;
 }
+function scheduleConditionFit(){
+  if(scheduleConditionFit.frame!=null)return;
+  scheduleConditionFit.frame=requestAnimationFrame(()=>{scheduleConditionFit.frame=null;fitConditionCard();});
+}
 function render(redraw=true,{records=true}={}) {
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
   // Enlarged text on a short portrait screen needs the existing full-text
@@ -1110,8 +1114,8 @@ const fontProbe=element('span','',{'aria-hidden':'true',style:'position:fixed;le
 document.body.append(fontProbe);let observedFont=parseFloat(getComputedStyle(document.documentElement).fontSize);
 const fontResize=new ResizeObserver(()=>{const next=parseFloat(getComputedStyle(document.documentElement).fontSize);if(next!==observedFont){observedFont=next;viewport();render();}});
 fontResize.observe(fontProbe);
-const conditionResize=new ResizeObserver(fitConditionCard);conditionResize.observe($('challenge-goal'));
-document.fonts.ready.then(()=>{fitConditionCard.key=null;fitConditionCard();});
+const conditionResize=new ResizeObserver(scheduleConditionFit);conditionResize.observe($('challenge-goal'));
+document.fonts.ready.then(()=>{fitConditionCard.key=null;scheduleConditionFit();});
 if(offline.enabled)offline.prepare();
 
 // Local inspection for performance verification; never stores or uploads data.
