@@ -10,6 +10,7 @@ import { reflect,surfaceFor,snapTarget,unalignedAngle,placeMirrorControl } from 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
 const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMargin:4});
+const MIRROR_SELECT_DELAY_MS=200;
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
@@ -28,6 +29,8 @@ export class Board {
     element.addEventListener('pointercancel',event=>this.cancel(event));
     element.addEventListener('lostpointercapture',event=>{if(this.pointers.has(event.pointerId))this.cancel(event);});
     element.addEventListener('contextmenu',event=>event.preventDefault());
+    document.addEventListener('pointerdown',()=>this.cancelMirrorSelection(),true);
+    document.addEventListener('keydown',()=>this.cancelMirrorSelection(),true);
     element.addEventListener('wheel',event=>{event.preventDefault();this.zoom(event.deltaY<0?1.15:1/1.15,event.clientX,event.clientY);},{passive:false});
     this.resizeObserver = new ResizeObserver(()=>this.resize()); this.resizeObserver.observe(element);
     this.render(); this.resize();
@@ -69,7 +72,7 @@ export class Board {
   position(node) {const height=this.projectionHeight??1600;return {x:500+(((node.x??0.5)/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:height-((node.y??0.5)/(this.projectionScale??1))*height};}
   coordinates(at) {const height=this.projectionHeight??1600;return {x:((at.x-500)/(CIRCUIT_WIDTH*(this.displayWidthRatio??1))+500)/1000*(this.projectionScale??1),y:(height-at.y)/height*(this.projectionScale??1)};}
   zoom(factor,x,y) {
-    if(this.gesture?.kind==='mirror')this.cancelAll();
+    this.cancelMirrorSelection();if(['mirror','mirror-arrival'].includes(this.gesture?.kind))this.cancelAll();
     const rect=this.element.getBoundingClientRect();
     x ??= rect.left+rect.width/2; y ??= rect.top+rect.height/2;
     const before=this.location(x,y), old=this.session.view.zoom, next=Math.max(0.25,Math.min(6,old*factor));
@@ -84,7 +87,7 @@ export class Board {
     return {zoom,panX:500-(minX/2+maxX/2)*zoom,panY:800-(minY/2+maxY/2)*zoom};
   }
   fit() {
-    if(this.gesture?.kind==='mirror')this.cancelAll();
+    this.cancelMirrorSelection();if(['mirror','mirror-arrival'].includes(this.gesture?.kind))this.cancelAll();
     Object.assign(this.session.view,this.fitView());this.transform();this.render();
   }
   render() {
@@ -118,7 +121,7 @@ export class Board {
     const candidates=this.session.mode==='challenge' ? this.session.challenge.candidates.filter(edge=>!input.edges.some(built=>built.id===edge.id)) : [];
     const all=[...input.edges,...candidates];
     const timeOrigin=nodes.has(this.session.selection)?this.session.selection:input.nodes.find(node=>node.kind==='source')?.id;
-    const timeCards=[],previewEdges=new Set(this.gesture?.kind==='wire'?this.gesture.edges:[]);
+    const timeCards=[],previewEdges=new Set(['wire','mirror-arrival'].includes(this.gesture?.kind)?this.gesture.edges:[]);
     const parallels=new Map();
     for(const edge of all){const key=JSON.stringify([edge.from,edge.to].sort());let list=parallels.get(key);if(!list){list=[];parallels.set(key,list);}list.push(edge);}
     for (const edge of all) {
@@ -211,6 +214,7 @@ export class Board {
     return {id,origin,before,incident,targets,avoid,route};
   }
   beginMirrorAim(id,incomingId=null,route=[id]) {
+    this.cancelMirrorSelection();
     if(!this.session.editable)return;
     if(this.mirrorAim?.id===id&&!incomingId)return this.mirrorAim;
     const geometry=this.mirrorGeometry(id,incomingId,route);if(!geometry)return;
@@ -220,6 +224,17 @@ export class Board {
     this.mirrorAim.control=this.mirrorControlPosition(geometry.origin);
     const control=this.mirrorAim.control;this.mirrorAim.controlScreen=new DOMPoint(control.x,control.y).matrixTransform(this.world.getScreenCTM());
     return this.mirrorAim;
+  }
+  cancelMirrorSelection(){clearTimeout(this.mirrorSelectionTimer);this.mirrorSelectionTimer=null;}
+  queueMirrorSelection(id,incomingId){
+    this.cancelMirrorSelection();
+    const circuit=this.session.circuit;
+    this.mirrorSelectionTimer=setTimeout(()=>{
+      this.mirrorSelectionTimer=null;
+      const doc=this.element.ownerDocument;
+      if(this.session.circuit!==circuit||!this.session.editable||this.gesture||this.pointers.size||doc.hidden||!this.element.getClientRects().length||this.element.closest('[inert]')||doc.querySelector('dialog[open]'))return;
+      this.beginMirrorAim(id,incomingId);this.render();this.changed(false);
+    },MIRROR_SELECT_DELAY_MS);
   }
   mirrorControlPosition(origin){
     const matrix=this.world.getScreenCTM(),point=new DOMPoint(origin.x,origin.y).matrixTransform(matrix),area=this.element.getBoundingClientRect();
@@ -639,11 +654,11 @@ export class Board {
       if(target&&target!==from&&!terminal){
         // Cue each accepted target; the stroke stays provisional until release.
         try{const plan=this.session.planConnections([...gesture.route,target]);gesture.edges=plan.added;gesture.route.push(target);this.session.selection=target;this.connected(target);
-          if(this.session.circuit.nodes.find(n=>n.id===target)?.kind==='mirror'){this.beginMirrorAim(target,from,gesture.route);gesture.kind='mirror';gesture.surface=this.mirrorAim.rawSurface;gesture.pointerAngle=null;}
+          if(this.session.circuit.nodes.find(n=>n.id===target)?.kind==='mirror'){gesture.kind='mirror-arrival';this.session.selection=null;}
           this.render();this.changed(false);
         }catch{/* An invalid intermediate target does not commit part of the stroke. */}
       }
-      this.previewWire();if(gesture.kind==='mirror')this.magnifier.hide();else this.magnifier.show(event,`${gesture.route.map(id=>partName(this.session.circuit.nodes.find(node=>node.id===id),this.session.circuit.nodes,true)).join('→')}`);
+      this.previewWire();if(gesture.kind==='mirror-arrival')this.magnifier.hide();else this.magnifier.show(event,`${gesture.route.map(id=>partName(this.session.circuit.nodes.find(node=>node.id===id),this.session.circuit.nodes,true)).join('→')}`);
     } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {
       const group=this.world.querySelector(`[data-node="${CSS.escape(gesture.id)}"]`);
       group?.setAttribute('transform',`translate(${gesture.last.x} ${gesture.last.y}) rotate(${-this.angle})`);
@@ -699,7 +714,7 @@ export class Board {
     return nearest;
   }
   updateWireTimeFocus() {
-    const id=this.wireTimeTarget(),planned=new Set(['wire','mirror'].includes(this.gesture?.kind)?this.gesture.edges:[]);
+    const id=this.wireTimeTarget(),planned=new Set(['wire','mirror','mirror-arrival'].includes(this.gesture?.kind)?this.gesture.edges:[]);
     for(const group of this.world.querySelectorAll('[data-edge]')){group.classList.toggle('wiring-focus',group.dataset.edge===id);group.classList.toggle('wiring-planned',planned.has(group.dataset.edge));}
     this.wire?.classList.toggle('mirror-direction-preview',this.session.circuit.nodes.find(n=>n.id===this.gesture?.route?.at(-1))?.kind==='mirror');
     return id;
@@ -733,11 +748,12 @@ export class Board {
         }else if(gesture.route.length>1)this.session.connectPath(gesture.route);
         if(aim){const {control,controlScreen}=aim;this.mirrorAim=null;this.beginMirrorAim(aim.id,gesture.route.at(-2));Object.assign(this.mirrorAim,{control,controlScreen});}
         this.lastTap=null;
-      } else if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
+      } else if(['wire','mirror-arrival'].includes(gesture.kind)&&gesture.moved&&this.session.editable) {
         // A missed final target discards only the unaccepted tail. Explicit
         // cancellation still clears the entire provisional gesture in cancelAll.
         if(gesture.route.length>1){
           this.session.connectPath(gesture.route);
+          if(gesture.kind==='mirror-arrival'){this.session.selection=null;this.lastTap=null;this.queueMirrorSelection(gesture.route.at(-1),gesture.route.at(-2));}
         }
       } else if(gesture.kind==='move'&&gesture.moved&&this.session.editable) {const at=this.coordinates(gesture.last);this.session.moveNode(gesture.id,at.x,at.y);}
       else if(!gesture.moved) {
@@ -754,5 +770,5 @@ export class Board {
   }
   cancel(event) {this.pointers.delete(event.pointerId);this.cancelAll();this.render();}
   stopHold() {clearTimeout(this.holdTimer);this.holdTimer=null;}
-  cancelAll() {const wasAiming=Boolean(this.mirrorAim);this.stopHold();this.gesture=null;this.mirrorAim=null;this.updateWireTimeFocus();this.pointers.clear();this.lastTap=null;this.setWirePreview('');this.magnifier.hide();this.drawMirrors();if(wasAiming)this.changed(false);}
+  cancelAll() {const wasAiming=Boolean(this.mirrorAim);this.cancelMirrorSelection();this.stopHold();this.gesture=null;this.mirrorAim=null;this.updateWireTimeFocus();this.pointers.clear();this.lastTap=null;this.setWirePreview('');this.magnifier.hide();this.drawMirrors();if(wasAiming)this.changed(false);}
 }

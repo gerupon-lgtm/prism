@@ -99,6 +99,7 @@ async function dragConnection(page,from,to){
     if(!route)throw new Error('No fixture drag route avoiding intermediate nodes '+from+' -> '+to);
   }
   await page.mouse.move(start.x,start.y);await page.mouse.down();for(const point of route.slice(1))await page.mouse.move(point.x,point.y,{steps:10});await page.mouse.up();
+  if(await page.locator(`[data-mirror-face="${to}"]`).count())await page.locator(`[data-mirror-control="${to}"]`).waitFor({state:'visible'});
 }
 async function rotateMirrorTo(page,id,to,{release=true}={}){
   if(!await page.locator(`[data-mirror-handle="${id}"]`).count())await page.locator(`[data-node="${id}"]`).press('Enter');
