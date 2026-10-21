@@ -16,10 +16,10 @@ test('鏡までの配線を解放時に確定し、即時の選択を消して�
   Board.prototype.up.call(b,{pointerId:1});assert.deepEqual(events,[['S','A','M'],['M','A']]);assert.equal(b.gesture,null);
 });
 
-test('結線後の自動選択は200ms待ち、待機中は鏡を選択しない',t=>{
+test('結線後の自動選択は100ms待ち、待機中は鏡を選択しない',t=>{
   t.mock.timers.enable({apis:['setTimeout']});const {b,events}=board();
   Board.prototype.queueMirrorSelection.call(b,'M','A');
-  t.mock.timers.tick(199);assert.deepEqual(events,[]);
+  t.mock.timers.tick(99);assert.deepEqual(events,[]);
   t.mock.timers.tick(1);assert.deepEqual(events,[['M','A']]);
   t.mock.timers.tick(1000);assert.equal(events.length,1);
 });
@@ -27,6 +27,6 @@ test('結線後の自動選択は200ms待ち、待機中は鏡を選択しない
 test('新しい入力・取り消し・別の回路・実行開始・非表示・画面遷移では後から選択しない',t=>{
   t.mock.timers.enable({apis:['setTimeout']});
   for(const stop of [b=>b.cancelMirrorSelection(),b=>b.session.circuit={},b=>b.session.editable=false,b=>b.pointers.set(1,{}),b=>b.gesture={},b=>b.element.ownerDocument.hidden=true,b=>b.element.getClientRects=()=>[],b=>b.element.closest=()=>({}),b=>b.element.ownerDocument.querySelector=()=>({})]){
-    const {b,events}=board();Board.prototype.queueMirrorSelection.call(b,'M','A');stop(b);t.mock.timers.tick(200);assert.deepEqual(events,[]);
+    const {b,events}=board();Board.prototype.queueMirrorSelection.call(b,'M','A');stop(b);t.mock.timers.tick(100);assert.deepEqual(events,[]);
   }
 });

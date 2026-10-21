@@ -2,6 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {reflect,surfaceFor,angleGap,snapTarget,unalignedAngle,placeMirrorControl} from '../src/ui/mirror-optics.js';
 
+test('空きがある場所では鏡から110pxの近い回転盤を選ぶ',()=>{
+  const origin={x:400,y:400},at=placeMirrorControl({bounds:{left:0,top:0,right:800,bottom:800},origin});
+  assert(Math.hypot(at.x-origin.x,at.y-origin.y)<=115);
+});
+
 test('離した回転盤は画面内でパーツを避け、同じ条件なら同じ場所を選ぶ',()=>{
   const bounds={left:0,top:0,right:390,bottom:500},origin={x:195,y:250};
   const obstacles=[{left:130,top:195,right:260,bottom:305},{left:20,top:20,right:150,bottom:150}];

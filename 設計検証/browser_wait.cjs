@@ -115,12 +115,14 @@ async function rotateMirrorTo(page,id,to,{release=true}={}){
   },to);
   const {origin,radius,surface,delta,matrix:m}=geometry,point=t=>{const angle=surface+delta*t,x=origin.x+radius*Math.cos(angle),y=origin.y+radius*Math.sin(angle);return{x:m.a*x+m.c*y+m.e,y:m.b*x+m.d*y+m.f};};
   const start=point(0);await page.mouse.move(start.x,start.y);await page.mouse.down();const steps=Math.max(4,Math.ceil(Math.abs(delta)*180/Math.PI/3));for(let i=1;i<=steps;i++){const p=point(i/steps);await page.mouse.move(p.x,p.y);}
-  if(release){await page.mouse.up();if(to&&await page.locator('.mirror-optics').getAttribute('data-target')!==to){
+  const selected=async()=>await page.locator('.mirror-optics').count()?await page.locator('.mirror-optics').getAttribute('data-target'):await page.locator('[data-node].selected').getAttribute('data-node');
+  if(release){await page.mouse.up();if(to&&await selected()!==to){
     // Near-collinear recipients deliberately use the on-board coarse control,
     // rather than requiring a sub-degree drag or selecting a hidden target.
     console.log('Coarse mirror rotation: '+id+' -> '+to);
-    const limit=await page.locator('[data-node]').count()+1;for(let i=0;i<limit&&await page.locator('.mirror-optics').getAttribute('data-target')!==to;i++)await page.locator('#mirror-right').click();
-    if(await page.locator('.mirror-optics').getAttribute('data-target')!==to)throw Error('Mirror recipient unavailable: '+id+' -> '+to);
+    if(!await page.locator('#mirror-controls').isVisible())await page.locator(`[data-node="${id}"]`).press('Enter');
+    const limit=await page.locator('[data-node]').count()+1;for(let i=0;i<limit&&await selected()!==to;i++)await page.locator('#mirror-right').click();
+    if(await selected()!==to)throw Error('Mirror recipient unavailable: '+id+' -> '+to);
   }}
 }
 async function holdWire(page,id){

@@ -61,7 +61,7 @@ let browser,activePage;
    await p.evaluate(()=>document.documentElement.style.fontSize='');await p.locator('#home').click();await p.getByRole('button',{name:'自由へ',exact:true}).click();
    const free={format:'prism-notes-circuit',version:1,name:'反射先の再選択',circuit:{mode:'spread',target:'G',nodes:[{id:'S',kind:'source',x:.5,y:.1,process:'0.5'},{id:'M',kind:'mirror',x:.5,y:.45,process:'0.5',reflectTo:'A'},{id:'A',kind:'prism',x:.2,y:.7,process:'0.5'},{id:'G',kind:'goal',x:.8,y:.9,process:'0'}],edges:[{id:'SM',from:'S',to:'M',time:'1'},{id:'MA',from:'M',to:'A',time:'1'},{id:'GM',from:'G',to:'M',time:'1',bidirectional:true}]}};
    report.step='free mirror direction regression';await p.locator('#import').setInputFiles({name:'mirror.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(free))});await p.getByText('反射先の再選択',{exact:true}).waitFor();
-   for(const target of ['G','A']){await dragConnection(p,'M',target);assert(await p.locator('.mirror-reflection').count());assert.equal(await p.locator('.mirror-optics').getAttribute('data-target'),target);}
+   for(const target of ['G','A']){await dragConnection(p,'M',target);await p.locator('[data-node="M"]').press('Enter');assert(await p.locator('.mirror-reflection').count());assert.equal(await p.locator('.mirror-optics').getAttribute('data-target'),target);}
    check('Imported free mirror keeps all direction choices, unwired previews and bidirectional reuse');
   }
   assert.deepEqual(errors,[],'no page exceptions');check(scenario.name+' no page errors');await context.close();

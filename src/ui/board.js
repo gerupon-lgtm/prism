@@ -10,7 +10,7 @@ import { reflect,surfaceFor,snapTarget,unalignedAngle,placeMirrorControl } from 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
 const WIRING_HIT=Object.freeze({startMargin:8,releaseMargin:12,passMargin:4});
-const MIRROR_SELECT_DELAY_MS=200;
+const MIRROR_SELECT_DELAY_MS=100;
 const secondsLabel=value=>`${value.length>4?value.slice(0,2)+'…':value}s`;
 
 export class Board {
@@ -744,9 +744,14 @@ export class Board {
         if(gesture.moved&&aim?.target){
           const same=this.mirrorIsConnected(aim.id,aim.target);
           if(gesture.route.length===1)this.session.setMirrorDirection(aim.id,aim.target);else this.session.connectPath([...gesture.route,aim.target]);
+          // A committed reflection finishes this gesture. Keeping rotation open
+          // would consume the next wiring drag just to dismiss its controls.
+          this.mirrorAim=null;this.session.selection=aim.target;
           if(!same)this.connected(aim.target);
-        }else if(gesture.route.length>1)this.session.connectPath(gesture.route);
-        if(aim){const {control,controlScreen}=aim;this.mirrorAim=null;this.beginMirrorAim(aim.id,gesture.route.at(-2));Object.assign(this.mirrorAim,{control,controlScreen});}
+        }else{
+          if(gesture.route.length>1)this.session.connectPath(gesture.route);
+          if(aim){const {control,controlScreen}=aim;this.mirrorAim=null;this.beginMirrorAim(aim.id,gesture.route.at(-2));Object.assign(this.mirrorAim,{control,controlScreen});}
+        }
         this.lastTap=null;
       } else if(['wire','mirror-arrival'].includes(gesture.kind)&&gesture.moved&&this.session.editable) {
         // A missed final target discards only the unaccepted tail. Explicit
