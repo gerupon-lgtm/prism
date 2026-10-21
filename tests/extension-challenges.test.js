@@ -21,11 +21,11 @@ const sets=[
 ];
 const oldProof=readProof('../設計検証/ランダム課題/generation.json');
 test('鏡の導入面は鏡を通らずに鐘へ届く候補を持たず、旧版の最高点は新版と区別する',()=>{
-  const c=challenges.find(c=>c.id==='Q35');assert.equal(c.version,3);
+  const c=challenges.find(c=>c.id==='Q35');assert.equal(c.version,4);
   const seen=new Set(['S']);
   for(let i=0;i<c.nodes.length;i++)for(const e of c.candidates)if(e.from!=='M'&&seen.has(e.from))seen.add(e.to);
   assert(!seen.has('G'));
-  const {s,records}=fixture();records.saveScore('Q35@2/random-1-old','delivery-all@1',{numerator:'100',denominator:'1'});
+  const {s,records}=fixture();records.saveScore('Q35@3/random-1-old','delivery-all@1',{numerator:'100',denominator:'1'});
   s.replace({challengeId:'Q35'});assert.equal(records.scores().length,1);
   const old=structuredClone(records.scores()[0]);assert(!matchesChallengeScore(old,s.challenge));
   const row=proofRow(sets[1],s.challenge.draw.id);solve(s,s.challenge,row);
@@ -77,7 +77,7 @@ test('新18面は表示25〜42、専用背景の6面セット、各8出題と2�
     const authored=challenges.slice(set.from,set.to);assert.equal(authored.length,6);assert.equal(set.proof.stages.length,48);
     assert.deepEqual(authored.map(c=>c.id),Array.from({length:6},(_,index)=>'Q'+(set.firstId+index)));
     assert.deepEqual(authored.map(challengeLabel),Array.from({length:6},(_,index)=>'Q'+(set.from+index+1)));
-    assert(authored.every(c=>c.type===set.type&&c.world===set.world));assert.equal(new Set(authored.map(c=>c.set)).size,1);
+    assert(authored.every(c=>(c.type===set.type||c.id==='Q36'&&c.type==='bell-sequence')&&c.world===set.world));assert.equal(new Set(authored.map(c=>c.set)).size,1);
     for(const c of authored){
       const bank=set.bank[c.id];assert.equal(bank.length,8);assert.deepEqual([...new Set(bank.map(row=>row.family))].sort(),[0,1]);
       const families=new Map();

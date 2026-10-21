@@ -1,0 +1,23 @@
+{
+  "version": "0.81.0",
+  "passed": true,
+  "checks": [
+    {
+      "stage": 32,
+      "family": 0,
+      "expectedSeconds": 0.6,
+      "wallMs": 830,
+      "arrivals": {
+        "G1": 304,
+        "G2": 822
+      }
+    }
+  ],
+  "pending": [
+    "Physical phone feel"
+  ],
+  "interactions": {
+    "resumeMs": 409,
+    "zoomMs": 393
+  }
+}

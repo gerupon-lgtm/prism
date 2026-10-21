@@ -2,16 +2,21 @@ import {createHash} from 'node:crypto';
 import {writeFileSync,mkdirSync} from 'node:fs';
 import {mirrorChallenges} from '../src/content/mirror-challenges.js';
 import {legalWirings,inspectProblem,simulateWiring} from './random-challenge-validation.js';
+// Keep repeated attempts brisk; uniqueness must not be bought with long waits.
+export const mirrorTempo={maximumWire:1.2,maximumPerfect:5,maximumRun:8};
+const brisk=result=>Number(result.baseline)<=mirrorTempo.maximumPerfect&&Number(result.maxDuration)<=mirrorTempo.maximumRun;
 export function generateMirrorChallenges(){
- const banks={},proof={kind:'coarse-mirror-targets',stages:[]};
+ const banks={},proof={kind:'coarse-mirror-targets',tempo:mirrorTempo,stages:[]};
  for(const authored of mirrorChallenges){
   const sets=legalWirings(authored),families=[];let seed=20261021+Number(authored.id.slice(1));
   const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
   for(let attempt=0;families.length<2&&attempt<200;attempt++){
    const problem=structuredClone(authored);
-   problem.candidates=problem.candidates.map((e,i)=>({...e,time:problem.nodes.some(n=>n.id===e.from&&n.kind==='mirror')?'0':i===0?'0.5':attempt===0?e.time:String(.5+Math.floor(random()*20)*.5)}));
+   const quick=authored.id==='Q36'||authored.id==='Q40';
+   problem.candidates=problem.candidates.map((e,i)=>({...e,time:problem.nodes.some(n=>n.id===e.from&&n.kind==='mirror')?'0':quick?e.time:i===0?(authored.id==='Q35'?'0.1':'0.5'):attempt===0?e.time:String((2+Math.floor(random()*11))/10)}));
+   if(quick&&attempt===1){const ids=authored.id==='Q36'?[['SM','SN'],['PM','PN']]:[['AM','AN']];for(const[a,b]of ids){const x=problem.candidates.find(e=>e.id===a),y=problem.candidates.find(e=>e.id===b);[x.time,y.time]=[y.time,x.time];}}
    const result=inspectProblem(problem,sets);
-   if(!result.valid||result.winner.length!==authored.limit||families.some(f=>JSON.stringify(f.result.winner)===JSON.stringify(result.winner)))continue;
+   if(!result.valid||!brisk(result)||result.winner.length!==authored.limit||families.some(f=>JSON.stringify(f.result.winner)===JSON.stringify(result.winner)))continue;
    const run=simulateWiring(problem,result.winner);
    if(!run.records.some(r=>r.type==='process-start'&&run.circuit.nodes.get(r.node).kind==='mirror'))continue;
    families.push({problem,result});console.log(authored.id+' accepted family '+families.length+' attempt '+attempt);
@@ -19,8 +24,11 @@ export function generateMirrorChallenges(){
   if(families.length!==2)throw Error('Mirror needs two distinct unique full-score families: '+authored.id);
   const bank=[];
   for(let family=0;family<2;family++)for(let variant=0;variant<4;variant++){
-   const problem=structuredClone(families[family].problem);problem.candidates[0].time=String(.5+variant*.2);
-   const result=inspectProblem(problem,sets);if(!result.valid)throw Error('Invalid mirror variant '+authored.id);
+   const problem=structuredClone(families[family].problem);
+   // A +0.3s offset would also make the two direct paths meet the 0.5s condition.
+   if(authored.id==='Q36')for(const id of family?['SM','PN']:['SN','PM']){const edge=problem.candidates.find(e=>e.id===id);edge.time=String((Math.round(Number(edge.time)*10)+[0,1,2,4][variant])/10);}
+   else problem.candidates[0].time=String(((authored.id==='Q35'||authored.id==='Q40'?1:5)+variant*2)/10);
+   const result=inspectProblem(problem,sets);if(!result.valid||!brisk(result)||problem.candidates.some(e=>Number(e.time)>mirrorTempo.maximumWire))throw Error('Invalid or slow mirror variant '+authored.id+'/'+family+'/'+variant+' '+JSON.stringify(result));
    const id=createHash('sha256').update(JSON.stringify(problem)).digest('hex').slice(0,16);
    bank.push({id,baseVersion:authored.version,family,times:problem.candidates.map(e=>e.time),baseline:result.baseline,maxDuration:result.maxDuration});
    proof.stages.push({challenge:problem.id,id,family,variant,...result});

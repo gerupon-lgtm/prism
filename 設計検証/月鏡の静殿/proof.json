@@ -1,13 +1,18 @@
 {
   "kind": "coarse-mirror-targets",
+  "tempo": {
+    "maximumWire": 1.2,
+    "maximumPerfect": 5,
+    "maximumRun": 8
+  },
   "stages": [
     {
       "challenge": "Q35",
-      "id": "a4c240c52f1a9d9a",
+      "id": "b26590fa49dc39be",
       "family": 0,
       "variant": 0,
-      "baseline": "10",
-      "maxDuration": "11.5",
+      "baseline": "1.3",
+      "maxDuration": "1.4",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -18,7 +23,7 @@
         "CG"
       ],
       "partial": {
-        "time": "11.5",
+        "time": "1.4",
         "edges": [
           "SA",
           "AM",
@@ -31,11 +36,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "521564844eb6bba0",
+      "id": "e2217789f8dd29c0",
       "family": 0,
       "variant": 1,
-      "baseline": "10.2",
-      "maxDuration": "11.7",
+      "baseline": "1.5",
+      "maxDuration": "1.6",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -46,7 +51,7 @@
         "CG"
       ],
       "partial": {
-        "time": "11.7",
+        "time": "1.6",
         "edges": [
           "SA",
           "AM",
@@ -59,11 +64,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "78aa4bc3282f0f0c",
+      "id": "a12218d679507805",
       "family": 0,
       "variant": 2,
-      "baseline": "10.4",
-      "maxDuration": "11.9",
+      "baseline": "1.7",
+      "maxDuration": "1.8",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -74,7 +79,7 @@
         "CG"
       ],
       "partial": {
-        "time": "11.9",
+        "time": "1.8",
         "edges": [
           "SA",
           "AM",
@@ -87,11 +92,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "d69cbfa28ea6b6d7",
+      "id": "776d7654530e8747",
       "family": 0,
       "variant": 3,
-      "baseline": "10.6",
-      "maxDuration": "12.1",
+      "baseline": "1.9",
+      "maxDuration": "2",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -102,7 +107,7 @@
         "CG"
       ],
       "partial": {
-        "time": "12.1",
+        "time": "2",
         "edges": [
           "SA",
           "AM",
@@ -115,11 +120,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "6aa8d823fc189484",
+      "id": "8a8106f104310317",
       "family": 1,
       "variant": 0,
-      "baseline": "9",
-      "maxDuration": "11",
+      "baseline": "2.2",
+      "maxDuration": "2.4",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -130,7 +135,7 @@
         "DG"
       ],
       "partial": {
-        "time": "11",
+        "time": "2.4",
         "edges": [
           "SA",
           "AM",
@@ -143,11 +148,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "bc83cbaec6b6f307",
+      "id": "5bdc1609773e507b",
       "family": 1,
       "variant": 1,
-      "baseline": "9.2",
-      "maxDuration": "11.2",
+      "baseline": "2.4",
+      "maxDuration": "2.6",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -158,7 +163,7 @@
         "DG"
       ],
       "partial": {
-        "time": "11.2",
+        "time": "2.6",
         "edges": [
           "SA",
           "AM",
@@ -171,11 +176,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "3ea8d5b8fbd9e6c6",
+      "id": "69d50de3c049da5b",
       "family": 1,
       "variant": 2,
-      "baseline": "9.4",
-      "maxDuration": "11.4",
+      "baseline": "2.6",
+      "maxDuration": "2.8",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -186,7 +191,7 @@
         "DG"
       ],
       "partial": {
-        "time": "11.4",
+        "time": "2.8",
         "edges": [
           "SA",
           "AM",
@@ -199,11 +204,11 @@
     },
     {
       "challenge": "Q35",
-      "id": "ceb53617670658e0",
+      "id": "7834641c76068b6a",
       "family": 1,
       "variant": 3,
-      "baseline": "9.6",
-      "maxDuration": "11.6",
+      "baseline": "2.8",
+      "maxDuration": "3",
       "achieved": 2,
       "winners": 1,
       "purposeFailures": 0,
@@ -214,7 +219,7 @@
         "DG"
       ],
       "partial": {
-        "time": "11.6",
+        "time": "3",
         "edges": [
           "SA",
           "AM",
@@ -227,387 +232,493 @@
     },
     {
       "challenge": "Q36",
-      "id": "2c516b76c69d8ca0",
+      "id": "612c8e98edb83a87",
       "family": 0,
       "variant": 0,
+      "baseline": "0.6",
+      "maxDuration": "0.8",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SM",
+        "SP",
+        "PN",
+        "MG1",
+        "NG2"
+      ],
+      "partial": {
+        "time": "0.8",
+        "edges": [
+          "SN",
+          "SP",
+          "PM",
+          "MG2",
+          "NG1"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "13342a21b633b195",
+      "family": 0,
+      "variant": 1,
+      "baseline": "0.6",
+      "maxDuration": "0.9",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SM",
+        "SP",
+        "PN",
+        "MG1",
+        "NG2"
+      ],
+      "partial": {
+        "time": "0.9",
+        "edges": [
+          "SN",
+          "SP",
+          "PM",
+          "MG2",
+          "NG1"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "dc7c94b727ef9ef0",
+      "family": 0,
+      "variant": 2,
+      "baseline": "0.6",
+      "maxDuration": "1",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SM",
+        "SP",
+        "PN",
+        "MG1",
+        "NG2"
+      ],
+      "partial": {
+        "time": "1",
+        "edges": [
+          "SN",
+          "SP",
+          "PM",
+          "MG2",
+          "NG1"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "a89abc04aa4987a8",
+      "family": 0,
+      "variant": 3,
+      "baseline": "0.6",
+      "maxDuration": "1.2",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SM",
+        "SP",
+        "PN",
+        "MG1",
+        "NG2"
+      ],
+      "partial": {
+        "time": "1.2",
+        "edges": [
+          "SN",
+          "SP",
+          "PM",
+          "MG2",
+          "NG1"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "d903e0bd7bc6720d",
+      "family": 1,
+      "variant": 0,
+      "baseline": "0.6",
+      "maxDuration": "0.8",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SN",
+        "SP",
+        "PM",
+        "MG2",
+        "NG1"
+      ],
+      "partial": {
+        "time": "0.8",
+        "edges": [
+          "SM",
+          "SP",
+          "PN",
+          "MG1",
+          "NG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "89669295293c0a5d",
+      "family": 1,
+      "variant": 1,
+      "baseline": "0.6",
+      "maxDuration": "0.9",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SN",
+        "SP",
+        "PM",
+        "MG2",
+        "NG1"
+      ],
+      "partial": {
+        "time": "0.9",
+        "edges": [
+          "SM",
+          "SP",
+          "PN",
+          "MG1",
+          "NG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "84b7c01c7bf79538",
+      "family": 1,
+      "variant": 2,
+      "baseline": "0.6",
+      "maxDuration": "1",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SN",
+        "SP",
+        "PM",
+        "MG2",
+        "NG1"
+      ],
+      "partial": {
+        "time": "1",
+        "edges": [
+          "SM",
+          "SP",
+          "PN",
+          "MG1",
+          "NG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q36",
+      "id": "e9d5bb9db5515357",
+      "family": 1,
+      "variant": 3,
+      "baseline": "0.6",
+      "maxDuration": "1.2",
+      "achieved": 2,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SN",
+        "SP",
+        "PM",
+        "MG2",
+        "NG1"
+      ],
+      "partial": {
+        "time": "1.2",
+        "edges": [
+          "SM",
+          "SP",
+          "PN",
+          "MG1",
+          "NG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "6a07643bbd7eb9c2",
+      "family": 0,
+      "variant": 0,
+      "baseline": "2.2",
+      "maxDuration": "3.2",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "CG1",
+          "DG2",
+          "AC"
+        ]
+      },
+      "traps": [
+        "AC"
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "a5d3014da6bc6c19",
+      "family": 0,
+      "variant": 1,
+      "baseline": "2.4",
+      "maxDuration": "3.4",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "2.5",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "CG1",
+          "DG2",
+          "AC"
+        ]
+      },
+      "traps": [
+        "AC"
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "75ed3a9618e840fb",
+      "family": 0,
+      "variant": 2,
+      "baseline": "2.6",
+      "maxDuration": "3.6",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "2.7",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "CG1",
+          "DG2",
+          "AC"
+        ]
+      },
+      "traps": [
+        "AC"
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "321ab8183db73964",
+      "family": 0,
+      "variant": 3,
+      "baseline": "2.8",
+      "maxDuration": "3.8",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "2.9",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "CG1",
+          "DG2",
+          "AC"
+        ]
+      },
+      "traps": [
+        "AC"
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "e0e7f03558bf4fe0",
+      "family": 1,
+      "variant": 0,
+      "baseline": "2.9",
+      "maxDuration": "3.9",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MC",
+        "ND",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "3",
+        "edges": [
+          "SA",
+          "AM",
+          "AN",
+          "MD",
+          "NC",
+          "CG1",
+          "DG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "39d7a7da52321275",
+      "family": 1,
+      "variant": 1,
+      "baseline": "3.1",
+      "maxDuration": "4.1",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MC",
+        "ND",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "3.2",
+        "edges": [
+          "SA",
+          "AM",
+          "AN",
+          "MD",
+          "NC",
+          "CG1",
+          "DG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "219cb5b0f4b8386f",
+      "family": 1,
+      "variant": 2,
+      "baseline": "3.3",
+      "maxDuration": "4.3",
+      "achieved": 38,
+      "winners": 1,
+      "purposeFailures": 0,
+      "winner": [
+        "SA",
+        "AM",
+        "AN",
+        "MC",
+        "ND",
+        "CG1",
+        "DG2"
+      ],
+      "partial": {
+        "time": "3.4",
+        "edges": [
+          "SA",
+          "AM",
+          "AN",
+          "MD",
+          "NC",
+          "CG1",
+          "DG2"
+        ]
+      },
+      "traps": [],
+      "valid": true
+    },
+    {
+      "challenge": "Q37",
+      "id": "8eab4702853dc0c8",
+      "family": 1,
+      "variant": 3,
       "baseline": "3.5",
-      "maxDuration": "19.5",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CG1",
-        "CG2"
-      ],
-      "partial": {
-        "time": "10.5",
-        "edges": [
-          "SA",
-          "AM",
-          "AC",
-          "CG1",
-          "MG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "248e1f7e0add53c8",
-      "family": 0,
-      "variant": 1,
-      "baseline": "3.7",
-      "maxDuration": "19.7",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CG1",
-        "CG2"
-      ],
-      "partial": {
-        "time": "10.7",
-        "edges": [
-          "SA",
-          "AM",
-          "AC",
-          "CG1",
-          "MG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "bd37144dc410d414",
-      "family": 0,
-      "variant": 2,
-      "baseline": "3.9",
-      "maxDuration": "19.9",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CG1",
-        "CG2"
-      ],
-      "partial": {
-        "time": "10.9",
-        "edges": [
-          "SA",
-          "AM",
-          "AC",
-          "CG1",
-          "MG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "dc05afc305c2532c",
-      "family": 0,
-      "variant": 3,
-      "baseline": "4.1",
-      "maxDuration": "20.1",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CG1",
-        "CG2"
-      ],
-      "partial": {
-        "time": "11.1",
-        "edges": [
-          "SA",
-          "AM",
-          "AC",
-          "CG1",
-          "MG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "6261fbc7cd300e8d",
-      "family": 1,
-      "variant": 0,
-      "baseline": "10",
-      "maxDuration": "17.5",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AC",
-        "CG2",
-        "MG1"
-      ],
-      "partial": {
-        "time": "13",
-        "edges": [
-          "SA",
-          "AC",
-          "CG1",
-          "CG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "6bcd20535f6306a5",
-      "family": 1,
-      "variant": 1,
-      "baseline": "10.2",
-      "maxDuration": "17.7",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AC",
-        "CG2",
-        "MG1"
-      ],
-      "partial": {
-        "time": "13.2",
-        "edges": [
-          "SA",
-          "AC",
-          "CG1",
-          "CG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "7e250cbaf6d1c4bf",
-      "family": 1,
-      "variant": 2,
-      "baseline": "10.4",
-      "maxDuration": "17.9",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AC",
-        "CG2",
-        "MG1"
-      ],
-      "partial": {
-        "time": "13.4",
-        "edges": [
-          "SA",
-          "AC",
-          "CG1",
-          "CG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q36",
-      "id": "9c2a4b34407d056d",
-      "family": 1,
-      "variant": 3,
-      "baseline": "10.6",
-      "maxDuration": "18.1",
-      "achieved": 26,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AC",
-        "CG2",
-        "MG1"
-      ],
-      "partial": {
-        "time": "13.6",
-        "edges": [
-          "SA",
-          "AC",
-          "CG1",
-          "CG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "059c441fa0e4172c",
-      "family": 0,
-      "variant": 0,
-      "baseline": "5",
-      "maxDuration": "8",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MD",
-        "NC",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "6",
-        "edges": [
-          "SA",
-          "AM",
-          "MD",
-          "CG1",
-          "DG2",
-          "AC"
-        ]
-      },
-      "traps": [
-        "AC"
-      ],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "7f76b54784d8b3bd",
-      "family": 0,
-      "variant": 1,
-      "baseline": "5.2",
-      "maxDuration": "8.2",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MD",
-        "NC",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "6.2",
-        "edges": [
-          "SA",
-          "AM",
-          "MD",
-          "CG1",
-          "DG2",
-          "AC"
-        ]
-      },
-      "traps": [
-        "AC"
-      ],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "902d065b8611a8d3",
-      "family": 0,
-      "variant": 2,
-      "baseline": "5.4",
-      "maxDuration": "8.4",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MD",
-        "NC",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "6.4",
-        "edges": [
-          "SA",
-          "AM",
-          "MD",
-          "CG1",
-          "DG2",
-          "AC"
-        ]
-      },
-      "traps": [
-        "AC"
-      ],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "2ebc43430febc647",
-      "family": 0,
-      "variant": 3,
-      "baseline": "5.6",
-      "maxDuration": "8.6",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MD",
-        "NC",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "6.6",
-        "edges": [
-          "SA",
-          "AM",
-          "MD",
-          "CG1",
-          "DG2",
-          "AC"
-        ]
-      },
-      "traps": [
-        "AC"
-      ],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "a61ad50d17c18a8c",
-      "family": 1,
-      "variant": 0,
-      "baseline": "12.5",
-      "maxDuration": "17",
+      "maxDuration": "4.5",
       "achieved": 38,
       "winners": 1,
       "purposeFailures": 0,
@@ -621,109 +732,7 @@
         "DG2"
       ],
       "partial": {
-        "time": "14",
-        "edges": [
-          "SA",
-          "AM",
-          "AN",
-          "MD",
-          "NC",
-          "CG1",
-          "DG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "dc6e00604299c9c3",
-      "family": 1,
-      "variant": 1,
-      "baseline": "12.7",
-      "maxDuration": "17.2",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MC",
-        "ND",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "14.2",
-        "edges": [
-          "SA",
-          "AM",
-          "AN",
-          "MD",
-          "NC",
-          "CG1",
-          "DG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "b7cc250f99161e39",
-      "family": 1,
-      "variant": 2,
-      "baseline": "12.9",
-      "maxDuration": "17.4",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MC",
-        "ND",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "14.4",
-        "edges": [
-          "SA",
-          "AM",
-          "AN",
-          "MD",
-          "NC",
-          "CG1",
-          "DG2"
-        ]
-      },
-      "traps": [],
-      "valid": true
-    },
-    {
-      "challenge": "Q37",
-      "id": "68907848045a9563",
-      "family": 1,
-      "variant": 3,
-      "baseline": "13.1",
-      "maxDuration": "17.6",
-      "achieved": 38,
-      "winners": 1,
-      "purposeFailures": 0,
-      "winner": [
-        "SA",
-        "AM",
-        "AN",
-        "MC",
-        "ND",
-        "CG1",
-        "DG2"
-      ],
-      "partial": {
-        "time": "14.6",
+        "time": "3.6",
         "edges": [
           "SA",
           "AM",
@@ -739,11 +748,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "ab740028b34925ff",
+      "id": "a53a4c67a877c930",
       "family": 0,
       "variant": 0,
-      "baseline": "11.5",
-      "maxDuration": "20",
+      "baseline": "2.8",
+      "maxDuration": "3.8",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -756,13 +765,12 @@
         "CG2"
       ],
       "partial": {
-        "time": "15.5",
+        "time": "3.3",
         "edges": [
           "SM",
           "MD",
-          "DN",
           "CG1",
-          "NG2",
+          "CG2",
           "DC"
         ]
       },
@@ -771,11 +779,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "02bb956ad17bb6e9",
+      "id": "7ba607d7146ac4c6",
       "family": 0,
       "variant": 1,
-      "baseline": "11.7",
-      "maxDuration": "20.2",
+      "baseline": "3",
+      "maxDuration": "4",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -788,13 +796,12 @@
         "CG2"
       ],
       "partial": {
-        "time": "15.7",
+        "time": "3.5",
         "edges": [
           "SM",
           "MD",
-          "DN",
           "CG1",
-          "NG2",
+          "CG2",
           "DC"
         ]
       },
@@ -803,11 +810,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "b964ab386d978353",
+      "id": "32ea22eb5964a5b1",
       "family": 0,
       "variant": 2,
-      "baseline": "11.9",
-      "maxDuration": "20.4",
+      "baseline": "3.2",
+      "maxDuration": "4.2",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -820,13 +827,12 @@
         "CG2"
       ],
       "partial": {
-        "time": "15.9",
+        "time": "3.7",
         "edges": [
           "SM",
           "MD",
-          "DN",
           "CG1",
-          "NG2",
+          "CG2",
           "DC"
         ]
       },
@@ -835,11 +841,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "9110d7259affc623",
+      "id": "6ea849851b80f0a3",
       "family": 0,
       "variant": 3,
-      "baseline": "12.1",
-      "maxDuration": "20.6",
+      "baseline": "3.4",
+      "maxDuration": "4.4",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -852,13 +858,12 @@
         "CG2"
       ],
       "partial": {
-        "time": "16.1",
+        "time": "3.9",
         "edges": [
           "SM",
           "MD",
-          "DN",
           "CG1",
-          "NG2",
+          "CG2",
           "DC"
         ]
       },
@@ -867,11 +872,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "715c246914b26245",
+      "id": "d6faacf397e9fe22",
       "family": 1,
       "variant": 0,
-      "baseline": "13",
-      "maxDuration": "20",
+      "baseline": "2",
+      "maxDuration": "3.3",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -879,18 +884,18 @@
         "SM",
         "MD",
         "DN",
-        "NC",
-        "CG1",
-        "CG2"
+        "CG2",
+        "NG1",
+        "DC"
       ],
       "partial": {
-        "time": "14",
+        "time": "2.4",
         "edges": [
           "SM",
           "MB",
           "BN",
-          "CG1",
-          "NG2",
+          "CG2",
+          "NG1",
           "BC"
         ]
       },
@@ -899,11 +904,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "1a90aeb37313ffb5",
+      "id": "800ad4ff8114bf30",
       "family": 1,
       "variant": 1,
-      "baseline": "13.2",
-      "maxDuration": "20.2",
+      "baseline": "2.2",
+      "maxDuration": "3.5",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -911,18 +916,18 @@
         "SM",
         "MD",
         "DN",
-        "NC",
-        "CG1",
-        "CG2"
+        "CG2",
+        "NG1",
+        "DC"
       ],
       "partial": {
-        "time": "14.2",
+        "time": "2.6",
         "edges": [
           "SM",
           "MB",
           "BN",
-          "CG1",
-          "NG2",
+          "CG2",
+          "NG1",
           "BC"
         ]
       },
@@ -931,11 +936,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "031725782923de0a",
+      "id": "8d3e9d319735bf6e",
       "family": 1,
       "variant": 2,
-      "baseline": "13.4",
-      "maxDuration": "20.4",
+      "baseline": "2.4",
+      "maxDuration": "3.7",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -943,18 +948,18 @@
         "SM",
         "MD",
         "DN",
-        "NC",
-        "CG1",
-        "CG2"
+        "CG2",
+        "NG1",
+        "DC"
       ],
       "partial": {
-        "time": "14.4",
+        "time": "2.8",
         "edges": [
           "SM",
           "MB",
           "BN",
-          "CG1",
-          "NG2",
+          "CG2",
+          "NG1",
           "BC"
         ]
       },
@@ -963,11 +968,11 @@
     },
     {
       "challenge": "Q38",
-      "id": "32e9aab0c50cb58a",
+      "id": "ac06c6e5135f150e",
       "family": 1,
       "variant": 3,
-      "baseline": "13.6",
-      "maxDuration": "20.6",
+      "baseline": "2.6",
+      "maxDuration": "3.9",
       "achieved": 20,
       "winners": 1,
       "purposeFailures": 0,
@@ -975,18 +980,18 @@
         "SM",
         "MD",
         "DN",
-        "NC",
-        "CG1",
-        "CG2"
+        "CG2",
+        "NG1",
+        "DC"
       ],
       "partial": {
-        "time": "14.6",
+        "time": "3",
         "edges": [
           "SM",
           "MB",
           "BN",
-          "CG1",
-          "NG2",
+          "CG2",
+          "NG1",
           "BC"
         ]
       },
@@ -995,11 +1000,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "263dac0c2d1e7bad",
+      "id": "5f7e021f3ba8dba5",
       "family": 0,
       "variant": 0,
-      "baseline": "5",
-      "maxDuration": "8.5",
+      "baseline": "2.2",
+      "maxDuration": "2.8",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1012,7 +1017,7 @@
         "DG3"
       ],
       "partial": {
-        "time": "6",
+        "time": "2.3",
         "edges": [
           "SA",
           "AM",
@@ -1027,11 +1032,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "d9181342044817a6",
+      "id": "bc24bab86523b8b6",
       "family": 0,
       "variant": 1,
-      "baseline": "5.2",
-      "maxDuration": "8.7",
+      "baseline": "2.4",
+      "maxDuration": "3",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1044,7 +1049,7 @@
         "DG3"
       ],
       "partial": {
-        "time": "6.2",
+        "time": "2.5",
         "edges": [
           "SA",
           "AM",
@@ -1059,11 +1064,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "ba834935e8bb9e1d",
+      "id": "217fa2717b7b7436",
       "family": 0,
       "variant": 2,
-      "baseline": "5.4",
-      "maxDuration": "8.9",
+      "baseline": "2.6",
+      "maxDuration": "3.2",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1076,7 +1081,7 @@
         "DG3"
       ],
       "partial": {
-        "time": "6.4",
+        "time": "2.7",
         "edges": [
           "SA",
           "AM",
@@ -1091,11 +1096,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "0b20ae88df9202e9",
+      "id": "379eaeeed7585cf5",
       "family": 0,
       "variant": 3,
-      "baseline": "5.6",
-      "maxDuration": "9.1",
+      "baseline": "2.8",
+      "maxDuration": "3.4",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1108,7 +1113,7 @@
         "DG3"
       ],
       "partial": {
-        "time": "6.6",
+        "time": "2.9",
         "edges": [
           "SA",
           "AM",
@@ -1123,11 +1128,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "3b5f73a1add75af1",
+      "id": "26a2e38351c7f6e8",
       "family": 1,
       "variant": 0,
-      "baseline": "13",
-      "maxDuration": "18",
+      "baseline": "3",
+      "maxDuration": "3.6",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1140,7 +1145,7 @@
         "CG3"
       ],
       "partial": {
-        "time": "14",
+        "time": "3.1",
         "edges": [
           "SA",
           "AM",
@@ -1155,11 +1160,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "d04a319d74985322",
+      "id": "91a98d7e762637e3",
       "family": 1,
       "variant": 1,
-      "baseline": "13.2",
-      "maxDuration": "18.2",
+      "baseline": "3.2",
+      "maxDuration": "3.8",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1172,7 +1177,7 @@
         "CG3"
       ],
       "partial": {
-        "time": "14.2",
+        "time": "3.3",
         "edges": [
           "SA",
           "AM",
@@ -1187,11 +1192,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "3e25a46f226ea048",
+      "id": "85e7d00e99d2531f",
       "family": 1,
       "variant": 2,
-      "baseline": "13.4",
-      "maxDuration": "18.4",
+      "baseline": "3.4",
+      "maxDuration": "4",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1204,7 +1209,7 @@
         "CG3"
       ],
       "partial": {
-        "time": "14.4",
+        "time": "3.5",
         "edges": [
           "SA",
           "AM",
@@ -1219,11 +1224,11 @@
     },
     {
       "challenge": "Q39",
-      "id": "56d59a0e58a350e3",
+      "id": "d93797ebe60a8913",
       "family": 1,
       "variant": 3,
-      "baseline": "13.6",
-      "maxDuration": "18.6",
+      "baseline": "3.6",
+      "maxDuration": "4.2",
       "achieved": 24,
       "winners": 1,
       "purposeFailures": 0,
@@ -1236,7 +1241,7 @@
         "CG3"
       ],
       "partial": {
-        "time": "14.6",
+        "time": "3.7",
         "edges": [
           "SA",
           "AM",
@@ -1251,11 +1256,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "3f0be2edf25151e7",
+      "id": "2f92b7f71f9c98ad",
       "family": 0,
       "variant": 0,
-      "baseline": "7",
-      "maxDuration": "12.5",
+      "baseline": "1.4",
+      "maxDuration": "2.6",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1263,14 +1268,14 @@
         "SA",
         "AM",
         "AN",
-        "MC",
-        "ND",
+        "MD",
+        "NC",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "8.5",
+        "time": "1.5",
         "edges": [
           "SA",
           "AM",
@@ -1278,7 +1283,7 @@
           "MC",
           "ND",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1287,11 +1292,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "d8be3e75167ade2a",
+      "id": "9eef353075791cea",
       "family": 0,
       "variant": 1,
-      "baseline": "7.2",
-      "maxDuration": "12.7",
+      "baseline": "1.6",
+      "maxDuration": "2.8",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1299,14 +1304,14 @@
         "SA",
         "AM",
         "AN",
-        "MC",
-        "ND",
+        "MD",
+        "NC",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "8.7",
+        "time": "1.7",
         "edges": [
           "SA",
           "AM",
@@ -1314,7 +1319,7 @@
           "MC",
           "ND",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1323,11 +1328,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "275ce6b56bf95128",
+      "id": "cba28f577b4431c9",
       "family": 0,
       "variant": 2,
-      "baseline": "7.4",
-      "maxDuration": "12.9",
+      "baseline": "1.8",
+      "maxDuration": "3",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1335,14 +1340,14 @@
         "SA",
         "AM",
         "AN",
-        "MC",
-        "ND",
+        "MD",
+        "NC",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "8.9",
+        "time": "1.9",
         "edges": [
           "SA",
           "AM",
@@ -1350,7 +1355,7 @@
           "MC",
           "ND",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1359,11 +1364,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "559f23d013294bac",
+      "id": "ea9078eefc61f3bd",
       "family": 0,
       "variant": 3,
-      "baseline": "7.6",
-      "maxDuration": "13.1",
+      "baseline": "2",
+      "maxDuration": "3.2",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1371,14 +1376,14 @@
         "SA",
         "AM",
         "AN",
-        "MC",
-        "ND",
+        "MD",
+        "NC",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "9.1",
+        "time": "2.1",
         "edges": [
           "SA",
           "AM",
@@ -1386,7 +1391,7 @@
           "MC",
           "ND",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1395,11 +1400,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "a67170aa9fad8da3",
+      "id": "95cbc6287f698cab",
       "family": 1,
       "variant": 0,
-      "baseline": "12.5",
-      "maxDuration": "17",
+      "baseline": "1.4",
+      "maxDuration": "2.6",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1407,14 +1412,14 @@
         "SA",
         "AM",
         "AN",
-        "MD",
-        "NC",
+        "MC",
+        "ND",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "13",
+        "time": "1.5",
         "edges": [
           "SA",
           "AM",
@@ -1422,7 +1427,7 @@
           "MD",
           "NC",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1431,11 +1436,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "d96161ac85378ef4",
+      "id": "cd2510562621764e",
       "family": 1,
       "variant": 1,
-      "baseline": "12.7",
-      "maxDuration": "17.2",
+      "baseline": "1.6",
+      "maxDuration": "2.8",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1443,14 +1448,14 @@
         "SA",
         "AM",
         "AN",
-        "MD",
-        "NC",
+        "MC",
+        "ND",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "13.2",
+        "time": "1.7",
         "edges": [
           "SA",
           "AM",
@@ -1458,7 +1463,7 @@
           "MD",
           "NC",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1467,11 +1472,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "70e9bb87aabbac27",
+      "id": "561a59c3943cbe96",
       "family": 1,
       "variant": 2,
-      "baseline": "12.9",
-      "maxDuration": "17.4",
+      "baseline": "1.8",
+      "maxDuration": "3",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1479,14 +1484,14 @@
         "SA",
         "AM",
         "AN",
-        "MD",
-        "NC",
+        "MC",
+        "ND",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "13.4",
+        "time": "1.9",
         "edges": [
           "SA",
           "AM",
@@ -1494,7 +1499,7 @@
           "MD",
           "NC",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },
@@ -1503,11 +1508,11 @@
     },
     {
       "challenge": "Q40",
-      "id": "96b5b89ed5289e98",
+      "id": "f97f76841701e19b",
       "family": 1,
       "variant": 3,
-      "baseline": "13.1",
-      "maxDuration": "17.6",
+      "baseline": "2",
+      "maxDuration": "3.2",
       "achieved": 87,
       "winners": 1,
       "purposeFailures": 0,
@@ -1515,14 +1520,14 @@
         "SA",
         "AM",
         "AN",
-        "MD",
-        "NC",
+        "MC",
+        "ND",
         "CG1",
         "CG2",
         "DG3"
       ],
       "partial": {
-        "time": "13.6",
+        "time": "2.1",
         "edges": [
           "SA",
           "AM",
@@ -1530,7 +1535,7 @@
           "MD",
           "NC",
           "CG1",
-          "DG2",
+          "CG2",
           "DG3"
         ]
       },

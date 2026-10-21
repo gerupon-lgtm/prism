@@ -992,13 +992,14 @@ function cancelStart(){
 function launch(action){
   const view=session.view,original={zoom:view.zoom,panX:view.panX,panY:view.panY},target=board.fitView();
   const animated=view.zoom>Math.max(1,target.zoom)+.0001;
+  const delay=session.editable&&session.mode==='challenge'&&session.challenge?.instantStart&&!session.guide&&!animated?0:LAUNCH_DELAY_MS;
   const token={view,original,frame:null,started:null};
   return new Promise((resolve,reject)=>{
     token.cancel=()=>resolve(false);
     startPrelude=token;board.cancelAll();session.selection=null;board.render();render(false);
     const step=now=>{
       if(startPrelude!==token)return;
-      token.started??=now;const progress=Math.min(1,(now-token.started)/LAUNCH_DELAY_MS),ease=1-(1-progress)**3;
+      token.started??=now;const progress=delay===0?1:Math.min(1,(now-token.started)/delay),ease=1-(1-progress)**3;
       $('stage').style.setProperty('--launch-progress',progress);
       if(animated&&(!motion.reduced||progress===1)){for(const key of ['zoom','panX','panY'])view[key]=original[key]+(target[key]-original[key])*ease;board.transform();board.render();}
       if(progress<1){token.frame=requestAnimationFrame(step);return;}
