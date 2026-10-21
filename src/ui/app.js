@@ -732,7 +732,7 @@ function pendingScores() {
 function offlineStatus() {
   const {ready,update,error,checking,checked}=offline.state;
   const result=checking?'更新を確認しています。':update?'更新版の準備ができました。':checked&&!error?'最新版です。':error?'更新確認を完了できませんでした。':'更新はまだ確認していません。';
-  body.replaceChildren(element('p',result,{'role':'status'}),element('p',ready?'オフラインの準備が完了しています。':'オフラインの準備は未完了です。'),element('p','初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。'));
+  body.replaceChildren(element('p',result,{'role':'status'}),element('p',ready?'オフラインの準備が完了しています。':'オフラインの準備は未完了です。'),element('p',checking?'必要な資材の取得・保存を待っています。通信速度によって時間がかかります。':'初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。'));
   const check=button(checking?'確認中':'準備・更新を確認',()=>offline.prepare());check.disabled=checking;
   actions.replaceChildren(check,button('閉じる',close));
   if(update){body.append(element('p','適用するまで現在の画面を保持します。'));actions.prepend(button('更新へ',updateDialog));}

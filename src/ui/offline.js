@@ -1,3 +1,6 @@
+// Asset transfer/storage is a long operation; a status ping is not.
+const ASSET_PREPARATION_TIMEOUT_MS=120000;
+
 export class Offline {
   constructor(changed) {
     this.changed=changed;this.version=document.querySelector('meta[name="prism-version"]').content;
@@ -15,7 +18,9 @@ export class Offline {
   request(worker,version=this.version,type='STATUS') {
     return new Promise((resolve,reject)=>{
       if(!worker){reject(new Error('オフラインの準備はまだ完了していません。'));return;}
-      const channel=new MessageChannel(),timer=setTimeout(()=>{channel.port1.close();reject(new Error('準備の確認に応答がありません。通信を確認して再試行してください。'));},5000);
+      const timeout=type==='PREPARE_ASSETS'?ASSET_PREPARATION_TIMEOUT_MS:5000;
+      const message=type==='PREPARE_ASSETS'?'資材の取得・保存に時間がかかっています。現在の資材と保存データは保持しています。通信を確認して再試行してください。':'準備の確認に応答がありません。通信を確認して再試行してください。';
+      const channel=new MessageChannel(),timer=setTimeout(()=>{channel.port1.close();reject(new Error(message));},timeout);
       channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();resolve(event.data);};
       try{worker.postMessage({type,version},[channel.port2]);}catch(error){clearTimeout(timer);channel.port1.close();channel.port2.close();reject(error);}
     });
@@ -47,7 +52,7 @@ export class Offline {
         if(worker.state==='redundant')finish(new Error('新しい資材の準備に失敗しました。現在の資材と保存データは保持しています。'));
         else if(['installed','activated'].includes(worker.state))finish();
       };
-      timer=setTimeout(()=>finish(new Error('更新の準備に時間がかかっています。通信を確認して再試行してください。')),30000);
+      timer=setTimeout(()=>finish(new Error('更新の準備に時間がかかっています。現在の資材と保存データは保持しています。通信を確認して再試行してください。')),ASSET_PREPARATION_TIMEOUT_MS);
       worker.addEventListener('statechange',changed);changed();
     });
   }

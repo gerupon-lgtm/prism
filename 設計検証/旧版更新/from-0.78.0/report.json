@@ -1,0 +1,387 @@
+{
+  "fromVersion": "0.78.0",
+  "fromCommit": "b60a9a1289e67d7c7510bc8fcb404adc349dbe43",
+  "toVersion": "0.82.0",
+  "evidence": "Actual historical source and worker, disposable PC browser under /prism/. Phone viewport is synthetic; not Pixel device evidence.",
+  "browsers": [
+    {
+      "engine": "chromium",
+      "channel": null,
+      "version": "151.0.7922.34"
+    },
+    {
+      "engine": "webkit",
+      "channel": null,
+      "version": "26.5"
+    }
+  ],
+  "checks": [
+    {
+      "label": "chromium actual 0.78.0 menu prepares 0.82.0",
+      "passed": true,
+      "state": {
+        "version": "0.78.0",
+        "active": "http://127.0.0.1:65229/prism/sw.js",
+        "waiting": "installed",
+        "body": "更新版の準備ができました。オフラインの準備が完了しています。初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。適用するまで現在の画面を保持します。",
+        "error": "",
+        "actions": "更新へ準備・更新を確認閉じる",
+        "slots": "{\"version\":1,\"value\":[{\"id\":\"1f5ae591-dca9-4625-84f8-287d7adfbd32\",\"format\":\"prism-notes-circuit\",\"version\":1,\"name\":\"旧版からの移行確認\",\"circuit\":{\"mode\":\"fastest\",\"target\":\"G\",\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"process\":\"0.5\",\"x\":0.5,\"y\":0.1},{\"id\":\"A\",\"kind\":\"prism\",\"process\":\"0.5\",\"x\":0.25,\"y\":0.45},{\"id\":\"B\",\"kind\":\"prism\",\"process\":\"0\",\"x\":0.75,\"y\":0.45},{\"id\":\"G\",\"kind\":\"goal\",\"process\":\"0\",\"x\":0.5,\"y\":0.85}],\"edges\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"1\"},{\"id\":\"AG\",\"from\":\"A\",\"to\":\"G\",\"time\":\"1\"},{\"id\":\"SB\",\"from\":\"S\",\"to\":\"B\",\"time\":\"1.5\"},{\"id\":\"BG\",\"from\":\"B\",\"to\":\"G\",\"time\":\"1.5\"}]}}]}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "chromium verified old large assets reused without network transfer",
+      "passed": true,
+      "eligible": 18,
+      "downloadedBytes": 588788
+    },
+    {
+      "label": "chromium historical menu applies actual new source and keeps saved data",
+      "passed": true
+    },
+    {
+      "label": "chromium synthetic old update failure retains old circuit and score",
+      "passed": true,
+      "state": {
+        "version": "0.78.0",
+        "active": "http://127.0.0.1:65229/prism/sw.js",
+        "body": "更新を確認しています。オフラインの準備が完了しています。初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。",
+        "error": "Failed to update a ServiceWorker for scope ('http://127.0.0.1:65229/prism/') with script ('http://127.0.0.1:65229/prism/sw.js'): A bad HTTP response code (503) was received when fetching the script.",
+        "actions": "確認中閉じる",
+        "slots": "{\"version\":1,\"value\":[{\"id\":\"df7dbf3a-748b-40e4-af91-594172cdc1b3\",\"format\":\"prism-notes-circuit\",\"version\":1,\"name\":\"旧版からの移行確認\",\"circuit\":{\"mode\":\"fastest\",\"target\":\"G\",\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"process\":\"0.5\",\"x\":0.5,\"y\":0.1},{\"id\":\"A\",\"kind\":\"prism\",\"process\":\"0.5\",\"x\":0.25,\"y\":0.45},{\"id\":\"B\",\"kind\":\"prism\",\"process\":\"0\",\"x\":0.75,\"y\":0.45},{\"id\":\"G\",\"kind\":\"goal\",\"process\":\"0\",\"x\":0.5,\"y\":0.85}],\"edges\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"1\"},{\"id\":\"AG\",\"from\":\"A\",\"to\":\"G\",\"time\":\"1\"},{\"id\":\"SB\",\"from\":\"S\",\"to\":\"B\",\"time\":\"1.5\"},{\"id\":\"BG\",\"from\":\"B\",\"to\":\"G\",\"time\":\"1.5\"}]}}]}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "chromium registration-only recovery bypasses old menu without reinstalling or deleting caches/circuits/scores",
+      "passed": true,
+      "method": "Web API unregister, not Chrome internal UI"
+    },
+    {
+      "label": "webkit actual 0.78.0 menu prepares 0.82.0",
+      "passed": true,
+      "state": {
+        "version": "0.78.0",
+        "active": "http://127.0.0.1:65229/prism/sw.js",
+        "waiting": "installed",
+        "body": "更新版の準備ができました。オフラインの準備が完了しています。初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。適用するまで現在の画面を保持します。",
+        "error": "",
+        "actions": "更新へ準備・更新を確認閉じる",
+        "slots": "{\"version\":1,\"value\":[{\"id\":\"9091e3c4-3d72-4929-bf6a-2698c5c2fd10\",\"format\":\"prism-notes-circuit\",\"version\":1,\"name\":\"旧版からの移行確認\",\"circuit\":{\"mode\":\"fastest\",\"target\":\"G\",\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"process\":\"0.5\",\"x\":0.5,\"y\":0.1},{\"id\":\"A\",\"kind\":\"prism\",\"process\":\"0.5\",\"x\":0.25,\"y\":0.45},{\"id\":\"B\",\"kind\":\"prism\",\"process\":\"0\",\"x\":0.75,\"y\":0.45},{\"id\":\"G\",\"kind\":\"goal\",\"process\":\"0\",\"x\":0.5,\"y\":0.85}],\"edges\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"1\"},{\"id\":\"AG\",\"from\":\"A\",\"to\":\"G\",\"time\":\"1\"},{\"id\":\"SB\",\"from\":\"S\",\"to\":\"B\",\"time\":\"1.5\"},{\"id\":\"BG\",\"from\":\"B\",\"to\":\"G\",\"time\":\"1.5\"}]}}]}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "webkit verified old large assets reused without network transfer",
+      "passed": true,
+      "eligible": 18,
+      "downloadedBytes": 588788
+    },
+    {
+      "label": "webkit historical menu applies actual new source and keeps saved data",
+      "passed": true
+    },
+    {
+      "label": "webkit synthetic old update failure retains old circuit and score",
+      "passed": true,
+      "state": {
+        "version": "0.78.0",
+        "active": "http://127.0.0.1:65229/prism/sw.js",
+        "body": "更新を確認しています。オフラインの準備が完了しています。初回準備と更新には通信が必要です。保存回路・成績を外部へ送信しません。",
+        "error": "Script http://127.0.0.1:65229/prism/sw.js load failed",
+        "actions": "確認中閉じる",
+        "slots": "{\"version\":1,\"value\":[{\"id\":\"30addf2b-177d-4603-829b-989738110535\",\"format\":\"prism-notes-circuit\",\"version\":1,\"name\":\"旧版からの移行確認\",\"circuit\":{\"mode\":\"fastest\",\"target\":\"G\",\"nodes\":[{\"id\":\"S\",\"kind\":\"source\",\"process\":\"0.5\",\"x\":0.5,\"y\":0.1},{\"id\":\"A\",\"kind\":\"prism\",\"process\":\"0.5\",\"x\":0.25,\"y\":0.45},{\"id\":\"B\",\"kind\":\"prism\",\"process\":\"0\",\"x\":0.75,\"y\":0.45},{\"id\":\"G\",\"kind\":\"goal\",\"process\":\"0\",\"x\":0.5,\"y\":0.85}],\"edges\":[{\"id\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"time\":\"1\"},{\"id\":\"AG\",\"from\":\"A\",\"to\":\"G\",\"time\":\"1\"},{\"id\":\"SB\",\"from\":\"S\",\"to\":\"B\",\"time\":\"1.5\"},{\"id\":\"BG\",\"from\":\"B\",\"to\":\"G\",\"time\":\"1.5\"}]}}]}",
+        "scores": "{\"version\":1,\"value\":[{\"challenge\":\"Q1@1\",\"rule\":\"time@1\",\"achieved\":true,\"score\":{\"numerator\":\"100\",\"denominator\":\"1\"}}]}"
+      }
+    },
+    {
+      "label": "webkit registration-only recovery bypasses old menu without reinstalling or deleting caches/circuits/scores",
+      "passed": true,
+      "method": "Web API unregister, not Chrome internal UI"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 503,
+      "synthetic": true
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.78.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 503,
+      "synthetic": true
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/prism.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/prism.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/prism.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/source.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/goal.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/prism.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/v0.78.0/public/graphics/goal.png",
+      "release": "0.82.0",
+      "status": 404
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/build-info.json",
+      "release": "0.82.0",
+      "status": 200
+    },
+    {
+      "path": "/prism/sw.js",
+      "release": "0.82.0",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "registrationChecks": [
+    {
+      "version": "0.78.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.82.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.78.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.82.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.78.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.82.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.78.0",
+      "registered": true,
+      "controller": "activated"
+    },
+    {
+      "version": "0.82.0",
+      "registered": false,
+      "controller": "activated"
+    }
+  ],
+  "passed": true
+}

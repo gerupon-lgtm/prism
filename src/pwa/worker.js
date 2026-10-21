@@ -6,10 +6,81 @@ const prefix=`prism-notes:${new URL(base).pathname}:`;
 const cacheName=version=>prefix+version;
 const cacheURL=path=>new URL(path,base).href;
 
-async function prepareAssets() {
-  const cache=await caches.open(cacheName(VERSION));
-  // Fetch directly, bypassing this worker's cached responses when repairing.
-  await cache.addAll(ASSETS.map(path=>new Request(cacheURL(path),{cache:'reload'})));
+const ASSET_FETCH_TIMEOUT_MS=60000,ASSET_CONCURRENCY=4;
+let preparation=null;
+const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),value=>value.toString(16).padStart(2,'0')).join('');
+function responseBytes(bytes,response) {
+  // Reusing a Response.url from an old module could resolve its relative imports
+  // against the old release. Keep the verified bytes, MIME and status, not its URL.
+  const headers=new Headers(response.headers);headers.delete('content-encoding');headers.delete('content-length');
+  return new Response(bytes,{status:response.status,statusText:response.statusText,headers});
+}
+async function download(path,expectedHash) {
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),ASSET_FETCH_TIMEOUT_MS);
+  try{
+    const response=await fetch(new Request(cacheURL(path),{cache:'reload',signal:controller.signal}));
+    if(!response.ok)throw new Error('Asset unavailable');
+    const bytes=await response.arrayBuffer();
+    if(expectedHash&&await digest(bytes)!==expectedHash)throw new Error('Asset integrity mismatch');
+    return responseBytes(bytes,response);
+  }finally{clearTimeout(timer);}
+}
+function validManifest(manifest) {
+  return manifest?.version===VERSION&&Array.isArray(manifest.assets)&&manifest.assets.length===ASSETS.length&&manifest.assets.every((asset,index)=>asset===ASSETS[index])&&ASSETS.every(asset=>asset==='./build-info.json'||/^[0-9a-f]{64}$/.test(manifest.hashes?.[asset]??''));
+}
+async function manifestFor(cache) {
+  const cached=await cache.match(cacheURL('./build-info.json'));
+  if(cached){try{const manifest=await cached.json();if(validManifest(manifest))return manifest;}catch{}}
+  const response=await download('./build-info.json'),manifest=await response.clone().json();
+  if(!validManifest(manifest))throw new Error('Release manifest mismatch');
+  await cache.put(cacheURL('./build-info.json'),response);return manifest;
+}
+async function reuseCandidates(hashes) {
+  const candidates=new Map(),scope=new URL(base);
+  for(const name of (await caches.keys()).reverse()){
+    if(!name.startsWith(prefix)||name===cacheName(VERSION))continue;
+    try{
+      const cache=await caches.open(name),response=await cache.match(cacheURL('./build-info.json'));
+      if(!response)continue;
+      const manifest=await response.json();
+      if(!/^\d+\.\d+\.\d+$/.test(manifest.version)||name!==cacheName(manifest.version)||!Array.isArray(manifest.assets))continue;
+      for(const asset of manifest.assets){
+        const hash=manifest.hashes?.[asset];if(!hashes.has(hash))continue;
+        const url=new URL(asset,base);if(url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))continue;
+        if(!candidates.has(hash))candidates.set(hash,[]);candidates.get(hash).push({cache,url:url.href});
+      }
+    }catch{/* An incomplete old cache is not a reason to discard another version. */}
+  }
+  return candidates;
+}
+async function prepareMissingAssets() {
+  const cache=await caches.open(cacheName(VERSION)),manifest=await manifestFor(cache);
+  const keys=new Set((await cache.keys()).map(request=>request.url));
+  const missing=ASSETS.filter(asset=>asset!=='./build-info.json'&&!keys.has(cacheURL(asset)));
+  if(!missing.length)return;
+  const candidates=await reuseCandidates(new Set(missing.map(asset=>manifest.hashes[asset])));let index=0,failure=null;
+  async function next(){
+    while(!failure&&index<missing.length){
+      const asset=missing[index++],hash=manifest.hashes[asset];let response;
+      try{
+        for(const source of candidates.get(hash)??[]){
+          try{
+            const cached=await source.cache.match(source.url);if(!cached?.ok)continue;
+            const bytes=await cached.arrayBuffer();if(await digest(bytes)!==hash)continue;
+            response=responseBytes(bytes,cached);break;
+          }catch{/* A failed old copy falls back to the network. */}
+        }
+        await cache.put(cacheURL(asset),response??await download(asset,hash));
+      }catch(error){failure=error;throw error;}
+    }
+  }
+  // Keep the single preparation alive until its remaining requests have ended.
+  await Promise.allSettled(Array.from({length:Math.min(ASSET_CONCURRENCY,missing.length)},()=>next()));
+  if(failure)throw failure;
+}
+function prepareAssets() {
+  if(!preparation)preparation=prepareMissingAssets().finally(()=>{preparation=null;});
+  return preparation;
 }
 self.addEventListener('install',event=>{event.waitUntil(prepareAssets());});
 // Applying in one tab must not reload or purge assets used by another tab.
@@ -21,8 +92,8 @@ async function ready(version) {
   if(!response)return false;
   try{
     const manifest=await response.json();if(manifest.version!==version||!Array.isArray(manifest.assets))return false;
-    for(const asset of manifest.assets)if(!await cache.match(cacheURL(asset)))return false;
-    return true;
+    const keys=new Set((await cache.keys()).map(request=>request.url));
+    return manifest.assets.every(asset=>typeof asset==='string'&&keys.has(cacheURL(asset)));
   }catch{return false;}
 }
 self.addEventListener('message',event=>{

@@ -16,6 +16,25 @@ function preparationFixture() {
   f.offline.request=async()=>({ready:true,currentReady:true,currentVersion:'0.4.0'});
   return f;
 }
+
+test('資材の取得は短い状態確認より長く待ち、正常な遅い応答を時間切れにしない',async()=>{
+  const f=fixture(),original=setTimeout;
+  try{
+    globalThis.setTimeout=(callback,delay,...args)=>original(callback,delay>=5000?delay/100:delay,...args);
+    const worker={postMessage(_data,ports){original(()=>{ports[0].postMessage({ready:true});ports[0].close();},80);}};
+    const result=await f.offline.request(worker,null,'PREPARE_ASSETS');assert.equal(result.ready,true);
+  }finally{globalThis.setTimeout=original;f.restore();}
+});
+
+test('通信が進んでいるインストールを30秒相当で失敗扱いにしない',async()=>{
+  const f=fixture(),original=setTimeout;
+  try{
+    globalThis.setTimeout=(callback,delay,...args)=>original(callback,delay>=5000?delay/1000:delay,...args);
+    const worker=new EventTarget();worker.state='installing';
+    original(()=>{worker.state='installed';worker.dispatchEvent(new Event('statechange'));},60);
+    await f.offline.installation(worker);
+  }finally{globalThis.setTimeout=original;f.restore();}
+});
 test('資材準備の応答を待つ間も確認中を保持し、重複した確認をまとめる',async()=>{
   const f=preparationFixture();try{
     const releases=[];let calls=0;f.offline.request=async(_worker,_version,type='STATUS')=>{
