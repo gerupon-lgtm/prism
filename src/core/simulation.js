@@ -13,6 +13,7 @@ export class Simulation {
     this.pauseReason = null;
     this.records = [];
     this.particles = new Map();
+    this.instantPaths = new WeakMap();
     this.nextId = 1;
     this.intervalChecks = new Map();
     this.gates = new Map([...this.circuit.nodes.keys()].map(id => [id, { current: null, queue: [], head: 0, opening:null }]));
@@ -49,6 +50,8 @@ export class Simulation {
 
   newParticle(node, parent, target) {
     const particle = { id: this.nextId++, parent, target, node, incoming: null, status: 'ready', hops: 0 };
+    const path=this.instantPaths.get(this.particles.get(parent));
+    if(path)this.instantPaths.set(particle,{at:path.at,visited:new Set(path.visited)});
     this.particles.set(particle.id, particle);
     return particle;
   }
@@ -66,6 +69,15 @@ export class Simulation {
       this.record('deadend', particle);
       return;
     }
+    // A zero-time cycle is real only if the same light repeats a node/input
+    // without the clock advancing. Gate waits reset this path; branches inherit it.
+    if(choices.some(choice=>choice.edge.travel===0n)){
+      let path=this.instantPaths.get(particle);
+      if(!path||path.at!==this.clock){path={at:this.clock,visited:new Set()};this.instantPaths.set(particle,path);}
+      const state=JSON.stringify([particle.node,particle.incoming]);
+      if(path.visited.has(state))throw new Error('時間が進まない鏡の循環があります。反射先を変更してください。');
+      path.visited.add(state);
+    }else this.instantPaths.delete(particle);
     let children;
     if (choices.length > 1) {
       particle.status = 'branched';

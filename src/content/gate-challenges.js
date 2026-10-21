@@ -1,4 +1,4 @@
-const n=(id,kind,x,y,gate)=>({id,kind,x,y,process:kind==='goal'?'0':'0.5',...(gate?{gate}:{}),...(kind==='mirror'?{reflectTo:null}:{})});
+const n=(id,kind,x,y,gate)=>({id,kind,x,y,process:['goal','mirror'].includes(kind)?'0':'0.5',...(gate?{gate}:{}),...(kind==='mirror'?{reflectTo:null}:{})});
 const s=()=>n('S','source',.5,.07),p=(id,x,y,phase,period='6',open='3')=>n(id,'prism',x,y,phase===undefined?null:{period,open,phase}),g=(id,x,y)=>n(id,'goal',x,y),e=(from,to,time=.5)=>({id:from+to,from,to,time:String(time)});
 export const gateChallenges=[
  {id:'Q41',name:'開く星の門',limit:3,goals:['G'],nodes:[s(),p('A',.5,.32,'0'),p('B',.23,.65),p('C',.77,.65),g('G',.5,.96)],candidates:[e('S','A'),e('A','B'),e('B','G'),e('A','C',1),e('C','G',1),e('A','G',4)]},
@@ -7,4 +7,5 @@ export const gateChallenges=[
  {id:'Q44',name:'二つの門をくぐって',limit:4,goals:['G'],nodes:[s(),p('A',.5,.27,'0'),p('B',.23,.49),p('C',.77,.49),p('D',.5,.73,'4'),g('G',.5,.96)],candidates:[e('S','A'),e('A','B'),e('B','D'),e('D','G'),e('A','C',1),e('C','D',1),e('A','D',4),e('B','G',4),e('C','G',4)]},
  {id:'Q45',name:'三つの鐘と星の周期',limit:7,goals:['G1','G2','G3'],nodes:[s(),p('A',.5,.27),p('B',.23,.5,'0','8','4'),p('C',.77,.5,'1','8','4'),p('D',.5,.73),g('G1',.16,.96),g('G2',.5,.96),g('G3',.84,.96)],candidates:[e('S','A'),e('A','B'),e('A','C'),e('B','G1',1.5),e('B','D'),e('C','D',1),e('D','G2'),e('C','G3',1.5),e('A','G1',5),e('A','G2',5),e('A','G3',5),e('B','G2',5)]},
  {id:'Q46',name:'星刻と月鏡の三重奏',limit:7,goals:['G1','G2','G3'],nodes:[s(),p('A',.5,.24),n('M','mirror',.5,.42),p('B',.2,.6,'0','8','4'),p('C',.8,.6),p('D',.5,.78,'2','8','4'),g('G1',.16,.96),g('G2',.5,.96),g('G3',.84,.96)],candidates:[e('S','A'),e('A','M'),e('M','B'),e('M','C',1.5),e('B','D'),e('C','D',1),e('D','G1'),e('D','G2'),e('D','G3'),e('A','B',5),e('A','C',5),e('M','D',5),e('B','G1',5),e('C','G3',5)]},
-].map(c=>({...c,version:1,type:'delivery-all',baseline:'1',maxDuration:'120'}));
+].map(c=>({...c,version:c.id==='Q46'?2:1,type:'delivery-all',baseline:'1',maxDuration:'120',
+ candidates:c.candidates.filter(e=>c.id!=='Q46'||e.id!=='MD').map(e=>({...e,time:c.nodes.some(n=>n.id===e.from&&n.kind==='mirror')?'0':e.time}))}));

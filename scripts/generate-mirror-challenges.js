@@ -9,11 +9,7 @@ export function generateMirrorChallenges(){
   const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
   for(let attempt=0;families.length<2&&attempt<200;attempt++){
    const problem=structuredClone(authored);
-   problem.candidates=problem.candidates.map((e,i)=>({...e,time:i===0?'0.5':attempt<=1?e.time:String(.5+Math.floor(random()*20)*.5)}));
-   if(attempt===1)for(const mirror of problem.nodes.filter(n=>n.kind==='mirror')){
-    const outputs=problem.candidates.filter(e=>e.from===mirror.id&&problem.nodes.find(n=>n.id===e.to).kind!=='goal');
-    if(outputs.length>=2)[outputs[0].time,outputs[1].time]=[outputs[1].time,outputs[0].time];
-   }
+   problem.candidates=problem.candidates.map((e,i)=>({...e,time:problem.nodes.some(n=>n.id===e.from&&n.kind==='mirror')?'0':i===0?'0.5':attempt===0?e.time:String(.5+Math.floor(random()*20)*.5)}));
    const result=inspectProblem(problem,sets);
    if(!result.valid||result.winner.length!==authored.limit||families.some(f=>JSON.stringify(f.result.winner)===JSON.stringify(result.winner)))continue;
    const run=simulateWiring(problem,result.winner);

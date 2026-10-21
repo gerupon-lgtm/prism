@@ -541,7 +541,7 @@ export class Board {
         const curve=this.curves.get(particle.edge); if(!curve)continue;
         // Calculate a bounded ratio without turning huge absolute times into Numbers.
         const travelled=run.clock-particle.departed,duration=particle.due-particle.departed;
-        const fraction=Number(travelled*10000n/duration)/10000;
+        const fraction=duration===0n?1:Number(travelled*10000n/duration)/10000;
         const directed=particle.from===run.circuit.edges.get(particle.edge).from?curve:{a:curve.b,b:curve.a,control:curve.control};
         at=this.onCurve(directed,fraction);
         const tail=this.onCurve(directed,Math.max(0,fraction-.045));

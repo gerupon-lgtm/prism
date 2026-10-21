@@ -895,7 +895,9 @@ function timeInput(id,initial) {
   const adjust=direction=>{
     const current=scale.ticks(input.value),next=current+BigInt(direction);if(next<0n)throw new Error('0秒未満にはできません。');
     const edge=session.circuit.edges.find(item=>item.id===id);
-    if(edge&&next<1n)throw new Error('道の時間は0.1秒以上です。');
+    const mirror=id=>session.circuit.nodes.some(node=>node.id===id&&node.kind==='mirror');
+    const reflection=edge&&(mirror(edge.from)||edge.bidirectional&&mirror(edge.to));
+    if(edge&&next<1n&&!reflection)throw new Error('道の時間は0.1秒以上です。鏡から反射する道だけ0秒にできます。');
     input.value=scale.format(next);
   };
   row.append(button('−0.1',()=>adjust(-1)),input,button('＋0.1',()=>adjust(1)));body.append(element('label','秒（0.1秒刻み）'),row);

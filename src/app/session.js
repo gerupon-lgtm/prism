@@ -96,7 +96,7 @@ export class Session {
         next.edges.push(copy(candidate));
         if (next.edges.length > this.challenge.limit) throw new Error(`道は${this.challenge.limit}本までです。`);
       } else {
-        next.edges.push({id:this.nextId('E',next),from,to,time:'1',bidirectional:false});
+        next.edges.push({id:this.nextId('E',next),from,to,time:source.kind==='mirror'?'0':'1',bidirectional:false});
       }
       added.push(next.edges.at(-1).id);
     }

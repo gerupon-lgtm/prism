@@ -6,7 +6,7 @@ import {Session} from '../src/app/session.js';
 import {LocalRecords,circuitFile,readCircuitFile} from '../src/core/storage.js';
 
 const mirrorCircuit=()=>({mode:'spread',target:'G',
-  nodes:[{id:'S',kind:'source',process:'0'},{id:'M',kind:'mirror',reflectTo:'A'},{id:'A',kind:'prism',process:'0.5'},{id:'G',kind:'goal',process:'0'},{id:'H',kind:'goal',process:'0'}],
+  nodes:[{id:'S',kind:'source',process:'0'},{id:'M',kind:'mirror',process:'0.5',reflectTo:'A'},{id:'A',kind:'prism',process:'0.5'},{id:'G',kind:'goal',process:'0'},{id:'H',kind:'goal',process:'0'}],
   edges:[{id:'SM',from:'S',to:'M',time:'1'},{id:'MA',from:'M',to:'A',time:'0.2'},{id:'MG',from:'M',to:'G',time:'0.4'},{id:'AG',from:'A',to:'G',time:'0.2'},{id:'AH',from:'A',to:'H',time:'0.3'}]});
 
 test('読み込んだ鏡の反射先へ並行する複数の有効配線は受け付けず、分岐を防ぐ',()=>{
@@ -112,7 +112,7 @@ test('鏡への入力配線は向きを変えず、鏡からの変更は他の�
   const run=s.start();assert.equal(run.hasFutureArrival('H'),true);assert.equal(run.hasFutureArrival('G'),false);
   const before=structuredClone(s.circuit);assert.throws(()=>s.setMirrorDirection('M','G'));assert.deepEqual(s.circuit,before);
   s.pause();assert.throws(()=>s.setMirrorDirection('M','G'));s.resume();s.advance('10');
-  assert.deepEqual(run.arrivals('H').map(row=>row.time),['2.5']);s.stop();
+  assert.deepEqual(run.arrivals('H').map(row=>row.time),['1.5']);s.stop();
   const result=s.exportResult();s.setMirrorDirection('M','G');assert.equal(s.circuit.nodes[1].reflectTo,'G');assert.deepEqual(s.exportResult(),result);
 });
 

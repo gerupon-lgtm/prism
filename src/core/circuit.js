@@ -22,7 +22,7 @@ export function createCircuit(input) {
   }
   for (const node of raw.nodes) {
     if (!['source', 'prism', 'mirror', 'goal'].includes(node.kind)) throw new Error('点の役割が不正です。');
-    node.process ??= node.kind === 'goal' ? '0' : '0.5';
+    node.process ??= ['goal','mirror'].includes(node.kind) ? '0' : '0.5';
     if (!['prism','mirror'].includes(node.kind) && node.enabled === false) throw new Error('出発点・祭壇を使用不可にはできません。');
     if (node.reflectTo != null && (typeof node.reflectTo !== 'string' || node.reflectTo === node.id || !raw.nodes.some(target => target.id === node.reflectTo))) throw new Error('鏡の反射先が不正です。');
     if(node.gate!==undefined) {
@@ -42,7 +42,8 @@ export function createCircuit(input) {
     if (!nodes.has(edge.from) || !nodes.has(edge.to) || edge.from === edge.to) throw new Error('道は異なる二点を結んでください。');
     if (edge.bidirectional !== undefined && typeof edge.bidirectional !== 'boolean') throw new Error('道の向きが不正です。');
     const compiled = { ...edge, travel: time.ticks(edge.time) };
-    if (compiled.travel < time.ticks('0.1')) throw new Error('道の時間は0.1秒以上です。');
+    const reflection=nodes.get(edge.from).kind==='mirror'||edge.bidirectional&&nodes.get(edge.to).kind==='mirror';
+    if (compiled.travel < time.ticks('0.1')&&!(reflection&&compiled.travel===0n)) throw new Error('道の時間は0.1秒以上です。鏡から反射する道だけ0秒にできます。');
     edges.set(edge.id, compiled);
     if (edge.enabled === false || nodes.get(edge.from).enabled === false || nodes.get(edge.to).enabled === false) continue;
     outgoing.get(edge.from).push({ edge: compiled, to: edge.to });

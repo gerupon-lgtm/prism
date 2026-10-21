@@ -708,14 +708,14 @@ export const gateVariants = {
   ],
   "Q46": [
     {
-      "id": "431b842b58a6a8dc",
-      "baseVersion": 1,
+      "id": "1ce324dd443102e3",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.5",
         "0.5",
-        "0.5",
-        "1.5",
+        "0",
+        "0",
         "0.5",
         "1",
         "0.5",
@@ -724,21 +724,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.5",
+      "baseline": "3.5",
       "maxDuration": "15.5"
     },
     {
-      "id": "4ea88a1dcb57e7f3",
-      "baseVersion": 1,
+      "id": "929a61ae5a3cc434",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.7",
         "0.5",
-        "0.5",
-        "1.5",
+        "0",
+        "0",
         "0.5",
         "1",
         "0.5",
@@ -747,21 +746,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.7",
+      "baseline": "3.7",
       "maxDuration": "15.7"
     },
     {
-      "id": "0355c5c3e0019dd9",
-      "baseVersion": 1,
+      "id": "1315379422c37063",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.9",
         "0.5",
-        "0.5",
-        "1.5",
+        "0",
+        "0",
         "0.5",
         "1",
         "0.5",
@@ -770,21 +768,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.9",
+      "baseline": "3.9",
       "maxDuration": "15.9"
     },
     {
-      "id": "f1e73b45ff4437bf",
-      "baseVersion": 1,
+      "id": "5223a86e8206959d",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "1.1",
         "0.5",
-        "0.5",
-        "1.5",
+        "0",
+        "0",
         "0.5",
         "1",
         "0.5",
@@ -793,21 +790,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "5.1",
+      "baseline": "4.1",
       "maxDuration": "16.1"
     },
     {
-      "id": "223bdd5d55892798",
-      "baseVersion": 1,
+      "id": "0cc30947a0365c81",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.5",
         "0.5",
-        "1.5",
-        "0.5",
+        "0",
+        "0",
         "1",
         "0.5",
         "0.5",
@@ -816,21 +812,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.5",
+      "baseline": "3.5",
       "maxDuration": "15.5"
     },
     {
-      "id": "f2d983cdb971a448",
-      "baseVersion": 1,
+      "id": "414ece2986a08c8f",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.7",
         "0.5",
-        "1.5",
-        "0.5",
+        "0",
+        "0",
         "1",
         "0.5",
         "0.5",
@@ -839,21 +834,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.7",
+      "baseline": "3.7",
       "maxDuration": "15.7"
     },
     {
-      "id": "205886f30ce7d115",
-      "baseVersion": 1,
+      "id": "8ff891369db061d0",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.9",
         "0.5",
-        "1.5",
-        "0.5",
+        "0",
+        "0",
         "1",
         "0.5",
         "0.5",
@@ -862,21 +856,20 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "4.9",
+      "baseline": "3.9",
       "maxDuration": "15.9"
     },
     {
-      "id": "ec2ea4ae0a2cc337",
-      "baseVersion": 1,
+      "id": "1728c43733a54975",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "1.1",
         "0.5",
-        "1.5",
-        "0.5",
+        "0",
+        "0",
         "1",
         "0.5",
         "0.5",
@@ -885,10 +878,9 @@ export const gateVariants = {
         "5",
         "5",
         "5",
-        "5",
         "5"
       ],
-      "baseline": "5.1",
+      "baseline": "4.1",
       "maxDuration": "16.1"
     }
   ]
