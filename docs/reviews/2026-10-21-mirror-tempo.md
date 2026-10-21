@@ -37,9 +37,10 @@
 
 ## 公開状況
 
-- 配信元`9627aa950868e7b160a557f691bd2a25a8446e5e`。[GitHub Actions 39601208119](https://github.com/gerupon-lgtm/prism/actions/runs/39601208119)のbuild・deployが成功。
+- GitHub Pagesの配信元`9627aa950868e7b160a557f691bd2a25a8446e5e`。[GitHub Actions 39601208119](https://github.com/gerupon-lgtm/prism/actions/runs/39601208119)のbuild・deployが成功。
 - [GitHub Pages](https://gerupon-lgtm.github.io/prism/)は0.81.0。版・配信元・全75資材の形式とSHA-256、更新・保存・通信なし起動等88項目、全42面の表示と追加18面の結線・満点114項目が合格。
 - 公開版でも鏡6面の2系統を早送りせず再生し、12ケースが満点で終了。さらに32面の即時開始・正確なゲーム内間隔と、再開・拡大復帰の準備演出を実際に確認した。ソースと同じ0秒反射と短い経路の時間で動いている。
-- **独自ドメインは未反映**。Cloudflare管理ツールの認証状態取得は今回も内部エラー。前回からのGitHub連携再認証待ちを継続し、権限変更・旧版の再配信は行っていない。公開番号を再取得し、[prism.sikumilab.com](https://prism.sikumilab.com/)は0.78.0・配信元`b60a9a1289e67d7c7510bc8fcb404adc349dbe43`であることを確認した。
+- **2026-10-21時点では独自ドメインは未反映**。Cloudflare管理ツールの認証状態取得は内部エラー。GitHubの連携設定を開く本人確認で調査が止まっており、権限変更・旧版の再配信は行っていなかった。公開番号は0.78.0・配信元`b60a9a1289e67d7c7510bc8fcb404adc349dbe43`だった。
+- **2026-10-22、独自ドメインへの反映が完了**。発案者の本人確認と承認後、Cloudflareの許可先へ`prism`だけを追加した。資料だけが新しい`c5cad3b23f7f8182279f336b5c87d10fca10b277`から配信し、Cloudflare `db0d3f77-a322-4000-9420-6413e937f329`が成功。公開88項目・表示と実操作114項目・鏡の実再生12ケース・32面の即時開始と再開・拡大復帰が合格した。詳細と自動配信の確認境界は[復旧記録](2026-10-22-cloudflare-reconnect.md)を参照。
 
 公開の証拠は`設計検証/鏡のテンポ/0.81.0/gerupon-lgtm.github.io/{public,chromium,interaction-chromium}/report.json`、`設計検証/三つのテーマ/0.81.0/gerupon-lgtm.github.io/chromium/report.json`と`設計検証/鏡のテンポ/0.81.0/matrix/github-*.log`。資料だけの追記では同じ版を再配信しない。
