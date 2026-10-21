@@ -24,6 +24,13 @@
 
 証拠は`設計検証/鏡の回転/0.79.0/matrix/{mirrors,unit}.json`と4ブラウザのレポート、`設計検証/三つのテーマ/0.79.0/matrix/offline.json`。
 
-公開結果は完了後に追記する。
+## 公開状況
+
+- 配信元`f109b621e305a95a1b3c422e140026409f1538fd`。[GitHub Actions 39578840214](https://github.com/gerupon-lgtm/prism/actions/runs/39578840214)のbuild・deployが成功。
+- [GitHub Pages](https://gerupon-lgtm.github.io/prism/)は0.79.0。版・配信元・全75資材の形式とSHA-256・更新・保存等88項目、全42面の表示と追加18面の結線・満点114項目、鏡の操作35項目、計237項目が合格した。
+- **独自ドメインへの反映は未完了**。[prism.sikumilab.com](https://prism.sikumilab.com/)は公開番号を読み取った時点で0.78.0。Cloudflareの管理ツールは検索・読取・認証状態の全てで内部エラーになった。ブラウザでは既存アカウントへログインできたが、プロジェクトに「Gitアカウントから切断されています」と表示され、新コミットの配信は存在しなかった。
+- 既存のGitHub連携の管理先を開くと、GitHub自身の「Confirm access」再認証が必要になった。再認証を発案者へ依頼している。権限の変更・再接続・旧版の再配信・デプロイフックの新設は行っていない。再開時は認証後の状態を読み、新版の配信が既にないか確認してから進める。
+
+公開の証拠は`設計検証/三つのテーマ/0.79.0/gerupon-lgtm.github.io/{public,chromium}/report.json`と`設計検証/鏡の回転/0.79.0/gerupon-lgtm.github.io/chromium/report.json`。
 
 スマホ実機の操作感はPCブラウザの検査と区別する。
