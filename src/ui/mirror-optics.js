@@ -64,18 +64,14 @@ export function snapTarget(angle,targets,previousId=null){
   return best.id;
 }
 
-export function unalignedAngle(targets){
-  if(!targets.length)return -Math.PI/4;
-  const angles=targets.map(target=>{
-    const angle=normalize(target.angle);
-    return angle<0?angle+TAU:angle;
-  }).sort((a,b)=>a-b);
-  let largest=-1,midpoint=0;
-  for(let i=0;i<angles.length;i++){
-    const start=angles[i],end=i+1<angles.length?angles[i+1]:angles[0]+TAU;
-    const gap=end-start;
-    // Equal gaps use the first angular position, independent of target order.
-    if(gap>largest+EPS){largest=gap;midpoint=start+gap/2;}
+export function initialReflection(incidentAngle,targets){
+  const forward=normalize(incidentAngle);let best=forward,widest=-1;
+  // Stay near the incoming light's continuation. A small offset avoids making
+  // an unconnected initial preview look as though it already hits a part.
+  for(const degrees of [0,12,-12,18,-18]){
+    const angle=normalize(forward+degrees*DEG),clearance=Math.min(Math.PI,...targets.map(target=>angleGap(angle,target.angle)));
+    if(clearance>=10*DEG-EPS)return angle;
+    if(clearance>widest+EPS){best=angle;widest=clearance;}
   }
-  return normalize(midpoint);
+  return best;
 }

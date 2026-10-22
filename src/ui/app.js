@@ -184,7 +184,7 @@ function scheduleConditionFit(){
 function render(redraw=true,{records=true}={}) {
   const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&$('title-screen').hidden);
   $('mirror-controls').hidden=!aiming;
-  if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'回転盤の円周をなぞる');$('mirror-status').title='回転盤の円周は、どこからでも指でなぞれます。相手に光が吸い付いたら離して結線します。周囲のタップか×で終了。左右ボタンでも相手を選べます。';}
+  if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'円周をなぞる');$('mirror-status').title='回転盤の円周は、どこからでも指でなぞれます。相手に光が吸い付いたら離して結線します。周囲のタップか×で終了。左右ボタンでも相手を選べます。';}
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
   // Enlarged text on a short portrait screen needs the existing full-text
   // entries, rather than a heading that leaves too little room to connect parts.
@@ -566,7 +566,7 @@ function maybeMirrorIntro(){
   if(mirrorIntroShown||dialog.open||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
   try{if(storage.getItem('prism-mirror-optics-intro-v1')==='seen')return;}catch{/* An unavailable store must not prevent playing. */}
   mirrorIntroShown=true;open('鏡を回して、光を導こう');dialog.classList.add('help-dialog','mirror-intro');
-  body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','離れた回転盤の円周を指でなぞって鏡を回しましょう。つまみの位置に合わせる必要はありません。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','最初はどこにも向いていません。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
+  body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','離れた回転盤の、矢印が並ぶ円周を指でなぞって鏡を回しましょう。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','反射光は、入ってくる線の延長方向に近い向きから始まります。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
   actions.append(button('やってみる',()=>{try{storage.setItem('prism-mirror-optics-intro-v1','seen');}catch{/* Read the help again whenever needed. */}close();},{id:'mirror-intro-start'}));fitDialogForm();
 }
 function layoutTitle(width,height) {

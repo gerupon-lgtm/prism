@@ -5,7 +5,7 @@ import { partName,objectName } from './labels.js';
 import { directionMarkers } from './edge-directions.js';
 import { TimeScale } from '../core/time.js';
 import { gateState } from '../core/periodic.js';
-import { reflect,surfaceFor,snapTarget,unalignedAngle,placeMirrorControl,wheelDelta } from './mirror-optics.js';
+import { reflect,surfaceFor,snapTarget,initialReflection,placeMirrorControl,wheelDelta } from './mirror-optics.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
@@ -216,8 +216,7 @@ export class Board {
     const ids=this.session.mode==='challenge'?[...new Set(edges.filter(e=>e.from===id&&e.enabled!==false).map(e=>e.to))]:nodes.filter(n=>n.id!==id).map(n=>n.id);
     const targets=ids.map(target=>{const point=this.position(nodes.find(n=>n.id===target));return {id:target,angle:Math.atan2(point.y-origin.y,point.x-origin.x),point};});
     const avoid=nodes.filter(n=>n.id!==id).map(n=>{const point=this.position(n);return {id:n.id,angle:Math.atan2(point.y-origin.y,point.x-origin.x)};});
-    // Geometry contains all recipients, including temporarily unaffordable ones,
-    // so a full budget does not silently point the initial mirror at a candidate.
+    // Include every part when avoiding overlap in the initial forward preview.
     return {id,origin,before,incident,targets,avoid,route};
   }
   beginMirrorAim(id,incomingId=null,route=[id]) {
@@ -226,7 +225,7 @@ export class Board {
     if(this.mirrorAim?.id===id&&!incomingId)return this.mirrorAim;
     const geometry=this.mirrorGeometry(id,incomingId,route);if(!geometry)return;
     const mirror=this.session.circuit.nodes.find(n=>n.id===id),applied=this.session.circuit.edges.some(e=>e.from===id&&e.to===mirror.reflectTo||e.bidirectional&&e.to===id&&e.from===mirror.reflectTo)?geometry.targets.find(t=>t.id===mirror.reflectTo):null;
-    const outgoing=applied?.angle??unalignedAngle(geometry.avoid);
+    const outgoing=applied?.angle??initialReflection(geometry.incident,geometry.avoid);
     this.session.selection=id;this.mirrorAim={...geometry,surface:surfaceFor(geometry.incident,outgoing),target:applied?.id??null,rawSurface:surfaceFor(geometry.incident,outgoing)};
     this.mirrorAim.control=this.mirrorControlPosition(geometry.origin);
     const control=this.mirrorAim.control;this.mirrorAim.controlScreen=new DOMPoint(control.x,control.y).matrixTransform(this.world.getScreenCTM());
@@ -284,7 +283,7 @@ export class Board {
       const active=this.mirrorAim?.id===node.id&&this.session.editable,geometry=active?this.mirrorAim:this.mirrorGeometry(node.id);if(!geometry)continue;
       const {origin,incident,targets,before}=geometry;
       const applied=this.session.circuit.edges.some(e=>e.from===node.id&&e.to===node.reflectTo||e.bidirectional&&e.to===node.id&&e.from===node.reflectTo)?targets.find(t=>t.id===node.reflectTo):null;
-      const surface=active?geometry.surface:surfaceFor(incident,applied?.angle??unalignedAngle(geometry.avoid)),outgoing=reflect(incident,surface);
+      const surface=active?geometry.surface:surfaceFor(incident,applied?.angle??initialReflection(incident,geometry.avoid)),outgoing=reflect(incident,surface);
       const face=svg('g',{class:'mirror-face',transform:`translate(${origin.x} ${origin.y}) rotate(${surface*180/Math.PI})`,'data-mirror-face':node.id,'data-surface':surface,'data-incident':incident,'data-outgoing':outgoing});
       face.append(svg('line',{x1:-46*factor,x2:46*factor,y1:0,y2:0,class:'mirror-surface'}));
       this.world.append(face);
@@ -300,12 +299,19 @@ export class Board {
       const defs=svg('defs');defs.append(gradient);rays.append(defs,svg('path',{d:`M${before.x} ${before.y} L${origin.x} ${origin.y}`,class:'mirror-incident'}),svg('path',{d:`M${origin.x} ${origin.y} L${end.x} ${end.y}`,class:'mirror-reflection'}));
       const group=this.world.querySelector(`[data-node="${CSS.escape(target?.id??'')}"]`);group?.classList.add('mirror-target');
       this.world.insertBefore(rays,this.world.querySelector('[data-node]'));
-      const control=this.location(geometry.controlScreen.x,geometry.controlScreen.y),handleRadius=32/scale;geometry.control=control;
+      const control=this.location(geometry.controlScreen.x,geometry.controlScreen.y),wheelRadius=32/scale;geometry.control=control;
       const dial=svg('g',{class:'mirror-control','data-mirror-control':node.id,transform:`translate(${control.x} ${control.y})`});
-      dial.append(svg('circle',{r:53/scale,class:'mirror-control-pad'}),svg('circle',{r:handleRadius,class:'mirror-control-track'}));
-      const knob=svg('g',{transform:`rotate(${surface*180/Math.PI})`});
-      knob.append(svg('line',{x1:-22/scale,x2:22/scale,y1:0,y2:0,class:'mirror-surface'}),svg('circle',{cx:handleRadius,cy:0,r:22/scale,class:'mirror-handle-hit','data-mirror-handle':node.id}),svg('circle',{cx:handleRadius,cy:0,r:11/scale,class:'mirror-handle'}));
-      dial.append(knob);
+      dial.append(svg('circle',{r:53/scale,class:'mirror-control-pad'}),svg('circle',{r:wheelRadius,class:'mirror-control-track'}));
+      for(const centre of [-Math.PI/2,Math.PI/6,5*Math.PI/6]){
+        const start=centre-22*Math.PI/180,end=centre+22*Math.PI/180;
+        const a={x:wheelRadius*Math.cos(start),y:wheelRadius*Math.sin(start)},b={x:wheelRadius*Math.cos(end),y:wheelRadius*Math.sin(end)};
+        let d=`M${a.x} ${a.y} A${wheelRadius} ${wheelRadius} 0 0 1 ${b.x} ${b.y}`;
+        for(const [tip,direction] of [[a,start-Math.PI/2],[b,end+Math.PI/2]]){
+          const left=direction+Math.PI-.6,right=direction+Math.PI+.6,length=6/scale;
+          d+=` M${tip.x+length*Math.cos(left)} ${tip.y+length*Math.sin(left)} L${tip.x} ${tip.y} L${tip.x+length*Math.cos(right)} ${tip.y+length*Math.sin(right)}`;
+        }
+        dial.append(svg('path',{d,class:'mirror-wheel-arrow','aria-hidden':'true'}));
+      }
       const caption=svg('text',{x:0,y:47/scale,'text-anchor':'middle',transform:`rotate(${-this.angle})`,class:'mirror-control-caption','font-size':12/scale});caption.textContent='鏡を回す';dial.append(caption);
       this.world.append(dial);
     }
@@ -361,7 +367,7 @@ export class Board {
     const cells=rect=>{const keys=[];for(let x=Math.floor(rect.left/cellSize);x<=Math.floor(rect.right/cellSize);x++)for(let y=Math.floor(rect.top/cellSize);y<=Math.floor(rect.bottom/cellSize);y++)keys.push(`${x}/${y}`);return keys;};
     const reserve=rect=>{for(const key of cells(rect)){if(!occupied.has(key))occupied.set(key,[]);occupied.get(key).push(rect);}};
     const measureOverlap=rect=>[...new Set(cells(rect).flatMap(key=>occupied.get(key)??[]))].reduce((sum,other)=>sum+Math.max(0,Math.min(rect.right,other.right+3)-Math.max(rect.left,other.left-3))*Math.max(0,Math.min(rect.bottom,other.bottom+3)-Math.max(rect.top,other.top-3)),0);
-    for(const node of this.world.querySelectorAll('.node-symbol,.node-state,.goal .node-name,.mirror-handle-hit'))reserve(node.getBoundingClientRect());
+    for(const node of this.world.querySelectorAll('.node-symbol,.node-state,.goal .node-name,.mirror-control-pad'))reserve(node.getBoundingClientRect());
     for(const control of this.element.parentElement.querySelectorAll('#stage-controls button'))reserve(control.getBoundingClientRect());
     let directionsReserved=false;
     const reserveDirections=()=>{
@@ -568,15 +574,15 @@ export class Board {
     this.stopHold();
     this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
     if(this.pointers.size>=2){this.mirrorAim=null;if(this.pointers.size===2)this.gesture={kind:'pinch',distance:this.distance(),center:this.pointerCenter()};this.drawMirrors();this.updateWireTimeFocus();this.setWirePreview('');this.magnifier.hide();this.changed(false);return;}
-    const mirrorHandle=event.target.closest('[data-mirror-handle],[data-mirror-control],[data-mirror-face]');
-    const tappedMirror=mirrorHandle?.dataset.mirrorHandle??mirrorHandle?.dataset.mirrorControl??mirrorHandle?.dataset.mirrorFace??event.target.closest('[data-node]')?.dataset.node;
+    const mirrorHandle=event.target.closest('[data-mirror-control],[data-mirror-face]');
+    const tappedMirror=mirrorHandle?.dataset.mirrorControl??mirrorHandle?.dataset.mirrorFace??event.target.closest('[data-node]')?.dataset.node;
     if(this.mirrorAim&&!event.target.dataset.move&&this.session.circuit.nodes.find(n=>n.id===tappedMirror)?.kind!=='mirror'){
       // Leaving the dedicated rotation mode consumes this contact. It must
       // never start a wire, a long-press deletion, or a settings activation.
       this.cancelAll();this.gesture={kind:'held'};this.render();this.changed(false);return;
     }
     const directEdge=event.target.closest('[data-edge]');
-    const directNode=mirrorHandle?.dataset.mirrorHandle??mirrorHandle?.dataset.mirrorControl??mirrorHandle?.dataset.mirrorFace??event.target.closest('[data-node]')?.dataset.node??(!directEdge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
+    const directNode=mirrorHandle?.dataset.mirrorControl??mirrorHandle?.dataset.mirrorFace??event.target.closest('[data-node]')?.dataset.node??(!directEdge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);
     const card=event.target.closest('.edge-label')&&directEdge&&!directEdge.classList.contains('candidate');
     const edge=directNode?null:card?directEdge.dataset.edge:this.edgeTarget(event.clientX,event.clientY)??directEdge?.dataset.edge;
     const node=directNode??(!edge&&!this.addKind&&this.session.editable?this.wireTarget(event.clientX,event.clientY):null);

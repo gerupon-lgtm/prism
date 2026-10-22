@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
-const {chooseChallenge}=require('./browser_wait.cjs');
+const {chooseChallenge,dragConnection}=require('./browser_wait.cjs');
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];};
 const pw=require(arg('--playwright-path')||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
@@ -41,10 +41,17 @@ async function input(page,touch){
       const io=await input(page,layout.touch&&engine==='chromium');
       const clear=async()=>{if(await page.locator('.edge:not(.candidate)').count())await page.locator('#clear-wires').click();await controls();};
       try{
-        // Start well away from the visible knob, including the opposite rim.
+        await controls();
+        const appearance=await page.evaluate(()=>{const dial=document.querySelector('.mirror-control'),face=document.querySelector('[data-mirror-face="M"]');return {arrows:dial.querySelectorAll('.mirror-wheel-arrow').length,bar:dial.querySelectorAll('.mirror-surface,.mirror-handle').length,incident:Number(face.dataset.incident),outgoing:Number(face.dataset.outgoing)};});
+        assert.equal(appearance.arrows,3);assert.equal(appearance.bar,0);assert(gap(appearance.incident,appearance.outgoing)<=18*Math.PI/180+1e-8);check(`${layout.name}: three curved double arrows show the rim; initial light points forward`);
+        await page.screenshot({path:path.join(out,`${layout.name}-wheel.png`)});
+        await page.locator('#mirror-done').click();await dragConnection(page,'S','A');await dragConnection(page,'A','M');await page.locator('[data-mirror-control="M"]').waitFor({state:'visible'});
+        const arrival=await page.evaluate(()=>{const f=document.querySelector('[data-mirror-face="M"]');return {incident:Number(f.dataset.incident),outgoing:Number(f.dataset.outgoing)};});
+        assert(gap(arrival.incident,arrival.outgoing)<=18*Math.PI/180+1e-8);assert.equal(await page.locator('.edge:not(.candidate)').count(),2);check(`${layout.name}: incoming wiring previews its continuation without connecting an output`);
+        // Every part of the circumference is usable, independent of mirror angle.
         for(const offset of [90,180,-90]){
           await clear();const g=await geometry(page),start=g.surface+g.rotation+offset*Math.PI/180;
-          assert(Math.abs(g.padRadius-53)<.01&&Math.abs(g.trackRadius-32)<.01,'visible handle dimensions unchanged');
+          assert(Math.abs(g.padRadius-53)<.01&&Math.abs(g.trackRadius-32)<.01,'wheel dimensions unchanged');
           const point=(angle,radius=32)=>({x:g.cx+radius*Math.cos(angle),y:g.cy+radius*Math.sin(angle)});
           const before=await state(page);await io.down(point(start));const placed=await state(page);
           assert(gap(before.surface,placed.surface)<1e-8&&placed.target==='','placing finger does not jump or select');

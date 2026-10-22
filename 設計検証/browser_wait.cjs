@@ -102,7 +102,7 @@ async function dragConnection(page,from,to){
   if(await page.locator(`[data-mirror-face="${to}"]`).count())await page.locator(`[data-mirror-control="${to}"]`).waitFor({state:'visible'});
 }
 async function rotateMirrorTo(page,id,to,{release=true}={}){
-  if(!await page.locator(`[data-mirror-handle="${id}"]`).count())await page.locator(`[data-node="${id}"]`).press('Enter');
+  if(!await page.locator(`[data-mirror-control="${id}"]`).count())await page.locator(`[data-node="${id}"]`).press('Enter');
   const geometry=await page.locator(`[data-mirror-face="${id}"]`).evaluate((face,to)=>{
     const matrix=face.parentNode.getScreenCTM(),inverse=matrix.inverse(),origin=new DOMPoint().matrixTransform(face.getScreenCTM()).matrixTransform(inverse);
     let angle;
@@ -111,7 +111,7 @@ async function rotateMirrorTo(page,id,to,{release=true}={}){
     const surface=Number(face.dataset.surface),incident=Number(face.dataset.incident);
     let delta=(angle+incident)/2-surface;while(delta>Math.PI/2)delta-=Math.PI;while(delta< -Math.PI/2)delta+=Math.PI;
     const dial=document.querySelector(`[data-mirror-control="${face.dataset.mirrorFace}"]`),centre=new DOMPoint().matrixTransform(dial.getScreenCTM()).matrixTransform(inverse);
-    return {origin:{x:centre.x,y:centre.y},radius:Number(dial.querySelector('.mirror-handle-hit').getAttribute('cx')),surface,delta,matrix:{a:matrix.a,b:matrix.b,c:matrix.c,d:matrix.d,e:matrix.e,f:matrix.f}};
+    return {origin:{x:centre.x,y:centre.y},radius:Number(dial.querySelector('.mirror-control-track').getAttribute('r')),surface,delta,matrix:{a:matrix.a,b:matrix.b,c:matrix.c,d:matrix.d,e:matrix.e,f:matrix.f}};
   },to);
   const {origin,radius,surface,delta,matrix:m}=geometry,point=t=>{const angle=surface+delta*t,x=origin.x+radius*Math.cos(angle),y=origin.y+radius*Math.sin(angle);return{x:m.a*x+m.c*y+m.e,y:m.b*x+m.d*y+m.f};};
   const start=point(0);await page.mouse.move(start.x,start.y);await page.mouse.down();const steps=Math.max(4,Math.ceil(Math.abs(delta)*180/Math.PI/3));for(let i=1;i<=steps;i++){const p=point(i/steps);await page.mouse.move(p.x,p.y);}

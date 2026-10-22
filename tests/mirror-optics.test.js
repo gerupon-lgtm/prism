@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {reflect,surfaceFor,angleGap,snapTarget,unalignedAngle,placeMirrorControl} from '../src/ui/mirror-optics.js';
+import {reflect,surfaceFor,angleGap,snapTarget,initialReflection,placeMirrorControl} from '../src/ui/mirror-optics.js';
+import {Board} from '../src/ui/board.js';
 
 test('空きがある場所では鏡から110pxの近い回転盤を選ぶ',()=>{
   const origin={x:400,y:400},at=placeMirrorControl({bounds:{left:0,top:0,right:800,bottom:800},origin});
@@ -81,27 +82,34 @@ test('近さの差が4度以内なら勝手に相手を選ばず、同じ向き�
   assert.equal(snapTarget(rad(12),coincident,'B'),'B');
 });
 
-test('初期方向は最大の隙間の中央となり、可能なら全候補の捕捉範囲から外れる',()=>{
-  const targets=[target('A',-60),target('B',0),target('C',60)];
-  near(unalignedAngle(targets),Math.PI);
-  assert.equal(snapTarget(unalignedAngle(targets),targets),null);
-  for(let count=1;count<=8;count++){
+test('初期の反射光は入ってきた光の先へ向け、空きがあれば延長方向を保つ',()=>{
+  for(const incident of [-179,-90,0,90,179,540]){
+    near(initialReflection(rad(incident),[]),rad(incident));
+    near(initialReflection(rad(incident),[target('behind',incident+180)]),rad(incident));
+  }
+  near(initialReflection(rad(35),[target('A',75),target('B',-40)]),rad(35));
+});
+
+test('延長上のパーツだけを小さく避け、混雑時も進行方向から18度以内に収める',()=>{
+  const targets=[target('A',-60),target('B',0),target('C',60)],before=structuredClone(targets);
+  const initial=initialReflection(0,targets);assert(angleGap(initial,0)<=rad(18));assert(angleGap(initial,0)>=rad(10));
+  near(initialReflection(0,[...targets].reverse()),initial);assert.deepEqual(targets,before);
+  for(let count=1;count<=72;count++)for(const incident of [-179,-90,0,90,179]){
     const ring=Array.from({length:count},(_,i)=>target(String(i),i*360/count));
-    const initial=unalignedAngle(ring);
-    assert(ring.every(t=>angleGap(initial,t.angle)>rad(22)));
-    assert.equal(snapTarget(initial,ring),null);
+    assert(angleGap(initialReflection(rad(incident),ring),rad(incident))<=rad(18)+1e-10);
   }
 });
 
-test('全周が混雑しても初期方向を候補へ完全一致させず、同率と重複は決定的に扱う',()=>{
-  assert.equal(unalignedAngle([]),-Math.PI/4);
-  const coincident=[target('B',0),target('A',360)];
-  near(unalignedAngle(coincident),Math.PI);
-  const ring=Array.from({length:12},(_,i)=>target(String(i),i*30));
-  const before=structuredClone(ring),initial=unalignedAngle(ring);
-  assert(ring.every(t=>angleGap(initial,t.angle)>rad(14.99)));
-  near(unalignedAngle([...ring].reverse()),initial);
-  assert.deepEqual(ring,before);
-  snapTarget(initial,ring);
-  assert.deepEqual(ring,before);
+test('初期プレビューは結線を増やさず、確定済みの反射先は以前の向きを保つ',t=>{
+  const original=globalThis.DOMPoint;globalThis.DOMPoint=class{constructor(x,y){Object.assign(this,{x,y});}matrixTransform(){return this;}};
+  t.after(()=>{if(original)globalThis.DOMPoint=original;else delete globalThis.DOMPoint;});
+  for(const applied of [false,true]){
+    const circuit={nodes:[{id:'M',kind:'mirror',...(applied?{reflectTo:'C'}:{})}],edges:applied?[{from:'M',to:'C'}]:[]};
+    const before=structuredClone(circuit),b={session:{editable:true,circuit},cancelMirrorSelection(){},mirrorControlPosition:()=>({x:0,y:0}),world:{getScreenCTM:()=>({})},
+      mirrorGeometry:()=>({id:'M',incident:rad(-90),targets:[target('C',-45)],avoid:[target('G',-90)]})};
+    const aim=Board.prototype.beginMirrorAim.call(b,'M');
+    assert.equal(aim.target,applied?'C':null);assert.deepEqual(circuit,before);
+    const outgoing=reflect(aim.incident,aim.surface);
+    if(applied)near(outgoing,rad(-45));else assert(angleGap(outgoing,rad(-90))<=rad(18));
+  }
 });
