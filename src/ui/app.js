@@ -161,7 +161,7 @@ function challengeGoal(challenge){
     if(new Set(challenge.intervals).size===1)return `${challenge.intervals[0]}秒間隔で${names.join('→')}の順に鳴らす`;
     return `${names[0]}の${challenge.intervals.map((gap,index)=>`${index?'さらに':''}${gap}秒後に${names[index+1]}`).join('、')}を鳴らす`;
   }
-  if(challenge.type==='delivery-all')return `${challenge.goals.map(bell).join('・')}すべてに届ける`;
+  if(challenge.type==='delivery-all'){const names=challenge.goals.map(bell);return names.length===1?`${names[0]}に届ける`:`${names.join('・')}すべてに届ける`;}
   if(challenge.type==='interval')return `鐘を${challenge.interval}秒間隔で${challenge.count}回鳴らす`;
   return ({time:`${bell(challenge.goal)}へより早く届ける`,'time-hops':`${bell(challenge.goal)}へ早く・少ない道で届ける`,'edge-fault':`どの道が1本止まっても${bell(challenge.goal)}へ`,'prism-fault':`どのプリズムが1つ止まっても${bell(challenge.goal)}へ`}[challenge.type]);
 }
@@ -396,7 +396,7 @@ function outcomeDetails(title,text){
 function clearTimeLabel(){
   const type=session.runContext?.challenge?.type;
   if(type==='return-pattern')return '指定回数まで';
-  return type==='interval'?'初回到達':['delivery-all','bell-sequence'].includes(type)?'全てに到達':'到達時間';
+  return type==='interval'?'初回到達':['delivery-all','bell-sequence'].includes(type)&&session.runContext.challenge.goals.length>1?'すべてに到達':'到達時間';
 }
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;

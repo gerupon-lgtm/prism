@@ -9,6 +9,32 @@ function hitBoard(){
   return {world:{querySelectorAll:()=>points.map(([id,x,y])=>({dataset:{node:id},querySelector:()=>({getBoundingClientRect:()=>({left:x-22,top:y-22,width:44,height:44})})}))},session:{circuit:{nodes:points.map(([id])=>({id,kind:id==='G'?'goal':'prism'}))},planConnections:route=>{if(route.at(-1)==='B')throw Error('Not an available candidate');}}};
 }
 
+test('課題の直通線は途中のパーツの中心と重ならず、別経路として見分けられる',()=>{
+  const overlaps=[];
+  for(const challenge of challenges){
+    const board={session:{mode:'challenge',challenge},projectionScale:1},positions=new Map(challenge.nodes.map(node=>[node.id,Board.prototype.position.call(board,node)]));
+    for(const edge of challenge.candidates){
+      const a=positions.get(edge.from),b=positions.get(edge.to),dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy;if(!length)continue;
+      for(const [id,p]of positions){
+        if([edge.from,edge.to].includes(id))continue;
+        const t=((p.x-a.x)*dx+(p.y-a.y)*dy)/length;
+        if(t>0&&t<1&&Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t)<1e-7)overlaps.push(`Q${challenge.number} ${edge.id} through ${id}`);
+      }
+    }
+  }
+  assert.deepEqual(overlaps,[]);
+});
+
+test('重なる課題の表示位置だけを調整し、元の座標と自由作成の配置は保持する',()=>{
+  for(const [id,part]of [['Q11','D'],['Q12','F'],['Q45','D']]){
+    const challenge=challenges.find(c=>c.id===id),node=challenge.nodes.find(n=>n.id===part),before=structuredClone(node);
+    const view={session:{mode:'challenge',challenge}},original=Board.prototype.position.call({},node);
+    const displayed=Board.prototype.position.call(view,node);assert.notEqual(displayed.x,original.x);
+    view.session.run={status:'running'};assert.deepEqual(Board.prototype.position.call(view,node),displayed);
+    view.session.mode='free';assert.deepEqual(Board.prototype.position.call(view,node),original);assert.deepEqual(node,before);
+  }
+});
+
 test('候補が重なっていても近い結線済みの線を選び、線から離れた場所は選ばない',()=>{
   const board={onCurve:Board.prototype.onCurve,session:{circuit:{edges:[{id:'built'}]}},world:{getScreenCTM:()=>({a:1,b:0,c:0,d:1,e:0,f:0})},curves:new Map([['built',{a:{x:0,y:0},b:{x:100,y:100},control:{x:50,y:50}}]])};
   assert.equal(Board.prototype.edgeTarget.call(board,50,53),'built');

@@ -1,0 +1,92 @@
+{
+  "version": "0.83.0",
+  "scenario": "scene",
+  "engine": "chromium",
+  "checks": [
+    {
+      "label": "D to bell is connected by pointer input",
+      "passed": true
+    }
+  ],
+  "passed": false,
+  "evidence": "Disposable PC browser with a synthetic phone viewport. Chromium uses real touch input for D to bell; not a physical phone.",
+  "draw": "Q15 合流先の順番待ち",
+  "paint": {
+    "point": {
+      "x": 195,
+      "y": 299.514892578125
+    },
+    "stack": [
+      {
+        "edge": "AG",
+        "classes": "edge-line"
+      },
+      {
+        "edge": "AG",
+        "classes": "edge-hit"
+      },
+      {
+        "edge": "DG",
+        "classes": "edge-line"
+      },
+      {
+        "edge": "DG",
+        "classes": "edge-hit"
+      }
+    ],
+    "order": [
+      {
+        "id": "SA",
+        "candidate": false
+      },
+      {
+        "id": "AB",
+        "candidate": false
+      },
+      {
+        "id": "BD",
+        "candidate": false
+      },
+      {
+        "id": "BG",
+        "candidate": false
+      },
+      {
+        "id": "DG",
+        "candidate": false
+      },
+      {
+        "id": "AC",
+        "candidate": true
+      },
+      {
+        "id": "CD",
+        "candidate": true
+      },
+      {
+        "id": "AD",
+        "candidate": true
+      },
+      {
+        "id": "CG",
+        "candidate": true
+      },
+      {
+        "id": "AG",
+        "candidate": true
+      },
+      {
+        "id": "BC",
+        "candidate": true
+      }
+    ],
+    "built": [
+      "SA",
+      "AB",
+      "BD",
+      "BG",
+      "DG"
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: A long unconnected candidate must not cover the shorter connected D-to-bell route\n\n'AG' !== 'DG'\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_collinear_wiring.cjs:35:10"
+}

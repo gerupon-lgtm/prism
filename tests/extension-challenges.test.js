@@ -65,9 +65,10 @@ function assertGateStarts(s,c,offset){
   }
 }
 
-test('旧24課題の定義と旧144出題を直前公開版の内容のまま保持する',()=>{
-  // SHA-256 of the JSON values loaded from git HEAD before the three-set extension.
-  assert.equal(hash(challenges.slice(0,24)),'2b06ddabc74aa81d3b09d1b4a10fca8e9d04e3f7bb45c783c2ba6c7db48ebfc4');
+test('旧24課題の定義と旧144出題を表示位置の調整で変えない',()=>{
+  // Only the renderer's display override is new. Authored coordinates and all
+  // original fields still match the pre-extension snapshot byte for byte.
+  assert.equal(hash(challenges.slice(0,24).map(({displayPositions,...original})=>original)),'2b06ddabc74aa81d3b09d1b4a10fca8e9d04e3f7bb45c783c2ba6c7db48ebfc4');
   assert.equal(hash(randomVariants),'6ba797916ffec344d4322450174434ce9f909a7632ce7a301a651fd5bce5c70e');
 });
 

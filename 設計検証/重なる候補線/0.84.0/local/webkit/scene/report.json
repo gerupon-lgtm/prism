@@ -1,0 +1,356 @@
+{
+  "version": "0.84.0",
+  "scenario": "scene",
+  "desktop": false,
+  "engine": "webkit",
+  "checks": [
+    {
+      "label": "D to bell is connected by pointer input",
+      "passed": true
+    },
+    {
+      "label": "Connected D-to-bell route is visible at its own midpoint",
+      "passed": true
+    },
+    {
+      "label": "Connected route cards remain above candidate lines",
+      "passed": true
+    },
+    {
+      "label": "Q11 straight direct route bypasses the shifted part; output accepts a connection",
+      "passed": true,
+      "gap": 41.25460497374591,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "AC",
+          "gap": 89.66737315077879
+        },
+        {
+          "edge": "CG",
+          "gap": 42.377830309328424
+        },
+        {
+          "edge": "AG",
+          "gap": 41.25460497374591
+        },
+        {
+          "edge": "BC",
+          "gap": 47.763655507286934
+        },
+        {
+          "edge": "SA",
+          "gap": 157.45178617550312
+        },
+        {
+          "edge": "AB",
+          "gap": 142.80362742529636
+        },
+        {
+          "edge": "BG",
+          "gap": 111.14458586330771
+        }
+      ],
+      "outside": []
+    },
+    {
+      "label": "Q12 straight direct route bypasses the shifted part; output accepts a connection",
+      "passed": true,
+      "gap": 57.74987712900843,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "SA",
+          "gap": 212.06495598396276
+        },
+        {
+          "edge": "AB",
+          "gap": 191.48419865315776
+        },
+        {
+          "edge": "AC",
+          "gap": 110.61198586228448
+        },
+        {
+          "edge": "AD",
+          "gap": 204.05110662436203
+        },
+        {
+          "edge": "DE",
+          "gap": 128.9425712729055
+        },
+        {
+          "edge": "AE",
+          "gap": 128.40008727896173
+        },
+        {
+          "edge": "BC",
+          "gap": 110.61198586228448
+        },
+        {
+          "edge": "AG",
+          "gap": 57.74987712900843
+        }
+      ],
+      "outside": []
+    },
+    {
+      "label": "Q45 straight direct route bypasses the shifted part; output accepts a connection",
+      "passed": true,
+      "gap": 45.384621034860096,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "SA",
+          "gap": 204.79872961888339
+        },
+        {
+          "edge": "AB",
+          "gap": 178.9855699979284
+        },
+        {
+          "edge": "AC",
+          "gap": 119.69408103954471
+        },
+        {
+          "edge": "BG1",
+          "gap": 169.42099054887092
+        },
+        {
+          "edge": "CG3",
+          "gap": 79.60956464624466
+        },
+        {
+          "edge": "AG1",
+          "gap": 125.77079679752875
+        },
+        {
+          "edge": "AG2",
+          "gap": 45.384621034860096
+        },
+        {
+          "edge": "AG3",
+          "gap": 43.614771903331615
+        },
+        {
+          "edge": "BG2",
+          "gap": 88.26921378932796
+        }
+      ],
+      "outside": []
+    },
+    {
+      "label": "Q35 single-bell condition uses natural singular wording",
+      "passed": true
+    },
+    {
+      "label": "Q44 single-bell condition uses natural singular wording",
+      "passed": true
+    },
+    {
+      "label": "Single-bell success uses the singular arrival-time label",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "evidence": "Disposable PC browser. Phone viewport is synthetic; Chromium uses touch input for D to bell. Not a physical phone.",
+  "draw": "Q15 合流先の順番待ち",
+  "paint": {
+    "point": {
+      "x": 215.62437438964844,
+      "y": 325.4831237792969
+    },
+    "stack": [
+      {
+        "edge": "DG",
+        "classes": "edge-line"
+      },
+      {
+        "edge": "DG",
+        "classes": "edge-hit"
+      }
+    ],
+    "order": [
+      {
+        "id": "AC",
+        "candidate": true
+      },
+      {
+        "id": "CD",
+        "candidate": true
+      },
+      {
+        "id": "AD",
+        "candidate": true
+      },
+      {
+        "id": "CG",
+        "candidate": true
+      },
+      {
+        "id": "AG",
+        "candidate": true
+      },
+      {
+        "id": "BC",
+        "candidate": true
+      },
+      {
+        "id": "SA",
+        "candidate": false
+      },
+      {
+        "id": "AB",
+        "candidate": false
+      },
+      {
+        "id": "BD",
+        "candidate": false
+      },
+      {
+        "id": "BG",
+        "candidate": false
+      },
+      {
+        "id": "DG",
+        "candidate": false
+      }
+    ],
+    "built": [
+      "SA",
+      "AB",
+      "BD",
+      "BG",
+      "DG"
+    ]
+  },
+  "coveredCards": [],
+  "geometry": [
+    {
+      "id": "Q11",
+      "gap": 41.25460497374591,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "AC",
+          "gap": 89.66737315077879
+        },
+        {
+          "edge": "CG",
+          "gap": 42.377830309328424
+        },
+        {
+          "edge": "AG",
+          "gap": 41.25460497374591
+        },
+        {
+          "edge": "BC",
+          "gap": 47.763655507286934
+        },
+        {
+          "edge": "SA",
+          "gap": 157.45178617550312
+        },
+        {
+          "edge": "AB",
+          "gap": 142.80362742529636
+        },
+        {
+          "edge": "BG",
+          "gap": 111.14458586330771
+        }
+      ],
+      "outside": []
+    },
+    {
+      "id": "Q12",
+      "gap": 57.74987712900843,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "SA",
+          "gap": 212.06495598396276
+        },
+        {
+          "edge": "AB",
+          "gap": 191.48419865315776
+        },
+        {
+          "edge": "AC",
+          "gap": 110.61198586228448
+        },
+        {
+          "edge": "AD",
+          "gap": 204.05110662436203
+        },
+        {
+          "edge": "DE",
+          "gap": 128.9425712729055
+        },
+        {
+          "edge": "AE",
+          "gap": 128.40008727896173
+        },
+        {
+          "edge": "BC",
+          "gap": 110.61198586228448
+        },
+        {
+          "edge": "AG",
+          "gap": 57.74987712900843
+        }
+      ],
+      "outside": []
+    },
+    {
+      "id": "Q45",
+      "gap": 45.384621034860096,
+      "radius": 32.5,
+      "curved": 0,
+      "unrelated": [
+        {
+          "edge": "SA",
+          "gap": 204.79872961888339
+        },
+        {
+          "edge": "AB",
+          "gap": 178.9855699979284
+        },
+        {
+          "edge": "AC",
+          "gap": 119.69408103954471
+        },
+        {
+          "edge": "BG1",
+          "gap": 169.42099054887092
+        },
+        {
+          "edge": "CG3",
+          "gap": 79.60956464624466
+        },
+        {
+          "edge": "AG1",
+          "gap": 125.77079679752875
+        },
+        {
+          "edge": "AG2",
+          "gap": 45.384621034860096
+        },
+        {
+          "edge": "AG3",
+          "gap": 43.614771903331615
+        },
+        {
+          "edge": "BG2",
+          "gap": 88.26921378932796
+        }
+      ],
+      "outside": []
+    }
+  ]
+}

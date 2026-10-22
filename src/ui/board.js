@@ -69,7 +69,11 @@ export class Board {
   location(x,y,matrix=this.world.getScreenCTM().inverse()) {
     return new DOMPoint(x,y).matrixTransform(matrix);
   }
-  position(node) {const height=this.projectionHeight??1600;return {x:500+(((node.x??0.5)/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:height-((node.y??0.5)/(this.projectionScale??1))*height};}
+  position(node) {
+    const display=this.session?.mode==='challenge'?this.session.challenge?.displayPositions?.[node.id]:null;
+    const height=this.projectionHeight??1600,x=display?.x??node.x??.5,y=display?.y??node.y??.5;
+    return {x:500+((x/(this.projectionScale??1))*1000-500)*CIRCUIT_WIDTH*(this.displayWidthRatio??1),y:height-(y/(this.projectionScale??1))*height};
+  }
   coordinates(at) {const height=this.projectionHeight??1600;return {x:((at.x-500)/(CIRCUIT_WIDTH*(this.displayWidthRatio??1))+500)/1000*(this.projectionScale??1),y:(height-at.y)/height*(this.projectionScale??1)};}
   zoom(factor,x,y) {
     this.cancelMirrorSelection();if(['mirror','mirror-arrival'].includes(this.gesture?.kind))this.cancelAll();
@@ -144,7 +148,10 @@ export class Board {
       const middle=this.onCurve(curve,edge.from<edge.to?progress:1-progress), label=svg('g',{class:'edge-label',transform:`translate(${middle.x} ${middle.y}) rotate(${-this.angle})`});
       const factor=this.fontFactor??1,card=svg('rect',{class:'edge-label-card',rx:10*factor}),text=svg('text',{y:0,class:'edge-time'},secondsLabel(edge.time));
       label.append(card,text);if(candidate&&this.session.view.showAllTimes===false&&!previewEdges.has(edge.id)&&edge.from!==timeOrigin&&!(edge.bidirectional&&edge.to===timeOrigin))label.setAttribute('hidden','');group.append(label);
-      this.world.append(group);
+      // Candidate routes must not paint over connected routes or their cards.
+      // Keep geometry/calculation order unchanged; only change the paint layer.
+      const firstBuilt=candidate?this.world.querySelector('.edge:not(.candidate)'):null;
+      if(firstBuilt)this.world.insertBefore(group,firstBuilt);else this.world.append(group);
       timeCards.push({card,text,factor});
     }
     for (const node of input.nodes) {

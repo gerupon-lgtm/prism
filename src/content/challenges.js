@@ -53,10 +53,13 @@ const originalChallenges = [
 // Keep old IDs, content versions, graphs and random draws attached to old scores.
 // Only presentation metadata changes when an existing problem moves to a set.
 const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10','Q23','Q24','Q25','Q26','Q27','Q28',...returnChallenges.map(c=>c.id),...mirrorChallenges.map(c=>c.id),...gateChallenges.map(c=>c.id)];
+// Presentation only: retain authored coordinates, problem IDs and old results.
+// Direct routes must remain straight and visibly bypass intermediate parts.
+const displayPositions={Q11:{D:{x:.60,y:.64}},Q12:{F:{x:.64}},Q45:{D:{x:.61}}};
 const themes=[{id:'intro',name:'お試し'},{id:'delivery',name:'すべての鐘へ',world:'starwalk',stage:'星渡りの回廊'},{id:'rhythm',name:'響く間隔をつくる',world:'moonwater',stage:'月映りの水殿'},{id:'sequence',name:'鐘の響きをつなぐ',world:'starecho',stage:'星響きの円環'},{id:'return',name:'星へ帰り、再び分かれる',world:'starreturn',stage:'星環の帰廊'},{id:'mirror',name:'鏡で光を導く',world:'moonmirror',stage:'月鏡の静殿'},{id:'gate',name:'星の門が開くとき',world:'stargate',stage:'星刻の開廊'}];
 export const challenges=order.map((id,index)=>{
  const original=[...originalChallenges,...themedChallenges,...sequenceChallenges,...returnChallenges,...mirrorChallenges,...gateChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)];
- return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),
+ return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),...(displayPositions[id]?{displayPositions:displayPositions[id]}:{}),
   ...(original.type==='delivery-all'?{bellPitches:original.goals.length===2?[88,84]:id==='Q21'?[84,79,72]:id==='Q22'?[72,77,81]:[72,79,84]}:{})};
 });
 export const challengeNumber=challenge=>challenge.number??Number(challenge.id.slice(1));
