@@ -45,6 +45,9 @@ const server=http.createServer((req,res)=>{try{let file=path.resolve(root,'.'+de
     }return covered;
   });
   report.coveredCards=coveredCards;assert.deepEqual(coveredCards,[],'Candidate lines must not cover a connected route time card');report.checks.push({label:'Connected route cards remain above candidate lines',passed:true});
+  const builtBeforeDirect=await p.locator('.edge:not(.candidate)').count();await dragConnection(p,'A','G');
+  assert.equal(await p.locator('[data-edge="AG"]:not(.candidate)').count(),1,'A direct drag must connect A to bell without passing through D');assert.equal(await p.locator('.edge:not(.candidate)').count(),builtBeforeDirect+1);
+  report.checks.push({label:'Straight direct A-to-bell gesture does not become a route through D',passed:true});
   for(const [id,part,direct,output]of [['Q11','D','AG','G'],['Q12','F','AG','G'],['Q45','D','AG2','G2']]){
     if(id!=='Q11')await selectChallenge(p,id);
     const geometry=await p.locator('#board').evaluate((board,{part,direct})=>{
