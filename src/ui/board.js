@@ -5,7 +5,7 @@ import { partName,objectName } from './labels.js';
 import { directionMarkers } from './edge-directions.js';
 import { TimeScale } from '../core/time.js';
 import { gateState } from '../core/periodic.js';
-import { reflect,surfaceFor,snapTarget,unalignedAngle,placeMirrorControl } from './mirror-optics.js';
+import { reflect,surfaceFor,snapTarget,unalignedAngle,placeMirrorControl,wheelDelta } from './mirror-optics.js';
 
 // Display only; inverse projection keeps saved/edit coordinates unchanged.
 const CIRCUIT_WIDTH = 1.5;
@@ -586,7 +586,12 @@ export class Board {
     if(node||edge){this.session.selection=node??edge;this.render();this.changed(false);}else this.drawMirrors();
     const matrix=this.world.getScreenCTM().inverse(), at=this.location(event.clientX,event.clientY,matrix);
     this.gesture={kind:event.target.dataset.move?'move':node?'wire':event.pointerType==='touch'?'idle':'pan',id:node??edge,route:node?[node]:[],start:at,last:at,x:event.clientX,y:event.clientY,matrix,moved:false,panX:this.session.view.panX,panY:this.session.view.panY};
-    if(mirror){const aim=this.mirrorAim;this.gesture.kind='mirror';this.gesture.surface=aim.surface;this.gesture.rotationOrigin=event.target.closest('[data-mirror-control]')?aim.control:aim.origin;const origin=this.gesture.rotationOrigin;this.gesture.pointerAngle=mirrorHandle?Math.atan2(at.y-origin.y,at.x-origin.x):null;}
+    if(mirror){
+      const aim=this.mirrorAim;this.gesture.kind='mirror';this.gesture.surface=aim.surface;
+      this.gesture.rotationOrigin=event.target.closest('[data-mirror-control]')?aim.control:aim.origin;
+      const origin=this.gesture.rotationOrigin,screen=this.world.getScreenCTM(),scale=Math.hypot(screen.a,screen.b);
+      this.gesture.rotationPoint=mirrorHandle?{x:(at.x-origin.x)*scale,y:(at.y-origin.y)*scale}:null;
+    }
     if(edge&&!node&&!this.addKind&&this.session.editable&&this.session.circuit.edges.some(item=>item.id===edge)){
       const gesture=this.gesture;
       this.holdTimer=setTimeout(()=>{
@@ -646,13 +651,11 @@ export class Board {
       const zoom=this.session.view.zoom;this.session.view.panX=gesture.panX+(gesture.last.x-gesture.start.x)*zoom;this.session.view.panY=gesture.panY+(gesture.last.y-gesture.start.y)*zoom;this.transform();
     } else if(gesture.kind==='mirror'&&gesture.moved&&this.session.editable) {
       const aim=this.mirrorAim;if(!aim)return;
-      const origin=gesture.rotationOrigin??aim.origin;
-      if(Math.hypot(gesture.last.x-origin.x,gesture.last.y-origin.y)*Math.hypot(this.world.getScreenCTM().a,this.world.getScreenCTM().b)>14){
-        const angle=Math.atan2(gesture.last.y-origin.y,gesture.last.x-origin.x);
-        const delta=gesture.pointerAngle===null?0:Math.atan2(Math.sin(angle-gesture.pointerAngle),Math.cos(angle-gesture.pointerAngle));
-        gesture.surface+=delta;gesture.pointerAngle=angle;this.aimMirror(gesture.surface);
-        this.magnifier.hide();
-      }
+      const origin=gesture.rotationOrigin??aim.origin,screen=this.world.getScreenCTM(),scale=Math.hypot(screen.a,screen.b);
+      const point={x:(gesture.last.x-origin.x)*scale,y:(gesture.last.y-origin.y)*scale},delta=wheelDelta(gesture.rotationPoint,point);
+      gesture.rotationPoint=point;
+      if(delta){gesture.surface+=delta;gesture.rotated=true;this.aimMirror(gesture.surface);}
+      this.magnifier.hide();
     } else if(gesture.kind==='wire'&&gesture.moved&&this.session.editable) {
       this.checkWireLimit(event);
       const target=this.wireTarget(event.clientX,event.clientY,{route:gesture.route,final});
@@ -748,7 +751,7 @@ export class Board {
     try {
       if(gesture.kind==='mirror'&&this.session.editable){
         const aim=this.mirrorAim;
-        if(gesture.moved&&aim?.target){
+        if(gesture.rotated&&aim?.target){
           const same=this.mirrorIsConnected(aim.id,aim.target);
           if(gesture.route.length===1)this.session.setMirrorDirection(aim.id,aim.target);else this.session.connectPath([...gesture.route,aim.target]);
           // A committed reflection finishes this gesture. Keeping rotation open

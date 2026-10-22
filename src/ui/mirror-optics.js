@@ -42,6 +42,16 @@ export function angleGap(a,b){
   return Math.abs(normalize(normalize(a)-normalize(b)));
 }
 
+// Vectors from the wheel centre, in screen pixels. Rebase after touching or
+// crossing the centre: its direction is undefined and must never spin the mirror.
+export function wheelDelta(previous,current,deadZone=18){
+  if(!previous||Math.hypot(previous.x,previous.y)<deadZone||Math.hypot(current.x,current.y)<deadZone)return 0;
+  const dx=current.x-previous.x,dy=current.y-previous.y,length=dx*dx+dy*dy;
+  const along=length?Math.max(0,Math.min(1,-(previous.x*dx+previous.y*dy)/length)):0;
+  if(Math.hypot(previous.x+along*dx,previous.y+along*dy)<deadZone)return 0;
+  return Math.atan2(previous.x*current.y-previous.y*current.x,previous.x*current.x+previous.y*current.y);
+}
+
 export function snapTarget(angle,targets,previousId=null){
   if(!targets.length)return null;
   const distances=targets.map(target=>({id:target.id,gap:angleGap(angle,target.angle)}));

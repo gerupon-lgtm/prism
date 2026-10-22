@@ -4,7 +4,7 @@ import {Board} from '../src/ui/board.js';
 
 function board({moved=true,target='C',same=false,route=['M']}={}){
   const events=[],aim={id:'M',target,control:{x:1,y:2},controlScreen:{x:3,y:4}};
-  const b={gesture:{kind:'mirror',moved,route},mirrorAim:aim,pointers:new Map([[1,{}]]),
+  const b={gesture:{kind:'mirror',moved,rotated:moved,route},mirrorAim:aim,pointers:new Map([[1,{}]]),
     magnifier:{hide(){}},stopHold(){},move(){},setWirePreview(){},
     session:{editable:true,selection:'M',setMirrorDirection:(...args)=>events.push(['output',...args]),connectPath:path=>events.push(['path',...path])},
     mirrorIsConnected:()=>same,connected:id=>events.push(['sound',id]),
@@ -33,4 +33,10 @@ test('鏡までの連続結線と反射先を確定しても次の操作を妨�
   const {b,events}=board({route:['S','A','M']});Board.prototype.up.call(b,{pointerId:1});
   assert.deepEqual(events,[['path','S','A','M','C'],['sound','C']]);
   assert.equal(b.mirrorAim,null);assert.equal(b.session.selection,'C');
+});
+
+test('中心内や半径方向への移動だけでは出力を確定せず、回転操作を続けられる',()=>{
+  const {b,events}=board();b.gesture.rotated=false;
+  Board.prototype.up.call(b,{pointerId:1});assert(b.mirrorAim);
+  assert.deepEqual(events,[['aim']]);
 });
