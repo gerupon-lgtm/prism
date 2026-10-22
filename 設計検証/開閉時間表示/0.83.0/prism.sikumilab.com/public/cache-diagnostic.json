@@ -1,0 +1,609 @@
+{
+  "version": "0.83.0",
+  "commit": "d670c1f3eee3a14b7712d951b77c487d86ba3cc8",
+  "checkedAt": "2026-10-22T09:42:03.454Z",
+  "checks": [
+    {
+      "asset": "./v0.83.0/src/app/update-safety.js",
+      "expected": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
+      "actual": "e1a2695bde42c2875d412e99ad5842f40c74834da5d9eaa2d7357da58d56ed70",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./manifest.webmanifest",
+      "expected": "47a80a1443d803f52f87ede7387def6e6d13b308a16f7da4fdd92fb6b5153f82",
+      "actual": "47a80a1443d803f52f87ede7387def6e6d13b308a16f7da4fdd92fb6b5153f82",
+      "type": "application/manifest+json",
+      "cache": "DYNAMIC",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/app/session.js",
+      "expected": "577afcc833691b5ac924aa35677be50b55e701ef7c52ce00ca05fc04b75adc18",
+      "actual": "577afcc833691b5ac924aa35677be50b55e701ef7c52ce00ca05fc04b75adc18",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/challenge-draw.js",
+      "expected": "68107fcc22589dfdc94a50cc979b6094e6fdb1a032b733c351506cf77de20741",
+      "actual": "68107fcc22589dfdc94a50cc979b6094e6fdb1a032b733c351506cf77de20741",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/bell-pitches.js",
+      "expected": "37e90c2090d6ffce4c92e7c39636e9ca3be67aac18b65a9792e0e5d1f7fb8d8e",
+      "actual": "37e90c2090d6ffce4c92e7c39636e9ca3be67aac18b65a9792e0e5d1f7fb8d8e",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./index.html",
+      "expected": "d5afd419af43da0babc14b1973ed04b8446e30a125242402fd8a977dfa64dcca",
+      "actual": "d5afd419af43da0babc14b1973ed04b8446e30a125242402fd8a977dfa64dcca",
+      "type": "text/html; charset=utf-8",
+      "cache": "DYNAMIC",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/challenges.js",
+      "expected": "7f662851180cd317ca815547c4723e902866070cbfaa80a97d2e4489716e521a",
+      "actual": "7f662851180cd317ca815547c4723e902866070cbfaa80a97d2e4489716e521a",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/gate-challenges.js",
+      "expected": "0960f393b65f415ccd46925a5bc3673582038dea63d3427a5f197dd1726b03c3",
+      "actual": "0960f393b65f415ccd46925a5bc3673582038dea63d3427a5f197dd1726b03c3",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/gate-variants.js",
+      "expected": "3b36ff95bbc43b9eeb3b601e08f752af3f01be84a47d4cf94a301c36b6e420fe",
+      "actual": "3b36ff95bbc43b9eeb3b601e08f752af3f01be84a47d4cf94a301c36b6e420fe",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/mirror-challenges.js",
+      "expected": "b54bea92c1101befb233979a72bc5d1d3db8c97ffc19a90fa91bc695aea841f1",
+      "actual": "b54bea92c1101befb233979a72bc5d1d3db8c97ffc19a90fa91bc695aea841f1",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/mirror-variants.js",
+      "expected": "ed5da7eaf1085c0281804f074d3976ac1e2653a66bc87c25de5b7f38cb450486",
+      "actual": "ed5da7eaf1085c0281804f074d3976ac1e2653a66bc87c25de5b7f38cb450486",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/return-challenges.js",
+      "expected": "7ea6627e8dc5f432eb2782c22725352c9001451b378e54bb8d8063d24242c203",
+      "actual": "7ea6627e8dc5f432eb2782c22725352c9001451b378e54bb8d8063d24242c203",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/return-variants.js",
+      "expected": "8b004715dee8cfd819a946a472f6171bcbddc87561be60ce706de9ad780d213a",
+      "actual": "8b004715dee8cfd819a946a472f6171bcbddc87561be60ce706de9ad780d213a",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/random-variants.js",
+      "expected": "be032a6d7955112516bc890deab0dd960bbdfdfb6ddc510a5e4db791f51f053b",
+      "actual": "be032a6d7955112516bc890deab0dd960bbdfdfb6ddc510a5e4db791f51f053b",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/samples.js",
+      "expected": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
+      "actual": "d244ed8a7c454e771b2aa64ef0bae24645015584ad76c379258e5003f2c9726b",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/sequence-challenges.js",
+      "expected": "cb82fa613d9c2ea02709a1fe74bf3681462e3e19e86cf6bfb22b6cd8669f0068",
+      "actual": "cb82fa613d9c2ea02709a1fe74bf3681462e3e19e86cf6bfb22b6cd8669f0068",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/content/themed-challenges.js",
+      "expected": "9693abe76d73f076d908942284f9307d3f0a18cf1546789cbbb31916a9d9e1c0",
+      "actual": "9693abe76d73f076d908942284f9307d3f0a18cf1546789cbbb31916a9d9e1c0",
+      "type": "application/javascript",
+      "cache": "HIT",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/challenge-identity.js",
+      "expected": "45a58336f7af211d72ac3c33024b8428206fec995e7b534ceba3ebabb11255d1",
+      "actual": "bd746b2901f2222b4565e6e1d80baf232de001f4424df69eabc588a084c61dd1",
+      "type": "text/html; charset=utf-8",
+      "cache": "HIT",
+      "passed": false
+    },
+    {
+      "asset": "./v0.83.0/src/core/bell-sequence.js",
+      "expected": "d9e576b34f4d446c1835baaecfe91fb7de24f970f01143425becf01d11d0bad5",
+      "actual": "d9e576b34f4d446c1835baaecfe91fb7de24f970f01143425becf01d11d0bad5",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/circuit.js",
+      "expected": "90c6198f4af85c1097205bd2e6b5c4367b66acabe35420921cbb4fccabc17b26",
+      "actual": "90c6198f4af85c1097205bd2e6b5c4367b66acabe35420921cbb4fccabc17b26",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/periodic.js",
+      "expected": "009bb808246c9743deafc97bb0ab808fac6cae01dcfed536f62244ab676823a9",
+      "actual": "009bb808246c9743deafc97bb0ab808fac6cae01dcfed536f62244ab676823a9",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/heap.js",
+      "expected": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
+      "actual": "9bea8bfc94264824dc18906c32dcb2dc940d3fd4881d757dd8379f1bd2103bf8",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/evaluation.js",
+      "expected": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
+      "actual": "9c43cf9a5dfa0415209f5822b947c561543338fea4ab39e6eef5bcd66b934822",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/return-pattern.js",
+      "expected": "0e8db8677c9d7f1d0d2098857caeeea481153c53fd07ae623372b9e190a0ffb2",
+      "actual": "0e8db8677c9d7f1d0d2098857caeeea481153c53fd07ae623372b9e190a0ffb2",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/simulation.js",
+      "expected": "3aaf11370915952db44b5fac976faed556e56bc530a2aa032935d4a7d71abbc0",
+      "actual": "3aaf11370915952db44b5fac976faed556e56bc530a2aa032935d4a7d71abbc0",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/storage.js",
+      "expected": "59a9e3a5a15887dfad4b937ce139e7224c8c04c79d19fe93cfc7724ffec90203",
+      "actual": "59a9e3a5a15887dfad4b937ce139e7224c8c04c79d19fe93cfc7724ffec90203",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/core/time.js",
+      "expected": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
+      "actual": "ba51ca7ce393560ad725a432827de80d2df435f2ea0707a2c72140238ce319ef",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/app.css",
+      "expected": "12df53e54e789f1cfa1415dd6f60e4e1b7d9594344db72915bdcdc07f7197e96",
+      "actual": "12df53e54e789f1cfa1415dd6f60e4e1b7d9594344db72915bdcdc07f7197e96",
+      "type": "text/css; charset=utf-8",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/app.js",
+      "expected": "fc5e9d73f4eeaf9d336c2b6ceda1ddf3b904d7722a9b245b855c85d3df035bbc",
+      "actual": "fc5e9d73f4eeaf9d336c2b6ceda1ddf3b904d7722a9b245b855c85d3df035bbc",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/audio.js",
+      "expected": "c311c24cc7a6a6a3d8ed686947c9ae615173f6fd6956f55379e04bebcd878d5c",
+      "actual": "c311c24cc7a6a6a3d8ed686947c9ae615173f6fd6956f55379e04bebcd878d5c",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/board.js",
+      "expected": "542d0a6837306a23e230737e419540665976415879aa3c3fb841672b7a982353",
+      "actual": "542d0a6837306a23e230737e419540665976415879aa3c3fb841672b7a982353",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/celebration.js",
+      "expected": "a054d28cc44a1c4226aa9908ff50678ed7b5ed006484a7d137f1bcab02a772e0",
+      "actual": "a054d28cc44a1c4226aa9908ff50678ed7b5ed006484a7d137f1bcab02a772e0",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/desktop-layout.js",
+      "expected": "59452b4f35183cd55fa880bb433e50a72eb6a78b0abab67cea6a3aae0ac21def",
+      "actual": "59452b4f35183cd55fa880bb433e50a72eb6a78b0abab67cea6a3aae0ac21def",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/desktop.css",
+      "expected": "33f38e6c0394d174772d4ef53dbebf22197de62fce91725bf1456ab824f07cc6",
+      "actual": "33f38e6c0394d174772d4ef53dbebf22197de62fce91725bf1456ab824f07cc6",
+      "type": "text/css; charset=utf-8",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/edge-directions.js",
+      "expected": "97f3d6c1be2fe83511131908f7775459fb1f62c20b3f7d2398313179cecd3ab9",
+      "actual": "97f3d6c1be2fe83511131908f7775459fb1f62c20b3f7d2398313179cecd3ab9",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/end-wait.js",
+      "expected": "d4ab506d6259073369a791b985362a4e352484a6ab6e650a2e0573cd016da6cd",
+      "actual": "d4ab506d6259073369a791b985362a4e352484a6ab6e650a2e0573cd016da6cd",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/help.js",
+      "expected": "80fd2f9067847c0b692c73249370fc562036724ce79443a49af9c624d0198dae",
+      "actual": "80fd2f9067847c0b692c73249370fc562036724ce79443a49af9c624d0198dae",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/labels.js",
+      "expected": "7fee3dbec1c0ed27a4a342ae101c929ec4281e7eaaea9a533a62d615b7b6a396",
+      "actual": "7fee3dbec1c0ed27a4a342ae101c929ec4281e7eaaea9a533a62d615b7b6a396",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/load-meter.js",
+      "expected": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
+      "actual": "91b856b357ed01788033b206ed3753bf00b86fc0e5a4d28b7c32fa077158348d",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/magnifier.js",
+      "expected": "d13d86452215541cd931ba6b2588fe768d3351680311e26365f621473f2582d3",
+      "actual": "d13d86452215541cd931ba6b2588fe768d3351680311e26365f621473f2582d3",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/mirror-optics.js",
+      "expected": "eb4c1f4b0137f6de3556ac0300cffa99af661e6e9cf30f9f6ccb3fbcdf039e59",
+      "actual": "eb4c1f4b0137f6de3556ac0300cffa99af661e6e9cf30f9f6ccb3fbcdf039e59",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/motion.js",
+      "expected": "1c4ac03f906168d56b52bb1396f5203d6dd5354b0b1272acc547965b1d1e0ae2",
+      "actual": "1c4ac03f906168d56b52bb1396f5203d6dd5354b0b1272acc547965b1d1e0ae2",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/orientation.js",
+      "expected": "984bbf87bfee5921a73f1e2e21eb2c42de81e158f1d087b4c47b09be35d4fdf0",
+      "actual": "984bbf87bfee5921a73f1e2e21eb2c42de81e158f1d087b4c47b09be35d4fdf0",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/offline.js",
+      "expected": "0de6cc75337339ff9a94087ae1fd95b36939c7a7633c4ab18988e9c23b9ae149",
+      "actual": "0de6cc75337339ff9a94087ae1fd95b36939c7a7633c4ab18988e9c23b9ae149",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/outcome-sound.js",
+      "expected": "601352e67d4e1e990cf935191c4415fdf006e74795ace507d3048bce18ecbf71",
+      "actual": "601352e67d4e1e990cf935191c4415fdf006e74795ace507d3048bce18ecbf71",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/playback-diagnostics.js",
+      "expected": "1e5899cd860d9392f0046f1e6ba2763df19ffdf1d182d5d1f59dc6baeed9d1c9",
+      "actual": "1e5899cd860d9392f0046f1e6ba2763df19ffdf1d182d5d1f59dc6baeed9d1c9",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/scene.js",
+      "expected": "4fabc2573ae18b8c292d9fbe0b9e3d62073318797af88dee8cec25f60231bd0c",
+      "actual": "4fabc2573ae18b8c292d9fbe0b9e3d62073318797af88dee8cec25f60231bd0c",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/sound-cues.js",
+      "expected": "50d44f7f32100f4d8450cf19a6bc7ad54252b4386d4479690cedaf1cce46e231",
+      "actual": "50d44f7f32100f4d8450cf19a6bc7ad54252b4386d4479690cedaf1cce46e231",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/reverb.js",
+      "expected": "c06869c5199d347d646ea44c16d69b0b452bbd043af5a125cfc4e410b1d196d4",
+      "actual": "c06869c5199d347d646ea44c16d69b0b452bbd043af5a125cfc4e410b1d196d4",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/svg.js",
+      "expected": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
+      "actual": "6b24efdfc0c9cad8cf81a0333d91ba14857cf51ed4efa1af9aa15cd327d839c4",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/tutorial-content.js",
+      "expected": "bcfcc92e0a0ba217abe0fce6652d5eda4f8500d1198228b06775380d173801f5",
+      "actual": "bcfcc92e0a0ba217abe0fce6652d5eda4f8500d1198228b06775380d173801f5",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/touch-confirm.js",
+      "expected": "cb1526e0e7dea51d714c449094e816f1eb3fe77d93f9aa36cb997c83f6ed36da",
+      "actual": "cb1526e0e7dea51d714c449094e816f1eb3fe77d93f9aa36cb997c83f6ed36da",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/tutorial-guide.js",
+      "expected": "4f24ca8df407b268fd6310ac7bd597f5834c5415a9add5d414667b436b00ae66",
+      "actual": "4f24ca8df407b268fd6310ac7bd597f5834c5415a9add5d414667b436b00ae66",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/voices.js",
+      "expected": "f6450d8948385079dc10f6c786c6507d73499b0750b23e0d1d89b6ed13831da2",
+      "actual": "f6450d8948385079dc10f6c786c6507d73499b0750b23e0d1d89b6ed13831da2",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/src/ui/wire-limit-notice.js",
+      "expected": "357192a707026bd6c490ebf83eb3950424130ad18c1810e4db7b051435bf5dc2",
+      "actual": "357192a707026bd6c490ebf83eb3950424130ad18c1810e4db7b051435bf5dc2",
+      "type": "application/javascript",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/画面案/ロゴ/fonts/OFL.txt",
+      "expected": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "actual": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "type": "text/plain; charset=utf-8",
+      "cache": "DYNAMIC",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/apple-touch-icon.png",
+      "expected": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
+      "actual": "a6d5df8a12d7a2b3df55ae04a66e5898e14713da97cdd45c6e061ff6432570b6",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/画面案/ロゴ/fonts/montserrat-500.ttf",
+      "expected": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
+      "actual": "637639da93fdd9178e52662cce4bd5a59a544eb60677bb6ef9f89bc472607e5d",
+      "type": "font/ttf",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/画面案/ロゴ/fonts/montserrat-600.ttf",
+      "expected": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
+      "actual": "c535bb158e8cfc3c27654f73aa68a87732899e7d9b10d8496b68605a56d947a7",
+      "type": "font/ttf",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/mirror.png",
+      "expected": "5b49f16ad3242a7e651325538008e1d8518c9d1304ac3e0689db3351d5db3219",
+      "actual": "5b49f16ad3242a7e651325538008e1d8518c9d1304ac3e0689db3351d5db3219",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/goal.png",
+      "expected": "79ef581e9d6db0211fe7cc06eb642749d989517a9d0081f827e6e03378f85558",
+      "actual": "79ef581e9d6db0211fe7cc06eb642749d989517a9d0081f827e6e03378f85558",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/moonmirror.png",
+      "expected": "b9c71d23344738fa4486350c956439201aeb2b6691700a67d0794557d57845a3",
+      "actual": "b9c71d23344738fa4486350c956439201aeb2b6691700a67d0794557d57845a3",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/moonwater.png",
+      "expected": "47f63ba4fcf28e982b54eff5516961cececc19aa06260e9fe878443962165a3c",
+      "actual": "47f63ba4fcf28e982b54eff5516961cececc19aa06260e9fe878443962165a3c",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/prism.png",
+      "expected": "aff97d60401b20d0c603ad9f1b6193f0ea12d6de193d5d328943270a663053d6",
+      "actual": "aff97d60401b20d0c603ad9f1b6193f0ea12d6de193d5d328943270a663053d6",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/ruins.png",
+      "expected": "0cf8246eb08f8369148b2373f1c68ddce5ededf9dca30460f86d9b4bef5222ca",
+      "actual": "0cf8246eb08f8369148b2373f1c68ddce5ededf9dca30460f86d9b4bef5222ca",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/source.png",
+      "expected": "9806dd69e14dee5fc2113715b6281c31e30d0e45f294fb7c00cc5c063879e1fc",
+      "actual": "9806dd69e14dee5fc2113715b6281c31e30d0e45f294fb7c00cc5c063879e1fc",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/starecho.png",
+      "expected": "f41e76dc91292f9f7d0a742f8ab851b40354b9a71504978b00468f3735afe13d",
+      "actual": "f41e76dc91292f9f7d0a742f8ab851b40354b9a71504978b00468f3735afe13d",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/stargate.png",
+      "expected": "3e1dbec6b393142fe5a2ab740c83d88dc7dafddb44075e8ce88b840e16168386",
+      "actual": "3e1dbec6b393142fe5a2ab740c83d88dc7dafddb44075e8ce88b840e16168386",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/starreturn.png",
+      "expected": "4c51f757eb6aa4c6d19ab974a3f0d1ed32346da47765f779868b4d744cf6f2cc",
+      "actual": "4c51f757eb6aa4c6d19ab974a3f0d1ed32346da47765f779868b4d744cf6f2cc",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/starwalk.png",
+      "expected": "d1e6b74dc5be815e65eeea57e503c3c55f07f068af9b27dcef315d5c59cf76fd",
+      "actual": "d1e6b74dc5be815e65eeea57e503c3c55f07f068af9b27dcef315d5c59cf76fd",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/graphics/observatory.png",
+      "expected": "2628c2ccdbd8a83f3f37fd7f8f707309a96fc8e5c08a6edbdb97e7e427373b47",
+      "actual": "2628c2ccdbd8a83f3f37fd7f8f707309a96fc8e5c08a6edbdb97e7e427373b47",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/icon-512.png",
+      "expected": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
+      "actual": "c2df49914a0c5d1b92f3796f18ccb4fd35c27d7f27701c8c9f890fa3999b2415",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/icon-192.png",
+      "expected": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
+      "actual": "363fff779409487fd25271b6947bcdb157902d5fbe673c6874075c483b1cfc41",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    },
+    {
+      "asset": "./v0.83.0/public/spirit-guide.png",
+      "expected": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
+      "actual": "6f7afa6f440950ca1702256ccda0b735bac840c99e14a2a411bf6c19ad4a9aa3",
+      "type": "image/png",
+      "cache": "MISS",
+      "passed": true
+    }
+  ],
+  "bad": [
+    {
+      "asset": "./v0.83.0/src/core/challenge-identity.js",
+      "expected": "45a58336f7af211d72ac3c33024b8428206fec995e7b534ceba3ebabb11255d1",
+      "actual": "bd746b2901f2222b4565e6e1d80baf232de001f4424df69eabc588a084c61dd1",
+      "type": "text/html; charset=utf-8",
+      "cache": "HIT",
+      "passed": false
+    }
+  ]
+}
