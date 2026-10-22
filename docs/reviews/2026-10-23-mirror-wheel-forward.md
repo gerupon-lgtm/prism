@@ -25,4 +25,7 @@
 
 ## 公開
 
-公開反映と配信資材の検査はこれから行う。
+- 配信元`51d2613a8416f998e5259606c7a04afcf45b9149`。[GitHub Actions 39871288331](https://github.com/gerupon-lgtm/prism/actions/runs/39871288331)のbuild・deployが成功。Cloudflare `82da15ed-4602-4307-aa15-4bb4acc95fea`も`github:push`で配信成功。手動の重複配信なし。
+- [独自ドメイン](https://prism.sikumilab.com/)と[GitHub Pages](https://gerupon-lgtm.github.io/prism/)とも0.86.0。各URLで全資材の形式と本文のSHA-256、配信元・版、起動時とメニューの更新確認、保存、通信なし再起動など88項目が合格。
+- 各URLの公開画面で、新しい矢印と初期方向を含む円周操作28項目が合格。縦・横のタッチ入力とPC、実際の鏡までの結線、出力の誤追加防止、取消、拡大を確認。両公開先で各116項目、計232項目合格。
+- 証拠は`設計検証/鏡のホイール/0.86.0/{prism.sikumilab.com,gerupon-lgtm.github.io}/{public,chromium}/report.json`。利用者の実機データは用いていない。
