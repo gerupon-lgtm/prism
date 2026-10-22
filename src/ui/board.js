@@ -311,7 +311,7 @@ export class Board {
     const at=live?run.clock:scale.ticks(offset);
     for(const node of gated){
       const group=this.world.querySelector(`[data-node="${CSS.escape(node.id)}"]`);if(!group)continue;
-      const state=gateState(node.gate,scale,at),remaining=scale.format(state.remaining),text=`${state.open?'開':'閉'} · ${remaining}秒`;
+      const state=gateState(node.gate,scale,at),remaining=scale.seconds(state.remaining).toFixed(1),text=`${state.open?'開':'閉'} · ${remaining}秒`;
       group.classList.toggle('gate-open',state.open);group.classList.toggle('gate-closed',!state.open);
       const label=group.querySelector('.gate-status');if(label&&label.textContent!==text)label.textContent=text;
       group.setAttribute('aria-label',`${partName(node,input.nodes)}、${state.open?'開いています。閉じるまで':'閉じています。開くまで'}${remaining}秒`);
