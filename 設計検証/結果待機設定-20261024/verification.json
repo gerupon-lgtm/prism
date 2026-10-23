@@ -2,7 +2,13 @@
   "version": "0.93.0",
   "passed": true,
   "unitTestFiles": 44,
-  "unitSuiteStage": "Full suite before final celebration followup; affected ending tests rerun after followup. Release CI runs full suite again.",
+  "unitSuiteStage": "Final source full suite passed in release CI; local full suite plus affected ending followup also passed.",
+  "releaseCI": {
+    "conclusion": "success",
+    "headSha": "32e422a1adf9424674c9571fe61ef855c6567a09",
+    "status": "completed",
+    "url": "https://github.com/gerupon-lgtm/prism/actions/runs/40019708656"
+  },
   "endingFollowupTests": 41,
   "syntaxFiles": 117,
   "offlineAssets": 80,
@@ -374,5 +380,30 @@
     "edges/chromium/report.json",
     "early/chromium/report.json"
   ],
-  "boundary": "Desktop browser emulation. Physical smartphone touch, visual acceptance and listening remain unverified. WebKit has no AudioContext in this Windows test runtime."
+  "boundary": "Desktop browser emulation. Physical smartphone touch, visual acceptance and listening remain unverified. WebKit has no AudioContext in this Windows test runtime.",
+  "publicVerification": [
+    {
+      "report": "public/prism.sikumilab.com/report.json",
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 93
+    },
+    {
+      "report": "public/gerupon-lgtm.github.io/report.json",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 93
+    },
+    {
+      "report": "public/timing/report.json",
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 12
+    },
+    {
+      "report": "public/ending/report.json",
+      "passed": true,
+      "checks": 2
+    }
+  ]
 }
