@@ -5,7 +5,7 @@ const {chooseChallenge,dragConnection,startAndPause}=require('./browser_wait.cjs
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),engine=arg('--engine')||'chromium',root=path.resolve('dist');
-const out=path.resolve(arg('--out')||`設計検証/終了待機-20261024/edges/${engine}`);fs.mkdirSync(out,{recursive:true});
+const out=path.resolve(arg('--out')||`設計検証/終了短縮-20261024/edges/${engine}`);fs.mkdirSync(out,{recursive:true});
 const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,passed:false,cases:[],boundary:'Desktop browser emulation; physical phones and listening remain unverified'};
 const server=http.createServer((req,res)=>{try{let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file===root)file=path.join(root,'index.html');assert(file.startsWith(root+path.sep));res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.json':'application/json','.ttf':'font/ttf','.svg':'image/svg+xml'})[path.extname(file)]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
 const scenarios=[
@@ -18,11 +18,12 @@ const scenarios=[
   {name:'reduced-motion-ending',id:'Q1',edges:['SA','AG'],kind:'clear',reduced:true},
 ];
 function observe(){
-  const state=window.endingProbe={completed:null,toast:null,editing:null,fireworks:null,fireworkRemoved:null,goals:0,covered:false,earlyToast:false};
+  const state=window.endingProbe={completed:null,toast:null,editing:null,fireworks:null,fireworkRemoved:null,fireworkBursts:0,goals:0,covered:false,earlyToast:false,timeoutSamples:[]};
   const shown=id=>{const e=document.querySelector(id);return Boolean(e&&!e.hidden&&!e.closest('[hidden]')&&e.getClientRects().length);};
   const read=()=>{const now=performance.now(),p=document.getElementById('play');
     if(p.disabled&&p.textContent==='終了'&&!state.completed)state.completed=now;
     const toast=shown('#clear-toast')||shown('#failure-toast'),fireworks=shown('.perfect-fireworks');
+    if(fireworks)state.fireworkBursts=Math.max(state.fireworkBursts,document.querySelectorAll('.perfect-fireworks .firework').length);
     if(fireworks&&!state.fireworks)state.fireworks=now;
     if(!fireworks&&state.fireworks&&!state.fireworkRemoved)state.fireworkRemoved=now;
     if(toast&&!state.toast){state.toast=now;state.toastText=(shown('#clear-toast')?document.getElementById('clear-toast'):document.getElementById('failure-toast')).textContent;}
@@ -32,6 +33,15 @@ function observe(){
     state.goals=[...document.querySelectorAll('[data-arrival-count]')].reduce((n,e)=>n+Number(e.dataset.arrivalCount),0);
   };
   new MutationObserver(read).observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+  const sample=()=>{
+    if(state.completed&&!state.toast&&window.endingSession?.runContext?.timeLimitReached){
+      const session=window.endingSession;
+      const core=JSON.stringify({clock:session.run.clock,records:session.run.records,result:session.result},(_key,value)=>typeof value==='bigint'?value.toString():value);
+      const moving=[...document.querySelectorAll('#board .light-particle.moving')].map(el=>el.getAttribute('transform'));
+      state.timeoutSamples.push({wall:performance.now(),core,moving,audioArrivals:window.endingAudio.filter(e=>['strike','relay'].includes(e.name)).length});
+    }
+    if(!state.toast)requestAnimationFrame(sample);
+  };requestAnimationFrame(sample);
 }
 let browser;
 (async()=>{try{
@@ -45,8 +55,9 @@ let browser;
     await p.evaluate(async limit=>{
       const base=document.querySelector('script[type=module]').src;
       const {Chime}=await import(new URL('./audio.js',base));window.endingAudio=[];
-      for(const name of ['strike','perfect','clear','failure','stop']){const original=Chime.prototype[name];Chime.prototype[name]=function(...args){window.endingAudio.push({name,wall:performance.now(),reason:args[0]});return original.apply(this,args);};}
-      if(limit){const {Session}=await import(new URL('../app/session.js',base)),start=Session.prototype.start;Session.prototype.start=function(...args){this.challenge={...this.challenge,maxDuration:limit};return start.apply(this,args);};}
+      for(const name of ['strike','relay','perfect','clear','failure','stop']){const original=Chime.prototype[name];Chime.prototype[name]=function(...args){window.endingAudio.push({name,wall:performance.now(),reason:args[0],options:args[1]});return original.apply(this,args);};}
+      const {Session}=await import(new URL('../app/session.js',base)),start=Session.prototype.start;
+      Session.prototype.start=function(...args){window.endingSession=this;if(limit)this.challenge={...this.challenge,maxDuration:limit};return start.apply(this,args);};
     },c.limit??null);
     await p.locator('#title-challenges').click();await chooseChallenge(p,c.id,{pagerTimeout:5000});
     assert.equal(await p.locator('html').getAttribute('data-motion'),c.reduced?'reduce':'full');
@@ -61,11 +72,22 @@ let browser;
     await p.waitForFunction(()=>window.endingProbe.toast!==null&&window.endingProbe.editing!==null,null,{timeout:8000});
     const result=await p.evaluate(()=>({probe:window.endingProbe,audio:window.endingAudio})),wait=result.probe.toast-result.probe.completed;
     assert.deepEqual(errors,[]);assert(!result.probe.covered);assert(!result.probe.earlyToast);
-    if(c.manual)assert(wait<1000,'Manual stop skips waiting');else assert(wait>=(c.kind==='clear'?2700:3000)-80,c.name+' ending wait');
+    if(c.manual)assert(wait<1000,'Manual stop skips waiting');else {const duration=c.kind==='clear'?1700:2000;assert(wait>=duration-80,c.name+' shortened ending wait');assert(wait<duration+750,c.name+' result no longer retains the previous extra second');}
+    const completionStops=result.audio.filter(e=>e.name==='stop'&&e.reason==='completed');assert.equal(completionStops.length,1,c.name+' one completed stop');
+    assert.equal(completionStops[0].options?.preserveTail,!c.manual,c.name+' natural tails reserved for automatic completion');
     const sound=c.kind==='clear'?'perfect':'failure';assert.equal(result.audio.filter(e=>e.name===sound).length,1,c.name+' one result sound');
     if(c.name==='timeout-at-arrival'){assert.equal(result.probe.goals,1);assert.equal(result.audio.filter(e=>e.name==='strike').length,1);assert.match(result.probe.toastText,/時間切れ/);}
     if(c.kind==='timeout')assert.match(result.probe.toastText,/時間切れ/);
-    if(c.desktop){assert(result.probe.fireworks&&result.probe.fireworkRemoved);assert(result.probe.toast>=result.probe.fireworkRemoved);}
+    if(c.name==='timeout-before-arrival'){
+      const samples=result.probe.timeoutSamples;assert(samples.length>=2,'Timeout display sampled on multiple animation frames');
+      assert.equal(new Set(samples.map(s=>s.core)).size,1,'Scoring, records and experiment clock remain fixed at the cutoff');
+      assert.equal(new Set(samples.map(s=>s.audioArrivals)).size,1,'Display-only motion creates no extra bell or prism sound');
+      const moving=samples.filter(s=>s.moving.length);assert(moving.length>=2,'Light remains visible after the cutoff');
+      assert(new Set(moving.map(s=>JSON.stringify(s.moving))).size>=2,'Light moves after the cutoff until the result display');
+      assert(samples.at(-1).wall>result.probe.completed+1800,'Display-only motion continues through the shortened ending wait');
+      assert.equal(await p.locator('#board .light-particle').count(),0,'Result display ends the remaining light motion');
+    }
+    if(c.desktop){assert(result.probe.fireworks&&result.probe.fireworkRemoved);assert.equal(result.probe.fireworkBursts,5);assert(result.probe.toast>=result.probe.fireworkRemoved);}
     await p.screenshot({path:path.join(out,c.name+'-result.png')});
     // A geometry refresh must not replay either the sound or the fireworks.
     const before=result.audio.filter(e=>e.name===sound).length;await p.setViewportSize(c.desktop?{width:1366,height:900}:{width:412,height:892});await p.waitForTimeout(150);

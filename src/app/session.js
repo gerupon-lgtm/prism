@@ -30,6 +30,7 @@ export class Session {
     this.name = '';
     this.dirty = false;
     this.run = null;
+    this.timeoutMotionRun = null;
     this.runContext = null;
     this.result = null;
     this.cases = [];
@@ -218,7 +219,7 @@ export class Session {
       next.challenge=drawChallenge(next.challenge,{previousId:this.lastDraws.get(next.challenge.id),random:this.random});
       next.circuit=createCircuit(challengeCircuit(next.challenge)).raw;
     }
-    Object.assign(this,next,{dirty:false,run:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
+    Object.assign(this,next,{dirty:false,run:null,timeoutMotionRun:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
     if(next.challenge?.draw)this.lastDraws.set(next.challenge.id,next.challenge.draw.id);
     return true;
   }
@@ -251,7 +252,7 @@ export class Session {
       conditions = selected?.conditions ?? captured;
     } else if (caseId !== null) throw new Error('この実験には故障ケースがありません。');
     const run = new Simulation(conditions);
-    this.run = run; this.cases = cases; this.replayCase = selected?.id ?? null;
+    this.run = run; this.timeoutMotionRun = null; this.cases = cases; this.replayCase = selected?.id ?? null;
     if(this.guide)this.guide.run=run;
     this.runContext = {mode:this.mode,challenge:copy(this.challenge),original,guide:this.guide !== null,phaseOffset:phaseScale.format(offset)};
     this.view.recordPage = 0; this.result = null;
@@ -265,6 +266,7 @@ export class Session {
     this.run.resume();
   }
   stop() {
+    this.timeoutMotionRun = null;
     this.evaluate(); this.run?.stop(); this.evaluate();
   }
   get runTimeLimit() {
@@ -279,7 +281,8 @@ export class Session {
     // because clearing future events makes the run exhausted.
     const result=copy(this.result);
     if(result.state==='pending')result.state='stopped';
-    this.runContext.timeLimitResult={...result,timeLimitReached:true,reason:`動作上限${this.runContext.challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`};
+    this.runContext.timeLimitResult={...result,timeLimitReached:true,reason:`動作上限${this.runContext.challenge.maxDuration}秒で時間切れになりました。記録を確認してつなぎ直せます。`};
+    this.timeoutMotionRun=this.run.fork({includeRecords:false});
     this.runContext.timeLimitReached=true;this.run.complete();this.evaluate();
   }
   completeReturnPattern() {
@@ -370,7 +373,7 @@ export class Session {
     if(sequence){this.result.gaps=sequence.gaps;if(sequence.reason)this.result.reason=sequence.reason;}
     if(returnPattern?.reason)this.result.reason=returnPattern.reason;
     if(state==='failed'&&!this.result.reason)this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
-    if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`;}
+    if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で時間切れになりました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
     if (this.guide?.mode === 'challenge' && this.guide.run===this.run && this.guide.step === 2 && arrival) this.guide.step = 3;
     return this.result;
@@ -406,6 +409,7 @@ export class Session {
     const backup = Object.fromEntries(stateFields.map(field => [field,this[field]]));
     const mode = this.mode;
     const replacement = mode === 'free' ? this.replacement({sampleId:'compare'}) : this.replacement({challengeId:'Q1'});
+    this.timeoutMotionRun=null;
     Object.assign(this,replacement,{dirty:false,run:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
     this.guide = {mode,step:0,readyToFinish:false,backup};
   }
@@ -416,6 +420,6 @@ export class Session {
     // On persistence failure keep practice + backup, so retry or leave without a false completion.
     if (outcome !== 'interrupted') this.records.finishGuide(this.guide.mode,outcome);
     const backup = this.guide.backup;
-    this.run?.stop(); Object.assign(this,backup); this.guide = null;
+    this.run?.stop(); this.timeoutMotionRun=null; Object.assign(this,backup); this.guide = null;
   }
 }

@@ -412,9 +412,9 @@ html:not(.device-landscape) .text-enlarged.compact .heading strong{font-size:.85
 .prism.arrived .node-symbol{filter:drop-shadow(0 0 10px #cceaff)}
 .goal.arrived .node-symbol{filter:drop-shadow(0 0 13px #ffe6a6)}
 .fireworks-layer{pointer-events:none}
-.firework-rocket{fill:none;stroke:#fff1cf;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:.15 1;animation:firework-rise 450ms ease-out both;animation-delay:var(--firework-delay)}
-.firework-ray{fill:none;stroke:var(--firework-color);stroke-width:3;stroke-linecap:round;stroke-dasharray:.23 1;animation:firework-ray 1150ms cubic-bezier(.1,.6,.3,1) both;animation-delay:calc(var(--firework-delay) + 400ms)}
-.firework-star{fill:var(--firework-color);animation:firework-star 1100ms ease-out both;animation-delay:calc(var(--firework-delay) + 450ms)}
+.firework-rocket{fill:none;stroke:#fff1cf;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:.15 1;animation:firework-rise 281.25ms ease-out both;animation-delay:var(--firework-delay)}
+.firework-ray{fill:none;stroke:var(--firework-color);stroke-width:3;stroke-linecap:round;stroke-dasharray:.23 1;animation:firework-ray 718.75ms cubic-bezier(.1,.6,.3,1) both;animation-delay:calc(var(--firework-delay) + 250ms)}
+.firework-star{fill:var(--firework-color);animation:firework-star 687.5ms ease-out both;animation-delay:calc(var(--firework-delay) + 281.25ms)}
 @keyframes arrival-fade{0%,72%{opacity:1}100%{opacity:0}}
 @keyframes altar-bloom{0%{opacity:0;transform:scale(.5)}12%{opacity:1}55%{opacity:.6}100%{opacity:0;transform:scale(1.2)}}
 @keyframes altar-column{0%{opacity:0}12%,25%{opacity:.9}100%{opacity:0}}

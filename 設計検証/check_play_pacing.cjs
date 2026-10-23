@@ -27,7 +27,7 @@ if(process.argv.includes('--self-check')){selfCheck();return;}
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 assert(arg('--playwright-path'),'--playwright-path is required');
 const pw=require(arg('--playwright-path')),info=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'),'utf8'));
-const output=path.resolve(arg('--out')||path.join('設計検証/再生テンポ',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine));
+const output=path.resolve(arg('--out')||path.join('設計検証/終了短縮-20261024/playback',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine));
 fs.mkdirSync(output,{recursive:true});
 const reportFile=path.join(output,'report.json');
 if(fs.existsSync(reportFile))fs.copyFileSync(reportFile,path.join(output,`previous-${Date.now()}.json`));
@@ -45,11 +45,22 @@ async function goodPhase(p,c,proof){
 
 // This observer only reads rendered state. Experiment timestamps are later taken
 // from the app's normal result download, never inferred from rounded DOM clocks.
-function observePlayback({goalIds,required}){
+async function observePlayback({goalIds,required}){
   const visible=el=>Boolean(el&&!el.hidden&&!el.closest('[hidden]')&&el.getClientRects().length);
   const clock=()=>{const match=document.getElementById('result').textContent.match(/｜([\d.]+)秒/);return match?match[1]:null;};
   const measure=()=>({wall:performance.now(),experimentDisplay:clock()});
-  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,completed:null,fireworksStarted:null,fireworksEnded:null,toastOverFireworks:false,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],maxPaintGapMs:null};
+  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,completed:null,fireworksStarted:null,fireworksEnded:null,fireworkBursts:0,toastOverFireworks:false,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],audioStops:[],audioCalls:[],audioCapabilities:{standard:Boolean(window.AudioContext),webkit:Boolean(window.webkitAudioContext),userAgent:navigator.userAgent},maxPaintGapMs:null};
+  const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src)),stop=Chime.prototype.stop;
+  const audioState=chime=>({voices:chime.voices.size,muted:chime.muted,hasOutput:Boolean(chime.output),context:chime.context?{state:chime.context.state,currentTime:chime.context.currentTime,sampleRate:chime.context.sampleRate,baseLatency:chime.context.baseLatency??null,outputLatency:chime.context.outputLatency??null}:null});
+  Chime.prototype.stop=function(reason,options){const entry={...measure(),reason,options,before:this.voices.size,contextBefore:audioState(this)};const result=stop.call(this,reason,options);entry.after=this.voices.size;entry.contextAfter=audioState(this);probe.audioStops.push(entry);return result;};
+  for(const name of ['unlock','strike','perfect','clear','failure']){
+    const original=Chime.prototype[name];
+    Chime.prototype[name]=function(...args){
+      const entry={...measure(),name,before:audioState(this)};probe.audioCalls.push(entry);
+      const completed=value=>{entry.after=audioState(this);return value;},failed=error=>{entry.error=String(error?.stack??error);entry.after=audioState(this);throw error;};
+      try{const result=original.apply(this,args);return result?.then?result.then(completed,failed):completed(result);}catch(error){return failed(error);}
+    };
+  }
   let screenshotFrame=null,lastState=null;const pendingShots=new Set();
   const shot=kind=>{pendingShots.add(kind);if(screenshotFrame!==null)return;screenshotFrame=requestAnimationFrame(()=>{screenshotFrame=null;const kinds=[...pendingShots];pendingShots.clear();for(const name of kinds)window.__pacingScreenshot({kind:name,wall:performance.now()});});};
   const read=()=>{
@@ -58,6 +69,7 @@ function observePlayback({goalIds,required}){
     if(state!==lastState){probe.states.push({...measure(),state,text:play.textContent,disabled:play.disabled});lastState=state;}
     if(!probe.completed&&play.disabled&&play.textContent==='終了')probe.completed=measure();
     const fireworks=visible(document.querySelector('.perfect-fireworks'));
+    if(fireworks)probe.fireworkBursts=Math.max(probe.fireworkBursts,document.querySelectorAll('.perfect-fireworks .firework').length);
     if(fireworks&&!probe.fireworksStarted)probe.fireworksStarted=measure();
     if(!fireworks&&probe.fireworksStarted&&!probe.fireworksEnded)probe.fireworksEnded=measure();
     if(!probe.firstMoving&&visible(document.querySelector('#board .light-particle.moving')))probe.firstMoving=measure();
@@ -119,7 +131,10 @@ let browser,activePage;
     await p.exposeFunction('__pacingScreenshot',data=>{captureChain=captureChain.then(async()=>{if(p.isClosed())return;const file=path.join(output,`${label}-${data.kind==='result'?'result':'last-bell'}.png`);await p.screenshot({path:file,animations:'allow'});screenshots.push({...data,file});}).catch(error=>errors.push('Screenshot: '+error.message));});
     await p.evaluate(observePlayback,{goalIds,required});await goodPhase(p,c,proof);
     await p.locator('#play').click();
-    await p.waitForFunction(()=>window.__playPacing.editing!==null,null,{timeout:60000});await captureChain;
+    await p.waitForFunction(()=>window.__playPacing.editing!==null,null,{timeout:60000});
+    // Editing now resumes at 1.7 s, while the last bell picture keeps its full
+    // 1.8 s lifetime. Keep observing that natural ending before disconnecting.
+    await p.waitForFunction(()=>Object.values(window.__playPacing.pictures).every(picture=>picture.removed!==null),null,{timeout:3000});await captureChain;
     const probe=await p.evaluate(()=>{const result=window.__playPacing;result.disconnect();const {disconnect,...copy}=result;return copy;});
     const exported=await resultDownload(p,path.join(output,label+'-result.json'));
     const run=exported.evaluation,goalRecords=exported.records.filter(row=>row.type==='goal'),bound=boundFor(proof,scenario.kind);
@@ -136,18 +151,34 @@ let browser,activePage;
     // event; retain that raw value and allow only the measured frame interval.
     assert(Number(exported.elapsed)<=bound+probe.maxPaintGapMs/1000+.001,label+' clock ends within proof bound plus measured frame interval');assert(!run.timeLimitReached,label+' ends without safety cutoff');
     assert(probe.completed,label+' completion before editing');
-    assert(probe.toast.wall-probe.completed.wall>=(scenario.kind==='failed'?3000:2700)-80,label+' result waits until the final effect has played');
+    const endingWait=scenario.kind==='failed'?2000:1700,observedWait=probe.toast.wall-probe.completed.wall;
+    assert(observedWait>=endingWait-80,label+' shortened result wait retained');
+    assert(observedWait<=endingWait+Math.max(250,probe.maxPaintGapMs*2),label+' result does not retain the previous extra second');
     assert(!probe.toastOverFireworks,label+' result does not cover fireworks');
     if(scenario.kind==='winner'){
       assert(probe.fireworksStarted&&probe.fireworksEnded,label+' perfect celebration was actually rendered');
-      assert(probe.fireworksEnded.wall-probe.fireworksStarted.wall>=2400-probe.maxPaintGapMs-20,label+' full firework lifetime');
+      assert.equal(probe.fireworkBursts,5,label+' all five compact firework bursts retained');
+      assert(probe.fireworksEnded.wall-probe.fireworksStarted.wall>=1500-probe.maxPaintGapMs-20,label+' full compact firework lifetime');
       assert(probe.toast.wall>=probe.fireworksEnded.wall,label+' result follows fireworks');
     }
     assert(goalRecords.length,label+' actual bell records');
     for(const id of goalIds){const count=goalRecords.filter(row=>row.node===id).length;assert.equal(probe.counts[id]??0,count,label+' rendered arrival count '+id);}
     for(const row of goalRecords){const key=`${row.particle}:${row.node}:${row.time}`;assert(probe.pictures[key],label+' actual arrival picture '+key);}
     const last=goalRecords.at(-1),lastPicture=probe.pictures[`${last.particle}:${last.node}:${last.time}`];
-    assert(probe.editing.wall-lastPicture.wall>=2620-80,label+' last bell tail has time to finish');
+    const automaticStop=probe.audioStops.filter(entry=>entry.reason==='completed');
+    assert.equal(automaticStop.length,1,label+' one automatic ending');
+    assert.equal(automaticStop[0].options?.preserveTail,true,label+' natural bell and result sound tails survive automatic editing return');
+    assert.equal(automaticStop[0].options?.preserveTap,true,label+' tap sound remains independent');
+    assert.equal(automaticStop[0].after,automaticStop[0].before,label+' automatic editing return does not remove an existing voice');
+    const audioEvidence={automaticStop:automaticStop[0],capabilities:probe.audioCapabilities,scheduling:probe.audioCalls.filter(call=>call.name!=='unlock'),unlockAttempts:probe.audioCalls.filter(call=>call.name==='unlock'),actualListening:'Not verified by this browser test'};
+    if(automaticStop[0].before>0)audioEvidence.tail='Active scheduled voices remain after automatic editing return';
+    else {
+      assert.notEqual(engine,'chromium',label+' Chromium must exercise active audio voices');
+      assert(audioEvidence.scheduling.length>0,label+' missing audio scheduling observations');
+      assert(audioEvidence.scheduling.every(call=>call.before.context?.state!=='running'&&!call.error),label+' empty voices require a verified non-running audio context; otherwise investigate');
+      audioEvidence.tail='Not observable: headless browser has no running audio context at any arrival or result-sound call';
+      audioEvidence.unverified='Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked';
+    }
     // Board.arrivals() starts the 1800 ms lifetime before building/rendering its
     // SVG. Our first visible DOM sample is later, after that frame's work. Keep
     // the implementation lifetime distinct from the observed visible duration:
@@ -157,7 +188,7 @@ let browser,activePage;
     lastPicture.minimumObservedVisibleMs=1800-probe.maxPaintGapMs-8;
     assert(lastPicture.visibleDurationMs!==null&&lastPicture.visibleDurationMs>=lastPicture.minimumObservedVisibleMs,label+' final arrival picture duration retained');
     assert(screenshots.some(item=>item.kind==='result')&&screenshots.some(item=>item.kind!=='result'),label+' result and last-bell screenshots');
-    const entry={...scenario,challenge:c.id,draw:problemId,proofBoundSeconds:bound,experiment:{elapsed:exported.elapsed,lastRecordedExperimentTime,clockPastProofSeconds:Math.max(0,Number(exported.elapsed)-bound),evaluation:run,arrivals:goalRecords.map(({time,node,particle})=>({time,node,particle})),sameTimestampGroups:Object.entries(Object.groupBy(goalRecords,row=>row.time)).map(([time,rows])=>({time,count:rows.length,goals:rows.map(row=>row.node)}))},wall:probe,screenshots,passed:true};
+    const entry={...scenario,challenge:c.id,draw:problemId,proofBoundSeconds:bound,audioEvidence,experiment:{elapsed:exported.elapsed,lastRecordedExperimentTime,clockPastProofSeconds:Math.max(0,Number(exported.elapsed)-bound),evaluation:run,arrivals:goalRecords.map(({time,node,particle})=>({time,node,particle})),sameTimestampGroups:Object.entries(Object.groupBy(goalRecords,row=>row.time)).map(([time,rows])=>({time,count:rows.length,goals:rows.map(row=>row.node)}))},wall:probe,screenshots,passed:true};
     report.cases.push(entry);fs.writeFileSync(reportFile,JSON.stringify(report,null,2));console.log(label+' real playback passed');await context.close();
   }
   report.passed=true;

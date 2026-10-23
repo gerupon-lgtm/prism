@@ -1,0 +1,153 @@
+{
+  "version": "0.91.0",
+  "passed": false,
+  "method": "Real play click and animation-frame clock; read-only DOM observers; actual UI result export",
+  "cases": [],
+  "pending": [
+    "Physical phones, actual sound quality, subjective difficulty"
+  ],
+  "url": "http://127.0.0.1:55638/",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "step": "Q1-winner",
+  "error": "AssertionError [ERR_ASSERTION]: Q1-winner remaining bell or result voices continue after editing return\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_play_pacing.cjs:163:33",
+  "failure": {
+    "probe": {
+      "click": {
+        "wall": 2341,
+        "experimentDisplay": null
+      },
+      "firstMoving": {
+        "wall": 2643,
+        "experimentDisplay": "0"
+      },
+      "lastRequired": {
+        "wall": 5168,
+        "experimentDisplay": "2.5"
+      },
+      "completed": {
+        "wall": 5152,
+        "experimentDisplay": "2.5"
+      },
+      "fireworksStarted": {
+        "wall": 5168,
+        "experimentDisplay": "2.5"
+      },
+      "fireworksEnded": {
+        "wall": 6665,
+        "experimentDisplay": "2.5"
+      },
+      "fireworkBursts": 5,
+      "toastOverFireworks": false,
+      "toast": {
+        "wall": 6916,
+        "experimentDisplay": "2.5",
+        "kind": "achieved",
+        "text": "100点クリア！×到達時間2.5秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "editing": {
+        "wall": 6916,
+        "experimentDisplay": "2.5",
+        "result": "達成 100.00点・編集可能｜2.5秒・0光線"
+      },
+      "arrivals": [
+        {
+          "wall": 5168,
+          "experimentDisplay": "2.5",
+          "goal": "G",
+          "count": 1,
+          "delta": 1
+        }
+      ],
+      "pictures": {
+        "1:G:2.5": {
+          "wall": 5168,
+          "experimentDisplay": "2.5",
+          "goal": "G",
+          "visible": true,
+          "removed": 6946
+        }
+      },
+      "counts": {
+        "G": 1
+      },
+      "states": [
+        {
+          "wall": 2342,
+          "experimentDisplay": null,
+          "state": "ready",
+          "text": "鐘を鳴らす",
+          "disabled": false
+        },
+        {
+          "wall": 2355,
+          "experimentDisplay": null,
+          "state": "preparing",
+          "text": "準備中",
+          "disabled": false
+        },
+        {
+          "wall": 2642,
+          "experimentDisplay": "0",
+          "state": "running",
+          "text": "一時停止",
+          "disabled": false
+        },
+        {
+          "wall": 5152,
+          "experimentDisplay": "2.5",
+          "state": "paused",
+          "text": "終了",
+          "disabled": true
+        },
+        {
+          "wall": 6915,
+          "experimentDisplay": "2.5",
+          "state": "stopped",
+          "text": "鐘を鳴らす",
+          "disabled": false
+        }
+      ],
+      "missing": [],
+      "audioStops": [
+        {
+          "wall": 2628,
+          "experimentDisplay": null,
+          "reason": "restart",
+          "options": {
+            "preserveTap": true
+          },
+          "before": 0,
+          "after": 0
+        },
+        {
+          "wall": 6867,
+          "experimentDisplay": "2.5",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "after": 0
+        },
+        {
+          "wall": 7213,
+          "experimentDisplay": "2.5",
+          "reason": "dialog",
+          "options": {
+            "preserveTap": true
+          },
+          "before": 0,
+          "after": 0
+        }
+      ],
+      "maxPaintGapMs": 98
+    },
+    "result": "達成 100.00点・編集可能｜2.5秒・0光線",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>"
+  }
+}

@@ -46,6 +46,40 @@ test('素早い画面切替でも短い操作音を残し、消音と全停止�
  chime.muted=false;chime.tap();chime.stop('hidden');assert(voices.every(v=>v.stopped));
 });
 
+test('自動完了では鐘と結果音を自然終了させ、鐘の余韻中の結線音を抑える',()=>{
+ for(const outcome of ['clear','perfect','failure']){
+  const {chime,voices,sources}=fixture();chime.strike();chime[outcome]();chime.tap();
+  const scheduled=voices.map(voice=>voice.stopAt),bellUntil=chime.bellUntil;
+  chime.context.currentTime=1.7;chime.stop('completed',{preserveTail:true,preserveTap:true});
+  assert(voices.every(voice=>!voice.stopped));assert(sources.every(source=>!source.stopped));
+  assert.deepEqual(voices.map(voice=>voice.stopAt),scheduled);assert.equal(chime.bellUntil,bellUntil);
+  const count=voices.length;chime.relay();chime.wire();assert.equal(voices.length,count);
+  chime.context.currentTime=2.63;chime.relay();assert(voices.length>count);
+  chime.stop('restart',{preserveTail:true,preserveTap:true});assert.equal(chime.bellUntil,0);
+  assert.equal(chime.voices.size,1);assert.equal(chime.tapVoices.size,1);
+  assert(sources.every(source=>source.stopped));chime.mute();assert(voices.every(voice=>voice.stopped));
+ }
+});
+
+test('自動完了の余韻保持でも中継音と結線音は止め、手動停止では音を残さない',()=>{
+ const {chime,voices}=fixture();chime.relay();chime.wire();const transient=voices.slice();chime.tap();
+ chime.stop('completed',{preserveTail:true});assert(transient.every(voice=>voice.stopped));
+ assert.equal(chime.relayVoices.size,0);assert.equal(chime.wireVoices.size,0);assert.equal(chime.tapVoices.size,1);
+ chime.stop('stopped',{preserveTail:true});assert(voices.every(voice=>voice.stopped));assert.equal(chime.tapVoices.size,0);
+ for(const reason of ['muted','hidden','dialog','title','records','settings','restart']){
+  chime.strike();chime.perfect();chime.tap();chime.stop(reason,{preserveTail:true});
+  assert(voices.every(voice=>voice.stopped));assert.equal(chime.voices.size,0);assert.equal(chime.bellUntil,0);
+ }
+});
+
+test('自動完了後も音声の自然終了で鐘・結果音・残響の接続を全て解放する',()=>{
+ const {chime,voices,sources}=fixture();chime.strike();chime.perfect();chime.tap();
+ chime.context.currentTime=1.7;chime.stop('completed',{preserveTail:true,preserveTap:true});
+ assert(chime.voices.size>0);for(const voice of voices)voice.onended?.();for(const source of sources)source.onended?.();
+ assert.equal(chime.voices.size,0);assert.equal(chime.tapVoices.size,0);
+ assert(voices.every(voice=>voice.disconnected));assert(sources.every(source=>source.disconnected));
+});
+
 test('中継点は選ばれたR2の光片のきらめきを到着1回につき1音鳴らす',()=>{
   const {chime,voices,notes}=fixture();chime.relay();assert.equal(notes().length,1);assert.equal(voices.length,2);
   assert(Math.abs(notes()[0].frequencyHz-1108.7305239074883)<1e-7);assert(Math.abs(notes()[0].endTime-.105)<1e-9);
@@ -121,7 +155,7 @@ test('未達成はN2のエレピ下降3音で、消音・休止・停止を守�
   chime.context.state='running';chime.clear();assert.equal(notes().length,6);chime.mute();assert(voices.every(v=>v.stopped));
 });
 
-test('未達成3音は最後の鐘から1.5秒空け、3秒待機内に終わる',()=>{
+test('未達成3音は最後の鐘から1.5秒空け、元の長さで再生する',()=>{
   const {chime,voices,notes}=fixture();chime.context.currentTime=5;chime.strike();chime.failure();assert.equal(notes().length,4);assert.equal(notes()[0].endTime,7.62);
   assert.equal(notes()[1].time,6.5);assert.equal(notes()[2].time,6.75);assert(Math.abs(notes()[3].time-7.02)<1e-9);assert(notes().slice(1).every(v=>v.endTime<8));chime.stop();assert(voices.every(v=>v.stopped));
   const latest=fixture();latest.chime.context.currentTime=5;latest.chime.strike();latest.chime.context.currentTime=5.2;latest.chime.strike();latest.chime.context.currentTime=5.3;latest.chime.failure();assert(Math.abs(latest.notes()[2].time-6.7)<1e-9);assert(latest.notes().slice(2).every(v=>v.endTime<8.3));

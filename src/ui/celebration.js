@@ -1,7 +1,7 @@
 import { svg } from './svg.js';
 import { perfectScore } from '../core/evaluation.js';
 
-export const CELEBRATION_DURATION_MS = 2400;
+export const CELEBRATION_DURATION_MS = 1500;
 
 // A presentation effect belongs to one run, not to each re-render of its result.
 export class PerfectCelebration {
@@ -17,7 +17,7 @@ export class PerfectCelebration {
     const positions=[[.24,.23],[.76,.31],[.5,.16],[.18,.46],[.82,.5]];
     const colors=['#ffe3a2','#bfe8ff','#f7efda','#d5b9ff','#a9e9f0'];
     positions.forEach(([u,v],index)=>{
-      const cx=x+width*u,cy=y+height*v,delay=index*180;
+      const cx=x+width*u,cy=y+height*v,delay=index*112.5;
       const burst=svg('g',{class:'firework',transform:`translate(${cx} ${cy})`});
       burst.style.setProperty('--firework-delay',`${delay}ms`);
       burst.style.setProperty('--firework-color',colors[index]);

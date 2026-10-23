@@ -68,8 +68,12 @@ export class Chime {
     const delay=Math.max(.42,lastBell+FAILURE_BELL_DELAY_SECONDS-now);
     this.cue(SOUND_CUES.failure,delay);
   }
-  stop(reason='stopped',{preserveTap=false}={}){
-    this.playbackDiagnostics.finish(reason);this.silenceRelay();this.bellUntil=0;
+  stop(reason='stopped',{preserveTap=false,preserveTail=false}={}){
+    this.playbackDiagnostics.finish(reason);this.silenceRelay();
+    // Returning to editing does not shorten the bell or the outcome cue.
+    // Explicit stops, navigation and a fresh playback still silence them.
+    if(reason==='completed'&&preserveTail)return;
+    this.bellUntil=0;
     // Navigation may immediately follow another press. Let its 75ms response
     // finish; mute, hidden pages and output replacement still stop everything.
     for(const voice of [...this.voices])if(!preserveTap||!this.tapVoices.has(voice))voice.stop();

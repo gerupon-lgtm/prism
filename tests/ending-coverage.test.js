@@ -79,7 +79,7 @@ function assertWaitAndPreserve(f,playback,{cleared=false}={}){
 }
 
 for(const c of challenges)for(const drawNumber of drawNumbers){
-  test(`全42面・満点 Q${c.number} ${c.name} / ${c.type} / 出題${drawNumber}: 全粒終了→2.7秒→結果を保持して編集`,()=>{
+  test(`全42面・満点 Q${c.number} ${c.name} / ${c.type} / 出題${drawNumber}: 全粒終了→1.7秒→結果を保持して編集`,()=>{
     const f=fixture(c.number,drawNumber),playback=runUntilEnd(f),s=f.session;
     assert.equal(s.result.state,'achieved');assert(s.clearChoices);assert.equal(s.result.timeLimitReached,undefined);
     assert.equal(BigInt(s.result.score.numerator),100n*BigInt(s.result.score.denominator));
@@ -89,7 +89,7 @@ for(const c of challenges)for(const drawNumber of drawNumbers){
 }
 
 for(const number of [2,9,17,22,25,29,31,42])for(const drawNumber of drawNumbers){
-  test(`部分点 Q${number} / 出題${drawNumber}: 成立した条件と時計を保ち2.7秒待つ`,()=>{
+  test(`部分点 Q${number} / 出題${drawNumber}: 成立した条件と時計を保ち1.7秒待つ`,()=>{
     const f=fixture(number,drawNumber,{kind:'partial'}),playback=runUntilEnd(f),s=f.session;
     assert.equal(s.result.state,'achieved');assert.equal(s.result.timeLimitReached,undefined);
     assert(BigInt(s.result.score.numerator)<100n*BigInt(s.result.score.denominator));
@@ -100,7 +100,7 @@ for(const number of [2,9,17,22,25,29,31,42])for(const drawNumber of drawNumbers)
 }
 
 for(const number of [25,26,27,28,29,30])for(const drawNumber of drawNumbers){
-  test(`帰還の不成立 Q${number} / 出題${drawNumber}: 確定不一致で完了してから3秒待つ`,()=>{
+  test(`帰還の不成立 Q${number} / 出題${drawNumber}: 確定不一致で完了してから2秒待つ`,()=>{
     const f=fixture(number,drawNumber,{kind:'failed'}),playback=runUntilEnd(f),s=f.session;
     assert.equal(s.result.state,'failed');assert.equal(s.result.timeLimitReached,undefined);
     assert.equal(s.run.format(),f.row.failedExample.time,'the verified failed example ends at the same exact tick');
@@ -110,7 +110,7 @@ for(const number of [25,26,27,28,29,30])for(const drawNumber of drawNumbers){
 }
 
 for(const c of challenges){
-  test(`到達不能 Q${c.number} ${c.name}: 光なしの終了も3秒待ち、未達成を保持`,()=>{
+  test(`到達不能 Q${c.number} ${c.name}: 光なしの終了も2秒待ち、未達成を保持`,()=>{
     const f=fixture(c.number,1,{unreachable:true}),playback=runUntilEnd(f),s=f.session;
     assert.equal(s.result.state,'failed');assert.equal(s.result.timeLimitReached,undefined);
     assert.equal(s.run.arrivals().length,0);assert.equal(f.records.scores().length,0);
@@ -122,7 +122,7 @@ for(const c of challenges){
 // seam. The 0.1-second fixture is before any required bell, so a bound must stay
 // unscored rather than become a failure merely because future events disappear.
 for(const number of [1,3,4,5,6,7,19,25,31,42])for(const stepped of [false,true]){
-  test(`合成の安全上限 Q${number} / ${stepped?'次の動き':'連続再生'}: 未確定を無得点のまま3秒待つ`,()=>{
+  test(`合成の安全上限 Q${number} / ${stepped?'次の動き':'連続再生'}: 未確定を無得点のまま2秒待つ`,()=>{
     const f=fixture(number,1,{cutoff:true}),scores=f.records.scores(),playback=runUntilEnd(f,{stepped}),s=f.session;
     assert.equal(s.run.format(),'0.1');assert.equal(s.result.timeLimitReached,true);
     assert.equal(s.result.state,'stopped');assert.equal(s.result.score,null);assert.match(s.result.reason,/上限/);
@@ -134,7 +134,7 @@ for(const number of [1,3,4,5,6,7,19,25,31,42])for(const stepped of [false,true])
 }
 
 for(const state of ['achieved','failed']){
-  test(`合成の安全上限・${state}確定済み: 残粒だけを止め、確定得点と全記録を3秒待機後も保持`,()=>{
+  test(`合成の安全上限・${state}確定済み: 残粒だけを止め、確定得点と全記録を2秒待機後も保持`,()=>{
     // This deliberately synthetic spread circuit rings G1 at 0.5 seconds and
     // keeps a separate light moving until 2 seconds. An unreachable G2 makes
     // the failed case definite; neither case depends on a shipped problem.

@@ -14,6 +14,7 @@ import { updateSafety } from '../app/update-safety.js';
 import { LoadMeter } from './load-meter.js';
 import { OrientationLayout } from './orientation.js';
 import { EndWait, END_WAIT_MS, CLEAR_END_WAIT_MS } from './end-wait.js';
+import { TimeoutMotion } from './timeout-motion.js';
 import { partName,objectName } from './labels.js';
 import { PerfectCelebration } from './celebration.js';
 import { OutcomeSound } from './outcome-sound.js';
@@ -37,6 +38,7 @@ function button(text,action,attributes={}) {
 }
 const load=new LoadMeter();
 const endWait=new EndWait();
+const timeoutMotion=new TimeoutMotion();
 const LAUNCH_DELAY_MS=250;
 const storage={getItem:key=>load.measure('records',()=>window.localStorage.getItem(key)),setItem:(key,value)=>load.measure('records',()=>window.localStorage.setItem(key,value))};
 const audioComparison=new URL(location.href).searchParams.get('audioLatency');
@@ -971,8 +973,8 @@ function caseDetails(item){
   actions.append(button('このケースで鐘を鳴らす',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
-function interruptRun(reason){celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
-function startClock(){chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
+function interruptRun(reason){timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
+function startClock(){timeoutMotion.clear();board.endingMotion=null;board.naturalEnding=null;chime.stop('restart',{preserveTap:true});chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
 function runCounts(){
   const run=session.run;if(!run)return {};
   let waiting=0;for(const gate of run.gates.values())waiting+=gate.queue.length-gate.head;
@@ -1021,7 +1023,7 @@ function play(){
   else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop('paused',{preserveTap:true});clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun(){celebration.cancel();cancelStart();session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true});clockAnchor=null;message='';render();}
+function stopRun({automatic=false}={}){timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();if(automatic)board.naturalEnding=session.run;else board.naturalEnding=null;session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true,preserveTail:automatic});clockAnchor=null;message='';render();}
 function reactions(entries){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&['prism','source','mirror'].includes(session.run.circuit.nodes.get(entry.node)?.kind));
@@ -1055,16 +1057,20 @@ function frame(now){
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
+  const endingRun=timeoutMotion.update(session,performance.now(),{enabled:!document.hidden&&$('title-screen').hidden&&!dialog.open&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run)});
+  const hadEndingMotion=Boolean(board.endingMotion);
+  board.endingMotion=endingRun?{source:session.run,run:endingRun}:null;
+  if(endingRun||hadEndingMotion)board.particles();
   // Start the presentation wait after the final frame's work, not from the
   // animation-frame timestamp captured before calculation and artwork creation.
-  if(!document.hidden&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)&&!session.result?.timeLimitReached}))attempt(stopRun);
+  if(!document.hidden&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)&&!session.result?.timeLimitReached}))attempt(()=>stopRun({automatic:true}));
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒後に結果を表示し、編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。動作終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒後に結果を表示し、編集へ戻ります。時間切れ後は判定を固定し、結果表示まで光の動きだけを続けます。`:`${$('title').textContent}\n${$('condition').textContent}`;
   const returning=session.mode==='challenge'&&challenge.type==='return-pattern';
   fullText('現在の条件',detail+(returning?`\n最初の${challenge.count}回を比べ、指定回数に届いたら光を自動で止めます。光を星へ戻し、星でもう一度分岐させてください。間隔は指定した秒数との完全一致です。満点は指定回数目の到達が${challenge.baseline}秒の配線です。星の処理秒数は戻ってきた光にだけかかります。`:session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
 }

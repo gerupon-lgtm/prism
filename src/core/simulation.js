@@ -40,6 +40,26 @@ export class Simulation {
 
   get exhausted() { return !this.events.size; }
   get activeCount() { let count = 0; for (const p of this.particles.values()) if (activeStates.has(p.status)) count++; return count; }
+  // Continue a presentation without advancing the recorded experiment. Circuit
+  // conditions are read-only during a run; every mutable scheduler value is copied.
+  fork({includeRecords=true}={}) {
+    const fork = Object.create(Simulation.prototype);
+    fork.circuit = this.circuit;
+    fork.clock = this.clock; fork.status = this.status; fork.pauseReason = this.pauseReason;
+    fork.records = includeRecords ? structuredClone(this.records) : [];
+    fork.particles = structuredClone(this.particles);
+    fork.nextId = this.nextId;
+    fork.intervalChecks = structuredClone(this.intervalChecks);
+    fork.gates = structuredClone(this.gates);
+    fork.events = new Heap(this.events.compare);
+    fork.events.items = structuredClone(this.events.items);
+    fork.instantPaths = new WeakMap();
+    for (const [id, particle] of this.particles) {
+      const path = this.instantPaths.get(particle);
+      if (path) fork.instantPaths.set(fork.particles.get(id), {at:path.at, visited:new Set(path.visited)});
+    }
+    return fork;
+  }
   format(ticks = this.clock) { return this.circuit.time.format(ticks); }
   record(type, particle, data = {}) {
     const entry = { type, time: this.format(), particle: particle?.id ?? null, parent: particle?.parent ?? null, node: particle?.node ?? null, target: particle?.target ?? null, ...data };

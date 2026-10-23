@@ -1,6 +1,6 @@
 // Display-only wait; never advances the simulation or adds record time.
-export const END_WAIT_MS = 3000;
-export const CLEAR_END_WAIT_MS = 2700;
+export const END_WAIT_MS = 2000;
+export const CLEAR_END_WAIT_MS = 1700;
 
 export class EndWait {
   constructor() { this.run = null; this.deadline = null; this.checked = false; this.interrupted = new WeakSet(); }

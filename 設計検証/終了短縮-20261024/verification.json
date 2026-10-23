@@ -1,0 +1,67 @@
+{
+  "version": "0.91.0",
+  "passed": true,
+  "unitTestFiles": 43,
+  "endingCoverageTests": 184,
+  "syntaxFiles": 115,
+  "offlineAssets": 79,
+  "browserCases": 26,
+  "jobs": [
+    {
+      "report": "edges/chromium/report.json",
+      "cases": 7,
+      "passed": true,
+      "waitMs": [
+        2033,
+        2045,
+        2050,
+        1753,
+        78,
+        1771,
+        1721
+      ]
+    },
+    {
+      "report": "edges/webkit/report.json",
+      "cases": 7,
+      "passed": true,
+      "waitMs": [
+        2036,
+        2028,
+        2072,
+        1822,
+        223,
+        1795,
+        1745
+      ]
+    },
+    {
+      "report": "pacing/chromium/report.json",
+      "cases": 6,
+      "passed": true,
+      "waitMs": [
+        1737,
+        1744,
+        1740,
+        1749,
+        1734,
+        1750
+      ]
+    },
+    {
+      "report": "pacing/webkit-final/report.json",
+      "cases": 6,
+      "passed": true,
+      "waitMs": [
+        1741,
+        1788,
+        1775,
+        1770,
+        1795,
+        1831
+      ]
+    }
+  ],
+  "webkitAudio": "AudioContext and webkitAudioContext are absent in this Windows headless WebKit build; live sound tails unverified there; Chromium active voices and audio unit tests passed",
+  "physicalDevices": "Not verified"
+}

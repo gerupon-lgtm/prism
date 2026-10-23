@@ -1,0 +1,268 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "fastest",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.1
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.25,
+        "y": 0.45
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.75,
+        "y": 0.45
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.87
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "1"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1"
+      }
+    ]
+  },
+  "elapsed": "2.5",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": "G",
+      "plannedTime": "2.5"
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": "G",
+      "edge": "SA",
+      "from": "S",
+      "to": "A",
+      "arrivalTime": "1"
+    },
+    {
+      "type": "arrival",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": "G",
+      "edge": "SA"
+    },
+    {
+      "type": "process-start",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": "G",
+      "arrivedAt": "1",
+      "wait": "0",
+      "finishTime": "1.5"
+    },
+    {
+      "type": "process-end",
+      "time": "1.5",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": "G",
+      "startedAt": "1",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "1.5",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": "G",
+      "edge": "AG",
+      "from": "A",
+      "to": "G",
+      "arrivalTime": "2.5"
+    },
+    {
+      "type": "arrival",
+      "time": "2.5",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": "G",
+      "edge": "AG"
+    },
+    {
+      "type": "goal",
+      "time": "2.5",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": "G",
+      "hops": 2
+    }
+  ],
+  "evaluation": {
+    "state": "achieved",
+    "first": "2.5",
+    "evaluatedTime": "2.5",
+    "score": {
+      "numerator": "100",
+      "denominator": "1"
+    },
+    "challenge": "Q1"
+  },
+  "challenge": {
+    "id": "Q1",
+    "maxDuration": "2.5",
+    "version": 1,
+    "name": "はじめの一音",
+    "stage": "夜空の遺跡",
+    "type": "time",
+    "limit": 2,
+    "baseline": "2.5",
+    "goal": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.1,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.25,
+        "y": 0.45,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.75,
+        "y": 0.45,
+        "process": "0.5"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.87,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "1"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "SB",
+        "from": "S",
+        "to": "B",
+        "time": "1"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1"
+      }
+    ],
+    "number": 1,
+    "set": "intro",
+    "setName": "お試し"
+  },
+  "originalConditions": {
+    "mode": "fastest",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.1
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.25,
+        "y": 0.45
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.75,
+        "y": 0.45
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.87
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "1"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1"
+      }
+    ]
+  },
+  "faultCases": [],
+  "replayCase": null,
+  "phaseOffset": "0"
+}

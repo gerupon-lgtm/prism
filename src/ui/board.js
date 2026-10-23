@@ -472,7 +472,7 @@ export class Board {
   }
   renderArrivals() {
     const run=this.session.run;
-    if(this.pictureRun!==run||run?.status==='stopped'){this.arrivalPictures.clear();this.pictureRun=run;}
+    if(this.pictureRun!==run||(run?.status==='stopped'&&this.naturalEnding!==run)){this.arrivalPictures.clear();this.pictureRun=run;}
     for(const art of this.effectsLayer.querySelectorAll('[data-arrival-key]'))if(!this.arrivalPictures.has(art.dataset.arrivalKey))art.remove();
     const now=performance.now();
     for(const [id,picture] of this.arrivalPictures){
@@ -559,7 +559,8 @@ export class Board {
   }
   particles() {
     this.particleLayer.replaceChildren();
-    const run=this.session.run;
+    const official=this.session.run;
+    const run=this.endingMotion&&this.endingMotion.source===official&&official?.status!=='stopped'?this.endingMotion.run:official;
     this.updateGoalMarkers();
     if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){this.timeLayoutSignature='';this.fitTimeLabels();}return;}
     const states=[];
