@@ -94,6 +94,18 @@ export class Board {
     this.cancelMirrorSelection();if(['mirror','mirror-arrival'].includes(this.gesture?.kind))this.cancelAll();
     Object.assign(this.session.view,this.fitView());this.transform();this.render();
   }
+  edgeCurve(a,b,edge,parallel,screenScale) {
+    // Separate opposite directions with straight lanes, anchored inside the parts.
+    // Stable ID order prevents a lane from moving when a candidate is connected.
+    const ordered=[...parallel].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+    const index=ordered.findIndex(other=>other.id===edge.id),slot=index-(ordered.length-1)/2;
+    const length=Math.hypot(b.x-a.x,b.y-a.y);
+    if(!length)return {a,b,control:{x:a.x+160+slot*95,y:a.y-160-slot*95}};
+    const offset=Math.max(-12,Math.min(12,slot*8))/(screenScale>0?screenScale:1)*(edge.from<edge.to?1:-1);
+    const dx=-(b.y-a.y)/length*offset,dy=(b.x-a.x)/length*offset;
+    const start={x:a.x+dx,y:a.y+dy},end={x:b.x+dx,y:b.y+dy};
+    return {a:start,b:end,control:{x:(start.x+end.x)/2,y:(start.y+end.y)/2}};
+  }
   render() {
     this.world.replaceChildren(); this.curves = new Map();this.directionEdges=[]; this.transform();
     const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
@@ -129,12 +141,10 @@ export class Board {
     const parallels=new Map();
     for(const edge of all){const key=JSON.stringify([edge.from,edge.to].sort());let list=parallels.get(key);if(!list){list=[];parallels.set(key,list);}list.push(edge);}
     for (const edge of all) {
-      const a=this.position(nodes.get(edge.from)),b=this.position(nodes.get(edge.to));
       const parallel=parallels.get(JSON.stringify([edge.from,edge.to].sort()));
-      const at=parallel.findIndex(other=>other.id===edge.id), offset=(at-(parallel.length-1)/2)*95;
-      const length=Math.hypot(b.x-a.x,b.y-a.y),normal=offset*(edge.from<edge.to?1:-1);
-      const control=length ? {x:(a.x+b.x)/2-(b.y-a.y)/length*normal,y:(a.y+b.y)/2+(b.x-a.x)/length*normal} : {x:a.x+160+offset,y:a.y-160-offset};
-      const curve={a,b,control}; this.curves.set(edge.id,curve);
+      const at=parallel.findIndex(other=>other.id===edge.id);
+      const curve=this.edgeCurve(this.position(nodes.get(edge.from)),this.position(nodes.get(edge.to)),edge,parallel,screenScale);
+      const {a,b,control}=curve; this.curves.set(edge.id,curve);
       const candidate=candidates.includes(edge),disabled=edge.enabled===false||nodes.get(edge.from).enabled===false||nodes.get(edge.to).enabled===false;
       const group=svg('g',{'data-edge':edge.id,class:`edge${candidate?' candidate':''}${disabled?' unavailable':''}${this.session.selection===edge.id?' selected':''}${!candidate&&this.removalId===edge.id?' pending-delete':''}`,tabindex:0,role:'button','aria-label':`${candidate?'未結線の候補':'結線済みの配線'}：${partName(nodes.get(edge.from),input.nodes)} ${edge.bidirectional?'と':'から'} ${partName(nodes.get(edge.to),input.nodes)}へ、${edge.time}秒`});
       group.classList.toggle('mirror-output',nodes.get(edge.from).kind==='mirror');

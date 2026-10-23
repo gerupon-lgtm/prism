@@ -26,10 +26,10 @@ test('課題の直通線は途中のパーツの中心と重ならず、別経�
 });
 
 test('重なる課題の表示位置だけを調整し、元の座標と自由作成の配置は保持する',()=>{
-  for(const [id,part]of [['Q11','D'],['Q12','F'],['Q45','D']]){
+  for(const [id,part]of challenges.flatMap(c=>Object.keys(c.displayPositions??{}).map(part=>[c.id,part]))){
     const challenge=challenges.find(c=>c.id===id),node=challenge.nodes.find(n=>n.id===part),before=structuredClone(node);
     const view={session:{mode:'challenge',challenge}},original=Board.prototype.position.call({},node);
-    const displayed=Board.prototype.position.call(view,node);assert.notEqual(displayed.x,original.x);
+    const displayed=Board.prototype.position.call(view,node);assert.notDeepEqual(displayed,original);
     view.session.run={status:'running'};assert.deepEqual(Board.prototype.position.call(view,node),displayed);
     view.session.mode='free';assert.deepEqual(Board.prototype.position.call(view,node),original);assert.deepEqual(node,before);
   }
@@ -149,4 +149,33 @@ test('横向きの情報と記憶した縦基準が食い違っても0度・180�
   const input={coarse:true,width:915,height:330,portraitAngle:90};
   assert.equal(frameRotation({...input,type:'landscape-primary',angle:90}),-90);
   assert.equal(frameRotation({...input,type:'landscape-secondary',angle:270}),90);
+});
+
+test('Q17のAからFへの直線はCの操作範囲と余裕を保ち、途中の接続と混同しない',()=>{
+  const challenge=challenges.find(c=>c.number===17);
+  const view={session:{mode:'challenge',challenge},projectionHeight:1740,displayWidthRatio:1.1};
+  const at=id=>Board.prototype.position.call(view,challenge.nodes.find(n=>n.id===id));
+  const a=at('A'),b=at('F'),p=at('C'),dx=b.x-a.x,dy=b.y-a.y;
+  const t=((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy);
+  assert(t>0&&t<1);
+  // 130 view units are the normal part's touch radius at the phone projection.
+  assert(Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t)>150,'A-F must clear C, including a margin');
+});
+
+test('往復する光は方向別の直線で分かれ、確定順や縮尺で入れ替わらない',()=>{
+  const edges=[{id:'SC',from:'S',to:'C'},{id:'CS',from:'C',to:'S'}];
+  const a={x:0,y:0},b={x:100,y:200};
+  for(const scale of [.2,.5,1]){
+    const board={};
+    const out=Board.prototype.edgeCurve.call(board,a,b,edges[0],edges,scale);
+    const back=Board.prototype.edgeCurve.call(board,b,a,edges[1],[...edges].reverse(),scale);
+    for(const curve of [out,back]){
+      assert.deepEqual(curve.control,{x:(curve.a.x+curve.b.x)/2,y:(curve.a.y+curve.b.y)/2});
+      assert(Math.hypot(curve.a.x-(curve===out?a:b).x,curve.a.y-(curve===out?a:b).y)*scale<=4.001);
+    }
+    assert(Math.abs(Math.hypot(out.a.x-back.b.x,out.a.y-back.b.y)*scale-8)<1e-9);
+    assert.deepEqual(out,Board.prototype.edgeCurve.call(board,a,b,edges[0],[...edges].reverse(),scale));
+    assert.deepEqual(a,{x:0,y:0});assert.deepEqual(b,{x:100,y:200});
+  }
+  assert.deepEqual(Board.prototype.edgeCurve.call({},a,b,edges[0],[edges[0]],1),{a,b,control:{x:50,y:100}});
 });
