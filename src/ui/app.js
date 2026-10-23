@@ -129,10 +129,18 @@ function updateNotice(){
 
 document.addEventListener('click',event=>{
   const target=buttonPresses.get(event);if(!target)return;
-  target.classList.remove('button-response');if(!motion.reduced){void target.offsetWidth;target.classList.add('button-response');}
+  // An action can hide its own button before this bubbling listener runs.
+  // Hidden CSS animations never finish and would replay on the next reveal.
+  target.classList.remove('button-response');if(!motion.reduced&&target.getClientRects().length){void target.offsetWidth;target.classList.add('button-response');}
   if(target.id!=='sound')chime.tap();
 });
-document.addEventListener('animationend',event=>{if(event.animationName==='button-response')event.target.classList.remove('button-response');});
+function finishButtonResponse(event){
+  if(event.animationName!=='button-response')return;
+  // A delayed cancellation from a repeated press must not erase the new press.
+  if(!event.target.getAnimations().some(animation=>animation.animationName==='button-response'&&animation.playState==='running'))event.target.classList.remove('button-response');
+}
+document.addEventListener('animationend',finishButtonResponse);
+document.addEventListener('animationcancel',finishButtonResponse);
 
 function notify(text) { message=text;if(!$('title-screen').hidden)$('title-error').textContent=text;render(false); }
 function attempt(action) {
