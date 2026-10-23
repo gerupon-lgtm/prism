@@ -199,7 +199,6 @@
     }
   ],
   "pending": [
-    "Production verification",
     "Physical-phone usability"
   ],
   "regressions": [
@@ -281,5 +280,74 @@
       "mode": "minimal-desktop",
       "checks": 10
     }
-  ]
+  ],
+  "public": [
+    {
+      "host": "prism.sikumilab.com",
+      "passed": true,
+      "version": "0.87.0",
+      "commit": "e16abd805610d5713333d288f5b80bb845cc17d1",
+      "assetAndOfflineChecks": 88,
+      "stageViews": 84,
+      "gestures": [
+        {
+          "layout": "phone",
+          "stage": 17,
+          "result": "Direct A-F accepted without connecting C"
+        },
+        {
+          "layout": "phone",
+          "stage": 25,
+          "result": "Both return directions accepted, stable straight lanes"
+        },
+        {
+          "layout": "desktop",
+          "stage": 17,
+          "result": "Direct A-F accepted without connecting C"
+        },
+        {
+          "layout": "desktop",
+          "stage": 25,
+          "result": "Both return directions accepted, stable straight lanes"
+        }
+      ]
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "passed": true,
+      "version": "0.87.0",
+      "commit": "e16abd805610d5713333d288f5b80bb845cc17d1",
+      "assetAndOfflineChecks": 88,
+      "stageViews": 84,
+      "gestures": [
+        {
+          "layout": "phone",
+          "stage": 17,
+          "result": "Direct A-F accepted without connecting C"
+        },
+        {
+          "layout": "phone",
+          "stage": 25,
+          "result": "Both return directions accepted, stable straight lanes"
+        },
+        {
+          "layout": "desktop",
+          "stage": 17,
+          "result": "Direct A-F accepted without connecting C"
+        },
+        {
+          "layout": "desktop",
+          "stage": 25,
+          "result": "Both return directions accepted, stable straight lanes"
+        }
+      ]
+    }
+  ],
+  "deployment": {
+    "source": "e16abd805610d5713333d288f5b80bb845cc17d1",
+    "githubRun": "39940450236",
+    "cloudflareDeployment": "dc78afc6-b1cc-4d1e-a891-a009324b0aba",
+    "github": "success",
+    "cloudflare": "success"
+  }
 }
