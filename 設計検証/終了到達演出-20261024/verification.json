@@ -75,5 +75,48 @@
     "resultShownAfterMs": 1544
   },
   "webkitAudio": "No AudioContext APIs in this Windows headless WebKit build; live voices checked in Chromium only",
-  "physicalDevices": "Not verified"
+  "physicalDevices": "Not verified",
+  "sourceCommit": "5f56f1e328c770f51742defded416c5d01836e65",
+  "public": [
+    {
+      "site": "prism.sikumilab.com",
+      "checks": 92,
+      "passed": true
+    },
+    {
+      "site": "gerupon-lgtm.github.io",
+      "checks": 92,
+      "passed": true
+    }
+  ],
+  "publicReplay": {
+    "timeout": {
+      "report": "public/timeout/report.json",
+      "passed": true,
+      "cases": 1,
+      "waitMs": 1526
+    },
+    "ordinary": {
+      "report": "public/playback/report.json",
+      "passed": true,
+      "stages": [
+        25,
+        32
+      ],
+      "waitMs": [
+        1542,
+        1533
+      ]
+    }
+  },
+  "deployment": {
+    "github": {
+      "id": 40013878758,
+      "status": "success"
+    },
+    "cloudflare": {
+      "id": "b94a11a4-1654-480e-a955-1417b8fe93cb",
+      "status": "success"
+    }
+  }
 }

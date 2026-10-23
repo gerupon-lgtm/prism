@@ -54,15 +54,19 @@ function observe(){
     if(!state.toast)requestAnimationFrame(sample);
   };requestAnimationFrame(sample);
 }
+const selectedNames=arg('--cases')?.split(',');
+if(selectedNames)for(const name of selectedNames)assert(scenarios.some(c=>c.name===name),'Unknown ending case '+name);
+const selectedScenarios=selectedNames?scenarios.filter(c=>selectedNames.includes(c.name)):scenarios;
 let browser;
 (async()=>{try{
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));browser=await pw[engine].launch({headless:true});
-  for(const c of scenarios){
+  for(const c of selectedScenarios){
     report.step=c.name;
     const context=await browser.newContext({viewport:c.desktop?{width:1440,height:960}:{width:390,height:844},isMobile:!c.desktop,hasTouch:!c.desktop,reducedMotion:c.reduced?'reduce':'no-preference'}),p=await context.newPage(),errors=[];
     p.on('pageerror',e=>errors.push(e.message));
     await p.addInitScript(reduced=>{Math.random=()=>.5;localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:reduced?'reduce':'full'}));},Boolean(c.reduced));
-    await p.goto(`http://127.0.0.1:${server.address().port}/`);await p.locator('#board [data-node="S"]').waitFor();
+    await p.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await p.locator('#board [data-node="S"]').waitFor();
+    assert.equal(await p.locator('meta[name="prism-version"]').getAttribute('content'),report.version,'The tested page must match the built release');
     await p.evaluate(async ({limit,throwLate})=>{
       const base=document.querySelector('script[type=module]').src;
       const {Chime}=await import(new URL('./audio.js',base));window.endingAudio=[];window.endingCues=[];

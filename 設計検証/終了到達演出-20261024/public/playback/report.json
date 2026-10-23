@@ -1,0 +1,1019 @@
+{
+  "version": "0.92.0",
+  "passed": true,
+  "method": "Real play click and animation-frame clock; read-only DOM observers; actual UI result export",
+  "cases": [
+    {
+      "number": 25,
+      "kind": "winner",
+      "challenge": "Q29",
+      "draw": "1abe0cdd1b84107d",
+      "proofBoundSeconds": 4.3,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 9112.60000000149,
+          "experimentDisplay": "4.1",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 13,
+          "contextBefore": {
+            "voices": 13,
+            "muted": false,
+            "hasOutput": true,
+            "context": {
+              "state": "running",
+              "currentTime": 8.221333333333334,
+              "sampleRate": 48000,
+              "baseLatency": 0.03,
+              "outputLatency": 0.064
+            }
+          },
+          "after": 13,
+          "contextAfter": {
+            "voices": 13,
+            "muted": false,
+            "hasOutput": true,
+            "context": {
+              "state": "running",
+              "currentTime": 8.221333333333334,
+              "sampleRate": 48000,
+              "baseLatency": 0.03,
+              "outputLatency": 0.064
+            }
+          }
+        },
+        "capabilities": {
+          "standard": true,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+        },
+        "scheduling": [
+          {
+            "wall": 4579.300000000745,
+            "experimentDisplay": "1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 7581,
+            "experimentDisplay": "4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.690666666666667,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.690666666666667,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 7588.10000000149,
+            "experimentDisplay": "4.1",
+            "name": "perfect",
+            "before": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.701333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 20,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Active scheduled voices remain after automatic editing return"
+      },
+      "experiment": {
+        "elapsed": "4.1",
+        "lastRecordedExperimentTime": 4.1,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.1",
+          "evaluatedTime": "4.1",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q29"
+        },
+        "arrivals": [
+          {
+            "time": "1.1",
+            "node": "G",
+            "particle": 2
+          },
+          {
+            "time": "4.1",
+            "node": "G",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.1",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          },
+          {
+            "time": "4.1",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 3183.400000002235,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 3487.5,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 7622.900000002235,
+          "experimentDisplay": "4.1"
+        },
+        "completed": {
+          "wall": 7602.5,
+          "experimentDisplay": "4.1"
+        },
+        "fireworksStarted": {
+          "wall": 7621.10000000149,
+          "experimentDisplay": "4.1"
+        },
+        "fireworksEnded": {
+          "wall": 9096.5,
+          "experimentDisplay": "4.1"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-star": 120,
+          "firework-ray": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 9144.800000000745,
+          "experimentDisplay": "4.1",
+          "kind": "achieved",
+          "text": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 9144.900000002235,
+          "experimentDisplay": "4.1",
+          "result": "達成 100.00点・編集可能｜4.1秒・0光線"
+        },
+        "arrivals": [
+          {
+            "wall": 4591,
+            "experimentDisplay": "1.1",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 7622.900000002235,
+            "experimentDisplay": "4.1",
+            "goal": "G",
+            "count": 2,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G:1.1": {
+            "wall": 4592.400000002235,
+            "experimentDisplay": "1.1",
+            "goal": "G",
+            "visible": true,
+            "removed": 6383.699999999255
+          },
+          "4:G:4.1": {
+            "wall": 7622.900000002235,
+            "experimentDisplay": "4.1",
+            "goal": "G",
+            "visible": true,
+            "removed": 9389.699999999255,
+            "visibleDurationMs": 1766.7999999970198,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1742
+          }
+        },
+        "counts": {
+          "G": 2
+        },
+        "states": [
+          {
+            "wall": 3183.699999999255,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 3197.199999999255,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 3486.699999999255,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 7602.400000002235,
+            "experimentDisplay": "4.1",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 9144.60000000149,
+            "experimentDisplay": "4.1",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 3468.400000002235,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 2.5813333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 2.5813333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 9112.60000000149,
+            "experimentDisplay": "4.1",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 13,
+            "contextBefore": {
+              "voices": 13,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 8.221333333333334,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": 13,
+            "contextAfter": {
+              "voices": 13,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 8.221333333333334,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 4579.300000000745,
+            "experimentDisplay": "1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 7581,
+            "experimentDisplay": "4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.690666666666667,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.690666666666667,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 7588.10000000149,
+            "experimentDisplay": "4.1",
+            "name": "perfect",
+            "before": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.701333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 20,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 6.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": true,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+        },
+        "maxPaintGapMs": 50
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 4598.199999999255,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 7631.900000002235,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 7632.199999999255,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 9149.5,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q25-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 32,
+      "kind": "winner",
+      "challenge": "Q36",
+      "draw": "d903e0bd7bc6720d",
+      "proofBoundSeconds": 0.8,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 6437.099999997765,
+          "experimentDisplay": "0.6",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 14,
+          "contextBefore": {
+            "voices": 14,
+            "muted": false,
+            "hasOutput": true,
+            "context": {
+              "state": "running",
+              "currentTime": 5.221333333333333,
+              "sampleRate": 48000,
+              "baseLatency": 0.03,
+              "outputLatency": 0.064
+            }
+          },
+          "after": 14,
+          "contextAfter": {
+            "voices": 14,
+            "muted": false,
+            "hasOutput": true,
+            "context": {
+              "state": "running",
+              "currentTime": 5.221333333333333,
+              "sampleRate": 48000,
+              "baseLatency": 0.03,
+              "outputLatency": 0.064
+            }
+          }
+        },
+        "capabilities": {
+          "standard": true,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+        },
+        "scheduling": [
+          {
+            "wall": 4404.599999997765,
+            "experimentDisplay": "0",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.2106666666666666,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.2106666666666666,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 4907.199999999255,
+            "experimentDisplay": "0.5",
+            "name": "strike",
+            "before": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 2,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 4919,
+            "experimentDisplay": "0.6",
+            "name": "perfect",
+            "before": {
+              "voices": 2,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 21,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Active scheduled voices remain after automatic editing return"
+      },
+      "experiment": {
+        "elapsed": "0.6",
+        "lastRecordedExperimentTime": 0.6,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "0.1",
+          "evaluatedTime": "0.6",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q36",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "0.1"
+            },
+            {
+              "id": "G2",
+              "first": "0.6"
+            }
+          ],
+          "gaps": [
+            "0.5"
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "0.1",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "0.6",
+            "node": "G2",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "0.1",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          },
+          {
+            "time": "0.6",
+            "count": 1,
+            "goals": [
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 4274.89999999851,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 4314.89999999851,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 4942.699999999255,
+          "experimentDisplay": "0.6"
+        },
+        "completed": {
+          "wall": 4930.800000000745,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksStarted": {
+          "wall": 4941.599999997765,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksEnded": {
+          "wall": 6421.099999997765,
+          "experimentDisplay": "0.6"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-star": 120,
+          "firework-ray": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 6463.699999999255,
+          "experimentDisplay": "0.6",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達0.6秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 6463.699999999255,
+          "experimentDisplay": "0.6",
+          "result": "達成 100.00点・編集可能｜0.6秒・0光線　鐘 2/2・全到達 0.6秒"
+        },
+        "arrivals": [
+          {
+            "wall": 4432.300000000745,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 4942.699999999255,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:0.1": {
+            "wall": 4433.5,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "visible": true,
+            "removed": 6208.5
+          },
+          "3:G2:0.6": {
+            "wall": 4942.699999999255,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "visible": true,
+            "removed": 6708.599999997765,
+            "visibleDurationMs": 1765.8999999985099,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1758.5999999999995
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 4275.099999997765,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 4292.5,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 4313.89999999851,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 4930.800000000745,
+            "experimentDisplay": "0.6",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 6463.5,
+            "experimentDisplay": "0.6",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 4298.300000000745,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 3,
+            "contextBefore": {
+              "voices": 3,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.0906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": 1,
+            "contextAfter": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.0906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 6437.099999997765,
+            "experimentDisplay": "0.6",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 14,
+            "contextBefore": {
+              "voices": 14,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 5.221333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": 14,
+            "contextAfter": {
+              "voices": 14,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 5.221333333333333,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 4404.599999997765,
+            "experimentDisplay": "0",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.2106666666666666,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.2106666666666666,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 4907.199999999255,
+            "experimentDisplay": "0.5",
+            "name": "strike",
+            "before": {
+              "voices": 1,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.6906666666666665,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 2,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          },
+          {
+            "wall": 4919,
+            "experimentDisplay": "0.6",
+            "name": "perfect",
+            "before": {
+              "voices": 2,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            },
+            "after": {
+              "voices": 21,
+              "muted": false,
+              "hasOutput": true,
+              "context": {
+                "state": "running",
+                "currentTime": 3.72,
+                "sampleRate": 48000,
+                "baseLatency": 0.03,
+                "outputLatency": 0.064
+              }
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": true,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+        },
+        "maxPaintGapMs": 33.400000000000546
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 4443.699999999255,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 4951.800000000745,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 4952,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 6471.199999999255,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\public\\playback\\Q32-winner-result.png"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Physical phones, actual sound quality, subjective difficulty"
+  ],
+  "url": "https://prism.sikumilab.com/",
+  "browser": {
+    "engine": "chromium",
+    "channel": null,
+    "version": "151.0.7922.34"
+  },
+  "step": "Q32-winner"
+}
