@@ -30,4 +30,12 @@ WebKitの最初の代表面検査では「自動終了時に稼働中の音声�
 
 集計は [verification.json](../../設計検証/終了短縮-20261024/verification.json)、WebKitの音声能力の切り分けは [診断](../../設計検証/終了短縮-20261024/audio-webkit-diagnostic/report.json) を参照する。診断時の既定サンドボックスではローカル接続が失敗したため、その記録も残し、接続を許可した実行で診断を完了した。実機の指操作・見え方・聴感はPCブラウザの検査と区別する。
 
-公開状態は公開後に追記する。
+## 公開
+
+配信元 `2f9338081bf73609af8876fb93fef78752dae1c4`。GitHub Actions [40009292003](https://github.com/gerupon-lgtm/prism/actions/runs/40009292003)、Cloudflare `3dcb414f-4653-4749-9ea8-fcf46d4ffeb8` が成功した。
+
+[prism.sikumilab.com](https://prism.sikumilab.com/) と [GitHub Pages](https://gerupon-lgtm.github.io/prism/) の各92項目が合格。版と配信元、79資材の準備、配信本文のSHA-256と形式、起動時・タイトル・メニューの更新確認、結線・採点・保存・書き出し、ChromiumでHTTPキャッシュを消してページを閉じた後の通信なし起動を確認した。
+
+独自ドメイン上でQ25・出題5とQ32・出題5を実再生し、動作終了から1.7秒後で、花火が終わってからのカード表示、到達演出1.8秒の保持、自動編集復帰時に稼働中の音声が残ることも確認した。記録は [公開再生](../../設計検証/終了短縮-20261024/public/playback/report.json)、公開確認と配信結果は [集計](../../設計検証/終了短縮-20261024/verification.json) を参照する。
+
+スマホ実機の見え方・指操作・聴感は未確認。今回の検査を実機合格とは扱わない。

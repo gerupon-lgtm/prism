@@ -63,5 +63,48 @@
     }
   ],
   "webkitAudio": "AudioContext and webkitAudioContext are absent in this Windows headless WebKit build; live sound tails unverified there; Chromium active voices and audio unit tests passed",
-  "physicalDevices": "Not verified"
+  "physicalDevices": "Not verified",
+  "sourceCommit": "2f9338081bf73609af8876fb93fef78752dae1c4",
+  "public": [
+    {
+      "site": "prism.sikumilab.com",
+      "passed": true,
+      "checks": 92,
+      "commit": "2f9338081bf73609af8876fb93fef78752dae1c4"
+    },
+    {
+      "site": "gerupon-lgtm.github.io",
+      "passed": true,
+      "checks": 92,
+      "commit": "2f9338081bf73609af8876fb93fef78752dae1c4"
+    }
+  ],
+  "deployment": {
+    "github": {
+      "id": 40009292003,
+      "status": "success"
+    },
+    "cloudflare": {
+      "id": "3dcb414f-4653-4749-9ea8-fcf46d4ffeb8",
+      "status": "success"
+    }
+  },
+  "publicPlayback": {
+    "report": "public/playback/report.json",
+    "passed": true,
+    "cases": [
+      {
+        "stage": 25,
+        "elapsed": "4.1",
+        "waitMs": 1734,
+        "activeVoicesAtAutomaticStop": 8
+      },
+      {
+        "stage": 32,
+        "elapsed": "0.6",
+        "waitMs": 1736,
+        "activeVoicesAtAutomaticStop": 9
+      }
+    ]
+  }
 }
