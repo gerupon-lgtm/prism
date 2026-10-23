@@ -1,0 +1,50 @@
+✖ 続行中の到達を音と演出へ1回だけ渡し、公式の結果と履歴は変えない (27.6057ms)
+✖ 続行の鐘も締切前の到達と合わせて音程を選び、短い間隔の音をそろえる (2.4448ms)
+✔ 表示用分岐は開閉の待ち行列・予約・条件検査・heapを独立させ、続行結果が一致する (8.3181ms)
+✔ 分岐は最短経路配列も共有せず、0秒循環の履歴も正しく引き継ぐ (6.104ms)
+✔ 時間切れ後の表示粒だけが動き、追加到達は公式時刻・結果・全記録・成績へ入らない (61.028ms)
+✔ 時間切れの表示継続は最大で未達成カードの待機まで、時刻を巻き戻さない (2.8301ms)
+✔ 画面を隠す・記録を見る等で中断した表示は同じrunで再開しない (14.1243ms)
+✔ 手動停止・次の実行・課題切替・練習開始は表示コピーを引き継がない (4.9735ms)
+✔ 負荷のある表示継続はイベント数と実時間の双方で打ち切り、公式結果を変更しない (40.219ms)
+✔ 表示中の0秒循環でも結果表示を妨げず、公式記録へ追記しない (2.0151ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2446.1144
+
+✖ failing tests:
+
+test at tests\timeout-motion.test.js:35:1
+✖ 続行中の到達を音と演出へ1回だけ渡し、公式の結果と履歴は変えない (27.6057ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  
+  undefined !== []
+  
+      at TestContext.<anonymous> (file:///C:/Users/user/Documents/project/%E3%83%80%E3%82%A4%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E6%B3%95%E6%A4%9C%E8%A8%BC/tests/timeout-motion.test.js:37:37)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\timeout-motion.test.js:48:1
+✖ 続行の鐘も締切前の到達と合わせて音程を選び、短い間隔の音をそろえる (2.4448ms)
+  TypeError: Cannot read properties of undefined (reading 'map')
+      at TestContext.<anonymous> (file:///C:/Users/user/Documents/project/%E3%83%80%E3%82%A4%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E6%B3%95%E6%A4%9C%E8%A8%BC/tests/timeout-motion.test.js:53:39)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

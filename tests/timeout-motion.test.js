@@ -5,6 +5,7 @@ import {Session} from '../src/app/session.js';
 import {LocalRecords} from '../src/core/storage.js';
 import {TimeoutMotion} from '../src/ui/timeout-motion.js';
 import {END_WAIT_MS} from '../src/ui/end-wait.js';
+import {arrivalFrequencies} from '../src/content/bell-pitches.js';
 
 function gateCircuit(){
   return {mode:'spread',nodes:[
@@ -30,6 +31,30 @@ function timeoutFixture(){
   return {session,records,values};
 }
 const quiet=options=>new TimeoutMotion({...options,measure:()=>0});
+
+test('続行中の到達を音と演出へ1回だけ渡し、公式の結果と履歴は変えない',()=>{
+  const {session,records}=timeoutFixture(),motion=quiet(),before=session.exportResult(),scores=records.scores();
+  motion.update(session,100);assert.deepEqual(motion.entries,[]);
+  motion.update(session,600);assert(motion.entries.some(entry=>entry.type==='process-end'));
+  motion.update(session,1600);
+  const goals=motion.entries.filter(entry=>entry.type==='goal');
+  assert.equal(goals.length,1);assert.equal(goals[0].time,'2.5');
+  assert.deepEqual(motion.goalHistory,goals);
+  motion.update(session,1700);assert.deepEqual(motion.entries,[],'同じ到達を再通知しない');
+  assert.deepEqual(session.exportResult(),before);assert.deepEqual(records.scores(),scores);
+  motion.clear();assert.deepEqual(motion.entries,[]);assert.deepEqual(motion.goalHistory,[]);
+});
+
+test('続行の鐘も締切前の到達と合わせて音程を選び、短い間隔の音をそろえる',()=>{
+  const source=new Simulation({mode:'spread',nodes:[{id:'S',kind:'source',process:'0.5'},{id:'G1',kind:'goal',process:'0'},{id:'G2',kind:'goal',process:'0'}],edges:[{id:'SG1',from:'S',to:'G1',time:'0.4'},{id:'SG2',from:'S',to:'G2',time:'0.6'}]});
+  source.advanceUntil('0.5');const copy=source.fork({includeRecords:false}),before=structuredClone(source.records);source.complete();
+  const session={run:source,timeoutMotionRun:copy,result:{timeLimitReached:true}},motion=quiet();
+  motion.update(session,0);motion.update(session,100);
+  assert.deepEqual(motion.goalHistory.map(entry=>entry.node),['G1','G2']);
+  const frequencies=arrivalFrequencies({goals:['G1','G2'],bellPitches:[72,79]},motion.goalHistory,source.circuit.time);
+  assert.equal(frequencies.get(motion.goalHistory[1]),frequencies.get(motion.goalHistory[0]));
+  assert.deepEqual(source.records,before);
+});
 
 test('表示用分岐は開閉の待ち行列・予約・条件検査・heapを独立させ、続行結果が一致する',()=>{
   const run=new Simulation(gateCircuit());run.advanceUntil('1.5');run.intervalResult('G','1',2);

@@ -1,0 +1,79 @@
+{
+  "version": "0.92.0",
+  "passed": true,
+  "unitTestFiles": 43,
+  "endingCoverageTests": 184,
+  "reactionAndOutcomeTests": 17,
+  "syntaxFiles": 115,
+  "offlineAssets": 79,
+  "browserCases": 32,
+  "jobs": [
+    {
+      "report": "edges/chromium-final/report.json",
+      "cases": 11,
+      "passed": true,
+      "waitMs": [
+        1538,
+        1521,
+        1543,
+        1544,
+        1525,
+        60,
+        1518,
+        1562,
+        63,
+        1573,
+        1528
+      ]
+    },
+    {
+      "report": "edges/webkit/report.json",
+      "cases": 11,
+      "passed": true,
+      "waitMs": [
+        1582,
+        1542,
+        1529,
+        1528,
+        1545,
+        151,
+        1564,
+        1613,
+        277,
+        1610,
+        1568
+      ]
+    },
+    {
+      "report": "pacing/chromium/report.json",
+      "cases": 5,
+      "passed": true,
+      "waitMs": [
+        1529,
+        1592,
+        1546,
+        1546,
+        1559
+      ]
+    },
+    {
+      "report": "pacing/webkit/report.json",
+      "cases": 5,
+      "passed": true,
+      "waitMs": [
+        1596,
+        1646,
+        1581,
+        1595,
+        1650
+      ]
+    }
+  ],
+  "exceptionHandling": {
+    "officialCoreStates": 1,
+    "voicesAfterEndingError": 0,
+    "resultShownAfterMs": 1544
+  },
+  "webkitAudio": "No AudioContext APIs in this Windows headless WebKit build; live voices checked in Chromium only",
+  "physicalDevices": "Not verified"
+}

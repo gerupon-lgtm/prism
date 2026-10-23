@@ -1,0 +1,35 @@
+{
+  "task": "0.92.0 timeout arrival reactions",
+  "controller": "root",
+  "ownership": [
+    {
+      "role": "ending_timing_092",
+      "files": [
+        "src/ui/end-wait.js",
+        "tests/end-wait.test.js",
+        "tests/ending-coverage.test.js"
+      ],
+      "result": "184 tests red then green; no out-of-scope changes"
+    },
+    {
+      "role": "ending_browser_092",
+      "files": [
+        "設計検証/check_ending_edges.cjs",
+        "設計検証/check_play_pacing.cjs"
+      ],
+      "result": "11 scenario checks and pacing diagnostics; syntax passed; browser runs owned by root",
+      "followups": [
+        "Align muted-result cue and ordinary failure expectations",
+        "Add optional artwork exception scenario"
+      ]
+    },
+    {
+      "role": "ending_review_092",
+      "files": [],
+      "result": "24 targeted tests passed; optional-error completion risk identified and corrected by root"
+    }
+  ],
+  "integration": "root implements arrival reaction routing, pitch history, deferred outcome and visible caption; executes final checks and releases",
+  "tokens": null,
+  "elapsedMs": null
+}

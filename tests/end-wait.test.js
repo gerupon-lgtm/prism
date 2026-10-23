@@ -6,18 +6,18 @@ import { LocalRecords } from '../src/core/storage.js';
 import { sampleCircuit } from '../src/content/samples.js';
 
 function session(){const data=new Map();return new Session(new LocalRecords({getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)}));}
-test('クリア後は全粒終了から1.7秒で再操作でき、到達時刻・点数・配線を保持する',()=>{
+test('クリア後は全粒終了から1.5秒で再操作でき、到達時刻・点数・配線を保持する',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
   assert(s.clearChoices);const clock=s.run.clock,records=structuredClone(s.run.records),result=structuredClone(s.result),circuit=structuredClone(s.circuit);
   assert.equal(wait.ready(s.run,100,{cleared:true}),false);
-  assert.equal(wait.ready(s.run,1799,{cleared:true}),false);assert.equal(wait.ready(s.run,1800,{cleared:true}),true);
+  assert.equal(wait.ready(s.run,1599,{cleared:true}),false);assert.equal(wait.ready(s.run,1600,{cleared:true}),true);
   s.stop();assert(s.editable);assert.equal(s.run.clock,clock);assert.deepEqual(s.run.records,records);assert.deepEqual(s.result,result);assert.deepEqual(s.circuit,circuit);
 });
 
-test('全粒が終わってから2秒で編集へ戻し、時計・全記録・点数・配線を保持する',()=>{
+test('全粒が終わってから1.5秒で編集へ戻し、時計・全記録・点数・配線を保持する',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
   const clock=s.run.clock,records=structuredClone(s.run.records),result=structuredClone(s.result),circuit=structuredClone(s.circuit);
-  assert.equal(s.run.exhausted,true);assert.equal(s.editable,false);assert.equal(wait.ready(s.run,100),false);
+  assert.equal(END_WAIT_MS,1500);assert.equal(s.run.exhausted,true);assert.equal(s.editable,false);assert.equal(wait.ready(s.run,100),false);
   assert.equal(wait.ready(s.run,100+END_WAIT_MS-1),false);assert.equal(wait.ready(s.run,100+END_WAIT_MS),true);
   s.stop();assert.equal(s.editable,true);assert.equal(s.run.clock,clock);assert.deepEqual(s.run.records,records);assert.deepEqual(s.result,result);assert.deepEqual(s.circuit,circuit);assert.equal(wait.ready(s.run,10000),false);
 });
@@ -25,31 +25,31 @@ test('最初のゴール後も後続粒が動いている間は待機を開始�
   const s=session(),wait=new EndWait();s.replace({sampleId:'compare'});
   const circuit=sampleCircuit();circuit.target='all';circuit.nodes.push({id:'G2',kind:'goal',x:.7,y:.85,process:'0'});circuit.edges.push({id:'SG2',from:'S',to:'G2',time:'10'});s.commitEdit(circuit);s.start();s.advance('2.5');
   assert.equal(s.run.arrivals().length,1);assert.equal(wait.ready(s.run,100,{cleared:true}),false);assert.equal(wait.ready(s.run,10000,{cleared:true}),false);
-  s.advance('10');assert.equal(s.run.arrivals().length,2);assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,12999),false);assert.equal(wait.ready(s.run,13000),true);
+  s.advance('10');assert.equal(s.run.arrivals().length,2);assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,12499),false);assert.equal(wait.ready(s.run,12500),true);
 });
 test('手動停止・別の実行・到達なし・負荷停止へ古い待機を持ち越さない',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');wait.ready(s.run,0);
   s.stop();assert.equal(s.editable,true);assert.equal(wait.ready(s.run,1),false);s.start();assert.equal(wait.ready(s.run,5000),false);
-  s.advance('2.5');assert.equal(wait.ready(s.run,6000),false);assert.equal(wait.ready(s.run,7999),false);assert.equal(wait.ready(s.run,8000),true);
+  s.advance('2.5');assert.equal(wait.ready(s.run,6000),false);assert.equal(wait.ready(s.run,7499),false);assert.equal(wait.ready(s.run,7500),true);
   s.pause('load');assert.equal(wait.ready(s.run,10000),false);
   s.openRecords();assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,20000),false);
   const unreachable=session();unreachable.connect('S','A');unreachable.start();assert.equal(unreachable.run.exhausted,true);assert.equal(wait.ready(unreachable.run,20000),false);assert.equal(wait.ready(unreachable.run,50000),false);assert.equal(wait.ready(null,60000),false);
 });
-test('次動作の終了も2秒で戻せるが、終了フレームのエラーを閲覧や別実行で解除しない',()=>{
+test('次動作の終了も1.5秒で戻せるが、終了フレームのエラーを閲覧や別実行で解除しない',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.pause();
-  while(!s.run.exhausted)s.next();assert.equal(s.run.format(),'2.5');assert.equal(wait.ready(s.run,0),false);assert.equal(wait.ready(s.run,2000),true);
+  while(!s.run.exhausted)s.next();assert.equal(s.run.format(),'2.5');assert.equal(wait.ready(s.run,0),false);assert.equal(wait.ready(s.run,1499),false);assert.equal(wait.ready(s.run,1500),true);
   s.pause('error');wait.interrupt(s.run);const interrupted=s.run;
   s.pause('dialog');assert.equal(wait.ready(s.run,7000,{cleared:true}),false);
   const other=session();other.connect('S','A');other.start();wait.ready(other.run,8000);assert.equal(wait.ready(interrupted,12000),false);assert.equal(s.editable,false);
 });
 
-test('固定課題はゴールへ届かない終了でも2秒後に編集へ戻せ、理由と記録を保持する',()=>{
+test('固定課題はゴールへ届かない終了でも1.5秒後に編集へ戻せ、理由と記録を保持する',()=>{
   const s=session(),wait=new EndWait();s.connect('S','A');s.start();assert(s.run.exhausted);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
-  assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,2100,{allowNoArrival:true}),true);
+  assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1599,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1600,{allowNoArrival:true}),true);
   const records=structuredClone(s.run.records);s.stop();assert(s.editable);assert.deepEqual(s.run.records,records);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
 });
 
-test('時間上限でも記録を保って完了待機し、2秒後に編集へ戻る',()=>{
+test('時間上限でも記録を保って完了待機し、1.5秒後に編集へ戻る',()=>{
   for(const stepped of [false,true]){
     const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);
     s.challenge={...s.challenge,maxDuration:'1'};s.start();
@@ -59,8 +59,8 @@ test('時間上限でも記録を保って完了待機し、2秒後に編集へ�
     assert.equal(s.result.state,'stopped');assert.equal(s.result.score,null);assert.equal(s.result.timeLimitReached,true);
     const result=s.exportResult();assert(s.run.particles.size>0);
     assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);
-    assert.equal(wait.ready(s.run,2099,{allowNoArrival:true}),false);
-    assert.equal(wait.ready(s.run,2100,{allowNoArrival:true}),true);
+    assert.equal(wait.ready(s.run,1599,{allowNoArrival:true}),false);
+    assert.equal(wait.ready(s.run,1600,{allowNoArrival:true}),true);
     s.stop();assert(s.editable);assert.deepEqual(s.exportResult(),{...result,status:'stopped'});
   }
 });

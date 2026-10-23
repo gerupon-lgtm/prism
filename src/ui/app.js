@@ -307,8 +307,9 @@ function render(redraw=true,{records=true}={}) {
   // The celebration plays on the board before the result card is revealed.
   // Neither its start nor its lifetime depends on the card finding room.
   celebration.update(run,session.result,Boolean(session.clearChoices)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run));
-  outcomeSound.update(run,session.result,Boolean(session.clearChoices||failureOutcome())&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(run));
+  outcomeSound.update(run,session.result,outcomeAudioEnabled(),{defer:Boolean(session.result?.timeLimitReached)&&run?.status!=='stopped'});
 }
+function outcomeAudioEnabled(){return Boolean(session.clearChoices||failureOutcome())&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
 
 function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}
 function failureArrivalData(){
@@ -327,9 +328,10 @@ function failureArrivalData(){
   });
   return {condition:`条件：${challengeGoal(challenge)}`,rows};
 }
+function failureArrivalCaption(){return session.result?.timeLimitReached?'時間切れまでの到達時刻（開始から）':'鐘が鳴った時刻（開始から）';}
 function failureResultText(){
   const {condition,rows}=failureArrivalData();
-  return [playerReason(),condition,'鐘が鳴った時刻（開始から）',arrivalRowsText(rows)].join('\n');
+  return [playerReason(),condition,failureArrivalCaption(),arrivalRowsText(rows)].join('\n');
 }
 function arrivalRowsText(rows){return rows.map(row=>`${row.label}：${row.time}${row.gap?'（'+row.gap+'）':''}`).join('\n');}
 function failureOutcome(){
@@ -343,6 +345,7 @@ function renderFailureToast(){
   if(toast.hidden)return;
   if(failureToastRun!==run){failureToastRun=run;failureToastCircuit=session.circuit;}
   const reason=playerReason();if($('failure-reason').textContent!==reason)$('failure-reason').textContent=reason;
+  setText('failure-caption',failureArrivalCaption());
   const timing=$('failure-timing'),data=failureArrivalData(),key=JSON.stringify(data);
   if(timing.dataset.result!==key){
     $('failure-condition').textContent=data.condition;
@@ -1023,13 +1026,13 @@ function play(){
   else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop('paused',{preserveTap:true});clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun({automatic=false}={}){timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();if(automatic)board.naturalEnding=session.run;else board.naturalEnding=null;session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true,preserveTail:automatic});clockAnchor=null;message='';render();}
-function reactions(entries){
+function stopRun({automatic=false}={}){if(automatic&&session.result?.timeLimitReached)outcomeSound.update(session.run,session.result,outcomeAudioEnabled());timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();if(automatic)board.naturalEnding=session.run;else board.naturalEnding=null;session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true,preserveTail:automatic});clockAnchor=null;message='';render();}
+function reactions(entries,{run=session.run,goalHistory=null}={}){
   const goals=entries.filter(entry=>entry.type==='goal');
-  const relays=entries.filter(entry=>entry.type==='arrival'&&['prism','source','mirror'].includes(session.run.circuit.nodes.get(entry.node)?.kind));
+  const relays=entries.filter(entry=>entry.type==='arrival'&&['prism','source','mirror'].includes(run.circuit.nodes.get(entry.node)?.kind));
   if(goals.length||relays.length)load.measure('audio',()=>{
     const challenge=session.runContext?.mode==='challenge'?session.runContext.challenge:null;
-    const frequencies=goals.length&&challenge?.bellPitches?arrivalFrequencies(challenge,session.run.arrivals(),session.run.circuit.time):null;
+    const frequencies=goals.length&&challenge?.bellPitches?arrivalFrequencies(challenge,goalHistory??run.arrivals(),run.circuit.time):null;
     for(const entry of goals)chime.strike({frequencyHz:frequencies?.get(entry)});for(const _entry of relays)chime.relay();
   });
   if(!goals.length&&!relays.length)return;
@@ -1060,7 +1063,10 @@ function frame(now){
   const endingRun=timeoutMotion.update(session,performance.now(),{enabled:!document.hidden&&$('title-screen').hidden&&!dialog.open&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run)});
   const hadEndingMotion=Boolean(board.endingMotion);
   board.endingMotion=endingRun?{source:session.run,run:endingRun}:null;
-  if(endingRun||hadEndingMotion)board.particles();
+  try{
+    if(endingRun&&timeoutMotion.entries.length)reactions(timeoutMotion.entries,{run:endingRun,goalHistory:timeoutMotion.goalHistory});
+    if(endingRun||hadEndingMotion)board.particles();
+  }catch(error){timeoutMotion.clear();board.endingMotion=null;chime.stop('ending-error',{preserveTap:true});notify(error.message);}
   // Start the presentation wait after the final frame's work, not from the
   // animation-frame timestamp captured before calculation and artwork creation.
   if(!document.hidden&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)&&!session.result?.timeLimitReached}))attempt(()=>stopRun({automatic:true}));
@@ -1070,7 +1076,7 @@ requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。動作終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒後に結果を表示し、編集へ戻ります。時間切れ後は判定を固定し、結果表示まで光の動きだけを続けます。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。動作終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒後に結果を表示し、編集へ戻ります。時間切れ後は判定を固定し、結果表示まで光の動き・到達音・演出を続けます。`:`${$('title').textContent}\n${$('condition').textContent}`;
   const returning=session.mode==='challenge'&&challenge.type==='return-pattern';
   fullText('現在の条件',detail+(returning?`\n最初の${challenge.count}回を比べ、指定回数に届いたら光を自動で止めます。光を星へ戻し、星でもう一度分岐させてください。間隔は指定した秒数との完全一致です。満点は指定回数目の到達が${challenge.baseline}秒の配線です。星の処理秒数は戻ってきた光にだけかかります。`:session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
 }

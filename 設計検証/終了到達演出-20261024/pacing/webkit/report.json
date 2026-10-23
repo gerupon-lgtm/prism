@@ -1,0 +1,2045 @@
+{
+  "version": "0.92.0",
+  "passed": true,
+  "method": "Real play click and animation-frame clock; read-only DOM observers; actual UI result export",
+  "cases": [
+    {
+      "number": 1,
+      "kind": "winner",
+      "challenge": "Q1",
+      "draw": "",
+      "proofBoundSeconds": 2.5,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 7122,
+          "experimentDisplay": "2.5",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "contextBefore": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          },
+          "after": 0,
+          "contextAfter": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          }
+        },
+        "capabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "scheduling": [
+          {
+            "wall": 5576,
+            "experimentDisplay": "2.4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 5587,
+            "experimentDisplay": "2.5",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Not observable: headless browser has no running audio context at any arrival or result-sound call",
+        "unverified": "Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked"
+      },
+      "experiment": {
+        "elapsed": "2.5",
+        "lastRecordedExperimentTime": 2.5,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2.5",
+          "evaluatedTime": "2.5",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q1"
+        },
+        "arrivals": [
+          {
+            "time": "2.5",
+            "node": "G",
+            "particle": 1
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2.5",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 2774,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 3080,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 5606,
+          "experimentDisplay": "2.5"
+        },
+        "completed": {
+          "wall": 5588,
+          "experimentDisplay": "2.5"
+        },
+        "fireworksStarted": {
+          "wall": 5604,
+          "experimentDisplay": "2.5"
+        },
+        "fireworksEnded": {
+          "wall": 7117,
+          "experimentDisplay": "2.5"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 7184,
+          "experimentDisplay": "2.5",
+          "kind": "achieved",
+          "text": "100点クリア！×到達時間2.5秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 7184,
+          "experimentDisplay": "2.5",
+          "result": "達成 100.00点・編集可能｜2.5秒・0光線"
+        },
+        "arrivals": [
+          {
+            "wall": 5606,
+            "experimentDisplay": "2.5",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "1:G:2.5": {
+            "wall": 5606,
+            "experimentDisplay": "2.5",
+            "goal": "G",
+            "visible": true,
+            "removed": 7384,
+            "visibleDurationMs": 1778,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1651
+          }
+        },
+        "counts": {
+          "G": 1
+        },
+        "states": [
+          {
+            "wall": 2776,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 2800,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 3079,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 5588,
+            "experimentDisplay": "2.5",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 7183,
+            "experimentDisplay": "2.5",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 3062,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 7122,
+            "experimentDisplay": "2.5",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 5576,
+            "experimentDisplay": "2.4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 5587,
+            "experimentDisplay": "2.5",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "maxPaintGapMs": 141
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 5622,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q1-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 5624,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q1-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 7217,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q1-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 22,
+      "kind": "winner",
+      "challenge": "Q25",
+      "draw": "6d01342deca46d79",
+      "proofBoundSeconds": 5.6,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 12851,
+          "experimentDisplay": "3.2",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "contextBefore": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          },
+          "after": 0,
+          "contextAfter": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          }
+        },
+        "capabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "scheduling": [
+          {
+            "wall": 10855,
+            "experimentDisplay": "2.7",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11150,
+            "experimentDisplay": "3",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11299,
+            "experimentDisplay": "3.1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11319,
+            "experimentDisplay": "3.2",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Not observable: headless browser has no running audio context at any arrival or result-sound call",
+        "unverified": "Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked"
+      },
+      "experiment": {
+        "elapsed": "3.2",
+        "lastRecordedExperimentTime": 3.2,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2.8",
+          "evaluatedTime": "3.2",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q25",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "2.8"
+            },
+            {
+              "id": "G2",
+              "first": "3.1"
+            },
+            {
+              "id": "G3",
+              "first": "3.2"
+            }
+          ],
+          "gaps": [
+            "0.3",
+            "0.1"
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "2.8",
+            "node": "G1",
+            "particle": 3
+          },
+          {
+            "time": "3.1",
+            "node": "G2",
+            "particle": 4
+          },
+          {
+            "time": "3.2",
+            "node": "G3",
+            "particle": 5
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2.8",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          },
+          {
+            "time": "3.1",
+            "count": 1,
+            "goals": [
+              "G2"
+            ]
+          },
+          {
+            "time": "3.2",
+            "count": 1,
+            "goals": [
+              "G3"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7699,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 8085,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 11353,
+          "experimentDisplay": "3.2"
+        },
+        "completed": {
+          "wall": 11319,
+          "experimentDisplay": "3.2"
+        },
+        "fireworksStarted": {
+          "wall": 11351,
+          "experimentDisplay": "3.2"
+        },
+        "fireworksEnded": {
+          "wall": 12837,
+          "experimentDisplay": "3.2"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12965,
+          "experimentDisplay": "3.2",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達3.2秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 12965,
+          "experimentDisplay": "3.2",
+          "result": "達成 100.00点・編集可能｜3.2秒・0光線　鐘 3/3・全到達 3.2秒"
+        },
+        "arrivals": [
+          {
+            "wall": 10870,
+            "experimentDisplay": "2.8",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 11162,
+            "experimentDisplay": "3.1",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 11353,
+            "experimentDisplay": "3.2",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "3:G1:2.8": {
+            "wall": 10877,
+            "experimentDisplay": "2.8",
+            "goal": "G1",
+            "visible": true,
+            "removed": 12674
+          },
+          "4:G2:3.1": {
+            "wall": 11171,
+            "experimentDisplay": "3.1",
+            "goal": "G2",
+            "visible": true,
+            "removed": 12994
+          },
+          "5:G3:3.2": {
+            "wall": 11353,
+            "experimentDisplay": "3.2",
+            "goal": "G3",
+            "visible": true,
+            "removed": 13142,
+            "visibleDurationMs": 1789,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1633
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 7699,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7749,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 8080,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 11319,
+            "experimentDisplay": "3.2",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12965,
+            "experimentDisplay": "3.2",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 8034,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 12851,
+            "experimentDisplay": "3.2",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 10855,
+            "experimentDisplay": "2.7",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11150,
+            "experimentDisplay": "3",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11299,
+            "experimentDisplay": "3.1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11319,
+            "experimentDisplay": "3.2",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "maxPaintGapMs": 159
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 10906,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q22-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 11203,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q22-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 11384,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q22-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 11384,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q22-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 13010,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q22-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 25,
+      "kind": "winner",
+      "challenge": "Q29",
+      "draw": "1abe0cdd1b84107d",
+      "proofBoundSeconds": 4.3,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 11500,
+          "experimentDisplay": "4.1",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "contextBefore": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          },
+          "after": 0,
+          "contextAfter": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          }
+        },
+        "capabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "scheduling": [
+          {
+            "wall": 6975,
+            "experimentDisplay": "1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9965,
+            "experimentDisplay": "4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9982,
+            "experimentDisplay": "4.1",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Not observable: headless browser has no running audio context at any arrival or result-sound call",
+        "unverified": "Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked"
+      },
+      "experiment": {
+        "elapsed": "4.1",
+        "lastRecordedExperimentTime": 4.1,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.1",
+          "evaluatedTime": "4.1",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q29"
+        },
+        "arrivals": [
+          {
+            "time": "1.1",
+            "node": "G",
+            "particle": 2
+          },
+          {
+            "time": "4.1",
+            "node": "G",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.1",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          },
+          {
+            "time": "4.1",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 5539,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 5884,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 10010,
+          "experimentDisplay": "4.1"
+        },
+        "completed": {
+          "wall": 9982,
+          "experimentDisplay": "4.1"
+        },
+        "fireworksStarted": {
+          "wall": 10009,
+          "experimentDisplay": "4.1"
+        },
+        "fireworksEnded": {
+          "wall": 11496,
+          "experimentDisplay": "4.1"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 11563,
+          "experimentDisplay": "4.1",
+          "kind": "achieved",
+          "text": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 11563,
+          "experimentDisplay": "4.1",
+          "result": "達成 100.00点・編集可能｜4.1秒・0光線"
+        },
+        "arrivals": [
+          {
+            "wall": 6986,
+            "experimentDisplay": "1.1",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10010,
+            "experimentDisplay": "4.1",
+            "goal": "G",
+            "count": 2,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G:1.1": {
+            "wall": 6992,
+            "experimentDisplay": "1.1",
+            "goal": "G",
+            "visible": true,
+            "removed": 8790
+          },
+          "4:G:4.1": {
+            "wall": 10011,
+            "experimentDisplay": "4.1",
+            "goal": "G",
+            "visible": true,
+            "removed": 11773,
+            "visibleDurationMs": 1762,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1635
+          }
+        },
+        "counts": {
+          "G": 2
+        },
+        "states": [
+          {
+            "wall": 5539,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 5564,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 5882,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9982,
+            "experimentDisplay": "4.1",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 11562,
+            "experimentDisplay": "4.1",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 5846,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11500,
+            "experimentDisplay": "4.1",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 6975,
+            "experimentDisplay": "1",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9965,
+            "experimentDisplay": "4",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9982,
+            "experimentDisplay": "4.1",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "maxPaintGapMs": 157
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 7026,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 10040,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 10040,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q25-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 11592,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q25-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 32,
+      "kind": "winner",
+      "challenge": "Q36",
+      "draw": "d903e0bd7bc6720d",
+      "proofBoundSeconds": 0.8,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 8466,
+          "experimentDisplay": "0.6",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "contextBefore": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          },
+          "after": 0,
+          "contextAfter": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          }
+        },
+        "capabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "scheduling": [
+          {
+            "wall": 6422,
+            "experimentDisplay": "0",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 6919,
+            "experimentDisplay": "0.5",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 6935,
+            "experimentDisplay": "0.6",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Not observable: headless browser has no running audio context at any arrival or result-sound call",
+        "unverified": "Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked"
+      },
+      "experiment": {
+        "elapsed": "0.6",
+        "lastRecordedExperimentTime": 0.6,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "0.1",
+          "evaluatedTime": "0.6",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q36",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "0.1"
+            },
+            {
+              "id": "G2",
+              "first": "0.6"
+            }
+          ],
+          "gaps": [
+            "0.5"
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "0.1",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "0.6",
+            "node": "G2",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "0.1",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          },
+          {
+            "time": "0.6",
+            "count": 1,
+            "goals": [
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 6265,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 6335,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 6957,
+          "experimentDisplay": "0.6"
+        },
+        "completed": {
+          "wall": 6935,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksStarted": {
+          "wall": 6956,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksEnded": {
+          "wall": 8451,
+          "experimentDisplay": "0.6"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 8530,
+          "experimentDisplay": "0.6",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達0.6秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 8530,
+          "experimentDisplay": "0.6",
+          "result": "達成 100.00点・編集可能｜0.6秒・0光線　鐘 2/2・全到達 0.6秒"
+        },
+        "arrivals": [
+          {
+            "wall": 6461,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 6957,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:0.1": {
+            "wall": 6464,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "visible": true,
+            "removed": 8239
+          },
+          "3:G2:0.6": {
+            "wall": 6957,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "visible": true,
+            "removed": 8730,
+            "visibleDurationMs": 1773,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1668
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 6266,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 6294,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 6332,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 6935,
+            "experimentDisplay": "0.6",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 8529,
+            "experimentDisplay": "0.6",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 6306,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 8466,
+            "experimentDisplay": "0.6",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 6422,
+            "experimentDisplay": "0",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 6919,
+            "experimentDisplay": "0.5",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 6935,
+            "experimentDisplay": "0.6",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "maxPaintGapMs": 124
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 6490,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 6981,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 6981,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 8564,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q32-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 42,
+      "kind": "winner",
+      "challenge": "Q46",
+      "draw": "cabcee8995723f4a",
+      "proofBoundSeconds": 1.75,
+      "audioEvidence": {
+        "automaticStop": {
+          "wall": 11470,
+          "experimentDisplay": "1.77",
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": 0,
+          "contextBefore": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          },
+          "after": 0,
+          "contextAfter": {
+            "voices": 0,
+            "muted": false,
+            "hasOutput": false,
+            "context": null
+          }
+        },
+        "capabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "scheduling": [
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9947,
+            "experimentDisplay": "1.77",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "unlockAttempts": [],
+        "actualListening": "Not verified by this browser test",
+        "tail": "Not observable: headless browser has no running audio context at any arrival or result-sound call",
+        "unverified": "Active sound and its natural ending are not verified in this browser run; visual playback and the automatic stop preserving existing voices are checked"
+      },
+      "experiment": {
+        "elapsed": "1.77",
+        "lastRecordedExperimentTime": 1.75,
+        "clockPastProofSeconds": 0.020000000000000018,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.75",
+          "evaluatedTime": "1.75",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q46",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "1.75"
+            },
+            {
+              "id": "G2",
+              "first": "1.75"
+            },
+            {
+              "id": "G3",
+              "first": "1.75"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.75",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "1.75",
+            "node": "G2",
+            "particle": 3
+          },
+          {
+            "time": "1.75",
+            "node": "G3",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.75",
+            "count": 3,
+            "goals": [
+              "G1",
+              "G2",
+              "G3"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7833,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 8176,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9975,
+          "experimentDisplay": "1.77"
+        },
+        "completed": {
+          "wall": 9947,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksStarted": {
+          "wall": 9974,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksEnded": {
+          "wall": 11460,
+          "experimentDisplay": "1.77"
+        },
+        "fireworkBursts": 5,
+        "fireworkAnimationBoundMs": 1418.75,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 11597,
+          "experimentDisplay": "1.77",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達1.75秒スコア100.00点結果を見るもう一度課題一覧へ"
+        },
+        "editing": {
+          "wall": 11597,
+          "experimentDisplay": "1.77",
+          "result": "達成 100.00点・編集可能｜1.77秒・0光線　鐘 3/3・全到達 1.75秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:1.75": {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G1",
+            "visible": true,
+            "removed": 11842
+          },
+          "3:G2:1.75": {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G2",
+            "visible": true,
+            "removed": 11847
+          },
+          "4:G3:1.75": {
+            "wall": 9975,
+            "experimentDisplay": "1.77",
+            "goal": "G3",
+            "visible": true,
+            "removed": 11848,
+            "visibleDurationMs": 1873,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1626
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 7833,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7866,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 8172,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9947,
+            "experimentDisplay": "1.77",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 11596,
+            "experimentDisplay": "1.77",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "audioStops": [
+          {
+            "wall": 8138,
+            "experimentDisplay": null,
+            "reason": "restart",
+            "options": {
+              "preserveTap": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 11470,
+            "experimentDisplay": "1.77",
+            "reason": "completed",
+            "options": {
+              "preserveTap": true,
+              "preserveTail": true
+            },
+            "before": 0,
+            "contextBefore": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": 0,
+            "contextAfter": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCalls": [
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9920,
+            "experimentDisplay": "1.74",
+            "name": "strike",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          },
+          {
+            "wall": 9947,
+            "experimentDisplay": "1.77",
+            "name": "perfect",
+            "before": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            },
+            "after": {
+              "voices": 0,
+              "muted": false,
+              "hasOutput": false,
+              "context": null
+            }
+          }
+        ],
+        "audioCapabilities": {
+          "standard": false,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+        },
+        "maxPaintGapMs": 166
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 10008,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q42-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 10009,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q42-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 11658,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了到達演出-20261024\\pacing\\webkit\\Q42-winner-result.png"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Physical phones, actual sound quality, subjective difficulty"
+  ],
+  "url": "http://127.0.0.1:63582/",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "step": "Q42-winner"
+}

@@ -12,6 +12,20 @@ function fixture(){
 }
 function complete(s,id,path){s.replace({challengeId:id});s.connectPath(path);s.start();s.advance('10');}
 
+test('時間切れ後の続行中は結果音を保留し、最後の到達の後で一度だけ予約する',()=>{
+  const {session:s,sound,calls}=fixture();s.connectPath(['S','A','G']);s.challenge={...s.challenge,maxDuration:'1'};
+  s.start();s.advance('10');const before=s.exportResult();
+  sound.update(s.run,s.result,true,{defer:true});sound.update(s.run,s.result,true,{defer:true});assert.deepEqual(calls,[]);
+  sound.update(s.run,s.result,true);sound.update(s.run,s.result,true);assert.deepEqual(calls,['failure']);
+  assert.deepEqual(s.exportResult(),before);s.stop();sound.update(s.run,s.result,true);assert.deepEqual(calls,['failure']);
+});
+
+test('続行中に非表示・消音になった結果音を復帰後に持ち越さない',()=>{
+  const {session:s,sound,calls}=fixture();s.connectPath(['S','A','G']);s.challenge={...s.challenge,maxDuration:'1'};s.start();s.advance('10');
+  sound.update(s.run,s.result,true,{defer:true});sound.update(s.run,s.result,false,{defer:true});
+  sound.update(s.run,s.result,true);assert.deepEqual(calls,[]);
+});
+
 test('実際の満点と部分点の結果で音を分け、再表示では重ねない',()=>{
   const {session:s,sound,calls}=fixture();complete(s,'Q1',['S','A','G']);
   const before=s.exportResult();sound.update(s.run,s.result,true);sound.update(s.run,s.result,true);

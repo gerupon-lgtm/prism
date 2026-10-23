@@ -27,7 +27,7 @@ if(process.argv.includes('--self-check')){selfCheck();return;}
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 assert(arg('--playwright-path'),'--playwright-path is required');
 const pw=require(arg('--playwright-path')),info=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'),'utf8'));
-const output=path.resolve(arg('--out')||path.join('設計検証/終了短縮-20261024/playback',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine));
+const output=path.resolve(arg('--out')||path.join('設計検証/終了到達演出-20261024/playback',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine));
 fs.mkdirSync(output,{recursive:true});
 const reportFile=path.join(output,'report.json');
 if(fs.existsSync(reportFile))fs.copyFileSync(reportFile,path.join(output,`previous-${Date.now()}.json`));
@@ -49,7 +49,8 @@ async function observePlayback({goalIds,required}){
   const visible=el=>Boolean(el&&!el.hidden&&!el.closest('[hidden]')&&el.getClientRects().length);
   const clock=()=>{const match=document.getElementById('result').textContent.match(/｜([\d.]+)秒/);return match?match[1]:null;};
   const measure=()=>({wall:performance.now(),experimentDisplay:clock()});
-  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,completed:null,fireworksStarted:null,fireworksEnded:null,fireworkBursts:0,toastOverFireworks:false,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],audioStops:[],audioCalls:[],audioCapabilities:{standard:Boolean(window.AudioContext),webkit:Boolean(window.webkitAudioContext),userAgent:navigator.userAgent},maxPaintGapMs:null};
+  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,completed:null,fireworksStarted:null,fireworksEnded:null,fireworkBursts:0,fireworkAnimationBoundMs:0,fireworkAnimationEnds:{},toastOverFireworks:false,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],audioStops:[],audioCalls:[],audioCapabilities:{standard:Boolean(window.AudioContext),webkit:Boolean(window.webkitAudioContext),userAgent:navigator.userAgent},maxPaintGapMs:null};
+  const animationEnd=event=>{if(event.target.closest('.perfect-fireworks'))probe.fireworkAnimationEnds[event.animationName]=(probe.fireworkAnimationEnds[event.animationName]??0)+1;};document.body.addEventListener('animationend',animationEnd,true);
   const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src)),stop=Chime.prototype.stop;
   const audioState=chime=>({voices:chime.voices.size,muted:chime.muted,hasOutput:Boolean(chime.output),context:chime.context?{state:chime.context.state,currentTime:chime.context.currentTime,sampleRate:chime.context.sampleRate,baseLatency:chime.context.baseLatency??null,outputLatency:chime.context.outputLatency??null}:null});
   Chime.prototype.stop=function(reason,options){const entry={...measure(),reason,options,before:this.voices.size,contextBefore:audioState(this)};const result=stop.call(this,reason,options);entry.after=this.voices.size;entry.contextAfter=audioState(this);probe.audioStops.push(entry);return result;};
@@ -70,7 +71,7 @@ async function observePlayback({goalIds,required}){
     if(!probe.completed&&play.disabled&&play.textContent==='終了')probe.completed=measure();
     const fireworks=visible(document.querySelector('.perfect-fireworks'));
     if(fireworks)probe.fireworkBursts=Math.max(probe.fireworkBursts,document.querySelectorAll('.perfect-fireworks .firework').length);
-    if(fireworks&&!probe.fireworksStarted)probe.fireworksStarted=measure();
+    if(fireworks&&!probe.fireworksStarted){probe.fireworksStarted=measure();for(const animation of document.querySelector('.perfect-fireworks').getAnimations({subtree:true}))probe.fireworkAnimationBoundMs=Math.max(probe.fireworkAnimationBoundMs,animation.effect.getComputedTiming().endTime);}
     if(!fireworks&&probe.fireworksStarted&&!probe.fireworksEnded)probe.fireworksEnded=measure();
     if(!probe.firstMoving&&visible(document.querySelector('#board .light-particle.moving')))probe.firstMoving=measure();
     let changed=false;
@@ -93,7 +94,7 @@ async function observePlayback({goalIds,required}){
   let previousPaint=null,paintFrame=null;
   const paint=now=>{if(probe.click){if(previousPaint!==null)probe.maxPaintGapMs=Math.max(probe.maxPaintGapMs??0,now-previousPaint);previousPaint=now;}paintFrame=requestAnimationFrame(paint);};paintFrame=requestAnimationFrame(paint);
   document.getElementById('play').addEventListener('click',()=>{if(!probe.click)probe.click=measure();read();},{capture:true});
-  probe.disconnect=()=>{observer.disconnect();cancelAnimationFrame(paintFrame);};
+  probe.disconnect=()=>{observer.disconnect();cancelAnimationFrame(paintFrame);document.body.removeEventListener('animationend',animationEnd,true);};
 }
 
 async function resultDownload(p,file){
@@ -132,7 +133,7 @@ let browser,activePage;
     await p.evaluate(observePlayback,{goalIds,required});await goodPhase(p,c,proof);
     await p.locator('#play').click();
     await p.waitForFunction(()=>window.__playPacing.editing!==null,null,{timeout:60000});
-    // Editing now resumes at 1.7 s, while the last bell picture keeps its full
+    // Editing now resumes at 1.5 s, while the last bell picture keeps its full
     // 1.8 s lifetime. Keep observing that natural ending before disconnecting.
     await p.waitForFunction(()=>Object.values(window.__playPacing.pictures).every(picture=>picture.removed!==null),null,{timeout:3000});await captureChain;
     const probe=await p.evaluate(()=>{const result=window.__playPacing;result.disconnect();const {disconnect,...copy}=result;return copy;});
@@ -151,14 +152,16 @@ let browser,activePage;
     // event; retain that raw value and allow only the measured frame interval.
     assert(Number(exported.elapsed)<=bound+probe.maxPaintGapMs/1000+.001,label+' clock ends within proof bound plus measured frame interval');assert(!run.timeLimitReached,label+' ends without safety cutoff');
     assert(probe.completed,label+' completion before editing');
-    const endingWait=scenario.kind==='failed'?2000:1700,observedWait=probe.toast.wall-probe.completed.wall;
-    assert(observedWait>=endingWait-80,label+' shortened result wait retained');
-    assert(observedWait<=endingWait+Math.max(250,probe.maxPaintGapMs*2),label+' result does not retain the previous extra second');
+    const endingWait=1500,observedWait=probe.toast.wall-probe.completed.wall;
+    assert(observedWait>=endingWait-80,label+' common 1.5 second result wait retained');
+    assert(observedWait<=endingWait+Math.max(250,probe.maxPaintGapMs*2),label+' result does not retain the previous longer wait');
     assert(!probe.toastOverFireworks,label+' result does not cover fireworks');
     if(scenario.kind==='winner'){
       assert(probe.fireworksStarted&&probe.fireworksEnded,label+' perfect celebration was actually rendered');
       assert.equal(probe.fireworkBursts,5,label+' all five compact firework bursts retained');
       assert(probe.fireworksEnded.wall-probe.fireworksStarted.wall>=1500-probe.maxPaintGapMs-20,label+' full compact firework lifetime');
+      assert(probe.fireworkAnimationBoundMs>1400&&probe.fireworkAnimationBoundMs<=1419,label+' complete firework animation fits within 1.419 seconds');
+      assert.deepEqual(probe.fireworkAnimationEnds,{'firework-rise':5,'firework-ray':120,'firework-star':120},label+' every rocket, ray and star finished before removal');
       assert(probe.toast.wall>=probe.fireworksEnded.wall,label+' result follows fireworks');
     }
     assert(goalRecords.length,label+' actual bell records');

@@ -1,0 +1,65 @@
+✖ 時間切れ後の続行中は結果音を保留し、最後の到達の後で一度だけ予約する (11.0066ms)
+✖ 続行中に非表示・消音になった結果音を復帰後に持ち越さない (2.1544ms)
+✔ 実際の満点と部分点の結果で音を分け、再表示では重ねない (7.3814ms)
+✔ 小数の部分点を満点と扱わず、通常クリアの音を使う (1.3865ms)
+✔ 未達成が判明しても光が動いている間は待ち、終了時に一度だけ鳴らす (3.7842ms)
+✔ 途中停止と確定前には鳴らさず、隠れた結果や負荷停止の音を後から鳴らさない (3.7864ms)
+✔ 時間切れは完了待機中に未達成音を一度だけ鳴らし、編集復帰で繰り返さない (1.8379ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 324.314
+
+✖ failing tests:
+
+test at tests\outcome-sound.test.js:15:1
+✖ 時間切れ後の続行中は結果音を保留し、最後の到達の後で一度だけ予約する (11.0066ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'failure'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/user/Documents/project/%E3%83%80%E3%82%A4%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E6%B3%95%E6%A4%9C%E8%A8%BC/tests/outcome-sound.test.js:18:104)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'failure' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\outcome-sound.test.js:23:1
+✖ 続行中に非表示・消音になった結果音を復帰後に持ち越さない (2.1544ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'failure'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/user/Documents/project/%E3%83%80%E3%82%A4%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E6%B3%95%E6%A4%9C%E8%A8%BC/tests/outcome-sound.test.js:26:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'failure' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
