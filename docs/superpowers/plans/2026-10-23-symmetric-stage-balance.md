@@ -10,5 +10,5 @@ Review focus: graph/position reflection, route clearance in actual layouts, gene
 - [x] Regenerate only changed banks; prove every allowed wiring, two winners across families, unique fullscore and partial clears.
 - [x] Update compatibility tests and version0.88.0; build and full tests.
 - [x] Actual UI all42 × four layouts × two engines, direct wiring and changed-stage solutions; inspect screenshots.
-- [ ] Fresh review, publish to both existing hosts, verify assets and public UI; document exact evidence boundaries.
+- [x] Fresh review, publish to both existing hosts, verify assets and public UI; document exact evidence boundaries.
 Decisions: topology changes authorized by current user request; do not ask for another execution approval. Difficulty comes from additional plausible branch/merge choices, not long artificial waits. Intro and good mirrored stages retain behavior.

@@ -1,6 +1,6 @@
 {
   "version": "0.88.0",
-  "source": null,
+  "source": "e263beaa99e4b260efbbacef177c0a20c1a83d47",
   "tests": {
     "files": 36,
     "passed": true,
@@ -226,5 +226,107 @@
   "pending": [
     "physical phone touch and subjective difficulty"
   ],
-  "public": []
+  "public": [
+    {
+      "host": "prism.sikumilab.com",
+      "url": "https://prism.sikumilab.com/",
+      "version": "0.88.0",
+      "source": "e263beaa99e4b260efbbacef177c0a20c1a83d47",
+      "checkedAt": "2026-10-23T13:03:09.421Z",
+      "checks": 90,
+      "passed": true,
+      "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
+      "report": "設計検証/対称配置実装-20261023/prism.sikumilab.com/public/report.json",
+      "layoutReport": "設計検証/配置点検/0.88.0/prism.sikumilab.com/chromium/report.json",
+      "layoutPassed": true,
+      "layouts": [
+        {
+          "name": "phone",
+          "stages": 42,
+          "close": 0,
+          "curved": 0,
+          "outside": 0,
+          "gestures": [
+            {
+              "stage": 17,
+              "result": "Direct A-F accepted without connecting C"
+            },
+            {
+              "stage": 25,
+              "result": "Both return directions accepted, stable straight lanes"
+            }
+          ]
+        },
+        {
+          "name": "desktop",
+          "stages": 42,
+          "close": 0,
+          "curved": 0,
+          "outside": 0,
+          "gestures": [
+            {
+              "stage": 17,
+              "result": "Direct A-F accepted without connecting C"
+            },
+            {
+              "stage": 25,
+              "result": "Both return directions accepted, stable straight lanes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "host": "gerupon-lgtm.github.io",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "version": "0.88.0",
+      "source": "e263beaa99e4b260efbbacef177c0a20c1a83d47",
+      "checkedAt": "2026-10-23T13:04:15.569Z",
+      "checks": 90,
+      "passed": true,
+      "evidence": "Actual HTTPS deployment. PC Chromium/WebKit online; Chromium offline. Not physical devices. WebKit offline covered separately with stopped local origin.",
+      "report": "設計検証/対称配置実装-20261023/gerupon-lgtm.github.io/public/report.json",
+      "layoutReport": "設計検証/配置点検/0.88.0/gerupon-lgtm.github.io/chromium/report.json",
+      "layoutPassed": true,
+      "layouts": [
+        {
+          "name": "phone",
+          "stages": 42,
+          "close": 0,
+          "curved": 0,
+          "outside": 0,
+          "gestures": [
+            {
+              "stage": 17,
+              "result": "Direct A-F accepted without connecting C"
+            },
+            {
+              "stage": 25,
+              "result": "Both return directions accepted, stable straight lanes"
+            }
+          ]
+        },
+        {
+          "name": "desktop",
+          "stages": 42,
+          "close": 0,
+          "curved": 0,
+          "outside": 0,
+          "gestures": [
+            {
+              "stage": 17,
+              "result": "Direct A-F accepted without connecting C"
+            },
+            {
+              "stage": 25,
+              "result": "Both return directions accepted, stable straight lanes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "githubRun": 39957547900,
+  "cloudflareDeployment": "749d844b-75cb-45a3-bbf5-a05d789a1baf",
+  "deploymentStatus": "GitHub Actions and Cloudflare succeeded; docs-only evidence commit does not redeploy"
 }
