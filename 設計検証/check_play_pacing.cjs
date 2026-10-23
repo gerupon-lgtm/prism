@@ -133,7 +133,7 @@ let browser,activePage;
     await p.evaluate(observePlayback,{goalIds,required});await goodPhase(p,c,proof);
     await p.locator('#play').click();
     await p.waitForFunction(()=>window.__playPacing.editing!==null,null,{timeout:60000});
-    // Editing now resumes at 1.5 s, while the last bell picture keeps its full
+    // Editing now resumes at 1.6 s, while the last bell picture keeps its full
     // 1.8 s lifetime. Keep observing that natural ending before disconnecting.
     await p.waitForFunction(()=>Object.values(window.__playPacing.pictures).every(picture=>picture.removed!==null),null,{timeout:3000});await captureChain;
     const probe=await p.evaluate(()=>{const result=window.__playPacing;result.disconnect();const {disconnect,...copy}=result;return copy;});
@@ -152,8 +152,8 @@ let browser,activePage;
     // event; retain that raw value and allow only the measured frame interval.
     assert(Number(exported.elapsed)<=bound+probe.maxPaintGapMs/1000+.001,label+' clock ends within proof bound plus measured frame interval');assert(!run.timeLimitReached,label+' ends without safety cutoff');
     assert(probe.completed,label+' completion before editing');
-    const endingWait=1500,observedWait=probe.toast.wall-probe.completed.wall;
-    assert(observedWait>=endingWait-80,label+' common 1.5 second result wait retained');
+    const endingWait=1600,observedWait=probe.toast.wall-probe.completed.wall;
+    assert(observedWait>=endingWait-80,label+' common 1.6 second result wait retained');
     assert(observedWait<=endingWait+Math.max(250,probe.maxPaintGapMs*2),label+' result does not retain the previous longer wait');
     assert(!probe.toastOverFireworks,label+' result does not cover fireworks');
     if(scenario.kind==='winner'){

@@ -1,0 +1,21 @@
+timeout-at-arrival passed
+timeout-before-arrival passed
+timeout-prism-arrival passed
+timeout-arrival-effect-error passed
+timeout-muted-bell passed
+timeout-manual-stop passed
+no-arrival passed
+next-event-completion passed
+manual-stop-ending passed
+desktop-fireworks AssertionError [ERR_ASSERTION]: All five rockets, 120 rays and 120 stars completed naturally
++ actual - expected
+
+  {
++   'firework-ray': 96,
+-   'firework-ray': 120,
+    'firework-rise': 5,
++   'firework-star': 96
+-   'firework-star': 120
+  }
+
+    at C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_ending_edges.cjs:161:280

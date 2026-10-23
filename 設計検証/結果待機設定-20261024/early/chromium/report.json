@@ -1,0 +1,8 @@
+{
+  "version": "0.93.0",
+  "passed": false,
+  "cases": [],
+  "boundary": "Desktop browser emulation; physical phones and listening remain unverified",
+  "step": "desktop-early-card-fireworks",
+  "error": "AssertionError [ERR_ASSERTION]: All five rockets, 120 rays and 120 stars completed naturally\n+ actual - expected\n\n  {\n+   'firework-ray': 96,\n-   'firework-ray': 120,\n    'firework-rise': 5,\n+   'firework-star': 96\n-   'firework-star': 120\n  }\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_ending_edges.cjs:164:280"
+}

@@ -1,0 +1,378 @@
+{
+  "version": "0.93.0",
+  "passed": true,
+  "unitTestFiles": 44,
+  "unitSuiteStage": "Full suite before final celebration followup; affected ending tests rerun after followup. Release CI runs full suite again.",
+  "endingFollowupTests": 41,
+  "syntaxFiles": 117,
+  "offlineAssets": 80,
+  "browserChecks": 86,
+  "jobs": [
+    {
+      "report": "settings/chromium-layout/report.json",
+      "passed": true,
+      "cases": 18,
+      "names": [
+        "layout-phone-title",
+        "layout-phone-play",
+        "layout-landscape-title",
+        "layout-landscape-play",
+        "layout-desktop-title",
+        "layout-desktop-play",
+        "layout-enlarged-title-explanation-roundtrip",
+        "layout-enlarged-title",
+        "layout-enlarged-play-explanation-roundtrip",
+        "layout-enlarged-play",
+        "layout-enlarged-landscape-title-explanation-roundtrip",
+        "layout-enlarged-landscape-title",
+        "layout-enlarged-landscape-play-explanation-roundtrip",
+        "layout-enlarged-landscape-play",
+        "layout-short-enlarged-title-explanation-roundtrip",
+        "layout-short-enlarged-title",
+        "layout-short-enlarged-play-explanation-roundtrip",
+        "layout-short-enlarged-play"
+      ],
+      "waits": []
+    },
+    {
+      "report": "settings/chromium-behavior/report.json",
+      "passed": true,
+      "cases": 12,
+      "names": [
+        "save-and-reload",
+        "invalid-input-preserves-both-values",
+        "reset-persists-defaults",
+        "allowed-boundaries-save",
+        "default-clear",
+        "default-failure",
+        "custom-clear",
+        "custom-failure",
+        "custom-timeout-continuation",
+        "zero-clear",
+        "current-run-keeps-snapshot",
+        "next-run-uses-reloaded-preference"
+      ],
+      "waits": [
+        {
+          "name": "default-clear",
+          "expectedMs": 1600,
+          "waitMs": 1623.4000000022352
+        },
+        {
+          "name": "default-failure",
+          "expectedMs": 1600,
+          "waitMs": 1652.1000000014901
+        },
+        {
+          "name": "custom-clear",
+          "expectedMs": 400,
+          "waitMs": 426.6000000014901
+        },
+        {
+          "name": "custom-failure",
+          "expectedMs": 2700,
+          "waitMs": 2773.199999999255
+        },
+        {
+          "name": "custom-timeout-continuation",
+          "expectedMs": 2700,
+          "waitMs": 2740.60000000149
+        },
+        {
+          "name": "zero-clear",
+          "expectedMs": 0,
+          "waitMs": 37.400000002235174
+        },
+        {
+          "name": "current-run-keeps-snapshot",
+          "expectedMs": 800,
+          "waitMs": 844.5
+        },
+        {
+          "name": "next-run-uses-reloaded-preference",
+          "expectedMs": 2300,
+          "waitMs": 2318.7000000029802
+        }
+      ]
+    },
+    {
+      "report": "settings/webkit/report.json",
+      "passed": true,
+      "cases": 30,
+      "names": [
+        "layout-phone-title",
+        "layout-phone-play",
+        "layout-landscape-title",
+        "layout-landscape-play",
+        "layout-desktop-title",
+        "layout-desktop-play",
+        "layout-enlarged-title-explanation-roundtrip",
+        "layout-enlarged-title",
+        "layout-enlarged-play-explanation-roundtrip",
+        "layout-enlarged-play",
+        "layout-enlarged-landscape-title-explanation-roundtrip",
+        "layout-enlarged-landscape-title",
+        "layout-enlarged-landscape-play-explanation-roundtrip",
+        "layout-enlarged-landscape-play",
+        "layout-short-enlarged-title-explanation-roundtrip",
+        "layout-short-enlarged-title",
+        "layout-short-enlarged-play-explanation-roundtrip",
+        "layout-short-enlarged-play",
+        "save-and-reload",
+        "invalid-input-preserves-both-values",
+        "reset-persists-defaults",
+        "allowed-boundaries-save",
+        "default-clear",
+        "default-failure",
+        "custom-clear",
+        "custom-failure",
+        "custom-timeout-continuation",
+        "zero-clear",
+        "current-run-keeps-snapshot",
+        "next-run-uses-reloaded-preference"
+      ],
+      "waits": [
+        {
+          "name": "default-clear",
+          "expectedMs": 1600,
+          "waitMs": 1660
+        },
+        {
+          "name": "default-failure",
+          "expectedMs": 1600,
+          "waitMs": 1653
+        },
+        {
+          "name": "custom-clear",
+          "expectedMs": 400,
+          "waitMs": 466
+        },
+        {
+          "name": "custom-failure",
+          "expectedMs": 2700,
+          "waitMs": 2764
+        },
+        {
+          "name": "custom-timeout-continuation",
+          "expectedMs": 2700,
+          "waitMs": 2773
+        },
+        {
+          "name": "zero-clear",
+          "expectedMs": 0,
+          "waitMs": 41
+        },
+        {
+          "name": "current-run-keeps-snapshot",
+          "expectedMs": 800,
+          "waitMs": 856
+        },
+        {
+          "name": "next-run-uses-reloaded-preference",
+          "expectedMs": 2300,
+          "waitMs": 2348
+        }
+      ]
+    },
+    {
+      "report": "edges/chromium-final/report.json",
+      "passed": true,
+      "cases": 11,
+      "names": [
+        "timeout-at-arrival",
+        "timeout-before-arrival",
+        "timeout-prism-arrival",
+        "timeout-arrival-effect-error",
+        "timeout-muted-bell",
+        "timeout-manual-stop",
+        "no-arrival",
+        "next-event-completion",
+        "manual-stop-ending",
+        "desktop-fireworks",
+        "reduced-motion-ending"
+      ],
+      "waits": [
+        {
+          "name": "timeout-at-arrival",
+          "expectedMs": null,
+          "waitMs": 1658.5
+        },
+        {
+          "name": "timeout-before-arrival",
+          "expectedMs": null,
+          "waitMs": 1655.5999999977648
+        },
+        {
+          "name": "timeout-prism-arrival",
+          "expectedMs": null,
+          "waitMs": 1639.800000000745
+        },
+        {
+          "name": "timeout-arrival-effect-error",
+          "expectedMs": null,
+          "waitMs": 1653.1000000014901
+        },
+        {
+          "name": "timeout-muted-bell",
+          "expectedMs": null,
+          "waitMs": 1651.800000000745
+        },
+        {
+          "name": "timeout-manual-stop",
+          "expectedMs": null,
+          "waitMs": 50.19999999925494
+        },
+        {
+          "name": "no-arrival",
+          "expectedMs": null,
+          "waitMs": 1652.300000000745
+        },
+        {
+          "name": "next-event-completion",
+          "expectedMs": null,
+          "waitMs": 1651.1000000014901
+        },
+        {
+          "name": "manual-stop-ending",
+          "expectedMs": null,
+          "waitMs": 149.10000000149012
+        },
+        {
+          "name": "desktop-fireworks",
+          "expectedMs": null,
+          "waitMs": 1675.8999999985099
+        },
+        {
+          "name": "reduced-motion-ending",
+          "expectedMs": null,
+          "waitMs": 1631.5
+        }
+      ]
+    },
+    {
+      "report": "edges/webkit-final/report.json",
+      "passed": true,
+      "cases": 11,
+      "names": [
+        "timeout-at-arrival",
+        "timeout-before-arrival",
+        "timeout-prism-arrival",
+        "timeout-arrival-effect-error",
+        "timeout-muted-bell",
+        "timeout-manual-stop",
+        "no-arrival",
+        "next-event-completion",
+        "manual-stop-ending",
+        "desktop-fireworks",
+        "reduced-motion-ending"
+      ],
+      "waits": [
+        {
+          "name": "timeout-at-arrival",
+          "expectedMs": null,
+          "waitMs": 1664
+        },
+        {
+          "name": "timeout-before-arrival",
+          "expectedMs": null,
+          "waitMs": 1656
+        },
+        {
+          "name": "timeout-prism-arrival",
+          "expectedMs": null,
+          "waitMs": 1665
+        },
+        {
+          "name": "timeout-arrival-effect-error",
+          "expectedMs": null,
+          "waitMs": 1635
+        },
+        {
+          "name": "timeout-muted-bell",
+          "expectedMs": null,
+          "waitMs": 1670
+        },
+        {
+          "name": "timeout-manual-stop",
+          "expectedMs": null,
+          "waitMs": 184
+        },
+        {
+          "name": "no-arrival",
+          "expectedMs": null,
+          "waitMs": 1675
+        },
+        {
+          "name": "next-event-completion",
+          "expectedMs": null,
+          "waitMs": 1713
+        },
+        {
+          "name": "manual-stop-ending",
+          "expectedMs": null,
+          "waitMs": 289
+        },
+        {
+          "name": "desktop-fireworks",
+          "expectedMs": null,
+          "waitMs": 1676
+        },
+        {
+          "name": "reduced-motion-ending",
+          "expectedMs": null,
+          "waitMs": 1650
+        }
+      ]
+    },
+    {
+      "report": "fireworks/chromium-final/report.json",
+      "passed": true,
+      "cases": 2,
+      "names": [
+        "desktop-fireworks",
+        "desktop-early-card-fireworks"
+      ],
+      "waits": [
+        {
+          "name": "desktop-fireworks",
+          "expectedMs": null,
+          "waitMs": 1701.8999999985099
+        },
+        {
+          "name": "desktop-early-card-fireworks",
+          "expectedMs": null,
+          "waitMs": 508.70000000298023
+        }
+      ]
+    },
+    {
+      "report": "fireworks/webkit-final/report.json",
+      "passed": true,
+      "cases": 2,
+      "names": [
+        "desktop-fireworks",
+        "desktop-early-card-fireworks"
+      ],
+      "waits": [
+        {
+          "name": "desktop-fireworks",
+          "expectedMs": null,
+          "waitMs": 1703
+        },
+        {
+          "name": "desktop-early-card-fireworks",
+          "expectedMs": null,
+          "waitMs": 569
+        }
+      ]
+    }
+  ],
+  "previousFailuresRetained": [
+    "settings/chromium/report.json",
+    "settings/chromium-final/report.json",
+    "settings/chromium-final2/report.json",
+    "edges/chromium/report.json",
+    "early/chromium/report.json"
+  ],
+  "boundary": "Desktop browser emulation. Physical smartphone touch, visual acceptance and listening remain unverified. WebKit has no AudioContext in this Windows test runtime."
+}

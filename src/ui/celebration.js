@@ -6,10 +6,11 @@ export const CELEBRATION_DURATION_MS = 1500;
 // A presentation effect belongs to one run, not to each re-render of its result.
 export class PerfectCelebration {
   constructor(layer, frame) {
-    Object.assign(this,{layer,frame});this.seen=new WeakSet();this.run=null;this.timer=null;
+    Object.assign(this,{layer,frame});this.seen=new WeakSet();this.run=null;this.root=null;
+    this.timer=null;this.limitTimer=null;this.animationFrame=null;
   }
-  update(run,result,visible) {
-    if(this.run!==run||!visible||run?.status==='stopped')this.cancel();
+  update(run,result,visible,{naturalEnding=false}={}) {
+    if(this.run!==run||!visible||(run?.status==='stopped'&&!naturalEnding))this.cancel();
     if(!visible||!run||run.status==='stopped'||result?.state!=='achieved'||!result.score||!perfectScore(result.score)||this.seen.has(run))return;
     this.seen.add(run);this.run=run;
     const {x,y,width,height}=this.frame(),radius=Math.min(width*.22,height*.14,240);
@@ -32,9 +33,61 @@ export class PerfectCelebration {
       burst.append(bloom);root.append(burst);
     });
     this.layer.replaceChildren(root);
-    this.timer=setTimeout(()=>{if(this.run===run)this.cancel();},CELEBRATION_DURATION_MS);
+    this.root=root;
+    let minimumElapsed=false,waitingForAnimations=false,deferCleanup=false;
+    const current=()=>this.root===root;
+    const finish=()=>{if(current())this.cancel();};
+    const finishWhenReady=()=>{
+      if(!current()||!minimumElapsed||waitingForAnimations)return;
+      if(deferCleanup&&typeof requestAnimationFrame==='function'){
+        if(this.animationFrame!==null)return;
+        // finished resolves before CSS animationend is dispatched. Keep the
+        // final frame attached until the next rendering opportunity.
+        this.animationFrame=requestAnimationFrame(()=>{
+          if(!current())return;
+          this.animationFrame=null;finish();
+        });
+      }else finish();
+    };
+    const animationsFinished=(completed=false)=>{
+      if(!current())return;
+      waitingForAnimations=false;deferCleanup=completed&&minimumElapsed;
+      if(!deferCleanup){clearTimeout(this.limitTimer);this.limitTimer=null;}
+      finishWhenReady();
+    };
+    this.timer=setTimeout(()=>{
+      if(!current())return;
+      this.timer=null;minimumElapsed=true;finishWhenReady();
+    },CELEBRATION_DURATION_MS);
+    if(typeof requestAnimationFrame==='function'&&typeof root.getAnimations==='function'){
+      waitingForAnimations=true;
+      // Missing animation completion must still leave a bounded presentation.
+      this.limitTimer=setTimeout(finish,CELEBRATION_DURATION_MS*2);
+      this.animationFrame=requestAnimationFrame(()=>{
+        if(!current())return;
+        this.animationFrame=null;
+        try{
+          // CSS can start after insertion under first-paint load. Wait for its
+          // real completion rather than removing the final burst at 1500ms.
+          const pending=[];let supported=true;
+          for(const animation of root.getAnimations({subtree:true})){
+            const finished=animation.finished;
+            if(typeof finished?.then!=='function'){supported=false;continue;}
+            // Observe each rejection immediately, even if a later API entry is
+            // missing or throws. Manual cancellation rejects CSS finished.
+            pending.push(Promise.resolve(finished).catch(()=>{}));
+          }
+          if(!supported||!pending.length){animationsFinished();return;}
+          // Old completion callbacks cannot cancel a newer presentation.
+          Promise.allSettled(pending).then(()=>animationsFinished(true));
+        }catch{animationsFinished();}
+      });
+    }
   }
   cancel() {
-    clearTimeout(this.timer);this.timer=null;this.run=null;if(this.layer.firstChild)this.layer.replaceChildren();
+    clearTimeout(this.timer);clearTimeout(this.limitTimer);
+    if(this.animationFrame!==null&&typeof cancelAnimationFrame==='function')cancelAnimationFrame(this.animationFrame);
+    this.timer=null;this.limitTimer=null;this.animationFrame=null;this.run=null;this.root=null;
+    if(this.layer.firstChild)this.layer.replaceChildren();
   }
 }

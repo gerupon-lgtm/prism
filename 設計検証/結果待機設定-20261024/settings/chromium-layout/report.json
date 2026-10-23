@@ -1,0 +1,5431 @@
+{
+  "version": "0.93.0",
+  "passed": true,
+  "checks": [
+    {
+      "name": "layout-phone-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 22,
+            "right": 319,
+            "top": 167,
+            "bottom": 187,
+            "width": 297,
+            "height": 20
+          },
+          "clientWidth": 297,
+          "scrollWidth": 297,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "style": {
+            "font": "700 14px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 22,
+              "right": 176,
+              "top": 167,
+              "bottom": 187,
+              "width": 154,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 233.1875,
+            "bottom": 281.1875,
+            "width": 342,
+            "height": 48
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 321.375,
+            "bottom": 369.375,
+            "width": 342,
+            "height": 48
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 22,
+            "right": 139.796875,
+            "top": 641,
+            "bottom": 689,
+            "width": 117.796875,
+            "height": 48
+          },
+          "clientWidth": 116,
+          "scrollWidth": 116,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 39.09375,
+              "right": 122.6875,
+              "top": 654.203125,
+              "bottom": 674.203125,
+              "width": 83.59375,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 144.796875,
+            "right": 263,
+            "top": 641,
+            "bottom": 689,
+            "width": 118.203125,
+            "height": 48
+          },
+          "clientWidth": 116,
+          "scrollWidth": 116,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 161.890625,
+              "right": 245.890625,
+              "top": 654.203125,
+              "bottom": 674.203125,
+              "width": 84,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 324,
+            "right": 368,
+            "top": 155,
+            "bottom": 199,
+            "width": 44,
+            "height": 44
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 339,
+              "right": 353,
+              "top": 166.203125,
+              "bottom": 186.203125,
+              "width": 14,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 209,
+            "bottom": 227.1875,
+            "width": 342,
+            "height": 18.1875
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 153.90625,
+              "top": 208,
+              "bottom": 227,
+              "width": 129.90625,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 207,
+                "bottom": 633
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 207,
+            "bottom": 633
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 297.1875,
+            "bottom": 315.375,
+            "width": 342,
+            "height": 18.1875
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 192.875,
+              "top": 296.1875,
+              "bottom": 315.1875,
+              "width": 168.875,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 207,
+                "bottom": 633
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 207,
+            "bottom": 633
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-phone-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 22,
+            "right": 319,
+            "top": 167,
+            "bottom": 187,
+            "width": 297,
+            "height": 20
+          },
+          "clientWidth": 297,
+          "scrollWidth": 297,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "style": {
+            "font": "700 14px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 22,
+              "right": 176,
+              "top": 167,
+              "bottom": 187,
+              "width": 154,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 233.1875,
+            "bottom": 281.1875,
+            "width": 342,
+            "height": 48
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 321.375,
+            "bottom": 369.375,
+            "width": 342,
+            "height": 48
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 22,
+            "right": 139.796875,
+            "top": 641,
+            "bottom": 689,
+            "width": 117.796875,
+            "height": 48
+          },
+          "clientWidth": 116,
+          "scrollWidth": 116,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 39.09375,
+              "right": 122.6875,
+              "top": 654.203125,
+              "bottom": 674.203125,
+              "width": 83.59375,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 144.796875,
+            "right": 263,
+            "top": 641,
+            "bottom": 689,
+            "width": 118.203125,
+            "height": 48
+          },
+          "clientWidth": 116,
+          "scrollWidth": 116,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 161.890625,
+              "right": 245.890625,
+              "top": 654.203125,
+              "bottom": 674.203125,
+              "width": 84,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 324,
+            "right": 368,
+            "top": 155,
+            "bottom": 199,
+            "width": 44,
+            "height": 44
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 339,
+              "right": 353,
+              "top": 166.203125,
+              "bottom": 186.203125,
+              "width": 14,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 209,
+            "bottom": 227.1875,
+            "width": 342,
+            "height": 18.1875
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 153.90625,
+              "top": 208,
+              "bottom": 227,
+              "width": 129.90625,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 207,
+                "bottom": 633
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 207,
+            "bottom": 633
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 297.1875,
+            "bottom": 315.375,
+            "width": 342,
+            "height": 18.1875
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 192.875,
+              "top": 296.1875,
+              "bottom": 315.1875,
+              "width": 168.875,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 207,
+                "bottom": 633
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 207,
+            "bottom": 633
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-landscape-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 165,
+            "right": 630,
+            "top": 36,
+            "bottom": 56,
+            "width": 465,
+            "height": 20
+          },
+          "clientWidth": 465,
+          "scrollWidth": 465,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "style": {
+            "font": "700 14px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 165,
+              "right": 319,
+              "top": 36,
+              "bottom": 56,
+              "width": 154,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 102.1875,
+            "bottom": 150.1875,
+            "width": 250,
+            "height": 48
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 102.1875,
+            "bottom": 150.1875,
+            "width": 250,
+            "height": 48
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 165,
+            "right": 351.390625,
+            "top": 322,
+            "bottom": 366,
+            "width": 186.390625,
+            "height": 44
+          },
+          "clientWidth": 184,
+          "scrollWidth": 184,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 216.390625,
+              "right": 299.984375,
+              "top": 333.203125,
+              "bottom": 353.203125,
+              "width": 83.59375,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 356.390625,
+            "right": 543.203125,
+            "top": 322,
+            "bottom": 366,
+            "width": 186.8125,
+            "height": 44
+          },
+          "clientWidth": 185,
+          "scrollWidth": 185,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 407.796875,
+              "right": 491.796875,
+              "top": 333.203125,
+              "bottom": 353.203125,
+              "width": 84,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 635,
+            "right": 679,
+            "top": 24,
+            "bottom": 68,
+            "width": 44,
+            "height": 44
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 650,
+              "right": 664,
+              "top": 35.203125,
+              "bottom": 55.203125,
+              "width": 14,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 78,
+            "bottom": 96.1875,
+            "width": 250,
+            "height": 18.1875
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 167,
+              "right": 296.90625,
+              "top": 77,
+              "bottom": 96,
+              "width": 129.90625,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 76,
+                "bottom": 314
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 76,
+            "bottom": 314
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 78,
+            "bottom": 96.1875,
+            "width": 250,
+            "height": 18.1875
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 427,
+              "right": 595.875,
+              "top": 77,
+              "bottom": 96,
+              "width": 168.875,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 76,
+                "bottom": 314
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 76,
+            "bottom": 314
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-landscape-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 165,
+            "right": 630,
+            "top": 36,
+            "bottom": 56,
+            "width": 465,
+            "height": 20
+          },
+          "clientWidth": 465,
+          "scrollWidth": 465,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "style": {
+            "font": "700 14px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 165,
+              "right": 319,
+              "top": 36,
+              "bottom": 56,
+              "width": 154,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 102.1875,
+            "bottom": 150.1875,
+            "width": 250,
+            "height": 48
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 102.1875,
+            "bottom": 150.1875,
+            "width": 250,
+            "height": 48
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 165,
+            "right": 351.390625,
+            "top": 322,
+            "bottom": 366,
+            "width": 186.390625,
+            "height": 44
+          },
+          "clientWidth": 184,
+          "scrollWidth": 184,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 216.390625,
+              "right": 299.984375,
+              "top": 333.203125,
+              "bottom": 353.203125,
+              "width": 83.59375,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 356.390625,
+            "right": 543.203125,
+            "top": 322,
+            "bottom": 366,
+            "width": 186.8125,
+            "height": 44
+          },
+          "clientWidth": 185,
+          "scrollWidth": 185,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 407.796875,
+              "right": 491.796875,
+              "top": 333.203125,
+              "bottom": 353.203125,
+              "width": 84,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 635,
+            "right": 679,
+            "top": 24,
+            "bottom": 68,
+            "width": 44,
+            "height": 44
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "style": {
+            "font": "14px / 19.6px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "19.6px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 650,
+              "right": 664,
+              "top": 35.203125,
+              "bottom": 55.203125,
+              "width": 14,
+              "height": 20
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 78,
+            "bottom": 96.1875,
+            "width": 250,
+            "height": 18.1875
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 167,
+              "right": 296.90625,
+              "top": 77,
+              "bottom": 96,
+              "width": 129.90625,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 76,
+                "bottom": 314
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 76,
+            "bottom": 314
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 78,
+            "bottom": 96.1875,
+            "width": 250,
+            "height": 18.1875
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 18,
+          "scrollHeight": 18,
+          "style": {
+            "font": "13px / 18.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "18.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 427,
+              "right": 595.875,
+              "top": 77,
+              "bottom": 96,
+              "width": 168.875,
+              "height": 19
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 76,
+                "bottom": 314
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 76,
+            "bottom": 314
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-desktop-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 421,
+            "right": 970,
+            "top": 187.5,
+            "bottom": 222.5,
+            "width": 549,
+            "height": 35
+          },
+          "clientWidth": 549,
+          "scrollWidth": 549,
+          "clientHeight": 35,
+          "scrollHeight": 35,
+          "style": {
+            "font": "700 24px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 421,
+              "right": 685,
+              "top": 187.5,
+              "bottom": 222.5,
+              "width": 264,
+              "height": 35
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 274.6875,
+            "bottom": 322.6875,
+            "width": 594,
+            "height": 48
+          },
+          "clientWidth": 592,
+          "scrollWidth": 592,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 374.375,
+            "bottom": 422.375,
+            "width": 594,
+            "height": 48
+          },
+          "clientWidth": 592,
+          "scrollWidth": 592,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 421,
+            "right": 640.640625,
+            "top": 731,
+            "bottom": 779,
+            "width": 219.640625,
+            "height": 48
+          },
+          "clientWidth": 218,
+          "scrollWidth": 218,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 477.078125,
+              "right": 584.546875,
+              "top": 741.40625,
+              "bottom": 767.40625,
+              "width": 107.46875,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 645.640625,
+            "right": 865.828125,
+            "top": 731,
+            "bottom": 779,
+            "width": 220.1875,
+            "height": 48
+          },
+          "clientWidth": 218,
+          "scrollWidth": 218,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 701.734375,
+              "right": 809.734375,
+              "top": 741.40625,
+              "bottom": 767.40625,
+              "width": 108,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 975,
+            "right": 1019,
+            "top": 181,
+            "bottom": 229,
+            "width": 44,
+            "height": 48
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 988,
+              "right": 1006,
+              "top": 191.40625,
+              "bottom": 217.40625,
+              "width": 18,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 239,
+            "bottom": 268.6875,
+            "width": 594,
+            "height": 29.6875
+          },
+          "clientWidth": 594,
+          "scrollWidth": 594,
+          "clientHeight": 30,
+          "scrollHeight": 30,
+          "style": {
+            "font": "18px / 29.7px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "29.7px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 423,
+              "right": 603,
+              "top": 240,
+              "bottom": 266,
+              "width": 180,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 421,
+                "right": 1019,
+                "top": 237,
+                "bottom": 723
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 421,
+            "right": 1019,
+            "top": 237,
+            "bottom": 723
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 338.6875,
+            "bottom": 368.375,
+            "width": 594,
+            "height": 29.6875
+          },
+          "clientWidth": 594,
+          "scrollWidth": 594,
+          "clientHeight": 30,
+          "scrollHeight": 30,
+          "style": {
+            "font": "18px / 29.7px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "29.7px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 423,
+              "right": 657,
+              "top": 339.6875,
+              "bottom": 365.6875,
+              "width": 234,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 421,
+                "right": 1019,
+                "top": 237,
+                "bottom": 723
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 421,
+            "right": 1019,
+            "top": 237,
+            "bottom": 723
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-desktop-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "font": "14px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 421,
+            "right": 970,
+            "top": 187.5,
+            "bottom": 222.5,
+            "width": 549,
+            "height": 35
+          },
+          "clientWidth": 549,
+          "scrollWidth": 549,
+          "clientHeight": 35,
+          "scrollHeight": 35,
+          "style": {
+            "font": "700 24px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 421,
+              "right": 685,
+              "top": 187.5,
+              "bottom": 222.5,
+              "width": 264,
+              "height": 35
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 274.6875,
+            "bottom": 322.6875,
+            "width": 594,
+            "height": 48
+          },
+          "clientWidth": 592,
+          "scrollWidth": 592,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 374.375,
+            "bottom": 422.375,
+            "width": 594,
+            "height": 48
+          },
+          "clientWidth": 592,
+          "scrollWidth": 592,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "",
+            "lineHeight": "24.5px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 421,
+            "right": 640.640625,
+            "top": 731,
+            "bottom": 779,
+            "width": 219.640625,
+            "height": 48
+          },
+          "clientWidth": 218,
+          "scrollWidth": 218,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 477.078125,
+              "right": 584.546875,
+              "top": 741.40625,
+              "bottom": 767.40625,
+              "width": 107.46875,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 645.640625,
+            "right": 865.828125,
+            "top": 731,
+            "bottom": 779,
+            "width": 220.1875,
+            "height": 48
+          },
+          "clientWidth": 218,
+          "scrollWidth": 218,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 701.734375,
+              "right": 809.734375,
+              "top": 741.40625,
+              "bottom": 767.40625,
+              "width": 108,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 975,
+            "right": 1019,
+            "top": 181,
+            "bottom": 229,
+            "width": 44,
+            "height": 48
+          },
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "style": {
+            "font": "18px / 25.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "25.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 988,
+              "right": 1006,
+              "top": 191.40625,
+              "bottom": 217.40625,
+              "width": 18,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 401,
+            "right": 1039,
+            "top": 161,
+            "bottom": 799
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 239,
+            "bottom": 268.6875,
+            "width": 594,
+            "height": 29.6875
+          },
+          "clientWidth": 594,
+          "scrollWidth": 594,
+          "clientHeight": 30,
+          "scrollHeight": 30,
+          "style": {
+            "font": "18px / 29.7px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "29.7px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 423,
+              "right": 603,
+              "top": 240,
+              "bottom": 266,
+              "width": 180,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 421,
+                "right": 1019,
+                "top": 237,
+                "bottom": 723
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 421,
+            "right": 1019,
+            "top": 237,
+            "bottom": 723
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 423,
+            "right": 1017,
+            "top": 338.6875,
+            "bottom": 368.375,
+            "width": 594,
+            "height": 29.6875
+          },
+          "clientWidth": 594,
+          "scrollWidth": 594,
+          "clientHeight": 30,
+          "scrollHeight": 30,
+          "style": {
+            "font": "18px / 29.7px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "29.7px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 423,
+              "right": 657,
+              "top": 339.6875,
+              "bottom": 365.6875,
+              "width": 234,
+              "height": 26
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 421,
+                "right": 1019,
+                "top": 237,
+                "bottom": 723
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 401,
+                "right": 1039,
+                "top": 161,
+                "bottom": 799
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 421,
+            "right": 1019,
+            "top": 237,
+            "bottom": 723
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-enlarged-title-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-enlarged-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 22,
+            "right": 266,
+            "top": 155,
+            "bottom": 235,
+            "width": 244,
+            "height": 80
+          },
+          "clientWidth": 244,
+          "scrollWidth": 244,
+          "clientHeight": 80,
+          "scrollHeight": 80,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 22,
+              "right": 246,
+              "top": 155,
+              "bottom": 195,
+              "width": 224,
+              "height": 40
+            },
+            {
+              "left": 22,
+              "right": 106,
+              "top": 195,
+              "bottom": 235,
+              "width": 84,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 287.390625,
+            "bottom": 354.390625,
+            "width": 342,
+            "height": 67
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 412.78125,
+            "bottom": 479.78125,
+            "width": 342,
+            "height": 67
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 22,
+            "right": 368,
+            "top": 577.625,
+            "bottom": 630.8125,
+            "width": 346,
+            "height": 53.1875
+          },
+          "clientWidth": 344,
+          "scrollWidth": 344,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 111.40625,
+              "right": 278.578125,
+              "top": 583.625,
+              "bottom": 623.625,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 22,
+            "right": 248.5,
+            "top": 635.8125,
+            "bottom": 689,
+            "width": 226.5,
+            "height": 53.1875
+          },
+          "clientWidth": 225,
+          "scrollWidth": 225,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 51.25,
+              "right": 219.25,
+              "top": 641.8125,
+              "bottom": 681.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 322,
+            "right": 368,
+            "top": 171.40625,
+            "bottom": 218.59375,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 331,
+              "right": 359,
+              "top": 174.40625,
+              "bottom": 214.40625,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 245,
+            "bottom": 281.390625,
+            "width": 342,
+            "height": 36.390625
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 283.90625,
+              "top": 244,
+              "bottom": 281,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 243,
+                "bottom": 570
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 243,
+            "bottom": 570
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 370.390625,
+            "bottom": 406.78125,
+            "width": 342,
+            "height": 36.390625
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 361.875,
+              "top": 369.390625,
+              "bottom": 406.390625,
+              "width": 337.875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 243,
+                "bottom": 570
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 243,
+            "bottom": 570
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-enlarged-play-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-enlarged-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 22,
+            "right": 266,
+            "top": 155,
+            "bottom": 235,
+            "width": 244,
+            "height": 80
+          },
+          "clientWidth": 244,
+          "scrollWidth": 244,
+          "clientHeight": 80,
+          "scrollHeight": 80,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 22,
+              "right": 246,
+              "top": 155,
+              "bottom": 195,
+              "width": 224,
+              "height": 40
+            },
+            {
+              "left": 22,
+              "right": 106,
+              "top": 195,
+              "bottom": 235,
+              "width": 84,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 287.390625,
+            "bottom": 354.390625,
+            "width": 342,
+            "height": 67
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 412.78125,
+            "bottom": 479.78125,
+            "width": 342,
+            "height": 67
+          },
+          "clientWidth": 340,
+          "scrollWidth": 340,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 22,
+            "right": 368,
+            "top": 577.625,
+            "bottom": 630.8125,
+            "width": 346,
+            "height": 53.1875
+          },
+          "clientWidth": 344,
+          "scrollWidth": 344,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 111.40625,
+              "right": 278.578125,
+              "top": 583.625,
+              "bottom": 623.625,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 22,
+            "right": 248.5,
+            "top": 635.8125,
+            "bottom": 689,
+            "width": 226.5,
+            "height": 53.1875
+          },
+          "clientWidth": 225,
+          "scrollWidth": 225,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 51.25,
+              "right": 219.25,
+              "top": 641.8125,
+              "bottom": 681.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 322,
+            "right": 368,
+            "top": 171.40625,
+            "bottom": 218.59375,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 331,
+              "right": 359,
+              "top": 174.40625,
+              "bottom": 214.40625,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 10,
+            "right": 380,
+            "top": 143,
+            "bottom": 701
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 245,
+            "bottom": 281.390625,
+            "width": 342,
+            "height": 36.390625
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 283.90625,
+              "top": 244,
+              "bottom": 281,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 243,
+                "bottom": 570
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 243,
+            "bottom": 570
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 24,
+            "right": 366,
+            "top": 370.390625,
+            "bottom": 406.78125,
+            "width": 342,
+            "height": 36.390625
+          },
+          "clientWidth": 342,
+          "scrollWidth": 342,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 24,
+              "right": 361.875,
+              "top": 369.390625,
+              "bottom": 406.390625,
+              "width": 337.875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 22,
+                "right": 368,
+                "top": 243,
+                "bottom": 570
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 10,
+                "right": 380,
+                "top": 143,
+                "bottom": 701
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 22,
+            "right": 368,
+            "top": 243,
+            "bottom": 570
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-enlarged-landscape-title-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-enlarged-landscape-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 165,
+            "right": 577,
+            "top": 27.59375,
+            "bottom": 67.59375,
+            "width": 412,
+            "height": 40
+          },
+          "clientWidth": 412,
+          "scrollWidth": 412,
+          "clientHeight": 40,
+          "scrollHeight": 40,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 165,
+              "right": 473,
+              "top": 27.59375,
+              "bottom": 67.59375,
+              "width": 308,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 123.578125,
+            "bottom": 190.578125,
+            "width": 250,
+            "height": 67
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 159.96875,
+            "bottom": 226.96875,
+            "width": 250,
+            "height": 67
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 165,
+            "right": 366.578125,
+            "top": 312.8125,
+            "bottom": 366,
+            "width": 201.578125,
+            "height": 53.1875
+          },
+          "clientWidth": 200,
+          "scrollWidth": 200,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 182.203125,
+              "right": 349.375,
+              "top": 318.8125,
+              "bottom": 358.8125,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 371.578125,
+            "right": 574,
+            "top": 312.8125,
+            "bottom": 366,
+            "width": 202.421875,
+            "height": 53.1875
+          },
+          "clientWidth": 200,
+          "scrollWidth": 200,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 388.78125,
+              "right": 556.78125,
+              "top": 318.8125,
+              "bottom": 358.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 633,
+            "right": 679,
+            "top": 24,
+            "bottom": 71.1875,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 642,
+              "right": 670,
+              "top": 27,
+              "bottom": 67,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 81.1875,
+            "bottom": 117.578125,
+            "width": 250,
+            "height": 36.390625
+          },
+          "clientWidth": 250,
+          "scrollWidth": 260,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 167,
+              "right": 426.90625,
+              "top": 80.1875,
+              "bottom": 117.1875,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 79.1875,
+                "bottom": 305.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": true,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 79.1875,
+            "bottom": 305.1875
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 81.1875,
+            "bottom": 153.96875,
+            "width": 250,
+            "height": 72.78125
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 73,
+          "scrollHeight": 73,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 427,
+              "right": 660.921875,
+              "top": 80.1875,
+              "bottom": 117.1875,
+              "width": 233.921875,
+              "height": 37
+            },
+            {
+              "left": 427,
+              "right": 530.96875,
+              "top": 116.578125,
+              "bottom": 153.578125,
+              "width": 103.96875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 79.1875,
+                "bottom": 305.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 79.1875,
+            "bottom": 305.1875
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-enlarged-landscape-play-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-enlarged-landscape-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 165,
+            "right": 577,
+            "top": 27.59375,
+            "bottom": 67.59375,
+            "width": 412,
+            "height": 40
+          },
+          "clientWidth": 412,
+          "scrollWidth": 412,
+          "clientHeight": 40,
+          "scrollHeight": 40,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 165,
+              "right": 473,
+              "top": 27.59375,
+              "bottom": 67.59375,
+              "width": 308,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 123.578125,
+            "bottom": 190.578125,
+            "width": 250,
+            "height": 67
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 159.96875,
+            "bottom": 226.96875,
+            "width": 250,
+            "height": 67
+          },
+          "clientWidth": 248,
+          "scrollWidth": 248,
+          "clientHeight": 65,
+          "scrollHeight": 66,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 165,
+            "right": 366.578125,
+            "top": 312.8125,
+            "bottom": 366,
+            "width": 201.578125,
+            "height": 53.1875
+          },
+          "clientWidth": 200,
+          "scrollWidth": 200,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 182.203125,
+              "right": 349.375,
+              "top": 318.8125,
+              "bottom": 358.8125,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 371.578125,
+            "right": 574,
+            "top": 312.8125,
+            "bottom": 366,
+            "width": 202.421875,
+            "height": 53.1875
+          },
+          "clientWidth": 200,
+          "scrollWidth": 200,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 388.78125,
+              "right": 556.78125,
+              "top": 318.8125,
+              "bottom": 358.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 633,
+            "right": 679,
+            "top": 24,
+            "bottom": 71.1875,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 642,
+              "right": 670,
+              "top": 27,
+              "bottom": 67,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 153,
+            "right": 691,
+            "top": 12,
+            "bottom": 378
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 167,
+            "right": 417,
+            "top": 81.1875,
+            "bottom": 117.578125,
+            "width": 250,
+            "height": 36.390625
+          },
+          "clientWidth": 250,
+          "scrollWidth": 260,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 167,
+              "right": 426.90625,
+              "top": 80.1875,
+              "bottom": 117.1875,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 79.1875,
+                "bottom": 305.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": true,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 79.1875,
+            "bottom": 305.1875
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 427,
+            "right": 677,
+            "top": 81.1875,
+            "bottom": 153.96875,
+            "width": 250,
+            "height": 72.78125
+          },
+          "clientWidth": 250,
+          "scrollWidth": 250,
+          "clientHeight": 73,
+          "scrollHeight": 73,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 427,
+              "right": 660.921875,
+              "top": 80.1875,
+              "bottom": 117.1875,
+              "width": 233.921875,
+              "height": 37
+            },
+            {
+              "left": 427,
+              "right": 530.96875,
+              "top": 116.578125,
+              "bottom": 153.578125,
+              "width": 103.96875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 165,
+                "right": 679,
+                "top": 79.1875,
+                "bottom": 305.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 153,
+                "right": 691,
+                "top": 12,
+                "bottom": 378
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 165,
+            "right": 679,
+            "top": 79.1875,
+            "bottom": 305.1875
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-short-enlarged-title-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-short-enlarged-title",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 640,
+        "height": 240
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 58,
+            "right": 480,
+            "top": 21.59375,
+            "bottom": 61.59375,
+            "width": 422,
+            "height": 40
+          },
+          "clientWidth": 422,
+          "scrollWidth": 422,
+          "clientHeight": 40,
+          "scrollHeight": 40,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 58,
+              "right": 366,
+              "top": 21.59375,
+              "bottom": 61.59375,
+              "width": 308,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 60,
+            "right": 315,
+            "top": 69.578125,
+            "bottom": 128.578125,
+            "width": 255,
+            "height": 59
+          },
+          "clientWidth": 253,
+          "scrollWidth": 253,
+          "clientHeight": 57,
+          "scrollHeight": 58,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 325,
+            "right": 580,
+            "top": 105.96875,
+            "bottom": 164.96875,
+            "width": 255,
+            "height": 59
+          },
+          "clientWidth": 253,
+          "scrollWidth": 253,
+          "clientHeight": 57,
+          "scrollHeight": 58,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 58,
+            "right": 264.578125,
+            "top": 168.8125,
+            "bottom": 222,
+            "width": 206.578125,
+            "height": 53.1875
+          },
+          "clientWidth": 205,
+          "scrollWidth": 205,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 77.703125,
+              "right": 244.875,
+              "top": 174.8125,
+              "bottom": 214.8125,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 269.578125,
+            "right": 477,
+            "top": 168.8125,
+            "bottom": 222,
+            "width": 207.421875,
+            "height": 53.1875
+          },
+          "clientWidth": 205,
+          "scrollWidth": 205,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 289.28125,
+              "right": 457.28125,
+              "top": 174.8125,
+              "bottom": 214.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 536,
+            "right": 582,
+            "top": 18,
+            "bottom": 65.1875,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 545,
+              "right": 573,
+              "top": 21,
+              "bottom": 61,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 60,
+            "right": 315,
+            "top": 69.1875,
+            "bottom": 105.578125,
+            "width": 255,
+            "height": 36.390625
+          },
+          "clientWidth": 255,
+          "scrollWidth": 260,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 60,
+              "right": 319.90625,
+              "top": 68.1875,
+              "bottom": 105.1875,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 58,
+                "right": 582,
+                "top": 69.1875,
+                "bottom": 165.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": true,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 58,
+            "right": 582,
+            "top": 69.1875,
+            "bottom": 165.1875
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 325,
+            "right": 580,
+            "top": 69.1875,
+            "bottom": 141.96875,
+            "width": 255,
+            "height": 72.78125
+          },
+          "clientWidth": 255,
+          "scrollWidth": 255,
+          "clientHeight": 73,
+          "scrollHeight": 73,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 325,
+              "right": 558.921875,
+              "top": 68.1875,
+              "bottom": 105.1875,
+              "width": 233.921875,
+              "height": 37
+            },
+            {
+              "left": 325,
+              "right": 428.96875,
+              "top": 104.578125,
+              "bottom": 141.578125,
+              "width": 103.96875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 58,
+                "right": 582,
+                "top": 69.1875,
+                "bottom": 165.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 58,
+            "right": 582,
+            "top": 69.1875,
+            "bottom": 165.1875
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout-short-enlarged-play-explanation-roundtrip",
+      "passed": true,
+      "clearDraft": "0.9",
+      "failureDraft": "2.1",
+      "savedValue": null
+    },
+    {
+      "name": "layout-short-enlarged-play",
+      "passed": true,
+      "bad": [],
+      "viewport": {
+        "width": 640,
+        "height": 240
+      },
+      "font": "28px",
+      "measurements": [
+        {
+          "name": "dialog-title",
+          "text": "結果カードのタイミング",
+          "rect": {
+            "left": 58,
+            "right": 480,
+            "top": 21.59375,
+            "bottom": 61.59375,
+            "width": 422,
+            "height": 40
+          },
+          "clientWidth": 422,
+          "scrollWidth": 422,
+          "clientHeight": 40,
+          "scrollHeight": 40,
+          "style": {
+            "font": "700 28px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "normal",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 58,
+              "right": 366,
+              "top": 21.59375,
+              "bottom": 61.59375,
+              "width": 308,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "result-timing-clear",
+          "text": "",
+          "rect": {
+            "left": 60,
+            "right": 315,
+            "top": 69.578125,
+            "bottom": 128.578125,
+            "width": 255,
+            "height": 59
+          },
+          "clientWidth": 253,
+          "scrollWidth": 253,
+          "clientHeight": 57,
+          "scrollHeight": 58,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-failure",
+          "text": "",
+          "rect": {
+            "left": 325,
+            "right": 580,
+            "top": 105.96875,
+            "bottom": 164.96875,
+            "width": 255,
+            "height": 59
+          },
+          "clientWidth": 253,
+          "scrollWidth": 253,
+          "clientHeight": 57,
+          "scrollHeight": 58,
+          "style": {
+            "font": "",
+            "lineHeight": "49px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "clip",
+            "overflowY": "clip"
+          },
+          "textRects": [],
+          "clipAncestors": [],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          }
+        },
+        {
+          "name": "result-timing-apply",
+          "text": "適用して保存",
+          "rect": {
+            "left": 58,
+            "right": 264.578125,
+            "top": 168.8125,
+            "bottom": 222,
+            "width": 206.578125,
+            "height": 53.1875
+          },
+          "clientWidth": 205,
+          "scrollWidth": 205,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 77.703125,
+              "right": 244.875,
+              "top": 174.8125,
+              "bottom": 214.8125,
+              "width": 167.171875,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "result-timing-reset",
+          "text": "初期値に戻す",
+          "rect": {
+            "left": 269.578125,
+            "right": 477,
+            "top": 168.8125,
+            "bottom": 222,
+            "width": 207.421875,
+            "height": 53.1875
+          },
+          "clientWidth": 205,
+          "scrollWidth": 205,
+          "clientHeight": 51,
+          "scrollHeight": 51,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 289.28125,
+              "right": 457.28125,
+              "top": 174.8125,
+              "bottom": 214.8125,
+              "width": 168,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "dialog-close",
+          "text": "×",
+          "rect": {
+            "left": 536,
+            "right": 582,
+            "top": 18,
+            "bottom": 65.1875,
+            "width": 46,
+            "height": 47.1875
+          },
+          "clientWidth": 44,
+          "scrollWidth": 44,
+          "clientHeight": 45,
+          "scrollHeight": 45,
+          "style": {
+            "font": "28px / 39.2px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "39.2px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 545,
+              "right": 573,
+              "top": 21,
+              "bottom": 61,
+              "width": 28,
+              "height": 40
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 51,
+            "right": 589,
+            "top": 11,
+            "bottom": 229
+          }
+        },
+        {
+          "name": "クリアしたとき（秒）",
+          "text": "クリアしたとき（秒）",
+          "rect": {
+            "left": 60,
+            "right": 315,
+            "top": 69.1875,
+            "bottom": 105.578125,
+            "width": 255,
+            "height": 36.390625
+          },
+          "clientWidth": 255,
+          "scrollWidth": 260,
+          "clientHeight": 36,
+          "scrollHeight": 36,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 60,
+              "right": 319.90625,
+              "top": 68.1875,
+              "bottom": 105.1875,
+              "width": 259.90625,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 58,
+                "right": 582,
+                "top": 69.1875,
+                "bottom": 165.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": true,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 58,
+            "right": 582,
+            "top": 69.1875,
+            "bottom": 165.1875
+          }
+        },
+        {
+          "name": "失敗・時間切れのとき（秒）",
+          "text": "失敗・時間切れのとき（秒）",
+          "rect": {
+            "left": 325,
+            "right": 580,
+            "top": 69.1875,
+            "bottom": 141.96875,
+            "width": 255,
+            "height": 72.78125
+          },
+          "clientWidth": 255,
+          "scrollWidth": 255,
+          "clientHeight": 73,
+          "scrollHeight": 73,
+          "style": {
+            "font": "26px / 36.4px \"Noto Sans JP\", \"Hiragino Sans\", \"Yu Gothic\", Meiryo, sans-serif",
+            "lineHeight": "36.4px",
+            "whiteSpace": "normal",
+            "textOverflow": "clip",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          "textRects": [
+            {
+              "left": 325,
+              "right": 558.921875,
+              "top": 68.1875,
+              "bottom": 105.1875,
+              "width": 233.921875,
+              "height": 37
+            },
+            {
+              "left": 325,
+              "right": 428.96875,
+              "top": 104.578125,
+              "bottom": 141.578125,
+              "width": 103.96875,
+              "height": 37
+            }
+          ],
+          "clipAncestors": [
+            {
+              "name": "dialog-body",
+              "className": "result-timing-form condensed-form",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 58,
+                "right": 582,
+                "top": 69.1875,
+                "bottom": 165.1875
+              }
+            },
+            {
+              "name": "dialog",
+              "className": "settings-dialog result-timing-dialog",
+              "overflowX": "auto",
+              "overflowY": "auto",
+              "client": {
+                "left": 51,
+                "right": 589,
+                "top": 11,
+                "bottom": 229
+              }
+            }
+          ],
+          "contentOverflows": {
+            "x": false,
+            "y": false
+          },
+          "textVisibleRegion": {
+            "left": 58,
+            "right": 582,
+            "top": 69.1875,
+            "bottom": 165.1875
+          }
+        }
+      ]
+    }
+  ],
+  "boundary": "Disposable desktop browsers; phone size/orientation and enlarged text are emulated. Physical-device touch and listening remain unverified.",
+  "url": "http://127.0.0.1:59266/",
+  "browser": {
+    "engine": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "step": "layout-short-enlarged-play"
+}

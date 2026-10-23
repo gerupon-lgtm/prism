@@ -1,0 +1,11 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const base=__dirname,read=file=>JSON.parse(fs.readFileSync(path.join(base,file),'utf8'));
+const files=['settings/chromium-layout/report.json','settings/chromium-behavior/report.json','settings/webkit/report.json','edges/chromium-final/report.json','edges/webkit-final/report.json','fireworks/chromium-final/report.json','fireworks/webkit-final/report.json'];
+const jobs=files.map(file=>{const r=read(file);assert.equal(r.version,'0.93.0',file);assert.equal(r.passed,true,file);const cases=r.checks??r.cases;return {report:file,passed:r.passed,cases:cases.length,names:cases.map(c=>c.name),waits:cases.filter(c=>c.waitMs!==undefined).map(c=>({name:c.name,expectedMs:c.expectedMs??null,waitMs:c.waitMs}))};});
+const browserChecks=jobs.reduce((n,j)=>n+j.cases,0);assert.equal(browserChecks,86);
+const logs=fs.readFileSync(path.join(base,'tests.log'),'utf8');assert(logs.includes('All 44 test files passed.'));
+assert(fs.readFileSync(path.join(base,'syntax-final.log'),'utf8').includes('117 files'));
+const build=JSON.parse(fs.readFileSync('dist/build-info.json','utf8'));assert.equal(build.version,'0.93.0');assert.equal(build.assets.length,80);
+const followup=Number(fs.readFileSync(path.join(base,'ending-latest-tests.log'),'utf8').match(/tests\s+(\d+)/)?.[1]);assert(followup>=40);
+const result={version:'0.93.0',passed:true,unitTestFiles:44,unitSuiteStage:'Full suite before final celebration followup; affected ending tests rerun after followup. Release CI runs full suite again.',endingFollowupTests:followup,syntaxFiles:117,offlineAssets:80,browserChecks,jobs,previousFailuresRetained:['settings/chromium/report.json','settings/chromium-final/report.json','settings/chromium-final2/report.json','edges/chromium/report.json','early/chromium/report.json'],boundary:'Desktop browser emulation. Physical smartphone touch, visual acceptance and listening remain unverified. WebKit has no AudioContext in this Windows test runtime.'};
+fs.writeFileSync(path.join(base,'verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,browserChecks,unitTestFiles:44,endingFollowupTests:followup,offlineAssets:80}));

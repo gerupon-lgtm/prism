@@ -1,0 +1,15 @@
+layout-phone-title passed
+layout-phone-play passed
+layout-landscape-title passed
+layout-landscape-play passed
+layout-desktop-title AssertionError [ERR_ASSERTION]: layout-desktop-title complete labels and controls fit
++ actual - expected
+
++ [
++   'dialog-title content overflow',
++   'dialog-title clipped text'
++ ]
+- []
+
+    at layoutChecks (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_result_timing.cjs:99:47)
+    at async C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_result_timing.cjs:206:32

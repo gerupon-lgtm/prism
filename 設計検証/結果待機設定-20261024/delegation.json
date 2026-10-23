@@ -1,0 +1,18 @@
+{
+  "version": "0.93.0",
+  "ownership": [
+    {"task": "result_timing_model_093", "files": ["src/ui/result-timing.js", "tests/result-timing.test.js"], "verification": "10 scoped tests passed; independent read-only integration review"},
+    {"task": "result_timing_engine_093", "files": ["src/ui/end-wait.js", "src/ui/timeout-motion.js", "tests/end-wait.test.js", "tests/timeout-motion.test.js", "tests/ending-coverage.test.js"], "verification": "200 scoped tests passed"},
+    {"task": "result_timing_browser_093", "files": ["設計検証/check_result_timing.cjs", "設計検証/check_ending_edges.cjs", "設計検証/check_play_pacing.cjs"], "verification": "Diagnostic source and static contracts; did not launch browsers"}
+  ],
+  "controller": "UI integration, review fixes, full test/syntax/build checks, browser runs, release verification",
+  "followup": {
+    "trigger": "Desktop firework verification observed 5 completed rockets but only 96 of 120 rays and stars",
+    "implementation": "result_timing_engine_093: celebration.js and celebration.test.js; 11 scoped tests passed",
+    "review": "result_timing_model_093: corrected rejection handling for mixed animation API support; stale callbacks and natural ending reviewed",
+    "integration": "Controller app.js: preserve already-running fireworks on automatic return; manual cancellation remains immediate",
+    "verification": "Controller reran 41 ending tests, 117 syntax files, and browser ending checks"
+  },
+  "reviewFinding": "fitDialogForm lost dialog and body classes on return from explanation; classes now restored and browser roundtrip covered",
+  "tokenAndWallTimeMetrics": "Not measured"
+}

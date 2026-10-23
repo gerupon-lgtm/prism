@@ -19,6 +19,7 @@ const scenarios=[
   {name:'next-event-completion',id:'Q1',edges:['SA','AG'],kind:'clear',next:true},
   {name:'manual-stop-ending',id:'Q1',edges:['SA','AG'],kind:'clear',manual:true},
   {name:'desktop-fireworks',id:'Q29',edges:['SA','SB','BD','DS','AG'],kind:'clear',desktop:true},
+  {name:'desktop-early-card-fireworks',id:'Q29',edges:['SA','SB','BD','DS','AG'],kind:'clear',desktop:true,clearMs:400,earlyCard:true},
   {name:'reduced-motion-ending',id:'Q1',edges:['SA','AG'],kind:'clear',reduced:true},
 ];
 function observe(){
@@ -64,7 +65,7 @@ let browser;
     report.step=c.name;
     const context=await browser.newContext({viewport:c.desktop?{width:1440,height:960}:{width:390,height:844},isMobile:!c.desktop,hasTouch:!c.desktop,reducedMotion:c.reduced?'reduce':'no-preference'}),p=await context.newPage(),errors=[];
     p.on('pageerror',e=>errors.push(e.message));
-    await p.addInitScript(reduced=>{Math.random=()=>.5;localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:reduced?'reduce':'full'}));},Boolean(c.reduced));
+    await p.addInitScript(({reduced,clearMs})=>{Math.random=()=>.5;localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:reduced?'reduce':'full'}));if(clearMs!==null)localStorage.setItem('prism-notes.result-timing.v1',JSON.stringify({version:1,clearMs,failureMs:1600}));},{reduced:Boolean(c.reduced),clearMs:c.clearMs??null});
     await p.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);await p.locator('#board [data-node="S"]').waitFor();
     assert.equal(await p.locator('meta[name="prism-version"]').getAttribute('content'),report.version,'The tested page must match the built release');
     await p.evaluate(async ({limit,throwLate})=>{
@@ -90,12 +91,14 @@ let browser;
     await p.waitForFunction(()=>window.endingProbe.completed!==null,null,{timeout:15000});
     if(c.mute){await p.locator('#sound').click();assert.equal(await p.locator('#sound').getAttribute('aria-pressed'),'false');await p.evaluate(()=>{window.endingProbe.muted=performance.now();});}
     if(c.manual)await p.locator('#stop').click();
-    if(c.desktop){await p.waitForFunction(()=>window.endingProbe.fireworks!==null);await p.waitForTimeout(900);assert.equal(await p.locator('#clear-toast').isVisible(),false);await p.screenshot({path:path.join(out,c.name+'-effect.png')});}
+    if(c.desktop){await p.waitForFunction(()=>window.endingProbe.fireworks!==null);await p.waitForTimeout(900);assert.equal(await p.locator('#clear-toast').isVisible(),Boolean(c.earlyCard));if(c.earlyCard)assert.equal(await p.locator('.perfect-fireworks').isVisible(),true,'Short wait shows its card while the original fireworks continue');await p.screenshot({path:path.join(out,c.name+'-effect.png')});}
     await p.waitForFunction(()=>window.endingProbe.toast!==null&&window.endingProbe.editing!==null,null,{timeout:8000});
     await p.waitForFunction(()=>Object.values(window.endingProbe.pictures).every(picture=>picture.removed!==null),null,{timeout:3000});
+    if(c.earlyCard)await p.waitForFunction(()=>window.endingProbe.fireworkRemoved!==null,null,{timeout:3500});
     const result=await p.evaluate(()=>({probe:window.endingProbe,audio:window.endingAudio,cues:window.endingCues,audioCapabilities:window.endingAudioCapabilities,artErrors:window.endingArtErrors,lateArtCalls:window.endingLateArtCalls})),wait=result.probe.toast-result.probe.completed;
-    assert.deepEqual(errors,[]);assert(!result.probe.covered);assert(!result.probe.earlyToast);
-    if(c.manual)assert(wait<1000,'Manual stop skips waiting');else {assert(wait>=1500-80,c.name+' common 1.5 second ending wait');assert(wait<=1500+Math.max(250,result.probe.maxPaintGapMs*2),c.name+' result does not retain the previous longer wait');}
+    assert.deepEqual(errors,[]);if(c.earlyCard)assert(result.probe.covered,'The short selected wait intentionally overlaps the result card and ongoing fireworks');else assert(!result.probe.covered);assert(!result.probe.earlyToast);
+    const expectedWait=c.clearMs??1600;
+    if(c.manual)assert(wait<1000,'Manual stop skips waiting');else {assert(wait>=expectedWait-80,c.name+' selected ending wait');assert(wait<=expectedWait+Math.max(250,result.probe.maxPaintGapMs*2),c.name+' result does not retain the previous longer wait');}
     const completionStops=result.audio.filter(e=>e.name==='stop'&&e.reason==='completed');assert.equal(completionStops.length,1,c.name+' one completed stop');
     assert.equal(completionStops[0].options?.preserveTail,!c.manual,c.name+' natural tails reserved for automatic completion');
     const sound=c.kind==='clear'?'perfect':'failure',expectedSound=c.mute||(c.manual&&c.kind==='timeout')?0:1;assert.equal(result.audio.filter(e=>e.name===sound).length,expectedSound,c.name+' one result sound per enabled automatic outcome');
@@ -113,7 +116,7 @@ let browser;
       assert.equal(new Set(samples.map(s=>s.markers)).size,1,'Official arrival counts and final-arrival marker remain fixed at the cutoff');
       const moving=samples.filter(s=>s.moving.length);assert(moving.length>=2,'Light remains visible after the cutoff');
       assert(new Set(moving.map(s=>JSON.stringify(s.moving))).size>=2,'Light moves after the cutoff until the result display');
-      assert(samples.at(-1).wall>result.probe.completed+1300,'Continuation is still observed near the common 1.5 second result wait');
+      assert(samples.at(-1).wall>result.probe.completed+1400,'Continuation is still observed near the common 1.6 second result wait');
       assert.equal(await p.locator('#board .light-particle').count(),0,'Result display ends the remaining light motion');
     }
     if(c.lateGoal){
@@ -158,7 +161,7 @@ let browser;
         result.audioEvidence.tail='Not observable: this browser has no running audio context';result.audioEvidence.unverified='Active sound and natural ending are not verified here; visual playback, scheduling calls and stop preservation are checked';
       }
     }
-    if(c.desktop){assert(result.probe.fireworks&&result.probe.fireworkRemoved);assert.equal(result.probe.fireworkBursts,5);assert(result.probe.fireworkAnimationBoundMs>1400&&result.probe.fireworkAnimationBoundMs<=1419,'Every firework animation finishes by 1.419 seconds');assert.deepEqual(result.probe.fireworkAnimationEnds,{'firework-rise':5,'firework-ray':120,'firework-star':120},'All five rockets, 120 rays and 120 stars completed naturally');assert(result.probe.toast>=result.probe.fireworkRemoved);}
+    if(c.desktop){assert(result.probe.fireworks&&result.probe.fireworkRemoved);assert.equal(result.probe.fireworkBursts,5);assert(result.probe.fireworkAnimationBoundMs>1400&&result.probe.fireworkAnimationBoundMs<=1419,'Every firework animation finishes by 1.419 seconds');assert.deepEqual(result.probe.fireworkAnimationEnds,{'firework-rise':5,'firework-ray':120,'firework-star':120},'All five rockets, 120 rays and 120 stars completed naturally');if(c.earlyCard)assert(result.probe.fireworkRemoved>=result.probe.toast+500,'The card does not cancel fireworks: they continue for at least another half second');else assert(result.probe.toast>=result.probe.fireworkRemoved);}
     await p.screenshot({path:path.join(out,c.name+'-result.png')});
     // A geometry refresh must not replay either the sound or the fireworks.
     const before=result.audio.filter(e=>e.name===sound).length;await p.setViewportSize(c.desktop?{width:1366,height:900}:{width:412,height:892});await p.waitForTimeout(150);

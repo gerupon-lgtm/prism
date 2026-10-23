@@ -108,15 +108,49 @@ test('時間切れの表示継続は最大で未達成カードの待機まで�
   motion.update(session,100000);assert.equal(run.clock,run.circuit.time.ticks('1')+BigInt(END_WAIT_MS)*run.circuit.time.unit/1000n);
 });
 
+test('指定した未達成待機で表示継続を制限し、開始後の設定変更で長さを変えない',()=>{
+  const {session}=timeoutFixture(),motion=quiet(),before=session.exportResult();
+  const run=motion.update(session,100,{durationMs:900});
+  motion.update(session,700,{durationMs:100});assert.equal(run.format(),'1.6');
+  motion.update(session,5000,{durationMs:5000});assert.equal(run.format(),'1.9');
+  assert.equal(motion.durationMs,900);assert.deepEqual(session.exportResult(),before);
+  motion.update(session,6000,{durationMs:0});assert.equal(run.format(),'1.9');
+});
+
+test('既存のコンストラクター指定も使え、updateの指定は開始時だけ優先する',()=>{
+  for(const {durationMs,expected} of [{durationMs:undefined,expected:'1.8'},{durationMs:1200,expected:'2.2'}]){
+    const {session}=timeoutFixture(),motion=quiet({maxDurationMs:800});
+    const run=motion.update(session,100,{durationMs});
+    motion.maxDurationMs=5000;
+    motion.update(session,100000,{durationMs:5000});assert.equal(run.format(),expected);
+  }
+});
+
+test('0秒指定では追加の到達や時刻を作らず、不正な指定は既定の待機へ戻す',()=>{
+  const {session}=timeoutFixture(),motion=quiet(),before=session.exportResult();
+  const run=motion.update(session,100,{durationMs:0});
+  motion.update(session,100000,{durationMs:5000});
+  assert.equal(run.format(),'1');assert.deepEqual(motion.entries,[]);assert.deepEqual(motion.goalHistory,[]);
+  assert.deepEqual(session.exportResult(),before);
+  for(const durationMs of [undefined,null,'0',-100,50,1601,5100,NaN,Infinity]){
+    const f=timeoutFixture(),fallback=quiet(),picture=fallback.update(f.session,100,{durationMs});
+    fallback.update(f.session,100000);assert.equal(picture.format(),'2.6');
+  }
+  const f=timeoutFixture(),fallback=quiet({maxDurationMs:800}),picture=fallback.update(f.session,100,{durationMs:NaN});
+  fallback.update(f.session,100000);assert.equal(picture.format(),'1.8');
+  const invalid=timeoutFixture(),safe=quiet({maxDurationMs:NaN}),safeRun=safe.update(invalid.session,100);
+  safe.update(invalid.session,100000);assert.equal(safeRun.format(),'2.6');
+});
+
 test('画面を隠す・記録を見る等で中断した表示は同じrunで再開しない',()=>{
   for(const reason of ['hidden','records','load','error']){
     const {session}=timeoutFixture(),motion=quiet();const picture=motion.update(session,0);
     session.pause(reason);assert.equal(motion.update(session,200),null,reason);
-    session.pause(null);assert.equal(motion.update(session,400),null,reason+' cannot restart');
+    session.pause(null);assert.equal(motion.update(session,400,{durationMs:5000}),null,reason+' cannot restart');
     assert.equal(picture.exhausted,true);
   }
   const {session}=timeoutFixture(),motion=quiet();motion.update(session,0);
-  assert.equal(motion.update(session,200,{enabled:false}),null);assert.equal(motion.update(session,400),null);
+  assert.equal(motion.update(session,200,{enabled:false}),null);assert.equal(motion.update(session,400,{durationMs:5000}),null);
 });
 
 test('手動停止・次の実行・課題切替・練習開始は表示コピーを引き継がない',()=>{

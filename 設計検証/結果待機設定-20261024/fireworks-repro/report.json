@@ -1,0 +1,508 @@
+{
+  "version": "0.93.0",
+  "passed": true,
+  "cases": [
+    {
+      "name": "desktop-fireworks",
+      "id": "Q29",
+      "edges": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "kind": "clear",
+      "desktop": true,
+      "probe": {
+        "completed": 7500.300000000745,
+        "toast": 9147.70000000298,
+        "editing": 9147.70000000298,
+        "fireworks": 7500.300000000745,
+        "fireworkRemoved": 8984.10000000149,
+        "fireworkBursts": 5,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "fireworkAnimationBoundMs": 1418.75,
+        "goals": 2,
+        "covered": false,
+        "earlyToast": false,
+        "timeoutSamples": [],
+        "pictures": {
+          "2:A:0.5": {
+            "node": "A",
+            "wall": 3908,
+            "removed": 4909.20000000298
+          },
+          "3:B:0.5": {
+            "node": "B",
+            "wall": 3908,
+            "removed": 4909.400000002235
+          },
+          "2:G:1.1": {
+            "node": "G",
+            "wall": 4480.800000000745,
+            "removed": 6277.10000000149
+          },
+          "3:D:1.5": {
+            "node": "D",
+            "wall": 4900.800000000745,
+            "removed": 5916.20000000298
+          },
+          "3:S:2.5": {
+            "node": "S",
+            "wall": 5909.400000002235,
+            "removed": 6893.300000000745
+          },
+          "4:A:3.5": {
+            "node": "A",
+            "wall": 6893.300000000745,
+            "removed": 7874.20000000298
+          },
+          "5:B:3.5": {
+            "node": "B",
+            "wall": 6893.300000000745,
+            "removed": 7884.70000000298
+          },
+          "4:G:4.1": {
+            "node": "G",
+            "wall": 7500.300000000745,
+            "removed": 9276.5
+          }
+        },
+        "maxPaintGapMs": 83.39999999999964,
+        "toastText": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 718.9000000022352,
+          "reason": "dialog",
+          "options": {
+            "preserveTap": true
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 3363.300000000745,
+          "reason": "restart",
+          "options": {
+            "preserveTap": true
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.6106666666666665,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.6106666666666665,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 3868.900000002235,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 3869.2000000029802,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 2,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "strike",
+          "wall": 4468.70000000298,
+          "reason": {},
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.72,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.72,
+            "contextState": "running",
+            "bellUntil": 6.34
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 4868.400000002235,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 4.141333333333334,
+            "contextState": "running",
+            "bellUntil": 6.34
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 4.141333333333334,
+            "contextState": "running",
+            "bellUntil": 6.34
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 5868.10000000149,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 5.1306666666666665,
+            "contextState": "running",
+            "bellUntil": 6.34
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 5.1306666666666665,
+            "contextState": "running",
+            "bellUntil": 6.34
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 6868.10000000149,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.12,
+            "contextState": "running",
+            "bellUntil": 6.34
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.12,
+            "contextState": "running",
+            "bellUntil": 6.34
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 6868.20000000298,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.12,
+            "contextState": "running",
+            "bellUntil": 6.34
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.12,
+            "contextState": "running",
+            "bellUntil": 6.34
+          }
+        },
+        {
+          "name": "strike",
+          "wall": 7470.400000002235,
+          "reason": {},
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 6.72,
+            "contextState": "running",
+            "bellUntil": 6.34
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.72,
+            "contextState": "running",
+            "bellUntil": 9.34
+          }
+        },
+        {
+          "name": "perfect",
+          "wall": 7482.400000002235,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.752,
+            "contextState": "running",
+            "bellUntil": 9.34
+          },
+          "after": {
+            "voices": 20,
+            "muted": false,
+            "contextTime": 6.752,
+            "contextState": "running",
+            "bellUntil": 9.34
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 9102.10000000149,
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": {
+            "voices": 9,
+            "muted": false,
+            "contextTime": 8.370666666666667,
+            "contextState": "running",
+            "bellUntil": 9.34
+          },
+          "after": {
+            "voices": 9,
+            "muted": false,
+            "contextTime": 8.370666666666667,
+            "contextState": "running",
+            "bellUntil": 9.34
+          }
+        }
+      ],
+      "cues": [
+        {
+          "source": null,
+          "wall": 729.5,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 984.1000000014901,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.24,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1112.2000000029802,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.36,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1211.2000000029802,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.48,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1312.300000000745,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.5706666666666667,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1482.300000000745,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.752,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1770.2000000029802,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.0213333333333334,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2070.400000002235,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.32,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2368.60000000149,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.6213333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2668.60000000149,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.92,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2968.900000002235,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.2213333333333334,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 3117.60000000149,
+          "delay": 0,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 2.3706666666666667,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "relay",
+          "wall": 3869,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "relay",
+          "wall": 3869.300000000745,
+          "delay": 0,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.12,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "perfect",
+          "wall": 7494.900000002235,
+          "delay": 0.7,
+          "before": {
+            "voices": 2,
+            "muted": false,
+            "contextTime": 6.752,
+            "contextState": "running",
+            "bellUntil": 9.34
+          }
+        }
+      ],
+      "audioCapabilities": {
+        "standard": true,
+        "webkit": false,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+      },
+      "artErrors": [],
+      "lateArtCalls": [],
+      "retryChoicePassed": true,
+      "waitMs": 1647.4000000022352,
+      "passed": true
+    }
+  ],
+  "boundary": "Desktop browser emulation; physical phones and listening remain unverified",
+  "step": "desktop-fireworks"
+}

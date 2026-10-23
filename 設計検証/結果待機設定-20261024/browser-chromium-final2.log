@@ -1,0 +1,44 @@
+layout-phone-title passed
+layout-phone-play passed
+layout-landscape-title passed
+layout-landscape-play passed
+layout-desktop-title passed
+layout-desktop-play passed
+layout-enlarged-title-explanation-roundtrip passed
+layout-enlarged-title passed
+layout-enlarged-play-explanation-roundtrip passed
+layout-enlarged-play passed
+layout-enlarged-landscape-title-explanation-roundtrip passed
+layout-enlarged-landscape-title passed
+layout-enlarged-landscape-play-explanation-roundtrip passed
+layout-enlarged-landscape-play passed
+layout-short-enlarged-title locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('#result-timing-open')
+    - locator resolved to <button type="button" id="result-timing-open" title="結果カードのタイミング（調整用）" aria-label="結果カードのタイミング（調整用）">結果カードのタイミング（調整用）</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button title="閉じる" type="button" aria-label="閉じる">閉じる</button> from <div id="dialog-actions">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button title="閉じる" type="button" aria-label="閉じる">閉じる</button> from <div id="dialog-actions">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    55 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <button title="閉じる" type="button" aria-label="閉じる">閉じる</button> from <div id="dialog-actions">…</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+    at openTiming (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_result_timing.cjs:49:42)
+    at async layoutChecks (C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_result_timing.cjs:100:50)
+    at async C:\Users\user\Documents\project\ダイクストラ法検証\設計検証\check_result_timing.cjs:222:32

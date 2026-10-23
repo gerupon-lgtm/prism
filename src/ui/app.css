@@ -523,6 +523,18 @@ dialog.motion-dialog{height:min(430px,calc(var(--app-height) - 22px))}
 .motion-options input{width:20px;height:20px;min-width:20px;padding:0;margin:0;accent-color:#d6b56a;flex:none}.motion-options label:has(input:checked){border-color:#f5ddb0;background:#2b3041}.motion-options span{min-width:0;overflow-wrap:anywhere}.motion-compact{flex:none}.motion-compact label{margin-bottom:5px}
 html.desktop-layout dialog.motion-dialog:not(#wire-delete-toast){height:min(490px,calc(var(--app-height) - 50px))}
 
+/* Temporary result timing controls stay reachable on small, enlarged screens. */
+#result-timing-open{flex:none;white-space:normal;min-height:44px}
+dialog.motion-dialog #dialog-body{overflow-y:auto;overscroll-behavior:contain}
+dialog.result-timing-dialog #dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:2px}
+dialog.result-timing-dialog #dialog-title{white-space:normal;overflow:visible;text-overflow:clip;min-width:0;overflow-wrap:anywhere;line-height:normal}
+.result-timing-fields{display:grid;gap:16px;flex:none}
+.result-timing-fields label{margin-bottom:6px;line-height:1.4}
+.result-timing-fields input{min-height:48px;font-size:1.25rem;font-variant-numeric:tabular-nums}
+#result-timing-status:empty{display:none}
+dialog.result-timing-dialog #dialog-actions button{min-width:100px;white-space:normal}
+@media(max-height:420px){.result-timing-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}dialog.result-timing-dialog #dialog-actions button{min-height:44px}}
+
 /* Illustrated help uses the actual game artwork and wire colours. */
 dialog.help-dialog{height:min(680px,calc(var(--app-height) - 22px))}
 html.desktop-layout dialog.help-dialog:not(#wire-delete-toast){width:min(900px,calc(100vw - 40px));height:min(800px,calc(var(--app-height) - 40px))}

@@ -1,23 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { EndWait, END_WAIT_MS } from '../src/ui/end-wait.js';
+import { EndWait, END_WAIT_MS, CLEAR_END_WAIT_MS } from '../src/ui/end-wait.js';
 import { Session } from '../src/app/session.js';
 import { LocalRecords } from '../src/core/storage.js';
 import { sampleCircuit } from '../src/content/samples.js';
 
 function session(){const data=new Map();return new Session(new LocalRecords({getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)}));}
-test('クリア後は全粒終了から1.5秒で再操作でき、到達時刻・点数・配線を保持する',()=>{
+test('クリア後は全粒終了から1.6秒で再操作でき、到達時刻・点数・配線を保持する',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
   assert(s.clearChoices);const clock=s.run.clock,records=structuredClone(s.run.records),result=structuredClone(s.result),circuit=structuredClone(s.circuit);
   assert.equal(wait.ready(s.run,100,{cleared:true}),false);
-  assert.equal(wait.ready(s.run,1599,{cleared:true}),false);assert.equal(wait.ready(s.run,1600,{cleared:true}),true);
+  assert.equal(CLEAR_END_WAIT_MS,1600);
+  assert.equal(wait.ready(s.run,1699,{cleared:true}),false);assert.equal(wait.ready(s.run,1700,{cleared:true}),true);
   s.stop();assert(s.editable);assert.equal(s.run.clock,clock);assert.deepEqual(s.run.records,records);assert.deepEqual(s.result,result);assert.deepEqual(s.circuit,circuit);
 });
 
-test('全粒が終わってから1.5秒で編集へ戻し、時計・全記録・点数・配線を保持する',()=>{
+test('全粒が終わってから1.6秒で編集へ戻し、時計・全記録・点数・配線を保持する',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
   const clock=s.run.clock,records=structuredClone(s.run.records),result=structuredClone(s.result),circuit=structuredClone(s.circuit);
-  assert.equal(END_WAIT_MS,1500);assert.equal(s.run.exhausted,true);assert.equal(s.editable,false);assert.equal(wait.ready(s.run,100),false);
+  assert.equal(END_WAIT_MS,1600);assert.equal(s.run.exhausted,true);assert.equal(s.editable,false);assert.equal(wait.ready(s.run,100),false);
   assert.equal(wait.ready(s.run,100+END_WAIT_MS-1),false);assert.equal(wait.ready(s.run,100+END_WAIT_MS),true);
   s.stop();assert.equal(s.editable,true);assert.equal(s.run.clock,clock);assert.deepEqual(s.run.records,records);assert.deepEqual(s.result,result);assert.deepEqual(s.circuit,circuit);assert.equal(wait.ready(s.run,10000),false);
 });
@@ -25,31 +26,31 @@ test('最初のゴール後も後続粒が動いている間は待機を開始�
   const s=session(),wait=new EndWait();s.replace({sampleId:'compare'});
   const circuit=sampleCircuit();circuit.target='all';circuit.nodes.push({id:'G2',kind:'goal',x:.7,y:.85,process:'0'});circuit.edges.push({id:'SG2',from:'S',to:'G2',time:'10'});s.commitEdit(circuit);s.start();s.advance('2.5');
   assert.equal(s.run.arrivals().length,1);assert.equal(wait.ready(s.run,100,{cleared:true}),false);assert.equal(wait.ready(s.run,10000,{cleared:true}),false);
-  s.advance('10');assert.equal(s.run.arrivals().length,2);assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,12499),false);assert.equal(wait.ready(s.run,12500),true);
+  s.advance('10');assert.equal(s.run.arrivals().length,2);assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,12599),false);assert.equal(wait.ready(s.run,12600),true);
 });
 test('手動停止・別の実行・到達なし・負荷停止へ古い待機を持ち越さない',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');wait.ready(s.run,0);
   s.stop();assert.equal(s.editable,true);assert.equal(wait.ready(s.run,1),false);s.start();assert.equal(wait.ready(s.run,5000),false);
-  s.advance('2.5');assert.equal(wait.ready(s.run,6000),false);assert.equal(wait.ready(s.run,7499),false);assert.equal(wait.ready(s.run,7500),true);
+  s.advance('2.5');assert.equal(wait.ready(s.run,6000),false);assert.equal(wait.ready(s.run,7599),false);assert.equal(wait.ready(s.run,7600),true);
   s.pause('load');assert.equal(wait.ready(s.run,10000),false);
   s.openRecords();assert.equal(wait.ready(s.run,11000),false);assert.equal(wait.ready(s.run,20000),false);
   const unreachable=session();unreachable.connect('S','A');unreachable.start();assert.equal(unreachable.run.exhausted,true);assert.equal(wait.ready(unreachable.run,20000),false);assert.equal(wait.ready(unreachable.run,50000),false);assert.equal(wait.ready(null,60000),false);
 });
-test('次動作の終了も1.5秒で戻せるが、終了フレームのエラーを閲覧や別実行で解除しない',()=>{
+test('次動作の終了も1.6秒で戻せるが、終了フレームのエラーを閲覧や別実行で解除しない',()=>{
   const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.pause();
-  while(!s.run.exhausted)s.next();assert.equal(s.run.format(),'2.5');assert.equal(wait.ready(s.run,0),false);assert.equal(wait.ready(s.run,1499),false);assert.equal(wait.ready(s.run,1500),true);
+  while(!s.run.exhausted)s.next();assert.equal(s.run.format(),'2.5');assert.equal(wait.ready(s.run,0),false);assert.equal(wait.ready(s.run,1599),false);assert.equal(wait.ready(s.run,1600),true);
   s.pause('error');wait.interrupt(s.run);const interrupted=s.run;
   s.pause('dialog');assert.equal(wait.ready(s.run,7000,{cleared:true}),false);
   const other=session();other.connect('S','A');other.start();wait.ready(other.run,8000);assert.equal(wait.ready(interrupted,12000),false);assert.equal(s.editable,false);
 });
 
-test('固定課題はゴールへ届かない終了でも1.5秒後に編集へ戻せ、理由と記録を保持する',()=>{
+test('固定課題はゴールへ届かない終了でも1.6秒後に編集へ戻せ、理由と記録を保持する',()=>{
   const s=session(),wait=new EndWait();s.connect('S','A');s.start();assert(s.run.exhausted);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
-  assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1599,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1600,{allowNoArrival:true}),true);
+  assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1699,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,1700,{allowNoArrival:true}),true);
   const records=structuredClone(s.run.records);s.stop();assert(s.editable);assert.deepEqual(s.run.records,records);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
 });
 
-test('時間上限でも記録を保って完了待機し、1.5秒後に編集へ戻る',()=>{
+test('時間上限でも記録を保って完了待機し、1.6秒後に編集へ戻る',()=>{
   for(const stepped of [false,true]){
     const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);
     s.challenge={...s.challenge,maxDuration:'1'};s.start();
@@ -59,8 +60,39 @@ test('時間上限でも記録を保って完了待機し、1.5秒後に編集�
     assert.equal(s.result.state,'stopped');assert.equal(s.result.score,null);assert.equal(s.result.timeLimitReached,true);
     const result=s.exportResult();assert(s.run.particles.size>0);
     assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);
-    assert.equal(wait.ready(s.run,1599,{allowNoArrival:true}),false);
-    assert.equal(wait.ready(s.run,1600,{allowNoArrival:true}),true);
+    assert.equal(wait.ready(s.run,1699,{allowNoArrival:true}),false);
+    assert.equal(wait.ready(s.run,1700,{allowNoArrival:true}),true);
     s.stop();assert(s.editable);assert.deepEqual(s.exportResult(),{...result,status:'stopped'});
   }
+});
+
+test('クリアと未達成の指定待機を独立して使い、終了時の値を途中の変更から保つ',()=>{
+  for(const {cleared,delayMs} of [{cleared:true,delayMs:500},{cleared:false,delayMs:2400}]){
+    const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();
+    assert.equal(wait.ready(s.run,0,{cleared,delayMs:5000}),false,'実行中の値は固定しない');
+    s.advance('2.5');
+    assert.equal(wait.ready(s.run,100,{cleared,delayMs}),false);
+    assert.equal(wait.ready(s.run,100+delayMs-1,{cleared:!cleared,delayMs:0}),false,'途中の設定変更で短縮しない');
+    assert.equal(wait.ready(s.run,100+delayMs,{cleared:!cleared,delayMs:5000}),true,'途中の設定変更で延長しない');
+  }
+});
+
+test('0秒は終了確認ですぐに結果を出し、不正な指定は1.6秒へ戻す',()=>{
+  for(const cleared of [false,true]){
+    const immediate=session(),wait=new EndWait();immediate.connectPath(['S','A','G']);immediate.start();immediate.advance('2.5');
+    assert.equal(wait.ready(immediate.run,100,{cleared,delayMs:0}),true);
+    for(const delayMs of [undefined,null,'0',-100,50,1601,5100,NaN,Infinity]){
+      const s=session(),fallback=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
+      assert.equal(fallback.ready(s.run,100,{cleared,delayMs}),false);
+      assert.equal(fallback.ready(s.run,1699,{cleared,delayMs}),false);
+      assert.equal(fallback.ready(s.run,1700,{cleared,delayMs}),true);
+    }
+  }
+});
+
+test('不正な表示時計で終了待機を固定せず、有効な最初の時刻から数える',()=>{
+  const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);s.start();s.advance('2.5');
+  assert.equal(wait.ready(s.run,NaN,{delayMs:500}),false);
+  assert.equal(wait.ready(s.run,100,{delayMs:500}),false);
+  assert.equal(wait.ready(s.run,599),false);assert.equal(wait.ready(s.run,600),true);
 });
