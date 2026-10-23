@@ -1,0 +1,47 @@
+{
+  "version": "0.94.0",
+  "sourceCommit": "ac0898267e218ec11590f525d6162ead68b2f779",
+  "reports": [
+    {
+      "path": "chromium/report.json",
+      "passed": true,
+      "count": 4
+    },
+    {
+      "path": "webkit/report.json",
+      "passed": true,
+      "count": 4
+    },
+    {
+      "path": "endings/chromium/report.json",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "path": "endings/webkit/report.json",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "path": "public/domain/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/github/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/reopen/report.json",
+      "passed": true,
+      "count": 4
+    }
+  ],
+  "localCases": 12,
+  "publicChecks": 190,
+  "targetedUnitTests": 88,
+  "releaseTestFiles": 44,
+  "syntaxFiles": 117,
+  "boundary": "Disposable PC browsers, including phone touch emulation; physical-device appearance and touch remain unverified. WebKit has no audio API in this test environment."
+}
