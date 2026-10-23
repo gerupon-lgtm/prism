@@ -48,3 +48,19 @@ test('固定課題はゴールへ届かない終了でも3秒後に編集へ戻�
   assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);assert.equal(wait.ready(s.run,3100,{allowNoArrival:true}),true);
   const records=structuredClone(s.run.records);s.stop();assert(s.editable);assert.deepEqual(s.run.records,records);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/届/);
 });
+
+test('時間上限でも記録を保って完了待機し、3秒後に編集へ戻る',()=>{
+  for(const stepped of [false,true]){
+    const s=session(),wait=new EndWait();s.connectPath(['S','A','G']);
+    s.challenge={...s.challenge,maxDuration:'1'};s.start();
+    if(stepped){s.pause();s.next();}else s.advance('20');
+    assert.equal(s.run.format(),'1');assert.equal(s.run.exhausted,true);
+    assert.equal(s.editable,false);assert.equal(s.run.status,'paused');
+    assert.equal(s.result.state,'stopped');assert.equal(s.result.score,null);assert.equal(s.result.timeLimitReached,true);
+    const result=s.exportResult();assert(s.run.particles.size>0);
+    assert.equal(wait.ready(s.run,100,{allowNoArrival:true}),false);
+    assert.equal(wait.ready(s.run,3099,{allowNoArrival:true}),false);
+    assert.equal(wait.ready(s.run,3100,{allowNoArrival:true}),true);
+    s.stop();assert(s.editable);assert.deepEqual(s.exportResult(),{...result,status:'stopped'});
+  }
+});

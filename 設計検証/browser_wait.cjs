@@ -51,7 +51,7 @@ async function startAndPause(page) {
   catch(error){const state=await page.evaluate(()=>({play:document.getElementById('play').outerHTML,hint:document.getElementById('hint').textContent,error:document.getElementById('dialog-error').textContent,edges:[...document.querySelectorAll('.edge:not(.candidate)')].map(e=>e.dataset.edge)}));throw new Error('Start did not reach running: '+JSON.stringify(state),{cause:error});}
   await page.waitForFunction(()=>document.getElementById('play').dataset.state==='paused');
 }
-async function chooseChallenge(page,id,{dismissMirrorIntro=true}={}) {
+async function chooseChallenge(page,id,{dismissMirrorIntro=true,pagerTimeout=1000}={}) {
   // Helpers take stable IDs. The human-facing Q number can move across sets.
   const number=await page.evaluate(async id=>{const {challenges}=await import(new URL('../content/challenges.js',document.querySelector('script[type=module]').src));const c=challenges.find(c=>c.id===id);return c?.number??Number(id.slice(1));},id);
   await page.locator('#dialog-body .dialog-list button').first().waitFor({state:'visible'});
@@ -63,7 +63,7 @@ async function chooseChallenge(page,id,{dismissMirrorIntro=true}={}) {
     // Responsive pagination may change between measuring and clicking. Re-read
     // the target instead of waiting on a pager that became disabled meanwhile.
     if(await next.isDisabled())continue;
-    try{await next.click({timeout:1000});}catch(error){if(!await next.isDisabled())throw error;}
+    try{await next.click({timeout:pagerTimeout});}catch(error){if(!await next.isDisabled())throw error;}
   }
   throw new Error('Challenge not available in selector: '+id+' '+await page.locator('#dialog-body').innerText());
 }

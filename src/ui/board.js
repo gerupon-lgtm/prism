@@ -311,7 +311,18 @@ export class Board {
       this.world.insertBefore(rays,this.world.querySelector('[data-node]'));
       const control=this.location(geometry.controlScreen.x,geometry.controlScreen.y),wheelRadius=32/scale;geometry.control=control;
       const dial=svg('g',{class:'mirror-control','data-mirror-control':node.id,transform:`translate(${control.x} ${control.y})`});
-      dial.append(svg('circle',{r:53/scale,class:'mirror-control-pad'}),svg('circle',{r:wheelRadius,class:'mirror-control-track'}));
+      dial.append(svg('circle',{r:53/scale,class:'mirror-control-pad'}));
+      const ornament=svg('g',{class:'mirror-control-ornament','aria-hidden':'true'});
+      ornament.append(svg('circle',{r:48/scale,class:'mirror-control-rim'}),svg('circle',{r:22/scale,class:'mirror-control-lens'}));
+      let ticks='';
+      for(let i=0;i<12;i++){
+        const angle=i*Math.PI/6,inner=(i%3===0?41:43)/scale,outer=46/scale;
+        ticks+=`M${inner*Math.cos(angle)} ${inner*Math.sin(angle)} L${outer*Math.cos(angle)} ${outer*Math.sin(angle)} `;
+      }
+      ornament.append(svg('path',{d:ticks,class:'mirror-control-ticks'}));
+      // A small star marks the centre; the broad illuminated rim is the control.
+      const star=svg('path',{d:'M0 -14 L3 -4 L11 0 L3 4 L0 14 L-3 4 L-11 0 L-3 -4 Z',transform:`scale(${1/scale})`,class:'mirror-control-star'});
+      ornament.append(star,svg('circle',{r:2.5/scale,class:'mirror-control-spark'}));dial.append(ornament,svg('circle',{r:wheelRadius,class:'mirror-control-track'}));
       for(const centre of [-Math.PI/2,Math.PI/6,5*Math.PI/6]){
         const start=centre-22*Math.PI/180,end=centre+22*Math.PI/180;
         const a={x:wheelRadius*Math.cos(start),y:wheelRadius*Math.sin(start)},b={x:wheelRadius*Math.cos(end),y:wheelRadius*Math.sin(end)};

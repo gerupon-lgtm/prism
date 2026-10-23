@@ -1,0 +1,133 @@
+{
+  "version": "0.89.0",
+  "passed": false,
+  "method": "Real play click and animation-frame clock; read-only DOM observers; actual UI result export",
+  "cases": [],
+  "pending": [
+    "Physical phones, actual sound quality, subjective difficulty"
+  ],
+  "url": "http://127.0.0.1:53000/",
+  "browser": {
+    "engine": "chromium",
+    "channel": null,
+    "version": "151.0.7922.34"
+  },
+  "step": "Q25-winner",
+  "error": "AssertionError [ERR_ASSERTION]: Q25-winner result waits until the final effect has played\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_play_pacing.cjs:138:5",
+  "failure": {
+    "probe": {
+      "click": {
+        "wall": 3047,
+        "experimentDisplay": null
+      },
+      "firstMoving": {
+        "wall": 3330.10000000149,
+        "experimentDisplay": "0"
+      },
+      "lastRequired": {
+        "wall": 7453.39999999851,
+        "experimentDisplay": "4.1"
+      },
+      "completed": {
+        "wall": 7453.199999999255,
+        "experimentDisplay": "4.1"
+      },
+      "fireworksStarted": {
+        "wall": 7453.39999999851,
+        "experimentDisplay": "4.1"
+      },
+      "fireworksEnded": {
+        "wall": 9841.800000000745,
+        "experimentDisplay": "4.1"
+      },
+      "toastOverFireworks": true,
+      "toast": {
+        "wall": 7453.39999999851,
+        "experimentDisplay": "4.1",
+        "kind": "achieved",
+        "text": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "editing": {
+        "wall": 10168,
+        "experimentDisplay": "4.1",
+        "result": "達成 100.00点・編集可能｜4.1秒・0光線"
+      },
+      "arrivals": [
+        {
+          "wall": 4434.89999999851,
+          "experimentDisplay": "1.1",
+          "goal": "G",
+          "count": 1,
+          "delta": 1
+        },
+        {
+          "wall": 7453.39999999851,
+          "experimentDisplay": "4.1",
+          "goal": "G",
+          "count": 2,
+          "delta": 1
+        }
+      ],
+      "pictures": {
+        "2:G:1.1": {
+          "wall": 4436.39999999851,
+          "experimentDisplay": "1.1",
+          "goal": "G",
+          "visible": true,
+          "removed": 6228.800000000745
+        },
+        "4:G:4.1": {
+          "wall": 7453.39999999851,
+          "experimentDisplay": "4.1",
+          "goal": "G",
+          "visible": true,
+          "removed": 9230.300000000745
+        }
+      },
+      "counts": {
+        "G": 2
+      },
+      "states": [
+        {
+          "wall": 3047.300000000745,
+          "experimentDisplay": null,
+          "state": "ready",
+          "text": "鐘を鳴らす",
+          "disabled": false
+        },
+        {
+          "wall": 3062.699999999255,
+          "experimentDisplay": null,
+          "state": "preparing",
+          "text": "準備中",
+          "disabled": false
+        },
+        {
+          "wall": 3329.300000000745,
+          "experimentDisplay": "0",
+          "state": "running",
+          "text": "一時停止",
+          "disabled": false
+        },
+        {
+          "wall": 7453.10000000149,
+          "experimentDisplay": "4.1",
+          "state": "paused",
+          "text": "終了",
+          "disabled": true
+        },
+        {
+          "wall": 10168,
+          "experimentDisplay": "4.1",
+          "state": "stopped",
+          "text": "鐘を鳴らす",
+          "disabled": false
+        }
+      ],
+      "missing": [],
+      "maxPaintGapMs": 33.30000000000018
+    },
+    "result": "達成 100.00点・編集可能｜4.1秒・0光線",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>"
+  }
+}

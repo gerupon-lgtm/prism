@@ -601,7 +601,15 @@ html:not(.device-landscape) #app.selection-play.text-enlarged:not(.compact) #sta
 :root[data-motion=reduce] .mirror-selection-ring{animation:none}
 .mirror-control{cursor:grab;touch-action:none}
 .mirror-control:active{cursor:grabbing}
-.mirror-control-pad{fill:#101e34f5;stroke:#a2c9e6;stroke-width:2px;vector-effect:non-scaling-stroke;filter:drop-shadow(0 3px 5px #000a)}
-.mirror-control-track{fill:none;stroke:#294960;stroke-width:12px;vector-effect:non-scaling-stroke;pointer-events:none}
-.mirror-wheel-arrow{fill:none;stroke:#d3f2ff;stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 2px #82c8ed80);pointer-events:none}
-.mirror-control-caption{fill:#d7efff;pointer-events:none;paint-order:stroke;stroke:#101e34;stroke-width:3px;vector-effect:non-scaling-stroke}
+.mirror-control-pad{fill:#0a172cf5;stroke:#e4c57f;stroke-width:2.5px;vector-effect:non-scaling-stroke;filter:drop-shadow(0 3px 5px #000c) drop-shadow(0 0 6px #d9b76b70)}
+.mirror-control-ornament{pointer-events:none}
+.mirror-control-rim{fill:none;stroke:#b4dffb;stroke-opacity:.65;stroke-width:1px;vector-effect:non-scaling-stroke}
+.mirror-control-lens{fill:#183652;stroke:#47748b;stroke-width:1px;vector-effect:non-scaling-stroke}
+.mirror-control-ticks{fill:none;stroke:#e8cf91;stroke-width:1.5px;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.mirror-control-star{fill:#cfab5b40;stroke:#ffe6a9;stroke-width:1.5px;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px #fae3a180)}
+.mirror-control-spark{fill:#f5fcff;filter:drop-shadow(0 0 4px #bdefff)}
+.mirror-control-track{fill:none;stroke:#315d79;stroke-width:14px;vector-effect:non-scaling-stroke;pointer-events:none}
+.mirror-wheel-arrow{fill:none;stroke:#e0f7ff;stroke-width:3.5px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px #8cd8ff);pointer-events:none}
+.mirror-control:is(:hover,:active) .mirror-control-track{stroke:#417c9f}
+.mirror-control:is(:hover,:active) .mirror-wheel-arrow{stroke:#fff4d0;filter:drop-shadow(0 0 4px #cfecff)}
+.mirror-control-caption{fill:#ffe8b1;font-weight:600;pointer-events:none;paint-order:stroke;stroke:#0a172c;stroke-width:3px;vector-effect:non-scaling-stroke}

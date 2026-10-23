@@ -7,7 +7,7 @@ export class OutcomeSound {
   update(run,result,enabled=false) {
     if(!run||this.seen.has(run))return;
     const achieved=result?.state==='achieved'&&result.score;
-    const failed=result?.state==='failed'&&(run.exhausted||run.status==='stopped');
+    const failed=(result?.state==='failed'||result?.timeLimitReached&&!achieved)&&(run.exhausted||run.status==='stopped');
     if(!achieved&&!failed)return;
     this.seen.add(run);
     if(!enabled||run.status==='stopped'||['load','error'].includes(run.pauseReason))return;

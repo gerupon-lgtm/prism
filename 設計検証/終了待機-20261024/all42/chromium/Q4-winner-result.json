@@ -1,0 +1,651 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "fastest",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.1
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.2,
+        "y": 0.34
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.34
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.58
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.92
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1.5",
+        "enabled": false
+      },
+      {
+        "id": "SB",
+        "from": "S",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1.5"
+      }
+    ]
+  },
+  "elapsed": "2.5",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": "G",
+      "plannedTime": "2.5"
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": "G",
+      "edge": "SB",
+      "from": "S",
+      "to": "B",
+      "arrivalTime": "0.5"
+    },
+    {
+      "type": "arrival",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": "G",
+      "edge": "SB"
+    },
+    {
+      "type": "process-start",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": "G",
+      "arrivedAt": "0.5",
+      "wait": "0",
+      "finishTime": "1"
+    },
+    {
+      "type": "process-end",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": "G",
+      "startedAt": "0.5",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": "G",
+      "edge": "BG",
+      "from": "B",
+      "to": "G",
+      "arrivalTime": "2.5"
+    },
+    {
+      "type": "arrival",
+      "time": "2.5",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": "G",
+      "edge": "BG"
+    },
+    {
+      "type": "goal",
+      "time": "2.5",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": "G",
+      "hops": 2
+    }
+  ],
+  "evaluation": {
+    "state": "achieved",
+    "first": "2.5",
+    "evaluatedTime": "2.5",
+    "score": {
+      "numerator": "100",
+      "denominator": "1"
+    },
+    "challenge": "Q4"
+  },
+  "challenge": {
+    "id": "Q4",
+    "maxDuration": "4",
+    "version": 2,
+    "name": "道が一本使えなくても",
+    "stage": "ドーム型天文台",
+    "type": "edge-fault",
+    "limit": 6,
+    "baseline": "2.5",
+    "goal": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.1,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.2,
+        "y": 0.34,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.8,
+        "y": 0.34,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.58,
+        "process": "0"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.92,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "SB",
+        "from": "S",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "0.5"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1.5"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1.5"
+      },
+      {
+        "id": "SC",
+        "from": "S",
+        "to": "C",
+        "time": "1"
+      },
+      {
+        "id": "CB",
+        "from": "C",
+        "to": "B",
+        "time": "0.5"
+      }
+    ],
+    "number": 4,
+    "set": "intro",
+    "setName": "お試し"
+  },
+  "originalConditions": {
+    "mode": "fastest",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.1
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.2,
+        "y": 0.34
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.34
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.58
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.92
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "1.5"
+      },
+      {
+        "id": "SB",
+        "from": "S",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1.5"
+      }
+    ]
+  },
+  "faultCases": [
+    {
+      "id": "AG",
+      "kind": "edge",
+      "conditions": {
+        "mode": "fastest",
+        "target": "G",
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "process": "0.5",
+            "x": 0.5,
+            "y": 0.1
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.2,
+            "y": 0.34
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.8,
+            "y": 0.34
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.58
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.92
+          }
+        ],
+        "edges": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AG",
+            "from": "A",
+            "to": "G",
+            "time": "1.5",
+            "enabled": false
+          },
+          {
+            "id": "SB",
+            "from": "S",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "1.5"
+          }
+        ]
+      },
+      "reachable": true,
+      "time": "2.5",
+      "edges": [
+        "SB",
+        "BG"
+      ]
+    },
+    {
+      "id": "BG",
+      "kind": "edge",
+      "conditions": {
+        "mode": "fastest",
+        "target": "G",
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "process": "0.5",
+            "x": 0.5,
+            "y": 0.1
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.2,
+            "y": 0.34
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.8,
+            "y": 0.34
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.58
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.92
+          }
+        ],
+        "edges": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AG",
+            "from": "A",
+            "to": "G",
+            "time": "1.5"
+          },
+          {
+            "id": "SB",
+            "from": "S",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "1.5",
+            "enabled": false
+          }
+        ]
+      },
+      "reachable": true,
+      "time": "2.5",
+      "edges": [
+        "SA",
+        "AG"
+      ]
+    },
+    {
+      "id": "SA",
+      "kind": "edge",
+      "conditions": {
+        "mode": "fastest",
+        "target": "G",
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "process": "0.5",
+            "x": 0.5,
+            "y": 0.1
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.2,
+            "y": 0.34
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.8,
+            "y": 0.34
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.58
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.92
+          }
+        ],
+        "edges": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5",
+            "enabled": false
+          },
+          {
+            "id": "AG",
+            "from": "A",
+            "to": "G",
+            "time": "1.5"
+          },
+          {
+            "id": "SB",
+            "from": "S",
+            "to": "B",
+            "time": "0.5"
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "1.5"
+          }
+        ]
+      },
+      "reachable": true,
+      "time": "2.5",
+      "edges": [
+        "SB",
+        "BG"
+      ]
+    },
+    {
+      "id": "SB",
+      "kind": "edge",
+      "conditions": {
+        "mode": "fastest",
+        "target": "G",
+        "nodes": [
+          {
+            "id": "S",
+            "kind": "source",
+            "process": "0.5",
+            "x": 0.5,
+            "y": 0.1
+          },
+          {
+            "id": "A",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.2,
+            "y": 0.34
+          },
+          {
+            "id": "B",
+            "kind": "prism",
+            "process": "0.5",
+            "x": 0.8,
+            "y": 0.34
+          },
+          {
+            "id": "C",
+            "kind": "prism",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.58
+          },
+          {
+            "id": "G",
+            "kind": "goal",
+            "process": "0",
+            "x": 0.5,
+            "y": 0.92
+          }
+        ],
+        "edges": [
+          {
+            "id": "SA",
+            "from": "S",
+            "to": "A",
+            "time": "0.5"
+          },
+          {
+            "id": "AG",
+            "from": "A",
+            "to": "G",
+            "time": "1.5"
+          },
+          {
+            "id": "SB",
+            "from": "S",
+            "to": "B",
+            "time": "0.5",
+            "enabled": false
+          },
+          {
+            "id": "BG",
+            "from": "B",
+            "to": "G",
+            "time": "1.5"
+          }
+        ]
+      },
+      "reachable": true,
+      "time": "2.5",
+      "edges": [
+        "SA",
+        "AG"
+      ]
+    }
+  ],
+  "replayCase": "AG",
+  "phaseOffset": "0"
+}

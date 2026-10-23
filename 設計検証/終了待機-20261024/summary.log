@@ -1,0 +1,143 @@
+{
+  "version": "0.90.0",
+  "passed": true,
+  "browserPlayback": [
+    {
+      "engine": "chromium",
+      "draw": 1,
+      "stages": 42,
+      "cases": 47,
+      "clearMinimumWaitMs": 2722.800000000745,
+      "failureMinimumWaitMs": 3040.2999999970198,
+      "minimumWaitMs": 2722.800000000745,
+      "maximumWaitMs": 3040.2999999970198,
+      "overlap": 0
+    },
+    {
+      "engine": "webkit",
+      "draw": 5,
+      "stages": 42,
+      "cases": 47,
+      "clearMinimumWaitMs": 2735,
+      "failureMinimumWaitMs": 3045,
+      "minimumWaitMs": 2735,
+      "maximumWaitMs": 3045,
+      "overlap": 0
+    }
+  ],
+  "edgeCases": [
+    {
+      "engine": "chromium",
+      "cases": [
+        {
+          "name": "timeout-at-arrival",
+          "waitMs": 3026,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "timeout-before-arrival",
+          "waitMs": 3028,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "no-arrival",
+          "waitMs": 3049.5,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "next-event-completion",
+          "waitMs": 2746.60000000149,
+          "audio": [
+            "perfect"
+          ],
+          "nextChoicePassed": true
+        },
+        {
+          "name": "manual-stop-ending",
+          "waitMs": 61,
+          "audio": [
+            "perfect"
+          ]
+        },
+        {
+          "name": "desktop-fireworks",
+          "waitMs": 2735.300000000745,
+          "audio": [
+            "perfect"
+          ],
+          "retryChoicePassed": true
+        },
+        {
+          "name": "reduced-motion-ending",
+          "waitMs": 2733.300000000745,
+          "audio": [
+            "perfect"
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "cases": [
+        {
+          "name": "timeout-at-arrival",
+          "waitMs": 3063,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "timeout-before-arrival",
+          "waitMs": 3037,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "no-arrival",
+          "waitMs": 3056,
+          "audio": [
+            "failure"
+          ]
+        },
+        {
+          "name": "next-event-completion",
+          "waitMs": 2770,
+          "audio": [
+            "perfect"
+          ],
+          "nextChoicePassed": true
+        },
+        {
+          "name": "manual-stop-ending",
+          "waitMs": 212,
+          "audio": [
+            "perfect"
+          ]
+        },
+        {
+          "name": "desktop-fireworks",
+          "waitMs": 2745,
+          "audio": [
+            "perfect"
+          ],
+          "retryChoicePassed": true
+        },
+        {
+          "name": "reduced-motion-ending",
+          "waitMs": 2750,
+          "audio": [
+            "perfect"
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "PC browsers, not physical phones or listening acceptance"
+}

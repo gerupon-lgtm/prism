@@ -1,0 +1,642 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "spread",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.09
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.21,
+        "y": 0.34
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.79,
+        "y": 0.34
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.21,
+        "y": 0.67
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.79,
+        "y": 0.67
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.95
+      }
+    ],
+    "edges": [
+      {
+        "id": "DS",
+        "from": "D",
+        "to": "S",
+        "time": "1"
+      },
+      {
+        "id": "SD",
+        "from": "S",
+        "to": "D",
+        "time": "0.75"
+      },
+      {
+        "id": "DG",
+        "from": "D",
+        "to": "G",
+        "time": "0.8"
+      }
+    ]
+  },
+  "elapsed": "6.8",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null,
+      "edge": "SD",
+      "from": "S",
+      "to": "D",
+      "arrivalTime": "0.75"
+    },
+    {
+      "type": "arrival",
+      "time": "0.75",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "edge": "SD"
+    },
+    {
+      "type": "process-start",
+      "time": "0.75",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "arrivedAt": "0.75",
+      "wait": "0",
+      "finishTime": "1"
+    },
+    {
+      "type": "process-end",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "startedAt": "0.75",
+      "processing": "0.25"
+    },
+    {
+      "type": "branch",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "children": [
+        2,
+        3
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 2,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "edge": "DG",
+      "from": "D",
+      "to": "G",
+      "arrivalTime": "1.8"
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "edge": "DS",
+      "from": "D",
+      "to": "S",
+      "arrivalTime": "2"
+    },
+    {
+      "type": "arrival",
+      "time": "1.8",
+      "particle": 2,
+      "parent": 1,
+      "node": "G",
+      "target": null,
+      "edge": "DG"
+    },
+    {
+      "type": "goal",
+      "time": "1.8",
+      "particle": 2,
+      "parent": 1,
+      "node": "G",
+      "target": null,
+      "hops": 2
+    },
+    {
+      "type": "arrival",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "S",
+      "target": null,
+      "edge": "DS"
+    },
+    {
+      "type": "process-start",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "S",
+      "target": null,
+      "arrivedAt": "2",
+      "wait": "0",
+      "finishTime": "2.5"
+    },
+    {
+      "type": "process-end",
+      "time": "2.5",
+      "particle": 3,
+      "parent": 1,
+      "node": "S",
+      "target": null,
+      "startedAt": "2",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "2.5",
+      "particle": 3,
+      "parent": 1,
+      "node": "S",
+      "target": null,
+      "edge": "SD",
+      "from": "S",
+      "to": "D",
+      "arrivalTime": "3.25"
+    },
+    {
+      "type": "arrival",
+      "time": "3.25",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "edge": "SD"
+    },
+    {
+      "type": "process-start",
+      "time": "3.25",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "arrivedAt": "3.25",
+      "wait": "0",
+      "finishTime": "3.5"
+    },
+    {
+      "type": "process-end",
+      "time": "3.5",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "startedAt": "3.25",
+      "processing": "0.25"
+    },
+    {
+      "type": "branch",
+      "time": "3.5",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "children": [
+        4,
+        5
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "3.5",
+      "particle": 4,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "edge": "DG",
+      "from": "D",
+      "to": "G",
+      "arrivalTime": "4.3"
+    },
+    {
+      "type": "travel",
+      "time": "3.5",
+      "particle": 5,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "edge": "DS",
+      "from": "D",
+      "to": "S",
+      "arrivalTime": "4.5"
+    },
+    {
+      "type": "arrival",
+      "time": "4.3",
+      "particle": 4,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "edge": "DG"
+    },
+    {
+      "type": "goal",
+      "time": "4.3",
+      "particle": 4,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "hops": 4
+    },
+    {
+      "type": "arrival",
+      "time": "4.5",
+      "particle": 5,
+      "parent": 3,
+      "node": "S",
+      "target": null,
+      "edge": "DS"
+    },
+    {
+      "type": "process-start",
+      "time": "4.5",
+      "particle": 5,
+      "parent": 3,
+      "node": "S",
+      "target": null,
+      "arrivedAt": "4.5",
+      "wait": "0",
+      "finishTime": "5"
+    },
+    {
+      "type": "process-end",
+      "time": "5",
+      "particle": 5,
+      "parent": 3,
+      "node": "S",
+      "target": null,
+      "startedAt": "4.5",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "5",
+      "particle": 5,
+      "parent": 3,
+      "node": "S",
+      "target": null,
+      "edge": "SD",
+      "from": "S",
+      "to": "D",
+      "arrivalTime": "5.75"
+    },
+    {
+      "type": "arrival",
+      "time": "5.75",
+      "particle": 5,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "edge": "SD"
+    },
+    {
+      "type": "process-start",
+      "time": "5.75",
+      "particle": 5,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "arrivedAt": "5.75",
+      "wait": "0",
+      "finishTime": "6"
+    },
+    {
+      "type": "process-end",
+      "time": "6",
+      "particle": 5,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "startedAt": "5.75",
+      "processing": "0.25"
+    },
+    {
+      "type": "branch",
+      "time": "6",
+      "particle": 5,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "children": [
+        6,
+        7
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "6",
+      "particle": 6,
+      "parent": 5,
+      "node": "D",
+      "target": null,
+      "edge": "DG",
+      "from": "D",
+      "to": "G",
+      "arrivalTime": "6.8"
+    },
+    {
+      "type": "travel",
+      "time": "6",
+      "particle": 7,
+      "parent": 5,
+      "node": "D",
+      "target": null,
+      "edge": "DS",
+      "from": "D",
+      "to": "S",
+      "arrivalTime": "7"
+    },
+    {
+      "type": "arrival",
+      "time": "6.8",
+      "particle": 6,
+      "parent": 5,
+      "node": "G",
+      "target": null,
+      "edge": "DG"
+    },
+    {
+      "type": "goal",
+      "time": "6.8",
+      "particle": 6,
+      "parent": 5,
+      "node": "G",
+      "target": null,
+      "hops": 6
+    }
+  ],
+  "evaluation": {
+    "state": "failed",
+    "first": "1.8",
+    "evaluatedTime": "6.8",
+    "score": {
+      "numerator": "0",
+      "denominator": "1"
+    },
+    "challenge": "Q30",
+    "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+  },
+  "challenge": {
+    "id": "Q30",
+    "version": 2,
+    "name": "二度目の分岐",
+    "type": "return-pattern",
+    "goal": "G",
+    "count": 3,
+    "interval": "2.5",
+    "limit": 5,
+    "baseline": "6",
+    "maxDuration": "6.8",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.09,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.21,
+        "y": 0.34,
+        "process": "0.25"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.79,
+        "y": 0.34,
+        "process": "0.25"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.21,
+        "y": 0.67,
+        "process": "0.25"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.79,
+        "y": 0.67,
+        "process": "0.25"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.95,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.5"
+      },
+      {
+        "id": "CS",
+        "from": "C",
+        "to": "S",
+        "time": "0.6"
+      },
+      {
+        "id": "SB",
+        "from": "S",
+        "to": "B",
+        "time": "0.2"
+      },
+      {
+        "id": "DS",
+        "from": "D",
+        "to": "S",
+        "time": "1"
+      },
+      {
+        "id": "SC",
+        "from": "S",
+        "to": "C",
+        "time": "0.8"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "0.1"
+      },
+      {
+        "id": "SD",
+        "from": "S",
+        "to": "D",
+        "time": "0.75"
+      },
+      {
+        "id": "DG",
+        "from": "D",
+        "to": "G",
+        "time": "0.8"
+      },
+      {
+        "id": "AD",
+        "from": "A",
+        "to": "D",
+        "time": "0.4"
+      },
+      {
+        "id": "BC",
+        "from": "B",
+        "to": "C",
+        "time": "0.2"
+      }
+    ],
+    "number": 26,
+    "set": "return",
+    "setName": "星へ帰り、再び分かれる",
+    "world": "starreturn",
+    "stage": "星環の帰廊",
+    "draw": {
+      "id": "1ce3833f28171471",
+      "revision": 1,
+      "number": 5
+    }
+  },
+  "originalConditions": {
+    "mode": "spread",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.09
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.21,
+        "y": 0.34
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.79,
+        "y": 0.34
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.21,
+        "y": 0.67
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.79,
+        "y": 0.67
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.95
+      }
+    ],
+    "edges": [
+      {
+        "id": "DS",
+        "from": "D",
+        "to": "S",
+        "time": "1"
+      },
+      {
+        "id": "SD",
+        "from": "S",
+        "to": "D",
+        "time": "0.75"
+      },
+      {
+        "id": "DG",
+        "from": "D",
+        "to": "G",
+        "time": "0.8"
+      }
+    ]
+  },
+  "faultCases": [],
+  "replayCase": null,
+  "phaseOffset": "0"
+}

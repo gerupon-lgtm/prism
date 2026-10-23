@@ -253,7 +253,7 @@ function render(redraw=true,{records=true}={}) {
   const execution=run?(run.status==='stopped'?'編集可能':run.exhausted?'動作終了':run.status==='running'?'実行中':'一時停止'):'';
   let text=run?`${execution}｜${run.format()}秒・${run.activeCount}光線`:'';
   if(session.result){
-    const stateText={pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
+    const stateText=session.result.timeLimitReached?'時間切れ':{pending:'判定待ち',achieved:'達成',failed:'未達成',stopped:'中断',finished:'到着・動作終了',running:'実行中'}[session.result.state];
     text=`${stateText}${session.result.score?' '+displayScore(session.result.score)+'点':''}・${text}`;
     if(session.result.reason&&session.result.state!=='failed')text+='　'+playerReason();
     if(session.result.goals)text+=`　鐘 ${session.result.goals.filter(goal=>goal.first!==null).length}/${session.result.goals.length}${session.result.state==='achieved'?'・全到達 '+session.result.evaluatedTime+'秒':''}`;
@@ -302,6 +302,9 @@ function render(redraw=true,{records=true}={}) {
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
+  // The celebration plays on the board before the result card is revealed.
+  // Neither its start nor its lifetime depends on the card finding room.
+  celebration.update(run,session.result,Boolean(session.clearChoices)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run));
   outcomeSound.update(run,session.result,Boolean(session.clearChoices||failureOutcome())&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(run));
 }
 
@@ -329,12 +332,12 @@ function failureResultText(){
 function arrivalRowsText(rows){return rows.map(row=>`${row.label}：${row.time}${row.gap?'（'+row.gap+'）':''}`).join('\n');}
 function failureOutcome(){
   const run=session.run;
-  return Boolean(run&&session.mode==='challenge'&&!session.guide&&!session.runContext?.guide&&session.result?.challenge===session.challenge.id&&session.result.state==='failed'&&(run.exhausted||run.status==='stopped'));
+  return Boolean(run&&session.mode==='challenge'&&!session.guide&&!session.runContext?.guide&&session.result?.challenge===session.challenge.id&&(session.result.state==='failed'||session.result.timeLimitReached&&!session.clearChoices)&&(run.exhausted||run.status==='stopped'));
 }
 function renderFailureToast(){
   const toast=$('failure-toast'),run=session.run;
   if(run&&failureToastRun===run&&failureToastCircuit!==session.circuit)dismissedFailures.add(run);
-  toast.hidden=!failureOutcome()||dismissedFailures.has(run)||Boolean(startPrelude)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  toast.hidden=!failureOutcome()||run?.status!=='stopped'||dismissedFailures.has(run)||Boolean(startPrelude)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
   if(toast.hidden)return;
   if(failureToastRun!==run){failureToastRun=run;failureToastCircuit=session.circuit;}
   const reason=playerReason();if($('failure-reason').textContent!==reason)$('failure-reason').textContent=reason;
@@ -358,7 +361,7 @@ function renderFailureToast(){
     for(const width of slim?[maximum,Math.min(160,maximum)]:[maximum]){
       if(width<40)continue;
       toast.style.width=`${width}px`;toast.classList.toggle('compact-notice',compact);toast.classList.toggle('narrow-notice',width<(slim?140:220));toast.classList.toggle('slim-notice',slim);
-      $('failure-title').textContent=compact?'未達成':'課題未達成';$('failure-reason').hidden=compact;$('failure-timing').hidden=compact;$('failure-edit').hidden=compact;
+      $('failure-title').textContent=session.result.timeLimitReached?'時間切れ':compact?'未達成':'課題未達成';$('failure-reason').hidden=compact;$('failure-timing').hidden=compact;$('failure-edit').hidden=compact;
       $('failure-details').textContent=slim||width<150?'結果':'結果を見る';
       if(toast.scrollHeight>toast.clientHeight+1)continue;
       const height=toast.getBoundingClientRect().height,pad=4;
@@ -401,8 +404,7 @@ function clearTimeLabel(){
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
   if(run&&clearToastRun===run&&clearToastCircuit!==session.circuit)dismissedClears.add(run);
-  toast.hidden=!choices||dismissedClears.has(run)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
-  celebration.update(run,session.result,!toast.hidden&&!endWait.interrupted.has(run));
+  toast.hidden=!choices||run?.status!=='stopped'||dismissedClears.has(run)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
   if(toast.hidden)return;
   if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
   const perfect=perfectScore(session.result.score),time=session.result.evaluatedTime,score=displayScore(session.result.score);
@@ -1053,14 +1055,16 @@ function frame(now){
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
-  if(!document.hidden&&endWait.ready(session.run,now,{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)}))attempt(stopRun);
+  // Start the presentation wait after the final frame's work, not from the
+  // animation-frame timestamp captured before calculation and artwork creation.
+  if(!document.hidden&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared:Boolean(session.clearChoices)&&!session.result?.timeLimitReached}))attempt(stopRun);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 $('home').addEventListener('click',()=>attempt(chooseMode));$('menu').addEventListener('click',()=>attempt(menu));
 function showConditions(){
   const challenge=session.challenge;
-  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒で編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
+  const detail=session.mode==='challenge'?`${challengeLabel(challenge)} ${challenge.name}\n${challenge.stage}\n${$('condition').textContent}\n${challengeGoal(challenge)}\n配線 使用${session.circuit.edges.length}/${challenge.limit}本（上限${challenge.limit}本・残り${challenge.limit-session.circuit.edges.length}本）\n満点の基準：${['delivery-all','bell-sequence'].includes(challenge.type)?'最後の鐘への初回到達':challenge.type==='interval'?'初回到達':'到達'}${challenge.baseline}秒${challenge.type==='time-hops'?'・'+challenge.baselineHops+'本の経路':''}\n動作上限 ${challenge.maxDuration}秒（満点の基準時間とは別）。全粒終了後、クリア時は${CLEAR_END_WAIT_MS/1000}秒、それ以外は${END_WAIT_MS/1000}秒後に結果を表示し、編集へ戻ります。`:`${$('title').textContent}\n${$('condition').textContent}`;
   const returning=session.mode==='challenge'&&challenge.type==='return-pattern';
   fullText('現在の条件',detail+(returning?`\n最初の${challenge.count}回を比べ、指定回数に届いたら光を自動で止めます。光を星へ戻し、星でもう一度分岐させてください。間隔は指定した秒数との完全一致です。満点は指定回数目の到達が${challenge.baseline}秒の配線です。星の処理秒数は戻ってきた光にだけかかります。`:session.mode==='challenge'&&challenge.type==='bell-sequence'?`\n各鐘の最初の1回の到達を比べます。追加で鳴る分は順番・間隔の判定に含めません。同時到達は順番達成になりません。${challenge.intervals?'間隔は指定した秒数との完全一致で判定します。':''}`:''));
 }

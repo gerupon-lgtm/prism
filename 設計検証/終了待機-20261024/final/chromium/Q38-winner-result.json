@@ -1,0 +1,403 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "spread",
+    "target": "all",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.25",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.5,
+        "y": 0.3,
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "0.5"
+        }
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.23,
+        "y": 0.64,
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "2.5"
+        }
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.77,
+        "y": 0.64
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.25"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.25"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "0.25"
+      }
+    ]
+  },
+  "elapsed": "1.26",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null,
+      "edge": "SA",
+      "from": "S",
+      "to": "A",
+      "arrivalTime": "0.25"
+    },
+    {
+      "type": "arrival",
+      "time": "0.25",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "edge": "SA"
+    },
+    {
+      "type": "process-start",
+      "time": "0.25",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "arrivedAt": "0.25",
+      "wait": "0",
+      "finishTime": "0.5"
+    },
+    {
+      "type": "process-end",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "startedAt": "0.25",
+      "processing": "0.25"
+    },
+    {
+      "type": "travel",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "edge": "AB",
+      "from": "A",
+      "to": "B",
+      "arrivalTime": "0.75"
+    },
+    {
+      "type": "arrival",
+      "time": "0.75",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": null,
+      "edge": "AB"
+    },
+    {
+      "type": "process-start",
+      "time": "0.75",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": null,
+      "arrivedAt": "0.75",
+      "wait": "0",
+      "finishTime": "1"
+    },
+    {
+      "type": "process-end",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": null,
+      "startedAt": "0.75",
+      "processing": "0.25"
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "B",
+      "target": null,
+      "edge": "BG",
+      "from": "B",
+      "to": "G",
+      "arrivalTime": "1.25"
+    },
+    {
+      "type": "arrival",
+      "time": "1.25",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": null,
+      "edge": "BG"
+    },
+    {
+      "type": "goal",
+      "time": "1.25",
+      "particle": 1,
+      "parent": null,
+      "node": "G",
+      "target": null,
+      "hops": 3
+    }
+  ],
+  "evaluation": {
+    "state": "achieved",
+    "first": "1.25",
+    "evaluatedTime": "1.25",
+    "score": {
+      "numerator": "100",
+      "denominator": "1"
+    },
+    "challenge": "Q42",
+    "goals": [
+      {
+        "id": "G",
+        "first": "1.25"
+      }
+    ]
+  },
+  "challenge": {
+    "id": "Q42",
+    "name": "待つ道、進む道",
+    "limit": 3,
+    "goals": [
+      "G"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.25"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.3,
+        "process": "0.25",
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "0"
+        }
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.23,
+        "y": 0.64,
+        "process": "0.25",
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "2"
+        }
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.77,
+        "y": 0.64,
+        "process": "0.25"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.25"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.25"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "0.25"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "0.75"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "0.5"
+      },
+      {
+        "id": "AG",
+        "from": "A",
+        "to": "G",
+        "time": "2"
+      }
+    ],
+    "version": 2,
+    "type": "delivery-all",
+    "baseline": "1.25",
+    "maxDuration": "4",
+    "number": 38,
+    "set": "gate",
+    "setName": "星の門が開くとき",
+    "world": "stargate",
+    "stage": "星刻の開廊",
+    "bellPitches": [
+      72,
+      79,
+      84
+    ],
+    "draw": {
+      "id": "f8bbef152a847321",
+      "revision": 1,
+      "number": 1
+    }
+  },
+  "originalConditions": {
+    "mode": "spread",
+    "target": "all",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.25",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.5,
+        "y": 0.3,
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "0"
+        }
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.23,
+        "y": 0.64,
+        "gate": {
+          "period": "3",
+          "open": "1.5",
+          "phase": "2"
+        }
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.25",
+        "x": 0.77,
+        "y": 0.64
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.25"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.25"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "0.25"
+      }
+    ]
+  },
+  "faultCases": [],
+  "replayCase": null,
+  "phaseOffset": "3.5"
+}

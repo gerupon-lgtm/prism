@@ -1,0 +1,2516 @@
+{
+  "version": "0.90.0",
+  "passed": true,
+  "method": "Real play click and animation-frame clock; read-only DOM observers; actual UI result export",
+  "cases": [
+    {
+      "number": 31,
+      "kind": "winner",
+      "challenge": "Q35",
+      "draw": "8a8106f104310317",
+      "proofBoundSeconds": 2.4,
+      "experiment": {
+        "elapsed": "2.2",
+        "lastRecordedExperimentTime": 2.2,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2.2",
+          "evaluatedTime": "2.2",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q35",
+          "goals": [
+            {
+              "id": "G",
+              "first": "2.2"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "2.2",
+            "node": "G",
+            "particle": 1
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2.2",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 4856,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 5190,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 7408,
+          "experimentDisplay": "2.2"
+        },
+        "completed": {
+          "wall": 7388,
+          "experimentDisplay": "2.2"
+        },
+        "fireworksStarted": {
+          "wall": 7408,
+          "experimentDisplay": "2.2"
+        },
+        "fireworksEnded": {
+          "wall": 9800,
+          "experimentDisplay": "2.2"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 10137,
+          "experimentDisplay": "2.2",
+          "kind": "achieved",
+          "text": "100点クリア！×到達時間2.2秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 10138,
+          "experimentDisplay": "2.2",
+          "result": "達成 100.00点・編集可能｜2.2秒・0光線　鐘 1/1・全到達 2.2秒"
+        },
+        "arrivals": [
+          {
+            "wall": 7408,
+            "experimentDisplay": "2.2",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "1:G:2.2": {
+            "wall": 7408,
+            "experimentDisplay": "2.2",
+            "goal": "G",
+            "visible": true,
+            "removed": 9191,
+            "visibleDurationMs": 1783,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1689
+          }
+        },
+        "counts": {
+          "G": 1
+        },
+        "states": [
+          {
+            "wall": 4858,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 4884,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 5188,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 7388,
+            "experimentDisplay": "2.2",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 10134,
+            "experimentDisplay": "2.2",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 103
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 7434,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q31-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 7435,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q31-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 10162,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q31-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 32,
+      "kind": "winner",
+      "challenge": "Q36",
+      "draw": "d903e0bd7bc6720d",
+      "proofBoundSeconds": 0.8,
+      "experiment": {
+        "elapsed": "0.6",
+        "lastRecordedExperimentTime": 0.6,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "0.1",
+          "evaluatedTime": "0.6",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q36",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "0.1"
+            },
+            {
+              "id": "G2",
+              "first": "0.6"
+            }
+          ],
+          "gaps": [
+            "0.5"
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "0.1",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "0.6",
+            "node": "G2",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "0.1",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          },
+          {
+            "time": "0.6",
+            "count": 1,
+            "goals": [
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 6407,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 6479,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 7119,
+          "experimentDisplay": "0.6"
+        },
+        "completed": {
+          "wall": 7094,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksStarted": {
+          "wall": 7118,
+          "experimentDisplay": "0.6"
+        },
+        "fireworksEnded": {
+          "wall": 9510,
+          "experimentDisplay": "0.6"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 9857,
+          "experimentDisplay": "0.6",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達0.6秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 9857,
+          "experimentDisplay": "0.6",
+          "result": "達成 100.00点・編集可能｜0.6秒・0光線　鐘 2/2・全到達 0.6秒"
+        },
+        "arrivals": [
+          {
+            "wall": 6603,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 7119,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:0.1": {
+            "wall": 6606,
+            "experimentDisplay": "0.1",
+            "goal": "G1",
+            "visible": true,
+            "removed": 8390
+          },
+          "3:G2:0.6": {
+            "wall": 7119,
+            "experimentDisplay": "0.6",
+            "goal": "G2",
+            "visible": true,
+            "removed": 8887,
+            "visibleDurationMs": 1768,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1660
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 6408,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 6441,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 6476,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 7094,
+            "experimentDisplay": "0.6",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 9856,
+            "experimentDisplay": "0.6",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 132
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 6637,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 7152,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 7153,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q32-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 9895,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q32-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 33,
+      "kind": "winner",
+      "challenge": "Q37",
+      "draw": "e0e7f03558bf4fe0",
+      "proofBoundSeconds": 3.9,
+      "experiment": {
+        "elapsed": "2.9",
+        "lastRecordedExperimentTime": 2.9,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2.9",
+          "evaluatedTime": "2.9",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q37",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "2.9"
+            },
+            {
+              "id": "G2",
+              "first": "2.9"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "2.9",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "2.9",
+            "node": "G2",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2.9",
+            "count": 2,
+            "goals": [
+              "G1",
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 8876,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 9231,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 12135,
+          "experimentDisplay": "2.9"
+        },
+        "completed": {
+          "wall": 12115,
+          "experimentDisplay": "2.9"
+        },
+        "fireworksStarted": {
+          "wall": 12134,
+          "experimentDisplay": "2.9"
+        },
+        "fireworksEnded": {
+          "wall": 14527,
+          "experimentDisplay": "2.9"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 14860,
+          "experimentDisplay": "2.9",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達2.9秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 14860,
+          "experimentDisplay": "2.9",
+          "result": "達成 100.00点・編集可能｜2.9秒・0光線　鐘 2/2・全到達 2.9秒"
+        },
+        "arrivals": [
+          {
+            "wall": 12134,
+            "experimentDisplay": "2.9",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 12135,
+            "experimentDisplay": "2.9",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:2.9": {
+            "wall": 12135,
+            "experimentDisplay": "2.9",
+            "goal": "G1",
+            "visible": true,
+            "removed": 13912
+          },
+          "3:G2:2.9": {
+            "wall": 12135,
+            "experimentDisplay": "2.9",
+            "goal": "G2",
+            "visible": true,
+            "removed": 13916,
+            "visibleDurationMs": 1781,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1675
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 8877,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 8918,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 9228,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 12115,
+            "experimentDisplay": "2.9",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 14860,
+            "experimentDisplay": "2.9",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 117
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 12157,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q33-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 12158,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q33-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 14894,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q33-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 34,
+      "kind": "winner",
+      "challenge": "Q38",
+      "draw": "d6faacf397e9fe22",
+      "proofBoundSeconds": 3.3,
+      "experiment": {
+        "elapsed": "2",
+        "lastRecordedExperimentTime": 2,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.9",
+          "evaluatedTime": "2",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q38",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "2"
+            },
+            {
+              "id": "G2",
+              "first": "1.9"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.9",
+            "node": "G2",
+            "particle": 2
+          },
+          {
+            "time": "2",
+            "node": "G1",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          },
+          {
+            "time": "1.9",
+            "count": 1,
+            "goals": [
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7134,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 7490,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9540,
+          "experimentDisplay": "2"
+        },
+        "completed": {
+          "wall": 9521,
+          "experimentDisplay": "2"
+        },
+        "fireworksStarted": {
+          "wall": 9540,
+          "experimentDisplay": "2"
+        },
+        "fireworksEnded": {
+          "wall": 11931,
+          "experimentDisplay": "2"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12288,
+          "experimentDisplay": "2",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達2秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 12288,
+          "experimentDisplay": "2",
+          "result": "達成 100.00点・編集可能｜2秒・0光線　鐘 2/2・全到達 2秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9383,
+            "experimentDisplay": "1.9",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9540,
+            "experimentDisplay": "2",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G2:1.9": {
+            "wall": 9389,
+            "experimentDisplay": "1.9",
+            "goal": "G2",
+            "visible": true,
+            "removed": 11191
+          },
+          "3:G1:2": {
+            "wall": 9540,
+            "experimentDisplay": "2",
+            "goal": "G1",
+            "visible": true,
+            "removed": 11313,
+            "visibleDurationMs": 1773,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1668
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 7134,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7168,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 7488,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9521,
+            "experimentDisplay": "2",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12287,
+            "experimentDisplay": "2",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 124
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 9422,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q34-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 9572,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q34-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 9572,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q34-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 12313,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q34-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 35,
+      "kind": "winner",
+      "challenge": "Q39",
+      "draw": "26a2e38351c7f6e8",
+      "proofBoundSeconds": 3.6,
+      "experiment": {
+        "elapsed": "3",
+        "lastRecordedExperimentTime": 3,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2.5",
+          "evaluatedTime": "3",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q39",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "2.5"
+            },
+            {
+              "id": "G2",
+              "first": "3"
+            },
+            {
+              "id": "G3",
+              "first": "3"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "2.5",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "3",
+            "node": "G2",
+            "particle": 3
+          },
+          {
+            "time": "3",
+            "node": "G3",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "3",
+            "count": 2,
+            "goals": [
+              "G2",
+              "G3"
+            ]
+          },
+          {
+            "time": "2.5",
+            "count": 1,
+            "goals": [
+              "G1"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 6542,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 6903,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9903,
+          "experimentDisplay": "3"
+        },
+        "completed": {
+          "wall": 9882,
+          "experimentDisplay": "3"
+        },
+        "fireworksStarted": {
+          "wall": 9903,
+          "experimentDisplay": "3"
+        },
+        "fireworksEnded": {
+          "wall": 12298,
+          "experimentDisplay": "3"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12643,
+          "experimentDisplay": "3",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達3秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 12643,
+          "experimentDisplay": "3",
+          "result": "達成 100.00点・編集可能｜3秒・0光線　鐘 3/3・全到達 3秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9396,
+            "experimentDisplay": "2.5",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9903,
+            "experimentDisplay": "3",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9903,
+            "experimentDisplay": "3",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:2.5": {
+            "wall": 9402,
+            "experimentDisplay": "2.5",
+            "goal": "G1",
+            "visible": true,
+            "removed": 11211
+          },
+          "3:G2:3": {
+            "wall": 9903,
+            "experimentDisplay": "3",
+            "goal": "G2",
+            "visible": true,
+            "removed": 11677
+          },
+          "4:G3:3": {
+            "wall": 9903,
+            "experimentDisplay": "3",
+            "goal": "G3",
+            "visible": true,
+            "removed": 11682,
+            "visibleDurationMs": 1779,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1675
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 6542,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 6576,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 6901,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9882,
+            "experimentDisplay": "3",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12642,
+            "experimentDisplay": "3",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 117
+      },
+      "screenshots": [
+        {
+          "kind": "last-bell",
+          "wall": 9435,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q35-winner-last-bell.png"
+        },
+        {
+          "kind": "last-required",
+          "wall": 9926,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q35-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 9926,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q35-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 12669,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q35-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 36,
+      "kind": "winner",
+      "challenge": "Q40",
+      "draw": "95cbc6287f698cab",
+      "proofBoundSeconds": 2.6,
+      "experiment": {
+        "elapsed": "1.4",
+        "lastRecordedExperimentTime": 1.4,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.4",
+          "evaluatedTime": "1.4",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q40",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "1.4"
+            },
+            {
+              "id": "G2",
+              "first": "1.4"
+            },
+            {
+              "id": "G3",
+              "first": "1.4"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.4",
+            "node": "G3",
+            "particle": 3
+          },
+          {
+            "time": "1.4",
+            "node": "G1",
+            "particle": 4
+          },
+          {
+            "time": "1.4",
+            "node": "G2",
+            "particle": 5
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.4",
+            "count": 3,
+            "goals": [
+              "G3",
+              "G1",
+              "G2"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 8718,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 9139,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 10550,
+          "experimentDisplay": "1.4"
+        },
+        "completed": {
+          "wall": 10526,
+          "experimentDisplay": "1.4"
+        },
+        "fireworksStarted": {
+          "wall": 10550,
+          "experimentDisplay": "1.4"
+        },
+        "fireworksEnded": {
+          "wall": 12930,
+          "experimentDisplay": "1.4"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 13289,
+          "experimentDisplay": "1.4",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達1.4秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 13289,
+          "experimentDisplay": "1.4",
+          "result": "達成 100.00点・編集可能｜1.4秒・0光線　鐘 3/3・全到達 1.4秒"
+        },
+        "arrivals": [
+          {
+            "wall": 10550,
+            "experimentDisplay": "1.4",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10550,
+            "experimentDisplay": "1.4",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10550,
+            "experimentDisplay": "1.4",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "3:G3:1.4": {
+            "wall": 10551,
+            "experimentDisplay": "1.4",
+            "goal": "G3",
+            "visible": true,
+            "removed": 12318
+          },
+          "4:G1:1.4": {
+            "wall": 10551,
+            "experimentDisplay": "1.4",
+            "goal": "G1",
+            "visible": true,
+            "removed": 12324
+          },
+          "5:G2:1.4": {
+            "wall": 10551,
+            "experimentDisplay": "1.4",
+            "goal": "G2",
+            "visible": true,
+            "removed": 12330,
+            "visibleDurationMs": 1779,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1645
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 8719,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 8773,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 9133,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 10526,
+            "experimentDisplay": "1.4",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 13289,
+            "experimentDisplay": "1.4",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 147
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 10573,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q36-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 10574,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q36-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 13318,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q36-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 37,
+      "kind": "winner",
+      "challenge": "Q41",
+      "draw": "1be3b4867ff8f758",
+      "proofBoundSeconds": 1.25,
+      "experiment": {
+        "elapsed": "1.28",
+        "lastRecordedExperimentTime": 1.25,
+        "clockPastProofSeconds": 0.030000000000000027,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.25",
+          "evaluatedTime": "1.25",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q41",
+          "goals": [
+            {
+              "id": "G",
+              "first": "1.25"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.25",
+            "node": "G",
+            "particle": 1
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.25",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7446,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 7787,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9076,
+          "experimentDisplay": "1.28"
+        },
+        "completed": {
+          "wall": 9056,
+          "experimentDisplay": "1.28"
+        },
+        "fireworksStarted": {
+          "wall": 9076,
+          "experimentDisplay": "1.28"
+        },
+        "fireworksEnded": {
+          "wall": 11465,
+          "experimentDisplay": "1.28"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 11805,
+          "experimentDisplay": "1.28",
+          "kind": "achieved",
+          "text": "100点クリア！×到達時間1.25秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 11806,
+          "experimentDisplay": "1.28",
+          "result": "達成 100.00点・編集可能｜1.28秒・0光線　鐘 1/1・全到達 1.25秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9076,
+            "experimentDisplay": "1.28",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "1:G:1.25": {
+            "wall": 9076,
+            "experimentDisplay": "1.28",
+            "goal": "G",
+            "visible": true,
+            "removed": 10849,
+            "visibleDurationMs": 1773,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1688
+          }
+        },
+        "counts": {
+          "G": 1
+        },
+        "states": [
+          {
+            "wall": 7446,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7470,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 7784,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9056,
+            "experimentDisplay": "1.28",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 11805,
+            "experimentDisplay": "1.28",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 104
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 9098,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q37-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 9099,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q37-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 11833,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q37-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 38,
+      "kind": "winner",
+      "challenge": "Q42",
+      "draw": "8df2dcf237e9cb09",
+      "proofBoundSeconds": 1.25,
+      "experiment": {
+        "elapsed": "1.27",
+        "lastRecordedExperimentTime": 1.25,
+        "clockPastProofSeconds": 0.020000000000000018,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.25",
+          "evaluatedTime": "1.25",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q42",
+          "goals": [
+            {
+              "id": "G",
+              "first": "1.25"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.25",
+            "node": "G",
+            "particle": 1
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.25",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7228,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 7550,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 8832,
+          "experimentDisplay": "1.27"
+        },
+        "completed": {
+          "wall": 8813,
+          "experimentDisplay": "1.27"
+        },
+        "fireworksStarted": {
+          "wall": 8832,
+          "experimentDisplay": "1.27"
+        },
+        "fireworksEnded": {
+          "wall": 11222,
+          "experimentDisplay": "1.27"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 11574,
+          "experimentDisplay": "1.27",
+          "kind": "achieved",
+          "text": "100点クリア！×到達時間1.25秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 11574,
+          "experimentDisplay": "1.27",
+          "result": "達成 100.00点・編集可能｜1.27秒・0光線　鐘 1/1・全到達 1.25秒"
+        },
+        "arrivals": [
+          {
+            "wall": 8832,
+            "experimentDisplay": "1.27",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "1:G:1.25": {
+            "wall": 8832,
+            "experimentDisplay": "1.27",
+            "goal": "G",
+            "visible": true,
+            "removed": 10614,
+            "visibleDurationMs": 1782,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1690
+          }
+        },
+        "counts": {
+          "G": 1
+        },
+        "states": [
+          {
+            "wall": 7228,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7252,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 7548,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 8813,
+            "experimentDisplay": "1.27",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 11573,
+            "experimentDisplay": "1.27",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 102
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 8857,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q38-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 8858,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q38-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 11605,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q38-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 39,
+      "kind": "winner",
+      "challenge": "Q43",
+      "draw": "2a62de743029c5c9",
+      "proofBoundSeconds": 1.25,
+      "experiment": {
+        "elapsed": "1.25",
+        "lastRecordedExperimentTime": 1.25,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.25",
+          "evaluatedTime": "1.25",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q43",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "1.25"
+            },
+            {
+              "id": "G2",
+              "first": "1.25"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.25",
+            "node": "G2",
+            "particle": 2
+          },
+          {
+            "time": "1.25",
+            "node": "G1",
+            "particle": 3
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.25",
+            "count": 2,
+            "goals": [
+              "G2",
+              "G1"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7241,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 7577,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 8851,
+          "experimentDisplay": "1.25"
+        },
+        "completed": {
+          "wall": 8828,
+          "experimentDisplay": "1.25"
+        },
+        "fireworksStarted": {
+          "wall": 8850,
+          "experimentDisplay": "1.25"
+        },
+        "fireworksEnded": {
+          "wall": 11236,
+          "experimentDisplay": "1.25"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 11586,
+          "experimentDisplay": "1.25",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達1.25秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 11586,
+          "experimentDisplay": "1.25",
+          "result": "達成 100.00点・編集可能｜1.25秒・0光線　鐘 2/2・全到達 1.25秒"
+        },
+        "arrivals": [
+          {
+            "wall": 8850,
+            "experimentDisplay": "1.25",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 8851,
+            "experimentDisplay": "1.25",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G2:1.25": {
+            "wall": 8851,
+            "experimentDisplay": "1.25",
+            "goal": "G2",
+            "visible": true,
+            "removed": 10633
+          },
+          "3:G1:1.25": {
+            "wall": 8851,
+            "experimentDisplay": "1.25",
+            "goal": "G1",
+            "visible": true,
+            "removed": 10637,
+            "visibleDurationMs": 1786,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1667
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1
+        },
+        "states": [
+          {
+            "wall": 7241,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7265,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 7575,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 8828,
+            "experimentDisplay": "1.25",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 11586,
+            "experimentDisplay": "1.25",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 125
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 8883,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q39-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 8884,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q39-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 11617,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q39-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 40,
+      "kind": "winner",
+      "challenge": "Q44",
+      "draw": "8bb35c5377867517",
+      "proofBoundSeconds": 1.75,
+      "experiment": {
+        "elapsed": "1.77",
+        "lastRecordedExperimentTime": 1.75,
+        "clockPastProofSeconds": 0.020000000000000018,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.75",
+          "evaluatedTime": "1.75",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q44",
+          "goals": [
+            {
+              "id": "G",
+              "first": "1.75"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.75",
+            "node": "G",
+            "particle": 1
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.75",
+            "count": 1,
+            "goals": [
+              "G"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7262,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 7594,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9374,
+          "experimentDisplay": "1.77"
+        },
+        "completed": {
+          "wall": 9354,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksStarted": {
+          "wall": 9374,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksEnded": {
+          "wall": 11768,
+          "experimentDisplay": "1.77"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12102,
+          "experimentDisplay": "1.77",
+          "kind": "achieved",
+          "text": "100点クリア！×到達時間1.75秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 12102,
+          "experimentDisplay": "1.77",
+          "result": "達成 100.00点・編集可能｜1.77秒・0光線　鐘 1/1・全到達 1.75秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9374,
+            "experimentDisplay": "1.77",
+            "goal": "G",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "1:G:1.75": {
+            "wall": 9374,
+            "experimentDisplay": "1.77",
+            "goal": "G",
+            "visible": true,
+            "removed": 11160,
+            "visibleDurationMs": 1786,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1690
+          }
+        },
+        "counts": {
+          "G": 1
+        },
+        "states": [
+          {
+            "wall": 7262,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7290,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 7592,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9354,
+            "experimentDisplay": "1.77",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12102,
+            "experimentDisplay": "1.77",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 102
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 9399,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q40-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 9400,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q40-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 12134,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q40-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 41,
+      "kind": "winner",
+      "challenge": "Q45",
+      "draw": "b794364af14f419e",
+      "proofBoundSeconds": 1.75,
+      "experiment": {
+        "elapsed": "1.77",
+        "lastRecordedExperimentTime": 1.75,
+        "clockPastProofSeconds": 0.020000000000000018,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.75",
+          "evaluatedTime": "1.75",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q45",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "1.75"
+            },
+            {
+              "id": "G2",
+              "first": "1.75"
+            },
+            {
+              "id": "G3",
+              "first": "1.75"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.75",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "1.75",
+            "node": "G2",
+            "particle": 4
+          },
+          {
+            "time": "1.75",
+            "node": "G3",
+            "particle": 5
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.75",
+            "count": 3,
+            "goals": [
+              "G1",
+              "G2",
+              "G3"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 7752,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 8087,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 9885,
+          "experimentDisplay": "1.77"
+        },
+        "completed": {
+          "wall": 9859,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksStarted": {
+          "wall": 9885,
+          "experimentDisplay": "1.77"
+        },
+        "fireworksEnded": {
+          "wall": 12269,
+          "experimentDisplay": "1.77"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12651,
+          "experimentDisplay": "1.77",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達1.75秒スコア100.00点結果を見るもう一度次へ"
+        },
+        "editing": {
+          "wall": 12651,
+          "experimentDisplay": "1.77",
+          "result": "達成 100.00点・編集可能｜1.77秒・0光線　鐘 3/3・全到達 1.75秒"
+        },
+        "arrivals": [
+          {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:1.75": {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G1",
+            "visible": true,
+            "removed": 11675
+          },
+          "4:G2:1.75": {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G2",
+            "visible": true,
+            "removed": 11680
+          },
+          "5:G3:1.75": {
+            "wall": 9885,
+            "experimentDisplay": "1.77",
+            "goal": "G3",
+            "visible": true,
+            "removed": 11685,
+            "visibleDurationMs": 1800,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1654
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 7752,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 7784,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 8084,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 9859,
+            "experimentDisplay": "1.77",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12650,
+            "experimentDisplay": "1.77",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 138
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 9940,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q41-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 9941,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q41-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 12690,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q41-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 42,
+      "kind": "winner",
+      "challenge": "Q46",
+      "draw": "cabcee8995723f4a",
+      "proofBoundSeconds": 1.75,
+      "experiment": {
+        "elapsed": "1.78",
+        "lastRecordedExperimentTime": 1.75,
+        "clockPastProofSeconds": 0.030000000000000027,
+        "evaluation": {
+          "state": "achieved",
+          "first": "1.75",
+          "evaluatedTime": "1.75",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "challenge": "Q46",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "1.75"
+            },
+            {
+              "id": "G2",
+              "first": "1.75"
+            },
+            {
+              "id": "G3",
+              "first": "1.75"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "1.75",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "1.75",
+            "node": "G2",
+            "particle": 3
+          },
+          {
+            "time": "1.75",
+            "node": "G3",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "1.75",
+            "count": 3,
+            "goals": [
+              "G1",
+              "G2",
+              "G3"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 8047,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 8388,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 10184,
+          "experimentDisplay": "1.78"
+        },
+        "completed": {
+          "wall": 10161,
+          "experimentDisplay": "1.78"
+        },
+        "fireworksStarted": {
+          "wall": 10183,
+          "experimentDisplay": "1.78"
+        },
+        "fireworksEnded": {
+          "wall": 12576,
+          "experimentDisplay": "1.78"
+        },
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 12925,
+          "experimentDisplay": "1.78",
+          "kind": "achieved",
+          "text": "100点クリア！×すべてに到達1.75秒スコア100.00点結果を見るもう一度課題一覧へ"
+        },
+        "editing": {
+          "wall": 12925,
+          "experimentDisplay": "1.78",
+          "result": "達成 100.00点・編集可能｜1.78秒・0光線　鐘 3/3・全到達 1.75秒"
+        },
+        "arrivals": [
+          {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:1.75": {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G1",
+            "visible": true,
+            "removed": 11966
+          },
+          "3:G2:1.75": {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G2",
+            "visible": true,
+            "removed": 11976
+          },
+          "4:G3:1.75": {
+            "wall": 10184,
+            "experimentDisplay": "1.78",
+            "goal": "G3",
+            "visible": true,
+            "removed": 11993,
+            "visibleDurationMs": 1809,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1657
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 8047,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 8082,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 8385,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 10161,
+            "experimentDisplay": "1.78",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 12924,
+            "experimentDisplay": "1.78",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 135
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 10210,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-winner-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 10210,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-winner-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 12965,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-winner-result.png"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "number": 42,
+      "kind": "partial",
+      "challenge": "Q46",
+      "draw": "cabcee8995723f4a",
+      "proofBoundSeconds": 7.25,
+      "experiment": {
+        "elapsed": "2",
+        "lastRecordedExperimentTime": 2,
+        "clockPastProofSeconds": 0,
+        "evaluation": {
+          "state": "achieved",
+          "first": "2",
+          "evaluatedTime": "2",
+          "score": {
+            "numerator": "375",
+            "denominator": "4"
+          },
+          "challenge": "Q46",
+          "goals": [
+            {
+              "id": "G1",
+              "first": "2"
+            },
+            {
+              "id": "G2",
+              "first": "2"
+            },
+            {
+              "id": "G3",
+              "first": "2"
+            }
+          ]
+        },
+        "arrivals": [
+          {
+            "time": "2",
+            "node": "G1",
+            "particle": 2
+          },
+          {
+            "time": "2",
+            "node": "G2",
+            "particle": 3
+          },
+          {
+            "time": "2",
+            "node": "G3",
+            "particle": 4
+          }
+        ],
+        "sameTimestampGroups": [
+          {
+            "time": "2",
+            "count": 3,
+            "goals": [
+              "G1",
+              "G2",
+              "G3"
+            ]
+          }
+        ]
+      },
+      "wall": {
+        "click": {
+          "wall": 8384,
+          "experimentDisplay": null
+        },
+        "firstMoving": {
+          "wall": 8731,
+          "experimentDisplay": "0"
+        },
+        "lastRequired": {
+          "wall": 10732,
+          "experimentDisplay": "2"
+        },
+        "completed": {
+          "wall": 10732,
+          "experimentDisplay": "2"
+        },
+        "fireworksStarted": null,
+        "fireworksEnded": null,
+        "toastOverFireworks": false,
+        "toast": {
+          "wall": 13502,
+          "experimentDisplay": "2",
+          "kind": "achieved",
+          "text": "課題クリア！×すべてに到達2秒スコア93.75点結果を見るもう一度課題一覧へ"
+        },
+        "editing": {
+          "wall": 13502,
+          "experimentDisplay": "2",
+          "result": "達成 93.75点・編集可能｜2秒・0光線　鐘 3/3・全到達 2秒"
+        },
+        "arrivals": [
+          {
+            "wall": 10732,
+            "experimentDisplay": "2",
+            "goal": "G1",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10732,
+            "experimentDisplay": "2",
+            "goal": "G2",
+            "count": 1,
+            "delta": 1
+          },
+          {
+            "wall": 10732,
+            "experimentDisplay": "2",
+            "goal": "G3",
+            "count": 1,
+            "delta": 1
+          }
+        ],
+        "pictures": {
+          "2:G1:2": {
+            "wall": 10742,
+            "experimentDisplay": "2",
+            "goal": "G1",
+            "visible": true,
+            "removed": 12519
+          },
+          "3:G2:2": {
+            "wall": 10742,
+            "experimentDisplay": "2",
+            "goal": "G2",
+            "visible": true,
+            "removed": 12525
+          },
+          "4:G3:2": {
+            "wall": 10742,
+            "experimentDisplay": "2",
+            "goal": "G3",
+            "visible": true,
+            "removed": 12527,
+            "visibleDurationMs": 1785,
+            "implementationLifetimeMs": 1800,
+            "minimumObservedVisibleMs": 1685
+          }
+        },
+        "counts": {
+          "G1": 1,
+          "G2": 1,
+          "G3": 1
+        },
+        "states": [
+          {
+            "wall": 8384,
+            "experimentDisplay": null,
+            "state": "ready",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          },
+          {
+            "wall": 8416,
+            "experimentDisplay": null,
+            "state": "preparing",
+            "text": "準備中",
+            "disabled": false
+          },
+          {
+            "wall": 8728,
+            "experimentDisplay": "0",
+            "state": "running",
+            "text": "一時停止",
+            "disabled": false
+          },
+          {
+            "wall": 10732,
+            "experimentDisplay": "2",
+            "state": "paused",
+            "text": "終了",
+            "disabled": true
+          },
+          {
+            "wall": 13501,
+            "experimentDisplay": "2",
+            "state": "stopped",
+            "text": "鐘を鳴らす",
+            "disabled": false
+          }
+        ],
+        "missing": [],
+        "maxPaintGapMs": 107
+      },
+      "screenshots": [
+        {
+          "kind": "last-required",
+          "wall": 10769,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-partial-last-bell.png"
+        },
+        {
+          "kind": "last-bell",
+          "wall": 10770,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-partial-last-bell.png"
+        },
+        {
+          "kind": "result",
+          "wall": 13538,
+          "file": "C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\終了待機-20261024\\final\\webkit-tail\\Q42-partial-result.png"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Physical phones, actual sound quality, subjective difficulty"
+  ],
+  "url": "http://127.0.0.1:60135/",
+  "browser": {
+    "engine": "webkit",
+    "channel": null,
+    "version": "26.5"
+  },
+  "step": "Q42-partial"
+}

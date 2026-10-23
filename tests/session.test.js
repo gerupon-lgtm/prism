@@ -293,7 +293,7 @@ test('課題の上限を超える合成条件は連続実行と次動作の両�
     const f=fixture(),s=q1(f);f.records.saveScore('Q1@1','time@1',{numerator:'100',denominator:'1'});const scores=f.records.scores(),circuit=structuredClone(s.circuit);
     // Synthetic stale bound: not the verified time limit of the shipped Q1.
     s.challenge={...s.challenge,maxDuration:'1'};s.start();if(stepped){s.pause();s.next();}else s.advance('10');
-    assert.equal(s.run.format(),'1');assert.equal(s.run.status,'stopped');assert(s.editable);assert.equal(s.result.timeLimitReached,true);assert.equal(s.result.score,null);assert.match(s.result.reason,/上限/);assert.deepEqual(s.circuit,circuit);assert.deepEqual(f.records.scores(),scores);assert(s.exportResult().records.some(r=>r.type==='arrival'&&r.node==='A'));
+    assert.equal(s.run.format(),'1');assert.equal(s.run.status,'paused');assert(s.run.exhausted);assert(!s.editable);assert.equal(s.result.timeLimitReached,true);assert.equal(s.result.score,null);assert.match(s.result.reason,/上限/);assert.deepEqual(s.circuit,circuit);assert.deepEqual(f.records.scores(),scores);assert(s.exportResult().records.some(r=>r.type==='arrival'&&r.node==='A'));
   }
 });
 

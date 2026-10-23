@@ -273,7 +273,14 @@ export class Session {
   stopAtTimeLimit() {
     const limit=this.runTimeLimit;
     if(limit===null||this.run.exhausted||this.run.clock<limit||['load','error'].includes(this.run.pauseReason))return;
-    this.runContext.timeLimitReached=true;this.stop();
+    // End the experiment now, but leave the final picture for the UI's normal
+    // ending wait. A safety bound is still an interrupted (unscored) attempt
+    // when no outcome was decided; it must not become a failed score just
+    // because clearing future events makes the run exhausted.
+    const result=copy(this.result);
+    if(result.state==='pending')result.state='stopped';
+    this.runContext.timeLimitResult={...result,timeLimitReached:true,reason:`動作上限${this.runContext.challenge.maxDuration}秒で停止しました。記録を確認してつなぎ直せます。`};
+    this.runContext.timeLimitReached=true;this.run.complete();this.evaluate();
   }
   completeReturnPattern() {
     const challenge=this.runContext?.challenge;
@@ -319,6 +326,7 @@ export class Session {
 
   evaluate() {
     if (!this.run) return null;
+    if(this.runContext.timeLimitResult)return this.result=copy(this.runContext.timeLimitResult);
     const {mode,challenge,guide} = this.runContext;
     if (mode === 'free') {
       this.result = {state:this.run.status === 'stopped' ? 'stopped' : this.run.exhausted ? 'finished' : 'running',arrivals:copy(this.run.arrivals())};

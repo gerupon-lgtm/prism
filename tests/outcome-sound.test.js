@@ -38,3 +38,10 @@ test('途中停止と確定前には鳴らさず、隠れた結果や負荷停�
   complete(s,'Q1',['S','A','G']);sound.update(s.run,s.result,false);sound.update(s.run,s.result,true);assert.deepEqual(calls,[]);
   s.stop();complete(s,'Q1',['S','A','G']);s.run.pause('load');sound.update(s.run,s.result,true);s.run.pauseReason=null;sound.update(s.run,s.result,true);assert.deepEqual(calls,[]);
 });
+
+test('時間切れは完了待機中に未達成音を一度だけ鳴らし、編集復帰で繰り返さない',()=>{
+  const {session:s,sound,calls}=fixture();s.connectPath(['S','A','G']);s.challenge={...s.challenge,maxDuration:'1'};
+  s.start();s.advance('10');assert(s.run.exhausted);assert.equal(s.result.state,'stopped');
+  sound.update(s.run,s.result,true);sound.update(s.run,s.result,true);assert.deepEqual(calls,['failure']);
+  s.stop();sound.update(s.run,s.result,true);assert.deepEqual(calls,['failure']);
+});

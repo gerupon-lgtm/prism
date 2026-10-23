@@ -1,0 +1,322 @@
+{
+  "version": "0.90.0",
+  "passed": true,
+  "cases": [
+    {
+      "name": "timeout-at-arrival",
+      "id": "Q29",
+      "edges": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "limit": "1.1",
+      "kind": "timeout",
+      "probe": {
+        "completed": 6081,
+        "toast": 9144,
+        "editing": 9144,
+        "fireworks": null,
+        "fireworkRemoved": null,
+        "goals": 1,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "時間切れ×動作上限1.1秒で停止しました。記録を確認してつなぎ直せます。条件：星で再分岐し、鐘の最初の2回を3秒間隔に鐘が鳴った時刻（開始から）1回目：1.1秒2回目：到達なし配線を見直す結果を見る"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 795,
+          "reason": "dialog"
+        },
+        {
+          "name": "strike",
+          "wall": 6069,
+          "reason": {}
+        },
+        {
+          "name": "failure",
+          "wall": 6081
+        },
+        {
+          "name": "stop",
+          "wall": 9086,
+          "reason": "completed"
+        }
+      ],
+      "waitMs": 3063,
+      "passed": true
+    },
+    {
+      "name": "timeout-before-arrival",
+      "id": "Q1",
+      "edges": [
+        "SA",
+        "AG"
+      ],
+      "limit": "1",
+      "kind": "timeout",
+      "probe": {
+        "completed": 3624,
+        "toast": 6661,
+        "editing": 6661,
+        "fireworks": null,
+        "fireworkRemoved": null,
+        "goals": 0,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "時間切れ×動作上限1秒で停止しました。記録を確認してつなぎ直せます。条件：鐘へより早く届ける鐘が鳴った時刻（開始から）1回目：到達なし配線を見直す結果を見る"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 709,
+          "reason": "dialog"
+        },
+        {
+          "name": "failure",
+          "wall": 3624
+        },
+        {
+          "name": "stop",
+          "wall": 6632,
+          "reason": "completed"
+        }
+      ],
+      "waitMs": 3037,
+      "passed": true
+    },
+    {
+      "name": "no-arrival",
+      "id": "Q1",
+      "edges": [
+        "SA"
+      ],
+      "kind": "failed",
+      "probe": {
+        "completed": 2954,
+        "toast": 6010,
+        "editing": 6010,
+        "fireworks": null,
+        "fireworkRemoved": null,
+        "goals": 0,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "課題未達成×鐘へ届く配線になっていません。条件：鐘へより早く届ける鐘が鳴った時刻（開始から）1回目：到達なし配線を見直す結果を見る"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 1023,
+          "reason": "dialog"
+        },
+        {
+          "name": "failure",
+          "wall": 2953
+        },
+        {
+          "name": "stop",
+          "wall": 5981,
+          "reason": "completed"
+        }
+      ],
+      "waitMs": 3056,
+      "passed": true
+    },
+    {
+      "name": "next-event-completion",
+      "id": "Q1",
+      "edges": [
+        "SA",
+        "AG"
+      ],
+      "kind": "clear",
+      "next": true,
+      "probe": {
+        "completed": 3060,
+        "toast": 5830,
+        "editing": 5830,
+        "fireworks": 3060,
+        "fireworkRemoved": 5474,
+        "goals": 1,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "100点クリア！×到達時間2.5秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 762,
+          "reason": "dialog"
+        },
+        {
+          "name": "stop",
+          "wall": 2623,
+          "reason": "paused"
+        },
+        {
+          "name": "strike",
+          "wall": 3044,
+          "reason": {}
+        },
+        {
+          "name": "perfect",
+          "wall": 3060
+        },
+        {
+          "name": "stop",
+          "wall": 5796,
+          "reason": "completed"
+        }
+      ],
+      "nextChoicePassed": true,
+      "waitMs": 2770,
+      "passed": true
+    },
+    {
+      "name": "manual-stop-ending",
+      "id": "Q1",
+      "edges": [
+        "SA",
+        "AG"
+      ],
+      "kind": "clear",
+      "manual": true,
+      "probe": {
+        "completed": 5230,
+        "toast": 5442,
+        "editing": 5442,
+        "fireworks": 5230,
+        "fireworkRemoved": 5442,
+        "goals": 1,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "100点クリア！×到達時間2.5秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 887,
+          "reason": "dialog"
+        },
+        {
+          "name": "strike",
+          "wall": 5219,
+          "reason": {}
+        },
+        {
+          "name": "perfect",
+          "wall": 5229
+        },
+        {
+          "name": "stop",
+          "wall": 5417,
+          "reason": "completed"
+        }
+      ],
+      "waitMs": 212,
+      "passed": true
+    },
+    {
+      "name": "desktop-fireworks",
+      "id": "Q29",
+      "edges": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "kind": "clear",
+      "desktop": true,
+      "probe": {
+        "completed": 11781,
+        "toast": 14526,
+        "editing": 14526,
+        "fireworks": 11781,
+        "fireworkRemoved": 14195,
+        "goals": 2,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 1584,
+          "reason": "dialog"
+        },
+        {
+          "name": "strike",
+          "wall": 8813,
+          "reason": {}
+        },
+        {
+          "name": "strike",
+          "wall": 11768,
+          "reason": {}
+        },
+        {
+          "name": "perfect",
+          "wall": 11781
+        },
+        {
+          "name": "stop",
+          "wall": 14487,
+          "reason": "completed"
+        }
+      ],
+      "retryChoicePassed": true,
+      "waitMs": 2745,
+      "passed": true
+    },
+    {
+      "name": "reduced-motion-ending",
+      "id": "Q1",
+      "edges": [
+        "SA",
+        "AG"
+      ],
+      "kind": "clear",
+      "reduced": true,
+      "probe": {
+        "completed": 5441,
+        "toast": 8191,
+        "editing": 8191,
+        "fireworks": 5441,
+        "fireworkRemoved": 7846,
+        "goals": 1,
+        "covered": false,
+        "earlyToast": false,
+        "toastText": "100点クリア！×到達時間2.5秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 1072,
+          "reason": "dialog"
+        },
+        {
+          "name": "strike",
+          "wall": 5431,
+          "reason": {}
+        },
+        {
+          "name": "perfect",
+          "wall": 5441
+        },
+        {
+          "name": "stop",
+          "wall": 8156,
+          "reason": "completed"
+        }
+      ],
+      "waitMs": 2750,
+      "passed": true
+    }
+  ],
+  "boundary": "Desktop browser emulation; physical phones and listening remain unverified",
+  "step": "reduced-motion-ending"
+}

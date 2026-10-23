@@ -8,6 +8,8 @@ const arg=name=>{const index=process.argv.indexOf(name);return index<0?null:proc
 const defaults='9,12,15,17,18,20,21,22,24,25-30,32,36,40,42';
 function stageNumbers(text){return [...new Set(text.split(',').flatMap(part=>{const match=/^(\d+)(?:-(\d+))?$/.exec(part.trim());assert(match,'Invalid --stages item '+part);const first=Number(match[1]),last=Number(match[2]??first);assert(first>=1&&last<=42&&last>=first,'Invalid stage range '+part);return Array.from({length:last-first+1},(_,i)=>first+i);} ))];}
 const stages=stageNumbers(arg('--stages')||defaults),engine=arg('--engine')||'chromium',channel=arg('--channel');
+const draw=Number(arg('--draw')||1);assert(Number.isInteger(draw)&&draw>=1&&draw<=8,'--draw must be 1-8');
+const layout=arg('--layout')||'phone';assert(['phone','desktop'].includes(layout));
 const root=path.resolve('dist'),proofFiles=['ランダム課題/generation.json','星への帰還/proof.json','月鏡の静殿/proof.json','星刻の開廊/proof.json'];
 const proofRows=()=>proofFiles.flatMap(file=>JSON.parse(fs.readFileSync(path.join(__dirname,file),'utf8')).stages);
 const source=file=>fs.readFileSync(path.resolve(file),'utf8');
@@ -25,14 +27,14 @@ if(process.argv.includes('--self-check')){selfCheck();return;}
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 assert(arg('--playwright-path'),'--playwright-path is required');
 const pw=require(arg('--playwright-path')),info=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'),'utf8'));
-const output=path.resolve('設計検証/再生テンポ',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine);
+const output=path.resolve(arg('--out')||path.join('設計検証/再生テンポ',info.version,arg('--url')?new URL(arg('--url')).hostname:'local',channel||engine));
 fs.mkdirSync(output,{recursive:true});
 const reportFile=path.join(output,'report.json');
 if(fs.existsSync(reportFile))fs.copyFileSync(reportFile,path.join(output,`previous-${Date.now()}.json`));
 const report={version:info.version,passed:false,method:'Real play click and animation-frame clock; read-only DOM observers; actual UI result export',cases:[],pending:['Physical phones, actual sound quality, subjective difficulty']};
 const server=http.createServer((req,res)=>{try{let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file===root)file=path.join(root,'index.html');if(!file.startsWith(root+path.sep))throw Error('Outside dist');res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.json':'application/json','.ttf':'font/ttf','.svg':'image/svg+xml'})[path.extname(file)]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
 const settle=p=>p.evaluate(async()=>{await document.fonts.ready;for(let i=0;i<3;i++)await new Promise(requestAnimationFrame);});
-async function enter(p,id){await p.locator('#title-challenges').click();await chooseChallenge(p,id);if(await p.locator('#mirror-intro-start').isVisible())await p.locator('#mirror-intro-start').click();await settle(p);}
+async function enter(p,id){await p.locator('#title-challenges').click();await chooseChallenge(p,id,{pagerTimeout:5000});if(await p.locator('#mirror-intro-start').isVisible())await p.locator('#mirror-intro-start').click();await settle(p);}
 async function goodPhase(p,c,proof){
   const node=c.nodes.find(n=>n.gate);if(!node)return;
   const period=Number(node.gate.period),delta=Number(proof.delta??0),steps=Math.round(period*10);
@@ -47,13 +49,17 @@ function observePlayback({goalIds,required}){
   const visible=el=>Boolean(el&&!el.hidden&&!el.closest('[hidden]')&&el.getClientRects().length);
   const clock=()=>{const match=document.getElementById('result').textContent.match(/｜([\d.]+)秒/);return match?match[1]:null;};
   const measure=()=>({wall:performance.now(),experimentDisplay:clock()});
-  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],maxPaintGapMs:null};
+  const probe=window.__playPacing={click:null,firstMoving:null,lastRequired:null,completed:null,fireworksStarted:null,fireworksEnded:null,toastOverFireworks:false,toast:null,editing:null,arrivals:[],pictures:{},counts:{},states:[],missing:[],maxPaintGapMs:null};
   let screenshotFrame=null,lastState=null;const pendingShots=new Set();
   const shot=kind=>{pendingShots.add(kind);if(screenshotFrame!==null)return;screenshotFrame=requestAnimationFrame(()=>{screenshotFrame=null;const kinds=[...pendingShots];pendingShots.clear();for(const name of kinds)window.__pacingScreenshot({kind:name,wall:performance.now()});});};
   const read=()=>{
     if(!probe.click)return;
     const play=document.getElementById('play'),state=play.dataset.state;
     if(state!==lastState){probe.states.push({...measure(),state,text:play.textContent,disabled:play.disabled});lastState=state;}
+    if(!probe.completed&&play.disabled&&play.textContent==='終了')probe.completed=measure();
+    const fireworks=visible(document.querySelector('.perfect-fireworks'));
+    if(fireworks&&!probe.fireworksStarted)probe.fireworksStarted=measure();
+    if(!fireworks&&probe.fireworksStarted&&!probe.fireworksEnded)probe.fireworksEnded=measure();
     if(!probe.firstMoving&&visible(document.querySelector('#board .light-particle.moving')))probe.firstMoving=measure();
     let changed=false;
     for(const id of goalIds){const el=document.querySelector(`[data-node="${CSS.escape(id)}"]`);if(!el){probe.missing.push('goal '+id);continue;}const value=el.getAttribute('data-arrival-count');if(value===null){if(probe.firstMoving)probe.missing.push('arrival-count '+id);continue;}const count=Number(value),previous=probe.counts[id]??0;if(count>previous){probe.arrivals.push({...measure(),goal:id,count,delta:count-previous});changed=true;}probe.counts[id]=count;}
@@ -68,6 +74,7 @@ function observePlayback({goalIds,required}){
     if(changed)shot('last-bell');
     const clear=document.getElementById('clear-toast'),failure=document.getElementById('failure-toast');
     if(!probe.toast&&(visible(clear)||visible(failure))){probe.toast={...measure(),kind:visible(clear)?'achieved':'failed',text:(visible(clear)?clear:failure).textContent};shot('result');}
+    if(fireworks&&(visible(clear)||visible(failure)))probe.toastOverFireworks=true;
     if(!probe.editing&&state==='stopped'&&!play.disabled&&play.textContent==='鐘を鳴らす')probe.editing={...measure(),result:document.getElementById('result').textContent};
   };
   const observer=new MutationObserver(read);observer.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
@@ -95,15 +102,15 @@ let browser,activePage;
   // A separate context keeps every measured case at its first fixed draw.
   const inventory=await browser.newContext();const inventoryPage=await inventory.newPage();await inventoryPage.goto(url);await inventoryPage.locator('#board [data-node="S"]').waitFor();
   catalogue=await inventoryPage.evaluate(async()=>{const {challenges}=await import(new URL('../content/challenges.js',document.querySelector('script[type=module]').src));return challenges;});await inventory.close();assert.equal(catalogue.length,42);
-  const cases=stages.flatMap(number=>[{number,kind:'winner'},...([17,25,29,42].includes(number)?[{number,kind:'partial'}]:[]),...(number===26?[{number,kind:'failed'}]:[])]);
+  const cases=stages.flatMap(number=>[{number,kind:'winner'},...(!process.argv.includes('--only-winner')&&[17,25,29,42].includes(number)?[{number,kind:'partial'}]:[]),...(!process.argv.includes('--only-winner')&&number===26?[{number,kind:'failed'}]:[])]);
   for(const scenario of cases){
     const c=catalogue.find(item=>item.number===scenario.number);assert(c,'Unknown stage');const label=`Q${c.number}-${scenario.kind}`;report.step=label;
-    const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',acceptDownloads:true});
+    const context=await browser.newContext({viewport:layout==='desktop'?{width:1440,height:960}:{width:390,height:844},isMobile:layout==='phone',hasTouch:layout==='phone',reducedMotion:'no-preference',acceptDownloads:true});
     const p=activePage=await context.newPage(),errors=[],screenshots=[];let captureChain=Promise.resolve();
-    p.on('pageerror',error=>errors.push(error.message));p.setDefaultTimeout(10000);
-    await p.addInitScript(()=>{Math.random=()=>0;localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:'full'}));});
+    p.on('pageerror',error=>errors.push(error.message));p.setDefaultTimeout(10000);p.setDefaultNavigationTimeout(30000);
+    await p.addInitScript(draw=>{Math.random=()=>(draw-1)/8;localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:'full'}));},draw);
     await p.goto(url);await enter(p,c.id);assert.equal(await p.locator('html').getAttribute('data-motion'),'full','Normal motion enabled');assert.equal(await p.locator('#sound').getAttribute('aria-pressed'),'true','Default audio remains enabled');
-    const problemId=await p.locator('#app').getAttribute('data-problem-id'),proof=proofs.find(row=>row.id===problemId);assert(proof,label+' matching proof');
+    const problemId=await p.locator('#app').getAttribute('data-problem-id'),proof=proofs.find(row=>row.id===problemId)??(c.number<=6?{winner:require('./challenge_fixtures.cjs')[c.id],maxDuration:c.maxDuration}:null);assert(proof,label+' matching proof');
     const edges=scenario.kind==='winner'?proof.winner:scenario.kind==='partial'?proof.partial?.edges:proof.failedExample?.edges;assert(Array.isArray(edges)&&edges.length,label+' proof wiring');
     for(const id of edges){const edge=c.candidates.find(item=>item.id===id);assert(edge,label+' edge '+id);await dragConnection(p,edge.from,edge.to);}
     if(await p.locator('#mirror-controls').isVisible())await p.locator('#mirror-done').click();
@@ -128,7 +135,14 @@ let browser,activePage;
     // The core's normal frame advance can leave clock slightly past its last
     // event; retain that raw value and allow only the measured frame interval.
     assert(Number(exported.elapsed)<=bound+probe.maxPaintGapMs/1000+.001,label+' clock ends within proof bound plus measured frame interval');assert(!run.timeLimitReached,label+' ends without safety cutoff');
-    assert(probe.editing.wall-probe.toast.wall>=(scenario.kind==='failed'?3000:2700)-80,label+' final result effect not cut short');
+    assert(probe.completed,label+' completion before editing');
+    assert(probe.toast.wall-probe.completed.wall>=(scenario.kind==='failed'?3000:2700)-80,label+' result waits until the final effect has played');
+    assert(!probe.toastOverFireworks,label+' result does not cover fireworks');
+    if(scenario.kind==='winner'){
+      assert(probe.fireworksStarted&&probe.fireworksEnded,label+' perfect celebration was actually rendered');
+      assert(probe.fireworksEnded.wall-probe.fireworksStarted.wall>=2400-probe.maxPaintGapMs-20,label+' full firework lifetime');
+      assert(probe.toast.wall>=probe.fireworksEnded.wall,label+' result follows fireworks');
+    }
     assert(goalRecords.length,label+' actual bell records');
     for(const id of goalIds){const count=goalRecords.filter(row=>row.node===id).length;assert.equal(probe.counts[id]??0,count,label+' rendered arrival count '+id);}
     for(const row of goalRecords){const key=`${row.particle}:${row.node}:${row.time}`;assert(probe.pictures[key],label+' actual arrival picture '+key);}

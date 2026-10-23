@@ -58,6 +58,7 @@ async function input(page,touch){
           const steps=Math.max(8,Math.ceil(Math.abs(g.delta)*180/Math.PI/3));for(let i=1;i<=steps;i++)await io.move(point(start+g.delta*i/steps));
           assert.equal((await state(page)).target,'C');assert.equal(await page.locator('.edge:not(.candidate)').count(),0);
           const after=await geometry(page);assert(Math.hypot(after.cx-g.cx,after.cy-g.cy)<.1,'wheel remains fixed: '+JSON.stringify({before:g,after}));
+          if(offset===90)await page.screenshot({path:path.join(out,`${layout.name}-wheel-active.png`)});
           await io.up();assert.equal(await page.locator('.edge:not(.candidate)[data-edge="MC"]').count(),1);assert(await page.locator('#mirror-controls').isHidden());
           check(`${layout.name}: rim ${offset}deg from knob rotates relatively, previews, and commits once`);
         }

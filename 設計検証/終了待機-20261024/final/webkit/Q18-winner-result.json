@@ -1,0 +1,898 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "spread",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.28
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.2,
+        "y": 0.53
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.53
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.25,
+        "y": 0.76
+      },
+      {
+        "id": "E",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.75,
+        "y": 0.76
+      },
+      {
+        "id": "F",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.28
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.2"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "0.4"
+      },
+      {
+        "id": "CD",
+        "from": "C",
+        "to": "D",
+        "time": "0.1"
+      },
+      {
+        "id": "CE",
+        "from": "C",
+        "to": "E",
+        "time": "1"
+      },
+      {
+        "id": "DF",
+        "from": "D",
+        "to": "F",
+        "time": "0.4"
+      },
+      {
+        "id": "EF",
+        "from": "E",
+        "to": "F",
+        "time": "0.5"
+      },
+      {
+        "id": "FG",
+        "from": "F",
+        "to": "G",
+        "time": "0.6"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "0.1"
+      }
+    ]
+  },
+  "elapsed": "4.7",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null,
+      "edge": "SA",
+      "from": "S",
+      "to": "A",
+      "arrivalTime": "0.2"
+    },
+    {
+      "type": "arrival",
+      "time": "0.2",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "edge": "SA"
+    },
+    {
+      "type": "process-start",
+      "time": "0.2",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "arrivedAt": "0.2",
+      "wait": "0",
+      "finishTime": "0.7"
+    },
+    {
+      "type": "process-end",
+      "time": "0.7",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "startedAt": "0.2",
+      "processing": "0.5"
+    },
+    {
+      "type": "branch",
+      "time": "0.7",
+      "particle": 1,
+      "parent": null,
+      "node": "A",
+      "target": null,
+      "children": [
+        2,
+        3
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "0.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "A",
+      "target": null,
+      "edge": "AB",
+      "from": "A",
+      "to": "B",
+      "arrivalTime": "1.2"
+    },
+    {
+      "type": "travel",
+      "time": "0.7",
+      "particle": 3,
+      "parent": 1,
+      "node": "A",
+      "target": null,
+      "edge": "AC",
+      "from": "A",
+      "to": "C",
+      "arrivalTime": "1.1"
+    },
+    {
+      "type": "arrival",
+      "time": "1.1",
+      "particle": 3,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "edge": "AC"
+    },
+    {
+      "type": "process-start",
+      "time": "1.1",
+      "particle": 3,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "arrivedAt": "1.1",
+      "wait": "0",
+      "finishTime": "1.6"
+    },
+    {
+      "type": "arrival",
+      "time": "1.2",
+      "particle": 2,
+      "parent": 1,
+      "node": "B",
+      "target": null,
+      "edge": "AB"
+    },
+    {
+      "type": "process-start",
+      "time": "1.2",
+      "particle": 2,
+      "parent": 1,
+      "node": "B",
+      "target": null,
+      "arrivedAt": "1.2",
+      "wait": "0",
+      "finishTime": "1.7"
+    },
+    {
+      "type": "process-end",
+      "time": "1.6",
+      "particle": 3,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "startedAt": "1.1",
+      "processing": "0.5"
+    },
+    {
+      "type": "branch",
+      "time": "1.6",
+      "particle": 3,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "children": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "1.6",
+      "particle": 4,
+      "parent": 3,
+      "node": "C",
+      "target": null,
+      "edge": "CD",
+      "from": "C",
+      "to": "D",
+      "arrivalTime": "1.7"
+    },
+    {
+      "type": "travel",
+      "time": "1.6",
+      "particle": 5,
+      "parent": 3,
+      "node": "C",
+      "target": null,
+      "edge": "CE",
+      "from": "C",
+      "to": "E",
+      "arrivalTime": "2.6"
+    },
+    {
+      "type": "travel",
+      "time": "1.6",
+      "particle": 6,
+      "parent": 3,
+      "node": "C",
+      "target": null,
+      "edge": "CG",
+      "from": "C",
+      "to": "G",
+      "arrivalTime": "1.7"
+    },
+    {
+      "type": "process-end",
+      "time": "1.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "B",
+      "target": null,
+      "startedAt": "1.2",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "1.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "B",
+      "target": null,
+      "edge": "BG",
+      "from": "B",
+      "to": "G",
+      "arrivalTime": "2.7"
+    },
+    {
+      "type": "arrival",
+      "time": "1.7",
+      "particle": 4,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "edge": "CD"
+    },
+    {
+      "type": "process-start",
+      "time": "1.7",
+      "particle": 4,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "arrivedAt": "1.7",
+      "wait": "0",
+      "finishTime": "2.2"
+    },
+    {
+      "type": "arrival",
+      "time": "1.7",
+      "particle": 6,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "edge": "CG"
+    },
+    {
+      "type": "goal",
+      "time": "1.7",
+      "particle": 6,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "hops": 3
+    },
+    {
+      "type": "process-end",
+      "time": "2.2",
+      "particle": 4,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "startedAt": "1.7",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "2.2",
+      "particle": 4,
+      "parent": 3,
+      "node": "D",
+      "target": null,
+      "edge": "DF",
+      "from": "D",
+      "to": "F",
+      "arrivalTime": "2.6"
+    },
+    {
+      "type": "arrival",
+      "time": "2.6",
+      "particle": 4,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "edge": "DF"
+    },
+    {
+      "type": "process-start",
+      "time": "2.6",
+      "particle": 4,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "arrivedAt": "2.6",
+      "wait": "0",
+      "finishTime": "3.1"
+    },
+    {
+      "type": "arrival",
+      "time": "2.6",
+      "particle": 5,
+      "parent": 3,
+      "node": "E",
+      "target": null,
+      "edge": "CE"
+    },
+    {
+      "type": "process-start",
+      "time": "2.6",
+      "particle": 5,
+      "parent": 3,
+      "node": "E",
+      "target": null,
+      "arrivedAt": "2.6",
+      "wait": "0",
+      "finishTime": "3.1"
+    },
+    {
+      "type": "arrival",
+      "time": "2.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "G",
+      "target": null,
+      "edge": "BG"
+    },
+    {
+      "type": "goal",
+      "time": "2.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "G",
+      "target": null,
+      "hops": 3
+    },
+    {
+      "type": "process-end",
+      "time": "3.1",
+      "particle": 4,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "startedAt": "2.6",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "3.1",
+      "particle": 4,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "edge": "FG",
+      "from": "F",
+      "to": "G",
+      "arrivalTime": "3.7"
+    },
+    {
+      "type": "process-end",
+      "time": "3.1",
+      "particle": 5,
+      "parent": 3,
+      "node": "E",
+      "target": null,
+      "startedAt": "2.6",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "3.1",
+      "particle": 5,
+      "parent": 3,
+      "node": "E",
+      "target": null,
+      "edge": "EF",
+      "from": "E",
+      "to": "F",
+      "arrivalTime": "3.6"
+    },
+    {
+      "type": "arrival",
+      "time": "3.6",
+      "particle": 5,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "edge": "EF"
+    },
+    {
+      "type": "process-start",
+      "time": "3.6",
+      "particle": 5,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "arrivedAt": "3.6",
+      "wait": "0",
+      "finishTime": "4.1"
+    },
+    {
+      "type": "arrival",
+      "time": "3.7",
+      "particle": 4,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "edge": "FG"
+    },
+    {
+      "type": "goal",
+      "time": "3.7",
+      "particle": 4,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "hops": 5
+    },
+    {
+      "type": "process-end",
+      "time": "4.1",
+      "particle": 5,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "startedAt": "3.6",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "4.1",
+      "particle": 5,
+      "parent": 3,
+      "node": "F",
+      "target": null,
+      "edge": "FG",
+      "from": "F",
+      "to": "G",
+      "arrivalTime": "4.7"
+    },
+    {
+      "type": "arrival",
+      "time": "4.7",
+      "particle": 5,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "edge": "FG"
+    },
+    {
+      "type": "goal",
+      "time": "4.7",
+      "particle": 5,
+      "parent": 3,
+      "node": "G",
+      "target": null,
+      "hops": 5
+    }
+  ],
+  "evaluation": {
+    "state": "achieved",
+    "first": "1.7",
+    "evaluatedTime": "1.7",
+    "score": {
+      "numerator": "100",
+      "denominator": "1"
+    },
+    "challenge": "Q10"
+  },
+  "challenge": {
+    "id": "Q10",
+    "maxDuration": "5.7",
+    "version": 3,
+    "name": "四つの光を一秒ずつ",
+    "stage": "月映りの水殿",
+    "world": "moonwater",
+    "type": "interval",
+    "limit": 10,
+    "baseline": "1.7",
+    "goal": "G",
+    "interval": "1",
+    "count": 4,
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.28,
+        "process": "0.5"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.2,
+        "y": 0.53,
+        "process": "0.5"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.8,
+        "y": 0.53,
+        "process": "0.5"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.25,
+        "y": 0.76,
+        "process": "0.5"
+      },
+      {
+        "id": "E",
+        "kind": "prism",
+        "x": 0.75,
+        "y": 0.76,
+        "process": "0.5"
+      },
+      {
+        "id": "F",
+        "kind": "prism",
+        "x": 0.8,
+        "y": 0.28,
+        "process": "0.5"
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "x": 0.5,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.2"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "0.4"
+      },
+      {
+        "id": "BD",
+        "from": "B",
+        "to": "D",
+        "time": "2"
+      },
+      {
+        "id": "BE",
+        "from": "B",
+        "to": "E",
+        "time": "0.1"
+      },
+      {
+        "id": "CD",
+        "from": "C",
+        "to": "D",
+        "time": "0.1"
+      },
+      {
+        "id": "CE",
+        "from": "C",
+        "to": "E",
+        "time": "1"
+      },
+      {
+        "id": "DF",
+        "from": "D",
+        "to": "F",
+        "time": "0.4"
+      },
+      {
+        "id": "EF",
+        "from": "E",
+        "to": "F",
+        "time": "0.5"
+      },
+      {
+        "id": "FG",
+        "from": "F",
+        "to": "G",
+        "time": "0.6"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "0.1"
+      }
+    ],
+    "balanceRevision": true,
+    "tempoRevision": true,
+    "number": 18,
+    "set": "rhythm",
+    "setName": "響く間隔をつくる",
+    "displayPositions": {
+      "A": {
+        "x": 0.5,
+        "y": 0.25
+      },
+      "B": {
+        "x": 0.14,
+        "y": 0.46
+      },
+      "C": {
+        "x": 0.86,
+        "y": 0.46
+      },
+      "D": {
+        "x": 0.14,
+        "y": 0.66
+      },
+      "E": {
+        "x": 0.86,
+        "y": 0.66
+      },
+      "F": {
+        "x": 0.5,
+        "y": 0.78
+      }
+    },
+    "draw": {
+      "id": "227c0473327868ce",
+      "revision": 1,
+      "number": 5
+    }
+  },
+  "originalConditions": {
+    "mode": "spread",
+    "target": "G",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "A",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.28
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.2,
+        "y": 0.53
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.53
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.25,
+        "y": 0.76
+      },
+      {
+        "id": "E",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.75,
+        "y": 0.76
+      },
+      {
+        "id": "F",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.8,
+        "y": 0.28
+      },
+      {
+        "id": "G",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SA",
+        "from": "S",
+        "to": "A",
+        "time": "0.2"
+      },
+      {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "time": "0.5"
+      },
+      {
+        "id": "AC",
+        "from": "A",
+        "to": "C",
+        "time": "0.4"
+      },
+      {
+        "id": "CD",
+        "from": "C",
+        "to": "D",
+        "time": "0.1"
+      },
+      {
+        "id": "CE",
+        "from": "C",
+        "to": "E",
+        "time": "1"
+      },
+      {
+        "id": "DF",
+        "from": "D",
+        "to": "F",
+        "time": "0.4"
+      },
+      {
+        "id": "EF",
+        "from": "E",
+        "to": "F",
+        "time": "0.5"
+      },
+      {
+        "id": "FG",
+        "from": "F",
+        "to": "G",
+        "time": "0.6"
+      },
+      {
+        "id": "BG",
+        "from": "B",
+        "to": "G",
+        "time": "1"
+      },
+      {
+        "id": "CG",
+        "from": "C",
+        "to": "G",
+        "time": "0.1"
+      }
+    ]
+  },
+  "faultCases": [],
+  "replayCase": null,
+  "phaseOffset": "0"
+}

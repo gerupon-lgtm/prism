@@ -1,0 +1,649 @@
+{
+  "format": "prism-notes-result",
+  "version": 1,
+  "conditions": {
+    "mode": "spread",
+    "target": "all",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "M",
+        "kind": "mirror",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.27,
+        "reflectTo": "D"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.23,
+        "y": 0.47
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.77,
+        "y": 0.47
+      },
+      {
+        "id": "N",
+        "kind": "mirror",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.65,
+        "reflectTo": "G1"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.8
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.25,
+        "y": 0.96
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.75,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SM",
+        "from": "S",
+        "to": "M",
+        "time": "0.5"
+      },
+      {
+        "id": "MD",
+        "from": "M",
+        "to": "D",
+        "time": "0"
+      },
+      {
+        "id": "DN",
+        "from": "D",
+        "to": "N",
+        "time": "1"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "0.2"
+      },
+      {
+        "id": "NG1",
+        "from": "N",
+        "to": "G1",
+        "time": "0"
+      },
+      {
+        "id": "DC",
+        "from": "D",
+        "to": "C",
+        "time": "0.2"
+      }
+    ]
+  },
+  "elapsed": "2",
+  "status": "stopped",
+  "records": [
+    {
+      "type": "send",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null
+    },
+    {
+      "type": "travel",
+      "time": "0",
+      "particle": 1,
+      "parent": null,
+      "node": "S",
+      "target": null,
+      "edge": "SM",
+      "from": "S",
+      "to": "M",
+      "arrivalTime": "0.5"
+    },
+    {
+      "type": "arrival",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "M",
+      "target": null,
+      "edge": "SM"
+    },
+    {
+      "type": "process-start",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "M",
+      "target": null,
+      "arrivedAt": "0.5",
+      "wait": "0",
+      "finishTime": "0.5"
+    },
+    {
+      "type": "process-end",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "M",
+      "target": null,
+      "startedAt": "0.5",
+      "processing": "0"
+    },
+    {
+      "type": "travel",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "M",
+      "target": null,
+      "edge": "MD",
+      "from": "M",
+      "to": "D",
+      "arrivalTime": "0.5"
+    },
+    {
+      "type": "arrival",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "edge": "MD"
+    },
+    {
+      "type": "process-start",
+      "time": "0.5",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "arrivedAt": "0.5",
+      "wait": "0",
+      "finishTime": "1"
+    },
+    {
+      "type": "process-end",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "startedAt": "0.5",
+      "processing": "0.5"
+    },
+    {
+      "type": "branch",
+      "time": "1",
+      "particle": 1,
+      "parent": null,
+      "node": "D",
+      "target": null,
+      "children": [
+        2,
+        3
+      ]
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 2,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "edge": "DC",
+      "from": "D",
+      "to": "C",
+      "arrivalTime": "1.2"
+    },
+    {
+      "type": "travel",
+      "time": "1",
+      "particle": 3,
+      "parent": 1,
+      "node": "D",
+      "target": null,
+      "edge": "DN",
+      "from": "D",
+      "to": "N",
+      "arrivalTime": "2"
+    },
+    {
+      "type": "arrival",
+      "time": "1.2",
+      "particle": 2,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "edge": "DC"
+    },
+    {
+      "type": "process-start",
+      "time": "1.2",
+      "particle": 2,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "arrivedAt": "1.2",
+      "wait": "0",
+      "finishTime": "1.7"
+    },
+    {
+      "type": "process-end",
+      "time": "1.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "startedAt": "1.2",
+      "processing": "0.5"
+    },
+    {
+      "type": "travel",
+      "time": "1.7",
+      "particle": 2,
+      "parent": 1,
+      "node": "C",
+      "target": null,
+      "edge": "CG2",
+      "from": "C",
+      "to": "G2",
+      "arrivalTime": "1.9"
+    },
+    {
+      "type": "arrival",
+      "time": "1.9",
+      "particle": 2,
+      "parent": 1,
+      "node": "G2",
+      "target": null,
+      "edge": "CG2"
+    },
+    {
+      "type": "goal",
+      "time": "1.9",
+      "particle": 2,
+      "parent": 1,
+      "node": "G2",
+      "target": null,
+      "hops": 4
+    },
+    {
+      "type": "arrival",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "N",
+      "target": null,
+      "edge": "DN"
+    },
+    {
+      "type": "process-start",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "N",
+      "target": null,
+      "arrivedAt": "2",
+      "wait": "0",
+      "finishTime": "2"
+    },
+    {
+      "type": "process-end",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "N",
+      "target": null,
+      "startedAt": "2",
+      "processing": "0"
+    },
+    {
+      "type": "travel",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "N",
+      "target": null,
+      "edge": "NG1",
+      "from": "N",
+      "to": "G1",
+      "arrivalTime": "2"
+    },
+    {
+      "type": "arrival",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "G1",
+      "target": null,
+      "edge": "NG1"
+    },
+    {
+      "type": "goal",
+      "time": "2",
+      "particle": 3,
+      "parent": 1,
+      "node": "G1",
+      "target": null,
+      "hops": 4
+    }
+  ],
+  "evaluation": {
+    "state": "achieved",
+    "first": "1.9",
+    "evaluatedTime": "2",
+    "score": {
+      "numerator": "100",
+      "denominator": "1"
+    },
+    "challenge": "Q38",
+    "goals": [
+      {
+        "id": "G1",
+        "first": "2"
+      },
+      {
+        "id": "G2",
+        "first": "1.9"
+      }
+    ]
+  },
+  "challenge": {
+    "id": "Q38",
+    "name": "鏡から鏡へ",
+    "limit": 6,
+    "goals": [
+      "G1",
+      "G2"
+    ],
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "x": 0.5,
+        "y": 0.07,
+        "process": "0.5"
+      },
+      {
+        "id": "M",
+        "kind": "mirror",
+        "x": 0.5,
+        "y": 0.27,
+        "process": "0",
+        "reflectTo": null
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "x": 0.23,
+        "y": 0.47,
+        "process": "0.5"
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "x": 0.77,
+        "y": 0.47,
+        "process": "0.5"
+      },
+      {
+        "id": "N",
+        "kind": "mirror",
+        "x": 0.5,
+        "y": 0.65,
+        "process": "0",
+        "reflectTo": null
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "x": 0.5,
+        "y": 0.8,
+        "process": "0.5"
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "x": 0.25,
+        "y": 0.96,
+        "process": "0"
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "x": 0.75,
+        "y": 0.96,
+        "process": "0"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "SM",
+        "from": "S",
+        "to": "M",
+        "time": "0.5"
+      },
+      {
+        "id": "MB",
+        "from": "M",
+        "to": "B",
+        "time": "0"
+      },
+      {
+        "id": "MD",
+        "from": "M",
+        "to": "D",
+        "time": "0"
+      },
+      {
+        "id": "BN",
+        "from": "B",
+        "to": "N",
+        "time": "0.3"
+      },
+      {
+        "id": "DN",
+        "from": "D",
+        "to": "N",
+        "time": "1"
+      },
+      {
+        "id": "NC",
+        "from": "N",
+        "to": "C",
+        "time": "0"
+      },
+      {
+        "id": "CG1",
+        "from": "C",
+        "to": "G1",
+        "time": "0.8"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "0.2"
+      },
+      {
+        "id": "NG1",
+        "from": "N",
+        "to": "G1",
+        "time": "0"
+      },
+      {
+        "id": "NG2",
+        "from": "N",
+        "to": "G2",
+        "time": "0"
+      },
+      {
+        "id": "BC",
+        "from": "B",
+        "to": "C",
+        "time": "0.7"
+      },
+      {
+        "id": "DC",
+        "from": "D",
+        "to": "C",
+        "time": "0.2"
+      }
+    ],
+    "version": 3,
+    "type": "delivery-all",
+    "baseline": "2",
+    "maxDuration": "3.3",
+    "number": 34,
+    "set": "mirror",
+    "setName": "鏡で光を導く",
+    "world": "moonmirror",
+    "stage": "月鏡の静殿",
+    "displayPositions": {
+      "C": {
+        "y": 0.83
+      }
+    },
+    "bellPitches": [
+      88,
+      84
+    ],
+    "draw": {
+      "id": "d6faacf397e9fe22",
+      "revision": 1,
+      "number": 5
+    }
+  },
+  "originalConditions": {
+    "mode": "spread",
+    "target": "all",
+    "nodes": [
+      {
+        "id": "S",
+        "kind": "source",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.07
+      },
+      {
+        "id": "M",
+        "kind": "mirror",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.27,
+        "reflectTo": "D"
+      },
+      {
+        "id": "B",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.23,
+        "y": 0.47
+      },
+      {
+        "id": "D",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.77,
+        "y": 0.47
+      },
+      {
+        "id": "N",
+        "kind": "mirror",
+        "process": "0",
+        "x": 0.5,
+        "y": 0.65,
+        "reflectTo": "G1"
+      },
+      {
+        "id": "C",
+        "kind": "prism",
+        "process": "0.5",
+        "x": 0.5,
+        "y": 0.8
+      },
+      {
+        "id": "G1",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.25,
+        "y": 0.96
+      },
+      {
+        "id": "G2",
+        "kind": "goal",
+        "process": "0",
+        "x": 0.75,
+        "y": 0.96
+      }
+    ],
+    "edges": [
+      {
+        "id": "SM",
+        "from": "S",
+        "to": "M",
+        "time": "0.5"
+      },
+      {
+        "id": "MD",
+        "from": "M",
+        "to": "D",
+        "time": "0"
+      },
+      {
+        "id": "DN",
+        "from": "D",
+        "to": "N",
+        "time": "1"
+      },
+      {
+        "id": "CG2",
+        "from": "C",
+        "to": "G2",
+        "time": "0.2"
+      },
+      {
+        "id": "NG1",
+        "from": "N",
+        "to": "G1",
+        "time": "0"
+      },
+      {
+        "id": "DC",
+        "from": "D",
+        "to": "C",
+        "time": "0.2"
+      }
+    ]
+  },
+  "faultCases": [],
+  "replayCase": null,
+  "phaseOffset": "0"
+}

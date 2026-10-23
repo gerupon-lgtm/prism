@@ -143,6 +143,6 @@ test('指定回数の完了を動作上限より先に扱い、未完了の上�
   const completed=fixture(returnChallenge({maxDuration:'3.5'})).session;
   completed.start();completed.advance('20');assert.equal(completed.result.state,'achieved');assert.equal(completed.result.timeLimitReached,undefined);
   const {session:limited,records}=fixture(returnChallenge({maxDuration:'2.5'}));
-  limited.start();limited.advance('20');assert.equal(limited.run.format(),'2.5');assert.equal(limited.run.status,'stopped');
+  limited.start();limited.advance('20');assert.equal(limited.run.format(),'2.5');assert.equal(limited.run.status,'paused');assert(limited.run.exhausted);assert(!limited.editable);
   assert.equal(limited.result.state,'stopped');assert.equal(limited.result.timeLimitReached,true);assert.equal(limited.result.score,null);assert.equal(records.scores().length,0);
 });
