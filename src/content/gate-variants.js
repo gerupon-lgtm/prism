@@ -538,8 +538,8 @@ export const gateVariants = {
   ],
   "Q45": [
     {
-      "id": "757184b4ab268c0a",
-      "baseVersion": 1,
+      "id": "f34cd89b354f1f1c",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.5",
@@ -559,8 +559,8 @@ export const gateVariants = {
       "maxDuration": "11"
     },
     {
-      "id": "c2375c7a7dced21d",
-      "baseVersion": 1,
+      "id": "2b8e6160ce006a09",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.7",
@@ -580,8 +580,8 @@ export const gateVariants = {
       "maxDuration": "11.2"
     },
     {
-      "id": "2d6d3a7f78ad73d7",
-      "baseVersion": 1,
+      "id": "b9ecfdfbca870c87",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "0.9",
@@ -601,8 +601,8 @@ export const gateVariants = {
       "maxDuration": "11.4"
     },
     {
-      "id": "616c1648fa222374",
-      "baseVersion": 1,
+      "id": "9fe97ace0a07dd26",
+      "baseVersion": 2,
       "family": 0,
       "times": [
         "1.1",
@@ -622,8 +622,8 @@ export const gateVariants = {
       "maxDuration": "11.6"
     },
     {
-      "id": "888d3181fec8c7d0",
-      "baseVersion": 1,
+      "id": "b914392cdca7961b",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.5",
@@ -643,8 +643,8 @@ export const gateVariants = {
       "maxDuration": "11"
     },
     {
-      "id": "866092d958657257",
-      "baseVersion": 1,
+      "id": "5620825920dee161",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.7",
@@ -664,8 +664,8 @@ export const gateVariants = {
       "maxDuration": "11.2"
     },
     {
-      "id": "60d106169842be47",
-      "baseVersion": 1,
+      "id": "62c315ad8966f11e",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "0.9",
@@ -685,8 +685,8 @@ export const gateVariants = {
       "maxDuration": "11.4"
     },
     {
-      "id": "11aa57fcb6937bf2",
-      "baseVersion": 1,
+      "id": "2f151294532b8f3c",
+      "baseVersion": 2,
       "family": 1,
       "times": [
         "1.1",

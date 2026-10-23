@@ -1,0 +1,230 @@
+{
+  "version": "0.88.0",
+  "source": null,
+  "tests": {
+    "files": 36,
+    "passed": true,
+    "syntaxFiles": 103
+  },
+  "stages": 42,
+  "draws": 288,
+  "revisedStages": 13,
+  "presentationOnlyStages": 11,
+  "local": {
+    "layouts": [
+      {
+        "engine": "chromium",
+        "passed": true,
+        "layouts": [
+          {
+            "name": "phone",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "short",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "landscape",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "desktop",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "engine": "webkit",
+        "passed": true,
+        "layouts": [
+          {
+            "name": "phone",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "short",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "landscape",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          },
+          {
+            "name": "desktop",
+            "stages": 42,
+            "close": 0,
+            "curved": 0,
+            "outside": 0,
+            "gestures": [
+              {
+                "stage": 17,
+                "result": "Direct A-F accepted without connecting C"
+              },
+              {
+                "stage": 25,
+                "result": "Both return directions accepted, stable straight lanes"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "play": [
+      {
+        "engine": "chromium",
+        "passed": true,
+        "checks": [
+          "Q9 wired, exact full-score and result via UI",
+          "Q10 wired, exact full-score and result via UI",
+          "Q11 wired, exact full-score and result via UI",
+          "Q12 wired, exact full-score and result via UI",
+          "Q15 wired, exact full-score and result via UI",
+          "Q16 wired, exact full-score and result via UI",
+          "Q17 wired, exact full-score and result via UI",
+          "Q18 wired, exact full-score and result via UI",
+          "Q21 wired, exact full-score and result via UI",
+          "Q22 wired, exact full-score and result via UI",
+          "Q23 wired, exact full-score and result via UI",
+          "Q24 wired, exact full-score and result via UI",
+          "Q41 wired, exact full-score and result via UI",
+          "Mirror output replaced directly at full budget",
+          "Mirror rotation and SE API accept selection without a settings dialog",
+          "Vertical mirror preview uses a nondegenerate rainbow gradient",
+          "Q42 rotation 90",
+          "Q42 rotation 270",
+          "Q42 rotation 0",
+          "Q42 enlarged text",
+          "Imported free mirror keeps all direction choices, unwired previews and bidirectional reuse",
+          "phone no page errors",
+          "desktop no page errors"
+        ]
+      },
+      {
+        "engine": "webkit",
+        "passed": true,
+        "checks": [
+          "Q9 wired, exact full-score and result via UI",
+          "Q10 wired, exact full-score and result via UI",
+          "Q11 wired, exact full-score and result via UI",
+          "Q12 wired, exact full-score and result via UI",
+          "Q15 wired, exact full-score and result via UI",
+          "Q16 wired, exact full-score and result via UI",
+          "Q17 wired, exact full-score and result via UI",
+          "Q18 wired, exact full-score and result via UI",
+          "Q21 wired, exact full-score and result via UI",
+          "Q22 wired, exact full-score and result via UI",
+          "Q23 wired, exact full-score and result via UI",
+          "Q24 wired, exact full-score and result via UI",
+          "Q41 wired, exact full-score and result via UI",
+          "Mirror output replaced directly at full budget",
+          "Mirror rotation and SE API accept selection without a settings dialog",
+          "Vertical mirror preview uses a nondegenerate rainbow gradient",
+          "Q42 rotation 90",
+          "Q42 rotation 270",
+          "Q42 rotation 0",
+          "Q42 enlarged text",
+          "Imported free mirror keeps all direction choices, unwired previews and bidirectional reuse",
+          "phone no page errors",
+          "desktop no page errors"
+        ]
+      }
+    ]
+  },
+  "releaseCheck": "Release check: public v0.87.0 -> v0.88.0",
+  "pending": [
+    "physical phone touch and subjective difficulty"
+  ],
+  "public": []
+}

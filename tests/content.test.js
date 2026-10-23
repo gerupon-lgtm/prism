@@ -1,10 +1,14 @@
 import test from 'node:test';
+import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import { challenges, challengeCircuit } from '../src/content/challenges.js';
 import { sampleCircuit } from '../src/content/samples.js';
 import { Simulation } from '../src/core/simulation.js';
 import { faultCases } from '../src/core/evaluation.js';
 import challengeFixtures from '../設計検証/challenge_fixtures.cjs';
+
+// Fixed historical examples remain executable; current random draws have their own exhaustive tests.
+const legacyAuthored=JSON.parse(readFileSync(new URL('./fixtures/pre-balanced-0.87.json',import.meta.url))).challenges;
 
 function bestRoute(nodes,edges) {
   const solutions=[];
@@ -30,10 +34,10 @@ function selections(candidates,limit) {
   return result;
 }
 
-test('追加6課題は分岐が必須で、複数の最高評価構成と実現できる基準時間を持つ',()=>{
+test('旧固定実践6課題は分岐が必須で、当時の最高評価構成と基準時間を再現する',()=>{
   assert.equal(challenges.length,42);
   const summaries=[];
-  for(const challenge of challenges.filter(c=>['Q7','Q8','Q9','Q10','Q11','Q12'].includes(c.id))){
+  for(const challenge of legacyAuthored.filter(c=>['Q7','Q8','Q9','Q10','Q11','Q12'].includes(c.id))){
     let best=Infinity,winners=0,achieved=0,maxDuration=0n;
     for(const edges of selections(challenge.candidates,challenge.limit)){
       const run=new Simulation(challengeCircuit(challenge,edges.map(e=>e.id)));
@@ -55,9 +59,9 @@ test('追加6課題は分岐が必須で、複数の最高評価構成と実現�
   console.log('Advanced exhaustive content:',JSON.stringify(summaries));
 });
 
-test('実践6課題の確認用配線は説明した到達時刻を再現する',()=>{
+test('旧固定実践6課題の説明用配線は当時の到達時刻を保持する',()=>{
   const times={Q7:['3.5','4'],Q8:['3.5','3.5','4'],Q9:['2.5','4.5','6.5'],Q10:['3.5','4.5','5.5','6.5'],Q11:['3.5','4.5'],Q12:['3.5','4.5','5.5']};
-  for(const [id,expected] of Object.entries(times)){const challenge=challenges.find(c=>c.id===id),run=new Simulation(challengeCircuit(challenge,challengeFixtures[id]));run.advanceUntil('20');assert.deepEqual(run.arrivals().map(r=>r.time),expected,id);}
+  for(const [id,expected] of Object.entries(times)){const challenge=legacyAuthored.find(c=>c.id===id),run=new Simulation(challengeCircuit(challenge,challengeFixtures[id]));run.advanceUntil('20');assert.deepEqual(run.arrivals().map(r=>r.time),expected,id);}
 });
 test('実際に使う自由2見本は資料の2.5秒と4・5・7・8秒の到達を再現する',()=>{
   const compare=new Simulation(sampleCircuit('compare')); compare.advanceUntil('3');

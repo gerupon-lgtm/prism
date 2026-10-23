@@ -1,3 +1,5 @@
+import {balancedDeliveryRevisions} from './balanced-delivery.js';
+import {balancedRhythmRevisions} from './balanced-rhythm.js';
 import {themedChallenges} from './themed-challenges.js';
 import {sequenceChallenges} from './sequence-challenges.js';
 import {returnChallenges} from './return-challenges.js';
@@ -50,39 +52,85 @@ const originalChallenges = [
   },
 ];
 
-// Keep old IDs, content versions, graphs and random draws attached to old scores.
+// Keep old IDs and authored definitions; revised graphs receive separate content versions.
 // Only presentation metadata changes when an existing problem moves to a set.
 const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10','Q23','Q24','Q25','Q26','Q27','Q28',...returnChallenges.map(c=>c.id),...mirrorChallenges.map(c=>c.id),...gateChallenges.map(c=>c.id)];
 // Presentation only: retain authored coordinates, problem IDs and old results.
 // Direct routes must remain straight and visibly bypass intermediate parts.
 const displayPositions={
-  Q7:{"A":{"x":0.521,"y":0.274},"B":{"x":0.214,"y":0.501},"C":{"x":0.772,"y":0.499},"D":{"x":0.37,"y":0.745},"E":{"x":0.617,"y":0.761}},
-  Q8:{"A":{"x":0.54,"y":0.337},"B":{"x":0.208,"y":0.503},"C":{"x":0.788,"y":0.402},"D":{"x":0.402,"y":0.748},"E":{"x":0.868,"y":0.671}},
-  Q20:{"A":{"x":0.486,"y":0.277},"B":{"x":0.208,"y":0.506},"C":{"x":0.8,"y":0.603},"D":{"x":0.311,"y":0.722}},
-  Q22:{"A":{"x":0.505,"y":0.299},"B":{"x":0.272,"y":0.479},"C":{"x":0.764,"y":0.424},"D":{"x":0.407,"y":0.775},"E":{"x":0.861,"y":0.573}},
-  Q14:{"A":{"x":0.487,"y":0.277},"B":{"x":0.133,"y":0.574},"C":{"x":0.378,"y":0.611},"D":{"x":0.629,"y":0.62},"E":{"x":0.856,"y":0.559}},
-  Q11:{"A":{"x":0.428,"y":0.28},"B":{"x":0.3,"y":0.514},"C":{"x":0.802,"y":0.459},"D":{"x":0.575,"y":0.639}},
-  Q12:{"A":{"x":0.435,"y":0.24},"B":{"x":0.132,"y":0.686},"C":{"x":0.36,"y":0.532},"D":{"x":0.814,"y":0.281},"E":{"x":0.833,"y":0.58},"F":{"x":0.677,"y":0.8}},
-  Q10:{"A":{"x":0.493,"y":0.294},"B":{"x":0.248,"y":0.519},"C":{"x":0.632,"y":0.538},"D":{"x":0.267,"y":0.778},"E":{"x":0.748,"y":0.756},"F":{"x":0.783,"y":0.289}},
-  Q23:{"A":{"x":0.501,"y":0.281},"B":{"x":0.167,"y":0.558},"C":{"x":0.833,"y":0.557},"D":{"x":0.5,"y":0.528}},
-  Q24:{"A":{"x":0.501,"y":0.281},"B":{"x":0.167,"y":0.558},"C":{"x":0.833,"y":0.557},"D":{"x":0.5,"y":0.528}},
-  Q25:{"A":{"x":0.499,"y":0.278},"B":{"x":0.208,"y":0.464},"C":{"x":0.791,"y":0.466},"D":{"x":0.327,"y":0.724},"E":{"x":0.707,"y":0.746}},
-  Q26:{"A":{"x":0.494,"y":0.286},"C":{"x":0.824,"y":0.436},"B":{"x":0.489,"y":0.561},"D":{"x":0.403,"y":0.735},"E":{"x":0.69,"y":0.736}},
-  Q27:{"A":{"x":0.494,"y":0.286},"C":{"x":0.824,"y":0.436},"B":{"x":0.489,"y":0.561},"D":{"x":0.403,"y":0.735},"E":{"x":0.69,"y":0.736}},
-  Q28:{"A":{"x":0.494,"y":0.286},"C":{"x":0.824,"y":0.436},"B":{"x":0.489,"y":0.561},"D":{"x":0.403,"y":0.735},"E":{"x":0.69,"y":0.736}},
-  Q29:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q30:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q31:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q32:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q33:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q34:{"B":{"x":0.79,"y":0.67},"D":{"x":0.79,"y":0.34}},
-  Q45:{"D":{"x":0.61}},
-  Q21:{"A":{"x":0.484,"y":0.278},"B":{"x":0.34,"y":0.631},"C":{"x":0.62,"y":0.604},"D":{"x":0.815,"y":0.408}}
+  Q38:{C:{y:.83}},
+  "Q7": {
+    "D": {
+      "x": 0.38,
+      "y": 0.75
+    },
+    "E": {
+      "x": 0.62,
+      "y": 0.75
+    }
+  },
+  "Q14": {
+    "B": {
+      "x": 0.13,
+      "y": 0.54
+    },
+    "E": {
+      "x": 0.87,
+      "y": 0.54
+    },
+    "C": {
+      "x": 0.41,
+      "y": 0.7
+    },
+    "D": {
+      "x": 0.59,
+      "y": 0.7
+    }
+  },
+  "Q23": {
+    "A": {
+      "x": 0.5,
+      "y": 0.28
+    },
+    "B": {
+      "x": 0.16,
+      "y": 0.56
+    },
+    "C": {
+      "x": 0.84,
+      "y": 0.56
+    },
+    "D": {
+      "x": 0.5,
+      "y": 0.52
+    }
+  },
+  "Q24": {
+    "A": {
+      "x": 0.5,
+      "y": 0.28
+    },
+    "B": {
+      "x": 0.16,
+      "y": 0.56
+    },
+    "C": {
+      "x": 0.84,
+      "y": 0.56
+    },
+    "D": {
+      "x": 0.5,
+      "y": 0.52
+    }
+  }
 };
+const balancedRevisions={...balancedDeliveryRevisions,...balancedRhythmRevisions};
 const themes=[{id:'intro',name:'お試し'},{id:'delivery',name:'すべての鐘へ',world:'starwalk',stage:'星渡りの回廊'},{id:'rhythm',name:'響く間隔をつくる',world:'moonwater',stage:'月映りの水殿'},{id:'sequence',name:'鐘の響きをつなぐ',world:'starecho',stage:'星響きの円環'},{id:'return',name:'星へ帰り、再び分かれる',world:'starreturn',stage:'星環の帰廊'},{id:'mirror',name:'鏡で光を導く',world:'moonmirror',stage:'月鏡の静殿'},{id:'gate',name:'星の門が開くとき',world:'stargate',stage:'星刻の開廊'}];
 export const challenges=order.map((id,index)=>{
- const original=[...originalChallenges,...themedChallenges,...sequenceChallenges,...returnChallenges,...mirrorChallenges,...gateChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)];
- return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),...(displayPositions[id]?{displayPositions:displayPositions[id]}:{}),
+ const legacy=[...originalChallenges,...themedChallenges,...sequenceChallenges,...returnChallenges,...mirrorChallenges,...gateChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)],revision=balancedRevisions[id];
+ const original=revision?{...legacy,version:revision.version,balanceRevision:true,candidates:revision.candidates??legacy.candidates.filter(e=>!revision.removeCandidates?.includes(e.id))}:legacy;
+ const positions=Object.fromEntries(Object.entries(revision?.positions??displayPositions[id]??{}).filter(([part,value])=>{const node=legacy.nodes.find(n=>n.id===part);return Object.entries(value).some(([key,v])=>v!==node[key]);}));
+ return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),...(Object.keys(positions).length?{displayPositions:positions}:{}),
   ...(original.type==='delivery-all'?{bellPitches:original.goals.length===2?[88,84]:id==='Q21'?[84,79,72]:id==='Q22'?[72,77,81]:[72,79,84]}:{})};
 });
 export const challengeNumber=challenge=>challenge.number??Number(challenge.id.slice(1));

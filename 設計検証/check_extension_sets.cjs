@@ -8,7 +8,7 @@ const offline=process.argv.includes('--offline');
 const pw=require(arg('--playwright-path')),engine=arg('--engine')||'chromium',channel=arg('--channel'),root=path.resolve('dist'),version=JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version;
 const output=path.resolve('設計検証/三つのテーマ',version,arg('--url')?new URL(arg('--url')).hostname:offline?'offline':'local',channel||engine);fs.mkdirSync(output,{recursive:true});
 const reportFile=path.join(output,'report.json');if(fs.existsSync(reportFile)){const previous=JSON.parse(fs.readFileSync(reportFile));if(!previous.passed)fs.copyFileSync(reportFile,path.join(output,`failed-${Date.now()}.json`));}
-const proofs=['星への帰還','月鏡の静殿','星刻の開廊'].flatMap(dir=>JSON.parse(fs.readFileSync(path.join(__dirname,dir,'proof.json'))).stages);
+const proofs=[...(process.argv.includes('--balanced')?['ランダム課題']:[]),'星への帰還','月鏡の静殿','星刻の開廊'].flatMap(dir=>JSON.parse(fs.readFileSync(path.join(__dirname,dir,dir==='ランダム課題'?'generation.json':'proof.json'))).stages);
 const report={version,passed:false,checks:[],pending:['Physical phones, actual listening and subjective difficulty']};
 const check=(label,data={})=>{report.checks.push({label,passed:true,...data});console.log(label);};
 const server=http.createServer((req,res)=>{try{let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file===root)file=path.join(root,'index.html');if(!file.startsWith(root+path.sep))throw Error('path');res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.json':'application/json','.ttf':'font/ttf'})[path.extname(file)]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
@@ -43,7 +43,7 @@ let browser,activePage;
   assert(Math.max(...heights)-Math.min(...heights)<.6,'all42 same condition height');check(scenario.name+' all42 fixed condition cards');}
   if(scenario.mobile){
    let previousPlayed=0;
-   for(const c of catalogue.slice(Math.max(24,Number(arg('--from-stage')||25)-1)).filter(c=>!arg('--stages')||arg('--stages').split(',').map(Number).includes(c.number))){
+   for(const c of catalogue.slice(Math.max(process.argv.includes('--balanced')?6:24,Number(arg('--from-stage')||25)-1)).filter(c=>!arg('--stages')||arg('--stages').split(',').map(Number).includes(c.number))){
     report.step='select Q'+c.number;
     if(c.number===previousPlayed+1)await p.locator('#stage-next').click();else await selectChallenge(p,c.id);previousPlayed=c.number;if(await p.locator('#mirror-intro-start').isVisible())await p.locator('#mirror-intro-start').click();await settle(p);const id=await p.locator('#app').getAttribute('data-problem-id'),proof=proofs.find(row=>row.id===id);assert(proof);
     for(const edgeId of proof.winner){report.step='Q'+c.number+' drag '+edgeId;const edge=c.candidates.find(e=>e.id===edgeId);await dragConnection(p,edge.from,edge.to);}

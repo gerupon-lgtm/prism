@@ -12,13 +12,47 @@ import {drawChallenge} from '../src/content/challenge-draw.js';
 import {matchesChallengeScore} from '../src/core/challenge-identity.js';
 const proof=JSON.parse(readFileSync(new URL('../設計検証/ランダム課題/generation.json',import.meta.url)));
 function fixture(){const values=new Map(),records=new LocalRecords({getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)});return {values,records,s:new Session(records,{random:()=>0})};}
+function assertHistoricalBank(id,bank){
+ const authored=challenges.find(c=>c.id===id);
+ if(!authored.balanceRevision)assert.deepEqual(randomVariants[id],bank,id);
+ else {
+  assert.equal(randomVariants[id].length,bank.length,id);
+  assert(randomVariants[id].every(v=>v.baseVersion===authored.version),id);
+  assert(bank.every(v=>v.baseVersion<authored.version),id);
+ }
+}
+// Sum arrivals, serialized processing and travel on a decimal integer grid in
+// topological order, independently of Simulation's particle/event scheduler.
+function timetable(c,selected){
+ const edges=selected.map(id=>c.candidates.find(e=>e.id===id));assert(edges.every(Boolean));
+ const values=[...c.nodes.map(n=>n.process),...edges.map(e=>e.time)];
+ const digits=Math.max(0,...values.map(v=>(String(v).split('.')[1]??'').length)),unit=10n**BigInt(digits);
+ const ticks=v=>{const [whole,fraction='']=String(v).split('.');return BigInt(whole)*unit+BigInt(fraction.padEnd(digits,'0')||'0');};
+ const format=t=>{const fraction=(t%unit).toString().padStart(digits,'0').replace(/0+$/,'');return String(t/unit)+(fraction?'.'+fraction:'');};
+ const arrivals=new Map(c.nodes.map(n=>[n.id,[]])),indegree=new Map(c.nodes.map(n=>[n.id,0]));
+ for(const e of edges)indegree.set(e.to,indegree.get(e.to)+1);
+ const order=c.nodes.filter(n=>indegree.get(n.id)===0).map(n=>n.id),rows=[];
+ for(let i=0;i<order.length;i++){
+  const node=c.nodes.find(n=>n.id===order[i]),queued=arrivals.get(node.id).sort((a,b)=>a<b?-1:a>b?1:0);
+  let free=0n;const departures=node.kind==='source'?[0n]:node.kind==='goal'?[]:queued.map(at=>{free=(at>free?at:free)+ticks(node.process);return free;});
+  if(node.kind==='goal')for(const at of queued)rows.push([node.id,format(at)]);
+  for(const e of edges.filter(e=>e.from===node.id)){
+   for(const at of departures)arrivals.get(e.to).push(at+ticks(e.time));
+   indegree.set(e.to,indegree.get(e.to)-1);if(indegree.get(e.to)===0)order.push(e.to);
+  }
+ }
+ assert.equal(order.length,c.nodes.length,'時刻表の対象は循環しない有向回路');
+ return rows.sort((a,b)=>Number(a[1])-Number(b[1])||a[0].localeCompare(b[0]));
+}
 
-test('間隔指定の4課題だけ内容版2へ上げ、順番のみと既存112出題を保持する',()=>{
+test('完全一致の間隔条件を保ち、左右配置と経路の改訂対象だけ内容版と出題を更新する',()=>{
  const unchanged=JSON.parse(readFileSync(new URL('../設計検証/厳密な到達間隔/0.69.0/unchanged-draws.json',import.meta.url)));
- for(const [id,bank]of Object.entries(unchanged))assert.deepEqual(randomVariants[id],bank,id);
+ for(const [id,bank]of Object.entries(unchanged))assertHistoricalBank(id,bank);
+ const versions={Q23:1,Q24:2,Q25:2,Q26:3,Q27:3,Q28:3};
  for(const c of challenges.slice(18,24)){
-  if(c.intervals){assert.equal(c.version,2);assert.equal(c.intervalTolerance,undefined);assert(randomVariants[c.id].every(v=>v.baseVersion===2));}
-  else {assert.equal(c.version,1);assert.equal(c.intervals,undefined);}
+  assert.equal(c.version,versions[c.id]);assert(randomVariants[c.id].every(v=>v.baseVersion===c.version));
+  if(c.intervals)assert.equal(c.intervalTolerance,undefined);
+  else assert.equal(c.intervals,undefined);
  }
 });
 
@@ -27,13 +61,13 @@ test('旧許容幅の成績と元条件を残し、新条件の最高点と混�
  for(const {problem,winner}of legacy){
   const {s,records}=fixture();s.replace({challengeId:problem.id});s.challenge=structuredClone(problem);s.circuit=challengeCircuit(problem,winner);s.start();s.advance(problem.maxDuration);
   assert.equal(s.result.state,'achieved');const old=structuredClone(records.scores()[0]);assert.equal(old.problem.intervalTolerance,'0.1');
-  s.stop();s.replace({challengeId:problem.id});assert.equal(s.challenge.version,2);assert.equal(matchesChallengeScore(old,s.challenge),false);
+  s.stop();s.replace({challengeId:problem.id});assert.equal(s.challenge.version,challenges.find(c=>c.id===problem.id).version);assert.equal(matchesChallengeScore(old,s.challenge),false);
   const row=proof.stages.find(p=>p.id===s.challenge.draw.id);s.circuit=challengeCircuit(s.challenge,row.winner);s.start();s.advance(s.challenge.maxDuration);
   assert.equal(s.result.state,'achieved');assert.equal(records.scores().length,2);assert.deepEqual(records.scores().find(r=>r.challenge===old.challenge),old);
  }
 });
-test('既存96出題の条件・識別子・基準・上限を一切変えず、新セットを6面追加する',()=>{
- for(const [id,variants]of Object.entries(legacyVariants))assert.deepEqual(randomVariants[id],variants,id);
+test('旧96出題は未改訂課題で保持し、改訂課題の現行出題とは区別して順番セットを6面保つ',()=>{
+ for(const [id,variants]of Object.entries(legacyVariants))assertHistoricalBank(id,variants);
  assert.deepEqual(challenges.slice(18,24).map(c=>c.number),[19,20,21,22,23,24]);assert.equal(challenges[18].intervals,undefined);assert.equal(challenges[20].intervals,undefined);assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'));
 });
 test('新48出題の満点と部分点を本体で採点・保存し、全到達時刻を結果へ保持する',()=>{
@@ -55,11 +89,11 @@ test('18面クリアから19面へ続き、24面から25面へ進める',()=>{
 test('一部の鐘への配線だけでは未達成となり、成績を作らない',()=>{
  const {s,records}=fixture();s.replace({challengeId:'Q23'});s.circuit=challengeCircuit(s.challenge,['SA','AB','BG1']);s.start();s.advance(s.challenge.maxDuration);assert.equal(s.result.state,'failed');assert.match(s.result.reason,/すべて/);assert.equal(records.scores().length,0);
 });
-test('初出題の各鐘の時刻を独立した足し算の表と照合する',()=>{
- // S first sends at0. SA .5 + A .5 gives A departure1.
- // Q24: B departure4 + BG1 .5 =4.5; C departure2 -> D4.5 + DG2 .5 =5.
- // Q25: B2.5 -> D3.1 -> G1 3.2; C1.6 -> E2.6 -> G2 3.6 / G3 4.1.
- // Q26..28: A1 -> C2 -> B3; D4 (Q27 4.5), E4, then terminal edges.
- const expected={Q23:[['G1','2.5'],['G2','3.5']],Q24:[['G1','4.5'],['G2','5']],Q25:[['G1','3.2'],['G2','3.6'],['G3','4.1']],Q26:[['G1','4.5'],['G2','5.5'],['G3','6.5']],Q27:[['G1','5'],['G2','5.5'],['G3','6.5']],Q28:[['G3','4.5'],['G2','5'],['G1','6']]};
- for(const [id,times]of Object.entries(expected)){const c=drawChallenge(challenges.find(c=>c.id===id),{random:()=>0}),row=proof.stages.find(p=>p.id===c.draw.id),run=new Simulation(challengeCircuit(c,row.winner));while(!run.exhausted)run.advanceNext();assert.deepEqual(c.goals.map(id=>[id,run.arrivals(id)[0].time]),times,id);}
+test('6面の初出題の全到達を独立した整数の時刻表と照合し、未改訂2面の手計算値も保つ',()=>{
+ const fixed={Q23:[['G1','2.5'],['G2','3.5']],Q24:[['G1','4.5'],['G2','5']]};
+ for(const authored of challenges.slice(18,24)){
+  const c=drawChallenge(authored,{random:()=>0}),row=proof.stages.find(p=>p.id===c.draw.id),run=new Simulation(challengeCircuit(c,row.winner));while(!run.exhausted)run.advanceNext();
+  const actual=run.arrivals().map(r=>[r.node,r.time]).sort((a,b)=>Number(a[1])-Number(b[1])||a[0].localeCompare(b[0]));assert.deepEqual(actual,timetable(c,row.winner),c.id);
+  if(fixed[c.id])assert.deepEqual(c.goals.map(id=>[id,run.arrivals(id)[0].time]),fixed[c.id],c.id);
+ }
 });

@@ -179,3 +179,30 @@ test('往復する光は方向別の直線で分かれ、確定順や縮尺で�
   }
   assert.deepEqual(Board.prototype.edgeCurve.call({},a,b,edges[0],[edges[0]],1),{a,b,control:{x:50,y:100}});
 });
+
+test('全42面の左右の均衡と直線経路の操作余白を保つ',()=>{
+ for(const c of challenges){
+  const view={session:{mode:'challenge',challenge:c},projectionHeight:1740,displayWidthRatio:1.1};
+  const points=c.nodes.map(n=>({id:n.id,kind:n.kind,...Board.prototype.position.call(view,n)}));
+  const middle=points.find(n=>n.kind==='source').x;
+  const mirror=new Map(points.map(n=>[n.id,points.find(m=>m.kind===n.kind&&Math.abs(m.x+n.x-middle*2)<1e-7&&Math.abs(m.y-n.y)<1e-7)?.id]));
+  assert([...mirror.values()].every(Boolean),c.id+' reflected parts');
+  if(c.number>6)for(const e of c.candidates)assert(c.candidates.some(f=>(f.from===mirror.get(e.from)&&f.to===mirror.get(e.to))||(f.to===mirror.get(e.from)&&f.from===mirror.get(e.to))),c.id+' reflected route '+e.id);
+  for(const e of c.candidates){
+   const a=points.find(n=>n.id===e.from),b=points.find(n=>n.id===e.to),dx=b.x-a.x,dy=b.y-a.y;
+   for(const n of points.filter(n=>n.id!==a.id&&n.id!==b.id)){
+    const t=Math.max(0,Math.min(1,((n.x-a.x)*dx+(n.y-a.y)*dy)/(dx*dx+dy*dy)));
+    assert(Math.hypot(n.x-a.x-t*dx,n.y-a.y-t*dy)>=160,c.id+' '+e.id+' clears '+n.id);
+   }
+  }
+ }
+});
+
+test('全鐘到達セットの最終面は一度の分岐だけでは三つの鐘へ届かない',()=>{
+ const c=challenges.find(c=>c.number===12);
+ assert.equal(c.goals.length,3);
+ assert.deepEqual(c.candidates.filter(e=>e.from==='S').map(e=>e.id),['SA']);
+ assert.deepEqual([...new Set(c.candidates.filter(e=>c.goals.includes(e.to)).map(e=>e.from))].sort(),['D','E']);
+ for(const id of ['D','E']){const out=c.candidates.filter(e=>e.from===id);assert.equal(out.length,2);assert(out.every(e=>c.goals.includes(e.to)));}
+ assert.equal(c.candidates.length,13);
+});

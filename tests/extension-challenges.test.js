@@ -65,11 +65,35 @@ function assertGateStarts(s,c,offset){
   }
 }
 
-test('旧24課題の定義と旧144出題を表示位置の調整で変えない',()=>{
-  // Only the renderer's display override is new. Authored coordinates and all
-  // original fields still match the pre-extension snapshot byte for byte.
-  assert.equal(hash(challenges.slice(0,24).map(({displayPositions,...original})=>original)),'2b06ddabc74aa81d3b09d1b4a10fca8e9d04e3f7bb45c783c2ba6c7db48ebfc4');
-  assert.equal(hash(randomVariants),'6ba797916ffec344d4322450174434ce9f909a7632ce7a301a651fd5bce5c70e');
+test('構成改訂の13面は内容版を分け、残る定義と出題を0.87.0から保持する',()=>{
+  const old=readProof('./fixtures/pre-balanced-0.87.json'), revised=new Set(['Q8','Q20','Q21','Q22','Q11','Q9','Q12','Q10','Q25','Q26','Q27','Q28','Q45']);
+  for(const c of challenges){
+    const previous=old.challenges.find(p=>p.id===c.id),{displayPositions,...content}=c;
+    if(revised.has(c.id)){
+      assert.equal(c.version,previous.version+1,c.id);
+      assert.deepEqual(c.nodes,previous.nodes,c.id+' authored/free coordinates');
+      assert.notEqual(hash(c.candidates),hash(previous.candidates),c.id+' explicit graph revision');
+      for(const key of ['type','limit','goals','goal','interval','intervals','count','bellPitches'])assert.deepEqual(c[key],previous[key],c.id+' '+key);
+    }else assert.equal(hash(content),hash(previous),c.id+' unchanged definition');
+    const bank=c.id==='Q45'?gateVariants[c.id]:randomVariants[c.id],previousBank=c.id==='Q45'?old.gate45:old.banks[c.id];
+    if(!previousBank)continue;
+    if(revised.has(c.id)){
+      assert(bank.every(v=>v.baseVersion===c.version),c.id);
+      assert.notEqual(hash(bank),hash(previousBank),c.id+' new draws');
+    }else assert.equal(hash(bank),hash(previousBank),c.id+' unchanged draws');
+  }
+});
+
+test('構成改訂前の元条件と成績は新版の満点と混ざらず残る',()=>{
+ const old=readProof('./fixtures/pre-balanced-0.87.json');
+ for(const c of challenges.filter(c=>c.balanceRevision)){
+  const previous=old.challenges.find(p=>p.id===c.id),variant=old.banks[c.id][0],{s,records}=fixture();
+  const legacy={...previous,candidates:previous.candidates.map((e,i)=>({...e,time:variant.times[i]})),baseline:variant.baseline,maxDuration:variant.maxDuration,draw:{id:variant.id,revision:1,number:1}};
+  records.saveScore(c.id+'@'+previous.version+'/random-1-'+variant.id,c.type+'@1',{numerator:'100',denominator:'1'},legacy);
+  const saved=structuredClone(records.scores()[0]);s.replace({challengeId:c.id});assert(!matchesChallengeScore(saved,s.challenge));
+  const row=oldProof.stages.find(r=>r.id===s.challenge.draw.id);solve(s,s.challenge,row);
+  assert.equal(records.scores().length,2,c.id);assert.deepEqual(records.scores()[0],saved,c.id);
+ }
 });
 
 test('新18面は表示25〜42、専用背景の6面セット、各8出題と2つの満点配線系統を持つ',()=>{
