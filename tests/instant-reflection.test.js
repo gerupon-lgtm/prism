@@ -40,7 +40,7 @@ test('同時に届いた二つの光を鏡で待たせず、同じ時刻に鐘�
 test('対象7面の全56出題は鏡と出力が0秒になり、旧成績を区別する',()=>{
   const ids=['Q35','Q36','Q37','Q38','Q39','Q40','Q46'];
   for(const id of ids){
-    const c=challenges.find(c=>c.id===id);assert.equal(c.version,id==='Q35'?4:id==='Q46'?2:3);
+    const c=challenges.find(c=>c.id===id);assert.equal(c.version,id==='Q35'?4:3);
     assert(c.nodes.filter(n=>n.kind==='mirror').every(n=>n.process==='0'));
     assert(!matchesChallengeScore({rule:'delivery-all@1',challenge:`${id}@${c.version-1}/random-1-legacy`},c));
     for(let i=0;i<8;i++){

@@ -10,11 +10,12 @@ import {perfectScore,compareScores} from '../src/core/evaluation.js';
 import {Simulation} from '../src/core/simulation.js';
 import {drawChallenge} from '../src/content/challenge-draw.js';
 import {matchesChallengeScore} from '../src/core/challenge-identity.js';
+const briskSnapshot=JSON.parse(readFileSync(new URL('./fixtures/pre-brisk-0.88.json',import.meta.url),'utf8'));
 const proof=JSON.parse(readFileSync(new URL('../設計検証/ランダム課題/generation.json',import.meta.url)));
 function fixture(){const values=new Map(),records=new LocalRecords({getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)});return {values,records,s:new Session(records,{random:()=>0})};}
 function assertHistoricalBank(id,bank){
  const authored=challenges.find(c=>c.id===id);
- if(!authored.balanceRevision)assert.deepEqual(randomVariants[id],bank,id);
+ if(!authored.balanceRevision&&!authored.tempoRevision)assert.deepEqual(randomVariants[id],bank,id);
  else {
   assert.equal(randomVariants[id].length,bank.length,id);
   assert(randomVariants[id].every(v=>v.baseVersion===authored.version),id);
@@ -48,7 +49,7 @@ function timetable(c,selected){
 test('完全一致の間隔条件を保ち、左右配置と経路の改訂対象だけ内容版と出題を更新する',()=>{
  const unchanged=JSON.parse(readFileSync(new URL('../設計検証/厳密な到達間隔/0.69.0/unchanged-draws.json',import.meta.url)));
  for(const [id,bank]of Object.entries(unchanged))assertHistoricalBank(id,bank);
- const versions={Q23:1,Q24:2,Q25:2,Q26:3,Q27:3,Q28:3};
+ const versions={Q23:2,Q24:3,Q25:3,Q26:4,Q27:4,Q28:4};
  for(const c of challenges.slice(18,24)){
   assert.equal(c.version,versions[c.id]);assert(randomVariants[c.id].every(v=>v.baseVersion===c.version));
   if(c.intervals)assert.equal(c.intervalTolerance,undefined);
@@ -68,7 +69,7 @@ test('旧許容幅の成績と元条件を残し、新条件の最高点と混�
 });
 test('旧96出題は未改訂課題で保持し、改訂課題の現行出題とは区別して順番セットを6面保つ',()=>{
  for(const [id,variants]of Object.entries(legacyVariants))assertHistoricalBank(id,variants);
- assert.deepEqual(challenges.slice(18,24).map(c=>c.number),[19,20,21,22,23,24]);assert.equal(challenges[18].intervals,undefined);assert.equal(challenges[20].intervals,undefined);assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'));
+ assert.deepEqual(challenges.slice(18,24).map(c=>c.number),[19,20,21,22,23,24]);assert.equal(challenges[18].intervals,undefined);assert.equal(challenges[21].intervals,undefined);assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'));
 });
 test('新48出題の満点と部分点を本体で採点・保存し、全到達時刻を結果へ保持する',()=>{
  for(const authored of challenges.slice(18,24))for(const variant of randomVariants[authored.id]){
@@ -94,6 +95,6 @@ test('6面の初出題の全到達を独立した整数の時刻表と照合し�
  for(const authored of challenges.slice(18,24)){
   const c=drawChallenge(authored,{random:()=>0}),row=proof.stages.find(p=>p.id===c.draw.id),run=new Simulation(challengeCircuit(c,row.winner));while(!run.exhausted)run.advanceNext();
   const actual=run.arrivals().map(r=>[r.node,r.time]).sort((a,b)=>Number(a[1])-Number(b[1])||a[0].localeCompare(b[0]));assert.deepEqual(actual,timetable(c,row.winner),c.id);
-  if(fixed[c.id])assert.deepEqual(c.goals.map(id=>[id,run.arrivals(id)[0].time]),fixed[c.id],c.id);
+  if(fixed[c.id]){const previous=briskSnapshot.definitions.find(p=>p.id===c.id),v=briskSnapshot.banks[c.id][0],r=briskSnapshot.proof.regular.stages.find(p=>p.id===v.id);const legacy={...previous,candidates:previous.candidates.map((e,i)=>({...e,time:v.times[i]}))},priorRun=new Simulation(challengeCircuit(legacy,r.winner));while(!priorRun.exhausted)priorRun.advanceNext();assert.deepEqual(legacy.goals.map(id=>[id,priorRun.arrivals(id)[0].time]),fixed[c.id],c.id+' historical hand timetable');}
  }
 });

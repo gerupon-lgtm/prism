@@ -7,7 +7,7 @@ import { challenges, challengeCircuit } from '../content/challenges.js';
 import { drawChallenge } from '../content/challenge-draw.js';
 import { challengeScoreId } from '../core/challenge-identity.js';
 import {bellSequenceResult} from '../core/bell-sequence.js';
-import {returnPatternResult} from '../core/return-pattern.js';
+import {returnPatternDeadline,returnPatternResult} from '../core/return-pattern.js';
 import {gateTimes} from '../core/periodic.js';
 import { sampleCircuit } from '../content/samples.js';
 
@@ -278,14 +278,18 @@ export class Session {
   completeReturnPattern() {
     const challenge=this.runContext?.challenge;
     if(challenge?.type!=='return-pattern'||this.run.pauseReason==='load')return false;
-    if(this.run.arrivals(challenge.goal).length<challenge.count&&this.run.hasFutureArrival(challenge.goal))return false;
+    if(!['achieved','failed'].includes(returnPatternResult(challenge,this.run).state))return false;
     this.run.complete();return true;
   }
   advanceReturnPattern(seconds,options) {
     const run=this.run,until=run.circuit.time.ticks(seconds),start=run.records.length;
     if(until<run.clock)throw new Error('実験の時計を巻き戻すことはできません。');
-    while(run.nextTime!==null&&run.nextTime<=until) {
-      run.advanceNext(options);
+    while(!run.exhausted) {
+      const deadline=returnPatternDeadline(this.runContext.challenge,run),next=run.nextTime;
+      const boundary=deadline!==null&&deadline<next?deadline:next;
+      if(boundary===null||boundary>until)break;
+      if(boundary===next)run.advanceNext(options);
+      else run.advanceUntil(run.circuit.time.format(boundary),options);
       if(run.pauseReason==='load'||this.completeReturnPattern())return run.records.slice(start);
     }
     run.advanceUntil(seconds,options);
@@ -293,8 +297,11 @@ export class Session {
   }
   next(options) {
     if (!this.run || this.run.status !== 'paused') throw new Error('一時停止中に次の動作へ進めます。');
-    const limit=this.runTimeLimit;
-    const entries=limit!==null&&this.run.nextTime!==null&&this.run.nextTime>limit?this.run.advanceUntil(this.run.circuit.time.format(limit),options):this.run.advanceNext(options);
+    const limit=this.runTimeLimit,run=this.run;
+    const deadline=this.runContext?.mode==='challenge'&&this.runContext.challenge.type==='return-pattern'?returnPatternDeadline(this.runContext.challenge,run):null;
+    let boundary=run.nextTime;
+    for(const candidate of [limit,deadline])if(candidate!==null&&boundary!==null&&candidate<boundary)boundary=candidate;
+    const entries=boundary!==null&&boundary!==run.nextTime?run.advanceUntil(run.circuit.time.format(boundary),options):run.advanceNext(options);
     this.completeReturnPattern();this.evaluate();this.stopAtTimeLimit();return entries;
   }
   advance(seconds, options) {

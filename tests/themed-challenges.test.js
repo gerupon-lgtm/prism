@@ -9,10 +9,11 @@ import {Simulation} from '../src/core/simulation.js';
 import {Session} from '../src/app/session.js';
 import {LocalRecords} from '../src/core/storage.js';
 import {randomVariants} from '../src/content/random-variants.js';
+const briskSnapshot=JSON.parse(readFileSync(new URL('./fixtures/pre-brisk-0.88.json',import.meta.url),'utf8'));
 const proof=JSON.parse(readFileSync(new URL('../設計検証/ランダム課題/generation.json',import.meta.url)));
 function assertHistoricalBank(id,bank){
  const authored=challenges.find(c=>c.id===id);
- if(!authored.balanceRevision)assert.deepEqual(randomVariants[id],bank,id);
+ if(!authored.balanceRevision&&!authored.tempoRevision)assert.deepEqual(randomVariants[id],bank,id);
  else {
   assert.equal(randomVariants[id].length,bank.length,id);
   assert(randomVariants[id].every(v=>v.baseVersion===authored.version),id);
@@ -49,7 +50,7 @@ test('42面を6面のテーマへ整理し、古い課題IDと版を番号から
  assert(challenges.slice(6,12).every(c=>c.type==='delivery-all'&&c.world==='starwalk'));
  assert(challenges.slice(12,18).every(c=>c.type==='interval'&&c.world==='moonwater'));
  assert(challenges.slice(18,24).every(c=>c.type==='bell-sequence'&&c.world==='starecho'));
- assert.equal(challenges[14].id,'Q11');assert.equal(challenges[14].version,2);assert.equal(challenges[17].id,'Q10');
+ assert.equal(challenges[14].id,'Q11');assert.equal(challenges[14].version,3);assert.equal(challenges[17].id,'Q10');
 });
 test('新しい6面は選び直すと満点配線の系統も変わり、再挑戦とクリアは出題を保つ',()=>{
  const values=new Map(),records=new LocalRecords({getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)}),s=new Session(records,{random:()=>0});
@@ -82,6 +83,6 @@ test('追加6面の初出題の全到達を独立した整数の時刻表と照�
  for(const id of ['Q19','Q20','Q21','Q22','Q13','Q14']){
   const c=drawChallenge(challenges.find(c=>c.id===id),{random:()=>0}),a=proof.stages.find(p=>p.id===c.draw.id),run=new Simulation(challengeCircuit(c,a.winner));while(!run.exhausted)run.advanceNext();
   const rows=run.arrivals().map(r=>[r.node,r.time]).sort((a,b)=>Number(a[1])-Number(b[1])||a[0].localeCompare(b[0]));assert.deepEqual(rows,timetable(c,a.winner),id);
-  if(fixed[id])assert.deepEqual(run.arrivals().map(r=>r.time),fixed[id],id);
+  if(fixed[id]){const previous=briskSnapshot.definitions.find(c=>c.id===id),v=briskSnapshot.banks[id][0],row=briskSnapshot.proof.regular.stages.find(r=>r.id===v.id);const legacy={...previous,candidates:previous.candidates.map((e,i)=>({...e,time:v.times[i]}))};const priorRun=new Simulation(challengeCircuit(legacy,row.winner));while(!priorRun.exhausted)priorRun.advanceNext();assert.deepEqual(priorRun.arrivals().map(r=>r.time),fixed[id],id+' historical hand timetable');}
  }
 });

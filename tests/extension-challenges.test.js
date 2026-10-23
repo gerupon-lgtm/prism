@@ -19,6 +19,7 @@ const sets=[
   {name:'月鏡の静殿',from:30,to:36,firstId:35,type:'delivery-all',world:'moonmirror',bank:mirrorVariants,proof:readProof('../設計検証/月鏡の静殿/proof.json')},
   {name:'星刻の開廊',from:36,to:42,firstId:41,type:'delivery-all',world:'stargate',bank:gateVariants,proof:readProof('../設計検証/星刻の開廊/proof.json')},
 ];
+const briskSnapshot=readProof('./fixtures/pre-brisk-0.88.json');
 const oldProof=readProof('../設計検証/ランダム課題/generation.json');
 test('鏡の導入面は鏡を通らずに鐘へ届く候補を持たず、旧版の最高点は新版と区別する',()=>{
   const c=challenges.find(c=>c.id==='Q35');assert.equal(c.version,4);
@@ -65,9 +66,9 @@ function assertGateStarts(s,c,offset){
   }
 }
 
-test('構成改訂の13面は内容版を分け、残る定義と出題を0.87.0から保持する',()=>{
+test('0.88.0の構成改訂13面と旧定義・出題の境界は固定資料で再確認する',()=>{
   const old=readProof('./fixtures/pre-balanced-0.87.json'), revised=new Set(['Q8','Q20','Q21','Q22','Q11','Q9','Q12','Q10','Q25','Q26','Q27','Q28','Q45']);
-  for(const c of challenges){
+  for(const c of briskSnapshot.definitions){
     const previous=old.challenges.find(p=>p.id===c.id),{displayPositions,...content}=c;
     if(revised.has(c.id)){
       assert.equal(c.version,previous.version+1,c.id);
@@ -75,7 +76,7 @@ test('構成改訂の13面は内容版を分け、残る定義と出題を0.87.0
       assert.notEqual(hash(c.candidates),hash(previous.candidates),c.id+' explicit graph revision');
       for(const key of ['type','limit','goals','goal','interval','intervals','count','bellPitches'])assert.deepEqual(c[key],previous[key],c.id+' '+key);
     }else assert.equal(hash(content),hash(previous),c.id+' unchanged definition');
-    const bank=c.id==='Q45'?gateVariants[c.id]:randomVariants[c.id],previousBank=c.id==='Q45'?old.gate45:old.banks[c.id];
+    const bank=briskSnapshot.banks[c.id],previousBank=c.id==='Q45'?old.gate45:old.banks[c.id];
     if(!previousBank)continue;
     if(revised.has(c.id)){
       assert(bank.every(v=>v.baseVersion===c.version),c.id);

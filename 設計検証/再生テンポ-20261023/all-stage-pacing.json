@@ -1,0 +1,1511 @@
+{
+  "version": "0.89.0",
+  "definitions": 42,
+  "draws": 288,
+  "stages": [
+    {
+      "number": 1,
+      "id": "Q1",
+      "name": "はじめの一音",
+      "type": "time",
+      "kind": "intro",
+      "version": 1,
+      "draws": 0,
+      "maximumRun": 2.5,
+      "perfectLast": 2.5,
+      "execution": {
+        "perfect": {
+          "count": 2,
+          "maxDuration": 2.5
+        },
+        "partial": {
+          "count": 0,
+          "maxDuration": 0
+        },
+        "failed": {
+          "count": 9,
+          "maxDuration": 0
+        }
+      },
+      "proofCombinations": 11,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 2,
+      "id": "Q2",
+      "name": "早く届けよう",
+      "type": "time",
+      "kind": "intro",
+      "version": 2,
+      "draws": 0,
+      "maximumRun": 3,
+      "perfectLast": 2.5,
+      "execution": {
+        "perfect": {
+          "count": 2,
+          "maxDuration": 2.5
+        },
+        "partial": {
+          "count": 21,
+          "maxDuration": 3
+        },
+        "failed": {
+          "count": 70,
+          "maxDuration": 0
+        }
+      },
+      "proofCombinations": 93,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 3,
+      "id": "Q3",
+      "name": "速く、少ない道で",
+      "type": "time-hops",
+      "kind": "intro",
+      "version": 2,
+      "draws": 0,
+      "maximumRun": 2.5,
+      "perfectLast": 2.5,
+      "execution": {
+        "perfect": {
+          "count": 21,
+          "maxDuration": 2.5
+        },
+        "partial": {
+          "count": 2,
+          "maxDuration": 2.5
+        },
+        "failed": {
+          "count": 70,
+          "maxDuration": 0
+        }
+      },
+      "proofCombinations": 93,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 4,
+      "id": "Q4",
+      "name": "道が一本使えなくても",
+      "type": "edge-fault",
+      "kind": "intro",
+      "version": 2,
+      "draws": 0,
+      "maximumRun": 4,
+      "perfectLast": 2.5,
+      "execution": {
+        "perfect": {
+          "count": 33,
+          "maxDuration": 2.5
+        },
+        "partial": {
+          "count": 3,
+          "maxDuration": 3.5
+        },
+        "failed": {
+          "count": 211,
+          "maxDuration": 0
+        }
+      },
+      "proofCombinations": 1207,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 5,
+      "id": "Q5",
+      "name": "プリズムが使えなくても",
+      "type": "prism-fault",
+      "kind": "intro",
+      "version": 2,
+      "draws": 0,
+      "maximumRun": 4,
+      "perfectLast": 2.5,
+      "execution": {
+        "perfect": {
+          "count": 33,
+          "maxDuration": 2.5
+        },
+        "partial": {
+          "count": 2,
+          "maxDuration": 3.5
+        },
+        "failed": {
+          "count": 212,
+          "maxDuration": 0
+        }
+      },
+      "proofCombinations": 988,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 6,
+      "id": "Q6",
+      "name": "間隔をそろえて鳴らそう",
+      "type": "interval",
+      "kind": "intro",
+      "version": 2,
+      "draws": 0,
+      "maximumRun": 8.5,
+      "perfectLast": 5,
+      "execution": {
+        "perfect": {
+          "count": 5,
+          "maxDuration": 5
+        },
+        "partial": {
+          "count": 0,
+          "maxDuration": 0
+        },
+        "failed": {
+          "count": 242,
+          "maxDuration": 8.5
+        }
+      },
+      "proofCombinations": 247,
+      "classificationUnit": "allowed wiring; fault stages evaluate the worst single fault; maximumRun also exhausts intact and every fault scenario",
+      "unchanged": true
+    },
+    {
+      "number": 7,
+      "id": "Q19",
+      "name": "分かれ道の先に",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.7,
+      "perfectLast": 5.1,
+      "maximumRun": 5.3,
+      "maximumClearRun": 5.3,
+      "maximumFailedRun": 5.3,
+      "proofCombinations": 960,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "partialExample": {
+        "time": "4.2",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ]
+      },
+      "previousPerfectLast": 6.1,
+      "previousMaximumRun": 6.3
+    },
+    {
+      "number": 8,
+      "id": "Q7",
+      "name": "二つの祭壇へ",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 3,
+      "perfectLast": 3.3,
+      "maximumRun": 4.4,
+      "maximumClearRun": 4.4,
+      "maximumFailedRun": 4.4,
+      "proofCombinations": 46496,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "DG1",
+        "EG2"
+      ],
+      "partialExample": {
+        "time": "3.1",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "CE",
+          "EG2",
+          "BG1"
+        ]
+      },
+      "previousPerfectLast": 3.9,
+      "previousMaximumRun": 5
+    },
+    {
+      "number": 9,
+      "id": "Q8",
+      "name": "三つの響きを導く",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.7,
+      "perfectLast": 3,
+      "maximumRun": 4.4,
+      "maximumClearRun": 4.4,
+      "maximumFailedRun": 4.4,
+      "proofCombinations": 182552,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "CE",
+        "CD",
+        "EG2",
+        "BG1",
+        "DG3"
+      ],
+      "partialExample": {
+        "time": "2.8",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "CE",
+          "EG2",
+          "BG1",
+          "DG3"
+        ]
+      },
+      "previousPerfectLast": 3.5,
+      "previousMaximumRun": 4.9
+    },
+    {
+      "number": 10,
+      "id": "Q20",
+      "name": "分岐を受け継ぐ光",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2,
+      "perfectLast": 3,
+      "maximumRun": 5.2,
+      "maximumClearRun": 5.2,
+      "maximumFailedRun": 5.2,
+      "proofCombinations": 131072,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "DG2",
+        "BG1",
+        "CG3",
+        "AD"
+      ],
+      "partialExample": {
+        "time": "2.1",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG3",
+          "BG2"
+        ]
+      },
+      "previousPerfectLast": 3.8,
+      "previousMaximumRun": 9
+    },
+    {
+      "number": 11,
+      "id": "Q21",
+      "name": "三つの出口を探して",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.2,
+      "perfectLast": 2.5,
+      "maximumRun": 5.9,
+      "maximumClearRun": 5.9,
+      "maximumFailedRun": 5.9,
+      "proofCombinations": 79592,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG3",
+        "CG2"
+      ],
+      "partialExample": {
+        "time": "2.4",
+        "edges": [
+          "SA",
+          "AC",
+          "DG1",
+          "DG2",
+          "CG3",
+          "AD"
+        ]
+      },
+      "previousPerfectLast": 3.8,
+      "previousMaximumRun": 7.7
+    },
+    {
+      "number": 12,
+      "id": "Q22",
+      "name": "響きをつなぐ回廊",
+      "type": "delivery-all",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.8,
+      "perfectLast": 3.1,
+      "maximumRun": 4.3,
+      "maximumClearRun": 4.2,
+      "maximumFailedRun": 4.3,
+      "proofCombinations": 56792,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BE",
+        "CD",
+        "DG1",
+        "EG3",
+        "EG2"
+      ],
+      "partialExample": {
+        "time": "3",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BE",
+          "CD",
+          "DG1",
+          "EG3",
+          "DG2"
+        ]
+      },
+      "previousPerfectLast": 4.5,
+      "previousMaximumRun": 7
+    },
+    {
+      "number": 13,
+      "id": "Q13",
+      "name": "ふたつの光、ふたつの時刻",
+      "type": "interval",
+      "kind": "regular",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.2,
+      "perfectLast": 3.5,
+      "maximumRun": 4.5,
+      "maximumClearRun": 4.5,
+      "maximumFailedRun": 4.5,
+      "proofCombinations": 960,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BG",
+        "AC",
+        "CG"
+      ],
+      "partialExample": {
+        "time": "3.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CG",
+          "AD",
+          "DG"
+        ]
+      },
+      "previousPerfectLast": 6.1,
+      "previousMaximumRun": 7.1
+    },
+    {
+      "number": 14,
+      "id": "Q14",
+      "name": "三つの流れ星",
+      "type": "interval",
+      "kind": "regular",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1,
+      "perfectLast": 4.5,
+      "maximumRun": 7.3,
+      "maximumClearRun": 5.5,
+      "maximumFailedRun": 7.3,
+      "proofCombinations": 14528,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BG",
+        "AC",
+        "CG",
+        "AD",
+        "DG"
+      ],
+      "partialExample": {
+        "time": "3.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CG",
+          "AD",
+          "DG",
+          "AE",
+          "EG"
+        ]
+      },
+      "previousPerfectLast": 6.1,
+      "previousMaximumRun": 7.9
+    },
+    {
+      "number": 15,
+      "id": "Q11",
+      "name": "合流先の順番待ち",
+      "type": "interval",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 4.9,
+      "perfectLast": 6.7,
+      "maximumRun": 7.6,
+      "maximumClearRun": 6.9,
+      "maximumFailedRun": 7.6,
+      "proofCombinations": 6784,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BD",
+        "AC",
+        "CD",
+        "DG"
+      ],
+      "partialExample": {
+        "time": "5.6",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "CD",
+          "DG",
+          "BC"
+        ]
+      },
+      "previousPerfectLast": 6.7,
+      "previousMaximumRun": 7.6
+    },
+    {
+      "number": 16,
+      "id": "Q9",
+      "name": "途中で分けて、さらに分ける",
+      "type": "interval",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 3,
+      "perfectLast": 7.3,
+      "maximumRun": 9.3,
+      "maximumClearRun": 9.3,
+      "maximumFailedRun": 9.3,
+      "proofCombinations": 15848,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AE",
+        "BC",
+        "BD",
+        "CG",
+        "DG",
+        "EG"
+      ],
+      "partialExample": {
+        "time": "5",
+        "edges": [
+          "SA",
+          "AB",
+          "AE",
+          "BD",
+          "ED",
+          "DG",
+          "EG"
+        ]
+      },
+      "previousPerfectLast": 8.8,
+      "previousMaximumRun": 10.8
+    },
+    {
+      "number": 17,
+      "id": "Q12",
+      "name": "三つの光、ひとつの合流点",
+      "type": "interval",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.4,
+      "perfectLast": 4.7,
+      "maximumRun": 7.8,
+      "maximumClearRun": 7.1,
+      "maximumFailedRun": 7.8,
+      "proofCombinations": 62512,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BF",
+        "AC",
+        "CF",
+        "ED",
+        "FG",
+        "AE",
+        "DF"
+      ],
+      "partialExample": {
+        "time": "4.3",
+        "edges": [
+          "SA",
+          "AB",
+          "BF",
+          "EF",
+          "FG",
+          "AF",
+          "AE"
+        ]
+      },
+      "previousPerfectLast": 4.7,
+      "previousMaximumRun": 8.1
+    },
+    {
+      "number": 18,
+      "id": "Q10",
+      "name": "四つの光を一秒ずつ",
+      "type": "interval",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.7,
+      "perfectLast": 5,
+      "maximumRun": 6,
+      "maximumClearRun": 6,
+      "maximumFailedRun": 6,
+      "proofCombinations": 32664,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "BE",
+        "DF",
+        "EF",
+        "FG",
+        "BG",
+        "CG"
+      ],
+      "partialExample": {
+        "time": "2.7",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BD",
+          "BE",
+          "CE",
+          "DF",
+          "EF",
+          "FG",
+          "CG"
+        ]
+      },
+      "previousPerfectLast": 8.2,
+      "previousMaximumRun": 9.2
+    },
+    {
+      "number": 19,
+      "id": "Q23",
+      "name": "ふたつの鐘の呼び声",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.2,
+      "perfectLast": 3.5,
+      "maximumRun": 6,
+      "maximumClearRun": 5,
+      "maximumFailedRun": 6,
+      "proofCombinations": 5104,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "partialExample": {
+        "time": "4.2",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ]
+      },
+      "previousPerfectLast": 4.1,
+      "previousMaximumRun": 7.1
+    },
+    {
+      "number": 20,
+      "id": "Q24",
+      "name": "半秒あとに応えて",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 3,
+      "perfectLast": 4.3,
+      "maximumRun": 6.4,
+      "maximumClearRun": 5.8,
+      "maximumFailedRun": 6.4,
+      "proofCombinations": 11888,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "CD",
+        "DG2",
+        "BG1"
+      ],
+      "partialExample": {
+        "time": "3.5",
+        "edges": [
+          "SA",
+          "AC",
+          "CG2",
+          "CG1"
+        ]
+      },
+      "previousPerfectLast": 11.6,
+      "previousMaximumRun": 19.1
+    },
+    {
+      "number": 21,
+      "id": "Q27",
+      "name": "ひとつの分岐、三つの余韻",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 4,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 4.3,
+      "perfectLast": 5.5,
+      "maximumRun": 6.2,
+      "maximumClearRun": 5.8,
+      "maximumFailedRun": 6.2,
+      "proofCombinations": 182552,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "EG2",
+        "DG3",
+        "EG1"
+      ],
+      "partialExample": {
+        "time": "4.9",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BE",
+          "CD",
+          "EG2",
+          "DG3",
+          "EG1"
+        ]
+      },
+      "previousPerfectLast": 5.6,
+      "previousMaximumRun": 9.1
+    },
+    {
+      "number": 22,
+      "id": "Q25",
+      "name": "三つの鐘を順番に",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 3.2,
+      "perfectLast": 5.4,
+      "maximumRun": 6.1,
+      "maximumClearRun": 5.9,
+      "maximumFailedRun": 6.1,
+      "proofCombinations": 182552,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BE",
+        "CD",
+        "EG3",
+        "DG2",
+        "BG1"
+      ],
+      "partialExample": {
+        "time": "5.3",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "CD",
+          "DG2",
+          "BG1",
+          "DG3"
+        ]
+      },
+      "previousPerfectLast": 5.4,
+      "previousMaximumRun": 6.1
+    },
+    {
+      "number": 23,
+      "id": "Q26",
+      "name": "のぼる星の三音",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 4,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 3.9,
+      "perfectLast": 4.8,
+      "maximumRun": 5.6,
+      "maximumClearRun": 5.6,
+      "maximumFailedRun": 5.6,
+      "proofCombinations": 182552,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "EG3",
+        "DG2",
+        "BG1"
+      ],
+      "partialExample": {
+        "time": "4.1",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "BE",
+          "DG1",
+          "EG2",
+          "DG3"
+        ]
+      },
+      "previousPerfectLast": 5.5,
+      "previousMaximumRun": 8.3
+    },
+    {
+      "number": 24,
+      "id": "Q28",
+      "name": "降りそそぐ星の余韻",
+      "type": "bell-sequence",
+      "kind": "regular",
+      "version": 4,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 4,
+      "perfectLast": 5,
+      "maximumRun": 5.5,
+      "maximumClearRun": 5.5,
+      "maximumFailedRun": 5.5,
+      "proofCombinations": 182552,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BD",
+        "CE",
+        "DG1",
+        "EG3",
+        "DG2"
+      ],
+      "partialExample": {
+        "time": "4.9",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BE",
+          "CD",
+          "DG1",
+          "EG3",
+          "DG2"
+        ]
+      },
+      "previousPerfectLast": 5,
+      "previousMaximumRun": 7.7
+    },
+    {
+      "number": 25,
+      "id": "Q29",
+      "name": "星へ帰る光",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 4.4,
+      "maximumRun": 4.6,
+      "maximumClearRun": 4.6,
+      "maximumFailedRun": 4.6,
+      "proofCombinations": 1752,
+      "winnerExample": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "partialExample": {
+        "time": "4.3",
+        "first": "1.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "AG"
+        ],
+        "waited": false
+      },
+      "maximumClearFirst": 1.6,
+      "previousPerfectLast": 5.1,
+      "previousMaximumRun": 35.3
+    },
+    {
+      "number": 26,
+      "id": "Q30",
+      "name": "二度目の分岐",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 6.3,
+      "maximumRun": 6.8,
+      "maximumClearRun": 6.8,
+      "maximumFailedRun": 6.8,
+      "proofCombinations": 5104,
+      "winnerExample": [
+        "SA",
+        "CS",
+        "SC",
+        "DG",
+        "AD"
+      ],
+      "partialExample": {
+        "time": "6.15",
+        "first": "1.15",
+        "edges": [
+          "CS",
+          "SC",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "maximumClearFirst": 1.8,
+      "previousPerfectLast": 6.85,
+      "previousMaximumRun": 41.5
+    },
+    {
+      "number": 27,
+      "id": "Q31",
+      "name": "帰り道を選ぶ",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 4.6,
+      "maximumRun": 5.1,
+      "maximumClearRun": 5.1,
+      "maximumFailedRun": 5.1,
+      "proofCombinations": 1752,
+      "winnerExample": [
+        "SA",
+        "SB",
+        "DS",
+        "BG",
+        "AD"
+      ],
+      "partialExample": {
+        "time": "5.1",
+        "first": "1.1",
+        "edges": [
+          "SA",
+          "SB",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "waited": false
+      },
+      "maximumClearFirst": 1.1,
+      "previousPerfectLast": 5.6,
+      "previousMaximumRun": 33.4
+    },
+    {
+      "number": 28,
+      "id": "Q32",
+      "name": "二つの響きと帰り道",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 3.9,
+      "maximumRun": 4.9,
+      "maximumClearRun": 4.9,
+      "maximumFailedRun": 3.9,
+      "proofCombinations": 6784,
+      "winnerExample": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "partialExample": {
+        "time": "4.6",
+        "first": "1.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG",
+          "CG"
+        ],
+        "waited": false
+      },
+      "maximumClearFirst": 1.9,
+      "previousPerfectLast": 4.6,
+      "previousMaximumRun": 27
+    },
+    {
+      "number": 29,
+      "id": "Q33",
+      "name": "帰還を重ねて",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 8.3,
+      "maximumRun": 8.4,
+      "maximumClearRun": 8.4,
+      "maximumFailedRun": 3.9,
+      "proofCombinations": 6784,
+      "winnerExample": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "DG",
+        "AD"
+      ],
+      "partialExample": {
+        "time": "8.1",
+        "first": "2.1",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "CG",
+          "BC"
+        ],
+        "waited": true
+      },
+      "maximumClearFirst": 2.4,
+      "previousPerfectLast": 7.85,
+      "previousMaximumRun": 46.8
+    },
+    {
+      "number": 30,
+      "id": "Q34",
+      "name": "星環の交響",
+      "type": "return-pattern",
+      "kind": "return",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": null,
+      "perfectLast": 5.5,
+      "maximumRun": 7.5,
+      "maximumClearRun": 7.5,
+      "maximumFailedRun": 5.5,
+      "proofCombinations": 26416,
+      "winnerExample": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG",
+        "CG"
+      ],
+      "partialExample": {
+        "time": "7.2",
+        "first": "2.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": true
+      },
+      "maximumClearFirst": 2.5,
+      "previousPerfectLast": 6.6,
+      "previousMaximumRun": 38
+    },
+    {
+      "number": 31,
+      "id": "Q35",
+      "name": "鏡に光を預けて",
+      "type": "delivery-all",
+      "kind": "mirror",
+      "version": 4,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.3,
+      "perfectLast": 2.8,
+      "maximumRun": 3,
+      "maximumClearRun": 3,
+      "maximumFailedRun": 2.2,
+      "proofCombinations": 368,
+      "winnerExample": [
+        "SA",
+        "AM",
+        "MC",
+        "CG"
+      ],
+      "partialExample": {
+        "time": "1.4",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "DG"
+        ]
+      },
+      "previousPerfectLast": 2.8,
+      "previousMaximumRun": 3
+    },
+    {
+      "number": 32,
+      "id": "Q36",
+      "name": "鏡の呼び鈴",
+      "type": "bell-sequence",
+      "kind": "mirror",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 0.6,
+      "perfectLast": 0.6,
+      "maximumRun": 1.2,
+      "maximumClearRun": 1.2,
+      "maximumFailedRun": 1.2,
+      "proofCombinations": 2080,
+      "winnerExample": [
+        "SM",
+        "SP",
+        "PN",
+        "MG1",
+        "NG2"
+      ],
+      "partialExample": {
+        "time": "0.8",
+        "edges": [
+          "SN",
+          "SP",
+          "PM",
+          "MG2",
+          "NG1"
+        ]
+      },
+      "previousPerfectLast": 0.6,
+      "previousMaximumRun": 1.2
+    },
+    {
+      "number": 33,
+      "id": "Q37",
+      "name": "二枚の鏡、二つの道",
+      "type": "delivery-all",
+      "kind": "mirror",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.2,
+      "perfectLast": 3.5,
+      "maximumRun": 4.5,
+      "maximumClearRun": 4.1,
+      "maximumFailedRun": 4.5,
+      "proofCombinations": 8928,
+      "winnerExample": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "DG2"
+      ],
+      "partialExample": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AM",
+          "MD",
+          "CG1",
+          "DG2",
+          "AC"
+        ]
+      },
+      "previousPerfectLast": 3.5,
+      "previousMaximumRun": 4.5
+    },
+    {
+      "number": 34,
+      "id": "Q38",
+      "name": "鏡から鏡へ",
+      "type": "delivery-all",
+      "kind": "mirror",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2,
+      "perfectLast": 3.4,
+      "maximumRun": 4.4,
+      "maximumClearRun": 4.4,
+      "maximumFailedRun": 4.4,
+      "proofCombinations": 10568,
+      "winnerExample": [
+        "SM",
+        "MB",
+        "BN",
+        "NC",
+        "CG1",
+        "CG2"
+      ],
+      "partialExample": {
+        "time": "3.3",
+        "edges": [
+          "SM",
+          "MD",
+          "CG1",
+          "CG2",
+          "DC"
+        ]
+      },
+      "previousPerfectLast": 3.4,
+      "previousMaximumRun": 4.4
+    },
+    {
+      "number": 35,
+      "id": "Q39",
+      "name": "一つの反射、三つの響き",
+      "type": "delivery-all",
+      "kind": "mirror",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 2.2,
+      "perfectLast": 3.6,
+      "maximumRun": 4.2,
+      "maximumClearRun": 4.1,
+      "maximumFailedRun": 4.2,
+      "proofCombinations": 16992,
+      "winnerExample": [
+        "SA",
+        "AM",
+        "MD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "partialExample": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CG1",
+          "CG2",
+          "CG3"
+        ]
+      },
+      "previousPerfectLast": 3.6,
+      "previousMaximumRun": 4.2
+    },
+    {
+      "number": 36,
+      "id": "Q40",
+      "name": "月鏡のアンサンブル",
+      "type": "delivery-all",
+      "kind": "mirror",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.4,
+      "perfectLast": 2,
+      "maximumRun": 3.2,
+      "maximumClearRun": 3.2,
+      "maximumFailedRun": 3.2,
+      "proofCombinations": 35064,
+      "winnerExample": [
+        "SA",
+        "AM",
+        "AN",
+        "MD",
+        "NC",
+        "CG1",
+        "CG2",
+        "DG3"
+      ],
+      "partialExample": {
+        "time": "1.5",
+        "edges": [
+          "SA",
+          "AM",
+          "AN",
+          "MC",
+          "ND",
+          "CG1",
+          "CG2",
+          "DG3"
+        ]
+      },
+      "previousPerfectLast": 2,
+      "previousMaximumRun": 3.2
+    },
+    {
+      "number": 37,
+      "id": "Q41",
+      "name": "開く星の門",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.25,
+      "perfectLast": 1.55,
+      "maximumRun": 4.3,
+      "maximumClearRun": 4.3,
+      "maximumFailedRun": 3.05,
+      "proofCombinations": 20160,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "partialExample": {
+        "time": "1.75",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "0"
+      },
+      "minimumPerfectWindow": 1.5,
+      "previousPerfectLast": 3.1,
+      "previousMaximumRun": 8.6
+    },
+    {
+      "number": 38,
+      "id": "Q42",
+      "name": "待つ道、進む道",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.25,
+      "perfectLast": 1.55,
+      "maximumRun": 4.3,
+      "maximumClearRun": 4.3,
+      "maximumFailedRun": 3.3,
+      "proofCombinations": 20160,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "partialExample": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "0"
+      },
+      "minimumPerfectWindow": 1,
+      "previousPerfectLast": 3.1,
+      "previousMaximumRun": 8.6
+    },
+    {
+      "number": 39,
+      "id": "Q43",
+      "name": "開く時を分け合う",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.25,
+      "perfectLast": 1.55,
+      "maximumRun": 4.3,
+      "maximumClearRun": 4.3,
+      "maximumFailedRun": 4.3,
+      "proofCombinations": 183360,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "partialExample": {
+        "time": "2.5",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ],
+        "phase": "0"
+      },
+      "minimumPerfectWindow": 1,
+      "previousPerfectLast": 3.1,
+      "previousMaximumRun": 8.6
+    },
+    {
+      "number": 40,
+      "id": "Q44",
+      "name": "二つの門をくぐって",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 2,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.75,
+      "perfectLast": 2.05,
+      "maximumRun": 5.05,
+      "maximumClearRun": 5.05,
+      "maximumFailedRun": 4.55,
+      "proofCombinations": 122880,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "BD",
+        "DG"
+      ],
+      "partialExample": {
+        "time": "2.25",
+        "edges": [
+          "SA",
+          "DG",
+          "AC",
+          "CD"
+        ],
+        "phase": "0"
+      },
+      "minimumPerfectWindow": 1.5,
+      "previousPerfectLast": 4.1,
+      "previousMaximumRun": 10.1
+    },
+    {
+      "number": 41,
+      "id": "Q45",
+      "name": "三つの鐘と星の周期",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.75,
+      "perfectLast": 2.05,
+      "maximumRun": 5.8,
+      "maximumClearRun": 5.8,
+      "maximumFailedRun": 5.8,
+      "proofCombinations": 2113280,
+      "winnerExample": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "BD",
+        "DG2",
+        "CG3"
+      ],
+      "partialExample": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CD",
+          "DG2",
+          "CG3"
+        ],
+        "phase": "0"
+      },
+      "minimumPerfectWindow": 1.5,
+      "previousPerfectLast": 4.1,
+      "previousMaximumRun": 11.6
+    },
+    {
+      "number": 42,
+      "id": "Q46",
+      "name": "星刻と月鏡の三重奏",
+      "type": "delivery-all",
+      "kind": "gate",
+      "version": 3,
+      "draws": 8,
+      "minimumEvaluatedPerfect": 1.75,
+      "perfectLast": 2.05,
+      "maximumRun": 7.55,
+      "maximumClearRun": 7.55,
+      "maximumFailedRun": 7.55,
+      "proofCombinations": 3064320,
+      "winnerExample": [
+        "SA",
+        "AM",
+        "MB",
+        "BD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "partialExample": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.5"
+      },
+      "minimumPerfectWindow": 1,
+      "previousPerfectLast": 4.1,
+      "previousMaximumRun": 16.1
+    }
+  ],
+  "boundary": "Experiment event time; real display and editing-return durations are separately checked by check_play_pacing.cjs. Subjective challenge is not proven by enumeration."
+}

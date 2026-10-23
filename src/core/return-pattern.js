@@ -5,6 +5,18 @@ export function validateReturnPattern(challenge,scale,availableGoals) {
   if(typeof challenge.interval!=='string'||scale.ticks(challenge.interval)<=0n)throw new Error('鐘の指定間隔は0より大きい秒数です。');
 }
 
+// Exact experiment ticks for the next required bell. No first-arrival deadline
+// is invented; an already wrong observed prefix or a complete prefix has none.
+export function returnPatternDeadline(challenge,run) {
+  const scale=run.circuit.time;
+  validateReturnPattern(challenge,scale,run.circuit.goals);
+  const arrivals=run.arrivals(challenge.goal).slice(0,challenge.count);
+  if(!arrivals.length||arrivals.length===challenge.count)return null;
+  const interval=scale.ticks(challenge.interval);
+  if(arrivals.some((row,index)=>index>0&&scale.ticks(row.time)-scale.ticks(arrivals[index-1].time)!==interval))return null;
+  return scale.ticks(arrivals[0].time)+BigInt(arrivals.length)*interval;
+}
+
 export function returnPatternResult(challenge,run) {
   const scale=run.circuit.time;
   validateReturnPattern(challenge,scale,run.circuit.goals);
@@ -20,6 +32,10 @@ export function returnPatternResult(challenge,run) {
     return returnedBranch?result('achieved'):{...result('failed'),reason:'光を星へ戻し、星でもう一度分岐させてください。'};
   }
   if(run.status==='stopped')return result('stopped');
+  const deadline=returnPatternDeadline(challenge,run);
+  // A load pause may split the events at this very timestamp. Let those events
+  // (including zero-time processing and reflection) finish before judging it.
+  if(deadline!==null&&run.clock>=deadline&&run.nextTime!==run.clock)return {...result('failed'),reason:'指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。'};
   if(!run.hasFutureArrival(challenge.goal))return {...result('failed'),reason:'指定した回数まで鐘に届く配線になっていません。'};
   return result('pending');
 }

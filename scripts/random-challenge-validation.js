@@ -21,6 +21,7 @@ export function simulateWiring(challenge,ids){
 export function inspectProblem(challenge,sets=legalWirings(challenge)){
   let best=null,maximum=0n,winners=0,achieved=0,purposeFailures=0;
   const results=new Map();
+  const pacing={clearWirings:0,failedWirings:0,maxClearRun:0,maxFailedRun:0,maxClearFinish:0};
   const scale=simulateWiring(challenge,[]).circuit.time;
   for(const ids of sets){
     const run=simulateWiring(challenge,ids);
@@ -35,7 +36,10 @@ export function inspectProblem(challenge,sets=legalWirings(challenge)){
       const result=run.intervalResult(challenge.goal,challenge.interval,challenge.count);
       if(result.state==='achieved')at=scale.ticks(result.first);
     }
-    if(at===null)continue;
+    if(at===null){pacing.failedWirings++;pacing.maxFailedRun=Math.max(pacing.maxFailedRun,Number(run.format()));continue;}
+    pacing.clearWirings++;pacing.maxClearRun=Math.max(pacing.maxClearRun,Number(run.format()));
+    const finish=Number(scale.format(at))+(challenge.type==='interval'?(challenge.count-1)*Number(challenge.interval):0);
+    pacing.maxClearFinish=Math.max(pacing.maxClearFinish,Math.round(finish*100)/100);
     achieved++;
     const branches=new Set(run.records.filter(r=>r.type==='branch'&&run.circuit.nodes.get(r.node).kind==='prism').map(r=>r.node));
     const waiting=run.records.some(r=>r.type==='process-start'&&scale.ticks(r.wait)>0n);
@@ -49,5 +53,5 @@ export function inspectProblem(challenge,sets=legalWirings(challenge)){
   const traps=challenge.candidates.filter(e=>!winner.includes(e.id)&&challenge.candidates.some(w=>winner.includes(w.id)&&w.from===e.from&&scale.ticks(e.time)<scale.ticks(w.time))).map(e=>e.id);
   return {baseline:best===null?null:scale.format(best),maxDuration:scale.format(maximum),achieved,winners,purposeFailures,winner,
     partial:next===undefined?null:{time:scale.format(next),edges:results.get(next)},traps,
-    valid:winners===1&&next!==undefined&&purposeFailures===0};
+    pacing,valid:winners===1&&next!==undefined&&purposeFailures===0};
 }

@@ -1,3 +1,4 @@
+import {briskVersions} from './brisk-revisions.js';
 import {balancedDeliveryRevisions} from './balanced-delivery.js';
 import {balancedRhythmRevisions} from './balanced-rhythm.js';
 import {themedChallenges} from './themed-challenges.js';
@@ -54,7 +55,7 @@ const originalChallenges = [
 
 // Keep old IDs and authored definitions; revised graphs receive separate content versions.
 // Only presentation metadata changes when an existing problem moves to a set.
-const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10','Q23','Q24','Q25','Q26','Q27','Q28',...returnChallenges.map(c=>c.id),...mirrorChallenges.map(c=>c.id),...gateChallenges.map(c=>c.id)];
+const order=['Q1','Q2','Q3','Q4','Q5','Q6','Q19','Q7','Q8','Q20','Q21','Q22','Q13','Q14','Q11','Q9','Q12','Q10','Q23','Q24','Q27','Q25','Q26','Q28',...returnChallenges.map(c=>c.id),...mirrorChallenges.map(c=>c.id),...gateChallenges.map(c=>c.id)];
 // Presentation only: retain authored coordinates, problem IDs and old results.
 // Direct routes must remain straight and visibly bypass intermediate parts.
 const displayPositions={
@@ -130,7 +131,7 @@ export const challenges=order.map((id,index)=>{
  const legacy=[...originalChallenges,...themedChallenges,...sequenceChallenges,...returnChallenges,...mirrorChallenges,...gateChallenges].find(c=>c.id===id),theme=themes[Math.floor(index/6)],revision=balancedRevisions[id];
  const original=revision?{...legacy,version:revision.version,balanceRevision:true,candidates:revision.candidates??legacy.candidates.filter(e=>!revision.removeCandidates?.includes(e.id))}:legacy;
  const positions=Object.fromEntries(Object.entries(revision?.positions??displayPositions[id]??{}).filter(([part,value])=>{const node=legacy.nodes.find(n=>n.id===part);return Object.entries(value).some(([key,v])=>v!==node[key]);}));
- return {...original,number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),...(Object.keys(positions).length?{displayPositions:positions}:{}),
+ return {...original,...(briskVersions[id]?{version:briskVersions[id],tempoRevision:true}:{}),number:index+1,set:theme.id,setName:theme.name,...(theme.world?{world:theme.world,stage:theme.stage}:{}),...(Object.keys(positions).length?{displayPositions:positions}:{}),
   ...(original.type==='delivery-all'?{bellPitches:original.goals.length===2?[88,84]:id==='Q21'?[84,79,72]:id==='Q22'?[72,77,81]:[72,79,84]}:{})};
 });
 export const challengeNumber=challenge=>challenge.number??Number(challenge.id.slice(1));

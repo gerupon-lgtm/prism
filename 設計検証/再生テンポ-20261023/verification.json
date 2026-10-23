@@ -1,0 +1,216 @@
+{
+  "version": "0.89.0",
+  "base": "e3ad9d0254a74084efe2d52b37eb027be4216d97",
+  "stages": 42,
+  "draws": 288,
+  "revisedStages": 30,
+  "revisedDraws": 240,
+  "keptIntroStages": 6,
+  "keptMirrorDraws": 48,
+  "maximumPerfectRequiredBell": 8.3,
+  "maximumExperimentRun": 9.3,
+  "returnCandidateCounts": [
+    8,
+    10,
+    8,
+    10,
+    10,
+    12
+  ],
+  "returnExhaustiveWirings": 48592,
+  "tests": {
+    "allFiles": 40,
+    "afterCandidatePruningFiles": 5,
+    "afterCandidatePruningTests": 41,
+    "syntaxFiles": 111
+  },
+  "layouts": {
+    "chromium": [
+      {
+        "name": "phone",
+        "stages": 42
+      },
+      {
+        "name": "short",
+        "stages": 42
+      },
+      {
+        "name": "landscape",
+        "stages": 42
+      },
+      {
+        "name": "desktop",
+        "stages": 42
+      }
+    ],
+    "webkit": [
+      {
+        "name": "phone",
+        "stages": 42
+      },
+      {
+        "name": "short",
+        "stages": 42
+      },
+      {
+        "name": "landscape",
+        "stages": 42
+      },
+      {
+        "name": "desktop",
+        "stages": 42
+      }
+    ]
+  },
+  "wiring": {
+    "chromium": {
+      "originalAllPracticeStages": 36,
+      "redoneReducedReturnStages": 6,
+      "unchangedStagesReused": 30
+    },
+    "webkit": {
+      "originalAllPracticeStages": 36,
+      "redoneReducedReturnStages": 6,
+      "unchangedStagesReused": 30
+    }
+  },
+  "playback": {
+    "chromium": {
+      "cases": 24,
+      "passed": true,
+      "segments": {
+        "unchangedStagesPassed": 10,
+        "finalReturnAndMirrorGateCases": 14,
+        "measurementCorrection": "First paint follows effect lifetime start; measured frame gap allowance; Q26 replay passed."
+      }
+    },
+    "webkit": {
+      "cases": 24,
+      "passed": true,
+      "segments": {
+        "firstPassedCases": 8,
+        "freshBrowserPassedCases": 16,
+        "priorPause": "Q22 paused at 0.2 seconds due to measured load; first case after relaunch passed. Cause of the presentation delay is not proven."
+      }
+    }
+  },
+  "physicalDeviceAndSubjectiveDifficulty": "not verified",
+  "naturalLoadPause": {
+    "engine": "webkit",
+    "stage": 22,
+    "experimentClock": "0.2",
+    "maxObservedPaintGapMs": 204,
+    "cause": "not established; reported load protection, not an application exception",
+    "freshBrowserReplay": "passed"
+  },
+  "controlledResume": {
+    "version": "0.89.0",
+    "engine": "webkit",
+    "syntheticDelayMs": 180,
+    "passed": true,
+    "scope": "Real UI resume after one labelled synthetic presentation stall; not a device-speed or listening result",
+    "paused": {
+      "last": {
+        "milliseconds": 214,
+        "phases": {
+          "calculation": 1,
+          "audio": 180,
+          "display": 33
+        },
+        "counts": {
+          "records": 4,
+          "retainedParticles": 1,
+          "active": 1,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 3,
+          "milliseconds": 2,
+          "maximum": 1
+        },
+        "calculation": {
+          "calls": 7,
+          "milliseconds": 5,
+          "maximum": 3
+        },
+        "display": {
+          "calls": 8,
+          "milliseconds": 75,
+          "maximum": 38
+        },
+        "audio": {
+          "calls": 1,
+          "milliseconds": 180,
+          "maximum": 180
+        }
+      },
+      "slowFrames": 1,
+      "run": {
+        "status": "paused",
+        "pauseReason": "load",
+        "clock": "0.2",
+        "records": 4,
+        "retainedParticles": 1,
+        "active": 1,
+        "waiting": 0
+      },
+      "audioVoices": 0,
+      "result": "判定待ち・一時停止｜0.2秒・1光線　鐘 0/3　負荷のため一時停止。状態を保持しています。"
+    },
+    "returned": {
+      "last": {
+        "milliseconds": 48,
+        "phases": {
+          "records": 0,
+          "calculation": 3,
+          "audio": 0,
+          "display": 45
+        },
+        "counts": {
+          "records": 32,
+          "retainedParticles": 5,
+          "active": 0,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 5,
+          "milliseconds": 2,
+          "maximum": 1
+        },
+        "calculation": {
+          "calls": 159,
+          "milliseconds": 29,
+          "maximum": 3
+        },
+        "display": {
+          "calls": 167,
+          "milliseconds": 489,
+          "maximum": 38
+        },
+        "audio": {
+          "calls": 8,
+          "milliseconds": 181,
+          "maximum": 180
+        }
+      },
+      "slowFrames": 0,
+      "run": {
+        "status": "stopped",
+        "pauseReason": null,
+        "clock": "5.1",
+        "records": 32,
+        "retainedParticles": 0,
+        "active": 0,
+        "waiting": 0
+      },
+      "audioVoices": 0,
+      "result": "達成 100.00点・編集可能｜5.1秒・0光線　鐘 3/3・全到達 5.1秒"
+    },
+    "recordsMatched": 32,
+    "baseline": "5.1"
+  }
+}

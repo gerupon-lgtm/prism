@@ -90,8 +90,8 @@ test('Q7の旧ランダム版の条件と満点成績を新版の課題と分け
   const before=structuredClone(f.records.scores()[0]);
   const s=new Session(new LocalRecords({getItem:key=>f.values.get(key)??null,setItem:(key,value)=>f.values.set(key,value)}),{random:()=>0});
   s.replace({challengeId:'Q7'});runPerfect(s);
-  assert.equal(s.challenge.version,2);assert.deepEqual(f.records.scores()[0],before);
-  assert(f.records.scores()[1].challenge.startsWith('Q7@2/'));
+  assert.equal(s.challenge.version,3);assert.deepEqual(f.records.scores()[0],before);
+  assert(f.records.scores()[1].challenge.startsWith('Q7@3/'));
 });
 
 test('成績の保存失敗から別出題へ進んでも、二つの元条件で再保存できる',()=>{

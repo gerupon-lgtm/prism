@@ -65,10 +65,10 @@ test('次の動作と連続実行は同じ時刻まで全記録が一致し、�
   assert(direct.run.records.every(row=>Number(row.time)<=3.4));
 });
 
-test('指定間隔との差を許さず、3回目で自動終了して失敗と全記録を停止後も保持する',()=>{
+test('指定間隔との差を許さず、次の指定時刻で自動終了して失敗と全記録を停止後も保持する',()=>{
   const {session:s,records}=fixture(returnChallenge({interval:'1.4'}));
   s.start();s.advance('2');assert.equal(s.result.state,'failed');assert.match(s.result.reason,/間隔/);
-  s.advance('20');assert.equal(s.run.format(),'3.5');assert.equal(s.run.exhausted,true);
+  s.advance('20');assert.equal(s.run.format(),'1.9');assert.equal(s.run.exhausted,true);
   assert.deepEqual(s.result.score,{numerator:'0',denominator:'1'});assert.equal(records.scores().length,0);
   const result=s.exportResult();s.stop();
   assert.deepEqual(s.exportResult().records,result.records);assert.deepEqual(s.result,result.evaluation);

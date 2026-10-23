@@ -40,7 +40,7 @@ async function settle(p){await p.evaluate(async()=>{await document.fonts.ready;f
    const data=await p.evaluate(c=>{const board=document.getElementById('board'),r=board.getBoundingClientRect();return {id:c.id,number:c.number,width:innerWidth,height:innerHeight,scrollW:document.documentElement.scrollWidth,scrollH:document.documentElement.scrollHeight,bounds:{left:r.left,right:r.right,top:r.top,bottom:r.bottom},nodes:c.nodes.map(n=>{const hit=board.querySelector('[data-node="'+n.id+'"] .node-hit'),b=hit.getBoundingClientRect();return {id:n.id,kind:n.kind,x:b.x+b.width/2,y:b.y+b.height/2,radius:Math.min(b.width,b.height)/2};}),edges:c.candidates.map(e=>{const line=board.querySelector('[data-edge="'+e.id+'"] .edge-line'),m=line.getScreenCTM(),length=line.getTotalLength();return {id:e.id,from:e.from,to:e.to,points:Array.from({length:33},(_,i)=>{const p=line.getPointAtLength(length*i/32).matrixTransform(m);return{x:p.x,y:p.y};})};})};},c);
    const row=metrics(data);rows.push(row);if(shots.includes(c.number))await p.screenshot({path:path.join(out,layout.name+'-Q'+c.number+'.png')});if(row.close.length||row.curved.length||row.outside.length)console.log(layout.name+' Q'+c.number+' close='+row.close.length+' curved='+row.curved.length+' stems='+row.stems.length+' crosses='+row.crossings.length);
 
-   if(!process.argv.includes('--audit')&&[17,25].includes(c.number)){
+   if(!process.argv.includes('--audit')&&[17,26].includes(c.number)){
     const stroke=async(from,to)=>{
      const a=row.nodes.find(n=>n.id===from),b=row.nodes.find(n=>n.id===to);
      if(layout.touch&&engine==='chromium'){

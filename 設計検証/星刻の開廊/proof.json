@@ -1,13 +1,13 @@
 {
   "kind": "periodic-prisms",
-  "phaseStep": "0.1",
   "stages": [
     {
       "challenge": "Q41",
-      "id": "fa8fb4e3802a3103",
+      "id": "a40992f243b14681",
       "family": 0,
       "variant": 0,
       "legalWirings": 42,
+      "phaseStep": "0.05",
       "phaseSamples": 60,
       "combinations": 2520,
       "winner": [
@@ -16,42 +16,42 @@
         "BG"
       ],
       "winners": 1,
-      "baseline": "2.5",
+      "baseline": "1.25",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
+        "0.65",
         "0.7",
+        "0.75",
         "0.8",
+        "0.85",
         "0.9",
+        "0.95",
         "1",
+        "1.05",
         "1.1",
+        "1.15",
         "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "3.5",
+        "time": "1.75",
         "edges": [
           "SA",
           "AC",
@@ -59,7 +59,46 @@
         ],
         "phase": "0"
       },
-      "maxDuration": "8",
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "0",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.25",
+            "time": "4"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
       "valid": true,
       "optimalPhase": "0",
       "derivation": "exhaustive",
@@ -67,10 +106,11 @@
     },
     {
       "challenge": "Q41",
-      "id": "575d690e299b5dac",
+      "id": "d52cb5cf0ffc802c",
       "family": 0,
       "variant": 1,
       "legalWirings": 42,
+      "phaseStep": "0.05",
       "phaseSamples": 60,
       "combinations": 2520,
       "winner": [
@@ -79,2403 +119,3179 @@
         "BG"
       ],
       "winners": 1,
-      "baseline": "2.7",
+      "baseline": "1.35",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
+        "0.65",
         "0.7",
+        "0.75",
         "0.8",
+        "0.85",
         "0.9",
+        "0.95",
         "1",
+        "1.05",
         "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "3.7",
+        "time": "1.85",
         "edges": [
           "SA",
           "AC",
           "CG"
         ],
-        "phase": "5.8"
+        "phase": "2.9"
       },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q41",
-      "id": "eac841a9b115b969",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "3.9",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "5.6"
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "2.9",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.15",
+            "time": "4.1"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
       },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q41",
-      "id": "e802886d6f48d083",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.1",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q41",
-      "id": "eefba499677d11af",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "3.5",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "8",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q41",
-      "id": "f81fa1f78b00417b",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "3.7",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q41",
-      "id": "664082831eeedd39",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "3.9",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q41",
-      "id": "b4596a15b9aef546",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.1",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q42",
-      "id": "42823557707aae5b",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "2.5",
-      "optimalPhases": [
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "4",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "8",
-      "valid": true,
-      "optimalPhase": "0.5",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q42",
-      "id": "99de8d8d49a46a58",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "2.7",
-      "optimalPhases": [
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "4.2",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "0.3",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q42",
-      "id": "0f59cae6d5ad98d8",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "0.1",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q42",
-      "id": "18528600aeb7ba3e",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AB",
-        "BG"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "4.6",
-        "edges": [
-          "SA",
-          "AC",
-          "CG"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.9",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q42",
-      "id": "cfbe6fa72ad1c4a3",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "8",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q42",
-      "id": "df696f2e4808a05c",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.2",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q42",
-      "id": "5137ad70f8307bf0",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q42",
-      "id": "d8a7a33e827abbf3",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 42,
-      "phaseSamples": 60,
-      "combinations": 2520,
-      "winner": [
-        "SA",
-        "AC",
-        "CG"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.6",
-        "edges": [
-          "SA",
-          "AB",
-          "BG"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q43",
-      "id": "ad8c1b0a5182997f",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "CG2"
-      ],
-      "winners": 1,
-      "baseline": "2.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5",
-        "edges": [
-          "SA",
-          "AB",
-          "BG1",
-          "BG2"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "8",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q43",
-      "id": "12bb7e6811ffff9d",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "CG2"
-      ],
-      "winners": 1,
-      "baseline": "2.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.2",
-        "edges": [
-          "SA",
-          "AB",
-          "BG1",
-          "BG2"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q43",
-      "id": "bafd4501a23e9a49",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "CG2"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.4",
-        "edges": [
-          "SA",
-          "AB",
-          "BG1",
-          "BG2"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q43",
-      "id": "36542874a50becc1",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "CG2"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.6",
-        "edges": [
-          "SA",
-          "AB",
-          "BG1",
-          "BG2"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q43",
-      "id": "cdcab719c27e0f36",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG2",
-        "CG1"
-      ],
-      "winners": 1,
-      "baseline": "2.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "CG2"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "8",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q43",
-      "id": "9112eac9d6d16fb7",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG2",
-        "CG1"
-      ],
-      "winners": 1,
-      "baseline": "2.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.2",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "CG2"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "8.2",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q43",
-      "id": "dd8e26be75783d95",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG2",
-        "CG1"
-      ],
-      "winners": 1,
-      "baseline": "2.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.4",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "CG2"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "8.4",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q43",
-      "id": "f3e5f2e5ad364877",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 382,
-      "phaseSamples": 60,
-      "combinations": 22920,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG2",
-        "CG1"
-      ],
-      "winners": 1,
-      "baseline": "3.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 2,
-      "partial": {
-        "time": "5.6",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "CG2"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "8.6",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q44",
-      "id": "fb61a06769bec372",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "AB",
-        "BD",
-        "DG"
-      ],
-      "winners": 1,
-      "baseline": "3.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.5",
-        "edges": [
-          "SA",
-          "DG",
-          "AC",
-          "CD"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "9.5",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q44",
-      "id": "6ddb736b7e017301",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "AB",
-        "BD",
-        "DG"
-      ],
-      "winners": 1,
-      "baseline": "3.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.7",
-        "edges": [
-          "SA",
-          "DG",
-          "AC",
-          "CD"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "9.7",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q44",
-      "id": "2f44b5b2f8bbf547",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "AB",
-        "BD",
-        "DG"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.9",
-        "edges": [
-          "SA",
-          "DG",
-          "AC",
-          "CD"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "9.9",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q44",
-      "id": "640c13680c06837a",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "AB",
-        "BD",
-        "DG"
-      ],
-      "winners": 1,
-      "baseline": "4.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "5.1",
-        "edges": [
-          "SA",
-          "DG",
-          "AC",
-          "CD"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "10.1",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q44",
-      "id": "e2892853474918e0",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "DG",
-        "AC",
-        "CD"
-      ],
-      "winners": 1,
-      "baseline": "3.5",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.5",
-        "edges": [
-          "SA",
-          "AB",
-          "BD",
-          "DG"
-        ],
-        "phase": "0"
-      },
-      "maxDuration": "9.5",
-      "valid": true,
-      "optimalPhase": "0",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q44",
-      "id": "1621c7d72d88e7ba",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "DG",
-        "AC",
-        "CD"
-      ],
-      "winners": 1,
-      "baseline": "3.7",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.7",
-        "edges": [
-          "SA",
-          "AB",
-          "BD",
-          "DG"
-        ],
-        "phase": "5.8"
-      },
-      "maxDuration": "9.7",
-      "valid": true,
-      "optimalPhase": "5.8",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q44",
-      "id": "4e4d652f5a19cd0a",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "DG",
-        "AC",
-        "CD"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.9",
-        "edges": [
-          "SA",
-          "AB",
-          "BD",
-          "DG"
-        ],
-        "phase": "5.6"
-      },
-      "maxDuration": "9.9",
-      "valid": true,
-      "optimalPhase": "5.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q44",
-      "id": "985b21c8c072766a",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 256,
-      "phaseSamples": 60,
-      "combinations": 15360,
-      "winner": [
-        "SA",
-        "DG",
-        "AC",
-        "CD"
-      ],
-      "winners": 1,
-      "baseline": "4.1",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "1.5",
-        "1.6",
-        "1.7",
-        "1.8",
-        "1.9",
-        "2",
-        "2.1",
-        "2.2",
-        "2.3",
-        "2.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "5.1",
-        "edges": [
-          "SA",
-          "AB",
-          "BD",
-          "DG"
-        ],
-        "phase": "5.4"
-      },
-      "maxDuration": "10.1",
-      "valid": true,
-      "optimalPhase": "5.4",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q46",
-      "id": "1ce324dd443102e3",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MB",
-        "BD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.5",
-      "optimalPhases": [
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 1,
-      "partial": {
-        "time": "4",
-        "edges": [
-          "SA",
-          "AM",
-          "MC",
-          "CD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "3"
-      },
-      "maxDuration": "15.5",
-      "valid": true,
-      "optimalPhase": "6.5",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q46",
-      "id": "929a61ae5a3cc434",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MB",
-        "BD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.7",
-      "optimalPhases": [
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 1,
-      "partial": {
-        "time": "4.2",
-        "edges": [
-          "SA",
-          "AM",
-          "MC",
-          "CD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "2.8"
-      },
-      "maxDuration": "15.7",
-      "valid": true,
-      "optimalPhase": "6.3",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q46",
-      "id": "1315379422c37063",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MB",
-        "BD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 1,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AM",
-          "MC",
-          "CD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "2.6"
-      },
-      "maxDuration": "15.9",
-      "valid": true,
-      "optimalPhase": "6.1",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q46",
-      "id": "5223a86e8206959d",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MB",
-        "BD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "4.1",
-      "optimalPhases": [
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 1,
-      "partial": {
-        "time": "4.6",
-        "edges": [
-          "SA",
-          "AM",
-          "MC",
-          "CD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "2.4"
-      },
-      "maxDuration": "16.1",
-      "valid": true,
-      "optimalPhase": "5.9",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
-    },
-    {
-      "challenge": "Q46",
-      "id": "0cc30947a0365c81",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.5",
-      "optimalPhases": [
-        "3.5",
-        "3.6",
-        "3.7",
-        "3.8",
-        "3.9",
-        "4",
-        "4.1",
-        "4.2",
-        "4.3",
-        "4.4",
-        "4.5",
-        "4.6",
-        "4.7",
-        "4.8",
-        "4.9",
-        "5",
-        "5.1",
-        "5.2",
-        "5.3",
-        "5.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9",
-        "6",
-        "6.1",
-        "6.2",
-        "6.3",
-        "6.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 4,
-      "partial": {
-        "time": "4",
-        "edges": [
-          "SA",
-          "AM",
-          "MB",
-          "BD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "6.5"
-      },
-      "maxDuration": "15.5",
-      "valid": true,
-      "optimalPhase": "3.5",
-      "derivation": "exhaustive",
-      "delta": "0"
-    },
-    {
-      "challenge": "Q46",
-      "id": "414ece2986a08c8f",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.7",
-      "optimalPhases": [
-        "3.5",
-        "3.6",
-        "3.7",
-        "3.8",
-        "3.9",
-        "4",
-        "4.1",
-        "4.2",
-        "4.3",
-        "4.4",
-        "4.5",
-        "4.6",
-        "4.7",
-        "4.8",
-        "4.9",
-        "5",
-        "5.1",
-        "5.2",
-        "5.3",
-        "5.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9",
-        "6",
-        "6.1",
-        "6.2",
-        "6.3",
-        "6.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 4,
-      "partial": {
-        "time": "4.2",
-        "edges": [
-          "SA",
-          "AM",
-          "MB",
-          "BD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "6.3"
-      },
-      "maxDuration": "15.7",
-      "valid": true,
-      "optimalPhase": "3.3",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.2"
-    },
-    {
-      "challenge": "Q46",
-      "id": "8ff891369db061d0",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "3.5",
-        "3.6",
-        "3.7",
-        "3.8",
-        "3.9",
-        "4",
-        "4.1",
-        "4.2",
-        "4.3",
-        "4.4",
-        "4.5",
-        "4.6",
-        "4.7",
-        "4.8",
-        "4.9",
-        "5",
-        "5.1",
-        "5.2",
-        "5.3",
-        "5.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9",
-        "6",
-        "6.1",
-        "6.2",
-        "6.3",
-        "6.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 4,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AM",
-          "MB",
-          "BD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "6.1"
-      },
-      "maxDuration": "15.9",
-      "valid": true,
-      "optimalPhase": "3.1",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q46",
-      "id": "1728c43733a54975",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 4788,
-      "phaseSamples": 80,
-      "combinations": 383040,
-      "winner": [
-        "SA",
-        "AM",
-        "MC",
-        "CD",
-        "DG1",
-        "DG2",
-        "DG3"
-      ],
-      "winners": 1,
-      "baseline": "4.1",
-      "optimalPhases": [
-        "3.5",
-        "3.6",
-        "3.7",
-        "3.8",
-        "3.9",
-        "4",
-        "4.1",
-        "4.2",
-        "4.3",
-        "4.4",
-        "4.5",
-        "4.6",
-        "4.7",
-        "4.8",
-        "4.9",
-        "5",
-        "5.1",
-        "5.2",
-        "5.3",
-        "5.4",
-        "5.5",
-        "5.6",
-        "5.7",
-        "5.8",
-        "5.9",
-        "6",
-        "6.1",
-        "6.2",
-        "6.3",
-        "6.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4"
-      ],
-      "perfectWindowSeconds": 4,
-      "partial": {
-        "time": "4.6",
-        "edges": [
-          "SA",
-          "AM",
-          "MB",
-          "BD",
-          "DG1",
-          "DG2",
-          "DG3"
-        ],
-        "phase": "5.9"
-      },
-      "maxDuration": "16.1",
       "valid": true,
       "optimalPhase": "2.9",
       "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q41",
+      "id": "bb4d467f6275857b",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "1.95",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "2.8",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.05",
+            "time": "4.2"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q41",
+      "id": "a3df74f63f1a7b10",
+      "family": 0,
+      "variant": 3,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.05",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "2.7",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "0.95",
+            "time": "4.3"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q41",
+      "id": "1be3b4867ff8f758",
+      "family": 1,
+      "variant": 0,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.25",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "1.15",
+        "1.2",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "1.75",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "0",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.25",
+            "time": "4"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q41",
+      "id": "9148f295a0108ec5",
+      "family": 1,
+      "variant": 1,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.35",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "1.85",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.9",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.15",
+            "time": "4.1"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q41",
+      "id": "577c7352d4ea68b2",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "1.95",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.8",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.05",
+            "time": "4.2"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "2.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q41",
+      "id": "598e46a02b343b8c",
+      "family": 1,
+      "variant": 3,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.05",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.7",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "0.95",
+            "time": "4.3"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q42",
+      "id": "f8bbef152a847321",
+      "family": 0,
+      "variant": 0,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.25",
+      "optimalPhases": [
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "1.15",
+        "1.2"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "0.25",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 400,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.25",
+            "time": "4"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0.25",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q42",
+      "id": "2d67aa2b692d819f",
+      "family": 0,
+      "variant": 1,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.35",
+      "optimalPhases": [
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.1",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "0.15",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 400,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.15",
+            "time": "4.1"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0.15",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q42",
+      "id": "4f30da5c8c530114",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "0.05",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 400,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.05",
+            "time": "4.2"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0.05",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q42",
+      "id": "a2032d24a2f7ecf7",
+      "family": 0,
+      "variant": 3,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AB",
+        "BG"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CG"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "2.95",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 400,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "0.95",
+            "time": "4.3"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.95",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q42",
+      "id": "8df2dcf237e9cb09",
+      "family": 1,
+      "variant": 0,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.25",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "1.15",
+        "1.2",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "0",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.25",
+            "time": "4"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q42",
+      "id": "43fb09642e6121bd",
+      "family": 1,
+      "variant": 1,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.35",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.1",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.9",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.15",
+            "time": "4.1"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q42",
+      "id": "af38921c640ed7dc",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.8",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "1.05",
+            "time": "4.2"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q42",
+      "id": "5d2913d0157bb8ff",
+      "family": 1,
+      "variant": 3,
+      "legalWirings": 42,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 2520,
+      "winner": [
+        "SA",
+        "AC",
+        "CG"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AB",
+          "BG"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "2.7",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 390,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AG"
+            ],
+            "phase": "0.95",
+            "time": "4.3"
+          }
+        },
+        "failed": {
+          "count": 2100,
+          "maxDuration": "3.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q43",
+      "id": "79bc8f5f851439e8",
+      "family": 0,
+      "variant": 0,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "winners": 1,
+      "baseline": "1.25",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.5",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CG2"
+            ],
+            "phase": "0",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BG2",
+              "AG2"
+            ],
+            "phase": "0.75",
+            "time": "2.75"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.75",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q43",
+      "id": "0c6d78b1206ac85c",
+      "family": 0,
+      "variant": 1,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "winners": 1,
+      "baseline": "1.35",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.6",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CG2"
+            ],
+            "phase": "2.9",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BG2",
+              "AG2"
+            ],
+            "phase": "0.65",
+            "time": "2.85"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.65",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q43",
+      "id": "3c24f0a5b4fda7af",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.7",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CG2"
+            ],
+            "phase": "2.8",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BG2",
+              "AG2"
+            ],
+            "phase": "0.55",
+            "time": "2.95"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.55",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q43",
+      "id": "2018691e37c55842",
+      "family": 0,
+      "variant": 3,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CG2"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.8",
+        "edges": [
+          "SA",
+          "AB",
+          "BG1",
+          "BG2"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CG2"
+            ],
+            "phase": "2.7",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BG2",
+              "AG2"
+            ],
+            "phase": "0.45",
+            "time": "3.05"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.45",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q43",
+      "id": "2a62de743029c5c9",
+      "family": 1,
+      "variant": 0,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG2",
+        "CG1"
+      ],
+      "winners": 1,
+      "baseline": "1.25",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.5",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG2"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG2",
+              "CG1"
+            ],
+            "phase": "0",
+            "time": "1.25"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "AG1",
+              "AG2"
+            ],
+            "phase": "0.75",
+            "time": "2.5"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "0.75",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q43",
+      "id": "b9be63793767b840",
+      "family": 1,
+      "variant": 1,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG2",
+        "CG1"
+      ],
+      "winners": 1,
+      "baseline": "1.35",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.6",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG2"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.1",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG2",
+              "CG1"
+            ],
+            "phase": "2.9",
+            "time": "1.35"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "AG1",
+              "AG2"
+            ],
+            "phase": "0.65",
+            "time": "2.6"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.1",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "0.65",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q43",
+      "id": "73286240a9f4e8e8",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG2",
+        "CG1"
+      ],
+      "winners": 1,
+      "baseline": "1.45",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.7",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG2"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.2",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG2",
+              "CG1"
+            ],
+            "phase": "2.8",
+            "time": "1.45"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "AG1",
+              "AG2"
+            ],
+            "phase": "0.55",
+            "time": "2.7"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.2",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "0.55",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q43",
+      "id": "8ca0b6e44a987407",
+      "family": 1,
+      "variant": 3,
+      "legalWirings": 382,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 22920,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG2",
+        "CG1"
+      ],
+      "winners": 1,
+      "baseline": "1.55",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.8",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CG2"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "4.3",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG2",
+              "CG1"
+            ],
+            "phase": "2.7",
+            "time": "1.55"
+          }
+        },
+        "partial": {
+          "count": 3100,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "AG1",
+              "AG2"
+            ],
+            "phase": "0.45",
+            "time": "2.8"
+          }
+        },
+        "failed": {
+          "count": 19800,
+          "maxDuration": "4.3",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "0.45",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q44",
+      "id": "a52387d1d6d10c83",
+      "family": 0,
+      "variant": 0,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "AB",
+        "BD",
+        "DG"
+      ],
+      "winners": 1,
+      "baseline": "1.75",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "1.15",
+        "1.2",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.25",
+        "edges": [
+          "SA",
+          "DG",
+          "AC",
+          "CD"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4.75",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BD",
+              "DG"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "1.25",
+            "time": "4.75"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "0",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q44",
+      "id": "c94c6583d052aa68",
+      "family": 0,
+      "variant": 1,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "AB",
+        "BD",
+        "DG"
+      ],
+      "winners": 1,
+      "baseline": "1.85",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.35",
+        "edges": [
+          "SA",
+          "DG",
+          "AC",
+          "CD"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.85",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BD",
+              "DG"
+            ],
+            "phase": "2.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "1.15",
+            "time": "4.85"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.9",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q44",
+      "id": "7f2886ee85cec1e7",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "AB",
+        "BD",
+        "DG"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.45",
+        "edges": [
+          "SA",
+          "DG",
+          "AC",
+          "CD"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.95",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BD",
+              "DG"
+            ],
+            "phase": "2.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "1.05",
+            "time": "4.95"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.8",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q44",
+      "id": "8ec5819c52a06521",
+      "family": 0,
+      "variant": 3,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "AB",
+        "BD",
+        "DG"
+      ],
+      "winners": 1,
+      "baseline": "2.05",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.55",
+        "edges": [
+          "SA",
+          "DG",
+          "AC",
+          "CD"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "5.05",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BD",
+              "DG"
+            ],
+            "phase": "2.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "5.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CG"
+            ],
+            "phase": "0.95",
+            "time": "5.05"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.7",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q44",
+      "id": "8bb35c5377867517",
+      "family": 1,
+      "variant": 0,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "DG",
+        "AC",
+        "CD"
+      ],
+      "winners": 1,
+      "baseline": "1.75",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "1.15",
+        "1.2",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.25",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "DG"
+        ],
+        "phase": "0"
+      },
+      "maxDuration": "4.75",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "DG",
+              "AC",
+              "CD"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "1.25",
+            "time": "4.75"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "0",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q44",
+      "id": "6b2fa3b0f2a45547",
+      "family": 1,
+      "variant": 1,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "DG",
+        "AC",
+        "CD"
+      ],
+      "winners": 1,
+      "baseline": "1.85",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "1.05",
+        "1.1",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.35",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "DG"
+        ],
+        "phase": "2.9"
+      },
+      "maxDuration": "4.85",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "DG",
+              "AC",
+              "CD"
+            ],
+            "phase": "2.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "1.15",
+            "time": "4.85"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.9",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q44",
+      "id": "a76b212c4bcd6264",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "DG",
+        "AC",
+        "CD"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "0.95",
+        "1",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.45",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "DG"
+        ],
+        "phase": "2.8"
+      },
+      "maxDuration": "4.95",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "DG",
+              "AC",
+              "CD"
+            ],
+            "phase": "2.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "4.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "1.05",
+            "time": "4.95"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.8",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q44",
+      "id": "dec4dcaddf584739",
+      "family": 1,
+      "variant": 3,
+      "legalWirings": 256,
+      "phaseStep": "0.05",
+      "phaseSamples": 60,
+      "combinations": 15360,
+      "winner": [
+        "SA",
+        "DG",
+        "AC",
+        "CD"
+      ],
+      "winners": 1,
+      "baseline": "2.05",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "0.55",
+        "0.6",
+        "0.65",
+        "0.7",
+        "0.75",
+        "0.8",
+        "0.85",
+        "0.9",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.55",
+        "edges": [
+          "SA",
+          "AB",
+          "BD",
+          "DG"
+        ],
+        "phase": "2.7"
+      },
+      "maxDuration": "5.05",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "DG",
+              "AC",
+              "CD"
+            ],
+            "phase": "2.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 1350,
+          "maxDuration": "5.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG"
+            ],
+            "phase": "0.95",
+            "time": "5.05"
+          }
+        },
+        "failed": {
+          "count": 13980,
+          "maxDuration": "4.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AD"
+            ],
+            "phase": "2.7",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "2.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
     },
     {
       "challenge": "Q45",
-      "id": "f34cd89b354f1f1c",
+      "id": "5d2b545564a85dbc",
       "family": 0,
       "variant": 0,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2488,42 +3304,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "3.5",
+      "baseline": "1.75",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
+        "0.65",
         "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4",
+        "time": "2",
         "edges": [
           "SA",
           "AB",
@@ -2535,7 +3351,56 @@
         ],
         "phase": "0"
       },
-      "maxDuration": "11",
+      "maxDuration": "5.5",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "BD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.5",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BD",
+              "DG2",
+              "AG3",
+              "BG2"
+            ],
+            "phase": "1.25",
+            "time": "3.75"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.5",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
       "valid": true,
       "optimalPhase": "0",
       "derivation": "exhaustive",
@@ -2543,10 +3408,11 @@
     },
     {
       "challenge": "Q45",
-      "id": "2b8e6160ce006a09",
+      "id": "268414a7d190ce55",
       "family": 0,
       "variant": 1,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2559,42 +3425,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "3.7",
+      "baseline": "1.85",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4.2",
+        "time": "2.1",
         "edges": [
           "SA",
           "AB",
@@ -2604,91 +3470,191 @@
           "DG2",
           "CG3"
         ],
-        "phase": "7.8"
+        "phase": "3.9"
       },
-      "maxDuration": "11.2",
+      "maxDuration": "5.6",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "BD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.6",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BD",
+              "DG2",
+              "AG3",
+              "BG2"
+            ],
+            "phase": "1.15",
+            "time": "3.85"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.6",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
+      },
       "valid": true,
-      "optimalPhase": "7.8",
+      "optimalPhase": "3.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q45",
+      "id": "cad469d2ca5b0b62",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 3302,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 264160,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "BD",
+        "DG2",
+        "CG3"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "CD",
+          "DG2",
+          "CG3"
+        ],
+        "phase": "3.8"
+      },
+      "maxDuration": "5.7",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "BD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.7",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BD",
+              "DG2",
+              "AG3",
+              "BG2"
+            ],
+            "phase": "1.05",
+            "time": "3.95"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.7",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.8",
       "derivation": "bijective phase rotation and uniform time translation",
       "delta": "0.2"
     },
     {
       "challenge": "Q45",
-      "id": "b9ecfdfbca870c87",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 3302,
-      "phaseSamples": 80,
-      "combinations": 264160,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "BD",
-        "DG2",
-        "CG3"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "CD",
-          "DG2",
-          "CG3"
-        ],
-        "phase": "7.6"
-      },
-      "maxDuration": "11.4",
-      "valid": true,
-      "optimalPhase": "7.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q45",
-      "id": "9fe97ace0a07dd26",
+      "id": "df45782a53f5d44b",
       "family": 0,
       "variant": 3,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2701,42 +3667,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "4.1",
+      "baseline": "2.05",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4.6",
+        "time": "2.3",
         "edges": [
           "SA",
           "AB",
@@ -2746,20 +3712,70 @@
           "DG2",
           "CG3"
         ],
-        "phase": "7.4"
+        "phase": "3.7"
       },
-      "maxDuration": "11.6",
+      "maxDuration": "5.8",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "BD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.8",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1",
+              "BD",
+              "DG2",
+              "AG3",
+              "BG2"
+            ],
+            "phase": "0.95",
+            "time": "4.05"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.8",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
       "valid": true,
-      "optimalPhase": "7.4",
+      "optimalPhase": "3.7",
       "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
+      "delta": "0.3"
     },
     {
       "challenge": "Q45",
-      "id": "b914392cdca7961b",
+      "id": "b794364af14f419e",
       "family": 1,
       "variant": 0,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2772,42 +3788,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "3.5",
+      "baseline": "1.75",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
+        "0.65",
         "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4",
+        "time": "2",
         "edges": [
           "SA",
           "AB",
@@ -2819,7 +3835,56 @@
         ],
         "phase": "0"
       },
-      "maxDuration": "11",
+      "maxDuration": "5.5",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.5",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CD",
+              "DG2",
+              "CG3",
+              "AG1",
+              "CG2"
+            ],
+            "phase": "0.75",
+            "time": "3.75"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.5",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.25",
+            "time": null
+          }
+        }
+      },
       "valid": true,
       "optimalPhase": "0",
       "derivation": "exhaustive",
@@ -2827,10 +3892,11 @@
     },
     {
       "challenge": "Q45",
-      "id": "5620825920dee161",
+      "id": "e60053c816a65403",
       "family": 1,
       "variant": 1,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2843,42 +3909,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "3.7",
+      "baseline": "1.85",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
+        "0.45",
         "0.5",
+        "0.55",
         "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4.2",
+        "time": "2.1",
         "edges": [
           "SA",
           "AB",
@@ -2888,91 +3954,191 @@
           "DG2",
           "CG3"
         ],
-        "phase": "7.8"
+        "phase": "3.9"
       },
-      "maxDuration": "11.2",
+      "maxDuration": "5.6",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.6",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CD",
+              "DG2",
+              "CG3",
+              "AG1",
+              "CG2"
+            ],
+            "phase": "0.65",
+            "time": "3.85"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.6",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.15",
+            "time": null
+          }
+        }
+      },
       "valid": true,
-      "optimalPhase": "7.8",
+      "optimalPhase": "3.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q45",
+      "id": "c2fa88d881ad4312",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 3302,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 264160,
+      "winner": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "CD",
+        "DG2",
+        "CG3"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "0.25",
+        "0.3",
+        "0.35",
+        "0.4",
+        "0.45",
+        "0.5",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 1.5,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AB",
+          "AC",
+          "BG1",
+          "BD",
+          "DG2",
+          "CG3"
+        ],
+        "phase": "3.8"
+      },
+      "maxDuration": "5.7",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.7",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CD",
+              "DG2",
+              "CG3",
+              "AG1",
+              "CG2"
+            ],
+            "phase": "0.55",
+            "time": "3.95"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.7",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "1.05",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.8",
       "derivation": "bijective phase rotation and uniform time translation",
       "delta": "0.2"
     },
     {
       "challenge": "Q45",
-      "id": "62c315ad8966f11e",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 3302,
-      "phaseSamples": 80,
-      "combinations": 264160,
-      "winner": [
-        "SA",
-        "AB",
-        "AC",
-        "BG1",
-        "CD",
-        "DG2",
-        "CG3"
-      ],
-      "winners": 1,
-      "baseline": "3.9",
-      "optimalPhases": [
-        "0",
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
-      ],
-      "perfectWindowSeconds": 3,
-      "partial": {
-        "time": "4.4",
-        "edges": [
-          "SA",
-          "AB",
-          "AC",
-          "BG1",
-          "BD",
-          "DG2",
-          "CG3"
-        ],
-        "phase": "7.6"
-      },
-      "maxDuration": "11.4",
-      "valid": true,
-      "optimalPhase": "7.6",
-      "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.4"
-    },
-    {
-      "challenge": "Q45",
-      "id": "2f151294532b8f3c",
+      "id": "fbd47398ddd5ffdb",
       "family": 1,
       "variant": 3,
       "legalWirings": 3302,
+      "phaseStep": "0.05",
       "phaseSamples": 80,
       "combinations": 264160,
       "winner": [
@@ -2985,42 +4151,42 @@
         "CG3"
       ],
       "winners": 1,
-      "baseline": "4.1",
+      "baseline": "2.05",
       "optimalPhases": [
         "0",
+        "0.05",
         "0.1",
+        "0.15",
         "0.2",
+        "0.25",
         "0.3",
+        "0.35",
         "0.4",
-        "0.5",
-        "0.6",
-        "0.7",
-        "0.8",
-        "0.9",
-        "1",
-        "1.1",
-        "1.2",
-        "1.3",
-        "1.4",
-        "6.5",
-        "6.6",
-        "6.7",
-        "6.8",
-        "6.9",
-        "7",
-        "7.1",
-        "7.2",
-        "7.3",
-        "7.4",
-        "7.5",
-        "7.6",
-        "7.7",
-        "7.8",
-        "7.9"
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
       ],
-      "perfectWindowSeconds": 3,
+      "perfectWindowSeconds": 1.5,
       "partial": {
-        "time": "4.6",
+        "time": "2.3",
         "edges": [
           "SA",
           "AB",
@@ -3030,13 +4196,1071 @@
           "DG2",
           "CG3"
         ],
-        "phase": "7.4"
+        "phase": "3.7"
       },
-      "maxDuration": "11.6",
+      "maxDuration": "5.8",
+      "execution": {
+        "perfect": {
+          "count": 30,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "AC",
+              "BG1",
+              "CD",
+              "DG2",
+              "CG3"
+            ],
+            "phase": "3.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 11650,
+          "maxDuration": "5.8",
+          "witness": {
+            "edges": [
+              "SA",
+              "AC",
+              "CD",
+              "DG2",
+              "CG3",
+              "AG1",
+              "CG2"
+            ],
+            "phase": "0.45",
+            "time": "4.05"
+          }
+        },
+        "failed": {
+          "count": 252480,
+          "maxDuration": "5.8",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG2"
+            ],
+            "phase": "0.95",
+            "time": null
+          }
+        }
+      },
       "valid": true,
-      "optimalPhase": "7.4",
+      "optimalPhase": "3.7",
       "derivation": "bijective phase rotation and uniform time translation",
-      "delta": "0.6"
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q46",
+      "id": "0ecc29f399e539a9",
+      "family": 0,
+      "variant": 0,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MB",
+        "BD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.75",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.5"
+      },
+      "maxDuration": "7.25",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MB",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 3020,
+          "maxDuration": "7.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.5",
+            "time": "5.5"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.5",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q46",
+      "id": "4bab5d26d99f61f8",
+      "family": 0,
+      "variant": 1,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MB",
+        "BD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.85",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.1",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.4"
+      },
+      "maxDuration": "7.35",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MB",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 3020,
+          "maxDuration": "7.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.4",
+            "time": "5.6"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.4",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q46",
+      "id": "bea8678a19b5af0d",
+      "family": 0,
+      "variant": 2,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MB",
+        "BD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.3"
+      },
+      "maxDuration": "7.45",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MB",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 3020,
+          "maxDuration": "7.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.3",
+            "time": "5.7"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.3",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q46",
+      "id": "ab7d2182f0a67fa9",
+      "family": 0,
+      "variant": 3,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MB",
+        "BD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "2.05",
+      "optimalPhases": [
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9"
+      ],
+      "perfectWindowSeconds": 1,
+      "partial": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AM",
+          "MC",
+          "CD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.2"
+      },
+      "maxDuration": "7.55",
+      "execution": {
+        "perfect": {
+          "count": 20,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MB",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 3020,
+          "maxDuration": "7.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.2",
+            "time": "5.8"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.2",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
+    },
+    {
+      "challenge": "Q46",
+      "id": "cabcee8995723f4a",
+      "family": 1,
+      "variant": 0,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MC",
+        "CD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.75",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "0.15",
+        "0.2",
+        "1.75",
+        "1.8",
+        "1.85",
+        "1.9",
+        "1.95",
+        "2",
+        "2.05",
+        "2.1",
+        "2.15",
+        "2.2",
+        "2.25",
+        "2.3",
+        "2.35",
+        "2.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 2.5,
+      "partial": {
+        "time": "2",
+        "edges": [
+          "SA",
+          "AM",
+          "MB",
+          "BD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.5"
+      },
+      "maxDuration": "7.25",
+      "execution": {
+        "perfect": {
+          "count": 50,
+          "maxDuration": "1.75",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MC",
+              "CD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "0",
+            "time": "1.75"
+          }
+        },
+        "partial": {
+          "count": 2990,
+          "maxDuration": "7.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.5",
+            "time": "5.75"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.25",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.5",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "0",
+      "derivation": "exhaustive",
+      "delta": "0"
+    },
+    {
+      "challenge": "Q46",
+      "id": "7b995e1cf3b48872",
+      "family": 1,
+      "variant": 1,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MC",
+        "CD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.85",
+      "optimalPhases": [
+        "0",
+        "0.05",
+        "0.1",
+        "1.65",
+        "1.7",
+        "1.75",
+        "1.8",
+        "1.85",
+        "1.9",
+        "1.95",
+        "2",
+        "2.05",
+        "2.1",
+        "2.15",
+        "2.2",
+        "2.25",
+        "2.3",
+        "2.35",
+        "2.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 2.5,
+      "partial": {
+        "time": "2.1",
+        "edges": [
+          "SA",
+          "AM",
+          "MB",
+          "BD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.4"
+      },
+      "maxDuration": "7.35",
+      "execution": {
+        "perfect": {
+          "count": 50,
+          "maxDuration": "1.85",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MC",
+              "CD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.9",
+            "time": "1.85"
+          }
+        },
+        "partial": {
+          "count": 2990,
+          "maxDuration": "7.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.4",
+            "time": "5.85"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.35",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.4",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.9",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.1"
+    },
+    {
+      "challenge": "Q46",
+      "id": "9f5904c2c7b582cd",
+      "family": 1,
+      "variant": 2,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MC",
+        "CD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "1.95",
+      "optimalPhases": [
+        "0",
+        "1.55",
+        "1.6",
+        "1.65",
+        "1.7",
+        "1.75",
+        "1.8",
+        "1.85",
+        "1.9",
+        "1.95",
+        "2",
+        "2.05",
+        "2.1",
+        "2.15",
+        "2.2",
+        "2.25",
+        "2.3",
+        "2.35",
+        "2.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9",
+        "3.95"
+      ],
+      "perfectWindowSeconds": 2.5,
+      "partial": {
+        "time": "2.2",
+        "edges": [
+          "SA",
+          "AM",
+          "MB",
+          "BD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.3"
+      },
+      "maxDuration": "7.45",
+      "execution": {
+        "perfect": {
+          "count": 50,
+          "maxDuration": "1.95",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MC",
+              "CD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.8",
+            "time": "1.95"
+          }
+        },
+        "partial": {
+          "count": 2990,
+          "maxDuration": "7.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.3",
+            "time": "5.95"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.45",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.3",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.8",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.2"
+    },
+    {
+      "challenge": "Q46",
+      "id": "d9fda161960c8f02",
+      "family": 1,
+      "variant": 3,
+      "legalWirings": 4788,
+      "phaseStep": "0.05",
+      "phaseSamples": 80,
+      "combinations": 383040,
+      "winner": [
+        "SA",
+        "AM",
+        "MC",
+        "CD",
+        "DG1",
+        "DG2",
+        "DG3"
+      ],
+      "winners": 1,
+      "baseline": "2.05",
+      "optimalPhases": [
+        "1.45",
+        "1.5",
+        "1.55",
+        "1.6",
+        "1.65",
+        "1.7",
+        "1.75",
+        "1.8",
+        "1.85",
+        "1.9",
+        "1.95",
+        "2",
+        "2.05",
+        "2.1",
+        "2.15",
+        "2.2",
+        "2.25",
+        "2.3",
+        "2.35",
+        "2.4",
+        "2.45",
+        "2.5",
+        "2.55",
+        "2.6",
+        "2.65",
+        "2.7",
+        "2.75",
+        "2.8",
+        "2.85",
+        "2.9",
+        "2.95",
+        "3",
+        "3.05",
+        "3.1",
+        "3.15",
+        "3.2",
+        "3.25",
+        "3.3",
+        "3.35",
+        "3.4",
+        "3.45",
+        "3.5",
+        "3.55",
+        "3.6",
+        "3.65",
+        "3.7",
+        "3.75",
+        "3.8",
+        "3.85",
+        "3.9"
+      ],
+      "perfectWindowSeconds": 2.5,
+      "partial": {
+        "time": "2.3",
+        "edges": [
+          "SA",
+          "AM",
+          "MB",
+          "BD",
+          "DG1",
+          "DG2",
+          "DG3"
+        ],
+        "phase": "1.2"
+      },
+      "maxDuration": "7.55",
+      "execution": {
+        "perfect": {
+          "count": 50,
+          "maxDuration": "2.05",
+          "witness": {
+            "edges": [
+              "SA",
+              "AM",
+              "MC",
+              "CD",
+              "DG1",
+              "DG2",
+              "DG3"
+            ],
+            "phase": "3.7",
+            "time": "2.05"
+          }
+        },
+        "partial": {
+          "count": 2990,
+          "maxDuration": "7.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "BD",
+              "DG1",
+              "DG2",
+              "DG3",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.2",
+            "time": "6.05"
+          }
+        },
+        "failed": {
+          "count": 380000,
+          "maxDuration": "7.55",
+          "witness": {
+            "edges": [
+              "SA",
+              "AB",
+              "BG1"
+            ],
+            "phase": "3.2",
+            "time": null
+          }
+        }
+      },
+      "valid": true,
+      "optimalPhase": "3.7",
+      "derivation": "bijective phase rotation and uniform time translation",
+      "delta": "0.3"
     }
-  ]
+  ],
+  "phaseStep": "0.05"
 }

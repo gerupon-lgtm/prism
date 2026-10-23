@@ -1,13 +1,49 @@
 {
   "kind": "first-N-return-pattern",
+  "tempo": {
+    "maximumWire": 2.5,
+    "maximumClearFirst": 2.5,
+    "maximumRun": 12
+  },
+  "classification": "all legal wirings of the retained candidate subset; actual first-N or exact definitive-failure boundary; no authored runtime cutoff",
+  "candidateReduction": "retain both winning families and the minimal reflected pair needed for partial clears; no replacement choices added",
   "stages": [
     {
       "challenge": "Q29",
-      "id": "eaef0cf6bb68a9a3",
+      "id": "382127c0223bfe76",
       "family": 0,
       "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
       "winners": 1,
       "winner": [
         "SA",
@@ -15,743 +51,4228 @@
         "CS",
         "SB",
         "BG"
+      ],
+      "baseline": "4.1",
+      "partial": {
+        "time": "4.3",
+        "first": "1.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "AG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.3,
+      "firstBellMaximum": 1.3,
+      "clearFirstMaximum": 1.3,
+      "clearMaximum": 4.3,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.3,
+      "failedExample": {
+        "time": "4.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "AG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.3",
+          "first": "1.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "49a529c42b0d9f5e",
+      "family": 0,
+      "variant": 1,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "baseline": "4.2",
+      "partial": {
+        "time": "4.4",
+        "first": "1.4",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "AG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.4,
+      "firstBellMaximum": 1.4,
+      "clearFirstMaximum": 1.4,
+      "clearMaximum": 4.4,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.4,
+      "failedExample": {
+        "time": "4.4",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "AG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.2",
+          "first": "1.2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.4",
+          "first": "1.4",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "ad21231bad81ae54",
+      "family": 0,
+      "variant": 2,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "baseline": "4.3",
+      "partial": {
+        "time": "4.5",
+        "first": "1.5",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "AG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.5,
+      "firstBellMaximum": 1.5,
+      "clearFirstMaximum": 1.5,
+      "clearMaximum": 4.5,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.5,
+      "failedExample": {
+        "time": "4.5",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "AG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.3",
+          "first": "1.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.5",
+          "first": "1.5",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "84fd1120c90cb0a1",
+      "family": 0,
+      "variant": 3,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BG"
+      ],
+      "baseline": "4.4",
+      "partial": {
+        "time": "4.6",
+        "first": "1.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "AG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.6,
+      "firstBellMaximum": 1.6,
+      "clearFirstMaximum": 1.6,
+      "clearMaximum": 4.6,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.6,
+      "failedExample": {
+        "time": "4.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "AG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.4",
+          "first": "1.4",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.6",
+          "first": "1.6",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "1abe0cdd1b84107d",
+      "family": 1,
+      "variant": 0,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "baseline": "4.1",
+      "partial": {
+        "time": "4.3",
+        "first": "1.3",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "BG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.3,
+      "firstBellMaximum": 1.3,
+      "clearFirstMaximum": 1.3,
+      "clearMaximum": 4.3,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.3,
+      "failedExample": {
+        "time": "4.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "4.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.3",
+          "first": "1.3",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "BG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "cbd511f00d9ecd6b",
+      "family": 1,
+      "variant": 1,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "baseline": "4.2",
+      "partial": {
+        "time": "4.4",
+        "first": "1.4",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "BG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.4,
+      "firstBellMaximum": 1.4,
+      "clearFirstMaximum": 1.4,
+      "clearMaximum": 4.4,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.4,
+      "failedExample": {
+        "time": "4.4",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "4.2",
+          "first": "1.2",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.4",
+          "first": "1.4",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "BG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "585f83c3f333ee24",
+      "family": 1,
+      "variant": 2,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "baseline": "4.3",
+      "partial": {
+        "time": "4.5",
+        "first": "1.5",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "BG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.5,
+      "firstBellMaximum": 1.5,
+      "clearFirstMaximum": 1.5,
+      "clearMaximum": 4.5,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.5,
+      "failedExample": {
+        "time": "4.5",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "4.3",
+          "first": "1.3",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.5",
+          "first": "1.5",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "BG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q29",
+      "id": "96f955b162f231fd",
+      "family": 1,
+      "variant": 3,
+      "intent": "導入：三辺の基本循環と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "baseline": "4.4",
+      "partial": {
+        "time": "4.6",
+        "first": "1.6",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "BG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.6,
+      "firstBellMaximum": 1.6,
+      "clearFirstMaximum": 1.6,
+      "clearMaximum": 4.6,
+      "clearBudget": 5.5,
+      "failedMaximum": 4.6,
+      "failedExample": {
+        "time": "4.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "4.4",
+          "first": "1.4",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.6",
+          "first": "1.6",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "BG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "55ddc73b4050320b",
+      "family": 0,
+      "variant": 0,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SC",
+        "CS",
+        "SA",
+        "AD",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SC",
+        "DG",
+        "AD"
+      ],
+      "baseline": "6",
+      "partial": {
+        "time": "6.15",
+        "first": "1.15",
+        "edges": [
+          "CS",
+          "SC",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6",
+          "first": "1",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "913a008ca89a01be",
+      "family": 0,
+      "variant": 1,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SC",
+        "CS",
+        "SA",
+        "AD",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SC",
+        "DG",
+        "AD"
+      ],
+      "baseline": "6.1",
+      "partial": {
+        "time": "6.25",
+        "first": "1.25",
+        "edges": [
+          "CS",
+          "SC",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "d905ce65d886649e",
+      "family": 0,
+      "variant": 2,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SC",
+        "CS",
+        "SA",
+        "AD",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SC",
+        "DG",
+        "AD"
+      ],
+      "baseline": "6.2",
+      "partial": {
+        "time": "6.35",
+        "first": "1.35",
+        "edges": [
+          "CS",
+          "SC",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.2",
+          "first": "1.2",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "b7ac54d475a70cad",
+      "family": 0,
+      "variant": 3,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SC",
+        "CS",
+        "SA",
+        "AD",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SC",
+        "DG",
+        "AD"
+      ],
+      "baseline": "6.3",
+      "partial": {
+        "time": "6.45",
+        "first": "1.45",
+        "edges": [
+          "CS",
+          "SC",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.3",
+          "first": "1.3",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "CS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SC",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "SC",
+            "CG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "SC",
+            "CG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "1ce3833f28171471",
+      "family": 1,
+      "variant": 0,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SD",
+        "DS",
+        "SB",
+        "BC",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SB",
+        "DS",
+        "CG",
+        "SD",
+        "BC"
+      ],
+      "baseline": "6",
+      "partial": {
+        "time": "6.15",
+        "first": "1.15",
+        "edges": [
+          "DS",
+          "SC",
+          "CG",
+          "SD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "DS",
+          "SD",
+          "DG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6",
+          "first": "1",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.15",
+          "first": "1.15",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "849a07d4f2658417",
+      "family": 1,
+      "variant": 1,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SD",
+        "DS",
+        "SB",
+        "BC",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SB",
+        "DS",
+        "CG",
+        "SD",
+        "BC"
+      ],
+      "baseline": "6.1",
+      "partial": {
+        "time": "6.25",
+        "first": "1.25",
+        "edges": [
+          "DS",
+          "SC",
+          "CG",
+          "SD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "DS",
+          "SD",
+          "DG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.1",
+          "first": "1.1",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.25",
+          "first": "1.25",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "6ab3d1572f4b6582",
+      "family": 1,
+      "variant": 2,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SD",
+        "DS",
+        "SB",
+        "BC",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SB",
+        "DS",
+        "CG",
+        "SD",
+        "BC"
+      ],
+      "baseline": "6.2",
+      "partial": {
+        "time": "6.35",
+        "first": "1.35",
+        "edges": [
+          "DS",
+          "SC",
+          "CG",
+          "SD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "DS",
+          "SD",
+          "DG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.2",
+          "first": "1.2",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.35",
+          "first": "1.35",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q30",
+      "id": "e03bf476b488565a",
+      "family": 1,
+      "variant": 3,
+      "intent": "組合せ：二辺の帰還短絡と二段の鐘経路",
+      "intendedWinner": [
+        "SD",
+        "DS",
+        "SB",
+        "BC",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "SC",
+        "CG",
+        "SD",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "AG",
+        "BG"
+      ],
+      "legalWirings": 638,
+      "achieved": 21,
+      "failed": 617,
+      "winners": 1,
+      "winner": [
+        "SB",
+        "DS",
+        "CG",
+        "SD",
+        "BC"
+      ],
+      "baseline": "6.3",
+      "partial": {
+        "time": "6.45",
+        "first": "1.45",
+        "edges": [
+          "DS",
+          "SC",
+          "CG",
+          "SD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 6.8,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 6.8,
+      "clearBudget": 7.5,
+      "failedMaximum": 6.8,
+      "failedExample": {
+        "time": "6.8",
+        "edges": [
+          "DS",
+          "SD",
+          "DG"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "6.3",
+          "first": "1.3",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "CG",
+            "SD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.45",
+          "first": "1.45",
+          "edges": [
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "CS",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "CS",
+            "SB",
+            "DS",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SC",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "SB",
+            "DS",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "6.8",
+          "first": "1.8",
+          "edges": [
+            "DS",
+            "SC",
+            "SD",
+            "DG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q31",
+      "id": "d05be7f94bf2b703",
+      "family": 0,
+      "variant": 0,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "DS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "DS",
+        "BG",
+        "AD"
+      ],
+      "baseline": "4.3",
+      "partial": {
+        "time": "5.1",
+        "first": "1.1",
+        "edges": [
+          "SA",
+          "SB",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "SA",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.3",
+          "first": "0.3",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "BG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "AG",
+            "AD"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q31",
+      "id": "305cef9d31db0887",
+      "family": 0,
+      "variant": 1,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "DS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "DS",
+        "BG",
+        "AD"
+      ],
+      "baseline": "4.4",
+      "partial": {
+        "time": "5.1",
+        "first": "1.1",
+        "edges": [
+          "SA",
+          "SB",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "SA",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.4",
+          "first": "0.4",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "BG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "AG",
+            "AD"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q31",
+      "id": "5b83a3809d46082c",
+      "family": 0,
+      "variant": 2,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "DS",
+        "SB",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "DS",
+        "BG",
+        "AD"
       ],
       "baseline": "4.5",
       "partial": {
-        "time": "10.5",
+        "time": "5.1",
+        "first": "1.1",
         "edges": [
           "SA",
-          "AC",
-          "CS",
           "SB",
-          "AG"
+          "DS",
+          "AG",
+          "AD"
         ],
         "waited": false
       },
       "waited": false,
-      "maximum": 35.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q29",
-      "id": "8cda10dbbc931669",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "SA",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.5",
+          "first": "0.5",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "BG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "AG",
+            "AD"
+          ],
+          "waited": false
+        }
       ],
-      "baseline": "4.7",
-      "partial": {
-        "time": "10.7",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 35.1,
       "valid": true
     },
     {
-      "challenge": "Q29",
-      "id": "b8a04a03798c3cb0",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "4.9",
-      "partial": {
-        "time": "10.9",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 35.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q29",
-      "id": "b649d3e007dad918",
+      "challenge": "Q31",
+      "id": "12b2c6714305c87e",
       "family": 0,
       "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
         "SA",
-        "AC",
-        "CS",
+        "AD",
+        "DS",
         "SB",
         "BG"
       ],
-      "baseline": "5.1",
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "DS",
+        "BG",
+        "AD"
+      ],
+      "baseline": "4.6",
       "partial": {
-        "time": "11.1",
+        "time": "5.1",
+        "first": "1.1",
         "edges": [
           "SA",
-          "AC",
-          "CS",
           "SB",
-          "AG"
+          "DS",
+          "AG",
+          "AD"
         ],
         "waited": false
       },
       "waited": false,
-      "maximum": 35.1,
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "SA",
+          "DS",
+          "AG",
+          "AD"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.6",
+          "first": "0.6",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "BG",
+            "AD"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "SB",
+            "DS",
+            "AG",
+            "AD"
+          ],
+          "waited": false
+        }
+      ],
       "valid": true
     },
     {
-      "challenge": "Q29",
-      "id": "4851919e28e07eaf",
+      "challenge": "Q31",
+      "id": "750401df99d491da",
       "family": 1,
       "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "CS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
       "winners": 1,
       "winner": [
         "SA",
+        "CS",
         "SB",
-        "BD",
-        "DS",
+        "AG",
+        "BC"
+      ],
+      "baseline": "4.3",
+      "partial": {
+        "time": "5.1",
+        "first": "1.1",
+        "edges": [
+          "SA",
+          "CS",
+          "SB",
+          "BG",
+          "BC"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "CS",
+          "SB",
+          "BG",
+          "BC"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.3",
+          "first": "0.3",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "AG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "BG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q31",
+      "id": "fc26f1513fffae13",
+      "family": 1,
+      "variant": 1,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "CS",
+        "SA",
         "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SB",
+        "AG",
+        "BC"
+      ],
+      "baseline": "4.4",
+      "partial": {
+        "time": "5.1",
+        "first": "1.1",
+        "edges": [
+          "SA",
+          "CS",
+          "SB",
+          "BG",
+          "BC"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "CS",
+          "SB",
+          "BG",
+          "BC"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.4",
+          "first": "0.4",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "AG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "BG",
+            "BC"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q31",
+      "id": "591e3510196f85b2",
+      "family": 1,
+      "variant": 2,
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "CS",
+        "SA",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "CS",
+        "SB",
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "CS",
+        "SB",
+        "AG",
+        "BC"
       ],
       "baseline": "4.5",
       "partial": {
-        "time": "11.3",
+        "time": "5.1",
+        "first": "1.1",
         "edges": [
           "SA",
+          "CS",
           "SB",
-          "BD",
-          "DS",
-          "BG"
+          "BG",
+          "BC"
         ],
         "waited": false
       },
       "waited": false,
-      "maximum": 35.3,
-      "valid": true
-    },
-    {
-      "challenge": "Q29",
-      "id": "9182220babecdfb8",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
+        "edges": [
+          "CS",
+          "SB",
+          "BG",
+          "BC"
+        ],
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
+      },
+      "clears": [
+        {
+          "time": "4.5",
+          "first": "0.5",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "AG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "BG",
+            "BC"
+          ],
+          "waited": false
+        }
       ],
-      "baseline": "4.7",
-      "partial": {
-        "time": "11.5",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 35.3,
       "valid": true
     },
     {
-      "challenge": "Q29",
-      "id": "804da14d9ab53dca",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "4.9",
-      "partial": {
-        "time": "11.7",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 35.3,
-      "valid": true
-    },
-    {
-      "challenge": "Q29",
-      "id": "22c8a271b33d19f2",
+      "challenge": "Q31",
+      "id": "a0b69e509adb6526",
       "family": 1,
       "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
+      "intent": "手応え：交差する帰還と別の鐘枝",
+      "intendedWinner": [
         "SB",
-        "BD",
-        "DS",
+        "BC",
+        "CS",
+        "SA",
         "AG"
       ],
-      "baseline": "5.1",
-      "partial": {
-        "time": "11.9",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 35.3,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "c8b68bb0064b137d",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
+      "candidateIds": [
         "SA",
-        "AC",
         "CS",
         "SB",
-        "BG"
+        "DS",
+        "AG",
+        "BG",
+        "AD",
+        "BC"
       ],
-      "baseline": "6.25",
-      "partial": {
-        "time": "11.25",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "775d0fa05306e8a8",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 3473,
+      "removedCandidates": [
+        "AC",
+        "BD",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "legalWirings": 219,
+      "achieved": 2,
+      "failed": 217,
       "winners": 1,
       "winner": [
         "SA",
-        "AC",
         "CS",
         "SB",
-        "BG"
+        "AG",
+        "BC"
       ],
-      "baseline": "6.45",
+      "baseline": "4.6",
       "partial": {
-        "time": "11.45",
+        "time": "5.1",
+        "first": "1.1",
         "edges": [
           "SA",
-          "AC",
           "CS",
           "SB",
-          "AG"
+          "BG",
+          "BC"
         ],
         "waited": false
       },
       "waited": false,
-      "maximum": 41.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "58b23424c88a433b",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "6.65",
-      "partial": {
-        "time": "11.65",
+      "maximum": 5.1,
+      "firstBellMaximum": 1.1,
+      "clearFirstMaximum": 1.1,
+      "clearMaximum": 5.1,
+      "clearBudget": 6.5,
+      "failedMaximum": 5.1,
+      "failedExample": {
+        "time": "5.1",
         "edges": [
-          "SA",
-          "AC",
           "CS",
           "SB",
-          "AG"
+          "BG",
+          "BC"
         ],
-        "waited": false
+        "reason": "光を星へ戻し、星でもう一度分岐させてください。"
       },
-      "waited": false,
-      "maximum": 41.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "4abc4a8930885b11",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
+      "clears": [
+        {
+          "time": "4.6",
+          "first": "0.6",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "AG",
+            "BC"
+          ],
+          "waited": false
+        },
+        {
+          "time": "5.1",
+          "first": "1.1",
+          "edges": [
+            "SA",
+            "CS",
+            "SB",
+            "BG",
+            "BC"
+          ],
+          "waited": false
+        }
       ],
-      "baseline": "6.85",
-      "partial": {
-        "time": "11.85",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.1,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "143c595a52805e3d",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "6.25",
-      "partial": {
-        "time": "12.05",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "c2b12d2b575074b2",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "6.45",
-      "partial": {
-        "time": "12.25",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "6e1d5fa45979621b",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "6.65",
-      "partial": {
-        "time": "12.45",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q30",
-      "id": "9dd5807994d2f490",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "6.85",
-      "partial": {
-        "time": "12.65",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 41.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "dee0718c034f50ef",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "5",
-      "partial": {
-        "time": "9",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.2,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "003d83ab46015ec4",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "5.2",
-      "partial": {
-        "time": "9.2",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.2,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "834835da3b3dbdc1",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "5.4",
-      "partial": {
-        "time": "9.4",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.2,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "479dacfbbcdb92d5",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "BG"
-      ],
-      "baseline": "5.6",
-      "partial": {
-        "time": "9.6",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "AG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.2,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "208a551f0c403e05",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "5",
-      "partial": {
-        "time": "9.8",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.4,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "e5bf2404ae50a42f",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "5.2",
-      "partial": {
-        "time": "10",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.4,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "f6b4ad1b359e9bb9",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "5.4",
-      "partial": {
-        "time": "10.2",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.4,
-      "valid": true
-    },
-    {
-      "challenge": "Q31",
-      "id": "c627b223cc28b475",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 3473,
-      "achieved": 8,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG"
-      ],
-      "baseline": "5.6",
-      "partial": {
-        "time": "10.4",
-        "edges": [
-          "SA",
-          "SB",
-          "BD",
-          "DS",
-          "BG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 33.4,
       "valid": true
     },
     {
       "challenge": "Q32",
-      "id": "fa717c2214158c7d",
+      "id": "1bf8d5753775dce7",
       "family": 0,
       "variant": 0,
-      "legalWirings": 6476,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
       "achieved": 2,
+      "failed": 846,
       "winners": 1,
       "winner": [
         "SA",
@@ -761,9 +4282,10 @@
         "AG",
         "BG"
       ],
-      "baseline": "4",
+      "baseline": "3.6",
       "partial": {
-        "time": "5",
+        "time": "4.6",
+        "first": "1.6",
         "edges": [
           "SA",
           "AC",
@@ -775,16 +4297,89 @@
         "waited": false
       },
       "waited": false,
-      "maximum": 26.7,
+      "maximum": 4.6,
+      "firstBellMaximum": 2.6,
+      "clearFirstMaximum": 1.6,
+      "clearMaximum": 4.6,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.6,
+      "failedExample": {
+        "time": "3.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.6",
+          "first": "0.6",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.6",
+          "first": "1.6",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        }
+      ],
       "valid": true
     },
     {
       "challenge": "Q32",
-      "id": "1bee432f09752196",
+      "id": "3ac96a3576096f57",
       "family": 0,
       "variant": 1,
-      "legalWirings": 6476,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
       "achieved": 2,
+      "failed": 846,
       "winners": 1,
       "winner": [
         "SA",
@@ -794,360 +4389,2500 @@
         "AG",
         "BG"
       ],
-      "baseline": "4.2",
+      "baseline": "3.7",
       "partial": {
+        "time": "4.7",
+        "first": "1.7",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG",
+          "CG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.7,
+      "firstBellMaximum": 2.7,
+      "clearFirstMaximum": 1.7,
+      "clearMaximum": 4.7,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.7,
+      "failedExample": {
+        "time": "3.7",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.7",
+          "first": "0.7",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.7",
+          "first": "1.7",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "d45250588c48f904",
+      "family": 0,
+      "variant": 2,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.8",
+      "partial": {
+        "time": "4.8",
+        "first": "1.8",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG",
+          "CG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.8,
+      "firstBellMaximum": 2.8,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 4.8,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.8,
+      "failedExample": {
+        "time": "3.8",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.8",
+          "first": "0.8",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "aa75221c6fd959bb",
+      "family": 0,
+      "variant": 3,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.9",
+      "partial": {
+        "time": "4.9",
+        "first": "1.9",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BG",
+          "CG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.9,
+      "firstBellMaximum": 2.9,
+      "clearFirstMaximum": 1.9,
+      "clearMaximum": 4.9,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.9,
+      "failedExample": {
+        "time": "3.9",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.9",
+          "first": "0.9",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.9",
+          "first": "1.9",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "082d07bb4504a1a2",
+      "family": 1,
+      "variant": 0,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "BG",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.6",
+      "partial": {
+        "time": "4.6",
+        "first": "1.6",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "AG",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.6,
+      "firstBellMaximum": 2.6,
+      "clearFirstMaximum": 1.6,
+      "clearMaximum": 4.6,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.6,
+      "failedExample": {
+        "time": "3.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.6",
+          "first": "0.6",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.6",
+          "first": "1.6",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "a0bed5c560427d10",
+      "family": 1,
+      "variant": 1,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "BG",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.7",
+      "partial": {
+        "time": "4.7",
+        "first": "1.7",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "AG",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.7,
+      "firstBellMaximum": 2.7,
+      "clearFirstMaximum": 1.7,
+      "clearMaximum": 4.7,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.7,
+      "failedExample": {
+        "time": "3.7",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.7",
+          "first": "0.7",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.7",
+          "first": "1.7",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "7a4f267c171f6210",
+      "family": 1,
+      "variant": 2,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "BG",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.8",
+      "partial": {
+        "time": "4.8",
+        "first": "1.8",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "AG",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.8,
+      "firstBellMaximum": 2.8,
+      "clearFirstMaximum": 1.8,
+      "clearMaximum": 4.8,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.8,
+      "failedExample": {
+        "time": "3.8",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.8",
+          "first": "0.8",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.8",
+          "first": "1.8",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q32",
+      "id": "5d160bb01105da24",
+      "family": 1,
+      "variant": 3,
+      "intent": "短い解放：一循環と二出口の交互四音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "SA",
+        "BG",
+        "AG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "CG",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "SC",
+        "SD",
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG"
+      ],
+      "baseline": "3.9",
+      "partial": {
+        "time": "4.9",
+        "first": "1.9",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "AG",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 4.9,
+      "firstBellMaximum": 2.9,
+      "clearFirstMaximum": 1.9,
+      "clearMaximum": 4.9,
+      "clearBudget": 5.5,
+      "failedMaximum": 3.9,
+      "failedExample": {
+        "time": "3.9",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "3.9",
+          "first": "0.9",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "4.9",
+          "first": "1.9",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "a390942f07d9dd57",
+      "family": 0,
+      "variant": 0,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "SB",
+        "BD",
+        "DS",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "DG",
+        "AD"
+      ],
+      "baseline": "8",
+      "partial": {
+        "time": "8.1",
+        "first": "2.1",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "CG",
+          "BC"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.1,
+      "firstBellMaximum": 2.1,
+      "clearFirstMaximum": 2.1,
+      "clearMaximum": 8.1,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.6,
+      "failedExample": {
+        "time": "3.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8",
+          "first": "2",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.1",
+          "first": "2.1",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "1f949b129d4d53c0",
+      "family": 0,
+      "variant": 1,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "SB",
+        "BD",
+        "DS",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "DG",
+        "AD"
+      ],
+      "baseline": "8.1",
+      "partial": {
+        "time": "8.2",
+        "first": "2.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "CG",
+          "BC"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.2,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 2.2,
+      "clearMaximum": 8.2,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.7,
+      "failedExample": {
+        "time": "3.7",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.1",
+          "first": "2.1",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "7a2765c3a2711e8e",
+      "family": 0,
+      "variant": 2,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "SB",
+        "BD",
+        "DS",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "DG",
+        "AD"
+      ],
+      "baseline": "8.2",
+      "partial": {
+        "time": "8.3",
+        "first": "2.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "CG",
+          "BC"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.3,
+      "firstBellMaximum": 2.3,
+      "clearFirstMaximum": 2.3,
+      "clearMaximum": 8.3,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.8,
+      "failedExample": {
+        "time": "3.8",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "5e826a1b4c0a5c98",
+      "family": 0,
+      "variant": 3,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SA",
+        "AD",
+        "SB",
+        "BD",
+        "DS",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "DG",
+        "AD"
+      ],
+      "baseline": "8.3",
+      "partial": {
+        "time": "8.4",
+        "first": "2.4",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "CG",
+          "BC"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.4,
+      "firstBellMaximum": 2.4,
+      "clearFirstMaximum": 2.4,
+      "clearMaximum": 8.4,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.9,
+      "failedExample": {
+        "time": "3.9",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.4",
+          "first": "2.4",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "3c7078d4749147a2",
+      "family": 1,
+      "variant": 0,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "SA",
+        "AC",
+        "CS",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "CG",
+        "BC"
+      ],
+      "baseline": "8",
+      "partial": {
+        "time": "8.1",
+        "first": "2.1",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "DG",
+          "AD"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.1,
+      "firstBellMaximum": 2.1,
+      "clearFirstMaximum": 2.1,
+      "clearMaximum": 8.1,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.6,
+      "failedExample": {
+        "time": "3.6",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8",
+          "first": "2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.1",
+          "first": "2.1",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "c4753cba52918a7d",
+      "family": 1,
+      "variant": 1,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "SA",
+        "AC",
+        "CS",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "CG",
+        "BC"
+      ],
+      "baseline": "8.1",
+      "partial": {
+        "time": "8.2",
+        "first": "2.2",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "DG",
+          "AD"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.2,
+      "firstBellMaximum": 2.2,
+      "clearFirstMaximum": 2.2,
+      "clearMaximum": 8.2,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.7,
+      "failedExample": {
+        "time": "3.7",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.1",
+          "first": "2.1",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "7852cdb347e1c9a4",
+      "family": 1,
+      "variant": 2,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "SA",
+        "AC",
+        "CS",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "CG",
+        "BC"
+      ],
+      "baseline": "8.2",
+      "partial": {
+        "time": "8.3",
+        "first": "2.3",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "DG",
+          "AD"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.3,
+      "firstBellMaximum": 2.3,
+      "clearFirstMaximum": 2.3,
+      "clearMaximum": 8.3,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.8,
+      "failedExample": {
+        "time": "3.8",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q33",
+      "id": "4195ed20592e255c",
+      "family": 1,
+      "variant": 3,
+      "intent": "応用：二経路が処理待ちへ合流して五音",
+      "intendedWinner": [
+        "SB",
+        "BC",
+        "SA",
+        "AC",
+        "CS",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "CG",
+        "DG",
+        "AD",
+        "BC"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 6476,
+      "removedCandidates": [
+        "AG",
+        "BG",
+        "SC",
+        "SD"
+      ],
+      "legalWirings": 848,
+      "achieved": 2,
+      "failed": 846,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "CG",
+        "BC"
+      ],
+      "baseline": "8.3",
+      "partial": {
+        "time": "8.4",
+        "first": "2.4",
+        "edges": [
+          "SA",
+          "SB",
+          "BD",
+          "DS",
+          "DG",
+          "AD"
+        ],
+        "waited": true
+      },
+      "waited": true,
+      "maximum": 8.4,
+      "firstBellMaximum": 2.4,
+      "clearFirstMaximum": 2.4,
+      "clearMaximum": 8.4,
+      "clearBudget": 8.5,
+      "failedMaximum": 3.9,
+      "failedExample": {
+        "time": "3.9",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SB",
+          "BD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "8.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "CG",
+            "BC"
+          ],
+          "waited": true
+        },
+        {
+          "time": "8.4",
+          "first": "2.4",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "DG",
+            "AD"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "d05c29311447a310",
+      "family": 0,
+      "variant": 0,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "AG",
+        "SB",
+        "BG",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG",
+        "CG"
+      ],
+      "baseline": "5.2",
+      "partial": {
+        "time": "7.2",
+        "first": "2.2",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": true
+      },
+      "waited": false,
+      "maximum": 7.2,
+      "firstBellMaximum": 4.2,
+      "clearFirstMaximum": 2.2,
+      "clearMaximum": 7.2,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.2,
+      "failedExample": {
+        "time": "5.2",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "5.2",
+          "first": "0.2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        },
+        {
+          "time": "7.2",
+          "first": "2.2",
+          "edges": [
+            "SA",
+            "AC",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "d0b7f38ff84f18ef",
+      "family": 0,
+      "variant": 1,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "AG",
+        "SB",
+        "BG",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG",
+        "CG"
+      ],
+      "baseline": "5.3",
+      "partial": {
+        "time": "7.3",
+        "first": "2.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": true
+      },
+      "waited": false,
+      "maximum": 7.3,
+      "firstBellMaximum": 4.3,
+      "clearFirstMaximum": 2.3,
+      "clearMaximum": 7.3,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.3,
+      "failedExample": {
+        "time": "5.3",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "5.3",
+          "first": "0.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        },
+        {
+          "time": "7.3",
+          "first": "2.3",
+          "edges": [
+            "SA",
+            "AC",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "7f676757d938eaf0",
+      "family": 0,
+      "variant": 2,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "AG",
+        "SB",
+        "BG",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG",
+        "CG"
+      ],
+      "baseline": "5.4",
+      "partial": {
+        "time": "7.4",
+        "first": "2.4",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": true
+      },
+      "waited": false,
+      "maximum": 7.4,
+      "firstBellMaximum": 4.4,
+      "clearFirstMaximum": 2.4,
+      "clearMaximum": 7.4,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.4,
+      "failedExample": {
+        "time": "5.4",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "5.4",
+          "first": "0.4",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.4",
+          "first": "2.4",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        },
+        {
+          "time": "7.4",
+          "first": "2.4",
+          "edges": [
+            "SA",
+            "AC",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "662eb4def05c2a41",
+      "family": 0,
+      "variant": 3,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SA",
+        "AC",
+        "CS",
+        "AG",
+        "SB",
+        "BG",
+        "CG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "AG",
+        "BG",
+        "CG"
+      ],
+      "baseline": "5.5",
+      "partial": {
+        "time": "7.5",
+        "first": "2.5",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": true
+      },
+      "waited": false,
+      "maximum": 7.5,
+      "firstBellMaximum": 4.5,
+      "clearFirstMaximum": 2.5,
+      "clearMaximum": 7.5,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.5,
+      "failedExample": {
+        "time": "5.5",
+        "edges": [
+          "CS",
+          "SC",
+          "CG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "5.5",
+          "first": "0.5",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SB",
+            "AG",
+            "BG",
+            "CG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.5",
+          "first": "2.5",
+          "edges": [
+            "SA",
+            "AC",
+            "CS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        },
+        {
+          "time": "7.5",
+          "first": "2.5",
+          "edges": [
+            "SA",
+            "AC",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "bdc27357f35dd344",
+      "family": 1,
+      "variant": 0,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "BG",
+        "SA",
+        "AG",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "DG"
+      ],
+      "baseline": "5.2",
+      "partial": {
+        "time": "7.2",
+        "first": "2.2",
+        "edges": [
+          "CS",
+          "SB",
+          "BD",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 7.2,
+      "firstBellMaximum": 4.2,
+      "clearFirstMaximum": 2.2,
+      "clearMaximum": 7.2,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.2,
+      "failedExample": {
         "time": "5.2",
         "edges": [
           "SA",
           "AC",
           "CS",
-          "SB",
-          "BG",
-          "CG"
+          "SD",
+          "DG"
         ],
-        "waited": false
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
       },
-      "waited": false,
-      "maximum": 26.7,
+      "clears": [
+        {
+          "time": "5.2",
+          "first": "0.2",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.2",
+          "first": "2.2",
+          "edges": [
+            "CS",
+            "SB",
+            "BD",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.2",
+          "first": "2.2",
+          "edges": [
+            "SB",
+            "BD",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        }
+      ],
       "valid": true
     },
     {
-      "challenge": "Q32",
-      "id": "6a80b64743b1f28a",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
+      "challenge": "Q34",
+      "id": "2fd9ebeecd91fc4c",
+      "family": 1,
+      "variant": 1,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "BG",
+        "SA",
+        "AG",
+        "DG"
+      ],
+      "candidateIds": [
         "SA",
         "AC",
         "CS",
         "SB",
+        "BD",
+        "DS",
         "AG",
-        "BG"
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
       ],
-      "baseline": "4.4",
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "DG"
+      ],
+      "baseline": "5.3",
       "partial": {
+        "time": "7.3",
+        "first": "2.3",
+        "edges": [
+          "CS",
+          "SB",
+          "BD",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 7.3,
+      "firstBellMaximum": 4.3,
+      "clearFirstMaximum": 2.3,
+      "clearMaximum": 7.3,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.3,
+      "failedExample": {
+        "time": "5.3",
+        "edges": [
+          "SA",
+          "AC",
+          "CS",
+          "SD",
+          "DG"
+        ],
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
+      },
+      "clears": [
+        {
+          "time": "5.3",
+          "first": "0.3",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.3",
+          "first": "2.3",
+          "edges": [
+            "CS",
+            "SB",
+            "BD",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.3",
+          "first": "2.3",
+          "edges": [
+            "SB",
+            "BD",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        }
+      ],
+      "valid": true
+    },
+    {
+      "challenge": "Q34",
+      "id": "fc2e78820e3e68e6",
+      "family": 1,
+      "variant": 2,
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
+        "SB",
+        "BD",
+        "DS",
+        "BG",
+        "SA",
+        "AG",
+        "DG"
+      ],
+      "candidateIds": [
+        "SA",
+        "AC",
+        "CS",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
+      ],
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
+      ],
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
+      "winners": 1,
+      "winner": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG",
+        "BG",
+        "DG"
+      ],
+      "baseline": "5.4",
+      "partial": {
+        "time": "7.4",
+        "first": "2.4",
+        "edges": [
+          "CS",
+          "SB",
+          "BD",
+          "SC",
+          "CG",
+          "SD",
+          "DG"
+        ],
+        "waited": false
+      },
+      "waited": false,
+      "maximum": 7.4,
+      "firstBellMaximum": 4.4,
+      "clearFirstMaximum": 2.4,
+      "clearMaximum": 7.4,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.4,
+      "failedExample": {
         "time": "5.4",
         "edges": [
           "SA",
           "AC",
           "CS",
-          "SB",
-          "BG",
-          "CG"
+          "SD",
+          "DG"
         ],
-        "waited": false
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
       },
-      "waited": false,
-      "maximum": 26.7,
-      "valid": true
-    },
-    {
-      "challenge": "Q32",
-      "id": "6749c036030e83e9",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
+      "clears": [
+        {
+          "time": "5.4",
+          "first": "0.4",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.4",
+          "first": "2.4",
+          "edges": [
+            "CS",
+            "SB",
+            "BD",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.4",
+          "first": "2.4",
+          "edges": [
+            "SB",
+            "BD",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        }
       ],
-      "baseline": "4.6",
-      "partial": {
-        "time": "5.6",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 26.7,
       "valid": true
     },
     {
-      "challenge": "Q32",
-      "id": "646fb1b10473a9b8",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "4",
-      "partial": {
-        "time": "5",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 27,
-      "valid": true
-    },
-    {
-      "challenge": "Q32",
-      "id": "81d9aa340eafe27d",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "4.2",
-      "partial": {
-        "time": "5.2",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 27,
-      "valid": true
-    },
-    {
-      "challenge": "Q32",
-      "id": "780173c6eb51295a",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "4.4",
-      "partial": {
-        "time": "5.4",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 27,
-      "valid": true
-    },
-    {
-      "challenge": "Q32",
-      "id": "f4ccee187c3f9c50",
+      "challenge": "Q34",
+      "id": "b1fdea045d7a1881",
       "family": 1,
       "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
+      "intent": "締め：三出口と三秒周期で交互の六音",
+      "intendedWinner": [
         "SB",
         "BD",
         "DS",
+        "BG",
+        "SA",
         "AG",
-        "BG"
+        "DG"
       ],
-      "baseline": "4.6",
-      "partial": {
-        "time": "5.6",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 27,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "1b00478475e939ff",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
+      "candidateIds": [
         "SA",
         "AC",
         "CS",
         "SB",
+        "BD",
+        "DS",
         "AG",
-        "BG"
+        "BG",
+        "SC",
+        "CG",
+        "SD",
+        "DG"
       ],
-      "baseline": "7.25",
-      "partial": {
-        "time": "8.75",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "c8ce536e42a26835",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
+      "priorUnfilteredCandidateCount": 14,
+      "priorUnfilteredLegalWirings": 9908,
+      "removedCandidates": [
+        "AD",
+        "BC"
       ],
-      "baseline": "7.45",
-      "partial": {
-        "time": "8.95",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "4676764550a95408",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
-      ],
-      "baseline": "7.65",
-      "partial": {
-        "time": "9.15",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "09585bf186d8ebfe",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
-      ],
-      "baseline": "7.85",
-      "partial": {
-        "time": "9.35",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "75c8983e89540e2e",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 6476,
-      "achieved": 2,
+      "legalWirings": 3302,
+      "achieved": 3,
+      "failed": 3299,
       "winners": 1,
       "winner": [
         "SA",
@@ -1155,386 +6890,86 @@
         "BD",
         "DS",
         "AG",
-        "BG"
+        "BG",
+        "DG"
       ],
-      "baseline": "7.25",
+      "baseline": "5.5",
       "partial": {
-        "time": "8.75",
+        "time": "7.5",
+        "first": "2.5",
         "edges": [
+          "CS",
           "SB",
           "BD",
-          "DS",
-          "BG",
           "SC",
-          "CG"
+          "CG",
+          "SD",
+          "DG"
         ],
         "waited": false
       },
       "waited": false,
-      "maximum": 46.8,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "d4175c6b497811f4",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "7.45",
-      "partial": {
-        "time": "8.95",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46.8,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "447ec55f38173a4a",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "7.65",
-      "partial": {
-        "time": "9.15",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46.8,
-      "valid": true
-    },
-    {
-      "challenge": "Q33",
-      "id": "9f6e0f3b929c3604",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "7.85",
-      "partial": {
-        "time": "9.35",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 46.8,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "1c25b2a1129a6a59",
-      "family": 0,
-      "variant": 0,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6",
-      "partial": {
-        "time": "7",
+      "maximum": 7.5,
+      "firstBellMaximum": 4.5,
+      "clearFirstMaximum": 2.5,
+      "clearMaximum": 7.5,
+      "clearBudget": 7.5,
+      "failedMaximum": 5.5,
+      "failedExample": {
+        "time": "5.5",
         "edges": [
           "SA",
           "AC",
           "CS",
-          "SB",
-          "BG",
-          "CG"
+          "SD",
+          "DG"
         ],
-        "waited": false
+        "reason": "指定した次の時刻までに鐘へ届きませんでした。間隔を確認してください。"
       },
-      "waited": false,
-      "maximum": 37.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "955e425b87d044fe",
-      "family": 0,
-      "variant": 1,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
+      "clears": [
+        {
+          "time": "5.5",
+          "first": "0.5",
+          "edges": [
+            "SA",
+            "SB",
+            "BD",
+            "DS",
+            "AG",
+            "BG",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.5",
+          "first": "2.5",
+          "edges": [
+            "CS",
+            "SB",
+            "BD",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": false
+        },
+        {
+          "time": "7.5",
+          "first": "2.5",
+          "edges": [
+            "SB",
+            "BD",
+            "DS",
+            "SC",
+            "CG",
+            "SD",
+            "DG"
+          ],
+          "waited": true
+        }
       ],
-      "baseline": "6.2",
-      "partial": {
-        "time": "7.2",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 37.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "76ec5a1733701d3c",
-      "family": 0,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6.4",
-      "partial": {
-        "time": "7.4",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 37.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "9c4ee25a0095f1b4",
-      "family": 0,
-      "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "AC",
-        "CS",
-        "SB",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6.6",
-      "partial": {
-        "time": "7.6",
-        "edges": [
-          "SA",
-          "AC",
-          "CS",
-          "SB",
-          "BG",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 37.5,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "2ff1c12e3f46dc59",
-      "family": 1,
-      "variant": 0,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6",
-      "partial": {
-        "time": "7",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 38,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "0593d651914a881f",
-      "family": 1,
-      "variant": 1,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6.2",
-      "partial": {
-        "time": "7.2",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 38,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "a21f479879eeba88",
-      "family": 1,
-      "variant": 2,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6.4",
-      "partial": {
-        "time": "7.4",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 38,
-      "valid": true
-    },
-    {
-      "challenge": "Q34",
-      "id": "5f59f17c84f32ae9",
-      "family": 1,
-      "variant": 3,
-      "legalWirings": 6476,
-      "achieved": 2,
-      "winners": 1,
-      "winner": [
-        "SA",
-        "SB",
-        "BD",
-        "DS",
-        "AG",
-        "BG"
-      ],
-      "baseline": "6.6",
-      "partial": {
-        "time": "7.6",
-        "edges": [
-          "SB",
-          "BD",
-          "DS",
-          "BG",
-          "SC",
-          "CG"
-        ],
-        "waited": false
-      },
-      "waited": false,
-      "maximum": 38,
       "valid": true
     }
   ]

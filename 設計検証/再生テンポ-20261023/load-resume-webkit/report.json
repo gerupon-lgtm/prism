@@ -1,0 +1,110 @@
+{
+  "version": "0.89.0",
+  "engine": "webkit",
+  "syntheticDelayMs": 180,
+  "passed": true,
+  "scope": "Real UI resume after one labelled synthetic presentation stall; not a device-speed or listening result",
+  "paused": {
+    "last": {
+      "milliseconds": 214,
+      "phases": {
+        "calculation": 1,
+        "audio": 180,
+        "display": 33
+      },
+      "counts": {
+        "records": 4,
+        "retainedParticles": 1,
+        "active": 1,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 3,
+        "milliseconds": 2,
+        "maximum": 1
+      },
+      "calculation": {
+        "calls": 7,
+        "milliseconds": 5,
+        "maximum": 3
+      },
+      "display": {
+        "calls": 8,
+        "milliseconds": 75,
+        "maximum": 38
+      },
+      "audio": {
+        "calls": 1,
+        "milliseconds": 180,
+        "maximum": 180
+      }
+    },
+    "slowFrames": 1,
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "clock": "0.2",
+      "records": 4,
+      "retainedParticles": 1,
+      "active": 1,
+      "waiting": 0
+    },
+    "audioVoices": 0,
+    "result": "判定待ち・一時停止｜0.2秒・1光線　鐘 0/3　負荷のため一時停止。状態を保持しています。"
+  },
+  "returned": {
+    "last": {
+      "milliseconds": 48,
+      "phases": {
+        "records": 0,
+        "calculation": 3,
+        "audio": 0,
+        "display": 45
+      },
+      "counts": {
+        "records": 32,
+        "retainedParticles": 5,
+        "active": 0,
+        "waiting": 0
+      }
+    },
+    "totals": {
+      "records": {
+        "calls": 5,
+        "milliseconds": 2,
+        "maximum": 1
+      },
+      "calculation": {
+        "calls": 159,
+        "milliseconds": 29,
+        "maximum": 3
+      },
+      "display": {
+        "calls": 167,
+        "milliseconds": 489,
+        "maximum": 38
+      },
+      "audio": {
+        "calls": 8,
+        "milliseconds": 181,
+        "maximum": 180
+      }
+    },
+    "slowFrames": 0,
+    "run": {
+      "status": "stopped",
+      "pauseReason": null,
+      "clock": "5.1",
+      "records": 32,
+      "retainedParticles": 0,
+      "active": 0,
+      "waiting": 0
+    },
+    "audioVoices": 0,
+    "result": "達成 100.00点・編集可能｜5.1秒・0光線　鐘 3/3・全到達 5.1秒"
+  },
+  "recordsMatched": 32,
+  "baseline": "5.1"
+}
