@@ -1,0 +1,37 @@
+{
+  "version": "0.95.0",
+  "sourceCommit": "2ed61fe097a49e9c2677b69ae8796ca570a6a7ac",
+  "reports": [
+    {
+      "path": "chromium/report.json",
+      "passed": true,
+      "count": 5
+    },
+    {
+      "path": "webkit/report.json",
+      "passed": true,
+      "count": 5
+    },
+    {
+      "path": "public/domain/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/github/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/cue/report.json",
+      "passed": true,
+      "count": 3
+    }
+  ],
+  "localCases": 10,
+  "publicChecks": 189,
+  "targetedUnitTests": 31,
+  "releaseTestFiles": 44,
+  "syntaxFiles": 117,
+  "boundary": "Disposable PC browsers, including phone touch and OS-motion emulation. Physical-device appearance and touch remain unverified."
+}
