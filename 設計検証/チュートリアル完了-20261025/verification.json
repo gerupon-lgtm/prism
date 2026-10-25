@@ -1,0 +1,47 @@
+{
+  "version": "0.96.0",
+  "sourceCommit": "5455a75d6a6f32d15ade6be3a18851132e0658a1",
+  "reports": [
+    {
+      "path": "chromium/report.json",
+      "passed": true,
+      "count": 7
+    },
+    {
+      "path": "webkit/report.json",
+      "passed": true,
+      "count": 7
+    },
+    {
+      "path": "final/chromium/report.json",
+      "passed": true,
+      "count": 3
+    },
+    {
+      "path": "final/webkit/report.json",
+      "passed": true,
+      "count": 3
+    },
+    {
+      "path": "public/github/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/domain/report.json",
+      "passed": true,
+      "count": 93
+    },
+    {
+      "path": "public/completion/report.json",
+      "passed": true,
+      "count": 3
+    }
+  ],
+  "localCases": 20,
+  "publicChecks": 189,
+  "targetedUnitTests": 82,
+  "releaseTestFiles": 44,
+  "syntaxFiles": 117,
+  "boundary": "Disposable PC browsers, including phone touch and enlarged-text emulation. Physical-device appearance, touch and listening remain unverified. Windows WebKit lacks an audio API."
+}
