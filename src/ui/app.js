@@ -105,6 +105,8 @@ const dismissedClears=new WeakSet();
 let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
+const shownTutorialClears=new WeakSet();
+let tutorialClearFrame=null;
 const wireLimitNotice=new WireLimitNotice($('wire-limit-notice'),$('wire-budget'),$('board'));
 const board=new Board($('board'),session,render,settings,notify,()=>chime.wire(),showWireDelete,limit=>wireLimitNotice.show(limit));
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
@@ -177,14 +179,15 @@ function failure(error) {
   if(dialog.open)$('dialog-error').textContent=error.message;
   else notify(error.message);
 }
-function open(title) {
+function open(title,{naturalEnding=false}={}) {
   $('challenge-info').classList.remove('condition-start-cue');
   settingsTapGuard=null;
   board.mirrorPreview=null;
   board.cancelAll();cancelWireDelete();
   celebration.cancel();cancelStart();
-  session.pause('dialog');chime.stop('dialog',{preserveTap:true});clockAnchor=null;
-  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','result-timing-dialog','help-dialog','mirror-intro');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
+  const preserveTail=naturalEnding&&session.run?.status==='stopped'&&session.run.exhausted;
+  session.pause('dialog');chime.stop(preserveTail?'completed':'dialog',{preserveTap:true,preserveTail});clockAnchor=null;
+  $('dialog-title').textContent=title;dialog.classList.remove('menu-dialog','settings-dialog','time-dialog','challenge-dialog','motion-dialog','result-timing-dialog','help-dialog','mirror-intro','tutorial-clear-dialog');body.replaceChildren();body.className='';actions.replaceChildren();$('dialog-error').textContent='';$('dialog-info').hidden=true;dialogPage=null;dialogLayout=null;
   document.body.classList.remove('input-focus');
   if(!dialog.open)dialog.showModal();render(false);
 }
@@ -338,7 +341,8 @@ function render(redraw=true,{records=true}={}) {
   $('guide-bar').hidden=!session.guide;
   const guideCopy=tutorialContent(session,matchMedia('(pointer:coarse)').matches);
   if(session.guide){
-    setText('guide-heading',`チュートリアル ${session.guide.step+1}/${guideCopy.total}`);setText('guide-text',guideCopy.text);$('guide-finish').hidden=!session.guide.readyToFinish;
+    setText('guide-heading',session.guide.readyToFinish?'チュートリアルクリア！':`チュートリアル ${session.guide.step+1}/${guideCopy.total}`);setText('guide-text',guideCopy.text);$('guide-finish').hidden=!session.guide.readyToFinish;$('guide-skip').hidden=session.guide.readyToFinish;
+    $('guide-bar').classList.toggle('tutorial-complete',session.guide.readyToFinish);
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   const guide=session.guide;
@@ -356,6 +360,35 @@ function render(redraw=true,{records=true}={}) {
   // Neither its start nor its lifetime depends on the card finding room.
   celebration.update(run,session.result,Boolean(session.clearChoices)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run),{naturalEnding:board.naturalEnding===run});
   outcomeSound.update(run,session.result,outcomeAudioEnabled(),{defer:Boolean(session.result?.timeLimitReached)&&run?.status!=='stopped'});
+  scheduleTutorialClear();
+}
+function scheduleTutorialClear(){
+  const guide=session.guide;
+  if(!guide?.readyToFinish){if(guide)shownTutorialClears.delete(guide);return;}
+  if(shownTutorialClears.has(guide)||tutorialClearFrame!==null)return;
+  if(session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||!$('title-screen').hidden||document.hidden||updating)return;
+  // Render the completed practice first. Do not cover the arrival artwork or
+  // interrupt the learner while they are reading the execution records.
+  tutorialClearFrame=requestAnimationFrame(()=>{
+    tutorialClearFrame=null;
+    if(session.guide!==guide||!guide.readyToFinish||shownTutorialClears.has(guide)||session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||!$('title-screen').hidden||document.hidden||updating)return;
+    attempt(showTutorialClear);
+  });
+}
+function showTutorialClear(){
+  const guide=session.guide;if(!guide?.readyToFinish)return;
+  shownTutorialClears.add(guide);
+  open('チュートリアルクリア！',{naturalEnding:true});dialog.classList.add('tutorial-clear-dialog');
+  body.append(element('div','✦',{class:'tutorial-clear-star','aria-hidden':'true'}),element('p',guide.mode==='challenge'?'結線・配線の削除・鐘を鳴らす操作・記録の確認ができました。':'配線の削除とつなぎ直し、プリズムの時間変更を練習できました。'));
+  const time=session.result?.evaluatedTime??session.result?.arrivals?.[0]?.time;
+  if(time!=null){
+    const summary=element('dl','',{class:'tutorial-clear-summary'});
+    for(const [label,value,id]of [['到達時間',`${time}秒`,'tutorial-clear-time'],...(session.result?.score?[['スコア',`${displayScore(session.result.score)}点`,'tutorial-clear-score']]:[])]){
+      const item=element('div');item.append(element('dt',label),element('dd',value,{id}));summary.append(item);
+    }body.append(summary);
+  }
+  body.append(element('p','クリア条件を満たしたうえで、より短い時間でクリアすると高得点になります。最速の配線で100点を目指しましょう。',{id:'tutorial-score-explanation'}),element('p','「完了して戻る」で、練習前の画面へ戻ります。',{class:'tutorial-clear-note'}));
+  actions.append(button('完了して戻る',()=>{session.endGuide('completed');message='';close();},{id:'tutorial-clear-finish'}),button('練習を続ける',close,{id:'tutorial-clear-practice'}));
 }
 function outcomeAudioEnabled(){return Boolean(session.clearChoices||failureOutcome())&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
 
@@ -1204,19 +1237,19 @@ $('candidate-times').addEventListener('click',()=>{session.view.showAllTimes=ses
 for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{board.addKind=board.addKind===kind?null:kind;render(false);});
 $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
-$('guide-finish').addEventListener('click',()=>attempt(()=>{session.endGuide('completed');message='';render();}));
+$('guide-finish').addEventListener('click',()=>attempt(showTutorialClear));
 $('hint').addEventListener('click',()=>{
   if(session.guide&&($('app').classList.contains('compact')||tutorialGuide.collapsed)){
     fullText('操作の案内',$('guide-text').textContent);
-    actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
-    if(session.guide.readyToFinish)actions.append(button('完了',()=>{session.endGuide('completed');message='';close();}));
+    if(!session.guide.readyToFinish)actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
+    if(session.guide.readyToFinish)actions.append(button('完了',()=>{close();showTutorialClear();}));
   }else fullText('操作の案内',$('hint').dataset.fullText||$('hint').textContent);
 });
 $('mirror-left').addEventListener('click',()=>attempt(()=>board.turnMirror(-1)));
 $('mirror-right').addEventListener('click',()=>attempt(()=>board.turnMirror(1)));
 $('mirror-done').addEventListener('click',()=>{board.cancelAll();board.render();render(false);});
 document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else scheduleConditionCue();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else{scheduleConditionCue();scheduleTutorialClear();}});
 window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){

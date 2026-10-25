@@ -532,6 +532,19 @@ html.desktop-layout dialog.motion-dialog:not(#wire-delete-toast){height:min(490p
 dialog.motion-dialog #dialog-body{overflow-y:auto;overscroll-behavior:contain}
 dialog.result-timing-dialog #dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:2px}
 dialog.result-timing-dialog #dialog-title{white-space:normal;overflow:visible;text-overflow:clip;min-width:0;overflow-wrap:anywhere;line-height:normal}
+dialog.tutorial-clear-dialog{height:min(520px,calc(var(--app-height) - 22px));border-color:#e4c577}
+dialog.tutorial-clear-dialog #dialog-title{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;color:#f4d995;line-height:1.4}
+dialog.tutorial-clear-dialog #dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:2px;gap:14px}
+dialog.tutorial-clear-dialog #dialog-body>*{flex-shrink:0}
+.tutorial-clear-star{text-align:center;color:#f1d28b;font-size:42px;line-height:1.2;text-shadow:0 0 18px #dfbf6d50}
+.tutorial-clear-summary{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin:0;padding:12px;border:1px solid #756444;border-radius:10px;background:#1a2235;text-align:center}
+.tutorial-clear-summary dt{color:#c4d0e4;font-size:.928571rem}
+.tutorial-clear-summary dd{margin:2px 0 0;color:#f4d995;font-size:1.8rem;font-weight:700;font-variant-numeric:tabular-nums}
+dialog.tutorial-clear-dialog #tutorial-score-explanation{font-size:1.1rem;line-height:1.6}
+dialog.tutorial-clear-dialog #dialog-actions button{min-height:44px;white-space:normal}
+dialog.tutorial-clear-dialog #tutorial-clear-finish{background:#d6b56a;color:#111827;border-color:#f1d28b}
+dialog.tutorial-clear-dialog .tutorial-clear-note{color:#bac8df}
+#guide-bar.tutorial-guide.tutorial-complete{border-color:#e4c577;background:#24283a}
 .result-timing-fields{display:grid;gap:16px;flex:none}
 .result-timing-fields label{margin-bottom:6px;line-height:1.4}
 .result-timing-fields input{min-height:48px;font-size:1.25rem;font-variant-numeric:tabular-nums}

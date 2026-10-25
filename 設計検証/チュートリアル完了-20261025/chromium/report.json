@@ -1,0 +1,1029 @@
+{
+  "version": "0.96.0",
+  "passed": true,
+  "cases": [
+    {
+      "name": "phone",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 9,
+            "top": 162,
+            "right": 381,
+            "bottom": 682,
+            "width": 372,
+            "height": 520
+          },
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 518,
+          "scrollHeight": 518,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 22,
+            "top": 181.203125,
+            "right": 331,
+            "bottom": 200.796875,
+            "width": 309,
+            "height": 19.59375
+          },
+          "clientWidth": 309,
+          "scrollWidth": 309,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 22,
+            "top": 215,
+            "right": 368,
+            "bottom": 617,
+            "width": 346,
+            "height": 402
+          },
+          "clientWidth": 346,
+          "scrollWidth": 346,
+          "clientHeight": 402,
+          "scrollHeight": 402,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 22,
+            "top": 625,
+            "right": 192.3125,
+            "bottom": 669,
+            "width": 170.3125,
+            "height": 44
+          },
+          "clientWidth": 168,
+          "scrollWidth": 168,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 197.3125,
+            "top": 625,
+            "right": 368,
+            "bottom": 669,
+            "width": 170.6875,
+            "height": 44
+          },
+          "clientWidth": 169,
+          "scrollWidth": 169,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": true
+    },
+    {
+      "name": "small-phone",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 9,
+            "top": 60,
+            "right": 311,
+            "bottom": 580,
+            "width": 302,
+            "height": 520
+          },
+          "clientWidth": 300,
+          "scrollWidth": 300,
+          "clientHeight": 518,
+          "scrollHeight": 518,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 22,
+            "top": 79.203125,
+            "right": 261,
+            "bottom": 98.796875,
+            "width": 239,
+            "height": 19.59375
+          },
+          "clientWidth": 239,
+          "scrollWidth": 239,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 22,
+            "top": 113,
+            "right": 298,
+            "bottom": 515,
+            "width": 276,
+            "height": 402
+          },
+          "clientWidth": 276,
+          "scrollWidth": 276,
+          "clientHeight": 402,
+          "scrollHeight": 402,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 22,
+            "top": 523,
+            "right": 157.3125,
+            "bottom": 567,
+            "width": 135.3125,
+            "height": 44
+          },
+          "clientWidth": 133,
+          "scrollWidth": 133,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 162.3125,
+            "top": 523,
+            "right": 298,
+            "bottom": 567,
+            "width": 135.6875,
+            "height": 44
+          },
+          "clientWidth": 134,
+          "scrollWidth": 134,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    },
+    {
+      "name": "desktop",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 400,
+            "top": 160,
+            "right": 1040,
+            "bottom": 800,
+            "width": 640,
+            "height": 640
+          },
+          "clientWidth": 638,
+          "scrollWidth": 638,
+          "clientHeight": 638,
+          "scrollHeight": 638,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 421,
+            "top": 188.203125,
+            "right": 978,
+            "bottom": 221.796875,
+            "width": 557,
+            "height": 33.59375
+          },
+          "clientWidth": 557,
+          "scrollWidth": 557,
+          "clientHeight": 34,
+          "scrollHeight": 34,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 421,
+            "top": 237,
+            "right": 1019,
+            "bottom": 723,
+            "width": 598,
+            "height": 486
+          },
+          "clientWidth": 598,
+          "scrollWidth": 598,
+          "clientHeight": 486,
+          "scrollHeight": 486,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 421,
+            "top": 731,
+            "right": 717.234375,
+            "bottom": 779,
+            "width": 296.234375,
+            "height": 48
+          },
+          "clientWidth": 294,
+          "scrollWidth": 294,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 722.234375,
+            "top": 731,
+            "right": 1019,
+            "bottom": 779,
+            "width": 296.765625,
+            "height": 48
+          },
+          "clientWidth": 295,
+          "scrollWidth": 295,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    },
+    {
+      "name": "landscape",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 182,
+            "top": 11,
+            "right": 662,
+            "bottom": 379,
+            "width": 480,
+            "height": 368
+          },
+          "clientWidth": 478,
+          "scrollWidth": 478,
+          "clientHeight": 366,
+          "scrollHeight": 366,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 195,
+            "top": 30.203125,
+            "right": 612,
+            "bottom": 49.796875,
+            "width": 417,
+            "height": 19.59375
+          },
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 195,
+            "top": 64,
+            "right": 649,
+            "bottom": 314,
+            "width": 454,
+            "height": 250
+          },
+          "clientWidth": 454,
+          "scrollWidth": 454,
+          "clientHeight": 250,
+          "scrollHeight": 278,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 195,
+            "top": 322,
+            "right": 419.3125,
+            "bottom": 366,
+            "width": 224.3125,
+            "height": 44
+          },
+          "clientWidth": 222,
+          "scrollWidth": 222,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 424.3125,
+            "top": 322,
+            "right": 649,
+            "bottom": 366,
+            "width": 224.6875,
+            "height": 44
+          },
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    },
+    {
+      "name": "enlarged",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 9,
+            "top": 162,
+            "right": 381,
+            "bottom": 682,
+            "width": 372,
+            "height": 520
+          },
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 518,
+          "scrollHeight": 518,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 22,
+            "top": 175,
+            "right": 317,
+            "bottom": 253.375,
+            "width": 295,
+            "height": 78.375
+          },
+          "clientWidth": 295,
+          "scrollWidth": 295,
+          "clientHeight": 78,
+          "scrollHeight": 78,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 22,
+            "top": 261.375,
+            "right": 368,
+            "bottom": 613.40625,
+            "width": 346,
+            "height": 352.03125
+          },
+          "clientWidth": 346,
+          "scrollWidth": 346,
+          "clientHeight": 352,
+          "scrollHeight": 795,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 22,
+            "top": 621.40625,
+            "right": 192.140625,
+            "bottom": 669,
+            "width": 170.140625,
+            "height": 47.59375
+          },
+          "clientWidth": 168,
+          "scrollWidth": 168,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 197.140625,
+            "top": 621.40625,
+            "right": 368,
+            "bottom": 669,
+            "width": 170.859375,
+            "height": 47.59375
+          },
+          "clientWidth": 169,
+          "scrollWidth": 169,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    },
+    {
+      "name": "short-enlarged",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 80,
+            "top": 11,
+            "right": 560,
+            "bottom": 229,
+            "width": 480,
+            "height": 218
+          },
+          "clientWidth": 478,
+          "scrollWidth": 478,
+          "clientHeight": 216,
+          "scrollHeight": 216,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 88,
+            "top": 23,
+            "right": 501,
+            "bottom": 62.1875,
+            "width": 413,
+            "height": 39.1875
+          },
+          "clientWidth": 413,
+          "scrollWidth": 413,
+          "clientHeight": 39,
+          "scrollHeight": 39,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 88,
+            "top": 70.1875,
+            "right": 552,
+            "bottom": 169.40625,
+            "width": 464,
+            "height": 99.21875
+          },
+          "clientWidth": 464,
+          "scrollWidth": 464,
+          "clientHeight": 99,
+          "scrollHeight": 588,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 88,
+            "top": 173.40625,
+            "right": 317.140625,
+            "bottom": 221,
+            "width": 229.140625,
+            "height": 47.59375
+          },
+          "clientWidth": 227,
+          "scrollWidth": 227,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 322.140625,
+            "top": 173.40625,
+            "right": 552,
+            "bottom": 221,
+            "width": 229.859375,
+            "height": 47.59375
+          },
+          "clientWidth": 228,
+          "scrollWidth": 228,
+          "clientHeight": 46,
+          "scrollHeight": 46,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    },
+    {
+      "name": "free",
+      "passed": true,
+      "boxes": [
+        {
+          "id": "dialog",
+          "rect": {
+            "left": 9,
+            "top": 162,
+            "right": 381,
+            "bottom": 682,
+            "width": 372,
+            "height": 520
+          },
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 518,
+          "scrollHeight": 518,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-title",
+          "rect": {
+            "left": 22,
+            "top": 181.203125,
+            "right": 331,
+            "bottom": 200.796875,
+            "width": 309,
+            "height": 19.59375
+          },
+          "clientWidth": 309,
+          "scrollWidth": 309,
+          "clientHeight": 20,
+          "scrollHeight": 20,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "dialog-body",
+          "rect": {
+            "left": 22,
+            "top": 215,
+            "right": 368,
+            "bottom": 617,
+            "width": 346,
+            "height": 402
+          },
+          "clientWidth": 346,
+          "scrollWidth": 346,
+          "clientHeight": 402,
+          "scrollHeight": 402,
+          "overflow": "auto",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-finish",
+          "rect": {
+            "left": 22,
+            "top": 625,
+            "right": 192.3125,
+            "bottom": 669,
+            "width": 170.3125,
+            "height": 44
+          },
+          "clientWidth": 168,
+          "scrollWidth": 168,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        },
+        {
+          "id": "tutorial-clear-practice",
+          "rect": {
+            "left": 197.3125,
+            "top": 625,
+            "right": 368,
+            "bottom": 669,
+            "width": 170.6875,
+            "height": 44
+          },
+          "clientWidth": 169,
+          "scrollWidth": 169,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "overflow": "visible",
+          "whiteSpace": "normal",
+          "clamp": "none"
+        }
+      ],
+      "before": {
+        "edges": [
+          "AG",
+          "BG",
+          "SA",
+          "SB"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.7s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "AG",
+          "BG",
+          "SA",
+          "SB"
+        ],
+        "times": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.7s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "saveFailureRecovered": false
+    }
+  ],
+  "boundary": "Real UI and wall-clock playback in desktop browsers. Phone touch, viewport and enlarged text are emulated; physical-device appearance/listening are unverified.",
+  "step": "free"
+}
