@@ -259,6 +259,10 @@ html:not(.device-landscape) .text-enlarged.compact #play-controls button{padding
 /* Task and wire counts use the complete header width, independent of the title. */
 html:not(.device-landscape) .header-content:has(#challenge-info:not([hidden])){display:grid;grid-template-columns:100px minmax(0,1fr) auto;gap:3px 9px}
 #challenge-info{grid-column:1/-1;min-width:0;min-height:0;padding:3px 6px;text-align:left;background:#111a2c88;border-color:#394861}
+#challenge-info.condition-start-cue{animation:condition-start-glow 1.1s ease-in-out}
+@keyframes condition-start-glow{35%{background-color:#51412b;border-color:#e9cb87;box-shadow:inset 0 0 0 2px #e9cb87,0 0 12px #d6b56a40}}
+:root[data-motion=reduce] #challenge-info.condition-start-cue{animation:condition-start-still 1.1s steps(1,end)}
+@keyframes condition-start-still{0%,100%{background-color:#283044;box-shadow:inset 0 0 0 2px #d6b56a}}
 #challenge-goal{display:block;white-space:normal;font-size:.928571rem;line-height:1.35;overflow-wrap:anywhere}
 #wire-budget{display:flex;flex-wrap:wrap;gap:0 7px;margin-top:2px;font-size:.857143rem;line-height:1.4;color:#c4cde0}
 #wire-budget span{white-space:nowrap}

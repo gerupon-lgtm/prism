@@ -55,6 +55,32 @@ const session=new Session(new LocalRecords(storage)),chime=new Chime({latencyHin
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 const motion=new MotionPreference(storage,document.documentElement,matchMedia('(prefers-reduced-motion:reduce)'));
 motion.changed=refreshMotionSettings;
+let conditionCuePending=false,conditionCueFrame=null;
+function cancelConditionCue(){
+  if(conditionCueFrame!==null)cancelAnimationFrame(conditionCueFrame);
+  conditionCueFrame=null;conditionCuePending=false;$('challenge-info').classList.remove('condition-start-cue');
+}
+function requestConditionCue(){
+  cancelConditionCue();conditionCuePending=session.mode==='challenge'&&!session.guide;scheduleConditionCue();
+}
+function scheduleConditionCue(){
+  if(!conditionCuePending||conditionCueFrame!==null)return;
+  conditionCueFrame=requestAnimationFrame(()=>{
+    conditionCueFrame=null;
+    if(session.mode!=='challenge'||session.guide){cancelConditionCue();return;}
+    const card=$('challenge-info');
+    // An introductory dialog may cover a newly entered stage. Wait until its
+    // conditions are actually visible, without replaying on ordinary renders.
+    if(document.hidden||updating||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||!card.getClientRects().length)return;
+    conditionCuePending=false;card.classList.remove('condition-start-cue');void card.offsetWidth;card.classList.add('condition-start-cue');
+  });
+}
+function finishConditionCue(event){
+  if(event.target!==$('challenge-info')||!['condition-start-glow','condition-start-still'].includes(event.animationName))return;
+  if(!event.target.getAnimations().some(animation=>animation.animationName.startsWith('condition-start-')&&animation.playState==='running'))event.target.classList.remove('condition-start-cue');
+}
+document.addEventListener('animationend',finishConditionCue);
+document.addEventListener('animationcancel',finishConditionCue);
 window.addEventListener('storage',event=>{
   if(event.key===MOTION_STORAGE_KEY||event.key===null)motion.reload();
   if(event.key===RESULT_TIMING_STORAGE_KEY||event.key===null)resultTiming.reload();
@@ -152,6 +178,7 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title) {
+  $('challenge-info').classList.remove('condition-start-cue');
   settingsTapGuard=null;
   board.mirrorPreview=null;
   board.cancelAll();cancelWireDelete();
@@ -204,6 +231,7 @@ function scheduleConditionFit(){
   scheduleConditionFit.frame=requestAnimationFrame(()=>{scheduleConditionFit.frame=null;fitConditionCard();});
 }
 function render(redraw=true,{records=true}={}) {
+  scheduleConditionCue();
   const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&$('title-screen').hidden);
   $('mirror-controls').hidden=!aiming;
   if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'円周をなぞる');$('mirror-status').title='回転盤の円周は、どこからでも指でなぞれます。相手に光が吸い付いたら離して結線します。周囲のタップか×で終了。左右ボタンでも相手を選べます。';}
@@ -577,17 +605,19 @@ function finishReplacement(request,options,selectPlay=selectionPlay) {
   session.replace(request,options);selectionPlay=session.mode==='challenge'&&selectPlay;close();maybeGuide();
   if(!$('title-screen').hidden)leaveTitle();
   maybeMirrorIntro();
+  requestConditionCue();
 }
 function maybeGuide() {
   // Guides are chosen explicitly from the title/menu, including first launch.
   render();
 }
 function showTitle() {
+  cancelConditionCue();
   interruptRun('title');board.cancelAll();
   if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;$('failure-toast').hidden=true;
   $('title-resume').focus();
 }
-function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render();maybeMirrorIntro(); }
+function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render();maybeMirrorIntro();requestConditionCue(); }
 let mirrorIntroShown=false;
 function maybeMirrorIntro(){
   if(mirrorIntroShown||dialog.open||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
@@ -1186,10 +1216,11 @@ $('mirror-left').addEventListener('click',()=>attempt(()=>board.turnMirror(-1)))
 $('mirror-right').addEventListener('click',()=>attempt(()=>board.turnMirror(1)));
 $('mirror-done').addEventListener('click',()=>{board.cancelAll();board.render();render(false);});
 document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else scheduleConditionCue();});
 window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
+  $('challenge-info').classList.remove('condition-start-cue');
   if(celebration.run){celebration.cancel();chime.stop();}cancelStart();
   const visual=window.visualViewport;
   // Mobile browsers can temporarily fit overflowing content by zooming out.
