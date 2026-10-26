@@ -1,0 +1,117 @@
+{
+  "version": "0.99.0",
+  "runtimeCommit": "2f8d58d57abc3b4046e6a61a59c870db50f4bb55",
+  "github": {
+    "conclusion": "success",
+    "headSha": "2f8d58d57abc3b4046e6a61a59c870db50f4bb55",
+    "status": "completed",
+    "url": "https://github.com/gerupon-lgtm/prism/actions/runs/40335734276"
+  },
+  "cloudflare": {
+    "id": "beb057f5-2633-48ef-bb45-fa4cb1d50df7",
+    "commit": "2f8d58d57abc3b4046e6a61a59c870db50f4bb55",
+    "stage": {
+      "name": "deploy",
+      "started_on": "2026-10-26T14:04:40.062249Z",
+      "ended_on": "2026-10-26T14:04:47.208536Z",
+      "status": "success"
+    },
+    "is_skipped": false
+  },
+  "unitTests": 77,
+  "allTestFilesPassedInCI": 44,
+  "syntaxFiles": 117,
+  "offlineAssets": 80,
+  "local": [
+    {
+      "name": "chromium",
+      "passed": true,
+      "cases": 3
+    },
+    {
+      "name": "priority",
+      "passed": true,
+      "cases": 3
+    },
+    {
+      "name": "levels",
+      "passed": true,
+      "cases": 4
+    }
+  ],
+  "publicHosts": [
+    {
+      "name": "public-domain",
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 93
+    },
+    {
+      "name": "public-github",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 93
+    }
+  ],
+  "publicAttackCases": [
+    {
+      "name": "normal",
+      "ratio": 1.0053476042736662,
+      "outputRatio": 1.004942313896461,
+      "attacks": [
+        {
+          "rawPeak": 0.3130534291267395,
+          "outPeak": 0.40276408195495605
+        },
+        {
+          "rawPeak": 0.3147275149822235,
+          "outPeak": 0.4047546684741974
+        }
+      ],
+      "arrivals": [
+        "2.6",
+        "5.9"
+      ]
+    },
+    {
+      "name": "delay-body",
+      "ratio": 1,
+      "outputRatio": 1,
+      "attacks": [
+        {
+          "rawPeak": 0.3130534291267395,
+          "outPeak": 0.40276408195495605
+        },
+        {
+          "rawPeak": 0.3130534291267395,
+          "outPeak": 0.40276408195495605
+        }
+      ],
+      "arrivals": [
+        "2.6",
+        "5.9"
+      ]
+    },
+    {
+      "name": "delay-hit",
+      "ratio": 1.0032698253104042,
+      "outputRatio": 1.0050017991633062,
+      "attacks": [
+        {
+          "rawPeak": 0.3147275149822235,
+          "outPeak": 0.4047546684741974
+        },
+        {
+          "rawPeak": 0.315756618976593,
+          "outPeak": 0.4067791700363159
+        }
+      ],
+      "arrivals": [
+        "2.6",
+        "5.9"
+      ]
+    }
+  ],
+  "publicChecks": 189,
+  "boundary": "Controlled audio-node allocation stalls reproduce an attack-loss weakness; identity with the reported physical-device cause remains unconfirmed. Actual PC Chromium audio graph; physical-device listening and recurrence remain unverified."
+}
