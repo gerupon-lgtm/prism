@@ -69,7 +69,10 @@ async function contents(download){const stream=await download.createReadStream()
           assert(response.fromServiceWorker(),'Offline navigation must actually be served by the prepared worker');
           report.checks.push({label:'Public Chromium closed-page offline startup after clearing HTTP cache',url:response.url(),status:response.status(),fromServiceWorker:response.fromServiceWorker(),passed:true});
         }
-        await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});await page.locator('#stop').click();
+        await drag(page,'S','A');await drag(page,'A','G');await page.locator('#play').click();
+        try{await page.waitForFunction(()=>document.getElementById('result').textContent.includes('100.00点'),{},{timeout:7000});}
+        catch(error){report.runFailure=await page.evaluate(()=>({play:document.getElementById('play').outerHTML,result:document.getElementById('result').textContent,hint:document.getElementById('hint').textContent,edges:[...document.querySelectorAll('#board .edge:not(.candidate)')].map(e=>e.dataset.edge)}));throw error;}
+        await page.locator('#stop').click();
         const resultDownload=page.waitForEvent('download');await item(page,'実行結果を書き出す');const result=await contents(await resultDownload);assert.equal(result.conditions.edges.length,2);assert(result.records.some(r=>r.type==='goal'));await page.locator('#dialog-close').click();
         await page.locator('#home').click();await page.getByRole('button',{name:'自由へ',exact:true}).click();await skipGuide(page);
         await item(page,'回路を保存');await page.getByRole('textbox',{name:'回路名'}).fill('公開確認の合成回路');await page.getByRole('button',{name:'保存',exact:true}).click();

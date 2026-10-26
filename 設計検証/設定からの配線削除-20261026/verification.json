@@ -1,0 +1,177 @@
+{
+  "version": "0.100.0",
+  "runtimeCommit": "76c418e636da1680ae30157728971580b0cc67f8",
+  "github": {
+    "conclusion": "success",
+    "headSha": "76c418e636da1680ae30157728971580b0cc67f8",
+    "status": "completed",
+    "url": "https://github.com/gerupon-lgtm/prism/actions/runs/40341995217"
+  },
+  "cloudflare": {
+    "id": "59f5bf3b-3a6b-4bed-98d3-0b92a078287d",
+    "commit": "76c418e636da1680ae30157728971580b0cc67f8",
+    "stage": {
+      "name": "deploy",
+      "started_on": "2026-10-26T14:45:18.492031Z",
+      "ended_on": "2026-10-26T14:45:26.444747Z",
+      "status": "success"
+    },
+    "is_skipped": false
+  },
+  "unitTests": 35,
+  "allTestFilesPassedInCI": 44,
+  "syntaxFiles": 117,
+  "offlineAssets": 80,
+  "local": [
+    {
+      "name": "chromium-complete",
+      "passed": true,
+      "cases": 6
+    },
+    {
+      "name": "webkit",
+      "passed": true,
+      "cases": 6
+    }
+  ],
+  "publicHosts": [
+    {
+      "name": "public-domain-recheck",
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 93
+    },
+    {
+      "name": "public-github-recheck",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 93
+    }
+  ],
+  "publicDeleteCases": [
+    {
+      "name": "phone",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "rect": {
+          "left": 9,
+          "top": 142,
+          "right": 381,
+          "bottom": 702
+        },
+        "scroll": [
+          370,
+          558
+        ],
+        "client": [
+          370,
+          558
+        ],
+        "buttons": [
+          {
+            "text": "配線を削除",
+            "width": 135.328125,
+            "height": 48,
+            "left": 22,
+            "right": 157.328125,
+            "top": 641,
+            "bottom": 689,
+            "sw": 133,
+            "cw": 133
+          },
+          {
+            "text": "記録",
+            "width": 93.34375,
+            "height": 48,
+            "left": 162.328125,
+            "right": 255.671875,
+            "top": 641,
+            "bottom": 689,
+            "sw": 91,
+            "cw": 91
+          },
+          {
+            "text": "閉じる",
+            "width": 107.328125,
+            "height": 48,
+            "left": 260.671875,
+            "right": 368,
+            "top": 641,
+            "bottom": 689,
+            "sw": 105,
+            "cw": 105
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop",
+      "passed": true,
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "rect": {
+          "left": 400,
+          "top": 130,
+          "right": 1040,
+          "bottom": 770
+        },
+        "scroll": [
+          638,
+          638
+        ],
+        "client": [
+          638,
+          638
+        ],
+        "buttons": [
+          {
+            "text": "配線を削除",
+            "width": 226,
+            "height": 48,
+            "left": 421,
+            "right": 647,
+            "top": 701,
+            "bottom": 749,
+            "sw": 224,
+            "cw": 224
+          },
+          {
+            "text": "記録",
+            "width": 172,
+            "height": 48,
+            "left": 652,
+            "right": 824,
+            "top": 701,
+            "bottom": 749,
+            "sw": 170,
+            "cw": 170
+          },
+          {
+            "text": "閉じる",
+            "width": 190,
+            "height": 48,
+            "left": 829,
+            "right": 1019,
+            "top": 701,
+            "bottom": 749,
+            "sw": 188,
+            "cw": 188
+          }
+        ]
+      }
+    },
+    {
+      "name": "free-part",
+      "passed": true
+    }
+  ],
+  "publicChecks": 189,
+  "firstTimeoutsRetained": [
+    "public-domain/report.json",
+    "public-github/report.json"
+  ],
+  "boundary": "Real PC browsers with emulated phone sizes and touch. Initial public run-wait timeouts did not recur in unchanged rechecks; their cause and physical-device usability remain unverified."
+}
