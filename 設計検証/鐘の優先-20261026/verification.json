@@ -1,0 +1,121 @@
+{
+  "version": "0.97.0",
+  "runtimeCommit": "a4a62b34cc79c3928bf576aaf09461ab606acc2d",
+  "github": {
+    "conclusion": "success",
+    "headSha": "a4a62b34cc79c3928bf576aaf09461ab606acc2d",
+    "status": "completed",
+    "url": "https://github.com/gerupon-lgtm/prism/actions/runs/40324049668"
+  },
+  "cloudflare": {
+    "id": "f565dc9d-df01-4dcc-995f-b4259ba0f89d",
+    "commit": "a4a62b34cc79c3928bf576aaf09461ab606acc2d",
+    "stage": {
+      "name": "deploy",
+      "started_on": "2026-10-26T12:41:40.81738Z",
+      "ended_on": "2026-10-26T12:41:48.808053Z",
+      "status": "success"
+    },
+    "is_skipped": false
+  },
+  "unitTests": 72,
+  "allTestFilesPassedInCI": 44,
+  "syntaxFiles": 117,
+  "offlineAssets": 80,
+  "local": [
+    {
+      "name": "chromium",
+      "passed": true,
+      "cases": 4
+    },
+    {
+      "name": "webkit",
+      "passed": true,
+      "cases": 1
+    },
+    {
+      "name": "endings-chromium",
+      "passed": true,
+      "cases": 2
+    },
+    {
+      "name": "endings-webkit",
+      "passed": true,
+      "cases": 2
+    }
+  ],
+  "publicHosts": [
+    {
+      "name": "public-domain",
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 93
+    },
+    {
+      "name": "public-github",
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 93
+    }
+  ],
+  "publicBellCases": [
+    {
+      "name": "normal",
+      "passed": true,
+      "arrivals": [
+        "2.4",
+        "3.4",
+        "4.4"
+      ],
+      "peaks": [
+        0.2052860786019631,
+        0.1888975649432402,
+        0.20384890545599424
+      ]
+    },
+    {
+      "name": "cleanup-failure",
+      "passed": true,
+      "arrivals": [
+        "2.4",
+        "3.4",
+        "4.4"
+      ],
+      "peaks": [
+        0.2052860786019631,
+        0.20408006796203268,
+        0.20380796607811022
+      ]
+    },
+    {
+      "name": "resume",
+      "passed": true,
+      "arrivals": [
+        "2.4",
+        "3.4",
+        "4.4"
+      ],
+      "peaks": [
+        0.20528607742619198,
+        0.20518328345194636,
+        0.2040800688078465
+      ]
+    },
+    {
+      "name": "load-pause",
+      "passed": true,
+      "arrivals": [
+        "2.4",
+        "3.4",
+        "4.4"
+      ],
+      "peaks": [
+        0.1916760575541724,
+        0.18257678107967243,
+        0.2044015822072849
+      ]
+    }
+  ],
+  "publicChecks": 190,
+  "boundary": "Controlled browser fixtures are not the identified cause on the reported phone. Actual audio graph measured in Chromium; Windows WebKit lacks Web Audio. Physical-device listening and recurrence remain unverified."
+}
