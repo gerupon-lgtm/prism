@@ -12,36 +12,46 @@ const timbres={
 export const BELL_TIMBRE=Object.freeze({frequencyHz:440,durationSeconds:2.62,ratio:Math.SQRT2,index:5.2,tailIndex:.9,modDecay:.42,ampDecay:.325,attackFrequencyHz:880,attackDurationSeconds:.06,attackGain:.12});
 
 function ownedVoice(context,oscillators,nodes,level,{time,endTime,frequencyHz,onended}){
-  let remaining=oscillators.length,cleaned=false;
+  let remaining=oscillators.length,cleaned=false,stopAt=null;
   const cleanup=()=>{if(cleaned)return;cleaned=true;for(const node of nodes)node.disconnect();onended?.();};
-  const voice={time,endTime,frequencyHz,stop(){
-    if(cleaned)return;level.gain.cancelScheduledValues(context.currentTime);level.gain.setValueAtTime(0,context.currentTime);
-    for(const oscillator of oscillators){try{oscillator.stop(context.currentTime);}catch{/* Already ended. */}}cleanup();
+  const voice={time,endTime,frequencyHz,stop({fadeSeconds=0}={}){
+    if(cleaned)return;const now=context.currentTime,end=now+Math.max(0,fadeSeconds);if(stopAt!==null&&end>=stopAt)return;stopAt=end;
+    if(fadeSeconds>0){
+      const held=level.gain.value;
+      if(typeof level.gain.cancelAndHoldAtTime==='function')level.gain.cancelAndHoldAtTime(now);
+      else{level.gain.cancelScheduledValues(now);level.gain.setValueAtTime(held,now);}
+      level.gain.linearRampToValueAtTime(0,end);
+    }else{level.gain.cancelScheduledValues(now);level.gain.setValueAtTime(0,now);}
+    for(const oscillator of oscillators){try{oscillator.stop(end);}catch{/* Already ended. */}}if(fadeSeconds<=0)cleanup();
   }};
   for(const oscillator of oscillators){oscillator.onended=()=>{if(--remaining===0)cleanup();};oscillator.start(time);oscillator.stop(endTime);}
   return voice;
 }
 
-export function musicalVoice(context,output,{timbre='piano',frequencyHz,time=context.currentTime,durationSeconds,gain,endFrequencyHz,glideStart=0,glideEnd=0,onended,releaseSeconds}){
+export function musicalVoice(context,output,{timbre='piano',frequencyHz,time=context.currentTime,durationSeconds,gain,endFrequencyHz,glideStart=0,glideEnd=0,onended,releaseSeconds,freshStart=false}){
   const preset=timbres[timbre];if(!preset)throw new Error('音色が見つかりません。');
   const auditionTiming=releaseSeconds!==undefined;
   const carrier=context.createOscillator(),level=context.createGain(),oscillators=[carrier],nodes=[carrier,level];
+  const modulator=preset.ratio?context.createOscillator():null,modulation=preset.ratio?context.createGain():null,filter=preset.cutoff?context.createBiquadFilter():null,second=preset.detune?context.createOscillator():null;
+  // Short interaction cues must retain their attack even if node allocation
+  // crosses an audio block. No extra fixed lead time or timbre change is added.
+  if(freshStart)time=Math.max(time,context.currentTime);
   carrier.type=preset.wave;if(!auditionTiming)carrier.frequency.value=frequencyHz;carrier.frequency.setValueAtTime(frequencyHz,time);
   const pitch=(parameter,ratio=1)=>{if(endFrequencyHz){parameter.setValueAtTime(frequencyHz*ratio,time+glideStart);parameter.exponentialRampToValueAtTime(endFrequencyHz*ratio,time+glideEnd);}};
   pitch(carrier.frequency);let path=carrier;
   if(preset.ratio){
-    const modulator=context.createOscillator(),modulation=context.createGain();modulator.type='sine';if(!auditionTiming)modulator.frequency.value=frequencyHz*preset.ratio;modulator.frequency.setValueAtTime(frequencyHz*preset.ratio,time);pitch(modulator.frequency,preset.ratio);
+    modulator.type='sine';if(!auditionTiming)modulator.frequency.value=frequencyHz*preset.ratio;modulator.frequency.setValueAtTime(frequencyHz*preset.ratio,time);pitch(modulator.frequency,preset.ratio);
     const bandLimit=auditionTiming?Math.min(1,(context.sampleRate??48000)*.12/(frequencyHz*(1+preset.ratio))):1;
     const depth=frequencyHz*preset.depth*bandLimit;modulation.gain.setValueAtTime(0,time);modulation.gain.linearRampToValueAtTime(depth,time+preset.attack);modulation.gain.setTargetAtTime(depth*(preset.modSustain??.025),time+preset.attack,preset.modDecay);
     modulator.connect(modulation);modulation.connect(carrier.frequency);oscillators.push(modulator);nodes.push(modulator,modulation);
   }
   if(preset.cutoff){
-    const filter=context.createBiquadFilter();filter.type='lowpass';filter.Q.value=.55;
+    filter.type='lowpass';filter.Q.value=.55;
     const high=auditionTiming?Math.min(context.sampleRate*.4,frequencyHz*preset.cutoff):frequencyHz*preset.cutoff;
     filter.frequency.setValueAtTime(high,time);filter.frequency.setTargetAtTime(auditionTiming?Math.min(high,frequencyHz*(preset.filterFloor??2.5)):frequencyHz*2.5,time+preset.attack,preset.filterDecay??.15);carrier.connect(filter);path=filter;nodes.push(filter);
   }
   if(preset.detune){
-    const second=context.createOscillator();second.type=preset.wave;carrier.detune.setValueAtTime(-preset.detune,time);second.frequency.setValueAtTime(frequencyHz,time);second.detune.setValueAtTime(preset.detune,time);second.connect(path);oscillators.push(second);nodes.push(second);gain/=2;
+    second.type=preset.wave;carrier.detune.setValueAtTime(-preset.detune,time);second.frequency.setValueAtTime(frequencyHz,time);second.detune.setValueAtTime(preset.detune,time);second.connect(path);oscillators.push(second);nodes.push(second);gain/=2;
   }
   path.connect(level);level.connect(output);
   const release=releaseSeconds??Math.min(.12,durationSeconds*.4),off=auditionTiming?time+durationSeconds:time+durationSeconds-release-.005;

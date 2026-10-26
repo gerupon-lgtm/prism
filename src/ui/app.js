@@ -1140,10 +1140,11 @@ function reactions(entries,{run=session.run,goalHistory=null}={}){
   if(goals.length||relays.length)load.measure('audio',()=>{
     const challenge=session.runContext?.mode==='challenge'?session.runContext.challenge:null;
     const frequencies=goals.length&&challenge?.bellPitches?arrivalFrequencies(challenge,goalHistory??run.arrivals(),run.circuit.time):null;
-    // A bell batch never falls through to a prism sound, even if the audio
-    // device is resuming. Several simultaneous prisms need only one short cue.
-    if(goals.length){for(const entry of goals)chime.strike({frequencyHz:frequencies?.get(entry)});}
-    else if(relays.length)chime.relay();
+    // Compare exact arrival times, not drawing frames: a slow frame can contain
+    // both a bell and a different-time prism. Only equal-time prisms are omitted.
+    for(const entry of goals)chime.strike({frequencyHz:frequencies?.get(entry)});
+    const bellTimes=new Set(goals.map(entry=>entry.time));
+    if(relays.some(entry=>!bellTimes.has(entry.time)))chime.relay();
   });
   if(!goals.length&&!relays.length)return;
   load.measure('display',()=>{

@@ -24,7 +24,10 @@ export class Chime {
       // compressor. The adopted bell voice and common 70% volume stay intact.
       this.output=this.context.createDynamicsCompressor();this.output.connect(this.master);
       this.bellOutput=this.context.createDynamicsCompressor();this.bellOutput.connect(this.master);
-      this.effectOutput=this.context.createGain();this.effectOutput.gain.value=1;this.effectOutput.connect(this.output);
+      // Fixed-level interaction cues must not inherit a compressor's recovery
+      // from an earlier press, wire, prism or jingle.
+      this.effectOutput=this.context.createGain();this.effectOutput.gain.value=1;this.effectOutput.connect(this.master);
+      this.createRelayOutput();
     }
     await this.context.resume();
     this.master.gain.value=this.muted?0:DEFAULT_EFFECT_VOLUME;
@@ -36,24 +39,36 @@ export class Chime {
     if(this.reconfiguring)await this.reconfiguring;
     const hint=playbackLatencyHint(value);if(hint===this.latencyHint)return;
     this.stop('settings');const previous=this.context;
-    const changing=(async()=>{if(previous)await previous.close();this.context=null;this.output=null;this.bellOutput=null;this.effectOutput=null;this.master=null;this.latencyHint=hint;})();
+    const changing=(async()=>{if(previous)await previous.close();this.context=null;this.output=null;this.bellOutput=null;this.effectOutput=null;this.relayOutput=null;this.master=null;this.latencyHint=hint;})();
     this.reconfiguring=changing;try{await changing;}finally{if(this.reconfiguring===changing)this.reconfiguring=null;}
   }
   musical(timbre,options,family,output=this.output){
     const voice=musicalVoice(this.context,output,{...options,timbre,onended:()=>{this.voices.delete(voice);family?.delete(voice);}});
     this.voices.add(voice);family?.add(voice);
+    return voice;
   }
   cue({notes},delay=0,family,output=this.output){
     if(this.muted||!this.context||this.context.state!=='running')return;
-    const now=this.context.currentTime;
-    for(const {midi,offsetSeconds,durationSeconds,volume,timbre,releaseSeconds} of notes)this.musical(timbre,{time:now+delay+offsetSeconds,frequencyHz:440*2**((midi-69)/12),durationSeconds,gain:volume,releaseSeconds},family,output);
+    let start=this.context.currentTime+delay;const freshStart=family===this.tapVoices||family===this.wireVoices;
+    for(const {midi,offsetSeconds,durationSeconds,volume,timbre,releaseSeconds} of notes){
+      const voice=this.musical(timbre,{time:start+offsetSeconds,frequencyHz:440*2**((midi-69)/12),durationSeconds,gain:volume,releaseSeconds,freshStart},family,output);
+      if(freshStart&&offsetSeconds===0)start=voice.time;
+    }
   }
   tap(){
     if(this.muted||!this.context||this.context.state!=='running'||this.pendingBells.length||this.context.currentTime<this.bellUntil)return;
+    this.replaceInteraction(this.tapVoices);
     this.cue(SOUND_CUES.tap,0,this.tapVoices,this.effectOutput??this.output);
   }
-  stopVoices(voices){for(const voice of [...voices]){try{voice.stop();}catch{this.priorityStats.cleanupFailures++;}}}
-  silenceRelay(){this.stopVoices([...this.relayVoices,...this.wireVoices]);this.relayVoices.clear();this.wireVoices.clear();}
+  stopVoices(voices,options){for(const voice of [...voices]){try{voice.stop(options);}catch{this.priorityStats.cleanupFailures++;}}}
+  replaceInteraction(family){this.stopVoices(family,{fadeSeconds:.002});family.clear();}
+  createRelayOutput(){this.relayOutput=this.context.createGain();this.relayOutput.gain.value=1;this.relayOutput.connect(this.output);}
+  silenceRelay(){
+    const before=this.priorityStats.cleanupFailures;this.stopVoices([...this.relayVoices,...this.wireVoices]);this.relayVoices.clear();this.wireVoices.clear();
+    // A broken old prism voice must not leak into later arrivals. Replace only
+    // its detached bus; the bell's independent output keeps sounding.
+    if(this.priorityStats.cleanupFailures>before&&this.relayOutput){const old=this.relayOutput;this.relayOutput=null;try{old.gain.value=0;}catch{/* Try detaching independently. */}try{old.disconnect();}catch{/* Bell output remains independent. */}}
+  }
   gateEffects(){
     if(!this.effectOutput||!this.context)return;
     const now=this.context.currentTime,gain=this.effectOutput.gain;
@@ -68,11 +83,15 @@ export class Chime {
   }
   wire(){
     if(this.muted||!this.context||this.context.state!=='running'||this.pendingBells.length||this.context.currentTime<this.bellUntil)return;
+    this.replaceInteraction(this.wireVoices);
     this.cue(SOUND_CUES.wire,0,this.wireVoices,this.effectOutput??this.output);
   }
   relay(){
-    if(this.muted||!this.context||this.context.state!=='running'||this.pendingBells.length||this.context.currentTime<this.bellUntil)return;
-    this.cue(SOUND_CUES.relay,0,this.relayVoices,this.effectOutput??this.output);
+    if(this.muted||!this.context||this.context.state!=='running'||this.pendingBells.length)return;
+    // Same-time arrivals are filtered by their experiment time at the caller.
+    // A later prism may overlap the bell tail, outside the tap/wire gate.
+    if(!this.relayOutput)this.createRelayOutput();
+    this.cue(SOUND_CUES.relay,0,this.relayVoices,this.relayOutput);
   }
   strike({frequencyHz=BELL_SOUND.frequencyHz}={}){
     if(this.muted||!this.context||this.context.state==='closed')return;
