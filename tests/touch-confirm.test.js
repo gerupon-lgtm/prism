@@ -2,16 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { TouchConfirm } from '../src/ui/touch-confirm.js';
 
-function fixture({selector='.wire-delete-actions button',releaseTolerance=0}={}){
+function fixture({selector='.wire-delete-actions button',releaseTolerance=0,allowPress=()=>true}={}){
   const handlers=new Map(),doc={addEventListener(type,fn){const list=handlers.get(type)??[];list.push(fn);handlers.set(type,list);}};
   let context={},calls=0,unlocks=0;
   const root={ownerDocument:doc,open:true,contains:element=>element===button};
   const button={disabled:false,getBoundingClientRect:()=>({left:0,top:0,right:200,bottom:60}),closest:requested=>requested===selector?button:null,click(){const event=send('click',{detail:0});if(!event.stopped)calls++;}};
   let hit=button;doc.elementFromPoint=()=>hit;
-  const controls=new TouchConfirm(root,{context:()=>context,beforeActivate:()=>unlocks++,selector,releaseTolerance});
+  const controls=new TouchConfirm(root,{context:()=>context,beforeActivate:()=>unlocks++,selector,releaseTolerance,allowPress});
   function send(type,extra={}){const event={type,target:button,pointerType:'touch',pointerId:1,button:0,isPrimary:true,clientX:100,clientY:30,detail:0,preventDefault(){this.prevented=true;},stopImmediatePropagation(){this.stopped=true;},...extra};for(const fn of handlers.get(type)??[]){fn(event);if(event.stopped)break;}return event;}
   return {root,button,controls,send,hit:value=>hit=value,context:value=>context=value,calls:()=>calls,unlocks:()=>unlocks};
 }
+
+test('設定を開いた元の位置からの押下は解除後も確定せず、新しく押した操作だけ受け付ける',()=>{
+ let allowed=false;const f=fixture({selector:'#wire-settings-delete',allowPress:()=>allowed});
+ f.send('pointerdown');allowed=true;f.send('pointerup');assert.equal(f.calls(),0);assert.equal(f.unlocks(),0);assert.equal(f.send('click',{detail:1}).stopped,true);
+ f.send('pointerdown',{pointerId:2});f.send('pointerup',{pointerId:2});assert.equal(f.calls(),1);assert.equal(f.unlocks(),1);
+});
 
 test('ページ送りは小さな指ずれを許すが、別の操作先や大きな移動は確定しない',()=>{
   for(const [x,y,accepted] of [[100,61,true],[100,68,true],[-8,30,true],[208,30,true],[100,69,false],[209,30,false]]){

@@ -1,8 +1,8 @@
 // Native touch clicks can disappear after a small drift, even inside a button.
 // Confirm a fresh, single-pointer press. Callers may allow a small release drift.
 export class TouchConfirm {
-  constructor(root,{context,beforeActivate=()=>{},selector='.wire-delete-actions button',releaseTolerance=0}) {
-    Object.assign(this,{root,context,beforeActivate,selector,releaseTolerance});this.pointers=new Set();this.press=null;this.consumedUntil=0;
+  constructor(root,{context,beforeActivate=()=>{},allowPress=()=>true,selector='.wire-delete-actions button',releaseTolerance=0}) {
+    Object.assign(this,{root,context,beforeActivate,allowPress,selector,releaseTolerance});this.pointers=new Set();this.press=null;this.consumedUntil=0;
     const doc=root.ownerDocument;
     doc.addEventListener('pointerdown',event=>this.down(event),true);
     doc.addEventListener('pointerup',event=>this.up(event),true);
@@ -25,7 +25,7 @@ export class TouchConfirm {
     if(event.button!==0||event.isPrimary===false)return;
     const button=event.target.closest?.(this.selector),context=this.context();
     if(this.pointers.size===1&&button&&this.root.contains(button)&&this.root.open&&!button.disabled&&context){
-      this.press={id:event.pointerId,button,context,cancelled:false};
+      this.press={id:event.pointerId,button,context,cancelled:!this.allowPress(event,button)};
     }
   }
   up(event) {

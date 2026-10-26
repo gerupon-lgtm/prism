@@ -95,8 +95,9 @@ function previewGatePhase(now=performance.now()){
   return String(Math.floor(Math.max(0,now-gatePreviewStarted)/100)/10);
 }
 // A second tap at the same board position must not activate the new dialog behind it.
+function blockedSettingsTap(event){return settingsTapGuard&&performance.now()<settingsTapGuard.until&&Math.hypot(event.clientX-settingsTapGuard.x,event.clientY-settingsTapGuard.y)<24;}
 for(const type of ['pointerdown','click'])dialog.addEventListener(type,event=>{
-  if(settingsTapGuard&&performance.now()<settingsTapGuard.until&&Math.hypot(event.clientX-settingsTapGuard.x,event.clientY-settingsTapGuard.y)<24){event.preventDefault();event.stopImmediatePropagation();}
+  if(blockedSettingsTap(event)){event.preventDefault();event.stopImmediatePropagation();}
 },true);
 let message='',recordCapacity=1,recordResize=false,clockAnchor=null,dialogPage=null,dialogLayout=null,updating=false,clearedConnections=null,startPrelude=null;
 // This is an entry choice, not a new circuit or saved-score mode.
@@ -932,6 +933,7 @@ document.addEventListener('pointerup',event=>{if(pendingWireDelete?.hold?.id===e
 document.addEventListener('pointercancel',event=>{if(pendingWireDelete?.hold?.id===event.pointerId)abortHeldDelete(event);},true);
 deleteTouchConfirm=new TouchConfirm(wireDelete,{context:()=>pendingWireDelete,beforeActivate:prepareAutomaticSound});
 new TouchConfirm(dialog,{selector:'.pager button',releaseTolerance:8,context:()=>dialog.classList.contains('challenge-dialog')?dialogPage:null,beforeActivate:(event,control)=>{prepareAutomaticSound(event);control.focus({preventScroll:true});}});
+new TouchConfirm(dialog,{selector:'#wire-settings-delete',context:()=>actions.querySelector('#wire-settings-delete'),allowPress:event=>!blockedSettingsTap(event),beforeActivate:prepareAutomaticSound});
 wireDelete.addEventListener('close',()=>{if(!wireDelete.open)cancelWireDelete();});
 $('wire-delete-cancel').addEventListener('click',cancelWireDelete);
 $('wire-delete-target').addEventListener('click',()=>{
@@ -973,14 +975,17 @@ function settings(pointer) {
     actions.append(button('確定',()=>{const next=structuredClone(session.circuit);next.nodes.find(n=>n.id===id).name=field.value;session.commitEdit(next);close();}),button('取消',close));
   }]);
   const remove=()=>{
-    if(edge){showWireDelete(id);return;}
+    if(edge){
+      if(session.circuit!==input)throw new Error('配線が変わったため、もう一度選んでください。');
+      session.remove(id,true);message='';close();return;
+    }
     session.requireEditable();const related=node?input.edges.filter(path=>path.from===id||path.to===id):[edge];
     open('選んだパーツを削除');body.append(element('p',node?`このパーツと、接続する${related.length}本の道を削除します。`:'選んだ道だけを削除します。'));
     listPage(related,path=>element('p',objectName(path.id,input)),'接続する道はありません。');
     actions.append(button('削除',()=>{session.remove(id,true);close();}),button('取消',close));
     fitDialogForm();
   };
-  if(edge)actions.append(button(session.editable?'削除':'停止して編集',()=>{if(session.editable)remove();else{stopRun();settings();}}));
+  if(edge)actions.append(button(session.editable?'配線を削除':'停止して編集',()=>{if(session.editable)remove();else{stopRun();settings();}},session.editable?{id:'wire-settings-delete'}:{}));
   else if(node.kind!=='source'&&session.mode==='free')items.push(['削除',remove]);
   listPage(items,item=>{
     const row=button(item[0],item[1],{class:'setting-option'});

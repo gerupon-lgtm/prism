@@ -1,0 +1,8 @@
+{
+  "version": "0.99.0",
+  "passed": false,
+  "cases": [],
+  "boundary": "Real PC Chromium/WebKit UI; phone viewport and touch are emulated. Physical-device usability remains unverified.",
+  "step": "phone",
+  "error": "AssertionError [ERR_ASSERTION]: One settings press deletes SA directly\n+ actual - expected\n\n  [\n    'AG',\n+   'SA'\n  ]\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_settings_delete.cjs:28:10"
+}

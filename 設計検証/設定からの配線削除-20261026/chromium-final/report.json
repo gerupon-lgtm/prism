@@ -1,0 +1,66 @@
+{
+  "version": "0.100.0",
+  "passed": false,
+  "cases": [
+    {
+      "name": "phone",
+      "passed": true,
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "rect": {
+          "left": 9,
+          "top": 142,
+          "right": 381,
+          "bottom": 702
+        },
+        "scroll": [
+          370,
+          558
+        ],
+        "client": [
+          370,
+          558
+        ],
+        "buttons": [
+          {
+            "text": "配線を削除",
+            "width": 135.328125,
+            "height": 48,
+            "left": 22,
+            "right": 157.328125,
+            "top": 641,
+            "bottom": 689,
+            "sw": 133,
+            "cw": 133
+          },
+          {
+            "text": "記録",
+            "width": 93.34375,
+            "height": 48,
+            "left": 162.328125,
+            "right": 255.671875,
+            "top": 641,
+            "bottom": 689,
+            "sw": 91,
+            "cw": 91
+          },
+          {
+            "text": "閉じる",
+            "width": 107.328125,
+            "height": 48,
+            "left": 260.671875,
+            "right": 368,
+            "top": 641,
+            "bottom": 689,
+            "sw": 105,
+            "cw": 105
+          }
+        ]
+      }
+    }
+  ],
+  "boundary": "Real PC Chromium/WebKit UI; phone viewport and touch are emulated. Physical-device usability remains unverified.",
+  "step": "small",
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#dialog-body .pager button').last()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled title=\"次へ\" type=\"button\" aria-label=\"次へ\">次へ</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    55 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at settings (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_settings_delete.cjs:14:272)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_settings_delete.cjs:35:3"
+}
