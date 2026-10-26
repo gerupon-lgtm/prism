@@ -28,43 +28,52 @@ function ownedVoice(context,oscillators,nodes,level,{time,endTime,frequencyHz,on
   return voice;
 }
 
-export function musicalVoice(context,output,{timbre='piano',frequencyHz,time=context.currentTime,durationSeconds,gain,endFrequencyHz,glideStart=0,glideEnd=0,onended,releaseSeconds,freshStart=false}){
+function prepareMusicalVoice(context,output,{timbre='piano',frequencyHz,durationSeconds,gain,endFrequencyHz,glideStart=0,glideEnd=0,onended,releaseSeconds}){
   const preset=timbres[timbre];if(!preset)throw new Error('音色が見つかりません。');
   const auditionTiming=releaseSeconds!==undefined;
   const carrier=context.createOscillator(),level=context.createGain(),oscillators=[carrier],nodes=[carrier,level];
   const modulator=preset.ratio?context.createOscillator():null,modulation=preset.ratio?context.createGain():null,filter=preset.cutoff?context.createBiquadFilter():null,second=preset.detune?context.createOscillator():null;
-  // Short interaction cues must retain their attack even if node allocation
-  // crosses an audio block. No extra fixed lead time or timbre change is added.
-  if(freshStart)time=Math.max(time,context.currentTime);
-  carrier.type=preset.wave;if(!auditionTiming)carrier.frequency.value=frequencyHz;carrier.frequency.setValueAtTime(frequencyHz,time);
-  const pitch=(parameter,ratio=1)=>{if(endFrequencyHz){parameter.setValueAtTime(frequencyHz*ratio,time+glideStart);parameter.exponentialRampToValueAtTime(endFrequencyHz*ratio,time+glideEnd);}};
-  pitch(carrier.frequency);let path=carrier;
-  if(preset.ratio){
-    modulator.type='sine';if(!auditionTiming)modulator.frequency.value=frequencyHz*preset.ratio;modulator.frequency.setValueAtTime(frequencyHz*preset.ratio,time);pitch(modulator.frequency,preset.ratio);
-    const bandLimit=auditionTiming?Math.min(1,(context.sampleRate??48000)*.12/(frequencyHz*(1+preset.ratio))):1;
-    const depth=frequencyHz*preset.depth*bandLimit;modulation.gain.setValueAtTime(0,time);modulation.gain.linearRampToValueAtTime(depth,time+preset.attack);modulation.gain.setTargetAtTime(depth*(preset.modSustain??.025),time+preset.attack,preset.modDecay);
-    modulator.connect(modulation);modulation.connect(carrier.frequency);oscillators.push(modulator);nodes.push(modulator,modulation);
-  }
-  if(preset.cutoff){
-    filter.type='lowpass';filter.Q.value=.55;
-    const high=auditionTiming?Math.min(context.sampleRate*.4,frequencyHz*preset.cutoff):frequencyHz*preset.cutoff;
-    filter.frequency.setValueAtTime(high,time);filter.frequency.setTargetAtTime(auditionTiming?Math.min(high,frequencyHz*(preset.filterFloor??2.5)):frequencyHz*2.5,time+preset.attack,preset.filterDecay??.15);carrier.connect(filter);path=filter;nodes.push(filter);
-  }
-  if(preset.detune){
-    second.type=preset.wave;carrier.detune.setValueAtTime(-preset.detune,time);second.frequency.setValueAtTime(frequencyHz,time);second.detune.setValueAtTime(preset.detune,time);second.connect(path);oscillators.push(second);nodes.push(second);gain/=2;
-  }
-  path.connect(level);level.connect(output);
-  const release=releaseSeconds??Math.min(.12,durationSeconds*.4),off=auditionTiming?time+durationSeconds:time+durationSeconds-release-.005;
-  const fadeEnd=auditionTiming?off+release:time+durationSeconds,endTime=fadeEnd+(auditionTiming ? .005 : 0);
-  level.gain.setValueAtTime(0,time);level.gain.linearRampToValueAtTime(gain,time+preset.attack);level.gain.setTargetAtTime(gain*preset.sustain,time+preset.attack,preset.decay);
-  const held=gain*(preset.sustain+(1-preset.sustain)*Math.exp(-(off-time-preset.attack)/preset.decay));
-  if(auditionTiming)level.gain.cancelScheduledValues(off);
-  level.gain.setValueAtTime(held,off);level.gain.setTargetAtTime(0,off,release/6);level.gain.setValueAtTime(held*Math.exp(-6*(release-.005)/release),fadeEnd-.005);level.gain.linearRampToValueAtTime(0,fadeEnd);
-  return ownedVoice(context,oscillators,nodes,level,{time,endTime,frequencyHz,onended});
+  return time=>{
+    carrier.type=preset.wave;if(!auditionTiming)carrier.frequency.value=frequencyHz;carrier.frequency.setValueAtTime(frequencyHz,time);
+    const pitch=(parameter,ratio=1)=>{if(endFrequencyHz){parameter.setValueAtTime(frequencyHz*ratio,time+glideStart);parameter.exponentialRampToValueAtTime(endFrequencyHz*ratio,time+glideEnd);}};
+    pitch(carrier.frequency);let path=carrier;
+    if(preset.ratio){
+      modulator.type='sine';if(!auditionTiming)modulator.frequency.value=frequencyHz*preset.ratio;modulator.frequency.setValueAtTime(frequencyHz*preset.ratio,time);pitch(modulator.frequency,preset.ratio);
+      const bandLimit=auditionTiming?Math.min(1,(context.sampleRate??48000)*.12/(frequencyHz*(1+preset.ratio))):1;
+      const depth=frequencyHz*preset.depth*bandLimit;modulation.gain.setValueAtTime(0,time);modulation.gain.linearRampToValueAtTime(depth,time+preset.attack);modulation.gain.setTargetAtTime(depth*(preset.modSustain??.025),time+preset.attack,preset.modDecay);
+      modulator.connect(modulation);modulation.connect(carrier.frequency);oscillators.push(modulator);nodes.push(modulator,modulation);
+    }
+    if(preset.cutoff){
+      filter.type='lowpass';filter.Q.value=.55;
+      const high=auditionTiming?Math.min(context.sampleRate*.4,frequencyHz*preset.cutoff):frequencyHz*preset.cutoff;
+      filter.frequency.setValueAtTime(high,time);filter.frequency.setTargetAtTime(auditionTiming?Math.min(high,frequencyHz*(preset.filterFloor??2.5)):frequencyHz*2.5,time+preset.attack,preset.filterDecay??.15);carrier.connect(filter);path=filter;nodes.push(filter);
+    }
+    if(preset.detune){
+      second.type=preset.wave;carrier.detune.setValueAtTime(-preset.detune,time);second.frequency.setValueAtTime(frequencyHz,time);second.detune.setValueAtTime(preset.detune,time);second.connect(path);oscillators.push(second);nodes.push(second);gain/=2;
+    }
+    path.connect(level);level.connect(output);
+    const release=releaseSeconds??Math.min(.12,durationSeconds*.4),off=auditionTiming?time+durationSeconds:time+durationSeconds-release-.005;
+    const fadeEnd=auditionTiming?off+release:time+durationSeconds,endTime=fadeEnd+(auditionTiming ? .005 : 0);
+    level.gain.setValueAtTime(0,time);level.gain.linearRampToValueAtTime(gain,time+preset.attack);level.gain.setTargetAtTime(gain*preset.sustain,time+preset.attack,preset.decay);
+    const held=gain*(preset.sustain+(1-preset.sustain)*Math.exp(-(off-time-preset.attack)/preset.decay));
+    if(auditionTiming)level.gain.cancelScheduledValues(off);
+    level.gain.setValueAtTime(held,off);level.gain.setTargetAtTime(0,off,release/6);level.gain.setValueAtTime(held*Math.exp(-6*(release-.005)/release),fadeEnd-.005);level.gain.linearRampToValueAtTime(0,fadeEnd);
+    return ownedVoice(context,oscillators,nodes,level,{time,endTime,frequencyHz,onended});
+  };
+}
+
+export function musicalVoice(context,output,{time=context.currentTime,freshStart=false,...options}){
+  const start=prepareMusicalVoice(context,output,options);
+  return start(freshStart?Math.max(time,context.currentTime):time);
 }
 
 export function bellVoice(context,output,{time=context.currentTime,onended,attack=true,frequencyHz=BELL_TIMBRE.frequencyHz}={}){
   const preset=BELL_TIMBRE,carrier=context.createOscillator(),modulator=context.createOscillator(),deviation=context.createGain(),level=context.createGain();
+  let remaining=attack?2:1;const ended=()=>{if(--remaining===0)onended?.();};
+  const startHit=attack?prepareMusicalVoice(context,output,{timbre:'piano',frequencyHz:(preset.attackFrequencyHz/preset.frequencyHz)*frequencyHz,durationSeconds:preset.attackDurationSeconds,gain:preset.attackGain,onended:ended}):null;
+  // Allocate both layers first. A slow allocation must never put the bell's
+  // body or its short hit in the past, or shift them apart.
+  time=Math.max(time,context.currentTime);
   carrier.type=modulator.type='sine';carrier.frequency.value=frequencyHz;carrier.frequency.setValueAtTime(frequencyHz,time);
   const modulationFrequency=frequencyHz*preset.ratio;modulator.frequency.setValueAtTime(modulationFrequency,time);
   deviation.gain.setValueAtTime(modulationFrequency*preset.index,time);deviation.gain.setTargetAtTime(modulationFrequency*preset.tailIndex,time,preset.modDecay);
@@ -72,8 +81,7 @@ export function bellVoice(context,output,{time=context.currentTime,onended,attac
   level.gain.setValueAtTime(0,time);level.gain.linearRampToValueAtTime(peak,time+.003);level.gain.setTargetAtTime(0,time+.003,preset.ampDecay);
   level.gain.setValueAtTime(bodyLevel,time+bodyEnd);level.gain.setTargetAtTime(0,time+bodyEnd,tailDecay);level.gain.setValueAtTime(bodyLevel*Math.exp(-(fadeStart-bodyEnd)/tailDecay),time+fadeStart);level.gain.linearRampToValueAtTime(0,time+2.6);
   modulator.connect(deviation);deviation.connect(carrier.frequency);carrier.connect(level);level.connect(output);
-  let remaining=attack?2:1;const ended=()=>{if(--remaining===0)onended?.();};
   const body=ownedVoice(context,[carrier,modulator],[carrier,modulator,deviation,level],level,{time,endTime:time+preset.durationSeconds,frequencyHz,onended:ended});
-  const hit=attack?musicalVoice(context,output,{timbre:'piano',frequencyHz:(preset.attackFrequencyHz/preset.frequencyHz)*frequencyHz,time,durationSeconds:preset.attackDurationSeconds,gain:preset.attackGain,onended:ended}):null;
+  const hit=startHit?.(time);
   return {time,endTime:body.endTime,frequencyHz,stop(){body.stop();hit?.stop();}};
 }

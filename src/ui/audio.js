@@ -108,6 +108,7 @@ export class Chime {
     this.silenceRelay();this.stopVoices(this.tapVoices);this.tapVoices.clear();
     const time=Math.max(this.context.currentTime,scheduledTime??0);this.bellUntil=Math.max(this.bellUntil,time+BELL_SOUND.durationSeconds);this.gateEffects();
     const voice=bellVoice(this.context,this.bellOutput??this.output,{time,frequencyHz,onended:()=>{this.voices.delete(voice);this.bellVoices.delete(voice);}});this.voices.add(voice);this.bellVoices.add(voice);
+    this.bellUntil=Math.max(this.bellUntil,voice.endTime);this.gateEffects();return voice;
   }
   cancelPendingBells({expired=false}={}){
     if(expired)this.priorityStats.expiredBells+=this.pendingBells.length;
@@ -124,8 +125,8 @@ export class Chime {
       const now=performance.now(),queued=this.pendingBells.filter(entry=>now-entry.at<=BELL_RESUME_TIMEOUT_MS),outcome=this.pendingOutcome;
       this.priorityStats.expiredBells+=this.pendingBells.length-queued.length;
       this.cancelPendingBells();
-      const start=context.currentTime,first=queued[0]?.at;
-      for(const entry of queued){this.ring(entry.frequencyHz,start+(entry.at-first)/1000);this.priorityStats.resumedBells++;}
+      let start=context.currentTime;const first=queued[0]?.at;
+      for(const [index,entry] of queued.entries()){const voice=this.ring(entry.frequencyHz,start+(entry.at-first)/1000);if(index===0)start=voice.time;this.priorityStats.resumedBells++;}
       if(queued.length&&outcome)this[outcome]();
     }).catch(()=>{if(this.resumeEpoch===epoch)this.cancelPendingBells({expired:true});});
   }

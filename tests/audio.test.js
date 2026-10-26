@@ -10,6 +10,25 @@ function fixture(){
   chime.output={};return {chime,voices,sources,notes:()=>[...chime.voices].filter(v=>v.frequencyHz!==undefined)};
 }
 
+test('2回目の鐘の音源準備が遅れても本体と打音を新しい時刻から同時に鳴らす',()=>{
+ for(const method of ['createOscillator','createGain'])for(const delayedNode of [1,2,3,4]){
+  const {chime,voices,notes}=fixture();chime.strike();chime.context.currentTime=3.3;let created=0;const create=chime.context[method];
+  chime.context[method]=()=>{if(++created===delayedNode)chime.context.currentTime+=.2;return create();};
+  chime.strike();assert.equal(notes().at(-1).time,3.5);assert(voices.slice(-4).every(v=>v.startedAt===3.5));assert.equal(chime.bellUntil,6.12);chime.stop();
+ }
+});
+
+test('再開待ちの最初の鐘の準備が遅れても次の鐘との間隔と余韻の期限を保つ',async()=>{
+ const original=globalThis.performance;let wall=0,resume;
+ globalThis.performance={now:()=>wall};
+ try{
+  const {chime,notes}=fixture();chime.context.state='suspended';chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});chime.strike();wall=100;chime.strike();
+  const pending=chime.resumeTask,create=chime.context.createOscillator;let first=true;
+  chime.context.createOscillator=()=>{if(first){first=false;chime.context.currentTime=.2;}return create();};chime.context.state='running';resume();await pending;
+  assert.equal(notes()[0].time,.2);assert(Math.abs(notes()[1].time-.3)<1e-12);assert(Math.abs(chime.bellUntil-2.92)<1e-12);chime.stop();
+ }finally{globalThis.performance=original;}
+});
+
 test('採用した複数音程は本体と打音を同比率で変え、長さ・停止・消音を保つ',()=>{
  const {chime,voices,notes}=fixture();
  for(const midi of [72,79,84,77,81,88]){
