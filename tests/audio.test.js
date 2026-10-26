@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {Chime,BELL_SOUND,DEFAULT_EFFECT_VOLUME} from '../src/ui/audio.js';
+import {Chime,BELL_SOUND,DEFAULT_EFFECT_VOLUME,BELL_RESUME_TIMEOUT_MS} from '../src/ui/audio.js';
 import {PlaybackDiagnostics,readPlaybackStats,playbackStatsDelta,playbackDiagnosticText,audioOutputInfo,loadAudioLatency,saveAudioLatency,latencyFromMilliseconds,AUDIO_LATENCY_STORAGE_KEY} from '../src/ui/playback-diagnostics.js';
 
 function fixture(){
@@ -37,8 +37,8 @@ test('操作音はT2の澄んだ880Hzで、短い余韻のあと終わる',()=>{
 test('素早い画面切替でも短い操作音を残し、消音と全停止では残さない',()=>{
  const {chime,voices}=fixture();chime.tap();const first=voices.slice();
  chime.context.currentTime=.01;chime.tap();const second=voices.slice(-2);
- chime.strike();const bell=voices.slice(-4);chime.stop('dialog',{preserveTap:true});
- assert(first.every(v=>!v.stopped));assert(second.every(v=>!v.stopped));assert(bell.every(v=>v.stopped));
+ chime.stop('dialog',{preserveTap:true});
+ assert(first.every(v=>!v.stopped));assert(second.every(v=>!v.stopped));
  assert.equal(chime.tapVoices.size,2);assert.equal(chime.voices.size,2);
  chime.context.currentTime=.02;chime.tap();chime.stop('dialog',{preserveTap:true});
  assert.equal(chime.tapVoices.size,3);chime.mute();assert(voices.every(v=>v.stopped));
@@ -54,7 +54,7 @@ test('自動完了では鐘と結果音を自然終了させ、鐘の余韻中�
   assert(voices.every(voice=>!voice.stopped));assert(sources.every(source=>!source.stopped));
   assert.deepEqual(voices.map(voice=>voice.stopAt),scheduled);assert.equal(chime.bellUntil,bellUntil);
   const count=voices.length;chime.relay();chime.wire();assert.equal(voices.length,count);
-  chime.context.currentTime=2.63;chime.relay();assert(voices.length>count);
+  chime.context.currentTime=2.63;chime.relay();assert(voices.length>count);chime.tap();
   chime.stop('restart',{preserveTail:true,preserveTap:true});assert.equal(chime.bellUntil,0);
   assert.equal(chime.voices.size,1);assert.equal(chime.tapVoices.size,1);
   assert(sources.every(source=>source.stopped));chime.mute();assert(voices.every(voice=>voice.stopped));
@@ -99,6 +99,76 @@ test('鐘の前に中継音を止め、余韻の間は抑制し、停止後へ�
   chime.context.currentTime=0;chime.relay();assert.equal(voices.length,count+4);
 });
 
+test('中継音の片付けに失敗しても鐘の開始を妨げず、他の中継音も止める',()=>{
+  const {chime,notes}=fixture();let stopped=false;
+  chime.relayVoices.add({stop(){throw new Error('Synthetic stale relay failure');}});
+  chime.relayVoices.add({stop(){stopped=true;}});
+  assert.doesNotThrow(()=>chime.strike());
+  assert(stopped);assert.equal(notes().length,1);assert.equal(notes()[0].frequencyHz,440);
+  assert.equal(chime.relayVoices.size,0);assert.equal(chime.wireVoices.size,0);
+  const count=notes().length;chime.relay();assert.equal(notes().length,count);
+});
+
+test('鐘は操作音も止め、低優先音の片付けで時計が進んでも最新時刻から鳴らす',()=>{
+ const {chime,notes}=fixture();chime.tap();const tap=[...chime.tapVoices];
+ chime.relayVoices.add({stop(){chime.context.currentTime=5;}});chime.strike();
+ assert.equal(chime.tapVoices.size,0);assert(tap.every(v=>!chime.voices.has(v)));
+ assert.equal(notes().at(-1).time,5);assert.equal(chime.bellUntil,7.62);
+ const count=notes().length;chime.tap();chime.wire();chime.relay();assert.equal(notes().length,count);
+ chime.context.currentTime=7.63;chime.tap();assert.equal(notes().length,count+1);
+});
+
+test('効果音のゲートが故障しても切り離し、鐘の専用経路から鳴らす',()=>{
+ const {chime,notes}=fixture();let detached=false;
+ chime.effectOutput={gain:{cancelScheduledValues(){throw Error('Synthetic effect gate failure');}},disconnect(){detached=true;}};
+ assert.doesNotThrow(()=>chime.strike());assert(detached);assert.equal(notes().at(-1).frequencyHz,440);
+ assert(chime.priorityStats.cleanupFailures>0);
+});
+
+test('休止した出力を再開して鐘を優先し、待機中の中継・操作音と結果音を割り込ませない',async()=>{
+ const {chime,notes}=fixture();let resume;chime.context.state='suspended';chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});
+ chime.strike({frequencyHz:880});const pending=chime.resumeTask;
+ chime.strike({frequencyHz:660});chime.clear();chime.context.state='running';chime.relay();chime.tap();assert.equal(notes().length,0);
+ resume();await pending;
+ assert.deepEqual(notes().slice(0,2).map(n=>n.frequencyHz),[880,660]);assert.equal(notes().length,8);
+ assert(notes().slice(2).every(n=>n.time>=notes()[1].time+.7-1e-9));
+ assert.equal(chime.pendingBells.length,0);assert.equal(chime.resumeTimer,null);assert.equal(chime.priorityStats.resumedBells,2);
+ chime.stop();
+});
+
+test('停止・消音・非表示・別実行は再開待ちの鐘を取り消し、古いPromiseで次を鳴らさない',async()=>{
+ for(const reason of ['stopped','muted','hidden','restart','settings','dialog','records','title','paused','error']){
+  const {chime,notes}=fixture();let resume;chime.context.state='suspended';chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});chime.strike();const pending=chime.resumeTask;
+  if(reason==='muted')chime.mute();else chime.stop(reason);
+  chime.context.state='running';resume();await pending;assert.equal(notes().length,0,reason);assert.equal(chime.pendingBells.length,0);assert.equal(chime.resumeTimer,null);
+  chime.muted=false;chime.strike();assert.equal(notes().length,1,reason+' permits a fresh bell');chime.stop();
+ }
+});
+
+test('負荷による自動一時停止は到達済みの鐘だけ自然終了させ、手動停止は止める',()=>{
+ const {chime,voices,sources}=fixture();chime.strike();const bell=[...chime.bellVoices];chime.perfect();
+ assert.equal(bell.length,1);chime.context.currentTime=.1;chime.stop('load');
+ assert(bell.every(v=>chime.voices.has(v)));assert.equal(chime.voices.size,1);assert(sources.every(v=>v.stopped));assert.equal(chime.bellUntil,2.62);
+ chime.relay();chime.tap();assert.equal(chime.voices.size,1);
+ chime.stop('paused');assert(voices.every(v=>v.stopped));assert.equal(chime.bellVoices.size,0);
+});
+
+test('負荷停止中も到達済みの再開待ちの鐘を保持し、結果音は取り消す',async()=>{
+ const {chime,notes}=fixture();let resume;chime.context.state='suspended';chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});
+ chime.strike();const pending=chime.resumeTask;chime.perfect();chime.stop('load');
+ chime.context.state='running';resume();await pending;assert.equal(notes().length,1);assert.equal(chime.bellVoices.size,1);assert.equal(chime.pendingOutcome,null);chime.stop('hidden');assert.equal(chime.bellVoices.size,0);
+});
+
+test('自然終了では再開待ちの鐘を保持するが、再開拒否・時間切れでは後から鳴らさない',async()=>{
+ const {chime,notes}=fixture();let resume;chime.context.state='suspended';chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});chime.strike();const pending=chime.resumeTask;
+ chime.stop('completed',{preserveTail:true});chime.context.state='running';resume();await pending;assert.equal(notes().length,1);chime.stop();
+ chime.context.state='suspended';chime.context.resume=()=>Promise.reject(new Error('Synthetic resume refusal'));chime.strike();await chime.resumeTask;
+ assert.equal(chime.pendingBells.length,0);assert.equal(chime.priorityStats.expiredBells,1);
+ chime.context.resume=()=>new Promise(resolve=>{resume=resolve;});chime.strike();const expired=chime.resumeTask;
+ await new Promise(resolve=>setTimeout(resolve,BELL_RESUME_TIMEOUT_MS+30));assert.equal(chime.pendingBells.length,0);assert.equal(chime.priorityStats.expiredBells,2);
+ chime.context.state='running';const count=notes().length;resume();await expired;assert.equal(notes().length,count);chime.stop();
+});
+
 test('重なる到着は最後の鐘の余韻まで中継音を抑え、操作音は消音中に鳴らさない',()=>{
   const {chime,voices}=fixture();chime.strike();chime.context.currentTime=1;chime.strike();const count=voices.length;
   chime.context.currentTime=2.7;chime.relay();assert.equal(voices.length,count);
@@ -113,13 +183,18 @@ test('鐘は440Hzのチャイムに短い打音を重ね、2.62秒以内で終�
 });
 
 test('共通初期音量は70%で、再有効化でも増幅経路が重複しない',async()=>{
-  let count=0;const master={gain:{value:0},connect(){count++;}},context={state:'running',destination:{},createDynamicsCompressor:()=>({connect(){count++;}}),createGain:()=>master,resume:async()=>{}};
+  const gains=[],compressors=[],node=()=>({gain:{value:0,cancelScheduledValues(){},setValueAtTime(){}},connections:[],connect(target){this.connections.push(target);}}),context={state:'running',destination:{},createDynamicsCompressor:()=>{const n=node();compressors.push(n);return n;},createGain:()=>{const n=node();gains.push(n);return n;},resume:async()=>{}};
   const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){return context;}}};
-  try{const chime=new Chime();assert.equal(chime.muted,false);assert.equal(chime.context,null);assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();assert.equal(master.gain.value,.7);assert.equal(count,2);chime.mute();await chime.enable();assert.equal(count,2);assert.equal(master.gain.value,.7);}finally{globalThis.window=original;}
+  try{
+   const chime=new Chime();assert.equal(chime.muted,false);assert.equal(chime.context,null);assert.equal(DEFAULT_EFFECT_VOLUME,.7);await chime.enable();
+   assert.equal(gains.length,2);assert.equal(compressors.length,2);assert.equal(chime.master.gain.value,.7);
+   assert.notEqual(chime.bellOutput,chime.output);assert.deepEqual(chime.bellOutput.connections,[chime.master]);assert.deepEqual(chime.effectOutput.connections,[chime.output]);assert.deepEqual(chime.output.connections,[chime.master]);assert.deepEqual(chime.master.connections,[context.destination]);
+   chime.mute();assert.equal(chime.master.gain.value,0);await chime.enable();assert.equal(gains.length,2);assert.equal(compressors.length,2);assert.equal(chime.master.gain.value,.7);
+  }finally{globalThis.window=original;}
 });
 
 test('音の準備中に消音を選んでも、準備完了で音ありへ戻さない',async()=>{
-  let resume;const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){this.state='suspended';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{},connect(){}};}resume(){return new Promise(resolve=>{resume=()=>{this.state='running';resolve();};});}}};
+  let resume;const original=globalThis.window;globalThis.window={AudioContext:class{constructor(){this.state='suspended';this.destination={};}createDynamicsCompressor(){return {connect(){}};}createGain(){return {gain:{cancelScheduledValues(){},setValueAtTime(){}},connect(){}};}resume(){return new Promise(resolve=>{resume=()=>{this.state='running';resolve();};});}}};
   try{const chime=new Chime(),pending=chime.enable();chime.mute();resume();await pending;assert.equal(chime.muted,true);chime.tap();assert.equal(chime.voices.size,0);}finally{globalThis.window=original;}
 });
 

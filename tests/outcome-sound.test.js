@@ -34,6 +34,14 @@ test('実際の満点と部分点の結果で音を分け、再表示では重�
   assert.deepEqual(calls,['perfect','clear']);
 });
 
+test('最初の到達で達成しても後続の鐘がある間はジングルを保留する',()=>{
+ const {session:s,sound,calls}=fixture();s.challenge={...s.challenge,type:'delivery-all',goals:['G'],limit:4,maxDuration:'10',candidates:s.challenge.candidates.map(e=>e.id==='BG'?{...e,time:'3'}:e)};
+ s.connectPath(['S','A','G']);s.connectPath(['S','B','G']);s.circuit={...s.circuit,mode:'spread',target:'all'};s.start();s.advance('2.5');
+ assert.equal(s.result.state,'achieved');assert.equal(s.run.exhausted,false);sound.update(s.run,s.result,true);assert.deepEqual(calls,[]);
+ const score=s.result.score;s.advance('5');assert(s.run.exhausted);assert.deepEqual(s.result.score,score);
+ sound.update(s.run,s.result,true);sound.update(s.run,s.result,true);assert.deepEqual(calls,['perfect']);
+});
+
 test('小数の部分点を満点と扱わず、通常クリアの音を使う',()=>{
   const {session:s,sound,calls}=fixture();complete(s,'Q1',['S','A','G']);
   sound.update(s.run,{...s.result,score:{numerator:'999999',denominator:'10000'}},true);

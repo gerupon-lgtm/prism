@@ -1,0 +1,1570 @@
+{
+  "version": "0.97.0",
+  "passed": true,
+  "cases": [
+    {
+      "name": "timeout-before-arrival",
+      "id": "Q1",
+      "edges": [
+        "SA",
+        "AG"
+      ],
+      "limit": "1.1",
+      "kind": "timeout",
+      "lateGoal": true,
+      "naturalAudio": true,
+      "probe": {
+        "completed": 3608.300000011921,
+        "toast": 5240.4000000059605,
+        "editing": 5240.4000000059605,
+        "fireworks": null,
+        "fireworkRemoved": null,
+        "fireworkBursts": 0,
+        "fireworkAnimationEnds": {},
+        "fireworkAnimationBoundMs": 0,
+        "goals": 0,
+        "covered": false,
+        "earlyToast": false,
+        "timeoutSamples": [
+          {
+            "wall": 3608.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3612.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3617.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3633.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3650,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3666.699999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3683.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3699.699999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3717.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3733.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3750.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3768.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3783,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3800,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3817.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3833.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3850.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3865.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3883.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3900.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3917.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3933.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3950.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3966.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 3983.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4000.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4023,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(86.70520231213874 957)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4032.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(86.70520231213874 957)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4050.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(86.70520231213874 957)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4066.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(86.70520231213874 957)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4083.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(86.70520231213874 957)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4100.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4116.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4134.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4150.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4166.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4183.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4200.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(128.03468208092488 883.9200000000002)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4217,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(169.364161849711 810.8400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4232.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(169.364161849711 810.8400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4250.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(169.364161849711 810.8400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4267.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(169.364161849711 810.8400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4282.699999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(169.364161849711 810.8400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4300.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4316.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4333.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4350.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4367.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4383.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4399.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(210.69364161849708 737.76)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4420.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(252.0231213872832 664.6800000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4433.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(252.0231213872832 664.6800000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4449.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(252.0231213872832 664.6800000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4466.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(252.0231213872832 664.6800000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4483.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(252.0231213872832 664.6800000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4501.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4517.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4532.699999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4549.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4567.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4584.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4600.300000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(293.35260115606934 591.5999999999999)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4616.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4634.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4650.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4667,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4683,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4699.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(334.6820809248554 518.5200000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4716.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4734.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4749.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4766.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4783.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4800.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(376.0115606936416 445.4400000000001)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4816.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4832.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4850.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4865.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4884,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4900.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(417.34104046242777 372.36)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4917.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4932.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4950.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4967.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4983.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 4999.5999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [
+              "translate(458.67052023121386 299.28000000000003)"
+            ],
+            "audioArrivals": 1
+          },
+          {
+            "wall": 5021.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5032.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5049.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5067.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5082.4000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5100.5,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5116.0999999940395,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5133.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5150.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5166.9000000059605,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5183.199999988079,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          },
+          {
+            "wall": 5199.800000011921,
+            "core": "{\"clock\":\"11\",\"pauseReason\":null,\"records\":[{\"type\":\"send\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"plannedTime\":\"2.5\"},{\"type\":\"travel\",\"time\":\"0\",\"particle\":1,\"parent\":null,\"node\":\"S\",\"target\":\"G\",\"edge\":\"SA\",\"from\":\"S\",\"to\":\"A\",\"arrivalTime\":\"1\"},{\"type\":\"arrival\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"edge\":\"SA\"},{\"type\":\"process-start\",\"time\":\"1\",\"particle\":1,\"parent\":null,\"node\":\"A\",\"target\":\"G\",\"arrivedAt\":\"1\",\"wait\":\"0\",\"finishTime\":\"1.5\"}],\"result\":{\"state\":\"stopped\",\"first\":null,\"evaluatedTime\":null,\"score\":null,\"challenge\":\"Q1\",\"timeLimitReached\":true,\"reason\":\"動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。\"}}",
+            "markers": "[{\"node\":\"G\",\"count\":\"0\",\"last\":false}]",
+            "moving": [],
+            "audioArrivals": 2
+          }
+        ],
+        "pictures": {
+          "1:A:1": {
+            "node": "A",
+            "wall": 3498.5999999940395,
+            "removed": 4485.5
+          },
+          "1:G:2.5": {
+            "node": "G",
+            "wall": 5021.0999999940395,
+            "removed": 6819.199999988079,
+            "visibleDurationMs": 1798.0999999940395,
+            "minimumVisibleMs": 1758.6999999999998
+          }
+        },
+        "maxPaintGapMs": 33.30000000000018,
+        "toastText": "時間切れ×動作上限1.1秒で時間切れになりました。記録を確認してつなぎ直せます。条件：鐘へより早く届ける時間切れまでの到達時刻（開始から）1回目：到達なし配線を見直す結果を見る"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 1357.300000011921,
+          "reason": "dialog",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": false
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 2471.0999999940395,
+          "reason": "restart",
+          "options": {
+            "preserveTap": true
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.08,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.08,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 3483.4000000059605,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.1013333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 2.1013333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "strike",
+          "wall": 5016,
+          "reason": {},
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.632,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.632,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          }
+        },
+        {
+          "name": "failure",
+          "wall": 5216.9000000059605,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          },
+          "after": {
+            "voices": 4,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 5217.699999988079,
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": {
+            "voices": 4,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          },
+          "after": {
+            "voices": 4,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          }
+        }
+      ],
+      "cues": [
+        {
+          "source": null,
+          "wall": 1364.5,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1580.300000011921,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.18133333333333335,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1867,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.48,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2132.699999988079,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.752,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2215.5,
+          "delay": 0,
+          "before": {
+            "voices": 2,
+            "muted": false,
+            "contextTime": 0.84,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "relay",
+          "wall": 3483.5,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.1013333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "failure",
+          "wall": 5216.9000000059605,
+          "delay": 1.2920000000000007,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          }
+        }
+      ],
+      "audioCapabilities": {
+        "standard": true,
+        "webkit": false,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+      },
+      "artErrors": [],
+      "lateArtCalls": [],
+      "audioEvidence": {
+        "capabilities": {
+          "standard": true,
+          "webkit": false,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+        },
+        "automaticStop": {
+          "name": "stop",
+          "wall": 5217.699999988079,
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": {
+            "voices": 4,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          },
+          "after": {
+            "voices": 4,
+            "muted": false,
+            "contextTime": 3.84,
+            "contextState": "running",
+            "bellUntil": 6.252000000000001
+          }
+        },
+        "actualListening": "Not verified by this browser test",
+        "naturalEnd": {
+          "wall": 7718.800000011921,
+          "voices": 0,
+          "stopCalls": 3
+        },
+        "tail": "Active voices retained at automatic return and later ended naturally"
+      },
+      "resultReopenPassed": true,
+      "waitMs": 1632.0999999940395,
+      "passed": true
+    },
+    {
+      "name": "desktop-early-card-fireworks",
+      "id": "Q29",
+      "edges": [
+        "SA",
+        "SB",
+        "BD",
+        "DS",
+        "AG"
+      ],
+      "kind": "clear",
+      "desktop": true,
+      "clearMs": 400,
+      "earlyCard": true,
+      "probe": {
+        "completed": 7559.299999982119,
+        "toast": 8075.299999982119,
+        "editing": 8075.299999982119,
+        "fireworks": 7559.299999982119,
+        "fireworkRemoved": 9050.799999982119,
+        "fireworkBursts": 5,
+        "fireworkAnimationEnds": {
+          "firework-rise": 5,
+          "firework-ray": 120,
+          "firework-star": 120
+        },
+        "fireworkAnimationBoundMs": 1418.75,
+        "goals": 2,
+        "covered": true,
+        "earlyToast": false,
+        "timeoutSamples": [],
+        "pictures": {
+          "2:A:0.5": {
+            "node": "A",
+            "wall": 3957.199999988079,
+            "removed": 4961.299999982119
+          },
+          "3:B:0.5": {
+            "node": "B",
+            "wall": 3957.199999988079,
+            "removed": 4961.299999982119
+          },
+          "2:G:1.1": {
+            "node": "G",
+            "wall": 4544.799999982119,
+            "removed": 6341.299999982119
+          },
+          "3:D:1.5": {
+            "node": "D",
+            "wall": 4961.299999982119,
+            "removed": 5968.799999982119
+          },
+          "3:S:2.5": {
+            "node": "S",
+            "wall": 5968.799999982119,
+            "removed": 6976.799999982119
+          },
+          "4:A:3.5": {
+            "node": "A",
+            "wall": 6969.399999976158,
+            "removed": 7941.399999976158
+          },
+          "5:B:3.5": {
+            "node": "B",
+            "wall": 6969.399999976158,
+            "removed": 7954.199999988079
+          },
+          "4:G:4.1": {
+            "node": "G",
+            "wall": 7559.299999982119,
+            "removed": 9346.699999988079
+          }
+        },
+        "maxPaintGapMs": 50,
+        "toastText": "100点クリア！×指定回数まで4.1秒スコア100.00点結果を見るもう一度次へ"
+      },
+      "audio": [
+        {
+          "name": "stop",
+          "wall": 558,
+          "reason": "dialog",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": false
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 3426.399999976158,
+          "reason": "restart",
+          "options": {
+            "preserveTap": true
+          },
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.912,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.912,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 3934.699999988079,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.421333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 3.421333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "name": "strike",
+          "wall": 4536.0999999940395,
+          "reason": {},
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 4.021333333333334,
+            "contextState": "running",
+            "bellUntil": 0
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 4.021333333333334,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 4935.199999988079,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 4.410666666666667,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 4.410666666666667,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 5935.5,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 5.4,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 5.4,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          }
+        },
+        {
+          "name": "relay",
+          "wall": 6935.199999988079,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.421333333333333,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 6.421333333333333,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          }
+        },
+        {
+          "name": "strike",
+          "wall": 7536.5999999940395,
+          "reason": {},
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 7.021333333333334,
+            "contextState": "running",
+            "bellUntil": 6.641333333333334
+          },
+          "after": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 7.021333333333334,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          }
+        },
+        {
+          "name": "perfect",
+          "wall": 7546.799999982119,
+          "before": {
+            "voices": 1,
+            "muted": false,
+            "contextTime": 7.021333333333334,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          },
+          "after": {
+            "voices": 20,
+            "muted": false,
+            "contextTime": 7.021333333333334,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          }
+        },
+        {
+          "name": "stop",
+          "wall": 7966.399999976158,
+          "reason": "completed",
+          "options": {
+            "preserveTap": true,
+            "preserveTail": true
+          },
+          "before": {
+            "voices": 20,
+            "muted": false,
+            "contextTime": 7.44,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          },
+          "after": {
+            "voices": 20,
+            "muted": false,
+            "contextTime": 7.44,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          }
+        }
+      ],
+      "cues": [
+        {
+          "source": null,
+          "wall": 566.5999999940395,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 802.2999999821186,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.272,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 930.2999999821186,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.392,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1064.699999988079,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.5413333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1179.5999999940395,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.6613333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1382.7999999821186,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 0.872,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 1718.5,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.2,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2034.8999999761581,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.5013333333333334,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2335.5999999940395,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 1.8,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2684.5999999940395,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.16,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 2986.2999999821186,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.461333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": null,
+          "wall": 3210.0999999940395,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 2.6986666666666665,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "relay",
+          "wall": 3934.699999988079,
+          "delay": 0,
+          "before": {
+            "voices": 0,
+            "muted": false,
+            "contextTime": 3.421333333333333,
+            "contextState": "running",
+            "bellUntil": 0
+          }
+        },
+        {
+          "source": "perfect",
+          "wall": 7554.5999999940395,
+          "delay": 0.7000000000000002,
+          "before": {
+            "voices": 2,
+            "muted": false,
+            "contextTime": 7.021333333333334,
+            "contextState": "running",
+            "bellUntil": 9.641333333333334
+          }
+        }
+      ],
+      "audioCapabilities": {
+        "standard": true,
+        "webkit": false,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+      },
+      "artErrors": [],
+      "lateArtCalls": [],
+      "retryChoicePassed": true,
+      "waitMs": 516,
+      "passed": true
+    }
+  ],
+  "boundary": "Desktop browser emulation; physical phones and listening remain unverified",
+  "step": "desktop-early-card-fireworks"
+}

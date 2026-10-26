@@ -9,6 +9,9 @@ export class OutcomeSound {
     const achieved=result?.state==='achieved'&&result.score;
     const failed=(result?.state==='failed'||result?.timeLimitReached&&!achieved)&&(run.exhausted||run.status==='stopped');
     if(!achieved&&!failed)return;
+    // A successful first delivery can still be followed by other bells. Keep
+    // the fanfare out of their attacks and reserve it after all light finishes.
+    if(achieved&&run.exhausted===false&&enabled&&run.status!=='stopped')return;
     // Keep the slot open while visible late arrivals can still ring. Hidden
     // or muted results are consumed now so they never replay on returning.
     if(defer&&enabled&&run.status!=='stopped'&&!['load','error'].includes(run.pauseReason))return;

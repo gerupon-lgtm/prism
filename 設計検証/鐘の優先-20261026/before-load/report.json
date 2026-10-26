@@ -1,0 +1,12 @@
+{
+  "version": "0.97.0",
+  "passed": false,
+  "cases": [],
+  "boundary": "Real PC browser; phone viewport and touch are emulated. Controlled cleanup failure and audio suspension are fixtures, not identified causes on the reported physical device. No physical-device listening acceptance.",
+  "step": "load-pause",
+  "loadPause": {
+    "active": 0,
+    "tailPeak": 0
+  },
+  "error": "AssertionError [ERR_ASSERTION]: Automatic load pause must not cut the bell that just arrived\n\n0 !== 1\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_bell_priority.cjs:52:36"
+}
