@@ -3,11 +3,11 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
 process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
 const pw=require(arg('--playwright-path')),root=path.resolve('dist'),out=path.resolve(arg('--out')||'設計検証/到達音の重なり-20261026/levels');fs.mkdirSync(out,{recursive:true});
-const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,passed:false,cases:[],boundary:'Actual Chromium OfflineAudioContext and adopted FM source; controlled timing, not physical-device volume or listening.'};
+const report={version:JSON.parse(fs.readFileSync(path.join(root,'build-info.json'))).version,url:arg('--url'),passed:false,cases:[],boundary:'Actual Chromium OfflineAudioContext and adopted FM source; controlled timing, not physical-device volume or listening.'};
 const server=http.createServer((req,res)=>{try{let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file===root)file=path.join(root,'index.html');assert(file.startsWith(root+path.sep));res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'})[path.extname(file)]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
 let browser;
 (async()=>{try{
- await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));browser=await pw.chromium.launch({headless:true});const p=await browser.newPage();await p.goto(`http://127.0.0.1:${server.address().port}/`);
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));browser=await pw.chromium.launch({headless:true});const p=await browser.newPage();await p.goto(arg('--url')||`http://127.0.0.1:${server.address().port}/`);assert.equal(await p.locator('meta[name="prism-version"]').getAttribute('content'),report.version);
  for(const [name,method,gap] of [['tap-separated','tap',.1],['wire-separated','wire',.2],['tap-rapid','tap',.03],['wire-rapid','wire',.05]]){
   const result=await p.evaluate(async({method,gap})=>{
    const {Chime}=await import(new URL('./audio.js',document.querySelector('script[type=module]').src));
