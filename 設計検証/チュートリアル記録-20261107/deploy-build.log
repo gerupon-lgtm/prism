@@ -1,0 +1,1077 @@
+build	Set up job	﻿2026-11-06T17:47:31.6993746Z Current runner version: '2.338.2'
+build	Set up job	2026-11-06T17:47:31.7030241Z ##[group]Runner Image Provisioner
+build	Set up job	2026-11-06T17:47:31.7031772Z Hosted Compute Agent
+build	Set up job	2026-11-06T17:47:31.7032936Z Version: 20261028.624
+build	Set up job	2026-11-06T17:47:31.7034210Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+build	Set up job	2026-11-06T17:47:31.7035650Z Build Date: 2026-10-28T21:51:42Z
+build	Set up job	2026-11-06T17:47:31.7036918Z Worker ID: {106a40a4-5079-4d4e-9938-9743226ebc58}
+build	Set up job	2026-11-06T17:47:31.7038358Z Region: eastus2
+build	Set up job	2026-11-06T17:47:31.7040271Z Cloud: Azure
+build	Set up job	2026-11-06T17:47:31.7041276Z ##[endgroup]
+build	Set up job	2026-11-06T17:47:31.7043748Z ##[group]Operating System
+build	Set up job	2026-11-06T17:47:31.7045022Z Ubuntu
+build	Set up job	2026-11-06T17:47:31.7046170Z 24.04.5
+build	Set up job	2026-11-06T17:47:31.7047137Z LTS
+build	Set up job	2026-11-06T17:47:31.7048029Z ##[endgroup]
+build	Set up job	2026-11-06T17:47:31.7049140Z ##[group]Runner Image
+build	Set up job	2026-11-06T17:47:31.7050621Z Image: ubuntu-24.04
+build	Set up job	2026-11-06T17:47:31.7051814Z Version: 20261101.360.1
+build	Set up job	2026-11-06T17:47:31.7053949Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+build	Set up job	2026-11-06T17:47:31.7057159Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+build	Set up job	2026-11-06T17:47:31.7059035Z ##[endgroup]
+build	Set up job	2026-11-06T17:47:31.7061865Z ##[group]GITHUB_TOKEN Permissions
+build	Set up job	2026-11-06T17:47:31.7064780Z Contents: read
+build	Set up job	2026-11-06T17:47:31.7065921Z Metadata: read
+build	Set up job	2026-11-06T17:47:31.7066911Z ##[endgroup]
+build	Set up job	2026-11-06T17:47:31.7070336Z Secret source: Actions
+build	Set up job	2026-11-06T17:47:31.7072265Z Cache mode: write
+build	Set up job	2026-11-06T17:47:31.7073870Z Prepare workflow directory
+build	Set up job	2026-11-06T17:47:31.7553897Z Prepare all required actions
+build	Set up job	2026-11-06T17:47:31.7601859Z Getting action download info
+build	Set up job	2026-11-06T17:47:31.9593138Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+build	Set up job	2026-11-06T17:47:32.0521626Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+build	Set up job	2026-11-06T17:47:32.1303556Z Download action repository 'actions/upload-pages-artifact@v4' (SHA:7b1f4a764d45c48632c6b24a0339c27f5614fb0b)
+build	Set up job	2026-11-06T17:47:32.3454162Z Getting action download info
+build	Set up job	2026-11-06T17:47:32.4672345Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build	Set up job	2026-11-06T17:47:32.6212833Z Complete job name: build
+build	Run actions/checkout@v6	﻿2026-11-06T17:47:32.7281776Z ##[group]Run actions/checkout@v6
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7283222Z with:
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7284103Z   repository: gerupon-lgtm/prism
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7294071Z   token: ***
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7294930Z   ssh-strict: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7295802Z   ssh-user: git
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7296688Z   persist-credentials: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7297713Z   clean: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7298635Z   sparse-checkout-cone-mode: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7299855Z   fetch-depth: 1
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7300750Z   fetch-tags: false
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7301641Z   show-progress: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7302529Z   lfs: false
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7303365Z   submodules: false
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7304487Z   set-safe-directory: true
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7305690Z   allow-unsafe-pr-checkout: false
+build	Run actions/checkout@v6	2026-11-06T17:47:32.7307392Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0652286Z Syncing repository: gerupon-lgtm/prism
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0654709Z ##[group]Getting Git version info
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0655328Z Working directory is '/home/runner/work/prism/prism'
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0656034Z [command]/usr/bin/git version
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0782848Z git version 2.56.0
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0811133Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0830834Z Temporarily overriding HOME='/home/runner/work/_temp/dc7bcfd0-6bda-4469-982e-095f9031dd69' before making global git config changes
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0840551Z Adding repository directory to the temporary git global config as a safe directory
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0860506Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/prism/prism
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0900916Z Deleting the contents of '/home/runner/work/prism/prism'
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0902354Z ##[group]Determining repository object format
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0903833Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0904852Z ##[group]Initializing the repository
+build	Run actions/checkout@v6	2026-11-06T17:47:33.0905865Z [command]/usr/bin/git init /home/runner/work/prism/prism
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1054743Z hint: Using 'master' as the name for the initial branch. This default branch name
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1055887Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1056469Z hint: to use in all of your new repositories, which will suppress this warning,
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1056866Z hint: call:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1057056Z hint:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1057356Z hint: 	git config --global init.defaultBranch <name>
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1057675Z hint:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1057980Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1058516Z hint: 'development'. The just-created branch can be renamed via this command:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1058919Z hint:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1059124Z hint: 	git branch -m <name>
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1059369Z hint:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1060060Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1070634Z Initialized empty Git repository in /home/runner/work/prism/prism/.git/
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1083975Z [command]/usr/bin/git remote add origin https://github.com/gerupon-lgtm/prism
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1136214Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1137094Z ##[group]Disabling automatic garbage collection
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1140302Z [command]/usr/bin/git config --local gc.auto 0
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1176170Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1177035Z ##[group]Setting up auth
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1177606Z Removing SSH command configuration
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1190152Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1234832Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1674866Z Removing HTTP extra header
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1682029Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1725855Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1959108Z Removing includeIf entries pointing to credentials config files
+build	Run actions/checkout@v6	2026-11-06T17:47:33.1965928Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2011495Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2255330Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2305391Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/prism/prism/.git.path /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2348131Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/prism/prism/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2392757Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2436402Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2473737Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2474293Z ##[group]Fetching the repository
+build	Run actions/checkout@v6	2026-11-06T17:47:33.2482241Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +71c734b71e49f48e35a9af18f8497a1997b4fbee:refs/remotes/origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0025970Z From https://github.com/gerupon-lgtm/prism
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0040635Z  * [new ref]         71c734b71e49f48e35a9af18f8497a1997b4fbee -> origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0042240Z [command]/usr/bin/git branch --list --remote origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0076861Z   origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0085366Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0117480Z 71c734b71e49f48e35a9af18f8497a1997b4fbee
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0123718Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0213998Z ##[group]Determining the checkout info
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0215986Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0216486Z [command]/usr/bin/git sparse-checkout disable
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0217938Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0246970Z ##[group]Checking out the ref
+build	Run actions/checkout@v6	2026-11-06T17:48:00.0251711Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build	Run actions/checkout@v6	2026-11-06T17:48:01.0438252Z Updating files:  51% (2065/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.0565310Z Updating files:  52% (2088/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.0731956Z Updating files:  53% (2128/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.0904686Z Updating files:  54% (2168/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.0984622Z Updating files:  55% (2208/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1053523Z Updating files:  56% (2248/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1088959Z Updating files:  57% (2288/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1129783Z Updating files:  58% (2329/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1183982Z Updating files:  59% (2369/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1337400Z Updating files:  60% (2409/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1447967Z Updating files:  61% (2449/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1600136Z Updating files:  62% (2489/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1735029Z Updating files:  63% (2529/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.1958909Z Updating files:  64% (2569/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.2166102Z Updating files:  65% (2610/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.2402977Z Updating files:  66% (2650/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.2650968Z Updating files:  67% (2690/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.2856360Z Updating files:  68% (2730/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.3200440Z Updating files:  69% (2770/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.3682561Z Updating files:  70% (2810/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.3834279Z Updating files:  71% (2850/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.3930081Z Updating files:  72% (2891/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4040096Z Updating files:  73% (2931/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4150821Z Updating files:  74% (2971/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4215941Z Updating files:  75% (3011/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4346331Z Updating files:  76% (3051/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4629355Z Updating files:  77% (3091/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.4698045Z Updating files:  78% (3131/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.5082200Z Updating files:  79% (3172/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.5425603Z Updating files:  80% (3212/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.5606986Z Updating files:  81% (3252/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.6418209Z Updating files:  82% (3292/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.6811377Z Updating files:  83% (3332/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.7105901Z Updating files:  84% (3372/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.7218339Z Updating files:  85% (3412/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.7348937Z Updating files:  86% (3453/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.7432033Z Updating files:  87% (3493/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.7666050Z Updating files:  88% (3533/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.8055914Z Updating files:  89% (3573/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.8739208Z Updating files:  90% (3613/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.9085187Z Updating files:  91% (3653/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.9458269Z Updating files:  92% (3693/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.9558397Z Updating files:  93% (3734/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.9730508Z Updating files:  94% (3774/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:01.9960539Z Updating files:  95% (3814/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0308442Z Updating files:  96% (3854/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0387602Z Updating files:  97% (3894/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0424243Z Updating files:  97% (3902/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0472098Z Updating files:  98% (3934/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0616329Z Updating files:  99% (3974/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0616893Z Updating files: 100% (4014/4014)
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0617350Z Updating files: 100% (4014/4014), done.
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0680284Z Switched to a new branch 'main'
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0685876Z branch 'main' set up to track 'origin/main'.
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0856022Z ##[endgroup]
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0919159Z [command]/usr/bin/git log -1 --format=%H
+build	Run actions/checkout@v6	2026-11-06T17:48:02.0961343Z 71c734b71e49f48e35a9af18f8497a1997b4fbee
+build	Run actions/setup-node@v7	﻿2026-11-06T17:48:02.1256535Z ##[group]Run actions/setup-node@v7
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1256854Z with:
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1257054Z   node-version: 24
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1257286Z   package-manager-cache: false
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1257544Z   check-latest: false
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1260418Z   token: ***
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.1260635Z ##[endgroup]
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.2694569Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.3604102Z ##[group]Environment details
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.7427191Z node: v24.22.2
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.7427512Z npm: 11.19.1
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.7427715Z yarn: 1.22.22
+build	Run actions/setup-node@v7	2026-11-06T17:48:02.7428284Z ##[endgroup]
+build	Run npm run check	﻿2026-11-06T17:48:02.7573208Z ##[group]Run npm run check
+build	Run npm run check	2026-11-06T17:48:02.7573574Z ^[[36;1mnpm run check^[[0m
+build	Run npm run check	2026-11-06T17:48:02.7606568Z shell: /usr/bin/bash -e {0}
+build	Run npm run check	2026-11-06T17:48:02.7606845Z ##[endgroup]
+build	Run npm run check	2026-11-06T17:48:02.8743569Z
+build	Run npm run check	2026-11-06T17:48:02.8754548Z > prism-notes@0.103.0 check
+build	Run npm run check	2026-11-06T17:48:02.8755219Z > node scripts/check-source.js
+build	Run npm run check	2026-11-06T17:48:02.8755522Z
+build	Run npm run check	2026-11-06T17:48:06.0117118Z Syntax checks passed: 120 files
+build	Run npm test	﻿2026-11-06T17:48:06.0272476Z ##[group]Run npm test
+build	Run npm test	2026-11-06T17:48:06.0272763Z ^[[36;1mnpm test^[[0m
+build	Run npm test	2026-11-06T17:48:06.0293311Z shell: /usr/bin/bash -e {0}
+build	Run npm test	2026-11-06T17:48:06.0293572Z ##[endgroup]
+build	Run npm test	2026-11-06T17:48:06.1524456Z
+build	Run npm test	2026-11-06T17:48:06.1525177Z > prism-notes@0.103.0 test
+build	Run npm test	2026-11-06T17:48:06.1525736Z > node scripts/run-tests.js
+build	Run npm test	2026-11-06T17:48:06.1526021Z
+build	Run npm test	2026-11-06T17:48:06.1855511Z Test batch 1: tests/audio.test.js, tests/balanced-challenges.test.js, tests/bell-sequence.test.js, tests/board-view.test.js, tests/browser-errors.test.js
+build	Run npm test	2026-11-06T17:48:06.3291181Z ✔ 2回目の鐘の音源準備が遅れても本体と打音を新しい時刻から同時に鳴らす (5.030121ms)
+build	Run npm test	2026-11-06T17:48:06.3302523Z ✔ 再開待ちの最初の鐘の準備が遅れても次の鐘との間隔と余韻の期限を保つ (2.256174ms)
+build	Run npm test	2026-11-06T17:48:06.3303934Z ✔ 採用した複数音程は本体と打音を同比率で変え、長さ・停止・消音を保つ (0.586491ms)
+build	Run npm test	2026-11-06T17:48:06.3305738Z ✔ 結線音はW2の高い2音で、停止・消音・鐘の余韻では重ならない (0.880593ms)
+build	Run npm test	2026-11-06T17:48:06.3306975Z ✔ 操作音はT2の澄んだ880Hzで、短い余韻のあと終わる (0.320431ms)
+build	Run npm test	2026-11-06T17:48:06.3308165Z ✔ 連打は前の操作音を2msで収め、画面切替でも最後の押下音を残す (0.483608ms)
+build	Run npm test	2026-11-06T17:48:06.3309110Z ✔ 音の生成で時計が進んでも操作音を出だしから鳴らし、結線の2音間隔を保つ (0.299923ms)
+build	Run npm test	2026-11-06T17:48:06.3310460Z ✔ 連続結線は古い2音目の予約も取り消し、消音では2msの減衰を待たず止める (0.307848ms)
+build	Run npm test	2026-11-06T17:48:06.3311383Z ✔ 片付けに失敗した中継音の経路を切り離し、次の到達音は新しい経路で鳴らす (0.50103ms)
+build	Run npm test	2026-11-06T17:48:06.3312601Z ✔ 自動完了では鐘と結果音を自然終了させ、鐘の余韻中の結線音を抑える (7.670928ms)
+build	Run npm test	2026-11-06T17:48:06.3314997Z ✔ 自動完了の余韻保持でも中継音と結線音は止め、手動停止では音を残さない (8.474936ms)
+build	Run npm test	2026-11-06T17:48:06.3318616Z ✔ 自動完了後も音声の自然終了で鐘・結果音・残響の接続を全て解放する (3.562237ms)
+build	Run npm test	2026-11-06T17:48:06.3325163Z ✔ 中継点は選ばれたR2の光片のきらめきを到着1回につき1音鳴らす (0.201288ms)
+build	Run npm test	2026-11-06T17:48:06.3330664Z ✔ 中継音は停止・消音で止まり、消音中や一時停止中には鳴らさない (0.244088ms)
+build	Run npm test	2026-11-06T17:48:06.3333188Z ✔ 鐘の前に中継音を止めるが、別の到達音は余韻に重ねて鳴らす (0.331563ms)
+build	Run npm test	2026-11-06T17:48:06.3336588Z ✔ 中継音の片付けに失敗しても鐘の開始を妨げず、他の中継音も止める (0.436539ms)
+build	Run npm test	2026-11-06T17:48:06.3340270Z ✔ 鐘は操作音も止め、低優先音の片付けで時計が進んでも最新時刻から鳴らす (0.350017ms)
+build	Run npm test	2026-11-06T17:48:06.3343323Z ✔ 効果音のゲートが故障しても切り離し、鐘の専用経路から鳴らす (0.333716ms)
+build	Run npm test	2026-11-06T17:48:06.3346002Z ✔ 休止した出力を再開して鐘を優先し、待機中の中継・操作音と結果音を割り込ませない (0.71957ms)
+build	Run npm test	2026-11-06T17:48:06.3365268Z ✔ 停止・消音・非表示・別実行は再開待ちの鐘を取り消し、古いPromiseで次を鳴らさない (1.337149ms)
+build	Run npm test	2026-11-06T17:48:06.3386903Z ✔ 負荷による自動一時停止は到達済みの鐘だけ自然終了させ、手動停止は止める (3.709853ms)
+build	Run npm test	2026-11-06T17:48:06.3390692Z ✔ 負荷停止中も到達済みの再開待ちの鐘を保持し、結果音は取り消す (0.292078ms)
+build	Run npm test	2026-11-06T17:48:06.8644506Z ✔ 自然終了では再開待ちの鐘を保持するが、再開拒否・時間切れでは後から鳴らさない (529.733972ms)
+build	Run npm test	2026-11-06T17:48:06.8646066Z ✔ 別の到達音は複数の鐘の余韻にも重ね、操作音は余韻と消音中に鳴らさない (0.405851ms)
+build	Run npm test	2026-11-06T17:48:06.8648754Z ✔ 鐘は440Hzのチャイムに短い打音を重ね、2.62秒以内で終わる (0.333396ms)
+build	Run npm test	2026-11-06T17:48:06.8652117Z ✔ 共通初期音量は70%で、再有効化でも増幅経路が重複しない (0.538331ms)
+build	Run npm test	2026-11-06T17:48:06.8676586Z ✔ 音の準備中に消音を選んでも、準備完了で音ありへ戻さない (0.307037ms)
+build	Run npm test	2026-11-06T17:48:06.8677452Z ✔ 音声が休止している間は鐘と打音の予約を残さない (0.125085ms)
+build	Run npm test	2026-11-06T17:48:06.8678902Z ✔ 通常クリアは選ばれたC1の6音を0.7秒後から鳴らし、鐘を変えない (0.249068ms)
+build	Run npm test	2026-11-06T17:48:06.8680065Z ✔ 満点はF4のブラス7音とStrings11音を0.7秒後から鳴らす (1.274102ms)
+build	Run npm test	2026-11-06T17:48:06.8680951Z ✔ 満点ジングルは消音・休止中には予約せず、消音で予約済みも止める (1.101447ms)
+build	Run npm test	2026-11-06T17:48:06.8681750Z ✔ 未達成はN2のエレピ下降3音で、消音・休止・停止を守る (0.359755ms)
+build	Run npm test	2026-11-06T17:48:06.8682552Z ✔ 未達成3音は最後の鐘から1.5秒空け、元の長さで再生する (0.333837ms)
+build	Run npm test	2026-11-06T17:48:06.8683958Z ✔ 開始前の予約を止めても全発振器を解放し、新しい音を再生できる (1.253994ms)
+build	Run npm test	2026-11-06T17:48:06.8684855Z ✔ ファンファーレの残響も2.7秒以内で終了し、停止・消音で即時解放する (1.36905ms)
+build	Run npm test	2026-11-06T17:48:06.8708735Z ✔ 再生設定は30msを初期値にし、明示した設定では同じContextを再利用する (0.504787ms)
+build	Run npm test	2026-11-06T17:48:06.8717467Z ✔ 音声統計は値の写しを取り、未対応・例外・無効値を0回へ読み替えない (0.706827ms)
+build	Run npm test	2026-11-06T17:48:06.8718839Z ✔ 音声統計は累積値の差を取り、値が戻った場合と未計測を区別する (0.20775ms)
+build	Run npm test	2026-11-06T17:48:06.8720344Z ✔ 診断は再生の開始・終了だけで読み、同じ区間を二重開始せず累積値の差を取る (0.423665ms)
+build	Run npm test	2026-11-06T17:48:06.8721478Z ✔ 診断の停止と再開は別区間になり、別Contextの累積値を差し引かない (0.18104ms)
+build	Run npm test	2026-11-06T17:48:06.8722606Z ✔ 診断は直近8区間だけをメモリに保ち、取得した表示用データの変更は記録を壊さない (0.265869ms)
+build	Run npm test	2026-11-06T17:48:06.8732639Z ✔ 停止・消音で診断を一度だけ終え、消音中は新しい区間を始めない (0.19753ms)
+build	Run npm test	2026-11-06T17:48:06.8747218Z ✔ 遅延の未対応・取得失敗を0msと表示せず、統計の0回にも限界を併記する (0.49544ms)
+build	Run npm test	2026-11-06T17:48:06.8754298Z ✔ 遅延の数値はミリ秒から秒へ変換し、空欄・負値・範囲外では保存しない (0.344847ms)
+build	Run npm test	2026-11-06T17:48:06.8755571Z ✔ 遅延設定だけを保存・復元し、破損・未知版・保存失敗でも他の記録へ触れない (0.363322ms)
+build	Run npm test	2026-11-06T17:48:06.8756964Z ✔ 遅延の変更は古いContextの終了を待ち、次の操作で一つだけ作り直し、消音を保つ (0.391275ms)
+build	Run npm test	2026-11-06T17:48:07.7619271Z ✔ 左右の配置見直し後も42面と内部IDを保ち、実践36面に各8出題を持つ (2.007078ms)
+build	Run npm test	2026-11-06T17:48:07.7624594Z ✔ 改訂面の表示点と道の骨格は中心線で左右対応し、星と鐘の役割を保つ (1.111777ms)
+build	Run npm test	2026-11-06T17:48:07.7631759Z ✔ 改訂した実践出題は一意満点・部分点・目的保持と異なる満点配線2系統の証拠を持つ (2.590682ms)
+build	Run npm test	2026-11-06T17:48:07.7636834Z ✔ 各改訂面の2系統を実計算で照合し、軽い探索時計も待ち時間を含めて一致する (794.762809ms)
+build	Run npm test	2026-11-06T17:48:07.8625577Z ✔ 各鐘の初回到達から指定順と間隔を判定し、最後の鐘の時刻を採点へ返す (3.982314ms)
+build	Run npm test	2026-11-06T17:48:07.8633850Z ✔ 描画やイベントの並びで同時到達を指定順へ変換しない。逆順も失敗する (0.999927ms)
+build	Run npm test	2026-11-06T17:48:07.8637436Z ✔ 指定した間隔は完全一致だけ達成し、前後0.1秒も小さな差も認めない (3.070112ms)
+build	Run npm test	2026-11-06T17:48:07.8645165Z ✔ 旧内容版に保存された許容幅だけは履歴の元条件として読み取れる (0.353153ms)
+build	Run npm test	2026-11-06T17:48:07.8648793Z ✔ 順番だけの課題へ間隔を追加せず、未到達・途中停止・到達待ちを区別する (1.033049ms)
+build	Run npm test	2026-11-06T17:48:07.8653761Z ✔ 指定順を配列の重複・不在の鐘や間隔数の不一致から保護する (0.394571ms)
+build	Run npm test	2026-11-06T17:48:07.8660608Z ✔ 初回より後の追加到達は順番と間隔の結果を変えず、記録は残る (0.43684ms)
+build	Run npm test	2026-11-06T17:48:07.9506481Z ✔ 課題の直通線は途中のパーツの中心と重ならず、別経路として見分けられる (4.729245ms)
+build	Run npm test	2026-11-06T17:48:07.9511002Z ✔ 重なる課題の表示位置だけを調整し、元の座標と自由作成の配置は保持する (1.476601ms)
+build	Run npm test	2026-11-06T17:48:07.9513821Z ✔ 候補が重なっていても近い結線済みの線を選び、線から離れた場所は選ばない (0.504888ms)
+build	Run npm test	2026-11-06T17:48:07.9522332Z ✔ 結線は点の手前や横で離しても受け付け、遠い余白では次の対象を選ばない (0.530456ms)
+build	Run npm test	2026-11-06T17:48:07.9527171Z ✔ 連続結線の通過は操作範囲に余白を加え、拡大したパーツも同じ見た目の範囲で受け付ける (0.353263ms)
+build	Run npm test	2026-11-06T17:48:07.9528403Z ✔ 最後を外して離しても受け付け済み区間を確定し、未到達なら線を増やさない (0.458591ms)
+build	Run npm test	2026-11-06T17:48:07.9536683Z ✔ 近接候補では接続できる近い点を選び、近い候補外の点へは結線しない (0.307898ms)
+build	Run npm test	2026-11-06T17:48:07.9537926Z ✔ 鐘で終わった連続結線は近傍へずれても確定でき、鐘の先へ追加しない (0.207721ms)
+build	Run npm test	2026-11-06T17:48:07.9539186Z ✔ 記録画面などで盤面の表示行列がない間は秒数配置を保留する (0.788329ms)
+build	Run npm test	2026-11-06T17:48:07.9540566Z ✔ 縦置きの表示は出発点が下・祭壇が上、元の回路座標は変えない (0.337964ms)
+build	Run npm test	2026-11-06T17:48:07.9552102Z ✔ 追加・移動の表示座標を元の保存座標へ戻す (0.312677ms)
+build	Run npm test	2026-11-06T17:48:07.9553171Z ✔ 大きい保存座標の表示と逆変換も同じ倍率を保つ (0.151524ms)
+build	Run npm test	2026-11-06T17:48:07.9554369Z ✔ 空き幅に合わせて横方向を広げても保存座標と点の形の基準を保つ (0.159118ms)
+build	Run npm test	2026-11-06T17:48:07.9555596Z ✔ スマホの下側の余白を盤面に戻しても追加・移動の座標は往復で保存値を保つ (0.445416ms)
+build	Run npm test	2026-11-06T17:48:07.9559848Z ✔ 縦・左右の横置きは物理方向を保つ回転にする (0.328105ms)
+build	Run npm test	2026-11-06T17:48:07.9563327Z ✔ 横が自然向きの端末もportrait-primaryを基準にする (0.168035ms)
+build	Run npm test	2026-11-06T17:48:07.9566007Z ✔ 旧方向API・キーボード・PC表示を区別する (0.173636ms)
+build	Run npm test	2026-11-06T17:48:07.9569045Z ✔ 横向きの情報と記憶した縦基準が食い違っても0度・180度へ回さない (0.146364ms)
+build	Run npm test	2026-11-06T17:48:07.9581719Z ✔ Q17のAからFへの直線はCの操作範囲と余裕を保ち、途中の接続と混同しない (0.252194ms)
+build	Run npm test	2026-11-06T17:48:07.9583955Z ✔ 往復する光は方向別の直線で分かれ、確定順や縮尺で入れ替わらない (0.504397ms)
+build	Run npm test	2026-11-06T17:48:07.9597410Z ✔ 全42面の左右の均衡と直線経路の操作余白を保つ (3.157255ms)
+build	Run npm test	2026-11-06T17:48:07.9598573Z ✔ 全鐘到達セットの最終面は一度の分岐だけでは三つの鐘へ届かない (0.283282ms)
+build	Run npm test	2026-11-06T17:48:08.0135391Z ✔ 停止した検証配信元のWorker取得エラーだけを予定した通信失敗とする (0.951115ms)
+build	Run npm test	2026-11-06T17:48:08.0141196Z ✔ オンライン・他エンジン・実行スタックを持つエラーを除外しない (0.185008ms)
+build	Run npm test	2026-11-06T17:48:08.0153260Z ✔ 別資材・別配信元・違うエラー文を除外しない (0.198342ms)
+build	Run npm test	2026-11-06T17:48:08.0154745Z ✔ 公開URL・異なる検証パス・不正URLをこの判定へ流用しない (0.224912ms)
+build	Run npm test	2026-11-06T17:48:08.0247020Z ℹ tests 83
+build	Run npm test	2026-11-06T17:48:08.0247477Z ℹ suites 0
+build	Run npm test	2026-11-06T17:48:08.0247874Z ℹ pass 83
+build	Run npm test	2026-11-06T17:48:08.0248214Z ℹ fail 0
+build	Run npm test	2026-11-06T17:48:08.0248550Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:48:08.0248946Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:48:08.0250151Z ℹ todo 0
+build	Run npm test	2026-11-06T17:48:08.0250557Z ℹ duration_ms 1803.543363
+build	Run npm test	2026-11-06T17:48:08.0310345Z Test batch 2: tests/browser-wait.test.js, tests/celebration.test.js, tests/content.test.js, tests/edge-directions.test.js, tests/end-wait.test.js
+build	Run npm test	2026-11-06T17:48:08.1221009Z ✔ ブラウザ準備の非同期結果がfalseなら完了とせず、trueまで確認する (5.893431ms)
+build	Run npm test	2026-11-06T17:48:08.1225396Z ✔ ブラウザ準備が非同期でfalseを返し続けたら、期限切れで不合格にする (0.635944ms)
+build	Run npm test	2026-11-06T17:48:08.1493968Z ✔ 準備のPromise自体が解決しない場合も、待機期限で不合格にする (14.200832ms)
+build	Run npm test	2026-11-06T17:48:08.1495526Z ✔ 評価中に期限を超えてtrueとなっても、遅い完了を合格としない (15.602662ms)
+build	Run npm test	2026-11-06T17:48:08.2315342Z ✔ 五つの花火を全て結果表示前に咲かせ、1.5秒で片付ける (6.349577ms)
+build	Run npm test	2026-11-06T17:48:08.2316172Z ✔ 停止と画面移動は花火を消し、次の実行で前の花火を残さない (2.351593ms)
+build	Run npm test	2026-11-06T17:48:08.2321155Z ✔ CSS開始が遅れて1500msで最後の花火が未完了でも、全245個が終わるまで片付けない (4.449781ms)
+build	Run npm test	2026-11-06T17:48:08.2322170Z ✔ CSSが早く完了しても従来の1500msは保ち、控えめな演出や未対応APIも1500msで片付ける (3.609644ms)
+build	Run npm test	2026-11-06T17:48:08.2330362Z ✔ CSS完了の通知が来ない場合や最初の描画待ちも3000msで打ち切る (1.585226ms)
+build	Run npm test	2026-11-06T17:48:08.2331785Z ✔ 遅いCSS完了後の描画待ちも3000ms以内で片付け、古い片付けフレームを次へ渡さない (1.991748ms)
+build	Run npm test	2026-11-06T17:48:08.2425626Z ✔ APIが途中までしか完了Promiseを返さなくても、取得済みPromiseの取消を必ず処理する (7.83772ms)
+build	Run npm test	2026-11-06T17:48:08.2427150Z ✔ 取消でfinishedが拒否されても処理し、古いタイマー・描画・完了通知で次の花火を消さない (1.378978ms)
+build	Run npm test	2026-11-06T17:48:08.2430311Z ✔ 実際のCSS待ちの間も停止・非表示で直ちに取り消し、同じ実行では再生しない (1.363379ms)
+build	Run npm test	2026-11-06T17:48:08.2433195Z ✔ 結果カードへの自然復帰では始まっている花火だけをCSS完了まで保ち、停止後に新しく始めない (1.050862ms)
+build	Run npm test	2026-11-06T17:48:08.2435841Z ✔ 自然終了を待つ花火も手動停止・非表示・別実行で取り消す (3.074299ms)
+build	Run npm test	2026-11-06T17:48:11.4545648Z Advanced exhaustive content: [{"id":"Q7","achieved":246,"best":4,"winners":52},{"id":"Q8","achieved":252,"best":4,"winners":16},{"id":"Q11","achieved":14,"best":3.5,"winners":7},{"id":"Q9","achieved":5,"best":2.5,"winners":5},{"id":"Q12","achieved":113,"best":3.5,"winners":59},{"id":"Q10","achieved":8,"best":3.5,"winners":8}]
+build	Run npm test	2026-11-06T17:48:11.6929035Z ✔ 旧固定実践6課題は分岐が必須で、当時の最高評価構成と基準時間を再現する (3146.499874ms)
+build	Run npm test	2026-11-06T17:48:11.6939176Z ✔ 旧固定実践6課題の説明用配線は当時の到達時刻を保持する (2.021514ms)
+build	Run npm test	2026-11-06T17:48:11.6940844Z ✔ 実際に使う自由2見本は資料の2.5秒と4・5・7・8秒の到達を再現する (1.195834ms)
+build	Run npm test	2026-11-06T17:48:11.6943808Z ✔ 課題Q1～Q5の全接続組合せを独立した経路列挙で照合し、複数の最高評価構成を持つ (5.254301ms)
+build	Run npm test	2026-11-06T17:48:11.6947531Z ✔ Q6は全制限内の接続を判定し、初回1秒が実現可能で複数構成が満点条件を満たす (22.65063ms)
+build	Run npm test	2026-11-06T17:48:11.6951800Z ✔ 新しい課題は短い接続が最速とは限らず、同時間だけ本数で差がつく (0.758704ms)
+build	Run npm test	2026-11-06T17:48:11.6957038Z ✔ 共有中継点を持つ構成は道故障に耐えても中継点故障では不達になり、Q6の横断も到着を変える (1.612927ms)
+build	Run npm test	2026-11-06T17:48:11.6961531Z ✔ お試し6課題の全配線と故障ケースは、定義した最大時間以内に動作を終える (199.952578ms)
+build	Run npm test	2026-11-06T17:48:11.7691235Z ✔ 短い線は1つ、長い線は途中と終点手前の2つで進む向きを示す (7.130543ms)
+build	Run npm test	2026-11-06T17:48:11.7696753Z ✔ 秒数カード・パーツ・画面の外を避け、入力した形や障害物を変更しない (1.514111ms)
+build	Run npm test	2026-11-06T17:48:11.7704393Z ✔ 斜めの曲線の終点では、その場所の線に沿って矢印を向ける (0.78329ms)
+build	Run npm test	2026-11-06T17:48:11.7712466Z ✔ 逆向きと縦向きにも実際の進行方向を示し、双方向は両端を示す (1.815107ms)
+build	Run npm test	2026-11-06T17:48:11.7713565Z ✔ 潰れた線と隠れた線には偽の向きを作らない (0.888126ms)
+build	Run npm test	2026-11-06T17:48:11.7714686Z ✔ 同じ区間を通る別経路の矢印だけを理由に向きを消さない (0.795203ms)
+build	Run npm test	2026-11-06T17:48:11.7716792Z ✔ 短い隙間では小さい矢印を1つ置き、パーツに重ねない (0.386315ms)
+build	Run npm test	2026-11-06T17:48:11.8675536Z ✔ クリア後は全粒終了から1.6秒で再操作でき、到達時刻・点数・配線を保持する (6.848403ms)
+build	Run npm test	2026-11-06T17:48:11.8680788Z ✔ 全粒が終わってから1.6秒で編集へ戻し、時計・全記録・点数・配線を保持する (1.216213ms)
+build	Run npm test	2026-11-06T17:48:11.8690939Z ✔ 最初のゴール後も後続粒が動いている間は待機を開始しない (1.894346ms)
+build	Run npm test	2026-11-06T17:48:11.8692087Z ✔ 手動停止・別の実行・到達なし・負荷停止へ古い待機を持ち越さない (2.316788ms)
+build	Run npm test	2026-11-06T17:48:11.8693057Z ✔ 次動作の終了も1.6秒で戻せるが、終了フレームのエラーを閲覧や別実行で解除しない (1.205773ms)
+build	Run npm test	2026-11-06T17:48:11.8702422Z ✔ 固定課題はゴールへ届かない終了でも1.6秒後に編集へ戻せ、理由と記録を保持する (0.731012ms)
+build	Run npm test	2026-11-06T17:48:11.8703577Z ✔ 時間上限でも記録を保って完了待機し、1.6秒後に編集へ戻る (2.512255ms)
+build	Run npm test	2026-11-06T17:48:11.8704673Z ✔ クリアと未達成の指定待機を独立して使い、終了時の値を途中の変更から保つ (1.375151ms)
+build	Run npm test	2026-11-06T17:48:11.8705618Z ✔ 0秒は終了確認ですぐに結果を出し、不正な指定は1.6秒へ戻す (8.624537ms)
+build	Run npm test	2026-11-06T17:48:11.8706798Z ✔ 不正な表示時計で終了待機を固定せず、有効な最初の時刻から数える (0.789101ms)
+build	Run npm test	2026-11-06T17:48:11.8798219Z ℹ tests 40
+build	Run npm test	2026-11-06T17:48:11.8798724Z ℹ suites 0
+build	Run npm test	2026-11-06T17:48:11.8799125Z ℹ pass 40
+build	Run npm test	2026-11-06T17:48:11.8799667Z ℹ fail 0
+build	Run npm test	2026-11-06T17:48:11.8800037Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:48:11.8800276Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:48:11.8800485Z ℹ todo 0
+build	Run npm test	2026-11-06T17:48:11.8800735Z ℹ duration_ms 3817.766632
+build	Run npm test	2026-11-06T17:48:11.8865084Z Test batch 3: tests/ending-coverage.test.js, tests/evaluation.test.js, tests/extension-challenges.test.js, tests/future-arrivals.test.js, tests/gate-brisk.test.js
+build	Run npm test	2026-11-06T17:48:12.3092266Z ✔ 全42面・満点 Q1 はじめの一音 / time / 出題1: 全粒終了→1.6秒→結果を保持して編集 (10.67804ms)
+build	Run npm test	2026-11-06T17:48:12.3094369Z ✔ 全42面・満点 Q1 はじめの一音 / time / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.373227ms)
+build	Run npm test	2026-11-06T17:48:12.3096592Z ✔ 全42面・満点 Q2 早く届けよう / time / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.642061ms)
+build	Run npm test	2026-11-06T17:48:12.3098024Z ✔ 全42面・満点 Q2 早く届けよう / time / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.831357ms)
+build	Run npm test	2026-11-06T17:48:12.3099712Z ✔ 全42面・満点 Q3 速く、少ない道で / time-hops / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.421819ms)
+build	Run npm test	2026-11-06T17:48:12.3101192Z ✔ 全42面・満点 Q3 速く、少ない道で / time-hops / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.423832ms)
+build	Run npm test	2026-11-06T17:48:12.3102671Z ✔ 全42面・満点 Q4 道が一本使えなくても / edge-fault / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.838157ms)
+build	Run npm test	2026-11-06T17:48:12.3104550Z ✔ 全42面・満点 Q4 道が一本使えなくても / edge-fault / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.279598ms)
+build	Run npm test	2026-11-06T17:48:12.3128905Z ✔ 全42面・満点 Q5 プリズムが使えなくても / prism-fault / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.620188ms)
+build	Run npm test	2026-11-06T17:48:12.3139151Z ✔ 全42面・満点 Q5 プリズムが使えなくても / prism-fault / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.685694ms)
+build	Run npm test	2026-11-06T17:48:12.3140360Z ✔ 全42面・満点 Q6 間隔をそろえて鳴らそう / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (5.689508ms)
+build	Run npm test	2026-11-06T17:48:12.3141442Z ✔ 全42面・満点 Q6 間隔をそろえて鳴らそう / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.735306ms)
+build	Run npm test	2026-11-06T17:48:12.3142554Z ✔ 全42面・満点 Q7 分かれ道の先に / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (3.174888ms)
+build	Run npm test	2026-11-06T17:48:12.3143683Z ✔ 全42面・満点 Q7 分かれ道の先に / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.895344ms)
+build	Run npm test	2026-11-06T17:48:12.3144824Z ✔ 全42面・満点 Q8 二つの祭壇へ / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (3.070863ms)
+build	Run npm test	2026-11-06T17:48:12.3145932Z ✔ 全42面・満点 Q8 二つの祭壇へ / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.471107ms)
+build	Run npm test	2026-11-06T17:48:12.3147058Z ✔ 全42面・満点 Q9 三つの響きを導く / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.429801ms)
+build	Run npm test	2026-11-06T17:48:12.3148176Z ✔ 全42面・満点 Q9 三つの響きを導く / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.580393ms)
+build	Run npm test	2026-11-06T17:48:12.3149879Z ✔ 全42面・満点 Q10 分岐を受け継ぐ光 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.910034ms)
+build	Run npm test	2026-11-06T17:48:12.3151500Z ✔ 全42面・満点 Q10 分岐を受け継ぐ光 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.732459ms)
+build	Run npm test	2026-11-06T17:48:12.3153015Z ✔ 全42面・満点 Q11 三つの出口を探して / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.756036ms)
+build	Run npm test	2026-11-06T17:48:12.3170989Z ✔ 全42面・満点 Q11 三つの出口を探して / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.146308ms)
+build	Run npm test	2026-11-06T17:48:12.3172450Z ✔ 全42面・満点 Q12 響きをつなぐ回廊 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.409552ms)
+build	Run npm test	2026-11-06T17:48:12.3176137Z ✔ 全42面・満点 Q12 響きをつなぐ回廊 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.322399ms)
+build	Run npm test	2026-11-06T17:48:12.3177712Z ✔ 全42面・満点 Q13 ふたつの光、ふたつの時刻 / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.673982ms)
+build	Run npm test	2026-11-06T17:48:12.3179182Z ✔ 全42面・満点 Q13 ふたつの光、ふたつの時刻 / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.568654ms)
+build	Run npm test	2026-11-06T17:48:12.3180869Z ✔ 全42面・満点 Q14 三つの流れ星 / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.911164ms)
+build	Run npm test	2026-11-06T17:48:12.3182261Z ✔ 全42面・満点 Q14 三つの流れ星 / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.23764ms)
+build	Run npm test	2026-11-06T17:48:12.3183714Z ✔ 全42面・満点 Q15 合流先の順番待ち / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.739364ms)
+build	Run npm test	2026-11-06T17:48:12.3185146Z ✔ 全42面・満点 Q15 合流先の順番待ち / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.228503ms)
+build	Run npm test	2026-11-06T17:48:12.3186631Z ✔ 全42面・満点 Q16 途中で分けて、さらに分ける / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.018849ms)
+build	Run npm test	2026-11-06T17:48:12.3188924Z ✔ 全42面・満点 Q16 途中で分けて、さらに分ける / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.130157ms)
+build	Run npm test	2026-11-06T17:48:12.3190697Z ✔ 全42面・満点 Q17 三つの光、ひとつの合流点 / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.973805ms)
+build	Run npm test	2026-11-06T17:48:12.3192171Z ✔ 全42面・満点 Q17 三つの光、ひとつの合流点 / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.840153ms)
+build	Run npm test	2026-11-06T17:48:12.3193588Z ✔ 全42面・満点 Q18 四つの光を一秒ずつ / interval / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.079944ms)
+build	Run npm test	2026-11-06T17:48:12.3194996Z ✔ 全42面・満点 Q18 四つの光を一秒ずつ / interval / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.997529ms)
+build	Run npm test	2026-11-06T17:48:12.3196445Z ✔ 全42面・満点 Q19 ふたつの鐘の呼び声 / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.489943ms)
+build	Run npm test	2026-11-06T17:48:12.3198259Z ✔ 全42面・満点 Q19 ふたつの鐘の呼び声 / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.455398ms)
+build	Run npm test	2026-11-06T17:48:12.3200025Z ✔ 全42面・満点 Q20 半秒あとに応えて / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.357755ms)
+build	Run npm test	2026-11-06T17:48:12.3201617Z ✔ 全42面・満点 Q20 半秒あとに応えて / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.718195ms)
+build	Run npm test	2026-11-06T17:48:12.3202899Z ✔ 全42面・満点 Q21 ひとつの分岐、三つの余韻 / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.412417ms)
+build	Run npm test	2026-11-06T17:48:12.3204179Z ✔ 全42面・満点 Q21 ひとつの分岐、三つの余韻 / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.496616ms)
+build	Run npm test	2026-11-06T17:48:12.3205383Z ✔ 全42面・満点 Q22 三つの鐘を順番に / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.337517ms)
+build	Run npm test	2026-11-06T17:48:12.3206532Z ✔ 全42面・満点 Q22 三つの鐘を順番に / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.947365ms)
+build	Run npm test	2026-11-06T17:48:12.3207693Z ✔ 全42面・満点 Q23 のぼる星の三音 / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.303232ms)
+build	Run npm test	2026-11-06T17:48:12.3208844Z ✔ 全42面・満点 Q23 のぼる星の三音 / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.918641ms)
+build	Run npm test	2026-11-06T17:48:12.3210302Z ✔ 全42面・満点 Q24 降りそそぐ星の余韻 / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.543925ms)
+build	Run npm test	2026-11-06T17:48:12.3211524Z ✔ 全42面・満点 Q24 降りそそぐ星の余韻 / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (3.160872ms)
+build	Run npm test	2026-11-06T17:48:12.3219994Z ✔ 全42面・満点 Q25 星へ帰る光 / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.556407ms)
+build	Run npm test	2026-11-06T17:48:12.3221271Z ✔ 全42面・満点 Q25 星へ帰る光 / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.677708ms)
+build	Run npm test	2026-11-06T17:48:12.3222842Z ✔ 全42面・満点 Q26 二度目の分岐 / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.523045ms)
+build	Run npm test	2026-11-06T17:48:12.3224060Z ✔ 全42面・満点 Q26 二度目の分岐 / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.753318ms)
+build	Run npm test	2026-11-06T17:48:12.3225385Z ✔ 全42面・満点 Q27 帰り道を選ぶ / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.117053ms)
+build	Run npm test	2026-11-06T17:48:12.3226593Z ✔ 全42面・満点 Q27 帰り道を選ぶ / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.132553ms)
+build	Run npm test	2026-11-06T17:48:12.3227854Z ✔ 全42面・満点 Q28 二つの響きと帰り道 / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.183899ms)
+build	Run npm test	2026-11-06T17:48:12.3229120Z ✔ 全42面・満点 Q28 二つの響きと帰り道 / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.312828ms)
+build	Run npm test	2026-11-06T17:48:12.3230915Z ✔ 全42面・満点 Q29 帰還を重ねて / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (4.400729ms)
+build	Run npm test	2026-11-06T17:48:12.3232157Z ✔ 全42面・満点 Q29 帰還を重ねて / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (4.448158ms)
+build	Run npm test	2026-11-06T17:48:12.3233365Z ✔ 全42面・満点 Q30 星環の交響 / return-pattern / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.655523ms)
+build	Run npm test	2026-11-06T17:48:12.3234556Z ✔ 全42面・満点 Q30 星環の交響 / return-pattern / 出題5: 全粒終了→1.6秒→結果を保持して編集 (2.282493ms)
+build	Run npm test	2026-11-06T17:48:12.3235790Z ✔ 全42面・満点 Q31 鏡に光を預けて / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.73199ms)
+build	Run npm test	2026-11-06T17:48:12.3236938Z ✔ 全42面・満点 Q31 鏡に光を預けて / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.5454ms)
+build	Run npm test	2026-11-06T17:48:12.3238136Z ✔ 全42面・満点 Q32 鏡の呼び鈴 / bell-sequence / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.477883ms)
+build	Run npm test	2026-11-06T17:48:12.3239301Z ✔ 全42面・満点 Q32 鏡の呼び鈴 / bell-sequence / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.495227ms)
+build	Run npm test	2026-11-06T17:48:12.3240381Z ✔ 全42面・満点 Q33 二枚の鏡、二つの道 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.743712ms)
+build	Run npm test	2026-11-06T17:48:12.3244160Z ✔ 全42面・満点 Q33 二枚の鏡、二つの道 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.631663ms)
+build	Run npm test	2026-11-06T17:48:12.3245836Z ✔ 全42面・満点 Q34 鏡から鏡へ / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.807603ms)
+build	Run npm test	2026-11-06T17:48:12.3247038Z ✔ 全42面・満点 Q34 鏡から鏡へ / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.570458ms)
+build	Run npm test	2026-11-06T17:48:12.3248639Z ✔ 全42面・満点 Q35 一つの反射、三つの響き / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.727391ms)
+build	Run npm test	2026-11-06T17:48:12.3250695Z ✔ 全42面・満点 Q35 一つの反射、三つの響き / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.547544ms)
+build	Run npm test	2026-11-06T17:48:12.3252819Z ✔ 全42面・満点 Q36 月鏡のアンサンブル / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.790831ms)
+build	Run npm test	2026-11-06T17:48:12.3254952Z ✔ 全42面・満点 Q36 月鏡のアンサンブル / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.596225ms)
+build	Run npm test	2026-11-06T17:48:12.3256756Z ✔ 全42面・満点 Q37 開く星の門 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.670985ms)
+build	Run npm test	2026-11-06T17:48:12.3264072Z ✔ 全42面・満点 Q37 開く星の門 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.161159ms)
+build	Run npm test	2026-11-06T17:48:12.3265462Z ✔ 全42面・満点 Q38 待つ道、進む道 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.646299ms)
+build	Run npm test	2026-11-06T17:48:12.3266866Z ✔ 全42面・満点 Q38 待つ道、進む道 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.355494ms)
+build	Run npm test	2026-11-06T17:48:12.3268266Z ✔ 全42面・満点 Q39 開く時を分け合う / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.434593ms)
+build	Run npm test	2026-11-06T17:48:12.3269902Z ✔ 全42面・満点 Q39 開く時を分け合う / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.512068ms)
+build	Run npm test	2026-11-06T17:48:12.3271152Z ✔ 全42面・満点 Q40 二つの門をくぐって / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.945972ms)
+build	Run npm test	2026-11-06T17:48:12.3274080Z ✔ 全42面・満点 Q40 二つの門をくぐって / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.355233ms)
+build	Run npm test	2026-11-06T17:48:12.3275336Z ✔ 全42面・満点 Q41 三つの鐘と星の周期 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (2.214677ms)
+build	Run npm test	2026-11-06T17:48:12.3302147Z ✔ 全42面・満点 Q41 三つの鐘と星の周期 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.649716ms)
+build	Run npm test	2026-11-06T17:48:12.3303422Z ✔ 全42面・満点 Q42 星刻と月鏡の三重奏 / delivery-all / 出題1: 全粒終了→1.6秒→結果を保持して編集 (1.871021ms)
+build	Run npm test	2026-11-06T17:48:12.3304611Z ✔ 全42面・満点 Q42 星刻と月鏡の三重奏 / delivery-all / 出題5: 全粒終了→1.6秒→結果を保持して編集 (1.836366ms)
+build	Run npm test	2026-11-06T17:48:12.3305588Z ✔ 部分点 Q2 / 出題1: 成立した条件と時計を保ち1.6秒待つ (1.126725ms)
+build	Run npm test	2026-11-06T17:48:12.3307555Z ✔ 部分点 Q2 / 出題5: 成立した条件と時計を保ち1.6秒待つ (1.080588ms)
+build	Run npm test	2026-11-06T17:48:12.3308376Z ✔ 部分点 Q9 / 出題1: 成立した条件と時計を保ち1.6秒待つ (2.292602ms)
+build	Run npm test	2026-11-06T17:48:12.3309216Z ✔ 部分点 Q9 / 出題5: 成立した条件と時計を保ち1.6秒待つ (1.895297ms)
+build	Run npm test	2026-11-06T17:48:12.3310316Z ✔ 部分点 Q17 / 出題1: 成立した条件と時計を保ち1.6秒待つ (3.423595ms)
+build	Run npm test	2026-11-06T17:48:12.3311146Z ✔ 部分点 Q17 / 出題5: 成立した条件と時計を保ち1.6秒待つ (3.590799ms)
+build	Run npm test	2026-11-06T17:48:12.3339031Z ✔ 部分点 Q22 / 出題1: 成立した条件と時計を保ち1.6秒待つ (2.933435ms)
+build	Run npm test	2026-11-06T17:48:12.3340358Z ✔ 部分点 Q22 / 出題5: 成立した条件と時計を保ち1.6秒待つ (2.454487ms)
+build	Run npm test	2026-11-06T17:48:12.3341145Z ✔ 部分点 Q25 / 出題1: 成立した条件と時計を保ち1.6秒待つ (1.576107ms)
+build	Run npm test	2026-11-06T17:48:12.3341778Z ✔ 部分点 Q25 / 出題5: 成立した条件と時計を保ち1.6秒待つ (1.888173ms)
+build	Run npm test	2026-11-06T17:48:12.3342198Z ✔ 部分点 Q29 / 出題1: 成立した条件と時計を保ち1.6秒待つ (3.47367ms)
+build	Run npm test	2026-11-06T17:48:12.3342615Z ✔ 部分点 Q29 / 出題5: 成立した条件と時計を保ち1.6秒待つ (3.104286ms)
+build	Run npm test	2026-11-06T17:48:12.3343021Z ✔ 部分点 Q31 / 出題1: 成立した条件と時計を保ち1.6秒待つ (1.043278ms)
+build	Run npm test	2026-11-06T17:48:12.3343419Z ✔ 部分点 Q31 / 出題5: 成立した条件と時計を保ち1.6秒待つ (1.050662ms)
+build	Run npm test	2026-11-06T17:48:12.3343838Z ✔ 部分点 Q42 / 出題1: 成立した条件と時計を保ち1.6秒待つ (1.968093ms)
+build	Run npm test	2026-11-06T17:48:12.3345670Z ✔ 部分点 Q42 / 出題5: 成立した条件と時計を保ち1.6秒待つ (1.590474ms)
+build	Run npm test	2026-11-06T17:48:12.3355815Z ✔ 帰還の不成立 Q25 / 出題1: 確定不一致で完了してから1.6秒待つ (1.381774ms)
+build	Run npm test	2026-11-06T17:48:12.3357166Z ✔ 帰還の不成立 Q25 / 出題5: 確定不一致で完了してから1.6秒待つ (1.323133ms)
+build	Run npm test	2026-11-06T17:48:12.3358265Z ✔ 帰還の不成立 Q26 / 出題1: 確定不一致で完了してから1.6秒待つ (1.725058ms)
+build	Run npm test	2026-11-06T17:48:12.3359986Z ✔ 帰還の不成立 Q26 / 出題5: 確定不一致で完了してから1.6秒待つ (2.064475ms)
+build	Run npm test	2026-11-06T17:48:12.3361151Z ✔ 帰還の不成立 Q27 / 出題1: 確定不一致で完了してから1.6秒待つ (1.505525ms)
+build	Run npm test	2026-11-06T17:48:12.3362338Z ✔ 帰還の不成立 Q27 / 出題5: 確定不一致で完了してから1.6秒待つ (1.784069ms)
+build	Run npm test	2026-11-06T17:48:12.3363244Z ✔ 帰還の不成立 Q28 / 出題1: 確定不一致で完了してから1.6秒待つ (1.165387ms)
+build	Run npm test	2026-11-06T17:48:12.3364108Z ✔ 帰還の不成立 Q28 / 出題5: 確定不一致で完了してから1.6秒待つ (1.282096ms)
+build	Run npm test	2026-11-06T17:48:12.3364963Z ✔ 帰還の不成立 Q29 / 出題1: 確定不一致で完了してから1.6秒待つ (1.228004ms)
+build	Run npm test	2026-11-06T17:48:12.3365813Z ✔ 帰還の不成立 Q29 / 出題5: 確定不一致で完了してから1.6秒待つ (2.237369ms)
+build	Run npm test	2026-11-06T17:48:12.3366660Z ✔ 帰還の不成立 Q30 / 出題1: 確定不一致で完了してから1.6秒待つ (1.224248ms)
+build	Run npm test	2026-11-06T17:48:12.3367568Z ✔ 帰還の不成立 Q30 / 出題5: 確定不一致で完了してから1.6秒待つ (1.346537ms)
+build	Run npm test	2026-11-06T17:48:12.3368462Z ✔ 到達不能 Q1 はじめの一音: 光なしの終了も1.6秒待ち、未達成を保持 (0.659177ms)
+build	Run npm test	2026-11-06T17:48:12.3369328Z ✔ 到達不能 Q2 早く届けよう: 光なしの終了も1.6秒待ち、未達成を保持 (0.470393ms)
+build	Run npm test	2026-11-06T17:48:12.3372420Z ✔ 到達不能 Q3 速く、少ない道で: 光なしの終了も1.6秒待ち、未達成を保持 (0.472738ms)
+build	Run npm test	2026-11-06T17:48:12.3373341Z ✔ 到達不能 Q4 道が一本使えなくても: 光なしの終了も1.6秒待ち、未達成を保持 (0.593043ms)
+build	Run npm test	2026-11-06T17:48:12.3374307Z ✔ 到達不能 Q5 プリズムが使えなくても: 光なしの終了も1.6秒待ち、未達成を保持 (0.840868ms)
+build	Run npm test	2026-11-06T17:48:12.3375227Z ✔ 到達不能 Q6 間隔をそろえて鳴らそう: 光なしの終了も1.6秒待ち、未達成を保持 (0.638839ms)
+build	Run npm test	2026-11-06T17:48:12.3376108Z ✔ 到達不能 Q7 分かれ道の先に: 光なしの終了も1.6秒待ち、未達成を保持 (0.592071ms)
+build	Run npm test	2026-11-06T17:48:12.3376977Z ✔ 到達不能 Q8 二つの祭壇へ: 光なしの終了も1.6秒待ち、未達成を保持 (0.683363ms)
+build	Run npm test	2026-11-06T17:48:12.3377838Z ✔ 到達不能 Q9 三つの響きを導く: 光なしの終了も1.6秒待ち、未達成を保持 (0.811844ms)
+build	Run npm test	2026-11-06T17:48:12.3378729Z ✔ 到達不能 Q10 分岐を受け継ぐ光: 光なしの終了も1.6秒待ち、未達成を保持 (1.080157ms)
+build	Run npm test	2026-11-06T17:48:12.3379874Z ✔ 到達不能 Q11 三つの出口を探して: 光なしの終了も1.6秒待ち、未達成を保持 (0.683853ms)
+build	Run npm test	2026-11-06T17:48:12.3381108Z ✔ 到達不能 Q12 響きをつなぐ回廊: 光なしの終了も1.6秒待ち、未達成を保持 (0.663034ms)
+build	Run npm test	2026-11-06T17:48:12.3382030Z ✔ 到達不能 Q13 ふたつの光、ふたつの時刻: 光なしの終了も1.6秒待ち、未達成を保持 (0.544612ms)
+build	Run npm test	2026-11-06T17:48:12.3382924Z ✔ 到達不能 Q14 三つの流れ星: 光なしの終了も1.6秒待ち、未達成を保持 (0.614564ms)
+build	Run npm test	2026-11-06T17:48:12.3384310Z ✔ 到達不能 Q15 合流先の順番待ち: 光なしの終了も1.6秒待ち、未達成を保持 (0.560201ms)
+build	Run npm test	2026-11-06T17:48:12.3386102Z ✔ 到達不能 Q16 途中で分けて、さらに分ける: 光なしの終了も1.6秒待ち、未達成を保持 (0.671601ms)
+build	Run npm test	2026-11-06T17:48:12.3388012Z ✔ 到達不能 Q17 三つの光、ひとつの合流点: 光なしの終了も1.6秒待ち、未達成を保持 (0.811553ms)
+build	Run npm test	2026-11-06T17:48:12.3389848Z ✔ 到達不能 Q18 四つの光を一秒ずつ: 光なしの終了も1.6秒待ち、未達成を保持 (0.656342ms)
+build	Run npm test	2026-11-06T17:48:12.3392031Z ✔ 到達不能 Q19 ふたつの鐘の呼び声: 光なしの終了も1.6秒待ち、未達成を保持 (0.65532ms)
+build	Run npm test	2026-11-06T17:48:12.3393892Z ✔ 到達不能 Q20 半秒あとに応えて: 光なしの終了も1.6秒待ち、未達成を保持 (0.663284ms)
+build	Run npm test	2026-11-06T17:48:12.3396009Z ✔ 到達不能 Q21 ひとつの分岐、三つの余韻: 光なしの終了も1.6秒待ち、未達成を保持 (0.728657ms)
+build	Run npm test	2026-11-06T17:48:12.3397617Z ✔ 到達不能 Q22 三つの鐘を順番に: 光なしの終了も1.6秒待ち、未達成を保持 (0.679115ms)
+build	Run npm test	2026-11-06T17:48:12.3399255Z ✔ 到達不能 Q23 のぼる星の三音: 光なしの終了も1.6秒待ち、未達成を保持 (0.733828ms)
+build	Run npm test	2026-11-06T17:48:12.3401840Z ✔ 到達不能 Q24 降りそそぐ星の余韻: 光なしの終了も1.6秒待ち、未達成を保持 (1.104413ms)
+build	Run npm test	2026-11-06T17:48:12.3403966Z ✔ 到達不能 Q25 星へ帰る光: 光なしの終了も1.6秒待ち、未達成を保持 (0.562075ms)
+build	Run npm test	2026-11-06T17:48:12.3405578Z ✔ 到達不能 Q26 二度目の分岐: 光なしの終了も1.6秒待ち、未達成を保持 (0.493696ms)
+build	Run npm test	2026-11-06T17:48:12.3407537Z ✔ 到達不能 Q27 帰り道を選ぶ: 光なしの終了も1.6秒待ち、未達成を保持 (0.518122ms)
+build	Run npm test	2026-11-06T17:48:12.3408546Z ✔ 到達不能 Q28 二つの響きと帰り道: 光なしの終了も1.6秒待ち、未達成を保持 (0.488157ms)
+build	Run npm test	2026-11-06T17:48:12.3417010Z ✔ 到達不能 Q29 帰還を重ねて: 光なしの終了も1.6秒待ち、未達成を保持 (0.519455ms)
+build	Run npm test	2026-11-06T17:48:12.3417961Z ✔ 到達不能 Q30 星環の交響: 光なしの終了も1.6秒待ち、未達成を保持 (0.474942ms)
+build	Run npm test	2026-11-06T17:48:12.3418474Z ✔ 到達不能 Q31 鏡に光を預けて: 光なしの終了も1.6秒待ち、未達成を保持 (0.596941ms)
+build	Run npm test	2026-11-06T17:48:12.3438617Z ✔ 到達不能 Q32 鏡の呼び鈴: 光なしの終了も1.6秒待ち、未達成を保持 (0.617699ms)
+build	Run npm test	2026-11-06T17:48:12.3439751Z ✔ 到達不能 Q33 二枚の鏡、二つの道: 光なしの終了も1.6秒待ち、未達成を保持 (0.62296ms)
+build	Run npm test	2026-11-06T17:48:12.3441406Z ✔ 到達不能 Q34 鏡から鏡へ: 光なしの終了も1.6秒待ち、未達成を保持 (0.646764ms)
+build	Run npm test	2026-11-06T17:48:12.3447416Z ✔ 到達不能 Q35 一つの反射、三つの響き: 光なしの終了も1.6秒待ち、未達成を保持 (0.655681ms)
+build	Run npm test	2026-11-06T17:48:12.3448629Z ✔ 到達不能 Q36 月鏡のアンサンブル: 光なしの終了も1.6秒待ち、未達成を保持 (0.642095ms)
+build	Run npm test	2026-11-06T17:48:12.3450430Z ✔ 到達不能 Q37 開く星の門: 光なしの終了も1.6秒待ち、未達成を保持 (0.589176ms)
+build	Run npm test	2026-11-06T17:48:12.3456331Z ✔ 到達不能 Q38 待つ道、進む道: 光なしの終了も1.6秒待ち、未達成を保持 (0.83675ms)
+build	Run npm test	2026-11-06T17:48:12.3457503Z ✔ 到達不能 Q39 開く時を分け合う: 光なしの終了も1.6秒待ち、未達成を保持 (0.923173ms)
+build	Run npm test	2026-11-06T17:48:12.3458451Z ✔ 到達不能 Q40 二つの門をくぐって: 光なしの終了も1.6秒待ち、未達成を保持 (1.152052ms)
+build	Run npm test	2026-11-06T17:48:12.3459391Z ✔ 到達不能 Q41 三つの鐘と星の周期: 光なしの終了も1.6秒待ち、未達成を保持 (0.749547ms)
+build	Run npm test	2026-11-06T17:48:12.3460783Z ✔ 到達不能 Q42 星刻と月鏡の三重奏: 光なしの終了も1.6秒待ち、未達成を保持 (0.808097ms)
+build	Run npm test	2026-11-06T17:48:12.3461695Z ✔ 合成の安全上限 Q1 / 連続再生: 未確定を無得点のまま1.6秒待つ (0.961675ms)
+build	Run npm test	2026-11-06T17:48:12.3462553Z ✔ 合成の安全上限 Q1 / 次の動き: 未確定を無得点のまま1.6秒待つ (1.001089ms)
+build	Run npm test	2026-11-06T17:48:12.3463399Z ✔ 合成の安全上限 Q3 / 連続再生: 未確定を無得点のまま1.6秒待つ (0.590148ms)
+build	Run npm test	2026-11-06T17:48:12.3464233Z ✔ 合成の安全上限 Q3 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.635323ms)
+build	Run npm test	2026-11-06T17:48:12.3465061Z ✔ 合成の安全上限 Q4 / 連続再生: 未確定を無得点のまま1.6秒待つ (1.344954ms)
+build	Run npm test	2026-11-06T17:48:12.3480587Z ✔ 合成の安全上限 Q4 / 次の動き: 未確定を無得点のまま1.6秒待つ (1.423702ms)
+build	Run npm test	2026-11-06T17:48:12.3481578Z ✔ 合成の安全上限 Q5 / 連続再生: 未確定を無得点のまま1.6秒待つ (1.010587ms)
+build	Run npm test	2026-11-06T17:48:12.3482455Z ✔ 合成の安全上限 Q5 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.985499ms)
+build	Run npm test	2026-11-06T17:48:12.3483305Z ✔ 合成の安全上限 Q6 / 連続再生: 未確定を無得点のまま1.6秒待つ (1.216964ms)
+build	Run npm test	2026-11-06T17:48:12.3488642Z ✔ 合成の安全上限 Q6 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.97503ms)
+build	Run npm test	2026-11-06T17:48:12.3489763Z ✔ 合成の安全上限 Q7 / 連続再生: 未確定を無得点のまま1.6秒待つ (1.064658ms)
+build	Run npm test	2026-11-06T17:48:12.3490993Z ✔ 合成の安全上限 Q7 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.656603ms)
+build	Run npm test	2026-11-06T17:48:12.3492186Z ✔ 合成の安全上限 Q19 / 連続再生: 未確定を無得点のまま1.6秒待つ (0.788539ms)
+build	Run npm test	2026-11-06T17:48:12.3493206Z ✔ 合成の安全上限 Q19 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.690315ms)
+build	Run npm test	2026-11-06T17:48:12.3494302Z ✔ 合成の安全上限 Q25 / 連続再生: 未確定を無得点のまま1.6秒待つ (0.736963ms)
+build	Run npm test	2026-11-06T17:48:12.3495118Z ✔ 合成の安全上限 Q25 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.693883ms)
+build	Run npm test	2026-11-06T17:48:12.3495857Z ✔ 合成の安全上限 Q31 / 連続再生: 未確定を無得点のまま1.6秒待つ (0.766809ms)
+build	Run npm test	2026-11-06T17:48:12.3496574Z ✔ 合成の安全上限 Q31 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.786446ms)
+build	Run npm test	2026-11-06T17:48:12.3497295Z ✔ 合成の安全上限 Q42 / 連続再生: 未確定を無得点のまま1.6秒待つ (1.483794ms)
+build	Run npm test	2026-11-06T17:48:12.3498281Z ✔ 合成の安全上限 Q42 / 次の動き: 未確定を無得点のまま1.6秒待つ (0.919936ms)
+build	Run npm test	2026-11-06T17:48:12.3499156Z ✔ 合成の安全上限・achieved確定済み: 残粒だけを止め、確定得点と全記録を1.6秒待機後も保持 (1.208378ms)
+build	Run npm test	2026-11-06T17:48:12.3500324Z ✔ 合成の安全上限・failed確定済み: 残粒だけを止め、確定得点と全記録を1.6秒待機後も保持 (0.829927ms)
+build	Run npm test	2026-11-06T17:48:12.3501140Z ✔ 終了網羅の台帳は全42面・8判定種別・帰還6面・両解答系統を含む (0.197621ms)
+build	Run npm test	2026-11-06T17:48:12.4143505Z ✔ 一本故障の全ケースを元の回路から独立に計算し、最悪時間を選ぶ (4.094174ms)
+build	Run npm test	2026-11-06T17:48:12.4149117Z ✔ 中継点故障は出発点・祭壇を除き、到達不能のケースを隠さない (1.589583ms)
+build	Run npm test	2026-11-06T17:48:12.4188362Z ✔ 確定した時間の式：最短2秒・今回4秒は75点、基準時間なら100点 (0.39972ms)
+build	Run npm test	2026-11-06T17:48:12.4210258Z ✔ 時間と本数の技術案は時間を第一、同時刻なら本数を第二にする (0.275878ms)
+build	Run npm test	2026-11-06T17:48:12.9325349Z ✔ 鏡の導入面は鏡を通らずに鐘へ届く候補を持たず、旧版の最高点は新版と区別する (9.641806ms)
+build	Run npm test	2026-11-06T17:48:12.9330959Z ✔ 0.88.0の構成改訂13面と旧定義・出題の境界は固定資料で再確認する (4.671448ms)
+build	Run npm test	2026-11-06T17:48:12.9333295Z ✔ 構成改訂前の元条件と成績は新版の満点と混ざらず残る (38.874669ms)
+build	Run npm test	2026-11-06T17:48:12.9335568Z ✔ 新18面は表示25〜42、専用背景の6面セット、各8出題と2つの満点配線系統を持つ (1.167521ms)
+build	Run npm test	2026-11-06T17:48:12.9339320Z ✔ 星への帰還の全48出題をSessionで満点・部分点に採点し、元条件と最高点を保存する (114.292242ms)
+build	Run npm test	2026-11-06T17:48:12.9341288Z ✔ 月鏡の静殿の全48出題をSessionで満点・部分点に採点し、元条件と最高点を保存する (81.202168ms)
+build	Run npm test	2026-11-06T17:48:12.9344104Z ✔ 星刻の開廊の全48出題をSessionで満点・部分点に採点し、元条件と最高点を保存する (92.123075ms)
+build	Run npm test	2026-11-06T17:48:12.9350219Z ✔ 新18面の再挑戦・記録・練習の往復・配線クリアは出題を保ち、選び直しで満点配線の系統を変える (62.972065ms)
+build	Run npm test	2026-11-06T17:48:12.9354073Z ✔ 24→25、30→31、36→37へ続き、42面の次は一覧へ戻る (5.40853ms)
+build	Run npm test	2026-11-06T17:48:12.9356394Z ✔ 周期が閉じた到着は消えずに待ち、一時停止では位相を保ち、再開後の全記録も同じになる (16.424576ms)
+build	Run npm test	2026-11-06T17:48:13.0077265Z ✔ AC-10：初回2.5秒・間隔2秒の三到達は6.5秒の実到達後に確定する (3.87323ms)
+build	Run npm test	2026-11-06T17:48:13.0083980Z ✔ 例A：鐘へ出られない循環が残っても実到達1・3・5秒で達成する (1.296464ms)
+build	Run npm test	2026-11-06T17:48:13.0090541Z ✔ 例B：鐘へ出る循環では1・3・5秒の三到達後も追加があるため未達成 (0.662112ms)
+build	Run npm test	2026-11-06T17:48:13.0095308Z ✔ 直前の道を除く：単に地点がつながっていても、送り返せない道の先は将来到達にしない (0.33541ms)
+build	Run npm test	2026-11-06T17:48:13.0101886Z ✔ 移動中と長い待ち列も将来到達へ含め、別の鐘で終了する道筋は転送しない (1.425194ms)
+build	Run npm test	2026-11-06T17:48:13.0103519Z ✔ 間隔は厳密一致で、停止後も確定した結果を保持し、未確定の途中停止とは区別する (0.803639ms)
+build	Run npm test	2026-11-06T17:48:13.1503141Z ✔ 開閉6面は旧条件の時刻を半分にし、最終面の開く幅を保つ (2.236918ms)
+build	Run npm test	2026-11-06T17:48:13.1512516Z ✔ 正確な0.05秒刻みで満点・部分点・失敗の終了を別々に検証する (21.986294ms)
+build	Run npm test	2026-11-06T17:48:13.1513609Z ✔ 全48出題は余裕のある開始幅と短い実動時間を備え、旧出題と混ざらない (44.935284ms)
+build	Run npm test	2026-11-06T17:48:13.1606565Z ℹ tests 200
+build	Run npm test	2026-11-06T17:48:13.1606984Z ℹ suites 0
+build	Run npm test	2026-11-06T17:48:13.1607345Z ℹ pass 200
+build	Run npm test	2026-11-06T17:48:13.1607700Z ℹ fail 0
+build	Run npm test	2026-11-06T17:48:13.1607986Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:48:13.1608271Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:48:13.1608481Z ℹ todo 0
+build	Run npm test	2026-11-06T17:48:13.1608727Z ℹ duration_ms 1240.808915
+build	Run npm test	2026-11-06T17:48:13.1672747Z Test batch 4: tests/instant-reflection.test.js, tests/load-meter.test.js, tests/magnifier.test.js, tests/mirror-optics.test.js, tests/mirror-output-finish.test.js
+build	Run npm test	2026-11-06T17:48:13.2994959Z ✔ 鏡は初期値0秒で、反射の連鎖は同じ時刻に届き、最短経路と記録も一致する (4.134941ms)
+build	Run npm test	2026-11-06T17:48:13.2996803Z ✔ 鏡から出る道以外の0秒と、0.1秒未満の正の移動時間は許可しない (1.231572ms)
+build	Run npm test	2026-11-06T17:48:13.2998714Z ✔ 同時に届いた二つの光を鏡で待たせず、同じ時刻に鐘へ反射する (0.816452ms)
+build	Run npm test	2026-11-06T17:48:13.3000110Z ✔ 対象7面の全56出題は鏡と出力が0秒になり、旧成績を区別する (3.42586ms)
+build	Run npm test	2026-11-06T17:48:13.3002929Z ✔ 0秒で回り続ける三枚の鏡は拒否し、待機のある循環は維持する (1.158474ms)
+build	Run npm test	2026-11-06T17:48:13.3004746Z ✔ 開閉待ちで時刻が進む0秒循環は通し、実際に同時刻で回る循環だけ停止する (1.635249ms)
+build	Run npm test	2026-11-06T17:48:13.3010237Z ✔ 同じ双方向線への即時の折返しは従来どおり通らず、0秒の循環と誤認しない (0.390403ms)
+build	Run npm test	2026-11-06T17:48:13.3023329Z ✔ 自由で新しくつなぐ鏡の出力は0秒、保存済みの明示した時間は保持する (2.345402ms)
+build	Run npm test	2026-11-06T17:48:13.3024260Z ✔ 0秒の移動途中で負荷停止しても粒の描画で0除算しない (1.702214ms)
+build	Run npm test	2026-11-06T17:48:13.3654316Z ✔ 計算・描画・音・記録の実測を分け、長い単発と続く遅い描画を検出する (1.773789ms)
+build	Run npm test	2026-11-06T17:48:13.3660489Z ✔ 時間の予算を超えた同時刻処理を保持し、再開後は通常の全記録と一致する (4.465932ms)
+build	Run npm test	2026-11-06T17:48:13.3667154Z ✔ 計算内の保存処理を二重計上せず、例外でも測定状態を閉じる (1.322121ms)
+build	Run npm test	2026-11-06T17:48:13.4236916Z ✔ 拡大補助は見える範囲を広げる倍率にし、指が離れている間は同じ位置と大きさを保つ (5.325304ms)
+build	Run npm test	2026-11-06T17:48:13.4246271Z ✔ 指が窓に近づいた時だけ避け、移動後も窓の大きさを変えない (0.819408ms)
+build	Run npm test	2026-11-06T17:48:13.4255382Z ✔ 小さい盤面でも窓は盤面内に収まり、場所がないときは表示しない (0.454102ms)
+build	Run npm test	2026-11-06T17:48:13.4257069Z ✔ 下側に指がある時は上側を優先し、名前や秒数の保護領域も避ける (0.317526ms)
+build	Run npm test	2026-11-06T17:48:13.5028313Z ✔ 空きがある場所では鏡から110pxの近い回転盤を選ぶ (1.408153ms)
+build	Run npm test	2026-11-06T17:48:13.5032378Z ✔ 離した回転盤は画面内でパーツを避け、同じ条件なら同じ場所を選ぶ (1.078634ms)
+build	Run npm test	2026-11-06T17:48:13.5035475Z ✔ 鏡面を基準に入射と反射が対称となり、鏡の回転量の2倍だけ反射先が変わる (0.287339ms)
+build	Run npm test	2026-11-06T17:48:13.5038101Z ✔ 反射方向から鏡面を求められ、折返し境界と反対方向でも成立する (0.631506ms)
+build	Run npm test	2026-11-06T17:48:13.5042731Z ✔ 22度まで新しい相手を捉え、円周の境界をまたぐ候補も扱う (1.193079ms)
+build	Run npm test	2026-11-06T17:48:13.5046739Z ✔ 一度選んだ相手は30度まで保持し、別候補が4度より明確に近い時だけ切り替える (0.216626ms)
+build	Run npm test	2026-11-06T17:48:13.5050207Z ✔ 近さの差が4度以内なら勝手に相手を選ばず、同じ向きの相手も区別を保つ (0.175259ms)
+build	Run npm test	2026-11-06T17:48:13.5063479Z ✔ 初期の反射光は入ってきた光の先へ向け、空きがあれば延長方向を保つ (0.254548ms)
+build	Run npm test	2026-11-06T17:48:13.5064541Z ✔ 延長上のパーツだけを小さく避け、混雑時も進行方向から18度以内に収める (7.959418ms)
+build	Run npm test	2026-11-06T17:48:13.5065442Z ✔ 初期プレビューは結線を増やさず、確定済みの反射先は以前の向きを保つ (1.411039ms)
+build	Run npm test	2026-11-06T17:48:13.5695223Z ✔ 鏡の出力を解放して確定したら回転操作を閉じ、次の結線先を選ぶ (1.926856ms)
+build	Run npm test	2026-11-06T17:48:13.5700557Z ✔ 照準を外した解放と回転しないタップでは回転操作と盤の位置を保つ (0.348454ms)
+build	Run npm test	2026-11-06T17:48:13.5706247Z ✔ 鏡までの連続結線と反射先を確定しても次の操作を妨げない (0.218801ms)
+build	Run npm test	2026-11-06T17:48:13.5712948Z ✔ 中心内や半径方向への移動だけでは出力を確定せず、回転操作を続けられる (0.208471ms)
+build	Run npm test	2026-11-06T17:48:13.5811054Z ℹ tests 30
+build	Run npm test	2026-11-06T17:48:13.5811595Z ℹ suites 0
+build	Run npm test	2026-11-06T17:48:13.5812497Z ℹ pass 30
+build	Run npm test	2026-11-06T17:48:13.5812911Z ℹ fail 0
+build	Run npm test	2026-11-06T17:48:13.5813336Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:48:13.5813756Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:48:13.5814149Z ℹ todo 0
+build	Run npm test	2026-11-06T17:48:13.5814606Z ℹ duration_ms 374.457033
+build	Run npm test	2026-11-06T17:48:13.5873166Z Test batch 5: tests/mirror-selection-delay.test.js, tests/mirror-tempo.test.js, tests/mirror-wheel.test.js, tests/mirror.test.js, tests/motion.test.js
+build	Run npm test	2026-11-06T17:48:13.6844126Z ✔ 鏡までの配線を解放時に確定し、即時の選択を消してから自動選択を予約する (1.755575ms)
+build	Run npm test	2026-11-06T17:48:13.6848827Z ✔ 結線後の自動選択は100ms待ち、待機中は鏡を選択しない (0.876465ms)
+build	Run npm test	2026-11-06T17:48:13.6851329Z ✔ 新しい入力・取り消し・別の回路・実行開始・非表示・画面遷移では後から選択しない (0.727545ms)
+build	Run npm test	2026-11-06T17:48:13.7722915Z ✔ 鏡の6面は満点到達5秒以内、全経路8秒以内、道の移動1.2秒以内に収める (1.224398ms)
+build	Run npm test	2026-11-06T17:48:13.7730330Z ✔ 鏡の導入面には1秒台で満点に届く出題を残す (0.167866ms)
+build	Run npm test	2026-11-06T17:48:13.7738192Z ✔ 複雑な二枚の鏡と三つの鐘も、1秒台で満点に届く出題を残す (0.23472ms)
+build	Run npm test	2026-11-06T17:48:13.7742938Z ✔ 呼び鈴の面は全8出題で0.1秒後に高音、0.5秒後に低音へ実際に到達する (7.684903ms)
+build	Run npm test	2026-11-06T17:48:13.7748725Z ✔ 32面の旧全鐘到達の成績は、順番と間隔の新版でも残して区別する (4.122718ms)
+build	Run npm test	2026-11-06T17:48:13.8329413Z ✔ 円周のどこからでも、指を置いた向きではなくなぞった角度だけ回す (1.143747ms)
+build	Run npm test	2026-11-06T17:48:13.8337585Z ✔ 円周から指が外れても、中心を通らなければ回転を続けられる (0.171192ms)
+build	Run npm test	2026-11-06T17:48:13.8344068Z ✔ 中心からの開始・中心通過・イベント間での中心横断では向きを飛ばさない (0.201728ms)
+build	Run npm test	2026-11-06T17:48:13.8347366Z ✔ 実際の移動処理で中心通過を保留し、次の円周操作から滑らかに再開する (0.829628ms)
+build	Run npm test	2026-11-06T17:48:13.9260132Z ✔ 読み込んだ鏡の反射先へ並行する複数の有効配線は受け付けず、分岐を防ぐ (4.228186ms)
+build	Run npm test	2026-11-06T17:48:13.9267195Z ✔ 鏡は選んだ一方向だけへ反射し、実行・今後の到達・最短経路が同じ向きを使う (2.169251ms)
+build	Run npm test	2026-11-06T17:48:13.9268105Z ✔ 本数上限いっぱいでも鏡からの配線を一度で置き換え、無効な候補では全条件を保持する (2.332388ms)
+build	Run npm test	2026-11-06T17:48:13.9268923Z ✔ 自由に読み込んだ鏡は使用状態を変えられ、反射先の点を消した時は方向を未選択に戻す (3.266711ms)
+build	Run npm test	2026-11-06T17:48:13.9272457Z ✔ 鏡の向きが未選択か、その向きの道がない時は光を出さない (0.998714ms)
+build	Run npm test	2026-11-06T17:48:13.9277070Z ✔ 反射先は存在する別の点に限定し、未配線の点を選ぶ状態は保持する (0.743525ms)
+build	Run npm test	2026-11-06T17:48:13.9283855Z ✔ 鏡と選択方向をファイルと保存枠で往復し、旧形式の点には項目を追加しない (1.740797ms)
+build	Run npm test	2026-11-06T17:48:13.9288407Z ✔ 同じ配線済み方向は選択だけにし、全配線クリア後も向きを残して再接続できる (1.035734ms)
+build	Run npm test	2026-11-06T17:48:13.9291776Z ✔ 鏡への入力配線は向きを変えず、鏡からの変更は他の点の配線を残す (2.788473ms)
+build	Run npm test	2026-11-06T17:48:13.9297600Z ✔ 鏡でも通常の処理待ちを使い、同時に届く光を選んだ方向へ順番に出す (0.572695ms)
+build	Run npm test	2026-11-06T17:48:13.9303543Z ✔ 両方向の道も鏡側では選んだ反射先だけへ通し、入力側の道は残す (0.741621ms)
+build	Run npm test	2026-11-06T17:48:13.9304672Z ✔ 別の反射先から入力側の双方向線へ向け直す時も、既存線をそのまま再利用する (1.680714ms)
+build	Run npm test	2026-11-06T17:48:13.9894074Z ✔ 演出の初期値は端末に従い、端末側の変更も読み取りだけで反映する (1.672909ms)
+build	Run npm test	2026-11-06T17:48:13.9898529Z ✔ 通常・控えめの明示選択は端末設定から独立し、自動へ戻すと再び追従する (0.345949ms)
+build	Run npm test	2026-11-06T17:48:13.9912475Z ✔ 保存済みの選択を再起動と別タブの再読込で復元し、ゲームの保存形式へ混ぜない (3.778711ms)
+build	Run npm test	2026-11-06T17:48:13.9916187Z ✔ 壊れた値や未知の版は上書きせず端末に従い、明示選択でだけ保存し直す (0.311234ms)
+build	Run npm test	2026-11-06T17:48:13.9917447Z ✔ 保存が拒否されても旧設定と元データを保ち、誤った選択は書き込まない (0.689374ms)
+build	Run npm test	2026-11-06T17:48:13.9918758Z ✔ 旧ブラウザの端末設定通知でも自動選択が追従する (0.203352ms)
+build	Run npm test	2026-11-06T17:48:14.0015493Z ℹ tests 30
+build	Run npm test	2026-11-06T17:48:14.0015940Z ℹ suites 0
+build	Run npm test	2026-11-06T17:48:14.0016304Z ℹ pass 30
+build	Run npm test	2026-11-06T17:48:14.0016655Z ℹ fail 0
+build	Run npm test	2026-11-06T17:48:14.0017019Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:48:14.0017394Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:48:14.0017749Z ℹ todo 0
+build	Run npm test	2026-11-06T17:48:14.0018152Z ℹ duration_ms 380.838543
+build	Run npm test	2026-11-06T17:48:14.0088065Z Test batch 6: tests/offline-update.test.js, tests/outcome-sound.test.js, tests/periodic.test.js, tests/pwa-assets.test.js, tests/random-challenges.test.js
+build	Run npm test	2026-11-06T17:48:14.2058341Z ✔ 資材の取得は短い状態確認より長く待ち、正常な遅い応答を時間切れにしない (111.421104ms)
+build	Run npm test	2026-11-06T17:48:14.2664464Z ✔ 通信が進んでいるインストールを30秒相当で失敗扱いにしない (60.728525ms)
+build	Run npm test	2026-11-06T17:48:14.2690979Z ✔ 資材準備の応答を待つ間も確認中を保持し、重複した確認をまとめる (2.007959ms)
+build	Run npm test	2026-11-06T17:48:14.2693427Z ✔ 資材準備がready:falseを返したら成功表示にせず失敗を伝える (1.095185ms)
+build	Run npm test	2026-11-06T17:48:14.2697316Z ✔ 通信なしの確認では保存済み資材を保持し、最新版確認済みと扱わない (0.359304ms)
+build	Run npm test	2026-11-06T17:48:14.2742759Z ✔ 更新資材のインストール完了まで確認を終えず、失敗時は旧版を保持する (1.810938ms)
+build	Run npm test	2026-11-06T17:48:14.2747526Z ✔ ブラウザがオンラインでも版情報を取得できなければ最新版と表示しない (0.535204ms)
+build	Run npm test	2026-11-06T17:48:14.2748394Z ✔ 更新の最終確認を待っている間の状態変更で適用を拒否する (0.82078ms)
+build	Run npm test	2026-11-06T17:48:14.2749197Z ✔ 資材不足で適用を拒否された後、別タブの更新でも再読込しない (0.636334ms)
+build	Run npm test	2026-11-06T17:48:14.2754220Z ✔ 承認した状態が適用完了直前に変わった場合も再読込しない (2.059946ms)
+build	Run npm test	2026-11-06T17:48:14.2762358Z ✔ 適用完了の応答が来ない場合は許可を解除し、後の更新で再読込しない (0.932931ms)
+build	Run npm test	2026-11-06T17:48:14.3668346Z ✔ 時間切れ後の続行中は結果音を保留し、最後の到達の後で一度だけ予約する (6.367782ms)
+build	Run npm test	2026-11-06T17:48:14.3672884Z ✔ 続行中に非表示・消音になった結果音を復帰後に持ち越さない (0.98029ms)
+build	Run npm test	2026-11-06T17:48:14.3682643Z ✔ 実際の満点と部分点の結果で音を分け、再表示では重ねない (4.117769ms)
+build	Run npm test	2026-11-06T17:48:14.3692984Z ✔ 最初の到達で達成しても後続の鐘がある間はジングルを保留する (1.537235ms)
+build	Run npm test	2026-11-06T17:48:14.3693710Z ✔ 小数の部分点を満点と扱わず、通常クリアの音を使う (1.404186ms)
+build	Run npm test	2026-11-06T17:48:14.3694572Z ✔ 未達成が判明しても光が動いている間は待ち、終了時に一度だけ鳴らす (1.936064ms)
+build	Run npm test	2026-11-06T17:48:14.3701142Z ✔ 途中停止と確定前には鳴らさず、隠れた結果や負荷停止の音を後から鳴らさない (2.073973ms)
+build	Run npm test	2026-11-06T17:48:14.3705216Z ✔ 時間切れは完了待機中に未達成音を一度だけ鳴らし、編集復帰で繰り返さない (1.160217ms)
+build	Run npm test	2026-11-06T17:48:14.4641365Z ✔ 周期の開始は開き、開く時間の終端は閉じる。位相と次の境界を正確な時計で求める (2.39226ms)
+build	Run npm test	2026-11-06T17:48:14.4643844Z ✔ 閉じた到達は開くまで順番を保ち、開始した処理は閉じても最後まで進める (2.528946ms)
+build	Run npm test	2026-11-06T17:48:14.4645113Z ✔ 最短経路はプリズムの到達時点の開閉待ちを含め、開始位置で有利な経路が変わる (1.368628ms)
+build	Run npm test	2026-11-06T17:48:14.4651464Z ✔ 開始位置を細かい秒数も落とさず取り込み、編集前条件と実行条件を別々に出力する (3.15969ms)
+build	Run npm test	2026-11-06T17:48:14.4655365Z ✔ 出題の元の周期を変えず、成績には採点した開始位置を添えて再現できるようにする (2.793774ms)
+build	Run npm test	2026-11-06T17:48:14.4659828Z ✔ 開く境界では直ちに始まり、閉じる境界と同時の処理終了では次の開放まで待つ (1.157562ms)
+build	Run npm test	2026-11-06T17:48:14.4666581Z ✔ 同時刻は処理終了、開く処理、新しい到達の順とし、先に待った光を優先する (0.567344ms)
+build	Run npm test	2026-11-06T17:48:14.4671819Z ✔ 開く時刻の途中で負荷停止しても再開で全記録が一致し、大きな時間送りも次動作と一致する (1.148827ms)
+build	Run npm test	2026-11-06T17:48:14.4676037Z ✔ 閉じて待つ間の一時停止は時計を変えず、明示停止と完了は開く予定を消して記録を残す (1.05487ms)
+build	Run npm test	2026-11-06T17:48:14.4678940Z ✔ 周期条件は複製して保存し、細かい周期の単位も計算から落とさない (0.825981ms)
+build	Run npm test	2026-11-06T17:48:14.4681705Z ✔ 不正な周期、開く時間、開始位置、役割は拒み、元の入力を変更しない (1.90203ms)
+build	Run npm test	2026-11-06T17:48:14.4683800Z ✔ 開始位置は各周期で折り返し、不正入力では直前の実行・保存・編集条件を保持する (2.618644ms)
+build	Run npm test	2026-11-06T17:48:14.4690190Z ✔ 周期なしの回路と鏡の選択方向を保ち、鏡の先の周期待ちも最短経路へ含める (1.312644ms)
+build	Run npm test	2026-11-06T17:48:14.5673265Z ✔ 新版の準備では内容が同じ旧資材を照合して再利用し、旧版の参照先を新版へ持ち込まない (42.005145ms)
+build	Run npm test	2026-11-06T17:48:14.5766448Z ✔ 不足が1件ならその1件だけを補い、同時の準備要求も1回へまとめる (9.182653ms)
+build	Run npm test	2026-11-06T17:48:14.5824942Z ✔ 旧キャッシュの壊れた内容は流用せず、正しい資材を取得する (5.625298ms)
+build	Run npm test	2026-11-06T17:48:14.5867477Z ✔ 新しい取得内容の照合失敗では準備済みとせず、旧版を保持する (5.411256ms)
+build	Run npm test	2026-11-06T17:48:14.6273206Z ✔ 失敗した準備の通信が残る間は再要求でも二重取得を始めない (42.755323ms)
+build	Run npm test	2026-11-06T17:49:57.9319949Z ✔ 選び直しで再抽選し、確認・配線クリア・通常の編集では同じ秒数を保つ (5.428759ms)
+build	Run npm test	2026-11-06T17:49:57.9332505Z ✔ お試し6課題は数値も基準も変えず、抽選を呼ばない (0.579237ms)
+build	Run npm test	2026-11-06T17:49:57.9333366Z ✔ Q7は選び直すと満点の配線も変わり、同じ問題での再編集は保持する (8.199879ms)
+build	Run npm test	2026-11-06T17:49:57.9334431Z ✔ 未保存の自由回路からの取消は出題を消費せず、元回路と保存を保つ (1.12398ms)
+build	Run npm test	2026-11-06T17:49:57.9336804Z ✔ 満点後の再編集・記録閲覧・案内の往復は出題と全記録を保持する (5.87139ms)
+build	Run npm test	2026-11-06T17:49:57.9345771Z ✔ 固定版と各出題の成績を別々に残し、元の秒数・条件を記録する (4.196636ms)
+build	Run npm test	2026-11-06T17:49:57.9346653Z ✔ Q7の旧ランダム版の条件と満点成績を新版の課題と分けて保持する (2.643911ms)
+build	Run npm test	2026-11-06T17:49:57.9349063Z ✔ 成績の保存失敗から別出題へ進んでも、二つの元条件で再保存できる (3.309111ms)
+build	Run npm test	2026-11-06T17:49:57.9362369Z ✔ 全144出題の全配線で唯一の満点・部分点・分岐や合流待ちと上限を確認する (103198.772565ms)
+build	Run npm test	2026-11-06T17:49:57.9730327Z ℹ tests 46
+build	Run npm test	2026-11-06T17:49:57.9730736Z ℹ suites 0
+build	Run npm test	2026-11-06T17:49:57.9730965Z ℹ pass 46
+build	Run npm test	2026-11-06T17:49:57.9731188Z ℹ fail 0
+build	Run npm test	2026-11-06T17:49:57.9731398Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:49:57.9731627Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:49:57.9731830Z ℹ todo 0
+build	Run npm test	2026-11-06T17:49:57.9732076Z ℹ duration_ms 103931.838089
+build	Run npm test	2026-11-06T17:49:57.9789214Z Test batch 7: tests/result-timing.test.js, tests/return-brisk.test.js, tests/return-pacing-session.test.js, tests/return-pattern.test.js, tests/routing.test.js
+build	Run npm test	2026-11-06T17:49:58.0720019Z ✔ 待ち時間は0〜5000msの100ms刻みだけを数値として受け付ける (4.948582ms)
+build	Run npm test	2026-11-06T17:49:58.0728533Z ✔ 初期値は成功・未達成とも1600msで、値を外から書き換えられない (1.223264ms)
+build	Run npm test	2026-11-06T17:49:58.0733496Z ✔ 成功と未達成を別々に保存し、再起動で同じ設定を復元する (0.37852ms)
+build	Run npm test	2026-11-06T17:49:58.0736733Z ✔ 二つの値を保存してから実行中の設定を一括で更新する (0.217468ms)
+build	Run npm test	2026-11-06T17:49:58.0741653Z ✔ 片方の欠落・範囲外・文字列などは設定も保存内容も変更しない (0.496441ms)
+build	Run npm test	2026-11-06T17:49:58.0744661Z ✔ 初期値へ戻す操作は両方の1600msを保存し、再起動後にも保持する (0.232816ms)
+build	Run npm test	2026-11-06T17:49:58.0749413Z ✔ 再読込で別タブの変更と削除を反映し、読み取りだけでは書き込まない (0.215735ms)
+build	Run npm test	2026-11-06T17:49:58.0762447Z ✔ 壊れた保存内容や未知の形式は上書きせず初期値と警告へ切り替える (0.772248ms)
+build	Run npm test	2026-11-06T17:49:58.0768088Z ✔ 保存領域を読み取れない時も初期値を使い、元の保存内容を保持する (0.541937ms)
+build	Run npm test	2026-11-06T17:49:58.0768955Z ✔ 保存失敗では以前の両設定を保持し、初期化の失敗でも消さない (0.5653ms)
+build	Run npm test	2026-11-06T17:49:58.2790862Z ✔ 帰還の候補は両系統の満点と必要最小の左右ペアへ絞る (1.660063ms)
+build	Run npm test	2026-11-06T17:49:58.2795120Z ✔ 帰還6面は回数・正確な間隔・元座標を保ち、合流処理と三出口の本数変更を明示する (0.619522ms)
+build	Run npm test	2026-11-06T17:49:58.2800096Z ✔ 帰還48出題は全許可配線の成功・失敗を分類し、遅い成立配線を隠さず短い終了を確認する (1.546681ms)
+build	Run npm test	2026-11-06T17:49:58.2803803Z ✔ 合流の二経路と三出口のどれかを外す短絡は、満点と同じ条件を作れない (18.517212ms)
+build	Run npm test	2026-11-06T17:49:58.2807250Z ✔ 帰還48出題の満点と部分点は必要最後の鐘で終了し、指定間隔と星の再分岐を保つ (76.091544ms)
+build	Run npm test	2026-11-06T17:49:58.2812127Z ✔ 全48出題の最も長い失敗例はSessionでも生成proofと同じ実時刻で決着する (18.461698ms)
+build	Run npm test	2026-11-06T17:49:58.2814758Z ✔ 上限より遅い成立を失敗へ変えず、成立時刻を検出して出題の受入れを拒否する (1.428279ms)
+build	Run npm test	2026-11-06T17:49:58.3702857Z ✔ 帰還の次の期限を正確なticksで公開し、初到達前と完了後には期限を設けない (6.408901ms)
+build	Run npm test	2026-11-06T17:49:58.3712551Z ✔ 次の鐘が期限に来なければ、その時刻で失敗して将来の到達を再生しない (2.375125ms)
+build	Run npm test	2026-11-06T17:49:58.3716532Z ✔ 期限より早い2回目の不一致では同時刻の0秒処理も完了し、大きな時間送りでも2秒で終了する (1.128757ms)
+build	Run npm test	2026-11-06T17:49:58.3727492Z ✔ 次動作と連続実行は期限にイベントがなくても同じ時刻と全記録で終了する (2.329419ms)
+build	Run npm test	2026-11-06T17:49:58.3728562Z ✔ 期限での正しい到達を失敗にせず、停止再開でも時計と満点を保持する (0.892835ms)
+build	Run npm test	2026-11-06T17:49:58.3729999Z ✔ 不一致の同時刻の途中で負荷停止しても残りを捨てず、再開後だけ完了する (1.463755ms)
+build	Run npm test	2026-11-06T17:49:58.3733263Z ✔ 期限ちょうどに負荷停止して未処理の到達が残っていれば、未到達の失敗にしない (1.298385ms)
+build	Run npm test	2026-11-06T17:49:58.3736058Z ✔ 期限前の手動停止と安全上限は未確定の中断とし、旧保存回路・旧成績を変更しない (2.012464ms)
+build	Run npm test	2026-11-06T17:49:58.3743910Z ✔ 帰還以外の間隔課題と自由の循環には早期終了や帰還の期限を追加しない (2.402757ms)
+build	Run npm test	2026-11-06T17:49:58.4680946Z ✔ 星へ戻って分岐する課題は最初の3回を正確に判定し、大きな時間送りでも3回目で終了する (7.269234ms)
+build	Run npm test	2026-11-06T17:49:58.4684349Z ✔ 星へ戻る出題の成績と元条件を保存し、不正な新条件で旧成績を変えない (3.084476ms)
+build	Run npm test	2026-11-06T17:49:58.4689037Z ✔ 次の動作と連続実行は同じ時刻まで全記録が一致し、最終到達と同時刻の動作を省かない (2.965873ms)
+build	Run npm test	2026-11-06T17:49:58.4693045Z ✔ 指定間隔との差を許さず、次の指定時刻で自動終了して失敗と全記録を停止後も保持する (1.052865ms)
+build	Run npm test	2026-11-06T17:49:58.4698348Z ✔ 最初の星の分岐だけでは達成せず、星へ戻って再び分岐する条件を判定する (1.053576ms)
+build	Run npm test	2026-11-06T17:49:58.4702458Z ✔ 最後の判定対象より後の星の分岐を条件の達成に使わない (0.573015ms)
+build	Run npm test	2026-11-06T17:49:58.4720562Z ✔ 指定回数へ今後届かない配線は失敗とし、途中停止は未確定の中断として区別する (1.11449ms)
+build	Run npm test	2026-11-06T17:49:58.4721783Z ✔ 完了後の停止と再実行でも元条件・全記録・確定点・保存済みの最高点を保持する (2.97506ms)
+build	Run npm test	2026-11-06T17:49:58.4742157Z ✔ 通常の間隔課題は循環の余分な到達を拒み、最初の指定回数では自動終了しない (1.373867ms)
+build	Run npm test	2026-11-06T17:49:58.4743039Z ✔ 完了処理は未来の動作と待ち列を終了させ、鐘の最終表示と記録を残す (0.748434ms)
+build	Run npm test	2026-11-06T17:49:58.4744168Z ✔ 最終到達と同時刻の途中で負荷停止しても、再開後は残りを処理して同じ結果で完了する (1.547552ms)
+build	Run npm test	2026-11-06T17:49:58.4745223Z ✔ 指定回数の完了を動作上限より先に扱い、未完了の上限停止は中断として記録する (1.992027ms)
+build	Run npm test	2026-11-06T17:49:58.6310957Z ✔ 設計の見本1は2.5秒、Aの処理を変えると別経路の3秒になる (3.345595ms)
+build	Run npm test	2026-11-06T17:49:58.6317931Z ✔ 浮動小数の誤差で0.1＋0.2と0.3の順位が変わらず、同時間なら少ない本数を選ぶ (0.448742ms)
+build	Run npm test	2026-11-06T17:49:58.6322834Z ✔ 平行な道と両方向、使用不可、祭壇が終点であることを守る (0.698109ms)
+build	Run npm test	2026-11-06T17:49:58.6330222Z ✔ 回路入力を変更しても計算条件の写しを変えない (0.283652ms)
+build	Run npm test	2026-11-06T17:49:58.6341600Z ✔ 不正な道・識別子・役割・時間・向き・送信先を検査する (2.294284ms)
+build	Run npm test	2026-11-06T17:49:58.6342410Z ✔ 400個の小回路で、独立した全単純経路の列挙と最短時間・本数を照合する (50.277986ms)
+build	Run npm test	2026-11-06T17:49:58.6351732Z ✔ 非常に細かい時間単位でも有限の表示秒を失わず、大量の値を引数展開しない (48.149704ms)
+build	Run npm test	2026-11-06T17:49:58.6438242Z ℹ tests 45
+build	Run npm test	2026-11-06T17:49:58.6438690Z ℹ suites 0
+build	Run npm test	2026-11-06T17:49:58.6439120Z ℹ pass 45
+build	Run npm test	2026-11-06T17:49:58.6439715Z ℹ fail 0
+build	Run npm test	2026-11-06T17:49:58.6440140Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:49:58.6440560Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:49:58.6440951Z ℹ todo 0
+build	Run npm test	2026-11-06T17:49:58.6441394Z ℹ duration_ms 633.47188
+build	Run npm test	2026-11-06T17:49:58.6503173Z Test batch 8: tests/sequence-challenges.test.js, tests/session.test.js, tests/simulation.test.js, tests/stage-pacing.test.js, tests/storage.test.js
+build	Run npm test	2026-11-06T17:49:58.8930112Z ✔ 完全一致の間隔条件を保ち、左右配置と経路の改訂対象だけ内容版と出題を更新する (2.45239ms)
+build	Run npm test	2026-11-06T17:49:58.8940856Z ✔ 旧許容幅の成績と元条件を残し、新条件の最高点と混ぜない (23.840938ms)
+build	Run npm test	2026-11-06T17:49:58.8942339Z ✔ 旧96出題は未改訂課題で保持し、改訂課題の現行出題とは区別して順番セットを6面保つ (0.243757ms)
+build	Run npm test	2026-11-06T17:49:58.8943678Z ✔ 新48出題の満点と部分点を本体で採点・保存し、全到達時刻を結果へ保持する (91.138205ms)
+build	Run npm test	2026-11-06T17:49:58.8944890Z ✔ 新しい6面は選び直しで満点配線が変わり、配線クリアでは同じ問題を保つ (4.00878ms)
+build	Run npm test	2026-11-06T17:49:58.8945703Z ✔ 18面クリアから19面へ続き、24面から25面へ進める (3.503251ms)
+build	Run npm test	2026-11-06T17:49:58.8946429Z ✔ 一部の鐘への配線だけでは未達成となり、成績を作らない (0.680807ms)
+build	Run npm test	2026-11-06T17:49:58.8947257Z ✔ 6面の初出題の全到達を独立した整数の時刻表と照合し、未改訂2面の手計算値も保つ (2.865564ms)
+build	Run npm test	2026-11-06T17:49:59.0346107Z ✔ 旧固定版の実践の複数祭壇課題は一つだけの到達では未達成で、全部への到達時間を採点する (11.15331ms)
+build	Run npm test	2026-11-06T17:49:59.0350819Z ✔ 旧固定版の合流の実践課題は一本道では失敗し、順番待ちを含む二到達で達成する (2.794371ms)
+build	Run npm test	2026-11-06T17:49:59.0351970Z ✔ 課題の再構成後も旧版の成績を保持し、新版の成績と混ぜない (1.789306ms)
+build	Run npm test	2026-11-06T17:49:59.0353792Z ✔ 達成した課題だけに次の選択を出し、停止しても配線・結果・記録を残す (4.933864ms)
+build	Run npm test	2026-11-06T17:49:59.0354935Z ✔ 配線0本では開始せず、自由のクリア後も直前の全記録・結果・保存を保持する (5.753411ms)
+build	Run npm test	2026-11-06T17:49:59.0360385Z ✔ 連続結線は全体を検査して確定し、候補外では途中の配線も残さない (0.403246ms)
+build	Run npm test	2026-11-06T17:49:59.0376011Z ✔ 配線クリアは点・保存回路・停止後の記録を保持し、再生と一時停止では拒否する (1.932265ms)
+build	Run npm test	2026-11-06T17:49:59.0378008Z ✔ 自由の連続結線は道の識別子が重ならず、不正な点を含む経路で元の配線を変えない (0.712386ms)
+build	Run npm test	2026-11-06T17:49:59.0379420Z ✔ 実行から記録で停止、次動作、明示再開、停止後編集を一連で行える (1.490726ms)
+build	Run npm test	2026-11-06T17:49:59.0380884Z ✔ 全候補と制限を守り、途中結線の到達不能は未達成として受け付ける (1.327309ms)
+build	Run npm test	2026-11-06T17:49:59.0382154Z ✔ AC-17：全評価方式の確定した未達成は0点、成績候補にせず判定待ち・途中中断は無得点 (4.700547ms)
+build	Run npm test	2026-11-06T17:49:59.0383364Z ✔ 自由の新しい点・道の初期値、出発点保護、接続付き削除、故障を保つ (2.235984ms)
+build	Run npm test	2026-11-06T17:49:59.0384475Z ✔ 誤入力は条件を変えず、正確な0.1秒刻みと0秒処理を認める (0.89019ms)
+build	Run npm test	2026-11-06T17:49:59.0385690Z ✔ 自由の道は正方向・逆方向・両方向を選べ、位置や他の道を変えない (1.080818ms)
+build	Run npm test	2026-11-06T17:49:59.0386797Z ✔ 未保存編集の取消と保存失敗では入替えず、再試行成功後だけ読み込む (1.456131ms)
+build	Run npm test	2026-11-06T17:49:59.0388005Z ✔ 不正ファイルは保存して入替の選択でも元の案と10枠を変えない (0.529463ms)
+build	Run npm test	2026-11-06T17:49:59.0393382Z ✔ 故障全ケースから最悪を再生し、他ケース再生でも元条件と全件を出力する (3.17227ms)
+build	Run npm test	2026-11-06T17:49:59.0396942Z ✔ 間隔の達成を実到着後に確定し、停止しても確定結果と成績を保つ (1.089213ms)
+build	Run npm test	2026-11-06T17:49:59.0402257Z ✔ 未確定で停止した間隔を0点失敗にしない (0.872827ms)
+build	Run npm test	2026-11-06T17:49:59.0404853Z ✔ 到着前の停止は未確定の中断、既に到達不能なら失敗の確定を保つ (2.381998ms)
+build	Run npm test	2026-11-06T17:49:59.0410587Z ✔ 道の削除も確認前は変更せず、選んだ一本だけを消す (0.42669ms)
+build	Run npm test	2026-11-06T17:49:59.0427419Z ✔ 成績未保存候補を画面切替後も保持し、無限自動再試行せず戻って保存できる (0.710062ms)
+build	Run npm test	2026-11-06T17:49:59.0430616Z ✔ 案内は別見本で練習し、スキップで元の回路・実行・結果・表示位置へ一時停止で戻る (1.675413ms)
+build	Run npm test	2026-11-06T17:49:59.0451872Z ✔ 案内履歴の保存失敗で完了を捏造せず、途中離脱では元へ戻り履歴をつけない (1.452825ms)
+build	Run npm test	2026-11-06T17:49:59.0452898Z ✔ 課題案内は最初の到達から削除・比較・記録へ進み、三つの響きで完了する (2.299042ms)
+build	Run npm test	2026-11-06T17:49:59.0453680Z ✔ 案内の削除練習は別の線の削除や実行では進まず、全クリア後も再開できる (1.233023ms)
+build	Run npm test	2026-11-06T17:49:59.0454122Z ✔ 自由の案内でも一本削除を練習し、つなぎ直しと時間変更後に進む (1.105794ms)
+build	Run npm test	2026-11-06T17:49:59.0454576Z ✔ 課題の上限を超える合成条件は連続実行と次動作の両方で停止し、最高点と条件を保つ (1.924459ms)
+build	Run npm test	2026-11-06T17:49:59.0455005Z ✔ 自由作成は固定課題の時間上限を引き継がず、長い移動も実験できる (0.540934ms)
+build	Run npm test	2026-11-06T17:49:59.1187294Z ✔ AC-01：道3本と中継処理2回の各0.5秒で2.5秒、初回出発と祭壇に隠れた処理なし (4.096093ms)
+build	Run npm test	2026-11-06T17:49:59.1191589Z ✔ AC-05：1.0秒と1.2秒の到着は一つのゲートで待ち、1.5秒・2.0秒に処理終了 (0.761018ms)
+build	Run npm test	2026-11-06T17:49:59.1195664Z ✔ 自由の見本2はCで順番に処理し、G1に4・5・7・8秒、G2に5・6・8・9秒で到達する (1.253691ms)
+build	Run npm test	2026-11-06T17:49:59.1199406Z ✔ 次の動作と連続実行が同じ記録になり、0秒処理を同時刻に反映する (2.501602ms)
+build	Run npm test	2026-11-06T17:49:59.1207292Z ✔ 全祭壇への最速同時送信は選択経路を保ち、共有する処理点の混雑を実到達へ加える (0.684314ms)
+build	Run npm test	2026-11-06T17:49:59.1209287Z ✔ 戻った出発点は処理するが初回送出には処理を加えない (0.483948ms)
+build	Run npm test	2026-11-06T17:49:59.1215772Z ✔ AC-16：出発点へ2秒と2.2秒に戻った粒も一つの処理ゲートで順番を待つ (0.46384ms)
+build	Run npm test	2026-11-06T17:49:59.1220073Z ✔ 平行道は別の道として折り返せるが、直前の道そのものへは送り返さない (0.386845ms)
+build	Run npm test	2026-11-06T17:49:59.1222812Z ✔ 行き止まりは処理後に終了し、絵を残しても次の粒のゲートを塞がない (0.434034ms)
+build	Run npm test	2026-11-06T17:49:59.1227692Z ✔ 負荷による停止は未処理の同時刻イベントを保持し、続行で通常実行と一致する (1.523978ms)
+build	Run npm test	2026-11-06T17:49:59.1236075Z ✔ 停止は粒の絵を消して条件と記録を残し、新しい実行は前の粒を引き継がない (1.312222ms)
+build	Run npm test	2026-11-06T17:49:59.1245065Z ✔ 到達不能が混ざる全祭壇送信でも、到達できる祭壇には送る (0.374613ms)
+build	Run npm test	2026-11-06T17:49:59.2057224Z ✔ 実践の全ての候補と全配線を短い再生として検査し満点だけに偏らない (3.639146ms)
+build	Run npm test	2026-11-06T17:49:59.2063375Z ✔ 6面ごとに導入・組合せ・思考・解放・応用・締めを設計し候補を増やして隠さない (4.260962ms)
+build	Run npm test	2026-11-06T17:49:59.2066900Z ✔ 42面288出題と旧条件・成績の区別を保ち、お試しと鏡のテンポは変えない (2.532991ms)
+build	Run npm test	2026-11-06T17:49:59.2847024Z ✔ 10枠は任意保存、満杯ならユーザー選択の一枠だけ置換する (11.578578ms)
+build	Run npm test	2026-11-06T17:49:59.2850299Z ✔ 保存・名前変更・削除に失敗しても元の枠を保ち、再試行できる (1.910022ms)
+build	Run npm test	2026-11-06T17:49:59.2853558Z ✔ 削除は識別子で選んだ枠だけで、成績や案内履歴を消さない (0.937187ms)
+build	Run npm test	2026-11-06T17:49:59.2856888Z ✔ 成績は真の値で最高点を保ち、採点版が違う記録を混ぜない (0.39482ms)
+build	Run npm test	2026-11-06T17:49:59.2860693Z ✔ 成績と案内履歴の保存失敗で元の内容を保持する (0.356368ms)
+build	Run npm test	2026-11-06T17:49:59.2865181Z ✔ 回路ファイルで条件を再現でき、結果ファイルを回路として読まない (1.829181ms)
+build	Run npm test	2026-11-06T17:49:59.2869221Z ✔ 未知版・破損データを読めなかった場合も自動初期化や消去をしない (0.235041ms)
+build	Run npm test	2026-11-06T17:49:59.2873239Z ✔ 不正な識別子を保存する前に拒否し、既存枠の管理を妨げない (0.553489ms)
+build	Run npm test	2026-11-06T17:49:59.2880631Z ✔ 未達成0点・上限超過・不正な既存成績を達成した最高点として扱わない (0.356438ms)
+build	Run npm test	2026-11-06T17:49:59.2883008Z ✔ 回路保存と回路ファイルには未知の実行記録や途中状態を混ぜない (0.407745ms)
+build	Run npm test	2026-11-06T17:49:59.2968093Z ℹ tests 62
+build	Run npm test	2026-11-06T17:49:59.2968435Z ℹ suites 0
+build	Run npm test	2026-11-06T17:49:59.2968803Z ℹ pass 62
+build	Run npm test	2026-11-06T17:49:59.2969702Z ℹ fail 0
+build	Run npm test	2026-11-06T17:49:59.2970073Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:49:59.2970441Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:49:59.2970765Z ℹ todo 0
+build	Run npm test	2026-11-06T17:49:59.2971012Z ℹ duration_ms 613.394609
+build	Run npm test	2026-11-06T17:49:59.3034956Z Test batch 9: tests/themed-challenges.test.js, tests/timeout-motion.test.js, tests/touch-confirm.test.js, tests/tutorial-content.test.js, tests/tutorial.test.js
+build	Run npm test	2026-11-06T17:49:59.4410096Z ✔ 42面を6面のテーマへ整理し、古い課題IDと版を番号から分離する (1.675623ms)
+build	Run npm test	2026-11-06T17:49:59.4426522Z ✔ 新しい6面は選び直すと満点配線の系統も変わり、再挑戦とクリアは出題を保つ (22.811686ms)
+build	Run npm test	2026-11-06T17:49:59.4427687Z ✔ 旧48出題は変更しない課題で保持し、配置と経路の改訂課題だけ現行の内容版へ分ける (0.409077ms)
+build	Run npm test	2026-11-06T17:49:59.4428759Z ✔ 0.5秒未満の続く到達は同じ音へ寄せ、ちょうど0.5秒からは採用音程を使う (0.344165ms)
+build	Run npm test	2026-11-06T17:49:59.4429977Z ✔ 音程の適用は実行時間・全記録・満点の判定へ影響しない (2.147268ms)
+build	Run npm test	2026-11-06T17:49:59.4430942Z ✔ 追加6面の初出題の全到達を独立した整数の時刻表と照合し、未改訂3面の手計算値も保つ (3.307193ms)
+build	Run npm test	2026-11-06T17:49:59.5484005Z ✔ 続行中の到達を音と演出へ1回だけ渡し、公式の結果と履歴は変えない (6.958501ms)
+build	Run npm test	2026-11-06T17:49:59.5485389Z ✔ 続行の鐘も締切前の到達と合わせて音程を選び、短い間隔の音をそろえる (0.904015ms)
+build	Run npm test	2026-11-06T17:49:59.5491962Z ✔ 表示用分岐は開閉の待ち行列・予約・条件検査・heapを独立させ、続行結果が一致する (2.091863ms)
+build	Run npm test	2026-11-06T17:49:59.5497712Z ✔ 分岐は最短経路配列も共有せず、0秒循環の履歴も正しく引き継ぐ (1.580685ms)
+build	Run npm test	2026-11-06T17:49:59.5498287Z ✔ 時間切れ後の表示粒だけが動き、追加到達は公式時刻・結果・全記録・成績へ入らない (2.214915ms)
+build	Run npm test	2026-11-06T17:49:59.5499143Z ✔ 時間切れの表示継続は最大で未達成カードの待機まで、時刻を巻き戻さない (0.987923ms)
+build	Run npm test	2026-11-06T17:49:59.5505910Z ✔ 指定した未達成待機で表示継続を制限し、開始後の設定変更で長さを変えない (1.085015ms)
+build	Run npm test	2026-11-06T17:49:59.5507308Z ✔ 既存のコンストラクター指定も使え、updateの指定は開始時だけ優先する (1.868855ms)
+build	Run npm test	2026-11-06T17:49:59.5508237Z ✔ 0秒指定では追加の到達や時刻を作らず、不正な指定は既定の待機へ戻す (6.833747ms)
+build	Run npm test	2026-11-06T17:49:59.5510818Z ✔ 画面を隠す・記録を見る等で中断した表示は同じrunで再開しない (2.409809ms)
+build	Run npm test	2026-11-06T17:49:59.5515589Z ✔ 手動停止・次の実行・課題切替・練習開始は表示コピーを引き継がない (1.812048ms)
+build	Run npm test	2026-11-06T17:49:59.5516575Z ✔ 負荷のある表示継続はイベント数と実時間の双方で打ち切り、公式結果を変更しない (1.378285ms)
+build	Run npm test	2026-11-06T17:49:59.5521074Z ✔ 表示中の0秒循環でも結果表示を妨げず、公式記録へ追記しない (0.477916ms)
+build	Run npm test	2026-11-06T17:49:59.6081830Z ✔ 設定を開いた元の位置からの押下は解除後も確定せず、新しく押した操作だけ受け付ける (2.927861ms)
+build	Run npm test	2026-11-06T17:49:59.6087800Z ✔ ページ送りは小さな指ずれを許すが、別の操作先や大きな移動は確定しない (0.594485ms)
+build	Run npm test	2026-11-06T17:49:59.6091474Z ✔ ページ送り用の指定領域だけを確定し、別のボタンへ広げない (0.297328ms)
+build	Run npm test	2026-11-06T17:49:59.6105398Z ✔ 指がずれて通常クリックが来なくても、新しく押したボタン内で離せば1回だけ確定する (0.221946ms)
+build	Run npm test	2026-11-06T17:49:59.6111988Z ✔ 元の長押しの指を離すだけ、ボタン外、取消、2本指は確定しない (0.316954ms)
+build	Run npm test	2026-11-06T17:49:59.6115380Z ✔ 取消後に残った指情報を消し、次のタップを受け付ける。マウスとキーボードのクリックを妨げない (0.283311ms)
+build	Run npm test	2026-11-06T17:49:59.7025784Z ✔ 操作のお手本は今つなぐ区間へ進み、実行中は見守る案内へ変わる (6.059074ms)
+build	Run npm test	2026-11-06T17:49:59.7033673Z ✔ 先に最速を発見しても別の道へ案内し、遅い比較を速くなったと表示しない (3.56161ms)
+build	Run npm test	2026-11-06T17:49:59.7038183Z ✔ 元と同じ道を再作成した時は削除へ戻し、足りない後半だけならその先を示す (5.611114ms)
+build	Run npm test	2026-11-06T17:49:59.7043357Z ✔ 記録後の章移動と三つの鐘の不足区間を示し、補足も全文案内へ残す (5.39074ms)
+build	Run npm test	2026-11-06T17:49:59.7050245Z ✔ 三本を未完成の分岐へ使った時は、追加不能な指示ではなく余分な線の削除を示す (1.70611ms)
+build	Run npm test	2026-11-06T17:49:59.8089270Z ✔ 練習専用の直通4秒、中継2.5/3.5秒と、三つの鐘の0.5秒間隔が実計算で成立する (5.772607ms)
+build	Run npm test	2026-11-06T17:49:59.8093816Z ✔ 最初に鐘を鳴らしてから削除・比較・記録・分岐へ進み、実到達まで完了しない (6.97356ms)
+build	Run npm test	2026-11-06T17:49:59.8101529Z ✔ 別の線の削除・途中停止・早すぎる記録は進行せず、別経路の部分点も比較として認める (2.454223ms)
+build	Run npm test	2026-11-06T17:49:59.8104886Z ✔ 最初に速い道を見つけても別経路で比較でき、同じ道の繰り返しでは比較を捏造しない (2.382449ms)
+build	Run npm test	2026-11-06T17:49:59.8107129Z ✔ 全クリアは各章の先頭へ戻り、分岐の欠けた回路は完了しないが修復して進める (3.839822ms)
+build	Run npm test	2026-11-06T17:49:59.8110629Z ✔ 比較後の編集は古い記録から次章へ進ませず、新たな実行を必要とする (2.028645ms)
+build	Run npm test	2026-11-06T17:49:59.8114798Z ✔ 比較の音を聴き直すと新しい実到達で記録案内へ戻り、途中停止では古い比較で進まない (3.170918ms)
+build	Run npm test	2026-11-06T17:49:59.8117233Z ✔ 全二章の完了保存が失敗しても練習と控えを保持し、再試行後だけ元の状態へ戻す (4.479311ms)
+build	Run npm test	2026-11-06T17:49:59.8206092Z ℹ tests 38
+build	Run npm test	2026-11-06T17:49:59.8206539Z ℹ suites 0
+build	Run npm test	2026-11-06T17:49:59.8206913Z ℹ pass 38
+build	Run npm test	2026-11-06T17:49:59.8207255Z ℹ fail 0
+build	Run npm test	2026-11-06T17:49:59.8207640Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:49:59.8208065Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:49:59.8212271Z ℹ todo 0
+build	Run npm test	2026-11-06T17:49:59.8212745Z ℹ duration_ms 487.535486
+build	Run npm test	2026-11-06T17:49:59.8269358Z Test batch 10: tests/update-safety.test.js
+build	Run npm test	2026-11-06T17:49:59.9353546Z ✔ 更新を許す前に実行・未保存回路・案内の元状態を保護する (9.818675ms)
+build	Run npm test	2026-11-06T17:49:59.9357460Z ✔ 画面を変えても未保存の成績がある限り更新を許さない (3.259714ms)
+build	Run npm test	2026-11-06T17:49:59.9453829Z ℹ tests 2
+build	Run npm test	2026-11-06T17:49:59.9454254Z ℹ suites 0
+build	Run npm test	2026-11-06T17:49:59.9454612Z ℹ pass 2
+build	Run npm test	2026-11-06T17:49:59.9455100Z ℹ fail 0
+build	Run npm test	2026-11-06T17:49:59.9455451Z ℹ cancelled 0
+build	Run npm test	2026-11-06T17:49:59.9455827Z ℹ skipped 0
+build	Run npm test	2026-11-06T17:49:59.9460429Z ℹ todo 0
+build	Run npm test	2026-11-06T17:49:59.9460786Z ℹ duration_ms 87.359603
+build	Run npm test	2026-11-06T17:49:59.9512236Z All 46 test files passed.
+build	Run node scripts/check-release.js	﻿2026-11-06T17:49:59.9670951Z ##[group]Run node scripts/check-release.js
+build	Run node scripts/check-release.js	2026-11-06T17:49:59.9671346Z ^[[36;1mnode scripts/check-release.js^[[0m
+build	Run node scripts/check-release.js	2026-11-06T17:49:59.9691907Z shell: /usr/bin/bash -e {0}
+build	Run node scripts/check-release.js	2026-11-06T17:49:59.9692164Z env:
+build	Run node scripts/check-release.js	2026-11-06T17:49:59.9692446Z   PRISM_PUBLIC_URL: https://gerupon-lgtm.github.io/prism/
+build	Run node scripts/check-release.js	2026-11-06T17:49:59.9692787Z ##[endgroup]
+build	Run node scripts/check-release.js	2026-11-06T17:50:00.1461017Z Release check: public v0.102.0 -> v0.103.0
+build	Run npm run build	﻿2026-11-06T17:50:00.2043462Z ##[group]Run npm run build
+build	Run npm run build	2026-11-06T17:50:00.2043979Z ^[[36;1mnpm run build^[[0m
+build	Run npm run build	2026-11-06T17:50:00.2073349Z shell: /usr/bin/bash -e {0}
+build	Run npm run build	2026-11-06T17:50:00.2073816Z ##[endgroup]
+build	Run npm run build	2026-11-06T17:50:00.3077850Z
+build	Run npm run build	2026-11-06T17:50:00.3078285Z > prism-notes@0.103.0 build
+build	Run npm run build	2026-11-06T17:50:00.3078788Z > node scripts/build.js
+build	Run npm run build	2026-11-06T17:50:00.3078973Z
+build	Run npm run build	2026-11-06T17:50:00.4165485Z Built v0.103.0: 82 offline assets. Versioned modules, fonts, manifest, and worker are ready.
+build	Run actions/upload-pages-artifact@v4	﻿2026-11-06T17:50:00.4415939Z ##[group]Run actions/upload-pages-artifact@v4
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4416476Z with:
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4416680Z   path: dist
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4416884Z   name: github-pages
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4417111Z   retention-days: 1
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4417330Z ##[endgroup]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4487219Z ##[start-action display=Archive artifact;id=__actions_upload-pages-artifact.__run]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4515403Z ##[group]Run echo ::group::Archive artifact
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4515744Z ^[[36;1mecho ::group::Archive artifact^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4516022Z ^[[36;1mtar \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4516276Z ^[[36;1m  --dereference --hard-dereference \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4516603Z ^[[36;1m  --directory "$INPUT_PATH" \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4516916Z ^[[36;1m  -cvf "$RUNNER_TEMP/artifact.tar" \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4517223Z ^[[36;1m  --exclude=.git \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4517480Z ^[[36;1m  --exclude=.github \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4517735Z ^[[36;1m  --exclude=".[^/]*" \^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4517975Z ^[[36;1m  .^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4518219Z ^[[36;1mecho ::endgroup::^[[0m
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4653324Z shell: /usr/bin/sh -e {0}
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4653584Z env:
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4653794Z   INPUT_PATH: dist
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4654008Z ##[endgroup]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4709301Z ##[group]Archive artifact
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4727787Z ./
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4728146Z ./sw.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4728490Z ./_headers
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4728890Z ./manifest.webmanifest
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4729328Z ./build-info.json
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4729979Z ./v0.103.0/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4730515Z ./v0.103.0/画面案/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4730979Z ./v0.103.0/画面案/ロゴ/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4731518Z ./v0.103.0/画面案/ロゴ/fonts/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4732179Z ./v0.103.0/画面案/ロゴ/fonts/montserrat-600.ttf
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4732906Z ./v0.103.0/画面案/ロゴ/fonts/OFL.txt
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4733571Z ./v0.103.0/画面案/ロゴ/fonts/montserrat-500.ttf
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4735871Z ./v0.103.0/public/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4736394Z ./v0.103.0/public/apple-touch-icon.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4737016Z ./v0.103.0/public/spirit-guide.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4753230Z ./v0.103.0/public/icon-512.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4753782Z ./v0.103.0/public/icon-192.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4754476Z ./v0.103.0/public/graphics/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4754990Z ./v0.103.0/public/graphics/goal.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4776297Z ./v0.103.0/public/graphics/source.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4787746Z ./v0.103.0/public/graphics/starwalk.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4811810Z ./v0.103.0/public/graphics/starreturn.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4836706Z ./v0.103.0/public/graphics/mirror.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4845836Z ./v0.103.0/public/graphics/ruins.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4866851Z ./v0.103.0/public/graphics/moonwater.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4890792Z ./v0.103.0/public/graphics/stargate.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4914764Z ./v0.103.0/public/graphics/observatory.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4936067Z ./v0.103.0/public/graphics/starecho.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4967765Z ./v0.103.0/public/graphics/prism.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.4978430Z ./v0.103.0/public/graphics/moonmirror.png
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5004917Z ./v0.103.0/src/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5005497Z ./v0.103.0/src/app/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5005930Z ./v0.103.0/src/app/session.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5006423Z ./v0.103.0/src/app/update-safety.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5010396Z ./v0.103.0/src/core/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5013439Z ./v0.103.0/src/core/heap.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5013957Z ./v0.103.0/src/core/simulation.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5014456Z ./v0.103.0/src/core/evaluation.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5014815Z ./v0.103.0/src/core/time.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5015148Z ./v0.103.0/src/core/challenge-identity.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5015513Z ./v0.103.0/src/core/circuit.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5015842Z ./v0.103.0/src/core/bell-sequence.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5016179Z ./v0.103.0/src/core/periodic.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5016520Z ./v0.103.0/src/core/return-pattern.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5016859Z ./v0.103.0/src/core/storage.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5017130Z ./v0.103.0/src/ui/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5017378Z ./v0.103.0/src/ui/desktop.css
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5018002Z ./v0.103.0/src/ui/tutorial.css
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5018286Z ./v0.103.0/src/ui/voices.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5018605Z ./v0.103.0/src/ui/desktop-layout.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5019015Z ./v0.103.0/src/ui/touch-confirm.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5019358Z ./v0.103.0/src/ui/tutorial-content.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5020053Z ./v0.103.0/src/ui/timeout-motion.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5020594Z ./v0.103.0/src/ui/outcome-sound.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5021100Z ./v0.103.0/src/ui/mirror-optics.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5021496Z ./v0.103.0/src/ui/offline.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5021797Z ./v0.103.0/src/ui/sound-cues.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5022082Z ./v0.103.0/src/ui/load-meter.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5022380Z ./v0.103.0/src/ui/tutorial-guide.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5022699Z ./v0.103.0/src/ui/playback-diagnostics.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5023157Z ./v0.103.0/src/ui/app.css
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5023621Z ./v0.103.0/src/ui/result-timing.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5024102Z ./v0.103.0/src/ui/help.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5024508Z ./v0.103.0/src/ui/scene.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5024951Z ./v0.103.0/src/ui/reverb.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5025426Z ./v0.103.0/src/ui/wire-limit-notice.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5025873Z ./v0.103.0/src/ui/orientation.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5026324Z ./v0.103.0/src/ui/labels.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5026800Z ./v0.103.0/src/ui/magnifier.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5027156Z ./v0.103.0/src/ui/edge-directions.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5027426Z ./v0.103.0/src/ui/svg.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5027657Z ./v0.103.0/src/ui/audio.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5028020Z ./v0.103.0/src/ui/end-wait.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5028326Z ./v0.103.0/src/ui/board.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5028617Z ./v0.103.0/src/ui/celebration.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5028880Z ./v0.103.0/src/ui/app.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5029252Z ./v0.103.0/src/ui/motion.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5029633Z ./v0.103.0/src/content/
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5030033Z ./v0.103.0/src/content/challenge-draw.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5030597Z ./v0.103.0/src/content/mirror-challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5030959Z ./v0.103.0/src/content/gate-challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5031309Z ./v0.103.0/src/content/balanced-delivery.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5031805Z ./v0.103.0/src/content/random-variants.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5032357Z ./v0.103.0/src/content/challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5032753Z ./v0.103.0/src/content/tutorial.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5033171Z ./v0.103.0/src/content/mirror-variants.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5033503Z ./v0.103.0/src/content/brisk-revisions.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5033874Z ./v0.103.0/src/content/return-variants.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5034330Z ./v0.103.0/src/content/return-challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5034869Z ./v0.103.0/src/content/gate-variants.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5035487Z ./v0.103.0/src/content/themed-challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5036120Z ./v0.103.0/src/content/sequence-challenges.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5036742Z ./v0.103.0/src/content/balanced-rhythm.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5037324Z ./v0.103.0/src/content/samples.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5037907Z ./v0.103.0/src/content/bell-pitches.js
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5038362Z ./index.html
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5039031Z ##[endgroup]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5052064Z ##[end-action id=__actions_upload-pages-artifact.__run;outcome=success;conclusion=success;duration_ms=56]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5056470Z ##[start-action display=Archive artifact;id=__actions_upload-pages-artifact.__run_2]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5063414Z ##[end-action id=__actions_upload-pages-artifact.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5066266Z ##[start-action display=Archive artifact;id=__actions_upload-pages-artifact.__run_3]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5070049Z ##[end-action id=__actions_upload-pages-artifact.__run_3;outcome=skipped;conclusion=skipped;duration_ms=0]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5072220Z ##[start-action display=Upload artifact;id=__actions_upload-pages-artifact.upload-artifact]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5129714Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5130158Z with:
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5130355Z   name: github-pages
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5130827Z   path: /home/runner/work/_temp/artifact.tar
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5131113Z   retention-days: 1
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5131332Z   if-no-files-found: error
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5131582Z   compression-level: 6
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5131792Z   overwrite: false
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5131999Z   include-hidden-files: false
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.5132231Z ##[endgroup]
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.6903880Z (node:3745) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.6905606Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.6961615Z With the provided path, there will be 1 file uploaded
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.6992421Z Artifact name is valid!
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.6992997Z Root directory input is valid!
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:00.9184051Z Beginning upload of artifact content to blob storage
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:01.2170025Z (node:3745) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:01.3517015Z Uploaded bytes 8388608
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:01.6046794Z Uploaded bytes 16777216
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:01.8942924Z Uploaded bytes 25165824
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.0205432Z Uploaded bytes 29708237
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.0355476Z Finished uploading artifact content to blob storage!
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.0357059Z SHA256 digest of uploaded artifact zip is 910f1fc4578746630b2a49094f3f6608b34430438fa54664beb79769c2bb0f83
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.0358309Z Finalizing artifact upload
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.4150713Z Artifact github-pages.zip successfully finalized. Artifact ID 13527450435
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.4152354Z Artifact github-pages has been successfully uploaded! Final size is 29708237 bytes. Artifact ID is 13527450435
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.4154108Z Artifact download URL: https://github.com/gerupon-lgtm/prism/actions/runs/42264838521/artifacts/13527450435
+build	Run actions/upload-pages-artifact@v4	2026-11-06T17:50:02.4308829Z ##[end-action id=__actions_upload-pages-artifact.upload-artifact;outcome=success;conclusion=success;duration_ms=1923]
+build	Post Run actions/setup-node@v7	﻿2026-11-06T17:50:02.4410595Z Post job cleanup.
+build	Post Run actions/checkout@v6	﻿2026-11-06T17:50:02.5745090Z Post job cleanup.
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6654514Z [command]/usr/bin/git version
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6700976Z git version 2.56.0
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6743613Z Temporarily overriding HOME='/home/runner/work/_temp/15523799-667f-4b53-8fbb-7ffcdb4dfce9' before making global git config changes
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6745139Z Adding repository directory to the temporary git global config as a safe directory
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6748843Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/prism/prism
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6784859Z Removing SSH command configuration
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6792237Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.6839981Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7108519Z Removing HTTP extra header
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7116329Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7168960Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7490798Z Removing includeIf entries pointing to credentials config files
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7521075Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7549957Z includeif.gitdir:/home/runner/work/prism/prism/.git.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7561400Z includeif.gitdir:/home/runner/work/prism/prism/.git/worktrees/*.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7570695Z includeif.gitdir:/github/workspace/.git.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7571745Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7573470Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/prism/prism/.git.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7622446Z /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7649129Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/prism/prism/.git.path /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7720839Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/prism/prism/.git/worktrees/*.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7761305Z /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7775067Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/prism/prism/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7833335Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7872163Z /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7882911Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7927061Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7959400Z /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.7968596Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.8013182Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Post Run actions/checkout@v6	2026-11-06T17:50:02.8267412Z Removing credentials config '/home/runner/work/_temp/git-credentials-3b5f3942-95fc-4d88-9305-eed45bd98c13.config'
+build	Complete job	﻿2026-11-06T17:50:02.8422605Z Cleaning up orphan processes
+build	Complete job	2026-11-06T17:50:02.8805853Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

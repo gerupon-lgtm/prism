@@ -1,0 +1,81 @@
+{
+  "version": "0.103.0",
+  "commit": "71c734b71e49f48e35a9af18f8497a1997b4fbee",
+  "checkedAt": "2026-11-06T17:57:52.5692222+00:00",
+  "passed": true,
+  "local": {
+    "testFiles": 46,
+    "tests": 576,
+    "syntaxFiles": 120,
+    "offlineAssets": 82,
+    "browserCases": 20,
+    "summary": "local-summary.json"
+  },
+  "release": {
+    "github": {
+      "conclusion": "success",
+      "headSha": "71c734b71e49f48e35a9af18f8497a1997b4fbee",
+      "status": "completed",
+      "url": "https://github.com/gerupon-lgtm/prism/actions/runs/42264838521"
+    },
+    "checks": [
+      {
+        "conclusion": "success",
+        "details_url": "https://dash.cloudflare.com/?to=/acbbf504f6b64128e2d44b15f5b32d20/pages/view/prism-notes/92169bea-7e3d-4744-b5fa-a000241a94e6",
+        "name": "Cloudflare Pages",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/42264838521/job/128055283809",
+        "name": "deploy",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/42264838521/job/128053930852",
+        "name": "build",
+        "status": "completed"
+      }
+    ],
+    "finalSourceTests": 576
+  },
+  "public": {
+    "general": [
+      {
+        "report": "public-domain/report.json",
+        "passed": true,
+        "checks": 95,
+        "url": "https://prism.sikumilab.com/",
+        "commit": "71c734b71e49f48e35a9af18f8497a1997b4fbee"
+      },
+      {
+        "report": "public-github/report.json",
+        "passed": true,
+        "checks": 95,
+        "url": "https://gerupon-lgtm.github.io/prism/",
+        "commit": "71c734b71e49f48e35a9af18f8497a1997b4fbee"
+      }
+    ],
+    "recordCases": [
+      {
+        "report": "public-records/chromium/report.json",
+        "engine": "chromium",
+        "passed": true,
+        "cases": [
+          "phone"
+        ]
+      },
+      {
+        "report": "public-records/webkit/report.json",
+        "engine": "webkit",
+        "passed": true,
+        "cases": [
+          "phone"
+        ]
+      }
+    ],
+    "qualifiedTotal": 192
+  },
+  "boundary": "Desktop Chromium and WebKit; mobile touch, screen orientation and text enlargement are emulated. Post-fix physical Pixel 9a display and finger operation are unverified."
+}
