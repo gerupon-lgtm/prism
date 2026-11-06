@@ -1,0 +1,3497 @@
+{
+  "version": "0.103.0",
+  "engine": "chromium",
+  "empty": false,
+  "passed": true,
+  "cases": [
+    {
+      "name": "small",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": true,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "workspace": {
+            "top": 6,
+            "bottom": 474,
+            "left": 6,
+            "right": 314,
+            "height": 468,
+            "width": 308
+          },
+          "stage": {
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "board": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 6,
+            "bottom": 474,
+            "left": 6,
+            "right": 314,
+            "height": 468,
+            "width": 308
+          },
+          "gap": 6,
+          "allowedGap": 5,
+          "page": {
+            "width": 320,
+            "height": 480,
+            "rootWidth": 320,
+            "rootHeight": 480,
+            "bodyWidth": 320,
+            "bodyHeight": 480
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 55,
+              "bottom": 87,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 91,
+              "bottom": 123,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 127,
+              "bottom": 159,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "0.5秒 光線1 処理開始",
+              "visible": true,
+              "top": 163,
+              "bottom": 195,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "1秒 光線1 処理終了",
+              "visible": true,
+              "top": 199,
+              "bottom": 231,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "1秒 光線1 移動",
+              "visible": true,
+              "top": 235,
+              "bottom": 267,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "4秒 光線1 到着",
+              "visible": true,
+              "top": 271,
+              "bottom": 303,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            },
+            {
+              "text": "4秒 光線1 鐘が鳴る",
+              "visible": true,
+              "top": 307,
+              "bottom": 339,
+              "left": 13,
+              "right": 307,
+              "height": 32,
+              "width": 294
+            }
+          ],
+          "pager": "1/1・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 435,
+              "bottom": 467,
+              "left": 13,
+              "right": 59,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 435,
+              "bottom": 467,
+              "left": 261,
+              "right": 307,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 13,
+              "bottom": 45,
+              "left": 275,
+              "right": 307,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 50,
+          "left": 7,
+          "right": 313,
+          "height": 44,
+          "width": 306
+        },
+        "workspace": {
+          "top": 55,
+          "bottom": 348,
+          "left": 7,
+          "right": 313,
+          "height": 293,
+          "width": 306
+        },
+        "stage": {
+          "visible": true,
+          "top": 55,
+          "bottom": 348,
+          "left": 7,
+          "right": 313,
+          "height": 293,
+          "width": 306
+        },
+        "board": {
+          "top": 56,
+          "bottom": 347,
+          "left": 8,
+          "right": 312,
+          "height": 291,
+          "width": 304
+        },
+        "guide": {
+          "hidden": true,
+          "visibility": "visible",
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 5,
+        "allowedGap": 5,
+        "page": {
+          "width": 320,
+          "height": 480,
+          "rootWidth": 320,
+          "rootHeight": 480,
+          "bodyWidth": 320,
+          "bodyHeight": 480
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/1・全8件",
+        "moved": false
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 50,
+          "left": 7,
+          "right": 313,
+          "height": 44,
+          "width": 306
+        },
+        "workspace": {
+          "top": 55,
+          "bottom": 348,
+          "left": 7,
+          "right": 313,
+          "height": 293,
+          "width": 306
+        },
+        "stage": {
+          "visible": true,
+          "top": 55,
+          "bottom": 348,
+          "left": 7,
+          "right": 313,
+          "height": 293,
+          "width": 306
+        },
+        "board": {
+          "top": 56,
+          "bottom": 347,
+          "left": 8,
+          "right": 312,
+          "height": 291,
+          "width": 304
+        },
+        "guide": {
+          "hidden": true,
+          "visibility": "visible",
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 5,
+        "allowedGap": 5,
+        "page": {
+          "width": 320,
+          "height": 480,
+          "rootWidth": 320,
+          "rootHeight": 480,
+          "bodyWidth": 320,
+          "bodyHeight": 480
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 処理開始",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 処理終了",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 鐘が鳴る",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/1・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "enlarged",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 6,
+            "bottom": 97.1875,
+            "left": 7,
+            "right": 403,
+            "height": 91.1875,
+            "width": 396
+          },
+          "workspace": {
+            "top": 102.1875,
+            "bottom": 700,
+            "left": 7,
+            "right": 403,
+            "height": 597.8125,
+            "width": 396
+          },
+          "stage": {
+            "visible": true,
+            "top": 102.1875,
+            "bottom": 466.84375,
+            "left": 7,
+            "right": 403,
+            "height": 364.65625,
+            "width": 396
+          },
+          "board": {
+            "top": 103.1875,
+            "bottom": 425.84375,
+            "left": 8,
+            "right": 402,
+            "height": 322.65625,
+            "width": 394
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 472.84375,
+            "bottom": 700,
+            "left": 7,
+            "right": 403,
+            "height": 227.15625,
+            "width": 396
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 410,
+            "height": 844,
+            "rootWidth": 410,
+            "rootHeight": 844,
+            "bodyWidth": 410,
+            "bodyHeight": 844
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 537.03125,
+              "bottom": 577.828125,
+              "left": 14,
+              "right": 396,
+              "height": 40.796875,
+              "width": 382
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 581.828125,
+              "bottom": 622.625,
+              "left": 14,
+              "right": 396,
+              "height": 40.796875,
+              "width": 382
+            }
+          ],
+          "pager": "1/4・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 645.40625,
+              "bottom": 693,
+              "left": 14,
+              "right": 84,
+              "height": 47.59375,
+              "width": 70
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 645.40625,
+              "bottom": 693,
+              "left": 326,
+              "right": 396,
+              "height": 47.59375,
+              "width": 70
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 479.84375,
+              "bottom": 527.03125,
+              "left": 350,
+              "right": 396,
+              "height": 47.1875,
+              "width": 46
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 97.1875,
+          "left": 7,
+          "right": 403,
+          "height": 91.1875,
+          "width": 396
+        },
+        "workspace": {
+          "top": 102.1875,
+          "bottom": 700,
+          "left": 7,
+          "right": 403,
+          "height": 597.8125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 102.1875,
+          "bottom": 700,
+          "left": 7,
+          "right": 403,
+          "height": 597.8125,
+          "width": 396
+        },
+        "board": {
+          "top": 103.1875,
+          "bottom": 659,
+          "left": 8,
+          "right": 402,
+          "height": 555.8125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": true,
+          "visibility": "visible",
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 5,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/4・全8件",
+        "moved": true,
+        "next": "2/4・全8件"
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 97.1875,
+          "left": 7,
+          "right": 403,
+          "height": 91.1875,
+          "width": 396
+        },
+        "workspace": {
+          "top": 102.1875,
+          "bottom": 700,
+          "left": 7,
+          "right": 403,
+          "height": 597.8125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 102.1875,
+          "bottom": 700,
+          "left": 7,
+          "right": 403,
+          "height": 597.8125,
+          "width": 396
+        },
+        "board": {
+          "top": 103.1875,
+          "bottom": 659,
+          "left": 8,
+          "right": 402,
+          "height": 555.8125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": true,
+          "visibility": "visible",
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 5,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/4・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "left",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 6,
+            "bottom": 94.140625,
+            "left": 7,
+            "right": 403,
+            "height": 88.140625,
+            "width": 396
+          },
+          "workspace": {
+            "top": 99.140625,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 612.859375,
+            "width": 396
+          },
+          "stage": {
+            "visible": true,
+            "top": 99.140625,
+            "bottom": 473.125,
+            "left": 7,
+            "right": 403,
+            "height": 373.984375,
+            "width": 396
+          },
+          "board": {
+            "top": 100.140625,
+            "bottom": 472.125,
+            "left": 8,
+            "right": 402,
+            "height": 371.984375,
+            "width": 394
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 479.125,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 232.875,
+            "width": 396
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 410,
+            "height": 844,
+            "rootWidth": 410,
+            "rootHeight": 844,
+            "bodyWidth": 410,
+            "bodyHeight": 844
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 528.125,
+              "bottom": 560.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 564.125,
+              "bottom": 596.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 600.125,
+              "bottom": 632.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            }
+          ],
+          "pager": "1/3・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 14,
+              "right": 60,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 350,
+              "right": 396,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 486.125,
+              "bottom": 518.125,
+              "left": 364,
+              "right": 396,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        },
+        {
+          "label": "rotated",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": -90,
+          "header": {
+            "top": 7.000030517578125,
+            "bottom": 403.0000305175781,
+            "left": 6,
+            "right": 76,
+            "height": 396,
+            "width": 70
+          },
+          "workspace": {
+            "top": 7.000030517578125,
+            "bottom": 403.0000305175781,
+            "left": 81,
+            "right": 636,
+            "height": 396,
+            "width": 555
+          },
+          "stage": {
+            "visible": true,
+            "top": 7.000030517578125,
+            "bottom": 403.0000305175781,
+            "left": 81,
+            "right": 419.109375,
+            "height": 396,
+            "width": 338.109375
+          },
+          "board": {
+            "top": 8.000030517578125,
+            "bottom": 402.0000305175781,
+            "left": 82,
+            "right": 418.109375,
+            "height": 394,
+            "width": 336.109375
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 7.000030517578125,
+            "bottom": 403.0000305175781,
+            "left": 425.109375,
+            "right": 636,
+            "height": 396,
+            "width": 210.890625
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 843.9999998763087,
+            "height": 410.00002527715696,
+            "rootWidth": 844,
+            "rootHeight": 410,
+            "bodyWidth": 844,
+            "bodyHeight": 410
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 56.000030517578125,
+              "bottom": 88.00003051757812,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 92.00003051757812,
+              "bottom": 124.00003051757812,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 128.00003051757812,
+              "bottom": 160.00003051757812,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0.5秒 光線1 処理開始",
+              "visible": true,
+              "top": 164.00003051757812,
+              "bottom": 196.00003051757812,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "1秒 光線1 処理終了",
+              "visible": true,
+              "top": 200.00003051757812,
+              "bottom": 232.00003051757812,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "1秒 光線1 移動",
+              "visible": true,
+              "top": 236.00003051757812,
+              "bottom": 268.0000305175781,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "4秒 光線1 到着",
+              "visible": true,
+              "top": 272.0000305175781,
+              "bottom": 304.0000305175781,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "4秒 光線1 鐘が鳴る",
+              "visible": true,
+              "top": 308.0000305175781,
+              "bottom": 340.0000305175781,
+              "left": 432.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 197
+            }
+          ],
+          "pager": "1/1・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 364.0000305175781,
+              "bottom": 396.0000305175781,
+              "left": 432.046875,
+              "right": 478.046875,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 364.0000305175781,
+              "bottom": 396.0000305175781,
+              "left": 583.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 14.000030517578125,
+              "bottom": 46.000030517578125,
+              "left": 597.046875,
+              "right": 629.046875,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        },
+        {
+          "label": "portrait-return",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 6,
+            "bottom": 94.140625,
+            "left": 7,
+            "right": 403,
+            "height": 88.140625,
+            "width": 396
+          },
+          "workspace": {
+            "top": 99.140625,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 612.859375,
+            "width": 396
+          },
+          "stage": {
+            "visible": true,
+            "top": 99.140625,
+            "bottom": 473.125,
+            "left": 7,
+            "right": 403,
+            "height": 373.984375,
+            "width": 396
+          },
+          "board": {
+            "top": 100.140625,
+            "bottom": 472.125,
+            "left": 8,
+            "right": 402,
+            "height": 371.984375,
+            "width": 394
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 479.125,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 232.875,
+            "width": 396
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 410,
+            "height": 844,
+            "rootWidth": 410,
+            "rootHeight": 844,
+            "bodyWidth": 410,
+            "bodyHeight": 844
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 528.125,
+              "bottom": 560.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 564.125,
+              "bottom": 596.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 600.125,
+              "bottom": 632.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            }
+          ],
+          "pager": "1/3・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 14,
+              "right": 60,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 350,
+              "right": 396,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 486.125,
+              "bottom": 518.125,
+              "left": 364,
+              "right": 396,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 94.140625,
+          "left": 7,
+          "right": 403,
+          "height": 88.140625,
+          "width": 396
+        },
+        "workspace": {
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "board": {
+          "top": 305.546875,
+          "bottom": 711,
+          "left": 8,
+          "right": 402,
+          "height": 405.453125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 99.140625,
+          "bottom": 299.546875,
+          "left": 7,
+          "right": 403,
+          "height": 200.40625,
+          "width": 396
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 211,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/3・全8件",
+        "moved": true,
+        "next": "2/3・全8件"
+      },
+      "rotatedPaging": {
+        "before": "1/1・全8件",
+        "moved": false
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 94.140625,
+          "left": 7,
+          "right": 403,
+          "height": 88.140625,
+          "width": 396
+        },
+        "workspace": {
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "board": {
+          "top": 305.546875,
+          "bottom": 711,
+          "left": 8,
+          "right": 402,
+          "height": 405.453125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 99.140625,
+          "bottom": 299.546875,
+          "left": 7,
+          "right": 403,
+          "height": 200.40625,
+          "width": 396
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 211,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/3・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "right",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 6,
+            "bottom": 94.140625,
+            "left": 7,
+            "right": 403,
+            "height": 88.140625,
+            "width": 396
+          },
+          "workspace": {
+            "top": 99.140625,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 612.859375,
+            "width": 396
+          },
+          "stage": {
+            "visible": true,
+            "top": 99.140625,
+            "bottom": 473.125,
+            "left": 7,
+            "right": 403,
+            "height": 373.984375,
+            "width": 396
+          },
+          "board": {
+            "top": 100.140625,
+            "bottom": 472.125,
+            "left": 8,
+            "right": 402,
+            "height": 371.984375,
+            "width": 394
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 479.125,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 232.875,
+            "width": 396
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 410,
+            "height": 844,
+            "rootWidth": 410,
+            "rootHeight": 844,
+            "bodyWidth": 410,
+            "bodyHeight": 844
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 528.125,
+              "bottom": 560.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 564.125,
+              "bottom": 596.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 600.125,
+              "bottom": 632.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            }
+          ],
+          "pager": "1/3・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 14,
+              "right": 60,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 350,
+              "right": 396,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 486.125,
+              "bottom": 518.125,
+              "left": 364,
+              "right": 396,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        },
+        {
+          "label": "rotated",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 90,
+          "header": {
+            "top": 7,
+            "bottom": 403,
+            "left": 768,
+            "right": 838,
+            "height": 396,
+            "width": 70
+          },
+          "workspace": {
+            "top": 7,
+            "bottom": 403,
+            "left": 208,
+            "right": 763,
+            "height": 396,
+            "width": 555
+          },
+          "stage": {
+            "visible": true,
+            "top": 7,
+            "bottom": 403,
+            "left": 424.890625,
+            "right": 763,
+            "height": 396,
+            "width": 338.109375
+          },
+          "board": {
+            "top": 8,
+            "bottom": 402,
+            "left": 425.890625,
+            "right": 762,
+            "height": 394,
+            "width": 336.109375
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 7,
+            "bottom": 403,
+            "left": 208,
+            "right": 418.890625,
+            "height": 396,
+            "width": 210.890625
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 844,
+            "height": 410,
+            "rootWidth": 844,
+            "rootHeight": 410,
+            "bodyWidth": 844,
+            "bodyHeight": 410
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 56,
+              "bottom": 88,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 92,
+              "bottom": 124,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 128,
+              "bottom": 160,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "0.5秒 光線1 処理開始",
+              "visible": true,
+              "top": 164,
+              "bottom": 196,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "1秒 光線1 処理終了",
+              "visible": true,
+              "top": 200,
+              "bottom": 232,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "1秒 光線1 移動",
+              "visible": true,
+              "top": 236,
+              "bottom": 268,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "4秒 光線1 到着",
+              "visible": true,
+              "top": 272,
+              "bottom": 304,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            },
+            {
+              "text": "4秒 光線1 鐘が鳴る",
+              "visible": true,
+              "top": 308,
+              "bottom": 340,
+              "left": 214.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 197
+            }
+          ],
+          "pager": "1/1・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 364,
+              "bottom": 396,
+              "left": 214.953125,
+              "right": 260.953125,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 364,
+              "bottom": 396,
+              "left": 365.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 14,
+              "bottom": 46,
+              "left": 379.953125,
+              "right": 411.953125,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        },
+        {
+          "label": "portrait-return",
+          "fullscreen": false,
+          "desktop": false,
+          "rotation": 0,
+          "header": {
+            "top": 6,
+            "bottom": 94.140625,
+            "left": 7,
+            "right": 403,
+            "height": 88.140625,
+            "width": 396
+          },
+          "workspace": {
+            "top": 99.140625,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 612.859375,
+            "width": 396
+          },
+          "stage": {
+            "visible": true,
+            "top": 99.140625,
+            "bottom": 473.125,
+            "left": 7,
+            "right": 403,
+            "height": 373.984375,
+            "width": 396
+          },
+          "board": {
+            "top": 100.140625,
+            "bottom": 472.125,
+            "left": 8,
+            "right": 402,
+            "height": 371.984375,
+            "width": 394
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "records": {
+            "visible": true,
+            "top": 479.125,
+            "bottom": 712,
+            "left": 7,
+            "right": 403,
+            "height": 232.875,
+            "width": 396
+          },
+          "gap": 5,
+          "allowedGap": 5,
+          "page": {
+            "width": 410,
+            "height": 844,
+            "rootWidth": 410,
+            "rootHeight": 844,
+            "bodyWidth": 410,
+            "bodyHeight": 844
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 528.125,
+              "bottom": 560.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 564.125,
+              "bottom": 596.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 600.125,
+              "bottom": 632.125,
+              "left": 14,
+              "right": 396,
+              "height": 32,
+              "width": 382
+            }
+          ],
+          "pager": "1/3・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 14,
+              "right": 60,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 673,
+              "bottom": 705,
+              "left": 350,
+              "right": 396,
+              "height": 32,
+              "width": 46
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 486.125,
+              "bottom": 518.125,
+              "left": 364,
+              "right": 396,
+              "height": 32,
+              "width": 32
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 94.140625,
+          "left": 7,
+          "right": 403,
+          "height": 88.140625,
+          "width": 396
+        },
+        "workspace": {
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "board": {
+          "top": 305.546875,
+          "bottom": 711,
+          "left": 8,
+          "right": 402,
+          "height": 405.453125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 99.140625,
+          "bottom": 299.546875,
+          "left": 7,
+          "right": 403,
+          "height": 200.40625,
+          "width": 396
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 211,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/3・全8件",
+        "moved": true,
+        "next": "2/3・全8件"
+      },
+      "rotatedPaging": {
+        "before": "1/1・全8件",
+        "moved": false
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": false,
+        "rotation": 0,
+        "header": {
+          "top": 6,
+          "bottom": 94.140625,
+          "left": 7,
+          "right": 403,
+          "height": 88.140625,
+          "width": 396
+        },
+        "workspace": {
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "stage": {
+          "visible": true,
+          "top": 304.546875,
+          "bottom": 712,
+          "left": 7,
+          "right": 403,
+          "height": 407.453125,
+          "width": 396
+        },
+        "board": {
+          "top": 305.546875,
+          "bottom": 711,
+          "left": 8,
+          "right": 402,
+          "height": 405.453125,
+          "width": 394
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 99.140625,
+          "bottom": 299.546875,
+          "left": 7,
+          "right": 403,
+          "height": 200.40625,
+          "width": 396
+        },
+        "guideSlot": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 211,
+        "allowedGap": 5,
+        "page": {
+          "width": 410,
+          "height": 844,
+          "rootWidth": 410,
+          "rootHeight": 844,
+          "bodyWidth": 410,
+          "bodyHeight": 844
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/3・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": false,
+          "desktop": true,
+          "rotation": 0,
+          "header": {
+            "top": 0,
+            "bottom": 83,
+            "left": 28,
+            "right": 1412,
+            "height": 83,
+            "width": 1384
+          },
+          "workspace": {
+            "top": 100,
+            "bottom": 928,
+            "left": 28,
+            "right": 1071.203125,
+            "height": 828,
+            "width": 1043.203125
+          },
+          "stage": {
+            "visible": true,
+            "top": 100,
+            "bottom": 928,
+            "left": 28,
+            "right": 600.203125,
+            "height": 828,
+            "width": 572.203125
+          },
+          "board": {
+            "top": 101,
+            "bottom": 782,
+            "left": 29,
+            "right": 599.203125,
+            "height": 681,
+            "width": 570.203125
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 207,
+            "bottom": 207,
+            "left": 1095.203125,
+            "right": 1412,
+            "height": 0,
+            "width": 316.796875
+          },
+          "records": {
+            "visible": true,
+            "top": 100,
+            "bottom": 928,
+            "left": 612.203125,
+            "right": 1071.203125,
+            "height": 828,
+            "width": 459
+          },
+          "gap": 17,
+          "allowedGap": 17,
+          "page": {
+            "width": 1440,
+            "height": 960,
+            "rootWidth": 1440,
+            "rootHeight": 960,
+            "bodyWidth": 1440,
+            "bodyHeight": 960
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 165,
+              "bottom": 207,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 211,
+              "bottom": 253,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 257,
+              "bottom": 299,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "0.5秒 光線1 処理開始",
+              "visible": true,
+              "top": 303,
+              "bottom": 345,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "1秒 光線1 処理終了",
+              "visible": true,
+              "top": 349,
+              "bottom": 391,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "1秒 光線1 移動",
+              "visible": true,
+              "top": 395,
+              "bottom": 437,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "4秒 光線1 到着",
+              "visible": true,
+              "top": 441,
+              "bottom": 483,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            },
+            {
+              "text": "4秒 光線1 鐘が鳴る",
+              "visible": true,
+              "top": 487,
+              "bottom": 529,
+              "left": 625.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 433
+            }
+          ],
+          "pager": "1/1・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 873,
+              "bottom": 915,
+              "left": 625.203125,
+              "right": 679.203125,
+              "height": 42,
+              "width": 54
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 873,
+              "bottom": 915,
+              "left": 1004.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 54
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 113,
+              "bottom": 155,
+              "left": 1024.203125,
+              "right": 1058.203125,
+              "height": 42,
+              "width": 34
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": true,
+        "rotation": 0,
+        "header": {
+          "top": 0,
+          "bottom": 83,
+          "left": 28,
+          "right": 1412,
+          "height": 83,
+          "width": 1384
+        },
+        "workspace": {
+          "top": 100,
+          "bottom": 928,
+          "left": 28,
+          "right": 1071.203125,
+          "height": 828,
+          "width": 1043.203125
+        },
+        "stage": {
+          "visible": true,
+          "top": 100,
+          "bottom": 928,
+          "left": 28,
+          "right": 1071.203125,
+          "height": 828,
+          "width": 1043.203125
+        },
+        "board": {
+          "top": 101,
+          "bottom": 846,
+          "left": 29,
+          "right": 1070.203125,
+          "height": 745,
+          "width": 1041.203125
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 207,
+          "bottom": 511.375,
+          "left": 1095.203125,
+          "right": 1412,
+          "height": 304.375,
+          "width": 316.796875
+        },
+        "guideSlot": {
+          "top": 207,
+          "bottom": 511.375,
+          "left": 1095.203125,
+          "right": 1412,
+          "height": 304.375,
+          "width": 316.796875
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 17,
+        "allowedGap": 17,
+        "page": {
+          "width": 1440,
+          "height": 960,
+          "rootWidth": 1440,
+          "rootHeight": 960,
+          "bodyWidth": 1440,
+          "bodyHeight": 960
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/1・全8件",
+        "moved": false
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": true,
+        "rotation": 0,
+        "header": {
+          "top": 0,
+          "bottom": 83,
+          "left": 28,
+          "right": 1412,
+          "height": 83,
+          "width": 1384
+        },
+        "workspace": {
+          "top": 100,
+          "bottom": 928,
+          "left": 28,
+          "right": 1071.203125,
+          "height": 828,
+          "width": 1043.203125
+        },
+        "stage": {
+          "visible": true,
+          "top": 100,
+          "bottom": 928,
+          "left": 28,
+          "right": 1071.203125,
+          "height": 828,
+          "width": 1043.203125
+        },
+        "board": {
+          "top": 101,
+          "bottom": 846,
+          "left": 29,
+          "right": 1070.203125,
+          "height": 745,
+          "width": 1041.203125
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 207,
+          "bottom": 511.375,
+          "left": 1095.203125,
+          "right": 1412,
+          "height": 304.375,
+          "width": 316.796875
+        },
+        "guideSlot": {
+          "top": 207,
+          "bottom": 511.375,
+          "left": 1095.203125,
+          "right": 1412,
+          "height": 304.375,
+          "width": 316.796875
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 17,
+        "allowedGap": 17,
+        "page": {
+          "width": 1440,
+          "height": 960,
+          "rootWidth": 1440,
+          "rootHeight": 960,
+          "bodyWidth": 1440,
+          "bodyHeight": 960
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 処理開始",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 処理終了",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 鐘が鳴る",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/1・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop-small",
+      "passed": true,
+      "opened": [
+        {
+          "label": "open",
+          "fullscreen": false,
+          "desktop": true,
+          "rotation": 0,
+          "header": {
+            "top": 0,
+            "bottom": 67,
+            "left": 21,
+            "right": 1079,
+            "height": 67,
+            "width": 1058
+          },
+          "workspace": {
+            "top": 84,
+            "bottom": 672,
+            "left": 21,
+            "right": 759,
+            "height": 588,
+            "width": 738
+          },
+          "stage": {
+            "visible": true,
+            "top": 84,
+            "bottom": 672,
+            "left": 21,
+            "right": 422.28125,
+            "height": 588,
+            "width": 401.28125
+          },
+          "board": {
+            "top": 85,
+            "bottom": 466,
+            "left": 22,
+            "right": 421.28125,
+            "height": 381,
+            "width": 399.28125
+          },
+          "guide": {
+            "hidden": true,
+            "visibility": "hidden",
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          "guideSlot": {
+            "top": 174,
+            "bottom": 174,
+            "left": 779,
+            "right": 1079,
+            "height": 0,
+            "width": 300
+          },
+          "records": {
+            "visible": true,
+            "top": 84,
+            "bottom": 672,
+            "left": 434.28125,
+            "right": 759,
+            "height": 588,
+            "width": 324.71875
+          },
+          "gap": 17,
+          "allowedGap": 17,
+          "page": {
+            "width": 1100,
+            "height": 700,
+            "rootWidth": 1100,
+            "rootHeight": 700,
+            "bodyWidth": 1100,
+            "bodyHeight": 700
+          },
+          "rows": [
+            {
+              "text": "0秒 光線1 送出",
+              "visible": true,
+              "top": 149,
+              "bottom": 191,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "0秒 光線1 移動",
+              "visible": true,
+              "top": 195,
+              "bottom": 237,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "0.5秒 光線1 到着",
+              "visible": true,
+              "top": 241,
+              "bottom": 283,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "0.5秒 光線1 処理開始",
+              "visible": true,
+              "top": 287,
+              "bottom": 329,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "1秒 光線1 処理終了",
+              "visible": true,
+              "top": 333,
+              "bottom": 375,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "1秒 光線1 移動",
+              "visible": true,
+              "top": 379,
+              "bottom": 421,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "4秒 光線1 到着",
+              "visible": true,
+              "top": 425,
+              "bottom": 467,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            },
+            {
+              "text": "4秒 光線1 鐘が鳴る",
+              "visible": true,
+              "top": 471,
+              "bottom": 513,
+              "left": 447.28125,
+              "right": 746,
+              "height": 42,
+              "width": 298.71875
+            }
+          ],
+          "pager": "1/1・全8件",
+          "controls": [
+            {
+              "id": "record-prev",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 617,
+              "bottom": 659,
+              "left": 447.28125,
+              "right": 501.28125,
+              "height": 42,
+              "width": 54
+            },
+            {
+              "id": "record-next",
+              "visible": true,
+              "disabled": true,
+              "hit": true,
+              "top": 617,
+              "bottom": 659,
+              "left": 692,
+              "right": 746,
+              "height": 42,
+              "width": 54
+            },
+            {
+              "id": "close-records",
+              "visible": true,
+              "disabled": false,
+              "hit": true,
+              "top": 97,
+              "bottom": 139,
+              "left": 712,
+              "right": 746,
+              "height": 42,
+              "width": 34
+            }
+          ]
+        }
+      ],
+      "before": {
+        "fullscreen": false,
+        "desktop": true,
+        "rotation": 0,
+        "header": {
+          "top": 0,
+          "bottom": 67,
+          "left": 21,
+          "right": 1079,
+          "height": 67,
+          "width": 1058
+        },
+        "workspace": {
+          "top": 84,
+          "bottom": 672,
+          "left": 21,
+          "right": 759,
+          "height": 588,
+          "width": 738
+        },
+        "stage": {
+          "visible": true,
+          "top": 84,
+          "bottom": 672,
+          "left": 21,
+          "right": 759,
+          "height": 588,
+          "width": 738
+        },
+        "board": {
+          "top": 85,
+          "bottom": 592,
+          "left": 22,
+          "right": 758,
+          "height": 507,
+          "width": 736
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 174,
+          "bottom": 402,
+          "left": 779,
+          "right": 1079,
+          "height": 228,
+          "width": 300
+        },
+        "guideSlot": {
+          "top": 174,
+          "bottom": 402,
+          "left": 779,
+          "right": 1079,
+          "height": 228,
+          "width": 300
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 17,
+        "allowedGap": 17,
+        "page": {
+          "width": 1100,
+          "height": 700,
+          "rootWidth": 1100,
+          "rootHeight": 700,
+          "bodyWidth": 1100,
+          "bodyHeight": 700
+        },
+        "rows": [],
+        "pager": "",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      },
+      "paging": {
+        "before": "1/1・全8件",
+        "moved": false
+      },
+      "closed": {
+        "fullscreen": false,
+        "desktop": true,
+        "rotation": 0,
+        "header": {
+          "top": 0,
+          "bottom": 67,
+          "left": 21,
+          "right": 1079,
+          "height": 67,
+          "width": 1058
+        },
+        "workspace": {
+          "top": 84,
+          "bottom": 672,
+          "left": 21,
+          "right": 759,
+          "height": 588,
+          "width": 738
+        },
+        "stage": {
+          "visible": true,
+          "top": 84,
+          "bottom": 672,
+          "left": 21,
+          "right": 759,
+          "height": 588,
+          "width": 738
+        },
+        "board": {
+          "top": 85,
+          "bottom": 592,
+          "left": 22,
+          "right": 758,
+          "height": 507,
+          "width": 736
+        },
+        "guide": {
+          "hidden": false,
+          "visibility": "visible",
+          "top": 174,
+          "bottom": 402,
+          "left": 779,
+          "right": 1079,
+          "height": 228,
+          "width": 300
+        },
+        "guideSlot": {
+          "top": 174,
+          "bottom": 402,
+          "left": 779,
+          "right": 1079,
+          "height": 228,
+          "width": 300
+        },
+        "records": {
+          "visible": false,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "height": 0,
+          "width": 0
+        },
+        "gap": 17,
+        "allowedGap": 17,
+        "page": {
+          "width": 1100,
+          "height": 700,
+          "rootWidth": 1100,
+          "rootHeight": 700,
+          "bodyWidth": 1100,
+          "bodyHeight": 700
+        },
+        "rows": [
+          {
+            "text": "0秒 光線1 送出",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "0.5秒 光線1 処理開始",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 処理終了",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "1秒 光線1 移動",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 到着",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "text": "4秒 光線1 鐘が鳴る",
+            "visible": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ],
+        "pager": "1/1・全8件",
+        "controls": [
+          {
+            "id": "record-prev",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "record-next",
+            "visible": false,
+            "disabled": true,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          },
+          {
+            "id": "close-records",
+            "visible": false,
+            "disabled": false,
+            "hit": false,
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "height": 0,
+            "width": 0
+          }
+        ]
+      }
+    }
+  ],
+  "boundary": "Actual UI and wall-clock practice records in desktop browsers. Touch, CSS text enlargement and screen.orientation change events are emulated; physical-device operation is unverified.",
+  "step": "desktop-small"
+}

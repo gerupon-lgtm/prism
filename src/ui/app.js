@@ -351,7 +351,7 @@ function render(redraw=true,{records=true}={}) {
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   const guide=session.guide;
-  tutorialGuide.update({guide,hidden:dialog.open||document.hidden||!$('title-screen').hidden||session.view.recordsOpen||Boolean(startPrelude),compact,targets:guideCopy?.targets??[],demo:guideCopy?.demo??null,key:guideCopy?.key??''});
+  tutorialGuide.update({guide,hidden:dialog.open||document.hidden||!$('title-screen').hidden||session.view.recordsOpen||Boolean(startPrelude),recordsOpen:session.view.recordsOpen,compact,targets:guideCopy?.targets??[],demo:guideCopy?.demo??null,key:guideCopy?.key??''});
   wireLimitNotice.update({active:session.mode==='challenge'&&session.editable&&!startPrelude&&!guide&&!session.pendingScores.size&&session.circuit.edges.length>=session.challenge.limit,limit:session.challenge?.limit});
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.

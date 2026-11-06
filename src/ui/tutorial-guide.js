@@ -100,7 +100,7 @@ export class TutorialGuide {
     }
     this.board.append(layer);
   }
-  update({guide,hidden,compact,targets=[],demo=null,key=''}) {
+  update({guide,hidden,recordsOpen=false,compact,targets=[],demo=null,key=''}) {
     if(this.guide!==guide){this.clearDemo();this.pointers.clear();this.keys.clear();}
     this.guide=guide;this.hidden=!guide||Boolean(hidden);this.demo=demo;this.key=key;
     this.targets=guide&&!hidden?targets:[];
@@ -111,8 +111,9 @@ export class TutorialGuide {
     this.collapsed=Boolean(guide&&(compact||rotated&&innerHeight<=360||enlarged&&(rotated||innerHeight<700||innerWidth<700)));
     this.status?.classList.toggle('tutorial-status',Boolean(guide));
     if(this.status)this.status.hidden=false;
-    this.card.hidden=!guide||this.collapsed;
-    // Reading a dialog must not resize the circuit behind it.
+    this.card.hidden=!guide||this.collapsed||recordsOpen;
+    // A modal keeps the circuit steady behind it. Inline records instead need
+    // the guide's space for the visible board and record panel.
     this.card.style.visibility=hidden?'hidden':'';
     if(guide&&!hidden&&!this.collapsed&&!root.classList.contains('desktop-layout')){
       const area=this.board.getBoundingClientRect();

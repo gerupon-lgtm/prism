@@ -1,0 +1,133 @@
+{
+  "scope": [
+    "Real first-run records at phone410x844, small320x480, 28px text, left/right screen.orientation changes with records open and portrait return, desktop1440x960 and1100x700.",
+    "Guide occupied area is zero with records open; usable board/records layout or existing fullscreen, visible actual rows/navigation/close, pagination when multiple pages, no physical-viewport page overflow.",
+    "Closing records restores guide state, circuit, result and board geometry. Phone comparison records qualify next chapter. Ordinary full-text dialogs retain guide space and board geometry.",
+    "Existing full tutorial phone/desktop runs complete both chapters and restore original state in both browsers."
+  ],
+  "boundary": "Desktop browser testing with emulated touch, orientation and CSS enlargement. Physical-device appearance/finger operation unverified. Windows WebKit lacks AudioContext; its full-tutorial checks establish UI and sound requests, not audible synthesis.",
+  "totals": {
+    "minimalRecordCases": 2,
+    "realRecordCases": 14,
+    "fullTutorialCases": 4,
+    "qualifiedCases": 20
+  },
+  "reports": [
+    {
+      "passed": true,
+      "report": "after-real/chromium-phone/report.json",
+      "cases": [
+        "phone"
+      ],
+      "kind": "records-real",
+      "engine": "chromium",
+      "count": 1
+    },
+    {
+      "passed": true,
+      "report": "after-real/chromium-remaining/report.json",
+      "cases": [
+        "small",
+        "enlarged",
+        "left",
+        "right",
+        "desktop",
+        "desktop-small"
+      ],
+      "kind": "records-real",
+      "engine": "chromium",
+      "count": 6
+    },
+    {
+      "passed": true,
+      "report": "after-real/webkit/report.json",
+      "cases": [
+        "phone",
+        "small",
+        "enlarged",
+        "left",
+        "right",
+        "desktop",
+        "desktop-small"
+      ],
+      "kind": "records-real",
+      "engine": "webkit",
+      "count": 7
+    },
+    {
+      "passed": true,
+      "report": "after-minimal/chromium/report.json",
+      "cases": [
+        "phone"
+      ],
+      "kind": "records-minimal",
+      "engine": "chromium",
+      "count": 1
+    },
+    {
+      "passed": true,
+      "report": "after-minimal/webkit/report.json",
+      "cases": [
+        "phone"
+      ],
+      "kind": "records-minimal",
+      "engine": "webkit",
+      "count": 1
+    },
+    {
+      "passed": true,
+      "report": "discovery-chromium/report.json",
+      "cases": [
+        "phone",
+        "desktop"
+      ],
+      "kind": "full-tutorial",
+      "engine": "chromium",
+      "count": 2
+    },
+    {
+      "passed": true,
+      "report": "discovery-webkit/report.json",
+      "cases": [
+        "phone",
+        "desktop"
+      ],
+      "kind": "full-tutorial",
+      "engine": "webkit",
+      "count": 2
+    }
+  ],
+  "browserProcesses": "All verifier browsers and scoped command sessions exited; no active task browser remains.",
+  "passed": true,
+  "createdAtUtc": "2026-11-06T17:47:00.9573116Z",
+  "buildLog": "build.log",
+  "reproduction": {
+    "beforeMinimal": {
+      "report": "before-minimal/report.json",
+      "passed": false,
+      "gap": 210.40625
+    },
+    "beforeReal": {
+      "report": "before-real/report.json",
+      "boardHeight": 244.625,
+      "passed": false,
+      "gap": 210.40625,
+      "guideHeight": 200.40625
+    },
+    "afterRealPhone": {
+      "report": "after-real/chromium-phone/report.json",
+      "page": {
+        "width": 410,
+        "height": 844,
+        "rootWidth": 410,
+        "rootHeight": 844,
+        "bodyWidth": 410,
+        "bodyHeight": 844
+      },
+      "boardHeight": 371.984375,
+      "gap": 5,
+      "guideHeight": 0
+    }
+  },
+  "version": "0.103.0"
+}
