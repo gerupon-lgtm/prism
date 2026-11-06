@@ -1,0 +1,93 @@
+{
+  "version": "0.102.0",
+  "commit": "5193767e7777a6a422341d79c4e2ed5fc0883fc8",
+  "checkedAt": "2026-11-06T14:39:19.7165408+00:00",
+  "passed": true,
+  "local": {
+    "testFiles": 46,
+    "tests": 576,
+    "syntaxFiles": 120,
+    "offlineAssets": 82,
+    "browserItems": 62,
+    "motionCases": 2,
+    "reports": [
+      "local-summary.json",
+      "motion/report.json"
+    ]
+  },
+  "release": {
+    "github": {
+      "conclusion": "success",
+      "headSha": "5193767e7777a6a422341d79c4e2ed5fc0883fc8",
+      "status": "completed",
+      "url": "https://github.com/gerupon-lgtm/prism/actions/runs/42234476074"
+    },
+    "checks": [
+      {
+        "conclusion": "success",
+        "details_url": "https://dash.cloudflare.com/?to=/acbbf504f6b64128e2d44b15f5b32d20/pages/view/prism-notes/e9fe7e52-6402-4979-91a4-656e2661ce92",
+        "name": "Cloudflare Pages",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/42234476074/job/127949688293",
+        "name": "deploy",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/42234476074/job/127948436705",
+        "name": "build",
+        "status": "completed"
+      }
+    ],
+    "finalSourceTests": 576
+  },
+  "public": {
+    "general": [
+      {
+        "report": "public-domain/report.json",
+        "passed": true,
+        "checks": 95,
+        "url": "https://prism.sikumilab.com/",
+        "commit": "5193767e7777a6a422341d79c4e2ed5fc0883fc8"
+      },
+      {
+        "report": "public-github/report.json",
+        "passed": true,
+        "checks": 95,
+        "url": "https://gerupon-lgtm.github.io/prism/",
+        "commit": "5193767e7777a6a422341d79c4e2ed5fc0883fc8"
+      }
+    ],
+    "tutorial": [
+      {
+        "report": "public-tutorial-chromium/report.json",
+        "engine": "chromium",
+        "passed": true,
+        "cases": [
+          "phone",
+          "desktop"
+        ]
+      },
+      {
+        "report": "public-tutorial-webkit/report.json",
+        "engine": "webkit",
+        "passed": true,
+        "cases": [
+          "phone",
+          "desktop"
+        ]
+      }
+    ],
+    "qualifiedTotal": 194
+  },
+  "boundaries": [
+    "Actual UI, actual simulation clocks and wall-clock playback in desktop browsers. Phone touch, viewport, orientation and enlarged CSS text are emulated.",
+    "Chromium observes three native FM bell voices with the requested pitches. Windows WebKit has no AudioContext; its results establish UI and sound requests, not audible synthesis.",
+    "Physical-device finger operation, listening, perceived enjoyment and comprehension remain unverified.",
+    "Page overflow is checked against visualViewport times scale, separately from intentional internal full-text/result-body reading."
+  ],
+  "sourceUnchangedAfterPublish": true
+}

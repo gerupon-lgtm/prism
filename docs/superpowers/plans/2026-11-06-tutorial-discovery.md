@@ -27,4 +27,4 @@
 - [x] **State and circuits** — `src/content/tutorial.js`を新設し、`src/app/session.js`と`tests/session.test.js`へ練習専用rev2の進行を実装。challenge step0初回実到達、1削除、2別経路実到達、3記録、4章移動ボタン、5分岐実行、readyToFinish。`Session.nextGuideLesson()`はstep4かつ編集可能時のみ分岐練習へ移る。`guide.firstResult/comparison`は実結果の複製。自由step0..3を維持。進行/誤操作/クリア/スキップ/失敗を単体で点検。
 - [x] **Guide presentation** — `tutorialContent(session,coarse)`を目的・操作・補足・対象・お手本区間へ拡張。`TutorialGuide`は実盤面座標を使う非操作SVGのお手本、段階の反応、操作中/非表示の取消を所有。`app.js/index.html/tutorial.css/desktop.css`に見出し・進度・補足・次章ボタンを統合。実行中は見守る案内、終了画面は比較と三音の達成を表示。
 - [x] **Verification** — 新しい実操作検査で2章を完走し、前後の実時間と音程、削除/回復、通常/控えめ、複数サイズ、元状態復元を検査。自由の既存検査も維持。関連単体、全テスト、構文、版比較、ビルドを実施。スクリーンショットと動きの素材を確認し独立レビューを受ける。
-- [ ] **Release and evidence** — AGENTS/点検資料を同期し、変更ファイルだけをcommit/push。両公開先の版・資材・実画面を確認。実機の伝わり方/指操作/聴感はPC検査と区別して報告。
+- [x] **Release and evidence** — AGENTS/点検資料を同期し、変更ファイルだけをcommit/push。両公開先の版・資材・実画面を確認。実機の伝わり方/指操作/聴感はPC検査と区別して報告。
