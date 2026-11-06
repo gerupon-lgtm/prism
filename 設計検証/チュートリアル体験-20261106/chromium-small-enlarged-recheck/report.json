@@ -1,0 +1,34 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": false,
+  "cases": [],
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "small-enlarged",
+  "error": "page.waitForFunction: Timeout 3000ms exceeded.\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:107:48",
+  "diagnostic": {
+    "heading": "あなたの回路を、鳴らそう",
+    "count": "6 / 6",
+    "copy": "「鐘を鳴らす」で、三つの響きを聴こう。",
+    "play": "<button id=\"play\" title=\"\" data-state=\"paused\" aria-pressed=\"false\" class=\"tutorial-target\">再開</button>",
+    "error": "",
+    "guide": {
+      "step": 5,
+      "ready": false
+    },
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "time": "0",
+      "arrivals": [],
+      "edges": [
+        "SA",
+        "AB",
+        "AC",
+        "BG1",
+        "BG2",
+        "CG3"
+      ]
+    }
+  }
+}

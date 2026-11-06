@@ -10,6 +10,7 @@ import {bellSequenceResult} from '../core/bell-sequence.js';
 import {returnPatternDeadline,returnPatternResult} from '../core/return-pattern.js';
 import {gateTimes} from '../core/periodic.js';
 import { sampleCircuit } from '../content/samples.js';
+import { tutorialChallenge } from '../content/tutorial.js';
 
 const copy = value => structuredClone(value);
 const challengeById = id => {
@@ -62,8 +63,11 @@ export class Session {
     this.circuit = checked;
     this.dirty = true;
     if(this.guide)this.guide.run=null;
-    if(this.guide?.mode==='challenge'&&this.guide.step===0&&checked.edges.length){
-      this.guide.wireId=checked.edges[0].id;this.guide.step=1;
+    if(this.guide?.mode==='challenge'){
+      // A changed circuit needs its own real comparison run. Never use the
+      // previous result just because its records can still be opened.
+      if(this.guide.step===3||this.guide.step===4){this.guide.step=2;this.guide.comparison=null;this.guide.comparisonRun=null;}
+      if(this.guide.step===5)this.guide.readyToFinish=false;
     }
     // Keep the previous run and its result available, but never change its conditions.
     if (this.guide?.mode === 'free' && this.guide.step === 2) {
@@ -121,7 +125,11 @@ export class Session {
   }
   clearConnections() {
     this.commitEdit({...this.circuit,edges:[]});this.selection=null;this.view.showAllTimes=true;
-    if(this.guide){this.guide.step=0;this.guide.wireId=null;this.guide.readyToFinish=false;}
+    if(this.guide){
+      const branch=this.guide.mode==='challenge'&&this.guide.step===5;
+      this.guide.step=branch?5:0;this.guide.wireId=null;this.guide.readyToFinish=false;
+      if(this.guide.mode==='challenge'&&!branch){this.guide.firstResult=null;this.guide.comparison=null;this.guide.comparisonRun=null;}
+    }
   }
   nextId(prefix,circuit=this.circuit) {
     const used = new Set([...circuit.nodes,...circuit.edges].map(item => item.id));
@@ -253,7 +261,13 @@ export class Session {
     } else if (caseId !== null) throw new Error('この実験には故障ケースがありません。');
     const run = new Simulation(conditions);
     this.run = run; this.timeoutMotionRun = null; this.cases = cases; this.replayCase = selected?.id ?? null;
-    if(this.guide)this.guide.run=run;
+    if(this.guide){
+      // Listening again is still a fresh experiment. Reset only after the
+      // conditions and new Simulation succeeded, and require its real arrival
+      // before records can advance the comparison lesson.
+      if(this.guide.mode==='challenge'&&this.guide.step===3){this.guide.step=2;this.guide.comparison=null;this.guide.comparisonRun=null;}
+      this.guide.run=run;this.guide.runStep=this.guide.step;
+    }
     this.runContext = {mode:this.mode,challenge:copy(this.challenge),original,guide:this.guide !== null,phaseOffset:phaseScale.format(offset)};
     this.view.recordPage = 0; this.result = null;
     this.completeReturnPattern();
@@ -324,7 +338,7 @@ export class Session {
   }
   openRecords() {
     this.pause('records');
-    if (this.guide?.mode === 'challenge' && this.guide.step === 3) this.guide.readyToFinish = true;
+    if (this.guide?.mode === 'challenge' && this.guide.step === 3 && this.guide.run===this.run && this.guide.comparisonRun===this.run) this.guide.step=4;
   }
 
   evaluate() {
@@ -375,8 +389,27 @@ export class Session {
     if(state==='failed'&&!this.result.reason)this.result.reason=challenge.type==='delivery-all'?'必要な祭壇すべてに届く配線になっていません。':['edge-fault','prism-fault'].includes(challenge.type)?'故障するとゴールへ届かないケースがあります。':!arrival?'ゴールへ届く配線になっていません。':'到達回数または間隔が条件を満たしていません。';
     if(this.runContext.timeLimitReached){this.result.timeLimitReached=true;this.result.reason=`動作上限${challenge.maxDuration}秒で時間切れになりました。記録を確認してつなぎ直せます。`;}
     if (state === 'achieved' && score && !guide) this.offerScore(challenge,score);
-    if (this.guide?.mode === 'challenge' && this.guide.run===this.run && this.guide.step === 2 && arrival) this.guide.step = 3;
+    this.advanceGuide(state,arrival);
     return this.result;
+  }
+  advanceGuide(state,arrival) {
+    const guide=this.guide;
+    if(guide?.mode!=='challenge'||guide.run!==this.run||guide.runStep!==guide.step||state!=='achieved')return;
+    if(guide.step===5){guide.readyToFinish=true;return;}
+    if(!arrival||![0,2].includes(guide.step))return;
+    // stop() removes live particles, but keeps the actual travel records.
+    // Read those records so stopping cannot turn a repeated route into [].
+    const edges=this.run.records.filter(row=>row.type==='travel'&&row.particle===arrival.particle).map(row=>row.edge).sort();
+    if(!edges.length)return;
+    const summary={time:this.result.evaluatedTime,score:copy(this.result.score),edges};
+    if(guide.step===0){
+      guide.firstResult=summary;
+      const incoming=this.run.records.find(row=>row.type==='arrival'&&row.particle===arrival.particle&&row.node===arrival.node)?.edge;
+      guide.wireId=incoming??this.runContext.original.edges.find(edge=>edge.to===arrival.node)?.id;
+      guide.step=1;
+    }else if(JSON.stringify(edges)!==JSON.stringify(guide.firstResult.edges)){
+      guide.comparison=summary;guide.comparisonRun=this.run;guide.step=3;
+    }
   }
   scoreKey(challenge) { return `${challengeScoreId(challenge)}/${challenge.type}@1`; }
   offerScore(challenge, score) {
@@ -408,10 +441,18 @@ export class Session {
     this.pause('guide');
     const backup = Object.fromEntries(stateFields.map(field => [field,this[field]]));
     const mode = this.mode;
-    const replacement = mode === 'free' ? this.replacement({sampleId:'compare'}) : this.replacement({challengeId:'Q1'});
+    const challenge=mode==='challenge'?tutorialChallenge('route'):null;
+    const replacement = mode === 'free' ? this.replacement({sampleId:'compare'}) : {mode:'challenge',challenge,circuit:createCircuit(challengeCircuit(challenge)).raw,name:''};
     this.timeoutMotionRun=null;
     Object.assign(this,replacement,{dirty:false,run:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
-    this.guide = {mode,step:0,readyToFinish:false,backup};
+    this.guide = {mode,revision:mode==='challenge'?2:1,step:0,readyToFinish:false,backup,...(mode==='challenge'?{lesson:'route',firstResult:null,comparison:null}: {})};
+  }
+  nextGuideLesson() {
+    this.requireEditable();
+    if(this.guide?.mode!=='challenge'||this.guide.step!==4)throw Error('道を比べ、記録を確認してから次の練習へ進めます。');
+    const challenge=tutorialChallenge('branch');
+    Object.assign(this,{challenge,circuit:createCircuit(challengeCircuit(challenge)).raw,dirty:false,run:null,timeoutMotionRun:null,runContext:null,result:null,cases:[],replayCase:null,selection:null,view:{zoom:1,panX:0,panY:0,recordPage:0,casePage:0}});
+    Object.assign(this.guide,{lesson:'harmony',step:5,readyToFinish:false,run:null,runStep:null,wireId:null});
   }
   endGuide(outcome = 'skipped') {
     if (!this.guide) return;

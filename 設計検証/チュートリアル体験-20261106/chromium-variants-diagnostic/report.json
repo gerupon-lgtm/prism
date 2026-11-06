@@ -1,0 +1,100 @@
+{
+  "version": "0.102.0",
+  "checks": [
+    {
+      "label": "portrait",
+      "passed": true,
+      "visible": true,
+      "card": {
+        "left": 7,
+        "right": 383,
+        "top": 99.140625,
+        "bottom": 299.546875
+      },
+      "board": {
+        "left": 8,
+        "right": 382,
+        "top": 305.546875,
+        "bottom": 711
+      },
+      "rotation": 0,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "text": "星からプリズムAへ、道をつなごう。",
+      "hint": "案内を読む",
+      "parts": [
+        {
+          "left": 167.5,
+          "right": 222.49998474121094,
+          "top": 621.8638305664062,
+          "bottom": 686.8638305664062
+        },
+        {
+          "left": 167.5,
+          "right": 222.49998474121094,
+          "top": 537.164306640625,
+          "bottom": 602.164306640625
+        },
+        {
+          "left": 43.75,
+          "right": 98.74999237060547,
+          "top": 445.6888427734375,
+          "bottom": 510.6888427734375
+        },
+        {
+          "left": 291.25,
+          "right": 346.2499694824219,
+          "top": 445.6888427734375,
+          "bottom": 510.6888427734375
+        },
+        {
+          "left": 167.5,
+          "right": 222.49998474121094,
+          "top": 337.2734375,
+          "bottom": 402.2734375
+        }
+      ],
+      "controls": [
+        {
+          "id": "play",
+          "left": 107.5,
+          "right": 282.5,
+          "top": 766,
+          "bottom": 822
+        },
+        {
+          "id": "stop",
+          "left": 7,
+          "right": 101.5,
+          "top": 766,
+          "bottom": 822
+        },
+        {
+          "id": "records",
+          "left": 215,
+          "right": 267,
+          "top": 8,
+          "bottom": 48
+        },
+        {
+          "id": "hint",
+          "left": 8,
+          "right": 382,
+          "top": 720,
+          "bottom": 758
+        }
+      ]
+    }
+  ],
+  "evidence": "PC browser checks; synthetic orientation and CSS enlargement are not physical-device acceptance.",
+  "browser": "151.0.7922.34",
+  "passed": false,
+  "error": "Error: Tutorial geometry did not settle: {\"viewport\":[850,393],\"rotation\":\"-90\",\"classes\":\"device-landscape device-left\",\"boxes\":{\"app\":{\"x\":0,\"y\":0,\"width\":844,\"height\":390,\"hidden\":false},\"board\":{\"x\":223,\"y\":8,\"width\":438,\"height\":374},\"guide-bar\":{\"x\":81,\"y\":7,\"width\":136,\"height\":376,\"hidden\":false}}}\n    at settle (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_variants.cjs:11:1126)\n    at async rotate (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_variants.cjs:24:250)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_variants.cjs:31:3"
+}

@@ -1,0 +1,158 @@
+{
+  "version": "0.102.0",
+  "engine": "webkit",
+  "passed": false,
+  "cases": [],
+  "runner": {
+    "pid": 24652,
+    "startedAt": "2026-11-06T14:18:45.945Z",
+    "memory": {
+      "rss": 102449152,
+      "heapTotal": 51318784,
+      "heapUsed": 48477176,
+      "external": 5022007,
+      "arrayBuffers": 952579
+    },
+    "cpu": {
+      "user": 1500000,
+      "system": 656000
+    }
+  },
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "small",
+  "error": "AssertionError [ERR_ASSERTION]: Fixed practice does not refit time cards on processing-state changes\n\n1 !== 0\n\n    at verifyPlaybackLayout (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:47:463)\n    at async finishPlayback (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:36:151)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:129:7",
+  "diagnostic": {
+    "heading": "工夫が、結果に変わった",
+    "count": "4 / 6",
+    "copy": "4秒 → 2.5秒。「記録」で道を確認しよう。",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+    "error": "",
+    "guide": {
+      "step": 3,
+      "ready": false
+    },
+    "run": {
+      "status": "stopped",
+      "pauseReason": null,
+      "time": "2.5",
+      "arrivals": [
+        {
+          "node": "G",
+          "time": "2.5"
+        }
+      ],
+      "edges": [
+        "SA",
+        "AB",
+        "BG"
+      ]
+    },
+    "performance": {
+      "last": {
+        "milliseconds": 25,
+        "phases": {
+          "calculation": 0,
+          "audio": 0,
+          "display": 25
+        },
+        "counts": {
+          "records": 12,
+          "retainedParticles": 1,
+          "active": 0,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 3,
+          "milliseconds": 0,
+          "maximum": 0
+        },
+        "calculation": {
+          "calls": 192,
+          "milliseconds": 23,
+          "maximum": 3
+        },
+        "display": {
+          "calls": 197,
+          "milliseconds": 1140,
+          "maximum": 18
+        },
+        "audio": {
+          "calls": 5,
+          "milliseconds": 0,
+          "maximum": 0
+        }
+      },
+      "slowFrames": 0,
+      "run": {
+        "status": "stopped",
+        "pauseReason": null,
+        "clock": "2.5",
+        "records": 12,
+        "retainedParticles": 0,
+        "active": 0,
+        "waiting": 0
+      },
+      "audioVoices": 0
+    },
+    "runningFits": [
+      {
+        "step": 0,
+        "time": "0",
+        "inResize": true,
+        "stack": "@\nparticles@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:579:217\nrender@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:220:19\nresize@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:60:52\n@",
+        "width": 304,
+        "height": 291
+      },
+      {
+        "step": 2,
+        "time": "0",
+        "inResize": false,
+        "stack": "@\nparticles@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:579:217\nrender@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:220:19\n@http://127.0.0.1:52147/v0.102.0/src/ui/app.js:130:118",
+        "width": 304,
+        "height": 291
+      },
+      {
+        "step": 2,
+        "time": "0",
+        "inResize": true,
+        "stack": "@\nparticles@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:579:217\nrender@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:220:19\nresize@http://127.0.0.1:52147/v0.102.0/src/ui/board.js:60:52\n@",
+        "width": 304,
+        "height": 291
+      }
+    ],
+    "monitor": {
+      "initial": {
+        "SA": {
+          "x": 265.0075378417969,
+          "y": 251.45672607421875,
+          "width": 42.00299072265625,
+          "height": 30.00225830078125
+        },
+        "AB": {
+          "x": 57.20213317871094,
+          "y": 82.71942901611328,
+          "width": 42.00300598144531,
+          "height": 30.00225830078125
+        },
+        "BG": {
+          "x": 10.999996185302734,
+          "y": 84.80603790283203,
+          "width": 42.00300598144531,
+          "height": 30.00225067138672
+        }
+      },
+      "initialBoard": {
+        "width": 304,
+        "height": 291
+      },
+      "fitStart": 1,
+      "frames": 134,
+      "maxDelta": 0,
+      "moved": [],
+      "active": true,
+      "lastRecords": 12
+    }
+  }
+}

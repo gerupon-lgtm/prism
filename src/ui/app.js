@@ -107,7 +107,7 @@ let clearToastRun=null,clearToastCircuit=null;
 const dismissedFailures=new WeakSet();
 let failureToastRun=null,failureToastCircuit=null;
 const shownTutorialClears=new WeakSet();
-let tutorialClearFrame=null;
+let tutorialClearFrame=null,tutorialExample=false;
 const wireLimitNotice=new WireLimitNotice($('wire-limit-notice'),$('wire-budget'),$('board'));
 const board=new Board($('board'),session,render,settings,notify,()=>chime.wire(),showWireDelete,limit=>wireLimitNotice.show(limit));
 const celebration=new PerfectCelebration(board.fireworksLayer,()=>board.element.viewBox.baseVal);
@@ -260,7 +260,7 @@ function render(redraw=true,{records=true}={}) {
   $('candidate-times').title=allTimes?'進める候補の秒数だけに絞る':'全候補の秒数を表示する';
   $('records-panel').hidden=!session.view.recordsOpen;
   if(!session.view.recordsOpen)document.body.classList.remove('records-fullscreen');
-  setText('title',session.mode==='challenge'?`${challengeLabel(session.challenge)} ${session.challenge.name}`:session.name||'自由');
+  setText('title',session.guide?(session.guide.mode==='challenge'?(session.guide.step>=5?'三つの響きをつなぐ':'光の道をつくる'):'自由に試してみよう'):session.mode==='challenge'?`${challengeLabel(session.challenge)} ${session.challenge.name}`:session.name||'自由');
   $('app').dataset.problemId=session.challenge?.draw?.id??'';
   $('app').dataset.mode=session.mode;
   const stageNavigation=selectionPlay&&session.mode==='challenge'&&!session.guide;
@@ -340,26 +340,31 @@ function render(redraw=true,{records=true}={}) {
   $('hint').dataset.fullText=completeHint;$('hint').setAttribute('aria-label',completeHint);
   setText('hint',board.addKind?'位置を選択':session.selection?'設定を開く':'結線の案内');
   $('guide-bar').hidden=!session.guide;
-  const guideCopy=tutorialContent(session,matchMedia('(pointer:coarse)').matches);
+  const guideCopy=tutorialContent(session,matchMedia('(pointer:coarse)').matches,{example:tutorialExample});
   if(session.guide){
-    setText('guide-heading',session.guide.readyToFinish?'チュートリアルクリア！':`チュートリアル ${session.guide.step+1}/${guideCopy.total}`);setText('guide-text',guideCopy.text);$('guide-finish').hidden=!session.guide.readyToFinish;$('guide-skip').hidden=session.guide.readyToFinish;
+    setText('guide-heading',guideCopy.heading);setText('guide-count',guideCopy.count);setText('guide-text',guideCopy.text);setText('guide-note',guideCopy.note);
+    $('guide-finish').hidden=!session.guide.readyToFinish;$('guide-skip').hidden=session.guide.readyToFinish;
+    $('guide-next').hidden=!guideCopy.canNext;$('guide-example').hidden=!guideCopy.canExample;
+    $('guide-example').setAttribute('aria-pressed',String(tutorialExample));$('guide-example').setAttribute('aria-label',tutorialExample?'お手本を隠す':'お手本を見る');setText('guide-example',tutorialExample?'隠す':'お手本');
+    for(const [index,part]of [...$('guide-progress').children].entries()){part.hidden=index>=guideCopy.total;part.classList.toggle('done',session.guide.readyToFinish||index<session.guide.step);part.classList.toggle('current',!session.guide.readyToFinish&&index===session.guide.step);}
     $('guide-bar').classList.toggle('tutorial-complete',session.guide.readyToFinish);
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   const guide=session.guide;
-  tutorialGuide.update({guide,hidden:dialog.open||!$('title-screen').hidden||document.body.classList.contains('records-fullscreen'),compact,targets:guideCopy?.targets??[]});
+  tutorialGuide.update({guide,hidden:dialog.open||document.hidden||!$('title-screen').hidden||session.view.recordsOpen||Boolean(startPrelude),compact,targets:guideCopy?.targets??[],demo:guideCopy?.demo??null,key:guideCopy?.key??''});
   wireLimitNotice.update({active:session.mode==='challenge'&&session.editable&&!startPrelude&&!guide&&!session.pendingScores.size&&session.circuit.edges.length>=session.challenge.limit,limit:session.challenge?.limit});
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.
   if(redraw)board.render();else board.particles();tutorialGuide.highlight();
   board.updateGates(pendingGatePhase??previewGatePhase());
-  if(guide&&tutorialGuide.collapsed){setText('hint','案内を読む');$('hint').setAttribute('aria-label',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);}
+  if(guide){setText('hint','案内を読む');$('hint').setAttribute('aria-label',`チュートリアル ${guide.step+1}/${guideCopy.total}：案内を読む`);}
   if(records&&!$('records-panel').hidden)load.measure('records',renderRecords);
   renderClearToast();
   renderFailureToast();
   // The celebration plays on the board before the result card is revealed.
   // Neither its start nor its lifetime depends on the card finding room.
-  celebration.update(run,session.result,Boolean(session.clearChoices)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run),{naturalEnding:board.naturalEnding===run});
+  const tutorialCelebrating=guide?.lesson==='harmony'&&guide.readyToFinish&&guide.run===run;
+  celebration.update(run,session.result,Boolean(session.clearChoices||tutorialCelebrating)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run),{naturalEnding:board.naturalEnding===run});
   outcomeSound.update(run,session.result,outcomeAudioEnabled(),{defer:Boolean(session.result?.timeLimitReached)&&run?.status!=='stopped'});
   scheduleTutorialClear();
 }
@@ -380,18 +385,25 @@ function showTutorialClear(){
   const guide=session.guide;if(!guide?.readyToFinish)return;
   shownTutorialClears.add(guide);
   open('チュートリアルクリア！',{naturalEnding:true});dialog.classList.add('tutorial-clear-dialog');
-  body.append(element('div','✦',{class:'tutorial-clear-star','aria-hidden':'true'}),element('p',guide.mode==='challenge'?'結線・配線の削除・鐘を鳴らす操作・記録の確認ができました。':'配線の削除とつなぎ直し、プリズムの時間変更を練習できました。'));
-  const time=session.result?.evaluatedTime??session.result?.arrivals?.[0]?.time;
+  body.append(element('div','✦',{class:'tutorial-clear-star','aria-hidden':'true'}),element('p',guide.mode==='challenge'?'あなたがつくった回路から光が分かれ、三つの鐘が響きました。':'配線の削除とつなぎ直し、プリズムの時間変更を練習できました。'));
+  if(guide.mode==='challenge'){
+    const melody=element('div','',{class:'tutorial-melody','aria-label':'三つの鐘の到達時刻'});
+    for(const [index,note]of ['ド','ソ','高いド'].entries()){
+      const item=element('div'),time=session.run?.arrivals(`G${index+1}`)?.[0]?.time;
+      item.append(element('img','',{src:new URL('../../public/graphics/goal.png',import.meta.url).href,alt:'',width:'48',height:'62'}),element('strong',`鐘${index+1} · ${note}`),element('span',time?`${time}秒`:''));melody.append(item);
+    }body.append(melody,element('p','一度の実行から、光を分けて音をつなぐ。この先は、鳴らす順番や間隔もあなたの工夫で。',{class:'tutorial-clear-note'}));
+  }
+  const time=guide.comparison?.time??session.result?.evaluatedTime??session.result?.arrivals?.[0]?.time,score=guide.comparison?.score??session.result?.score;
   if(time!=null){
     const summary=element('dl','',{class:'tutorial-clear-summary'});
-    for(const [label,value,id]of [['到達時間',`${time}秒`,'tutorial-clear-time'],...(session.result?.score?[['スコア',`${displayScore(session.result.score)}点`,'tutorial-clear-score']]:[])]){
+    for(const [label,value,id]of [[guide.comparison?'道を変えた結果':'到達時間',guide.firstResult?`${guide.firstResult.time}秒 → ${time}秒`:`${time}秒`,'tutorial-clear-time'],...(score?[['速さのスコア',`${displayScore(score)}点`,'tutorial-clear-score']]:[])]){
       const item=element('div');item.append(element('dt',label),element('dd',value,{id}));summary.append(item);
     }body.append(summary);
   }
   body.append(element('p','クリア条件を満たしたうえで、より短い時間でクリアすると高得点になります。最速の配線で100点を目指しましょう。',{id:'tutorial-score-explanation'}),element('p','「完了して戻る」で、練習前の画面へ戻ります。',{class:'tutorial-clear-note'}));
   actions.append(button('完了して戻る',()=>{session.endGuide('completed');message='';close();},{id:'tutorial-clear-finish'}),button('練習を続ける',close,{id:'tutorial-clear-practice'}));
 }
-function outcomeAudioEnabled(){return Boolean(session.clearChoices||failureOutcome())&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
+function outcomeAudioEnabled(){const tutorialClear=session.guide?.lesson==='harmony'&&session.guide.readyToFinish&&session.guide.run===session.run;return Boolean(session.clearChoices||failureOutcome()||tutorialClear)&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
 
 function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}
 function failureArrivalData(){
@@ -668,7 +680,7 @@ function layoutTitle(width,height) {
   }
   updateNotice();
 }
-function tutorial() {leaveTitle();if(!session.guide)session.beginGuide();message='';render();}
+function tutorial() {leaveTitle();if(!session.guide){session.beginGuide();tutorialExample=false;}message='';render();}
 function partsExplanation() {
   open('パーツの説明');dialog.classList.add('help-dialog');
   listPage(PARTS,item=>helpCard(item,partsExplanation));
@@ -755,7 +767,7 @@ function menu() {
   const items=[
     ['タイトルへ',showTitle],
     ['課題と自由',chooseMode],
-    ['操作の案内',()=>{close();session.beginGuide();message='';render();}],
+    ['操作の案内',()=>{close();session.beginGuide();tutorialExample=false;message='';render();}],
     ['点と道の一覧',objects],
     ['保存回路',slots],
     ['実行結果を書き出す',()=>download('prism-notes-result.json',session.exportResult())],
@@ -1089,7 +1101,14 @@ function caseDetails(item){
 }
 
 function interruptRun(reason){timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
-function startClock(){timingFor();timeoutMotion.clear();board.endingMotion=null;board.naturalEnding=null;chime.stop('restart',{preserveTap:true});chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';render();}
+function startClock(){
+  timingFor();timeoutMotion.clear();board.endingMotion=null;board.naturalEnding=null;chime.stop('restart',{preserveTap:true});chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';
+  const fixedPractice=session.guide?.mode==='challenge'&&session.guide.revision===2&&session.challenge?.practice===true;
+  // The static field was prepared by launch. Clear only the previous run's
+  // arrival art before updating particles; do not search label positions again.
+  if(fixedPractice)board.renderArrivals();
+  render(!fixedPractice);
+}
 function runCounts(){
   const run=session.run;if(!run)return {};
   let waiting=0;for(const gate of run.gates.values())waiting+=gate.queue.length-gate.head;
@@ -1247,9 +1266,14 @@ for(const kind of ['prism','goal'])$('add-'+kind).addEventListener('click',()=>{
 $('flow').addEventListener('click',()=>attempt(flow));
 $('guide-skip').addEventListener('click',()=>attempt(()=>{session.endGuide('skipped');message='';render();}));
 $('guide-finish').addEventListener('click',()=>attempt(showTutorialClear));
+$('guide-next').addEventListener('click',()=>attempt(()=>{board.cancelAll();chime.stop('tutorial',{preserveTap:true,preserveTail:true});session.nextGuideLesson();tutorialExample=false;clockAnchor=null;message='';render();}));
+$('guide-example').addEventListener('click',()=>{tutorialExample=!tutorialExample;render(false);});
 $('hint').addEventListener('click',()=>{
-  if(session.guide&&($('app').classList.contains('compact')||tutorialGuide.collapsed)){
-    fullText('操作の案内',$('guide-text').textContent);
+  if(session.guide){
+    const copy=tutorialContent(session,matchMedia('(pointer:coarse)').matches,{example:tutorialExample});
+    fullText('操作の案内',copy.fullText);
+    if(copy.canNext)actions.append(button('響きをつなぐ',()=>{session.nextGuideLesson();tutorialExample=false;clockAnchor=null;message='';close();}));
+    if(copy.canExample)actions.append(button(tutorialExample?'お手本を隠す':'お手本を見る',()=>{tutorialExample=!tutorialExample;close();}));
     if(!session.guide.readyToFinish)actions.append(button('スキップ',()=>{session.endGuide('skipped');message='';close();}));
     if(session.guide.readyToFinish)actions.append(button('完了',()=>{close();showTutorialClear();}));
   }else fullText('操作の案内',$('hint').dataset.fullText||$('hint').textContent);
@@ -1258,7 +1282,7 @@ $('mirror-left').addEventListener('click',()=>attempt(()=>board.turnMirror(-1)))
 $('mirror-right').addEventListener('click',()=>attempt(()=>board.turnMirror(1)));
 $('mirror-done').addEventListener('click',()=>{board.cancelAll();board.render();render(false);});
 document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else{scheduleConditionCue();scheduleTutorialClear();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else{if(session.guide)render(false);scheduleConditionCue();scheduleTutorialClear();}});
 window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){

@@ -1,0 +1,95 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": false,
+  "cases": [],
+  "runner": {
+    "pid": 14648,
+    "startedAt": "2026-11-06T13:28:06.416Z",
+    "memory": {
+      "rss": 101662720,
+      "heapTotal": 49799168,
+      "heapUsed": 48038480,
+      "external": 5074204,
+      "arrayBuffers": 1004776
+    },
+    "cpu": {
+      "user": 2875000,
+      "system": 781000
+    }
+  },
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "small-enlarged",
+  "error": "page.waitForFunction: Timeout 9500ms exceeded.\n    at finishPlayback (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:35:11)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:99:7",
+  "diagnostic": {
+    "heading": "予想した道を、試してみよう",
+    "count": "3 / 6",
+    "copy": "もう一度「鐘を鳴らす」。前の道と比べよう。",
+    "play": "<button id=\"play\" title=\"\" data-state=\"paused\" aria-pressed=\"false\" class=\"tutorial-target\">再開</button>",
+    "error": "",
+    "guide": {
+      "step": 2,
+      "ready": false
+    },
+    "run": {
+      "status": "paused",
+      "pauseReason": "load",
+      "time": "0.5",
+      "arrivals": [],
+      "edges": [
+        "SA",
+        "AB",
+        "BG"
+      ]
+    },
+    "performance": {
+      "last": {
+        "milliseconds": 150.89999997615814,
+        "phases": {
+          "calculation": 0.19999998807907104,
+          "audio": 0.30000001192092896,
+          "display": 150.39999997615814
+        },
+        "counts": {
+          "records": 4,
+          "retainedParticles": 1,
+          "active": 1,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 3,
+          "milliseconds": 0.09999996423721313,
+          "maximum": 0.09999996423721313
+        },
+        "calculation": {
+          "calls": 160,
+          "milliseconds": 37.89999961853027,
+          "maximum": 7.099999964237213
+        },
+        "display": {
+          "calls": 163,
+          "milliseconds": 1092.3999997973442,
+          "maximum": 149.39999997615814
+        },
+        "audio": {
+          "calls": 3,
+          "milliseconds": 5.199999988079071,
+          "maximum": 4.399999976158142
+        }
+      },
+      "slowFrames": 1,
+      "run": {
+        "status": "paused",
+        "pauseReason": "load",
+        "clock": "0.5",
+        "records": 4,
+        "retainedParticles": 1,
+        "active": 1,
+        "waiting": 0
+      },
+      "audioVoices": 0
+    }
+  }
+}

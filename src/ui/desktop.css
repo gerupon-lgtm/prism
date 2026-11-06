@@ -220,7 +220,7 @@ html:not(.device-landscape) #app.text-enlarged.compact #stage-controls button{fo
 .device-landscape .result-content{justify-content:center}
 .device-landscape #wire-limit-notice{font-size:max(14px,.857143rem);flex-direction:column;justify-content:center;white-space:normal}
 .device-landscape #result-info,.device-landscape #hint{flex:none;max-height:100%;overflow:hidden;white-space:normal}
-.device-landscape footer{height:28px}
+.device-landscape footer,.device-landscape .compact footer,.device-landscape .text-enlarged footer{height:max(44px,calc(5 * var(--layout-footer-font) + 4px))}
 .device-landscape .footer-content{justify-content:center}
 html.desktop-layout #result-line{height:64px;min-height:64px;padding:0;margin:8px 0 10px}
 html.desktop-layout #result-info,html.desktop-layout #hint{font-size:16px}

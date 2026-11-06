@@ -1,0 +1,20 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": false,
+  "cases": [],
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "small",
+  "error": "AssertionError [ERR_ASSERTION]: Delete confirmation pauses demonstration\n\n1 !== 0\n\n    at removeWire (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:32:61)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:71:7",
+  "diagnostic": {
+    "heading": "鳴った！ 道を変えたら？",
+    "count": "2 / 6",
+    "copy": "光っている線を長押し。「OK」で1本消してみよう。",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+    "error": "",
+    "guide": {
+      "step": 1,
+      "ready": false
+    }
+  }
+}

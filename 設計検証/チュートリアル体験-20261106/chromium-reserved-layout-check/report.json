@@ -1,0 +1,1450 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": true,
+  "cases": [
+    {
+      "name": "phone",
+      "passed": true,
+      "layouts": [
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 305.546875,
+            "bottom": 711,
+            "width": 374,
+            "height": 405.453125
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 299.546875,
+            "width": 376,
+            "height": 200.40625
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "星から、最初の一音へ"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "星からプリズムAへ、道をつなごう。"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "星を押したままAまで動かし、指を離します。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 621.8638305664062,
+              "bottom": 686.8638305664062,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 621.8638305664062,
+              "bottom": 686.8638305664062,
+              "width": 54.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 537.164306640625,
+              "bottom": 602.164306640625,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 537.164306640625,
+              "bottom": 602.164306640625,
+              "width": 54.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.74999237060547,
+              "right": 103.75,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 65.00000762939453,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.75,
+              "right": 98.74999237060547,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 54.99999237060547,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.25,
+              "right": 351.25,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.25,
+              "right": 346.2499694824219,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 54.999969482421875,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 337.2734375,
+              "bottom": 402.2734375,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 337.2734375,
+              "bottom": 402.2734375,
+              "width": 54.99998474121094,
+              "height": 65
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 111.140625,
+              "bottom": 155.140625,
+              "width": 66,
+              "height": 44
+            }
+          ],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 305.546875,
+            "bottom": 711,
+            "width": 374,
+            "height": 405.453125
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 299.546875,
+            "width": 376,
+            "height": 200.40625
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "工夫が、結果に変わった"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "4秒 → 2.5秒。「記録」で道を確認しよう。"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "1.5秒速くなりました！ 早く届くほど高得点、最速なら100点です。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 621.8638305664062,
+              "bottom": 686.8638305664062,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 621.8638305664062,
+              "bottom": 686.8638305664062,
+              "width": 54.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 537.164306640625,
+              "bottom": 602.164306640625,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 537.164306640625,
+              "bottom": 602.164306640625,
+              "width": 54.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.74999237060547,
+              "right": 103.75,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 65.00000762939453,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.75,
+              "right": 98.74999237060547,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 54.99999237060547,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.25,
+              "right": 351.25,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.25,
+              "right": 346.2499694824219,
+              "top": 445.6888427734375,
+              "bottom": 510.6888427734375,
+              "width": 54.999969482421875,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.49998474121094,
+              "top": 337.2734375,
+              "bottom": 402.2734375,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.49998474121094,
+              "top": 337.2734375,
+              "bottom": 402.2734375,
+              "width": 54.99998474121094,
+              "height": 65
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 111.140625,
+              "bottom": 155.140625,
+              "width": 66,
+              "height": 44
+            }
+          ],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 305.546875,
+            "bottom": 711,
+            "width": 374,
+            "height": 405.453125
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 299.546875,
+            "width": 376,
+            "height": 200.40625
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "光を分けて、響きをつなぐ"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "星からAへつなごう。"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "三つの鐘へ届く、6本の道をつくります。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 165.18576049804688,
+              "right": 224.81422424316406,
+              "top": 603.6082763671875,
+              "bottom": 663.2366943359375,
+              "width": 59.62846374511719,
+              "height": 59.62841796875
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 169.77256774902344,
+              "right": 220.22743225097656,
+              "top": 603.6082763671875,
+              "bottom": 663.2366943359375,
+              "width": 50.454864501953125,
+              "height": 59.62841796875
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 165.18576049804688,
+              "right": 224.81422424316406,
+              "top": 529.0726318359375,
+              "bottom": 588.7011108398438,
+              "width": 59.62846374511719,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 169.77256774902344,
+              "right": 220.22743225097656,
+              "top": 529.0726318359375,
+              "bottom": 588.7011108398438,
+              "width": 50.454864501953125,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 49.685768127441406,
+              "right": 109.31422424316406,
+              "top": 440.98516845703125,
+              "bottom": 500.6136474609375,
+              "width": 59.628456115722656,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 54.2725715637207,
+              "right": 104.72742462158203,
+              "top": 440.98516845703125,
+              "bottom": 500.6136474609375,
+              "width": 50.45485305786133,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 280.6857604980469,
+              "right": 340.314208984375,
+              "top": 440.98516845703125,
+              "bottom": 500.6136474609375,
+              "width": 59.628448486328125,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 285.2725524902344,
+              "right": 335.7274169921875,
+              "top": 440.98516845703125,
+              "bottom": 500.6136474609375,
+              "width": 50.454864501953125,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G1",
+              "kind": "hit",
+              "left": 24.935768127441406,
+              "right": 84.56422424316406,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 59.628456115722656,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G1",
+              "kind": "art",
+              "left": 29.522571563720703,
+              "right": 79.97742462158203,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 50.45485305786133,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G2",
+              "kind": "hit",
+              "left": 165.18576049804688,
+              "right": 224.81422424316406,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 59.62846374511719,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G2",
+              "kind": "art",
+              "left": 169.77256774902344,
+              "right": 220.22743225097656,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 50.454864501953125,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G3",
+              "kind": "hit",
+              "left": 305.4357604980469,
+              "right": 365.064208984375,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 59.628448486328125,
+              "height": 59.62847900390625
+            },
+            {
+              "id": "G3",
+              "kind": "art",
+              "left": 310.0225524902344,
+              "right": 360.4774169921875,
+              "top": 319.0178527832031,
+              "bottom": 378.6463317871094,
+              "width": 50.454864501953125,
+              "height": 59.62847900390625
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 111.140625,
+              "bottom": 155.140625,
+              "width": 66,
+              "height": 44
+            }
+          ],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        }
+      ],
+      "completionViewport": {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "height": 844,
+          "width": 390
+        },
+        "body": {
+          "height": 844,
+          "width": 390
+        },
+        "app": {
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "bottom": 844
+        }
+      },
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "demonstration": {
+        "pointerEvents": "none",
+        "still": false,
+        "motion": 2,
+        "animations": 0
+      },
+      "comparison": {
+        "first": {
+          "time": "4",
+          "score": {
+            "numerator": "325",
+            "denominator": "4"
+          },
+          "edges": [
+            "AG",
+            "SA"
+          ]
+        },
+        "second": {
+          "time": "2.5",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "edges": [
+            "AB",
+            "BG",
+            "SA"
+          ]
+        }
+      },
+      "sound": {
+        "capable": true,
+        "arrivals": [
+          {
+            "node": "G1",
+            "time": "2"
+          },
+          {
+            "node": "G2",
+            "time": "2.5"
+          },
+          {
+            "node": "G3",
+            "time": "3"
+          }
+        ],
+        "strikes": [
+          {
+            "frequency": 523.2511306011972,
+            "at": 23436.400000035763
+          },
+          {
+            "frequency": 783.9908719634985,
+            "at": 23935.100000023842
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "at": 24434.900000035763
+          }
+        ],
+        "rings": [
+          {
+            "frequency": 523.2511306011972,
+            "time": 19.861333333333334,
+            "endTime": 22.481333333333335
+          },
+          {
+            "frequency": 783.9908719634985,
+            "time": 20.370666666666665,
+            "endTime": 22.990666666666666
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "time": 20.850666666666665,
+            "endTime": 23.470666666666666
+          }
+        ]
+      },
+      "playbackLayout": {
+        "initial": {
+          "SA": {
+            "x": 237.105224609375,
+            "y": 574.1546630859375,
+            "width": 42.06494140625,
+            "height": 30
+          },
+          "AB": {
+            "x": 116.25780487060547,
+            "y": 516.8431396484375,
+            "width": 42.06494903564453,
+            "height": 30
+          },
+          "AC": {
+            "x": 231.7578125,
+            "y": 516.8431396484375,
+            "width": 42.06494140625,
+            "height": 30
+          },
+          "BG1": {
+            "x": 77.6815185546875,
+            "y": 387.81573486328125,
+            "width": 42.06494903564453,
+            "height": 30
+          },
+          "BG2": {
+            "x": 123.57030487060547,
+            "y": 411.81573486328125,
+            "width": 27.434104919433594,
+            "height": 30
+          },
+          "CG3": {
+            "x": 270.3340759277344,
+            "y": 387.81573486328125,
+            "width": 42.06494140625,
+            "height": 30
+          }
+        },
+        "initialBoard": {
+          "width": 374,
+          "height": 405
+        },
+        "fitStart": 0,
+        "frames": 181,
+        "maxDelta": 0,
+        "moved": [],
+        "active": true,
+        "lastRecords": 24,
+        "runningFits": [],
+        "initialFits": [],
+        "processingFits": []
+      },
+      "saveFailureRecovered": true
+    },
+    {
+      "name": "enlarged",
+      "passed": true,
+      "layouts": [
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 103.1875,
+            "bottom": 659,
+            "width": 374,
+            "height": 555.8125
+          },
+          "guide": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "guideVisible": false,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 541.25,
+              "bottom": 606.25,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 541.25,
+              "bottom": 606.25,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 425.0103454589844,
+              "bottom": 490.0103454589844,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 425.0103454589844,
+              "bottom": 490.0103454589844,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.791725158691406,
+              "right": 103.7917251586914,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 65,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.79172897338867,
+              "right": 98.7917251586914,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 54.999996185302734,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.2082824707031,
+              "right": 351.208251953125,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 64.99996948242188,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.208251953125,
+              "right": 346.2082824707031,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 55.000030517578125,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 150.684814453125,
+              "bottom": 215.684814453125,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 150.684814453125,
+              "bottom": 215.684814453125,
+              "width": 55,
+              "height": 65
+            }
+          ],
+          "actions": [],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 103.1875,
+            "bottom": 659,
+            "width": 374,
+            "height": 555.8125
+          },
+          "guide": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "guideVisible": false,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 541.25,
+              "bottom": 606.25,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 541.25,
+              "bottom": 606.25,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 425.0103454589844,
+              "bottom": 490.0103454589844,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 425.0103454589844,
+              "bottom": 490.0103454589844,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.791725158691406,
+              "right": 103.7917251586914,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 65,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.79172897338867,
+              "right": 98.7917251586914,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 54.999996185302734,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.2082824707031,
+              "right": 351.208251953125,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 64.99996948242188,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.208251953125,
+              "right": 346.2082824707031,
+              "top": 299.4715576171875,
+              "bottom": 364.4715270996094,
+              "width": 55.000030517578125,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.5,
+              "right": 227.5,
+              "top": 150.684814453125,
+              "bottom": 215.684814453125,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 150.684814453125,
+              "bottom": 215.684814453125,
+              "width": 55,
+              "height": 65
+            }
+          ],
+          "actions": [],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 103.1875,
+            "bottom": 659,
+            "width": 374,
+            "height": 555.8125
+          },
+          "guide": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "guideVisible": false,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 173,
+              "right": 217,
+              "top": 551.75,
+              "bottom": 595.75,
+              "width": 44,
+              "height": 44
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 176.38461303710938,
+              "right": 213.61537170410156,
+              "top": 551.75,
+              "bottom": 595.75,
+              "width": 37.23075866699219,
+              "height": 44
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 173,
+              "right": 217,
+              "top": 449.4590759277344,
+              "bottom": 493.4591064453125,
+              "width": 44,
+              "height": 44.000030517578125
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 176.38461303710938,
+              "right": 213.61537170410156,
+              "top": 449.4590759277344,
+              "bottom": 493.4591064453125,
+              "width": 37.23075866699219,
+              "height": 44.000030517578125
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 57.538944244384766,
+              "right": 101.53894805908203,
+              "top": 328.56988525390625,
+              "bottom": 372.5698547363281,
+              "width": 44.000003814697266,
+              "height": 43.999969482421875
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 60.923561096191406,
+              "right": 98.15433502197266,
+              "top": 328.56988525390625,
+              "bottom": 372.5698547363281,
+              "width": 37.23077392578125,
+              "height": 43.999969482421875
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 288.4610290527344,
+              "right": 332.4610595703125,
+              "top": 328.56988525390625,
+              "bottom": 372.5698547363281,
+              "width": 44.000030517578125,
+              "height": 43.999969482421875
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.8456726074219,
+              "right": 329.076416015625,
+              "top": 328.56988525390625,
+              "bottom": 372.5698547363281,
+              "width": 37.230743408203125,
+              "height": 43.999969482421875
+            },
+            {
+              "id": "G1",
+              "kind": "hit",
+              "left": 32.79729461669922,
+              "right": 76.79729461669922,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 44,
+              "height": 44.00001525878906
+            },
+            {
+              "id": "G1",
+              "kind": "art",
+              "left": 36.181907653808594,
+              "right": 73.41267395019531,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 37.23076629638672,
+              "height": 44.00001525878906
+            },
+            {
+              "id": "G2",
+              "kind": "hit",
+              "left": 173,
+              "right": 217,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 44,
+              "height": 44.00001525878906
+            },
+            {
+              "id": "G2",
+              "kind": "art",
+              "left": 176.38461303710938,
+              "right": 213.61537170410156,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 37.23075866699219,
+              "height": 44.00001525878906
+            },
+            {
+              "id": "G3",
+              "kind": "hit",
+              "left": 313.20269775390625,
+              "right": 357.20269775390625,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 44,
+              "height": 44.00001525878906
+            },
+            {
+              "id": "G3",
+              "kind": "art",
+              "left": 316.5873107910156,
+              "right": 353.8180847167969,
+              "top": 161.18479919433594,
+              "bottom": 205.184814453125,
+              "width": 37.23077392578125,
+              "height": 44.00001525878906
+            }
+          ],
+          "actions": [],
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "root": {
+              "height": 844,
+              "width": 390
+            },
+            "body": {
+              "height": 844,
+              "width": 390
+            },
+            "app": {
+              "left": 0,
+              "right": 390,
+              "top": 0,
+              "bottom": 844
+            }
+          }
+        }
+      ],
+      "completionViewport": {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "height": 844,
+          "width": 390
+        },
+        "body": {
+          "height": 844,
+          "width": 390
+        },
+        "app": {
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "bottom": 844
+        }
+      },
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "demonstration": {
+        "pointerEvents": "none",
+        "still": false,
+        "motion": 2,
+        "animations": 0
+      },
+      "comparison": {
+        "first": {
+          "time": "4",
+          "score": {
+            "numerator": "325",
+            "denominator": "4"
+          },
+          "edges": [
+            "AG",
+            "SA"
+          ]
+        },
+        "second": {
+          "time": "2.5",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "edges": [
+            "AB",
+            "BG",
+            "SA"
+          ]
+        }
+      },
+      "sound": {
+        "capable": true,
+        "arrivals": [
+          {
+            "node": "G1",
+            "time": "2"
+          },
+          {
+            "node": "G2",
+            "time": "2.5"
+          },
+          {
+            "node": "G3",
+            "time": "3"
+          }
+        ],
+        "strikes": [
+          {
+            "frequency": 523.2511306011972,
+            "at": 21540.399999976158
+          },
+          {
+            "frequency": 783.9908719634985,
+            "at": 22041.30000001192
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "at": 22545.30000001192
+          }
+        ],
+        "rings": [
+          {
+            "frequency": 523.2511306011972,
+            "time": 20.250666666666667,
+            "endTime": 22.87066666666667
+          },
+          {
+            "frequency": 783.9908719634985,
+            "time": 20.730666666666668,
+            "endTime": 23.35066666666667
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "time": 21.24,
+            "endTime": 23.86
+          }
+        ]
+      },
+      "playbackLayout": {
+        "initial": {
+          "SA": {
+            "x": 46.7903938293457,
+            "y": 482.6045227050781,
+            "width": 74.14494323730469,
+            "height": 51.999969482421875
+          },
+          "AB": {
+            "x": 155.885986328125,
+            "y": 329.4144592285156,
+            "width": 74.14495849609375,
+            "height": 52
+          },
+          "AC": {
+            "x": 271.3470458984375,
+            "y": 454.2145080566406,
+            "width": 74.14492797851562,
+            "height": 52
+          },
+          "BG1": {
+            "x": 32.65010070800781,
+            "y": 243.6158447265625,
+            "width": 74.14494323730469,
+            "height": 52
+          },
+          "BG2": {
+            "x": 114.91009521484375,
+            "y": 185.27734375,
+            "width": 44.87409973144531,
+            "height": 52
+          },
+          "CG3": {
+            "x": 283.36553955078125,
+            "y": 243.6158447265625,
+            "width": 74.14492797851562,
+            "height": 52
+          }
+        },
+        "initialBoard": {
+          "width": 374,
+          "height": 556
+        },
+        "fitStart": 0,
+        "frames": 159,
+        "maxDelta": 0,
+        "moved": [],
+        "active": true,
+        "lastRecords": 24,
+        "runningFits": [],
+        "initialFits": [],
+        "processingFits": []
+      },
+      "saveFailureRecovered": false
+    }
+  ],
+  "runner": {
+    "pid": 21860,
+    "startedAt": "2026-11-06T13:49:38.103Z",
+    "memory": {
+      "rss": 117911552,
+      "heapTotal": 52051968,
+      "heapUsed": 46733792,
+      "external": 5352641,
+      "arrayBuffers": 1259139
+    },
+    "cpu": {
+      "user": 4875000,
+      "system": 1000000
+    }
+  },
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "enlarged"
+}

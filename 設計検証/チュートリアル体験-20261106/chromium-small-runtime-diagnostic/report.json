@@ -1,0 +1,130 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": false,
+  "cases": [],
+  "runner": {
+    "pid": 18676,
+    "startedAt": "2026-11-06T13:41:57.424Z",
+    "memory": {
+      "rss": 102326272,
+      "heapTotal": 51363840,
+      "heapUsed": 48154712,
+      "external": 4978303,
+      "arrayBuffers": 908875
+    },
+    "cpu": {
+      "user": 1500000,
+      "system": 546000
+    }
+  },
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "small",
+  "error": "AssertionError [ERR_ASSERTION]: Fixed practice does not rerun time-card fitting during playback\n\n1 !== 0\n\n    at verifyPlaybackLayout (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:46:227)\n    at async finishPlayback (C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:35:151)\n    at async C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_tutorial_discovery.cjs:113:7",
+  "diagnostic": {
+    "heading": "鳴った！ 道を変えたら？",
+    "count": "2 / 6",
+    "copy": "光っている線を長押し。「OK」で1本消してみよう。",
+    "play": "<button id=\"play\" title=\"\" data-state=\"stopped\" aria-pressed=\"false\" class=\"\">鐘を鳴らす</button>",
+    "error": "",
+    "guide": {
+      "step": 1,
+      "ready": false
+    },
+    "run": {
+      "status": "stopped",
+      "pauseReason": null,
+      "time": "4",
+      "arrivals": [
+        {
+          "node": "G",
+          "time": "4"
+        }
+      ],
+      "edges": [
+        "SA",
+        "AG"
+      ]
+    },
+    "performance": {
+      "last": {
+        "milliseconds": 18.400000035762787,
+        "phases": {
+          "calculation": 0.7000000476837158,
+          "audio": 1.0999999642372131,
+          "display": 16.600000023841858
+        },
+        "counts": {
+          "records": 8,
+          "retainedParticles": 1,
+          "active": 0,
+          "waiting": 0
+        }
+      },
+      "totals": {
+        "records": {
+          "calls": 3,
+          "milliseconds": 0,
+          "maximum": 0
+        },
+        "calculation": {
+          "calls": 241,
+          "milliseconds": 13.799999833106995,
+          "maximum": 1.9000000357627869
+        },
+        "display": {
+          "calls": 243,
+          "milliseconds": 453.90000009536743,
+          "maximum": 9.300000011920929
+        },
+        "audio": {
+          "calls": 2,
+          "milliseconds": 1.2999999523162842,
+          "maximum": 1.0999999642372131
+        }
+      },
+      "slowFrames": 0,
+      "run": {
+        "status": "stopped",
+        "pauseReason": null,
+        "clock": "4",
+        "records": 8,
+        "retainedParticles": 0,
+        "active": 0,
+        "waiting": 0
+      },
+      "audioVoices": 1
+    },
+    "runningFits": [
+      {
+        "step": 0,
+        "time": "0",
+        "stack": "Error\n    at Board.fitTimeLabels (eval at evaluate (:311:30), <anonymous>:7:263)\n    at Board.particles (http://127.0.0.1:64894/v0.102.0/src/ui/board.js:579:204)\n    at Board.render (http://127.0.0.1:64894/v0.102.0/src/ui/board.js:220:10)\n    at Board.resize (http://127.0.0.1:64894/v0.102.0/src/ui/board.js:60:46)\n    at ResizeObserver.<anonymous> (http://127.0.0.1:64894/v0.102.0/src/ui/board.js:35:55)",
+        "width": 304,
+        "height": 291
+      }
+    ],
+    "monitor": {
+      "initial": {
+        "SA": {
+          "x": 44.36173629760742,
+          "y": 260.82464599609375,
+          "width": 42.064937591552734,
+          "height": 30
+        },
+        "AG": {
+          "x": 84.59363555908203,
+          "y": 86.1097412109375,
+          "width": 27.434097290039062,
+          "height": 30
+        }
+      },
+      "fitStart": 0,
+      "frames": 337,
+      "maxDelta": 0,
+      "moved": [],
+      "active": true,
+      "lastRecords": 8
+    }
+  }
+}

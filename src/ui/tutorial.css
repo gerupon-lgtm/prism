@@ -1,0 +1,57 @@
+/* A small invitation above the field; the whole circuit stays in view. */
+#guide-bar.tutorial-guide{border-color:#9b8557;background:linear-gradient(120deg,#19273b,#101a2c 78%);box-shadow:inset 3px 0 #d9bb79,0 3px 15px #0002}
+#guide-bar.tutorial-guide>.guide-content{column-gap:9px;row-gap:5px;grid-template-rows:48px auto auto auto}
+#guide-bar.tutorial-guide #guide-heading{letter-spacing:.015em}
+#guide-count{grid-column:2;grid-row:1;align-self:start;color:#b9c8db;font-size:10px;letter-spacing:.14em;white-space:nowrap;font-variant-numeric:tabular-nums}
+#guide-bar.tutorial-guide #guide-heading{align-self:end;padding-top:14px}
+#guide-bar.tutorial-guide #guide-text{line-height:1.5;min-height:4.5em;font-size:max(17px,1.15rem)}
+#guide-note{grid-column:1/-1;grid-row:3;margin:0;color:#b9c9dd;font-size:max(12px,.86rem);line-height:1.45;min-height:2.9em;min-width:0;overflow-wrap:anywhere}
+#guide-progress{grid-column:1/-1;grid-row:4;display:flex;gap:5px;margin-top:3px;height:3px;align-items:stretch}
+#guide-progress i{display:block;flex:1;min-width:0;border-radius:2px;background:#35415a}
+#guide-progress i.done,#guide-progress i[data-state=done]{background:#b69b60}
+#guide-progress i.current,#guide-progress i[data-state=current]{background:#f0d797;box-shadow:0 0 8px #ddc68a40}
+#guide-bar.tutorial-guide .guide-actions{grid-column:3;grid-row:1;max-width:100%;flex-wrap:nowrap;align-items:center}
+#guide-bar.tutorial-guide button{min-height:44px}
+html.desktop-layout #guide-bar.tutorial-guide button{min-height:44px}
+#guide-bar.tutorial-guide #guide-next,#guide-bar.tutorial-guide #guide-finish{background:#d8b970;color:#121c2d;border-color:#f0d797;font-weight:600}
+#guide-bar.tutorial-guide #guide-example{color:#c7e9ff;border-color:#657e99;background:#14273a}
+#guide-bar.tutorial-guide #guide-skip{color:#b4c0d3;background:#111b2c;border-color:#47556b;font-size:12px;min-width:58px;padding-inline:8px}
+#guide-bar.tutorial-guide.tutorial-complete{border-color:#e6c984;background:linear-gradient(120deg,#2d3041,#142236)}
+.tutorial-demonstration,.tutorial-demonstration *{pointer-events:none!important}
+.tutorial-demo-path{fill:none;stroke:#a9dbf8;stroke-width:2;stroke-dasharray:3 7;opacity:.58}
+.tutorial-demo-arrow{fill:none;stroke:#daefff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.tutorial-finger-ring{fill:#14253a55;stroke:#e7f6ff;stroke-width:2;filter:drop-shadow(0 0 3px #8cccf7)}
+.tutorial-finger-center{fill:#d9efff22;stroke:#c6e7fd;stroke-width:1}
+.tutorial-demonstration.is-still .tutorial-demo-path{opacity:.65}
+html.desktop-layout #guide-bar.tutorial-guide #guide-note{font-size:14px;line-height:1.55}
+html.desktop-layout #guide-bar.tutorial-guide #guide-progress{grid-row:4;margin-top:6px}
+html.desktop-layout #guide-bar.tutorial-guide .guide-actions{grid-row:5}
+html.desktop-layout #guide-bar.tutorial-guide>.guide-content{grid-template-rows:48px auto auto auto 44px}
+html.desktop-layout #guide-bar.tutorial-guide #guide-text{min-height:4.5em;font-size:20px;line-height:1.5}
+html.desktop-layout #guide-count{font-size:11px;display:block;margin:0 0 3px}
+html.desktop-layout #guide-bar.tutorial-guide #guide-skip{font-size:14px}
+/* The existing full-text action carries these details in compact layouts. */
+@media(max-height:729px){html:not(.desktop-layout) #guide-note{display:none}html:not(.desktop-layout) #guide-progress{grid-row:3}}
+@media(max-width:360px){#guide-bar.tutorial-guide #guide-text{min-height:4.5em}#guide-count{font-size:9px;margin-right:4px}}
+.device-landscape #guide-bar.tutorial-guide #guide-note,.device-landscape #guide-bar.tutorial-guide #guide-progress{display:none}
+.device-landscape #guide-bar.tutorial-guide .guide-actions,.device-landscape #guide-bar.tutorial-guide:has(#guide-example:not([hidden])) .guide-actions,.device-landscape #guide-bar.tutorial-guide:has(#guide-next:not([hidden])) .guide-actions{grid-column:1;grid-row:3;justify-content:center}
+.device-landscape #guide-count{display:none}
+.device-landscape #guide-bar.tutorial-guide #guide-heading{padding-top:0}
+.tutorial-melody{display:flex;justify-content:space-around;gap:10px;padding:8px 0 12px;border-bottom:1px solid #b1985f55;text-align:center}
+.tutorial-melody>div{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.tutorial-melody img{object-fit:contain;filter:drop-shadow(0 0 9px #e4c88160)}
+.tutorial-melody strong{font-size:1rem;color:#f3d995;white-space:normal}
+.tutorial-melody span{font-variant-numeric:tabular-nums;color:#d3e3f3}
+.tutorial-clear-summary:has(#tutorial-clear-time){gap:12px 20px}
+dialog.tutorial-clear-dialog #tutorial-clear-time{font-size:1.4rem}
+/* Keep the main action visible on laptop-height screens. The guide already
+   shows arrival results; the secondary live meter can yield this space. */
+@media(max-height:850px){
+  html.desktop-layout .has-guide #desktop-metrics{display:none}
+  html.desktop-layout #guide-bar.tutorial-guide{padding:10px}
+  html.desktop-layout #guide-bar.tutorial-guide #guide-note{display:none}
+  html.desktop-layout #guide-bar.tutorial-guide #guide-text{font-size:18px;min-height:4.5em}
+  html.desktop-layout #guide-bar.tutorial-guide>.guide-content{grid-template-rows:48px auto auto 44px;gap:8px}
+  html.desktop-layout #guide-bar.tutorial-guide #guide-progress{grid-row:3}
+  html.desktop-layout #guide-bar.tutorial-guide .guide-actions{grid-row:4}
+}

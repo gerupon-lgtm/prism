@@ -107,6 +107,11 @@ export class Board {
     return {a:start,b:end,control:{x:(start.x+end.x)/2,y:(start.y+end.y)/2}};
   }
   render() {
+    // These two fixed, acyclic lessons send at most one light to each prism.
+    // Reserve their processing captions before playback so large-text phones
+    // do not re-run the dense label search at every arrival. Other circuits,
+    // including the free tutorial and queues, keep their dynamic layout.
+    this.stablePracticeLabels=this.session.guide?.mode==='challenge'&&this.session.guide.revision===2&&this.session.challenge?.practice===true;
     this.world.replaceChildren(); this.curves = new Map();this.directionEdges=[]; this.transform();
     const kind=this.session.mode==='free'?'sky':this.session.challenge.world??(Number(this.session.challenge.id.slice(1))<=3?'ruins':'observatory');
     const sceneWidth=(this.frameWidth??1360)*(this.desktop?1:.85);
@@ -186,6 +191,7 @@ export class Board {
         const text=svg('text',{x:this.desktop||sourceSide?sideSign*(65*symbolFactor+16*factor):0,y:sourceSide?10*factor:this.desktop?26*factor:90*symbolFactor,class:'node-time'+labelSide+(sourceSide?(sideSign<0?' source-time-left':' source-time-right'):'')},secondsLabel(node.process));
         group.append(text);
       }else group.dataset.baseLabel=group.getAttribute('aria-label');
+      if(this.stablePracticeLabels&&node.kind==='prism'&&Number(node.process)>0)group.append(svg('text',{y:130*factor,class:'node-state',visibility:'hidden','data-practice-status':''},'処理中'));
       if(selected&&this.session.mode==='free'&&this.session.editable) group.append(svg('circle',{cx:55*factor,cy:-45*factor,r:19*factor,'data-move':node.id,class:'move-handle'}));
       group.addEventListener('keydown',event=>{
         if(node.kind==='mirror'&&this.session.editable){
@@ -562,14 +568,15 @@ export class Board {
     const official=this.session.run;
     const run=this.endingMotion&&this.endingMotion.source===official&&official?.status!=='stopped'?this.endingMotion.run:official;
     this.updateGoalMarkers();
-    if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){this.timeLayoutSignature='';this.fitTimeLabels();}return;}
+    if(!run||run.status==='stopped'){if(this.timeLayoutSignature!==''){const initial=this.timeLayoutSignature===null;this.timeLayoutSignature='';if(!this.stablePracticeLabels||initial)this.fitTimeLabels();}return;}
     const states=[];
     for(const group of this.world.querySelectorAll('[data-node]')){
       const existing=group.querySelector('.node-state'),gate=run.gates.get(group.dataset.node),waiting=gate.queue.length-gate.head;
-      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);if(existing){if(existing.textContent!==text)existing.textContent=text;}else group.append(svg('text',{y:(group.classList.contains('source')?-160:130)*(this.fontFactor??1),class:'node-state'},text));}
+      if(waiting||gate.current!==null){const text=`${gate.current!==null?'処理中':''}${waiting?' 待ち'+waiting:''}`;states.push(`${group.dataset.node}:${text}`);if(existing){if(existing.textContent!==text)existing.textContent=text;existing.removeAttribute('visibility');}else group.append(svg('text',{y:(group.classList.contains('source')?-160:130)*(this.fontFactor??1),class:'node-state'},text));}
+      else if(existing?.hasAttribute('data-practice-status'))existing.setAttribute('visibility','hidden');
       else existing?.remove();
     }
-    const signature=states.join('/');if(this.timeLayoutSignature!==signature){this.timeLayoutSignature=signature;this.fitTimeLabels();}
+    const signature=states.join('/');if(this.timeLayoutSignature!==signature){const initial=this.timeLayoutSignature===null;this.timeLayoutSignature=signature;if(!this.stablePracticeLabels||initial)this.fitTimeLabels();}
     for(const particle of run.particles.values()) {
       let at;
       if(particle.status==='moving') {

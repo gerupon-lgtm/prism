@@ -258,27 +258,25 @@ test('案内履歴の保存失敗で完了を捏造せず、途中離脱では�
   s.endGuide('interrupted'); assert.equal(s.circuit,original); assert.equal(s.guide,null); assert.equal(s.needsGuide(),true);
 });
 
-test('課題案内は結線・確認付き削除・つなぎ直し・到着・記録を体験する',()=>{
+test('課題案内は最初の到達から削除・比較・記録へ進み、三つの響きで完了する',()=>{
   const f=fixture(),s=f.session;
-  s.beginGuide(); const wire=s.connect('S','A');
-  assert.equal(s.guide.step,1);assert.equal(s.guide.wireId,wire);
-  assert.throws(()=>s.remove(wire));assert.equal(s.guide.step,1);assert.equal(s.circuit.edges.length,1);
-  s.remove(wire,true);assert.equal(s.guide.step,2);assert.equal(s.circuit.edges.length,0);
-  s.connectPath(['S','A','G']);s.start();assert.throws(()=>s.endGuide('completed'));
-  s.advance('2.5'); assert.equal(s.guide.step,3); assert.equal(s.guide.readyToFinish,false);
-  assert.equal(f.records.scores().length,0); s.openRecords(); assert.equal(s.guide.readyToFinish,true);
+  s.beginGuide();s.connectPath(['S','A','G']);assert.equal(s.guide.step,0);s.start();s.advance('4');s.stop();
+  assert.equal(s.guide.step,1);assert.equal(s.guide.wireId,'AG');assert.throws(()=>s.remove('AG'));
+  s.remove('AG',true);assert.equal(s.guide.step,2);s.connectPath(['A','B','G']);s.start();assert.throws(()=>s.endGuide('completed'));
+  s.advance('2.5');assert.equal(s.guide.step,3);assert.equal(s.guide.readyToFinish,false);
+  assert.equal(f.records.scores().length,0);s.openRecords();assert.equal(s.guide.step,4);s.stop();s.nextGuideLesson();
+  for(const path of [['S','A','B','G1'],['B','G2'],['A','C','G3']])s.connectPath(path);s.start();s.advance('3');assert.equal(s.guide.readyToFinish,true);
   s.endGuide('completed'); assert.equal(s.circuit.edges.length,0); assert.equal(s.needsGuide('challenge'),false);
 });
 
 test('案内の削除練習は別の線の削除や実行では進まず、全クリア後も再開できる',()=>{
-  const s=fixture().session;s.beginGuide();const wire=s.connect('S','A'),other=s.connect('A','G');
-  s.start();s.advance('2.5');s.openRecords();assert.equal(s.guide.step,1);assert.equal(s.guide.readyToFinish,false);s.stop();
+  const s=fixture().session;s.beginGuide();const other=s.connect('S','A'),wire=s.connect('A','G');
+  s.start();s.advance('4');s.openRecords();assert.equal(s.guide.step,1);assert.equal(s.guide.readyToFinish,false);s.stop();
   s.remove(other,true);assert.equal(s.guide.step,1);assert.equal(s.guide.wireId,wire);
   s.remove(wire,true);s.evaluate();s.openRecords();assert.equal(s.guide.step,2);assert.equal(s.guide.readyToFinish,false);
   s.connect('S','A');const restored=structuredClone(s.circuit);s.clearConnections();assert.equal(s.guide.step,0);
-  s.commitEdit(restored);assert.equal(s.guide.step,1);assert.equal(s.guide.wireId,wire);
-  s.clearConnections();s.connect('S','B');assert.equal(s.guide.step,1);
-  s.remove(s.guide.wireId,true);assert.equal(s.guide.step,2);s.connectPath(['S','B','G']);s.start();s.advance('2.5');s.openRecords();assert.equal(s.guide.readyToFinish,true);
+  s.commitEdit(restored);assert.equal(s.guide.step,0);assert.equal(s.guide.wireId,null);
+  s.connect('A','G');s.start();s.advance('4');assert.equal(s.guide.step,1);assert.equal(s.guide.wireId,wire);
 });
 
 test('自由の案内でも一本削除を練習し、つなぎ直しと時間変更後に進む',()=>{

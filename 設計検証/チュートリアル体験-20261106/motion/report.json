@@ -1,0 +1,49 @@
+{
+  "version": "0.102.0",
+  "passed": true,
+  "cases": [
+    {
+      "engine": "chromium",
+      "passed": true,
+      "first": {
+        "x": 194.99999405787554,
+        "y": 651.1191357323546
+      },
+      "second": {
+        "x": 194.99999405787554,
+        "y": 584.0653272214147
+      },
+      "animatedDistance": 67.05380851093992,
+      "stillFirst": {
+        "x": 194.99999405787554,
+        "y": 654.3638209151047
+      },
+      "stillSecond": {
+        "x": 194.99999405787554,
+        "y": 654.3638209151047
+      }
+    },
+    {
+      "engine": "webkit",
+      "passed": true,
+      "first": {
+        "x": 195.00001189892106,
+        "y": 636.9879998830648
+      },
+      "second": {
+        "x": 195.00000594946053,
+        "y": 572.1850001811981
+      },
+      "animatedDistance": 64.802999701867,
+      "stillFirst": {
+        "x": 195.00000594946053,
+        "y": 654.4348643192877
+      },
+      "stillSecond": {
+        "x": 195.00000594946053,
+        "y": 654.4348643192877
+      }
+    }
+  ],
+  "boundary": "Native SVG animation in desktop Chromium/WebKit. Reduced preference is supplied to the same browser storage/event route. Physical phone motion/listening are unverified."
+}

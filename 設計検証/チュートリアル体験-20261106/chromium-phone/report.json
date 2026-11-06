@@ -1,0 +1,636 @@
+{
+  "version": "0.102.0",
+  "engine": "chromium",
+  "passed": true,
+  "cases": [
+    {
+      "name": "phone",
+      "passed": true,
+      "layouts": [
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 258.59375,
+            "bottom": 711,
+            "width": 374,
+            "height": 452.40625
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 252.59375,
+            "width": 376,
+            "height": 153.453125
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "星から、最初の一音へ"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "星からプリズムAへドラッグして、指を離そう。"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "あなたがつくった道を、光が進みます。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 607.913818359375,
+              "bottom": 672.913818359375,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 607.913818359375,
+              "bottom": 672.913818359375,
+              "width": 55.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 513.3849487304688,
+              "bottom": 578.3849487304688,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 513.3849487304688,
+              "bottom": 578.3849487304688,
+              "width": 55.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.750003814697266,
+              "right": 103.75000381469727,
+              "top": 411.2938232421875,
+              "bottom": 476.2937927246094,
+              "width": 65,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.75,
+              "right": 98.75000762939453,
+              "top": 411.2937927246094,
+              "bottom": 476.2938232421875,
+              "width": 55.00000762939453,
+              "height": 65.00003051757812
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.25,
+              "right": 351.25,
+              "top": 411.2938232421875,
+              "bottom": 476.2937927246094,
+              "width": 65,
+              "height": 64.99996948242188
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.25,
+              "right": 346.25,
+              "top": 411.2937927246094,
+              "bottom": 476.2938232421875,
+              "width": 55,
+              "height": 65.00003051757812
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 55.00001525878906,
+              "height": 65
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 109.140625,
+              "bottom": 153.140625,
+              "width": 66,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 276.046875,
+            "bottom": 711,
+            "width": 374,
+            "height": 434.953125
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 270.046875,
+            "width": 376,
+            "height": 170.90625
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "工夫が、結果に変わった"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "4秒 → 2.5秒。1.5秒速くなりました！"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "「記録」で通った道を確認しよう。早く届くほど高得点、最速なら100点です。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.49998474121094,
+              "right": 227.5,
+              "top": 613.1842041015625,
+              "bottom": 678.1842041015625,
+              "width": 65.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 613.1842041015625,
+              "bottom": 678.1842041015625,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.49998474121094,
+              "right": 227.5,
+              "top": 522.220458984375,
+              "bottom": 587.220458984375,
+              "width": 65.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 522.220458984375,
+              "bottom": 587.220458984375,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 38.763328552246094,
+              "right": 103.7633285522461,
+              "top": 423.9796142578125,
+              "bottom": 488.9796142578125,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 43.763328552246094,
+              "right": 98.7633285522461,
+              "top": 423.9796142578125,
+              "bottom": 488.9796142578125,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 286.2366638183594,
+              "right": 351.2366638183594,
+              "top": 423.9796142578125,
+              "bottom": 488.9796142578125,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 291.2366638183594,
+              "right": 346.2366638183594,
+              "top": 423.9796142578125,
+              "bottom": 488.9796142578125,
+              "width": 55,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "hit",
+              "left": 162.49998474121094,
+              "right": 227.5,
+              "top": 307.5460205078125,
+              "bottom": 372.5460205078125,
+              "width": 65.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "G",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.5,
+              "top": 307.5460205078125,
+              "bottom": 372.5460205078125,
+              "width": 55,
+              "height": 65
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 109.140625,
+              "bottom": 153.140625,
+              "width": 66,
+              "height": 44
+            }
+          ]
+        },
+        {
+          "board": {
+            "left": 8,
+            "right": 382,
+            "top": 258.59375,
+            "bottom": 711,
+            "width": 374,
+            "height": 452.40625
+          },
+          "guide": {
+            "left": 7,
+            "right": 383,
+            "top": 99.140625,
+            "bottom": 252.59375,
+            "width": 376,
+            "height": 153.453125
+          },
+          "guideVisible": true,
+          "guideOverflow": false,
+          "overlap": false,
+          "copy": [
+            {
+              "id": "guide-heading",
+              "clipped": false,
+              "text": "光を分けて、響きをつなぐ"
+            },
+            {
+              "id": "guide-text",
+              "clipped": false,
+              "text": "星からAへつなごう。"
+            },
+            {
+              "id": "guide-note",
+              "clipped": false,
+              "text": "三つの鐘へ届く、6本の道をつくります。"
+            }
+          ],
+          "targets": [
+            {
+              "id": "S",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 607.913818359375,
+              "bottom": 672.913818359375,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "S",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 607.913818359375,
+              "bottom": 672.913818359375,
+              "width": 55.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 524.7283935546875,
+              "bottom": 589.7283935546875,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "A",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 524.7283935546875,
+              "bottom": 589.7283935546875,
+              "width": 55.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "hit",
+              "left": 47.000003814697266,
+              "right": 112.00000381469727,
+              "top": 426.41839599609375,
+              "bottom": 491.41839599609375,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "B",
+              "kind": "art",
+              "left": 52,
+              "right": 107.00000762939453,
+              "top": 426.41839599609375,
+              "bottom": 491.4184265136719,
+              "width": 55.00000762939453,
+              "height": 65.00003051757812
+            },
+            {
+              "id": "C",
+              "kind": "hit",
+              "left": 278,
+              "right": 343,
+              "top": 426.41839599609375,
+              "bottom": 491.41839599609375,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "C",
+              "kind": "art",
+              "left": 283,
+              "right": 338,
+              "top": 426.41839599609375,
+              "bottom": 491.4184265136719,
+              "width": 55,
+              "height": 65.00003051757812
+            },
+            {
+              "id": "G1",
+              "kind": "hit",
+              "left": 22.250001907348633,
+              "right": 87.25000190734863,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "G1",
+              "kind": "art",
+              "left": 27.250001907348633,
+              "right": 82.25000953674316,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 55.00000762939453,
+              "height": 65
+            },
+            {
+              "id": "G2",
+              "kind": "hit",
+              "left": 162.50001525878906,
+              "right": 227.5,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 64.99998474121094,
+              "height": 65
+            },
+            {
+              "id": "G2",
+              "kind": "art",
+              "left": 167.5,
+              "right": 222.50001525878906,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 55.00001525878906,
+              "height": 65
+            },
+            {
+              "id": "G3",
+              "kind": "hit",
+              "left": 302.75,
+              "right": 367.75,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 65,
+              "height": 65
+            },
+            {
+              "id": "G3",
+              "kind": "art",
+              "left": 307.75,
+              "right": 362.75,
+              "top": 290.296875,
+              "bottom": 355.296875,
+              "width": 55,
+              "height": 65
+            }
+          ],
+          "actions": [
+            {
+              "id": "guide-skip",
+              "left": 304,
+              "right": 370,
+              "top": 109.140625,
+              "bottom": 153.140625,
+              "width": 66,
+              "height": 44
+            }
+          ]
+        }
+      ],
+      "before": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "after": {
+        "edges": [
+          "SA"
+        ],
+        "nodes": [
+          {
+            "id": "S",
+            "time": "0.5s"
+          },
+          {
+            "id": "B",
+            "time": "0.5s"
+          },
+          {
+            "id": "G"
+          },
+          {
+            "id": "A",
+            "time": "0.5s"
+          }
+        ],
+        "scores": null,
+        "circuits": null
+      },
+      "demonstration": {
+        "pointerEvents": "none",
+        "still": false,
+        "motion": 2,
+        "animations": 0
+      },
+      "comparison": {
+        "first": {
+          "time": "4",
+          "score": {
+            "numerator": "325",
+            "denominator": "4"
+          },
+          "edges": [
+            "AG",
+            "SA"
+          ]
+        },
+        "second": {
+          "time": "2.5",
+          "score": {
+            "numerator": "100",
+            "denominator": "1"
+          },
+          "edges": [
+            "AB",
+            "BG",
+            "SA"
+          ]
+        }
+      },
+      "sound": {
+        "capable": true,
+        "arrivals": [
+          {
+            "node": "G1",
+            "time": "2"
+          },
+          {
+            "node": "G2",
+            "time": "2.5"
+          },
+          {
+            "node": "G3",
+            "time": "3"
+          }
+        ],
+        "strikes": [
+          {
+            "frequency": 523.2511306011972,
+            "at": 26641.30000001192
+          },
+          {
+            "frequency": 783.9908719634985,
+            "at": 27151.80000001192
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "at": 27643.600000023842
+          }
+        ],
+        "rings": [
+          {
+            "frequency": 523.2511306011972,
+            "time": 24.330666666666666,
+            "endTime": 26.950666666666667
+          },
+          {
+            "frequency": 783.9908719634985,
+            "time": 24.84,
+            "endTime": 27.46
+          },
+          {
+            "frequency": 1046.5022612023945,
+            "time": 25.32,
+            "endTime": 27.94
+          }
+        ]
+      },
+      "saveFailureRecovered": true
+    }
+  ],
+  "boundary": "Desktop browser UI and actual wall-clock playback. Mobile touch/viewport/text size are emulated. Native audio requests and generated bell voices are observed where AudioContext exists; physical-device listening and understanding are unverified.",
+  "step": "phone"
+}

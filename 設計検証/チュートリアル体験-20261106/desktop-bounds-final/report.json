@@ -1,0 +1,173 @@
+{
+  "version": "0.102.0",
+  "passed": true,
+  "cases": [
+    {
+      "width": 1100,
+      "height": 700,
+      "desktop": true,
+      "rootHeight": 700,
+      "rootWidth": 1100,
+      "boxes": {
+        "app": {
+          "left": 0,
+          "right": 1100,
+          "top": 0,
+          "bottom": 700,
+          "width": 1100,
+          "height": 700,
+          "scrollHeight": 700,
+          "clientHeight": 700,
+          "scrollWidth": 1100,
+          "clientWidth": 1100
+        },
+        "desktop-sidebar": {
+          "left": 779,
+          "right": 1079,
+          "top": 84,
+          "bottom": 672,
+          "width": 300,
+          "height": 588,
+          "scrollHeight": 588,
+          "clientHeight": 588,
+          "scrollWidth": 300,
+          "clientWidth": 300
+        },
+        "play": {
+          "left": 779,
+          "right": 1079,
+          "top": 484,
+          "bottom": 548,
+          "width": 300,
+          "height": 64,
+          "scrollHeight": 62,
+          "clientHeight": 62,
+          "scrollWidth": 298,
+          "clientWidth": 298
+        },
+        "stop": {
+          "left": 779,
+          "right": 910.359375,
+          "top": 559,
+          "bottom": 609,
+          "width": 131.359375,
+          "height": 50,
+          "scrollHeight": 48,
+          "clientHeight": 48,
+          "scrollWidth": 129,
+          "clientWidth": 129
+        },
+        "guide-bar": {
+          "left": 779,
+          "right": 1079,
+          "top": 174,
+          "bottom": 402,
+          "width": 300,
+          "height": 228,
+          "scrollHeight": 226,
+          "clientHeight": 226,
+          "scrollWidth": 298,
+          "clientWidth": 298
+        },
+        "guide-text": {
+          "left": 790,
+          "right": 1068,
+          "top": 241,
+          "bottom": 322,
+          "width": 278,
+          "height": 81,
+          "scrollHeight": 81,
+          "clientHeight": 81,
+          "scrollWidth": 278,
+          "clientWidth": 278
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "desktop": true,
+      "rootHeight": 768,
+      "rootWidth": 1366,
+      "boxes": {
+        "app": {
+          "left": 0,
+          "right": 1366,
+          "top": 0,
+          "bottom": 768,
+          "width": 1366,
+          "height": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "scrollWidth": 1366,
+          "clientWidth": 1366
+        },
+        "desktop-sidebar": {
+          "left": 1044.484375,
+          "right": 1345,
+          "top": 84,
+          "bottom": 740,
+          "width": 300.515625,
+          "height": 656,
+          "scrollHeight": 656,
+          "clientHeight": 656,
+          "scrollWidth": 301,
+          "clientWidth": 301
+        },
+        "play": {
+          "left": 1044.484375,
+          "right": 1345,
+          "top": 484,
+          "bottom": 548,
+          "width": 300.515625,
+          "height": 64,
+          "scrollHeight": 62,
+          "clientHeight": 62,
+          "scrollWidth": 299,
+          "clientWidth": 299
+        },
+        "stop": {
+          "left": 1044.484375,
+          "right": 1176.078125,
+          "top": 559,
+          "bottom": 609,
+          "width": 131.59375,
+          "height": 50,
+          "scrollHeight": 48,
+          "clientHeight": 48,
+          "scrollWidth": 130,
+          "clientWidth": 130
+        },
+        "guide-bar": {
+          "left": 1044.484375,
+          "right": 1345,
+          "top": 174,
+          "bottom": 402,
+          "width": 300.515625,
+          "height": 228,
+          "scrollHeight": 226,
+          "clientHeight": 226,
+          "scrollWidth": 299,
+          "clientWidth": 299
+        },
+        "guide-text": {
+          "left": 1055.484375,
+          "right": 1334,
+          "top": 241,
+          "bottom": 322,
+          "width": 278.515625,
+          "height": 81,
+          "scrollHeight": 81,
+          "clientHeight": 81,
+          "scrollWidth": 279,
+          "clientWidth": 279
+        }
+      },
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "boundary": "Read-only desktop-browser geometry at the lower desktop breakpoint; no physical-device claims."
+}
