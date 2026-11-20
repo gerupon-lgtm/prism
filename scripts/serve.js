@@ -4,7 +4,7 @@ import { resolve, extname, sep } from 'node:path';
 
 const root = resolve(process.argv[2] ?? '.');
 const port = Number(process.env.PRISM_PORT ?? 4173);
-const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ttf':'font/ttf','.woff2':'font/woff2','.wav':'audio/wav','.webmanifest':'application/manifest+json'};
+const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.ttf':'font/ttf','.woff2':'font/woff2','.wav':'audio/wav','.webmanifest':'application/manifest+json'};
 createServer(async (request,response) => {
   try {
     if (!['GET','HEAD'].includes(request.method)) { response.writeHead(405).end(); return; }

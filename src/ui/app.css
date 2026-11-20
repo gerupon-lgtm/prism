@@ -646,3 +646,6 @@ html:not(.device-landscape) #app.selection-play.text-enlarged:not(.compact) #sta
 .mirror-control:is(:hover,:active) .mirror-control-track{stroke:#417c9f}
 .mirror-control:is(:hover,:active) .mirror-wheel-arrow{stroke:#fff4d0;filter:drop-shadow(0 0 4px #cfecff)}
 .mirror-control-caption{fill:#ffe8b1;font-weight:600;pointer-events:none;paint-order:stroke;stroke:#0a172c;stroke-width:3px;vector-effect:non-scaling-stroke}
+
+/* The story gallery shares a row with Resume, preserving the title height. */
+.title-return{display:flex;gap:8px}.title-compact .title-return{grid-column:1/-1}

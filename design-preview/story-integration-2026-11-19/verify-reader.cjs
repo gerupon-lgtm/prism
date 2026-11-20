@@ -1,0 +1,46 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {waitForAsync}=require('../../設計検証/browser_wait.cjs');
+process.env.PLAYWRIGHT_BROWSERS_PATH='C:/Users/user/AppData/Local/ms-playwright';
+const pw=require('C:/Users/user/Documents/あとキュー/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core');
+const arg=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1];},engine=arg('--engine')||'chrome',url=arg('--url')||'http://127.0.0.1:4173/',out=path.join(__dirname,'evidence',arg('--out')||'reader-'+engine+'-local');fs.mkdirSync(out,{recursive:true});
+const report={url,engine,checks:[],errors:[],failed:[],physicalDevice:false};
+const inspect=p=>p.evaluate(async()=>{const m=await import(document.querySelector('script[type=module]').src);return m.inspectStory();});
+const ready=p=>waitForAsync(p,async()=>{const m=await import(document.querySelector('script[type=module]').src);return m.inspectStory().active&&!m.inspectStory().loading;});
+async function settle(p){await ready(p);await p.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.querySelectorAll('#story-scenery img')].map(i=>i.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});}
+async function jump(p,index){await p.locator('#story-chapters').click();await p.locator(`#story-scene-list button[data-index="${index}"]`).click();await settle(p);}
+async function fit(p,label){await settle(p);const result=await p.evaluate(()=>{
+ const root=document.querySelector('#story-screen'),visible=e=>e.getClientRects().length&&!e.closest('dialog:not([open])')&&getComputedStyle(e).display!=='none';
+ const selectors=['.toolbar','.brand','.tools','.spread','#story-scene','.story-copy','.chapter-heading','#story-words','.copy-foot','.reader-controls','.progress','button'];
+ const items=[...new Set(selectors.flatMap(s=>[...root.querySelectorAll(s)]))].filter(visible).map(e=>{const r=e.getBoundingClientRect(),hit=e.tagName==='BUTTON'?document.elementFromPoint(r.x+r.width/2,r.y+r.height/2):null;return {id:e.id||e.className,rect:[r.left,r.top,r.right,r.bottom],client:[e.clientWidth,e.clientHeight],scroll:[e.scrollWidth,e.scrollHeight],button:e.tagName==='BUTTON',hit:!hit||e.contains(hit)};});
+ const words=root.querySelector('.words'),speaker=root.querySelector('.speaker'),w=getComputedStyle(words),s=getComputedStyle(speaker),speakerSpace=speaker.hidden?0:speaker.getBoundingClientRect().height+parseFloat(s.marginBottom)+parseFloat(s.marginTop);
+ return {viewport:[innerWidth,innerHeight],page:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],items,available:words.clientHeight-parseFloat(w.paddingTop)-parseFloat(w.paddingBottom)-speakerSpace,lineHeight:parseFloat(getComputedStyle(root.querySelector('#story-narration')).lineHeight)};
+ });
+ report.lastLayout={label,...result};assert.deepEqual(result.page,result.viewport,label+' page bounds');assert(result.available>=result.lineHeight-1,label+' whole narration line '+result.available+'/'+result.lineHeight);
+ for(const e of result.items){const [l,t,r,b]=e.rect;assert(l>=-.7&&t>=-.7&&r<=result.viewport[0]+.7&&b<=result.viewport[1]+.7,label+' outside '+e.id);assert(e.scroll[0]<=e.client[0]+1,label+' clipped width '+e.id);if(e.id!=='story-words')assert(e.scroll[1]<=e.client[1]+1,label+' clipped height '+e.id);if(e.button){assert(b-t>=43.5,label+' target height '+e.id);assert(e.hit,label+' blocked button '+e.id);}}
+ await p.locator('#story-words').evaluate(e=>{e.scrollTop=e.scrollHeight;});assert(await p.locator('#story-words').evaluate(e=>e.scrollTop+e.clientHeight>=e.scrollHeight-1));report.checks.push({label,id:(await inspect(p)).id,...result});
+}
+(async()=>{const browser=engine==='webkit'?await pw.webkit.launch({headless:true}):await pw.chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});report.browser=browser.version();let page;try{
+ const context=await browser.newContext({reducedMotion:'reduce'});page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400&&!r.url().endsWith('favicon.ico'))report.failed.push([r.status(),r.url()]);});
+ await page.addInitScript(()=>{if(location.protocol.startsWith('http')){localStorage.setItem('prism-notes.audio-latency.v1',JSON.stringify({version:1,latencyHint:.07}));window.__audioConstructors=[];const Native=window.AudioContext;if(Native)window.AudioContext=new Proxy(Native,{construct(Target,args){window.__audioConstructors.push(args[0]);return new Target(...args);}});}});
+ await page.goto(url);await page.locator('#title-story').click();await settle(page);
+ if((await inspect(page)).sound)await page.locator('#story-sound').click();await settle(page);
+ await page.evaluate(()=>localStorage.setItem('story-integration-sentinel','既存の回路と成績を保持'));const storage=await page.evaluate(()=>JSON.stringify({...localStorage}));
+ for(const [width,height] of [[320,480],[360,640],[410,844],[844,410],[740,280],[568,260],[480,240],[1440,900]]){
+  await page.setViewportSize({width,height});if(!(await inspect(page)).active){await page.locator('#title-story').click();await settle(page);}else await jump(page,0);
+  for(let i=0;i<27;i++){await fit(page,`${width}x${height} slide ${i+1}`);assert.equal((await inspect(page)).index,i);if(i<26)await page.locator('#story-next').click();}
+  await page.locator('#story-next').click();assert.equal((await inspect(page)).active,false);assert.equal((await inspect(page)).journey.active,false);console.log(engine+' '+width+'x'+height+' complete');
+ }
+ assert.equal(await page.evaluate(()=>JSON.stringify({...localStorage})),storage,'gallery leaves all stored data unchanged');
+ await page.setViewportSize({width:844,height:410});await page.locator('#title-story').click();await settle(page);await page.locator('#story-motion').click();await settle(page);assert.equal((await inspect(page)).reduced,false);
+ const pose=()=>page.locator('#story-scenery img[src*="monochord-story"]').evaluate(e=>{const r=e.getBoundingClientRect();return {rect:[r.x,r.y,r.width,r.height],animation:getComputedStyle(e).animationName,transform:getComputedStyle(e).transform};});
+ for(const [width,height] of [[410,844],[844,410],[740,280],[480,240]]){await page.setViewportSize({width,height});await jump(page,25);const first=await pose();await page.waitForTimeout(350);assert.deepEqual(await pose(),first);await page.locator('#story-next').click();await settle(page);assert.deepEqual(await pose(),first);assert.equal(first.animation,'none');assert.equal(first.transform,'none');await page.screenshot({path:path.join(out,`instrument-${width}x${height}.png`)});report.checks.push({label:'26 to 27 unchanged with normal motion',width,height,pose:first});}
+ if(engine==='chrome'){
+  await page.setViewportSize({width:410,height:844});await page.locator('#story-exit').click();await page.locator('#title-resume').click();assert((await inspect(page)).muted);assert.equal(await page.locator('#sound').getAttribute('aria-pressed'),'false');
+  await page.locator('#sound').click();assert.equal((await inspect(page)).muted,false);await page.locator('#menu').click();await page.locator('#dialog-body button').filter({hasText:/^おはなし$/}).click();await settle(page);assert.equal((await inspect(page)).latencyHint,.07);assert.equal(await page.evaluate(()=>window.__audioConstructors.length),1,'game and story share one AudioContext');
+  await jump(page,1);await page.waitForTimeout(450);const pair=await inspect(page);assert.equal(pair.bells.length,2);assert.equal(pair.bells[0].time,pair.bells[1].time);await page.locator('#story-next').click();assert((await inspect(page)).queued);await waitForAsync(page,async()=>{const m=await import(document.querySelector('script[type=module]').src);return m.inspectStory().id==='P3'&&!m.inspectStory().loading;},null,{timeout:6000});
+  await jump(page,8);await page.waitForTimeout(450);assert.equal((await inspect(page)).spiritVoices.length,6);await page.locator('#story-stop').click();await page.waitForTimeout(150);assert.equal((await inspect(page)).voices,0);assert.equal((await inspect(page)).timers,0);await page.waitForTimeout(2900);assert.equal((await inspect(page)).voices,0,'no delayed voice after stop');
+  await page.locator('#story-replay').click();await settle(page);await page.locator('#story-sound').click();await settle(page);assert((await inspect(page)).muted);await page.locator('#story-exit').click();assert.equal(await page.locator('#sound').getAttribute('aria-pressed'),'false');assert.equal((await inspect(page)).journey.active,false);report.checks.push({label:'shared mute, latency, one context, bell pair, voice and cancellation'});
+ }
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.failed,[]);report.passed=true;console.log(JSON.stringify({checks:report.checks.length,errors:report.errors,failed:report.failed}));
+ }catch(error){report.error=error.stack;if(page)await page.screenshot({path:path.join(out,'failure.png'),timeout:5000}).catch(()=>{});throw error;}finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

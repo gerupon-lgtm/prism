@@ -101,7 +101,7 @@ html.desktop-layout #workspace:has(#records-panel:not([hidden])) #add-controls{g
 html.desktop-layout #workspace:has(#records-panel:not([hidden])) .edit-content{flex-wrap:wrap}
 html.desktop-layout #workspace:has(#records-panel:not([hidden])) #edit-controls button{flex:1 0 auto}
 html.desktop-layout #workspace:has(#records-panel:not([hidden])) .board-legend{display:none}
-html.desktop-layout dialog:not(#wire-delete-toast){width:min(640px,calc(100vw - 36px));height:min(640px,calc(var(--app-height) - 50px));padding:20px;font-size:18px}
+html.desktop-layout dialog:not(#wire-delete-toast):not([data-story-ui]){width:min(640px,calc(100vw - 36px));height:min(640px,calc(var(--app-height) - 50px));padding:20px;font-size:18px}
 html.desktop-layout dialog:not(#wire-delete-toast) .panel-heading h2{font-size:24px}
 html.desktop-layout dialog .panel-heading button,html.desktop-layout #dialog-actions button{min-height:48px;font-size:18px}
 html.desktop-layout #dialog-body p,html.desktop-layout #dialog-body label{font-size:18px;line-height:1.65}

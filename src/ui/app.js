@@ -1,4 +1,6 @@
 import { Session } from '../app/session.js';
+import {StoryProgress,StoryTransition,STORY_BEFORE_STAGE} from '../app/story-progress.js';
+import {createStoryReader} from './story-reader.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
 import { displayScore,perfectScore,compareScores } from '../core/evaluation.js';
@@ -52,9 +54,12 @@ function timingFor(run=session.run){
 }
 const audioComparison=new URL(location.href).searchParams.get('audioLatency');
 const session=new Session(new LocalRecords(storage)),chime=new Chime({latencyHint:['interactive','playback'].includes(audioComparison)?audioComparison:loadAudioLatency(storage)});
+const storyProgress=new StoryProgress(challenges.map(challenge=>challenge.id));
+const storyTransition=new StoryTransition();
+let story=null,pendingStory=null;
 const dialog=$('dialog'),body=$('dialog-body'),actions=$('dialog-actions');
 const motion=new MotionPreference(storage,document.documentElement,matchMedia('(prefers-reduced-motion:reduce)'));
-motion.changed=refreshMotionSettings;
+motion.changed=()=>{refreshMotionSettings();story?.syncSettings();};
 let conditionCuePending=false,conditionCueFrame=null;
 function cancelConditionCue(){
   if(conditionCueFrame!==null)cancelAnimationFrame(conditionCueFrame);
@@ -71,7 +76,7 @@ function scheduleConditionCue(){
     const card=$('challenge-info');
     // An introductory dialog may cover a newly entered stage. Wait until its
     // conditions are actually visible, without replaying on ordinary renders.
-    if(document.hidden||updating||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||!card.getClientRects().length)return;
+    if(document.hidden||updating||dialog.open||story?.active||!$('title-screen').hidden||session.view.recordsOpen||!card.getClientRects().length)return;
     conditionCuePending=false;card.classList.remove('condition-start-cue');void card.offsetWidth;card.classList.add('condition-start-cue');
   });
 }
@@ -116,6 +121,22 @@ const orientation=new OrientationLayout($('app'));
 const desktop=new DesktopLayout();
 const tutorialGuide=new TutorialGuide($('guide-bar'),$('board'),$('result-line'));
 const offline=new Offline(()=>{updateNotice();if(dialog.open&&$('dialog-title').textContent==='オフラインと更新')offlineStatus();});
+story=createStoryReader({chime,motion,onToggleSound:toggleSound,version:offline.version});
+function prepareStory(){
+  storyTransition.cancel();
+  cancelConditionCue();cancelStart();cancelWireDelete();board.cancelAll();celebration.cancel();
+  session.pause('story');chime.stop('story');clockAnchor=null;
+  if(dialog.open)close();$('clear-toast').hidden=true;$('failure-toast').hidden=true;
+}
+function playStory(block,initialId=null){
+  prepareStory();
+  story.open({block,initialId,done:()=>{pendingStory=null;if(block==='E'){showTitle();return;}render();maybeMirrorIntro();requestConditionCue();},exit:checkpoint=>{pendingStory=checkpoint;showTitle();}});
+}
+function storyGallery(){
+  const fromTitle=!$('title-screen').hidden;prepareStory();
+  const back=()=>{render();if(fromTitle)$('title-story').focus({preventScroll:true});else menu();};
+  story.open({done:back,exit:back});
+}
 // Font, orientation and update-button changes can finish laying out after render.
 // Reposition existing result notices from the final bounds, without redrawing
 // or moving the circuit and without replaying any result sound.
@@ -158,6 +179,7 @@ function updateNotice(){
 
 document.addEventListener('click',event=>{
   const target=buttonPresses.get(event);if(!target)return;
+  if(target.closest('#story-screen'))return;
   // An action can hide its own button before this bubbling listener runs.
   // Hidden CSS animations never finish and would replay on the next reveal.
   target.classList.remove('button-response');if(!motion.reduced&&target.getClientRects().length){void target.offsetWidth;target.classList.add('button-response');}
@@ -181,6 +203,7 @@ function failure(error) {
   else notify(error.message);
 }
 function open(title,{naturalEnding=false}={}) {
+  storyTransition.cancel();
   $('challenge-info').classList.remove('condition-start-cue');
   settingsTapGuard=null;
   board.mirrorPreview=null;
@@ -235,8 +258,9 @@ function scheduleConditionFit(){
   scheduleConditionFit.frame=requestAnimationFrame(()=>{scheduleConditionFit.frame=null;fitConditionCard();});
 }
 function render(redraw=true,{records=true}={}) {
+  story?.syncSettings();
   scheduleConditionCue();
-  const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&$('title-screen').hidden);
+  const aiming=Boolean(board.mirrorAim&&session.editable&&!startPrelude&&!dialog.open&&!story?.active&&$('title-screen').hidden);
   $('mirror-controls').hidden=!aiming;
   if(aiming){const target=board.mirrorAim.target;setText('mirror-status',target?`${objectName(target,session.circuit)}へ`:'円周をなぞる');$('mirror-status').title='回転盤の円周は、どこからでも指でなぞれます。相手に光が吸い付いたら離して結線します。周囲のタップか×で終了。左右ボタンでも相手を選べます。';}
   const readableFont=parseFloat(getComputedStyle(document.documentElement).fontSize),textEnlarged=readableFont>=20;
@@ -299,7 +323,7 @@ function render(redraw=true,{records=true}={}) {
   setText('play',startPrelude?'準備中':session.editable?'鐘を鳴らす':run.exhausted?'終了':run.status==='running'?'一時停止':'再開');
   $('play').disabled=session.editable?Boolean(startBlockedReason):run.exhausted;
   $('play').title=startBlockedReason||(!session.editable&&run?.exhausted?'動作は終了しています。停止で編集へ戻れます。':'');
-  $('stop').disabled=session.editable&&!startPrelude;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
+  $('stop').disabled=session.editable&&!startPrelude&&!storyTransition.pending;$('next').disabled=Boolean(startPrelude)||!run||run.status!=='paused'||run.exhausted;
   $('play').dataset.state=startPrelude?'preparing':run?.status??'ready';$('play').setAttribute('aria-pressed',String(run?.status==='running'));
   setText('next',narrowControls?'次へ':'次の動き');
   $('records').setAttribute('aria-pressed',String(session.view.recordsOpen));
@@ -351,7 +375,7 @@ function render(redraw=true,{records=true}={}) {
     if(compact)setText('hint',`案内 ${$('guide-text').textContent}`);
   }
   const guide=session.guide;
-  tutorialGuide.update({guide,hidden:dialog.open||document.hidden||!$('title-screen').hidden||session.view.recordsOpen||Boolean(startPrelude),recordsOpen:session.view.recordsOpen,compact,targets:guideCopy?.targets??[],demo:guideCopy?.demo??null,key:guideCopy?.key??''});
+  tutorialGuide.update({guide,hidden:dialog.open||story?.active||document.hidden||!$('title-screen').hidden||session.view.recordsOpen||Boolean(startPrelude),recordsOpen:session.view.recordsOpen,compact,targets:guideCopy?.targets??[],demo:guideCopy?.demo??null,key:guideCopy?.key??''});
   wireLimitNotice.update({active:session.mode==='challenge'&&session.editable&&!startPrelude&&!guide&&!session.pendingScores.size&&session.circuit.edges.length>=session.challenge.limit,limit:session.challenge?.limit});
   // Resolve the guide's reserved space before measuring SVG artwork sizes.
   // A collapsed guide must not briefly shrink the field during a redraw.
@@ -364,7 +388,7 @@ function render(redraw=true,{records=true}={}) {
   // The celebration plays on the board before the result card is revealed.
   // Neither its start nor its lifetime depends on the card finding room.
   const tutorialCelebrating=guide?.lesson==='harmony'&&guide.readyToFinish&&guide.run===run;
-  celebration.update(run,session.result,Boolean(session.clearChoices||tutorialCelebrating)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run),{naturalEnding:board.naturalEnding===run});
+  celebration.update(run,session.result,Boolean(session.clearChoices||tutorialCelebrating)&&!dismissedClears.has(run)&&!startPrelude&&!dialog.open&&!story?.active&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!['load','error'].includes(run?.pauseReason)&&!endWait.interrupted.has(run),{naturalEnding:board.naturalEnding===run});
   outcomeSound.update(run,session.result,outcomeAudioEnabled(),{defer:Boolean(session.result?.timeLimitReached)&&run?.status!=='stopped'});
   scheduleTutorialClear();
 }
@@ -372,12 +396,12 @@ function scheduleTutorialClear(){
   const guide=session.guide;
   if(!guide?.readyToFinish){if(guide)shownTutorialClears.delete(guide);return;}
   if(shownTutorialClears.has(guide)||tutorialClearFrame!==null)return;
-  if(session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||!$('title-screen').hidden||document.hidden||updating)return;
+  if(session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||story?.active||!$('title-screen').hidden||document.hidden||updating)return;
   // Render the completed practice first. Do not cover the arrival artwork or
   // interrupt the learner while they are reading the execution records.
   tutorialClearFrame=requestAnimationFrame(()=>{
     tutorialClearFrame=null;
-    if(session.guide!==guide||!guide.readyToFinish||shownTutorialClears.has(guide)||session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||!$('title-screen').hidden||document.hidden||updating)return;
+    if(session.guide!==guide||!guide.readyToFinish||shownTutorialClears.has(guide)||session.run?.status!=='stopped'||session.view.recordsOpen||dialog.open||story?.active||!$('title-screen').hidden||document.hidden||updating)return;
     attempt(showTutorialClear);
   });
 }
@@ -403,7 +427,7 @@ function showTutorialClear(){
   body.append(element('p','クリア条件を満たしたうえで、より短い時間でクリアすると高得点になります。最速の配線で100点を目指しましょう。',{id:'tutorial-score-explanation'}),element('p','「完了して戻る」で、練習前の画面へ戻ります。',{class:'tutorial-clear-note'}));
   actions.append(button('完了して戻る',()=>{session.endGuide('completed');message='';close();},{id:'tutorial-clear-finish'}),button('練習を続ける',close,{id:'tutorial-clear-practice'}));
 }
-function outcomeAudioEnabled(){const tutorialClear=session.guide?.lesson==='harmony'&&session.guide.readyToFinish&&session.guide.run===session.run;return Boolean(session.clearChoices||failureOutcome()||tutorialClear)&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
+function outcomeAudioEnabled(){const tutorialClear=session.guide?.lesson==='harmony'&&session.guide.readyToFinish&&session.guide.run===session.run;return Boolean(session.clearChoices||failureOutcome()||tutorialClear)&&!chime.muted&&!document.hidden&&!startPrelude&&!dialog.open&&!story?.active&&$('title-screen').hidden&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run);}
 
 function playerReason(){return (session.result?.reason??'').replaceAll('ゴール','鐘').replaceAll('祭壇','鐘');}
 function failureArrivalData(){
@@ -435,7 +459,7 @@ function failureOutcome(){
 function renderFailureToast(){
   const toast=$('failure-toast'),run=session.run;
   if(run&&failureToastRun===run&&failureToastCircuit!==session.circuit)dismissedFailures.add(run);
-  toast.hidden=!failureOutcome()||run?.status!=='stopped'||dismissedFailures.has(run)||Boolean(startPrelude)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  toast.hidden=!failureOutcome()||run?.status!=='stopped'||dismissedFailures.has(run)||Boolean(startPrelude)||dialog.open||story?.active||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
   if(toast.hidden)return;
   if(failureToastRun!==run){failureToastRun=run;failureToastCircuit=session.circuit;}
   const reason=playerReason();if($('failure-reason').textContent!==reason)$('failure-reason').textContent=reason;
@@ -503,11 +527,12 @@ function clearTimeLabel(){
 function renderClearToast() {
   const toast=$('clear-toast'),choices=session.clearChoices,run=session.run;
   if(run&&clearToastRun===run&&clearToastCircuit!==session.circuit)dismissedClears.add(run);
-  toast.hidden=!choices||run?.status!=='stopped'||dismissedClears.has(run)||dialog.open||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
+  toast.hidden=!choices||run?.status!=='stopped'||dismissedClears.has(run)||dialog.open||story?.active||!$('title-screen').hidden||session.view.recordsOpen||updating||['load','error'].includes(run?.pauseReason);
   if(toast.hidden)return;
   if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
   const perfect=perfectScore(session.result.score),time=session.result.evaluatedTime,score=displayScore(session.result.score);
-  $('clear-next').textContent=choices.nextChallengeId?'次へ':'課題一覧へ';
+  $('clear-next').disabled=storyTransition.pending;
+  $('clear-next').textContent=storyTransition.pending?'余韻待ち':choices.nextChallengeId?'次へ':!selectionPlay&&storyProgress.canEnd(choices.challengeId)?'エンディングへ':'課題一覧へ';
   $('clear-time-label').textContent=clearTimeLabel();$('clear-time').textContent=time+'秒';$('clear-score').textContent=score+'点';
   $('clear-time').setAttribute('aria-label',`${clearTimeLabel()} ${time}秒`);$('clear-score').setAttribute('aria-label',`スコア ${score}点`);
   toast.classList.toggle('perfect-clear',perfect);
@@ -548,12 +573,29 @@ function clearDetails(){
 }
 
 function dismissClear(){if(session.run)dismissedClears.add(session.run);render(false);}
-function clearAction(next=false){
+function clearAction(next=false,{tailFinished=false}={}){
   const choices=session.clearChoices;
   if(!choices||updating)return;
+  const nextStage=challenges.findIndex(challenge=>challenge.id===choices.nextChallengeId)+1;
+  const boundary=next&&!selectionPlay&&storyProgress.active&&(choices.nextChallengeId?STORY_BEFORE_STAGE[nextStage]:storyProgress.canEnd(choices.challengeId));
+  const context=chime.context;
+  const tail=context?.state==='running'?Math.max(0,(Math.max(chime.bellUntil,...[...chime.voices].map(voice=>voice.endTime??0))-context.currentTime)*1000):0;
+  if(boundary&&!tailFinished&&tail>20){
+    if(storyTransition.pending)return;
+    const run=session.run,circuit=session.circuit;
+    storyTransition.wait(tail+30,()=>{
+      if(session.run===run&&session.circuit===circuit&&session.clearChoices?.challengeId===choices.challengeId&&!document.hidden&&!dialog.open&&!story?.active&&!updating&&$('title-screen').hidden)clearAction(true,{tailFinished:true});
+      else render(false);
+    });render(false);return;
+  }
+  storyTransition.cancel();
   if(session.run)dismissedClears.add(session.run);
   stopRun();
-  if(next){if(choices.nextChallengeId)replace({challengeId:choices.nextChallengeId});else chooseMode();}
+  if(next){
+    if(choices.nextChallengeId)replace({challengeId:choices.nextChallengeId},{storyMode:!selectionPlay&&storyProgress.active?{kind:'advance',clearedId:choices.challengeId}:null});
+    else if(!selectionPlay&&storyProgress.finish(choices.challengeId)==='E')playStory('E');
+    else chooseMode();
+  }
 }
 
 function listPage(items,makeRow,empty='まだありません。',{group,initialItem}={}) {
@@ -639,19 +681,24 @@ function moveStage(direction){
   const target=challenges[challenges.findIndex(item=>item.id===session.challenge.id)+direction];
   if(target)chooseMode(()=>replace({challengeId:target.id}),{selectPlay:true});
 }
-function replace(request,{selectPlay=selectionPlay}={}) {
+function replace(request,{selectPlay=selectionPlay,storyMode=null}={}) {
   session.requireEditable();session.replacement(request);
   if(session.mode==='free'&&session.dirty){
     open('現在の未保存回路');body.append(element('p','読み込み前に、現在の回路をどうしますか？'));
-    actions.append(button('保存して入替',()=>saveForm(()=>finishReplacement(request,{choice:'discard'},selectPlay))),button('保存せず入替',()=>finishReplacement(request,{choice:'discard'},selectPlay)),button('取消',close));
+    actions.append(button('保存して入替',()=>saveForm(()=>finishReplacement(request,{choice:'discard'},selectPlay,storyMode))),button('保存せず入替',()=>finishReplacement(request,{choice:'discard'},selectPlay,storyMode)),button('取消',close));
     fitDialogForm();
-  }else finishReplacement(request,undefined,selectPlay);
+  }else finishReplacement(request,undefined,selectPlay,storyMode);
 }
-function finishReplacement(request,options,selectPlay=selectionPlay) {
+function finishReplacement(request,options,selectPlay=selectionPlay,storyMode=null) {
+  storyTransition.cancel();
   session.replace(request,options);selectionPlay=session.mode==='challenge'&&selectPlay;close();maybeGuide();
-  if(!$('title-screen').hidden)leaveTitle();
-  maybeMirrorIntro();
-  requestConditionCue();
+  pendingStory=null;
+  let block=null;
+  if(!selectionPlay&&session.mode==='challenge'&&storyMode?.kind==='start')block=storyProgress.start(session.challenge.id);
+  else if(!selectionPlay&&session.mode==='challenge'&&storyMode?.kind==='advance')block=storyProgress.advance(storyMode.clearedId,session.challenge.id);
+  else storyProgress.cancel();
+  if(!$('title-screen').hidden)leaveTitle({deferIntro:true});
+  if(block)playStory(block);else{maybeMirrorIntro();requestConditionCue();}
 }
 function maybeGuide() {
   // Guides are chosen explicitly from the title/menu, including first launch.
@@ -663,10 +710,10 @@ function showTitle() {
   if(dialog.open)close();$('title-screen').hidden=false;$('app').inert=true;$('title-error').textContent='';$('clear-toast').hidden=true;$('failure-toast').hidden=true;
   $('title-resume').focus();
 }
-function leaveTitle() { $('title-screen').hidden=true;$('app').inert=false;render();maybeMirrorIntro();requestConditionCue(); }
+function leaveTitle({deferIntro=false}={}) { $('title-screen').hidden=true;$('app').inert=false;render();if(!deferIntro){maybeMirrorIntro();requestConditionCue();} }
 let mirrorIntroShown=false;
 function maybeMirrorIntro(){
-  if(mirrorIntroShown||dialog.open||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
+  if(mirrorIntroShown||dialog.open||story?.active||!$('title-screen').hidden||session.guide||!session.editable||!session.circuit.nodes.some(n=>n.kind==='mirror'))return;
   try{if(storage.getItem('prism-mirror-optics-intro-v1')==='seen')return;}catch{/* An unavailable store must not prevent playing. */}
   mirrorIntroShown=true;open('鏡を回して、光を導こう');dialog.classList.add('help-dialog','mirror-intro');
   body.append(helpArt('reflection'),element('p','鏡を1回タップすると、入ってくる光と虹色の反射光が見えます。'),element('p','離れた回転盤の、矢印が並ぶ円周を指でなぞって鏡を回しましょう。光が相手に吸い付いたら、指を離すだけでつながります。'),element('p','反射光は、入ってくる線の延長方向に近い向きから始まります。細かな角度合わせは不要です。左右の回転ボタンでも操作できます。'));
@@ -675,7 +722,7 @@ function maybeMirrorIntro(){
 function layoutTitle(width,height) {
   const compact=height<360||parseFloat(getComputedStyle(document.documentElement).fontSize)>=20;
   $('title-screen').classList.toggle('title-compact',compact);
-  for(const [id,full,short] of [['title-start','連続プレイ','開始'],['title-challenges','選択プレイ','選択'],['title-free','自由作成','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-resume','プレイ画面へ','続き']]){
+  for(const [id,full,short] of [['title-start','連続プレイ','開始'],['title-challenges','選択プレイ','選択'],['title-free','自由作成','自由'],['title-tutorial','チュートリアル','案内'],['title-parts','パーツの説明','部品'],['title-about','遊び方と概要','概要'],['title-story','おはなし','物語'],['title-resume','プレイ画面へ','続き']]){
     $(id).textContent=compact?short:full;$(id).setAttribute('aria-label',full);
   }
   updateNotice();
@@ -766,6 +813,7 @@ function menu() {
   open('メニュー');
   const items=[
     ['タイトルへ',showTitle],
+    ['おはなし',storyGallery],
     ['課題と自由',chooseMode],
     ['操作の案内',()=>{close();session.beginGuide();tutorialExample=false;message='';render();}],
     ['点と道の一覧',objects],
@@ -1100,7 +1148,7 @@ function caseDetails(item){
   actions.append(button('このケースで鐘を鳴らす',()=>{session.stop();close();return startRun({caseId:item.id});}),button('戻る',close));
 }
 
-function interruptRun(reason){timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
+function interruptRun(reason){storyTransition.cancel();timeoutMotion.clear();board.endingMotion=null;celebration.cancel();cancelStart();session.pause(reason);endWait.interrupt(session.run);chime.stop(reason,{preserveTap:reason==='title'});clockAnchor=null;}
 function startClock(){
   timingFor();timeoutMotion.clear();board.endingMotion=null;board.naturalEnding=null;chime.stop('restart',{preserveTap:true});chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');clockAnchor={run:session.run,clock:session.run.clock,wall:performance.now()};message='';
   const fixedPractice=session.guide?.mode==='challenge'&&session.guide.revision===2&&session.challenge?.practice===true;
@@ -1147,6 +1195,7 @@ function launch(action){
   });
 }
 function startRun(options){
+  storyTransition.cancel();
   session.requireEditable();if(session.startBlockedReason)throw new Error(session.startBlockedReason);
   const phaseOffset=session.circuit.nodes.some(n=>n.gate)?board.previewPhase??previewGatePhase():'0';pendingGatePhase=phaseOffset;
   return launch(()=>{load.begin();load.measure('calculation',()=>session.start({...options,phaseOffset}));pendingGatePhase=null;session.view.recordPageAnchor=0;load.measure('display',startClock);finishLoad();});
@@ -1157,7 +1206,7 @@ function play(){
   else if(session.run.status==='running'){session.pause();celebration.cancel();chime.stop('paused',{preserveTap:true});clockAnchor=null;render(false);}
   else{return launch(()=>{session.resume();startClock();});}
 }
-function stopRun({automatic=false}={}){if(automatic&&session.result?.timeLimitReached)outcomeSound.update(session.run,session.result,outcomeAudioEnabled());timeoutMotion.clear();board.endingMotion=null;if(!automatic)celebration.cancel();cancelStart();if(automatic)board.naturalEnding=session.run;else board.naturalEnding=null;session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true,preserveTail:automatic});clockAnchor=null;message='';render();}
+function stopRun({automatic=false}={}){storyTransition.cancel();if(automatic&&session.result?.timeLimitReached)outcomeSound.update(session.run,session.result,outcomeAudioEnabled());timeoutMotion.clear();board.endingMotion=null;if(!automatic)celebration.cancel();cancelStart();if(automatic)board.naturalEnding=session.run;else board.naturalEnding=null;session.stop();chime.stop(session.run?.exhausted?'completed':'stopped',{preserveTap:true,preserveTail:automatic});clockAnchor=null;message='';render();}
 function reactions(entries,{run=session.run,goalHistory=null}={}){
   const goals=entries.filter(entry=>entry.type==='goal');
   const relays=entries.filter(entry=>entry.type==='arrival'&&['prism','source','mirror'].includes(run.circuit.nodes.get(entry.node)?.kind));
@@ -1180,7 +1229,7 @@ function reactions(entries,{run=session.run,goalHistory=null}={}){
   });
 }
 function frame(now){
-  if(!document.hidden&&$('title-screen').hidden&&!dialog.open&&session.editable&&session.circuit.nodes.some(n=>n.gate)){
+  if(!document.hidden&&$('title-screen').hidden&&!dialog.open&&!story?.active&&session.editable&&session.circuit.nodes.some(n=>n.gate)){
     const tick=Math.floor(now/100);if(tick!==gatePreviewFrame){gatePreviewFrame=tick;board.updateGates(pendingGatePhase??previewGatePhase(now));}
   }
   if(session.run?.status==='running'){
@@ -1195,7 +1244,7 @@ function frame(now){
       finishLoad();
     }catch(error){load.current=null;interruptRun('error');notify(error.message);}
   }
-  const endingRun=timeoutMotion.update(session,performance.now(),{durationMs:timingFor().failureMs,enabled:!document.hidden&&$('title-screen').hidden&&!dialog.open&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run)});
+  const endingRun=timeoutMotion.update(session,performance.now(),{durationMs:timingFor().failureMs,enabled:!document.hidden&&$('title-screen').hidden&&!dialog.open&&!story?.active&&!session.view.recordsOpen&&!updating&&!endWait.interrupted.has(session.run)});
   const hadEndingMotion=Boolean(board.endingMotion);
   board.endingMotion=endingRun?{source:session.run,run:endingRun}:null;
   try{
@@ -1205,7 +1254,7 @@ function frame(now){
   // Start the presentation wait after the final frame's work, not from the
   // animation-frame timestamp captured before calculation and artwork creation.
   const cleared=Boolean(session.clearChoices)&&!session.result?.timeLimitReached;
-  if(!document.hidden&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared,delayMs:cleared?timingFor().clearMs:timingFor().failureMs}))attempt(()=>stopRun({automatic:true}));
+  if(!document.hidden&&!story?.active&&endWait.ready(session.run,performance.now(),{allowNoArrival:session.runContext?.mode==='challenge',cleared,delayMs:cleared?timingFor().clearMs:timingFor().failureMs}))attempt(()=>stopRun({automatic:true}));
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
@@ -1220,7 +1269,10 @@ $('condition-info').addEventListener('click',()=>attempt(()=>selectionPlay&&sess
 $('stage-previous').addEventListener('click',()=>attempt(()=>moveStage(-1)));
 $('stage-next').addEventListener('click',()=>attempt(()=>moveStage(1)));
 $('result-info').addEventListener('click',()=>session.result?.state==='failed'?failureDetails('実行状況',$('result').textContent+'\n'+failureResultText()):fullText('実行状況',$('result').textContent+(session.runContext?.challenge?.type==='bell-sequence'?'\n'+arrivalRowsText(failureArrivalData().rows):'')));
-$('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(stopRun));
+$('play').addEventListener('click',()=>attempt(play));$('stop').addEventListener('click',()=>attempt(()=>{
+  if(storyTransition.pending){storyTransition.cancel();celebration.cancel();chime.stop('story-wait-cancel',{preserveTap:true});clockAnchor=null;message='物語へ進む予約を取り消しました。';render(false);}
+  else stopRun();
+}));
 $('next').addEventListener('click',()=>attempt(()=>{
   message='';load.begin();
   chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');
@@ -1231,16 +1283,18 @@ $('records').addEventListener('click',()=>attempt(showRecords));$('close-records
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
-$('sound').addEventListener('click',()=>attempt(async()=>{if(chime.muted){await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');chime.tap();}else chime.mute();render(false);}));
+async function toggleSound(){storyTransition.cancel();if(chime.muted){await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');chime.tap();}else chime.mute();render(false);}
+$('sound').addEventListener('click',()=>attempt(toggleSound));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(requestUpdate));
-$('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id},{selectPlay:false}))));
+$('title-start').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({challengeId:challenges[0].id},{selectPlay:false,storyMode:{kind:'start'}}))));
+$('title-story').addEventListener('click',()=>attempt(storyGallery));
 $('title-challenges').addEventListener('click',()=>attempt(()=>chooseMode(null,{selectPlay:true})));
 $('title-free').addEventListener('click',()=>attempt(()=>chooseMode(()=>replace({sampleId:'compare'}))));
 $('title-tutorial').addEventListener('click',()=>attempt(tutorial));
 $('title-parts').addEventListener('click',()=>attempt(partsExplanation));
 $('title-about').addEventListener('click',()=>attempt(aboutGame));
-$('title-resume').addEventListener('click',leaveTitle);
+$('title-resume').addEventListener('click',()=>{if(pendingStory){const checkpoint=pendingStory;leaveTitle({deferIntro:true});playStory(checkpoint.block,checkpoint.id);}else leaveTitle();});
 $('clear-dismiss').addEventListener('click',dismissClear);
 $('clear-details').addEventListener('click',()=>attempt(clearDetails));
 $('clear-again').addEventListener('click',()=>attempt(()=>clearAction()));
@@ -1281,8 +1335,8 @@ $('hint').addEventListener('click',()=>{
 $('mirror-left').addEventListener('click',()=>attempt(()=>board.turnMirror(-1)));
 $('mirror-right').addEventListener('click',()=>attempt(()=>board.turnMirror(1)));
 $('mirror-done').addEventListener('click',()=>{board.cancelAll();board.render();render(false);});
-document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else{if(session.guide)render(false);scheduleConditionCue();scheduleTutorialClear();}});
+document.addEventListener('keydown',event=>{if(story?.active||event.key!=='Escape')return;if(wireDelete.open){event.preventDefault();cancelWireDelete();}else if(!dialog.open&&session.view.recordsOpen){event.preventDefault();$('close-records').click();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){storyTransition.cancel();board.cancelAll();cancelWireDelete();celebration.cancel();cancelStart();session.pause('hidden');chime.stop();clockAnchor=null;render(false);}else{if(session.guide)render(false);scheduleConditionCue();scheduleTutorialClear();}});
 window.addEventListener('blur',()=>{board.cancelAll();cancelWireDelete();});
 document.addEventListener('contextmenu',event=>{if(!event.target.closest('input,textarea,select,[contenteditable="true"]'))event.preventDefault();});
 function viewport(){
@@ -1316,3 +1370,4 @@ if(offline.enabled)offline.prepare();
 // Local inspection for performance verification; never stores or uploads data.
 export function inspectPerformance(){return {...load.snapshot(),run:session.run?{status:session.run.status,pauseReason:session.run.pauseReason,clock:session.run.format(),...runCounts()}:null,audioVoices:chime.voices.size};}
 export function inspectAudioPlayback(){return chime.inspectPlayback();}
+export function inspectStory(){return {...story.inspect(),journey:storyProgress.snapshot(),pending:pendingStory?{...pendingStory}:null,transitionPending:storyTransition.pending,muted:chime.muted,latencyHint:chime.latencyHint};}

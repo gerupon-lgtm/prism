@@ -1,0 +1,1119 @@
+{
+  "version": "0.104.0",
+  "approvedPreview": "0.1.9",
+  "checkedAt": "2026-11-20T10:06:40.996Z",
+  "readers": [
+    {
+      "engine": "chrome",
+      "browser": "157.0.8103.79",
+      "checks": 221,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.5",
+      "checks": 220,
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "journeys": [
+    {
+      "engine": "chrome",
+      "browser": "157.0.8103.79",
+      "method": "Actual pointer wiring and real wall-clock Play. First problem draw, normal motion; saved result-card wait set to 0 seconds to exercise natural-tail waits. No clock substitution.",
+      "blocks": [
+        {
+          "block": "P",
+          "index": 0
+        },
+        {
+          "block": "M1",
+          "index": 7
+        },
+        {
+          "block": "M2",
+          "index": 8
+        },
+        {
+          "block": "B1",
+          "index": 9
+        },
+        {
+          "block": "B2",
+          "index": 11
+        },
+        {
+          "block": "B3",
+          "index": 13
+        },
+        {
+          "block": "B4",
+          "index": 15
+        },
+        {
+          "block": "B5",
+          "index": 17
+        },
+        {
+          "block": "B6",
+          "index": 19
+        },
+        {
+          "block": "E",
+          "index": 21
+        }
+      ],
+      "stages": [
+        {
+          "stage": 1,
+          "id": "Q1",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 2924,
+          "clock": "2.5"
+        },
+        {
+          "stage": 2,
+          "id": "Q2",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 2911,
+          "clock": "2.5"
+        },
+        {
+          "stage": 3,
+          "id": "Q3",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 2909,
+          "clock": "2.5",
+          "cancelledBoundaryWait": true
+        },
+        {
+          "stage": 4,
+          "id": "Q4",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 2928,
+          "clock": "2.5"
+        },
+        {
+          "stage": 5,
+          "id": "Q5",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 2900,
+          "clock": "2.5"
+        },
+        {
+          "stage": 6,
+          "id": "Q6",
+          "problem": "",
+          "time": "1秒",
+          "score": "100.00点",
+          "wallMs": 5430,
+          "clock": "5"
+        },
+        {
+          "stage": 7,
+          "id": "Q19",
+          "problem": "871474eca6d30519",
+          "time": "2.7秒",
+          "score": "100.00点",
+          "wallMs": 3227,
+          "clock": "2.7"
+        },
+        {
+          "stage": 8,
+          "id": "Q7",
+          "problem": "bce5f5bfa07695b6",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 3446,
+          "clock": "3"
+        },
+        {
+          "stage": 9,
+          "id": "Q8",
+          "problem": "56ec8701a817c9b7",
+          "time": "2.7秒",
+          "score": "100.00点",
+          "wallMs": 3155,
+          "clock": "2.7"
+        },
+        {
+          "stage": 10,
+          "id": "Q20",
+          "problem": "532eeb23c6f4e7f5",
+          "time": "2秒",
+          "score": "100.00点",
+          "wallMs": 2440,
+          "clock": "2"
+        },
+        {
+          "stage": 11,
+          "id": "Q21",
+          "problem": "8322c0b8bf8834af",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 2821,
+          "clock": "2.2"
+        },
+        {
+          "stage": 12,
+          "id": "Q22",
+          "problem": "f8c86490c4d3f80a",
+          "time": "2.8秒",
+          "score": "100.00点",
+          "wallMs": 3236,
+          "clock": "2.8"
+        },
+        {
+          "stage": 13,
+          "id": "Q13",
+          "problem": "5ab540938dda78e9",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 3628,
+          "clock": "3.2"
+        },
+        {
+          "stage": 14,
+          "id": "Q14",
+          "problem": "ede2078b86963fdf",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 4627,
+          "clock": "4.2"
+        },
+        {
+          "stage": 15,
+          "id": "Q11",
+          "problem": "6e7ee7b26e5caba1",
+          "time": "5.4秒",
+          "score": "100.00点",
+          "wallMs": 6931,
+          "clock": "6.4"
+        },
+        {
+          "stage": 16,
+          "id": "Q9",
+          "problem": "43ba62eefc74226b",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 7454,
+          "clock": "7"
+        },
+        {
+          "stage": 17,
+          "id": "Q12",
+          "problem": "b3534ba559b51aa6",
+          "time": "2.4秒",
+          "score": "100.00点",
+          "wallMs": 4861,
+          "clock": "4.4"
+        },
+        {
+          "stage": 18,
+          "id": "Q10",
+          "problem": "9fba60e319a60c2a",
+          "time": "1.7秒",
+          "score": "100.00点",
+          "wallMs": 5145,
+          "clock": "4.7"
+        },
+        {
+          "stage": 19,
+          "id": "Q23",
+          "problem": "0e4a1a4df1d770ac",
+          "time": "3.2秒",
+          "score": "100.00点",
+          "wallMs": 3722,
+          "clock": "3.2"
+        },
+        {
+          "stage": 20,
+          "id": "Q24",
+          "problem": "f9fc21677ab81f37",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 3428,
+          "clock": "3"
+        },
+        {
+          "stage": 21,
+          "id": "Q27",
+          "problem": "90b7f7acca0f90d4",
+          "time": "4.3秒",
+          "score": "100.00点",
+          "wallMs": 4746,
+          "clock": "4.3"
+        },
+        {
+          "stage": 22,
+          "id": "Q25",
+          "problem": "543ad0507e4a59be",
+          "time": "5.1秒",
+          "score": "100.00点",
+          "wallMs": 5564,
+          "clock": "5.1"
+        },
+        {
+          "stage": 23,
+          "id": "Q26",
+          "problem": "0eeaa039b14a0e5d",
+          "time": "3.9秒",
+          "score": "100.00点",
+          "wallMs": 4328,
+          "clock": "3.9"
+        },
+        {
+          "stage": 24,
+          "id": "Q28",
+          "problem": "2c1302884f7b45cd",
+          "time": "4秒",
+          "score": "100.00点",
+          "wallMs": 4476,
+          "clock": "4"
+        },
+        {
+          "stage": 25,
+          "id": "Q29",
+          "problem": "382127c0223bfe76",
+          "time": "4.1秒",
+          "score": "100.00点",
+          "wallMs": 4488,
+          "clock": "4.1"
+        },
+        {
+          "stage": 26,
+          "id": "Q30",
+          "problem": "55ddc73b4050320b",
+          "time": "6秒",
+          "score": "100.00点",
+          "wallMs": 6564,
+          "clock": "6"
+        },
+        {
+          "stage": 27,
+          "id": "Q31",
+          "problem": "d05be7f94bf2b703",
+          "time": "4.3秒",
+          "score": "100.00点",
+          "wallMs": 4779,
+          "clock": "4.3"
+        },
+        {
+          "stage": 28,
+          "id": "Q32",
+          "problem": "1bf8d5753775dce7",
+          "time": "3.6秒",
+          "score": "100.00点",
+          "wallMs": 4090,
+          "clock": "3.6"
+        },
+        {
+          "stage": 29,
+          "id": "Q33",
+          "problem": "a390942f07d9dd57",
+          "time": "8秒",
+          "score": "100.00点",
+          "wallMs": 8417,
+          "clock": "8"
+        },
+        {
+          "stage": 30,
+          "id": "Q34",
+          "problem": "d05c29311447a310",
+          "time": "5.2秒",
+          "score": "100.00点",
+          "wallMs": 5622,
+          "clock": "5.2"
+        },
+        {
+          "stage": 31,
+          "id": "Q35",
+          "problem": "b26590fa49dc39be",
+          "time": "1.3秒",
+          "score": "100.00点",
+          "wallMs": 1725,
+          "clock": "1.3"
+        },
+        {
+          "stage": 32,
+          "id": "Q36",
+          "problem": "612c8e98edb83a87",
+          "time": "0.6秒",
+          "score": "100.00点",
+          "wallMs": 786,
+          "clock": "0.6"
+        },
+        {
+          "stage": 33,
+          "id": "Q37",
+          "problem": "6a07643bbd7eb9c2",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 2645,
+          "clock": "2.2"
+        },
+        {
+          "stage": 34,
+          "id": "Q38",
+          "problem": "a53a4c67a877c930",
+          "time": "2.8秒",
+          "score": "100.00点",
+          "wallMs": 3250,
+          "clock": "2.8"
+        },
+        {
+          "stage": 35,
+          "id": "Q39",
+          "problem": "5f7e021f3ba8dba5",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 2732,
+          "clock": "2.2"
+        },
+        {
+          "stage": 36,
+          "id": "Q40",
+          "problem": "2f92b7f71f9c98ad",
+          "time": "1.4秒",
+          "score": "100.00点",
+          "wallMs": 2033,
+          "clock": "1.4"
+        },
+        {
+          "stage": 37,
+          "id": "Q41",
+          "problem": "a40992f243b14681",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1632,
+          "clock": "1.26"
+        },
+        {
+          "stage": 38,
+          "id": "Q42",
+          "problem": "f8bbef152a847321",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1682,
+          "clock": "1.26"
+        },
+        {
+          "stage": 39,
+          "id": "Q43",
+          "problem": "79bc8f5f851439e8",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1687,
+          "clock": "1.26"
+        },
+        {
+          "stage": 40,
+          "id": "Q44",
+          "problem": "a52387d1d6d10c83",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2181,
+          "clock": "1.75"
+        },
+        {
+          "stage": 41,
+          "id": "Q45",
+          "problem": "5d2b545564a85dbc",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2322,
+          "clock": "1.77"
+        },
+        {
+          "stage": 42,
+          "id": "Q46",
+          "problem": "0ecc29f399e539a9",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2270,
+          "clock": "1.76"
+        }
+      ],
+      "loadPauses": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.5",
+      "method": "Actual pointer wiring and real wall-clock Play. First problem draw, normal motion; saved result-card wait set to 0 seconds to exercise natural-tail waits. No clock substitution.",
+      "blocks": [
+        {
+          "block": "P",
+          "index": 0
+        },
+        {
+          "block": "M1",
+          "index": 7
+        },
+        {
+          "block": "M2",
+          "index": 8
+        },
+        {
+          "block": "B1",
+          "index": 9
+        },
+        {
+          "block": "B2",
+          "index": 11
+        },
+        {
+          "block": "B3",
+          "index": 13
+        },
+        {
+          "block": "B4",
+          "index": 15
+        },
+        {
+          "block": "B5",
+          "index": 17
+        },
+        {
+          "block": "B6",
+          "index": 19
+        },
+        {
+          "block": "E",
+          "index": 21
+        }
+      ],
+      "stages": [
+        {
+          "stage": 1,
+          "id": "Q1",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 3146,
+          "clock": "2.5"
+        },
+        {
+          "stage": 2,
+          "id": "Q2",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 3182,
+          "clock": "2.5"
+        },
+        {
+          "stage": 3,
+          "id": "Q3",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 3048,
+          "clock": "2.5"
+        },
+        {
+          "stage": 4,
+          "id": "Q4",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 3039,
+          "clock": "2.5"
+        },
+        {
+          "stage": 5,
+          "id": "Q5",
+          "problem": "",
+          "time": "2.5秒",
+          "score": "100.00点",
+          "wallMs": 3170,
+          "clock": "2.5"
+        },
+        {
+          "stage": 6,
+          "id": "Q6",
+          "problem": "",
+          "time": "1秒",
+          "score": "100.00点",
+          "wallMs": 5530,
+          "clock": "5"
+        },
+        {
+          "stage": 7,
+          "id": "Q19",
+          "problem": "871474eca6d30519",
+          "time": "2.7秒",
+          "score": "100.00点",
+          "wallMs": 3321,
+          "clock": "2.7"
+        },
+        {
+          "stage": 8,
+          "id": "Q7",
+          "problem": "bce5f5bfa07695b6",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 3567,
+          "clock": "3"
+        },
+        {
+          "stage": 9,
+          "id": "Q8",
+          "problem": "56ec8701a817c9b7",
+          "time": "2.7秒",
+          "score": "100.00点",
+          "wallMs": 3343,
+          "clock": "2.7"
+        },
+        {
+          "stage": 10,
+          "id": "Q20",
+          "problem": "532eeb23c6f4e7f5",
+          "time": "2秒",
+          "score": "100.00点",
+          "wallMs": 2656,
+          "clock": "2"
+        },
+        {
+          "stage": 11,
+          "id": "Q21",
+          "problem": "8322c0b8bf8834af",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 3147,
+          "clock": "2.2"
+        },
+        {
+          "stage": 12,
+          "id": "Q22",
+          "problem": "f8c86490c4d3f80a",
+          "time": "2.8秒",
+          "score": "100.00点",
+          "wallMs": 3442,
+          "clock": "2.8"
+        },
+        {
+          "stage": 13,
+          "id": "Q13",
+          "problem": "5ab540938dda78e9",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 3799,
+          "clock": "3.2"
+        },
+        {
+          "stage": 14,
+          "id": "Q14",
+          "problem": "ede2078b86963fdf",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 4808,
+          "clock": "4.2"
+        },
+        {
+          "stage": 15,
+          "id": "Q11",
+          "problem": "6e7ee7b26e5caba1",
+          "time": "5.4秒",
+          "score": "100.00点",
+          "wallMs": 6989,
+          "clock": "6.4"
+        },
+        {
+          "stage": 16,
+          "id": "Q9",
+          "problem": "43ba62eefc74226b",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 7869,
+          "clock": "7"
+        },
+        {
+          "stage": 17,
+          "id": "Q12",
+          "problem": "b3534ba559b51aa6",
+          "time": "2.4秒",
+          "score": "100.00点",
+          "wallMs": 5166,
+          "clock": "4.4"
+        },
+        {
+          "stage": 18,
+          "id": "Q10",
+          "problem": "9fba60e319a60c2a",
+          "time": "1.7秒",
+          "score": "100.00点",
+          "wallMs": 5637,
+          "clock": "4.7"
+        },
+        {
+          "stage": 19,
+          "id": "Q23",
+          "problem": "0e4a1a4df1d770ac",
+          "time": "3.2秒",
+          "score": "100.00点",
+          "wallMs": 4081,
+          "clock": "3.2"
+        },
+        {
+          "stage": 20,
+          "id": "Q24",
+          "problem": "f9fc21677ab81f37",
+          "time": "3秒",
+          "score": "100.00点",
+          "wallMs": 3707,
+          "clock": "3"
+        },
+        {
+          "stage": 21,
+          "id": "Q27",
+          "problem": "90b7f7acca0f90d4",
+          "time": "4.3秒",
+          "score": "100.00点",
+          "wallMs": 5016,
+          "clock": "4.3"
+        },
+        {
+          "stage": 22,
+          "id": "Q25",
+          "problem": "543ad0507e4a59be",
+          "time": "5.1秒",
+          "score": "100.00点",
+          "wallMs": 5742,
+          "clock": "5.1"
+        },
+        {
+          "stage": 23,
+          "id": "Q26",
+          "problem": "0eeaa039b14a0e5d",
+          "time": "3.9秒",
+          "score": "100.00点",
+          "wallMs": 4520,
+          "clock": "3.9"
+        },
+        {
+          "stage": 24,
+          "id": "Q28",
+          "problem": "2c1302884f7b45cd",
+          "time": "4秒",
+          "score": "100.00点",
+          "wallMs": 4699,
+          "clock": "4"
+        },
+        {
+          "stage": 25,
+          "id": "Q29",
+          "problem": "382127c0223bfe76",
+          "time": "4.1秒",
+          "score": "100.00点",
+          "wallMs": 4677,
+          "clock": "4.1"
+        },
+        {
+          "stage": 26,
+          "id": "Q30",
+          "problem": "55ddc73b4050320b",
+          "time": "6秒",
+          "score": "100.00点",
+          "wallMs": 6604,
+          "clock": "6"
+        },
+        {
+          "stage": 27,
+          "id": "Q31",
+          "problem": "d05be7f94bf2b703",
+          "time": "4.3秒",
+          "score": "100.00点",
+          "wallMs": 4860,
+          "clock": "4.3"
+        },
+        {
+          "stage": 28,
+          "id": "Q32",
+          "problem": "1bf8d5753775dce7",
+          "time": "3.6秒",
+          "score": "100.00点",
+          "wallMs": 4220,
+          "clock": "3.6"
+        },
+        {
+          "stage": 29,
+          "id": "Q33",
+          "problem": "a390942f07d9dd57",
+          "time": "8秒",
+          "score": "100.00点",
+          "wallMs": 8731,
+          "clock": "8"
+        },
+        {
+          "stage": 30,
+          "id": "Q34",
+          "problem": "d05c29311447a310",
+          "time": "5.2秒",
+          "score": "100.00点",
+          "wallMs": 5847,
+          "clock": "5.2"
+        },
+        {
+          "stage": 31,
+          "id": "Q35",
+          "problem": "b26590fa49dc39be",
+          "time": "1.3秒",
+          "score": "100.00点",
+          "wallMs": 2044,
+          "clock": "1.3"
+        },
+        {
+          "stage": 32,
+          "id": "Q36",
+          "problem": "612c8e98edb83a87",
+          "time": "0.6秒",
+          "score": "100.00点",
+          "wallMs": 920,
+          "clock": "0.6"
+        },
+        {
+          "stage": 33,
+          "id": "Q37",
+          "problem": "6a07643bbd7eb9c2",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 2759,
+          "clock": "2.2"
+        },
+        {
+          "stage": 34,
+          "id": "Q38",
+          "problem": "a53a4c67a877c930",
+          "time": "2.8秒",
+          "score": "100.00点",
+          "wallMs": 3383,
+          "clock": "2.8"
+        },
+        {
+          "stage": 35,
+          "id": "Q39",
+          "problem": "5f7e021f3ba8dba5",
+          "time": "2.2秒",
+          "score": "100.00点",
+          "wallMs": 2752,
+          "clock": "2.2"
+        },
+        {
+          "stage": 36,
+          "id": "Q40",
+          "problem": "2f92b7f71f9c98ad",
+          "time": "1.4秒",
+          "score": "100.00点",
+          "wallMs": 2036,
+          "clock": "1.4"
+        },
+        {
+          "stage": 37,
+          "id": "Q41",
+          "problem": "a40992f243b14681",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1781,
+          "clock": "1.25"
+        },
+        {
+          "stage": 38,
+          "id": "Q42",
+          "problem": "f8bbef152a847321",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1777,
+          "clock": "1.26"
+        },
+        {
+          "stage": 39,
+          "id": "Q43",
+          "problem": "79bc8f5f851439e8",
+          "time": "1.25秒",
+          "score": "100.00点",
+          "wallMs": 1851,
+          "clock": "1.26"
+        },
+        {
+          "stage": 40,
+          "id": "Q44",
+          "problem": "a52387d1d6d10c83",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2325,
+          "clock": "1.75"
+        },
+        {
+          "stage": 41,
+          "id": "Q45",
+          "problem": "5d2b545564a85dbc",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2370,
+          "clock": "1.77"
+        },
+        {
+          "stage": 42,
+          "id": "Q46",
+          "problem": "0ecc29f399e539a9",
+          "time": "1.75秒",
+          "score": "100.00点",
+          "wallMs": 2365,
+          "clock": "1.76"
+        }
+      ],
+      "loadPauses": [],
+      "errors": []
+    }
+  ],
+  "routes": [
+    {
+      "engine": "chrome",
+      "checks": [
+        {
+          "label": "title controls including story",
+          "width": 320,
+          "height": 480
+        },
+        {
+          "label": "title controls including story",
+          "width": 410,
+          "height": 844
+        },
+        {
+          "label": "title controls including story",
+          "width": 844,
+          "height": 410
+        },
+        {
+          "label": "title controls including story",
+          "width": 740,
+          "height": 280
+        },
+        {
+          "label": "title controls including story",
+          "width": 568,
+          "height": 260
+        },
+        {
+          "label": "title controls including story",
+          "width": 480,
+          "height": 240
+        },
+        {
+          "label": "title controls including story",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "label": "gallery preserves continuous-play checkpoint; continue and chapter skip return to the real stage"
+        },
+        {
+          "label": "a real selected stage-42 clear opens the catalogue without awarding the ending"
+        },
+        {
+          "label": "free creation and tutorial have no automatic story"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "checks": [
+        {
+          "label": "title controls including story",
+          "width": 320,
+          "height": 480
+        },
+        {
+          "label": "title controls including story",
+          "width": 410,
+          "height": 844
+        },
+        {
+          "label": "title controls including story",
+          "width": 844,
+          "height": 410
+        },
+        {
+          "label": "title controls including story",
+          "width": 740,
+          "height": 280
+        },
+        {
+          "label": "title controls including story",
+          "width": 568,
+          "height": 260
+        },
+        {
+          "label": "title controls including story",
+          "width": 480,
+          "height": 240
+        },
+        {
+          "label": "title controls including story",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "label": "gallery preserves continuous-play checkpoint; continue and chapter skip return to the real stage"
+        },
+        {
+          "label": "a real selected stage-42 clear opens the catalogue without awarding the ending"
+        },
+        {
+          "label": "free creation and tutorial have no automatic story"
+        }
+      ]
+    }
+  ],
+  "offline": [
+    {
+      "engine": "chrome",
+      "browser": "157.0.8103.79",
+      "checks": [
+        {
+          "label": "authentic released 0.103.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.103.0 to 0.104.0 update preserves storage and another editing tab",
+          "storageSha256": "1f44f4d0fb0e0e5126b8a1b290008c17eb58f84952e64ba09232735f147c952c"
+        },
+        {
+          "label": "cold offline restart without origin or HTTP cache, all 27 images/words, ending slot and font",
+          "slides": 27,
+          "servedImages": 14,
+          "workerResponses": 17
+        }
+      ],
+      "workerInspection": [
+        {
+          "version": "0.103.0",
+          "assets": 82
+        },
+        {
+          "version": "0.104.0",
+          "assets": 101
+        }
+      ],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.5",
+      "checks": [
+        {
+          "label": "authentic released 0.103.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.103.0 to 0.104.0 update preserves storage and another editing tab",
+          "storageSha256": "1f44f4d0fb0e0e5126b8a1b290008c17eb58f84952e64ba09232735f147c952c"
+        },
+        {
+          "label": "cold offline restart without origin or HTTP cache, all 27 images/words, ending slot and font",
+          "slides": 27,
+          "servedImages": 22,
+          "workerResponses": 25
+        }
+      ],
+      "workerInspection": null,
+      "errors": []
+    }
+  ],
+  "unitTests": {
+    "files": 47,
+    "tests": 581
+  },
+  "preservation": {
+    "trackedBaselineFiles": 4037,
+    "unrelatedChanged": [],
+    "assets": [
+      {
+        "file": "armor-sealed.webp",
+        "sha256": "fa5c86a145f78bb02532dd07ebd2a7ac2b44ba382ab1e1499225dcbd497d0c6c"
+      },
+      {
+        "file": "bell-12.webp",
+        "sha256": "02a711eac9a2ff924d613aeeecdc645183306cf53c760c505a900efe7867ef96"
+      },
+      {
+        "file": "bell-6.webp",
+        "sha256": "84c3edc1dc8746fb132c4d677befced1dc7eb4659d7f9fdd1dc79148fed20ef7"
+      },
+      {
+        "file": "bell-8.webp",
+        "sha256": "99613dc5018f412e8eeae92edd6b8a2f47bb4016f6d193f904635018b33cae21"
+      },
+      {
+        "file": "bell-9.webp",
+        "sha256": "0d09063be338cca457f6f177b6f6c8ad900af068d152bc626e18dece5131f24f"
+      },
+      {
+        "file": "forge-legend.webp",
+        "sha256": "5dc201d095bb14118f2296994a8d0d939e156e76ab508a20976397318cc3d500"
+      },
+      {
+        "file": "forge-ruins.webp",
+        "sha256": "089c5002c378cb872c9b4ccbf0ec591c477d16a9ab27ab447408de45ea476b50"
+      },
+      {
+        "file": "hammer.webp",
+        "sha256": "40fe6f85e81fd6a2715e1885fad0748cf96361d93a1eda67315eef3bb9a87b00"
+      },
+      {
+        "file": "monochord-story.webp",
+        "sha256": "184f27a1907645427e0411fb3a65fc7ac9e1b0728e74b68fa9c906bc982103d3"
+      },
+      {
+        "file": "order-sealing-people.webp",
+        "sha256": "38d826fc38736b16763ebc9a9d4e06faed226e958ac1cdfbcfdd8672464b9a3a"
+      },
+      {
+        "file": "shadow-order.webp",
+        "sha256": "428cb95a0c5faca20788a727bbc1edc072945d9f4b7ec16470f089d3c6d33b3d"
+      },
+      {
+        "file": "shield-sealed.webp",
+        "sha256": "3a26f7cb812f9ff2d9c7829e059fe1b703a18a64968190876c93a958da06859f"
+      },
+      {
+        "file": "spirit-listening.webp",
+        "sha256": "aea8e0f5124be5988e6f0bdf18724c3082873a2fd330ff15fd174c0c4a7b0fc3"
+      },
+      {
+        "file": "sword-sealed.webp",
+        "sha256": "0ef03f21b48c1b176b09fd30039853f4ab4bdee25962d88e5964a525a0fc2b06"
+      }
+    ]
+  },
+  "limitations": [
+    "PC browsers; phone touch, appearance and listening remain unverified.",
+    "Each actual journey uses the first problem draw; the existing full unit suite separately verifies challenge data.",
+    "Windows WebKit has no AudioContext.",
+    "Chrome offline-update verification reads waiting-worker version and asset count before the actual update click; uninspected automation timed out."
+  ]
+}
