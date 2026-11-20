@@ -328,5 +328,209 @@
   "preservation": {
     "tracked": 4065,
     "unexpected": []
+  },
+  "ci": {
+    "run": "44744602916",
+    "files": 47,
+    "tests": 584,
+    "syntax": 125,
+    "assets": 101,
+    "passed": true
+  },
+  "publicVerification": {
+    "commit": "5ee45c30838f087f3ca3ae68742f7fc60b6ed02f",
+    "cloudflareDeployment": "c706bdeb-54be-44e1-92cb-687bc6888678",
+    "sites": [
+      {
+        "url": "https://prism.sikumilab.com/",
+        "version": "0.105.0",
+        "commit": "5ee45c30838f087f3ca3ae68742f7fc60b6ed02f",
+        "assets": 101,
+        "passed": true
+      },
+      {
+        "url": "https://gerupon-lgtm.github.io/prism/",
+        "version": "0.105.0",
+        "commit": "5ee45c30838f087f3ca3ae68742f7fc60b6ed02f",
+        "assets": 101,
+        "passed": true
+      }
+    ],
+    "quick": {
+      "url": "https://prism.sikumilab.com/",
+      "checks": [
+        {
+          "label": "stop overrides the pending fade and turn"
+        },
+        {
+          "label": "mute cancels the pending turn"
+        },
+        {
+          "label": "simulated hidden document cancels sound and turn"
+        },
+        {
+          "label": "last introductory page returns to the real game",
+          "ms": 387
+        }
+      ],
+      "advances": [
+        {
+          "id": "P1",
+          "next": "P2",
+          "ms": 370
+        },
+        {
+          "id": "P2",
+          "next": "P3",
+          "ms": 388
+        },
+        {
+          "id": "P4",
+          "next": "P5",
+          "ms": 377
+        },
+        {
+          "id": "P6",
+          "next": "P7",
+          "ms": 378
+        },
+        {
+          "id": "P7",
+          "next": "M1",
+          "ms": 377
+        },
+        {
+          "id": "M2",
+          "next": "B1-1",
+          "ms": 391
+        },
+        {
+          "id": "B1-1",
+          "next": "B1-2",
+          "ms": 388
+        },
+        {
+          "id": "B1-2",
+          "next": "B2-1",
+          "ms": 382
+        },
+        {
+          "id": "B2-1",
+          "next": "B2-2",
+          "ms": 388
+        },
+        {
+          "id": "B2-2",
+          "next": "B3-1",
+          "ms": 378
+        },
+        {
+          "id": "B3-1",
+          "next": "B3-2",
+          "ms": 398
+        },
+        {
+          "id": "B3-2",
+          "next": "B4-1",
+          "ms": 383
+        },
+        {
+          "id": "B4-2",
+          "next": "B5-1",
+          "ms": 390
+        },
+        {
+          "id": "B5-2",
+          "next": "B6-1",
+          "ms": 389
+        },
+        {
+          "id": "B6-2",
+          "next": "E1",
+          "ms": 383
+        },
+        {
+          "id": "E1",
+          "next": "E2",
+          "ms": 374
+        },
+        {
+          "id": "E3",
+          "next": "E4",
+          "ms": 382
+        }
+      ],
+      "errors": [],
+      "physicalDevice": false,
+      "browser": "157.0.8103.79",
+      "passed": true
+    },
+    "boundary": {
+      "url": "https://prism.sikumilab.com/",
+      "runs": [
+        {
+          "cancel": false,
+          "stages": [
+            {
+              "id": "Q1",
+              "clock": "2.5",
+              "score": "100.00点"
+            },
+            {
+              "id": "Q2",
+              "clock": "2.5",
+              "score": "100.00点"
+            },
+            {
+              "id": "Q3",
+              "clock": "2.5",
+              "score": "100.00点"
+            }
+          ],
+          "bellDurations": [
+            2.619999999999999
+          ],
+          "advanceMs": 522
+        },
+        {
+          "cancel": true,
+          "stages": [
+            {
+              "id": "Q1",
+              "clock": "2.5",
+              "score": "100.00点"
+            },
+            {
+              "id": "Q2",
+              "clock": "2.5",
+              "score": "100.00点"
+            },
+            {
+              "id": "Q3",
+              "clock": "2.5",
+              "score": "100.00点"
+            }
+          ],
+          "bellDurations": [
+            2.620000000000001
+          ]
+        }
+      ],
+      "errors": [],
+      "physicalDevice": false,
+      "passed": true
+    },
+    "general": [
+      {
+        "site": "cloudflare",
+        "checks": 114,
+        "passed": true
+      },
+      {
+        "site": "github",
+        "checks": 114,
+        "passed": true
+      }
+    ]
   }
 }
