@@ -33,5 +33,97 @@
     ],
     "unrelated": [],
     "passed": true
-  }
+  },
+  "releaseCommit": "c2a0ea3a2af28fe04d89645b58352160694e82ca",
+  "ci": {
+    "run": 44834182230,
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Run npm run check",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run npm test",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run node scripts/check-release.js",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run npm run build",
+        "conclusion": "success"
+      }
+    ],
+    "logAccess": "HTTP 403: Must have admin rights to Repository; step metadata verified; no CI test count copied"
+  },
+  "publishChecks": [
+    {
+      "conclusion": "success",
+      "details_url": "https://dash.cloudflare.com/?to=/acbbf504f6b64128e2d44b15f5b32d20/pages/view/prism-notes/9a11df28-55ec-4480-b6ab-790a31a01d09",
+      "name": "Cloudflare Pages",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/44834182230/job/136627002471",
+      "name": "deploy",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "details_url": "https://github.com/gerupon-lgtm/prism/actions/runs/44834182230/job/136626294712",
+      "name": "build",
+      "status": "completed"
+    }
+  ],
+  "public": {
+    "cloudflare": {
+      "url": "https://prism.sikumilab.com/",
+      "version": "0.106.0",
+      "commit": "c2a0ea3a2af28fe04d89645b58352160694e82ca",
+      "passed": true,
+      "checks": 114
+    },
+    "github": {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "version": "0.106.0",
+      "commit": "c2a0ea3a2af28fe04d89645b58352160694e82ca",
+      "passed": true,
+      "checks": 114
+    },
+    "cloudflareCopy": {
+      "url": "https://prism.sikumilab.com/",
+      "browser": "157.0.8103.79",
+      "passed": true,
+      "errors": [],
+      "turnMs": 390,
+      "checks": 8
+    },
+    "githubCopy": {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "browser": "157.0.8103.79",
+      "passed": true,
+      "errors": [],
+      "turnMs": 406,
+      "checks": 8
+    }
+  },
+  "publicAssetMatch": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "version": "0.106.0",
+      "commit": "c2a0ea3a2af28fe04d89645b58352160694e82ca",
+      "assets": 101,
+      "passed": true
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "version": "0.106.0",
+      "commit": "c2a0ea3a2af28fe04d89645b58352160694e82ca",
+      "assets": 101,
+      "passed": true
+    }
+  ]
 }

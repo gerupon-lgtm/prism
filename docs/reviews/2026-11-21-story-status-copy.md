@@ -20,4 +20,8 @@ Chrome221項目・WebKit220項目で全27枚×8寸法、琴の固定、音設定
 
 ## 公開状態
 
-公開と追加の画面検査後に記録する。
+配信元 `c2a0ea3a2af28fe04d89645b58352160694e82ca`、[GitHub Actions 44834182230](https://github.com/gerupon-lgtm/prism/actions/runs/44834182230)、Cloudflare `9a11df28-55ec-4480-b6ab-790a31a01d09` が成功した。CIの全体テスト・構文・版比較・ビルドと配信の各ステップの成功を取得した。ログ本文の取得はHTTP 403のためできず、CIのテスト件数は以前の値から転記していない。
+
+[独自ドメイン](https://prism.sikumilab.com/) と[GitHub Pages](https://gerupon-lgtm.github.io/prism/) の101資材とWorkerが、Gitのblobから構築した配信元と一致した。両URLの各114項目で更新確認・保存・ゲーム操作と通信なしの起動が合格。両URLの物語専用8ケースずつも合格し、通常の再生中・余韻終了後の補足を表示せず、停止後の再開と読み込み失敗の案内を保持した。公開のページ送りは独自ドメイン390ms・Pages406ms。スマホ実機の操作・聴感は未確認。
+
+この追記は資料だけの更新で、同版を再配信しない。
