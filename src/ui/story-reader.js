@@ -128,7 +128,8 @@ function updateControls(){
  $('previous').disabled=index===range[0]||queued||loading;$('next').disabled=queued||loading;
  $('stop').disabled=paused&&!queued&&!loading;$('replay').disabled=queued||loading;
  $('next').textContent=loading?'準備中':queued?'切替中':index===range[1]?(mode==='viewer'?'閉じる':continuationLabel()):isLastOfBlock()&&slides[index].block!=='E'?'次の場面へ':'つづき';
- $('status').textContent=notice;
+ $('status').textContent=notice;$('status').hidden=!notice;
+ $('status').parentElement.hidden=!notice&&!$('bridge').textContent;
 }
 function isLastOfBlock(){return !slides[index+1]||slides[index+1].block!==slides[index].block;}
 async function playCues(){
@@ -162,9 +163,6 @@ async function playCues(){
   }
   tailUntil=Math.max(tailUntil,performance.now()+(Math.max(0,start-chime.context.currentTime)+BELL_SOUND.durationSeconds+.15)*1000);
  },at*1000);
- const markQuiet=()=>{if(ticket!==epoch||queued)return;const remaining=tailUntil-performance.now();if(remaining>20){later(markQuiet,remaining+20);return;}notice='余韻が静かになりました。';updateControls();};
- later(markQuiet,tailUntil-performance.now());
- notice=slide.speaker?(slide.cues?.length?'鐘の応答と星の精霊の声を聴けます。次へで音を収めて進みます。':'星の精霊の声を聴けます。次へで音を収めて進みます。'):'鐘と余韻を聴けます。次へで音を収めて進みます。';updateControls();
 }
 async function render(target=index){
  const ticket=epoch,slide=slides[target];loading=true;reader.setAttribute('aria-busy','true');notice='場面の絵を準備しています。';updateControls();
@@ -181,7 +179,7 @@ async function render(target=index){
  $('bridge').textContent=isLastOfBlock()?block.after:'';
  $('counter').innerHTML=`${String(index+1).padStart(2,'0')} <i>/ 27</i>`;$('slide-id').textContent=slide.id;
  $('progress-fill').style.width=((index+1)/slides.length*100)+'%';
- notice=slide.music?'楽曲は未収録です。時間を決めず、手動で進めます。':!chime.muted?(slide.speaker?'星の精霊の声を鳴らします。':slide.cues?.length?'この場面では鐘を鳴らします。':'この場面は音なしです。'):'音なしで閲覧中。音を有効にすると、物語に合わせて鐘と精霊の声が響きます。';
+ notice='';
  scene.dataset.effect=slide.scene;scene.setAttribute('aria-label',`${slide.era}。${slide.note??''}`);
  $('scenery').replaceChildren(...prepared.childNodes);preparedScenes.delete(slide.scene);$('music-slot').hidden=!slide.music;
  updateControls();void playCues();preloadNext();
@@ -193,7 +191,7 @@ function show(target,{immediate=false}={}){
  if(!immediate&&!chime.muted&&!paused&&tailUntil>performance.now()){
   const delay=Math.min(MAX_STORY_TRANSITION_MS,tailUntil-performance.now());
   stopAll('story-navigation',{fadeSeconds:delay/1000});
-  queued=true;notice='音を収めて進みます。「停止」でこのページに留まれます。';updateControls();
+  queued=true;notice='';updateControls();
   const ticket=epoch;
   later(()=>{if(ticket!==epoch)return;queued=false;show(target,{immediate:true});},delay);return;
  }
