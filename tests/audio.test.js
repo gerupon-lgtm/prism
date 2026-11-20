@@ -10,6 +10,28 @@ function fixture(){
   chime.output={};return {chime,voices,sources,notes:()=>[...chime.voices].filter(v=>v.frequencyHz!==undefined)};
 }
 
+test('物語への切替は鐘本体と打音を同じ短い減衰で収め、消音は減衰中でも直ちに止める',()=>{
+ const {chime,voices,notes}=fixture();chime.strike();const bell=notes()[0];
+ chime.context.currentTime=.2;chime.stop('story-transition',{fadeSeconds:.3});
+ assert(voices.every(voice=>Math.abs(voice.stopAt-.5)<1e-12));assert(chime.bellVoices.has(bell));
+ chime.context.currentTime=.3;chime.mute();assert(voices.every(voice=>voice.stopped));assert.equal(chime.voices.size,0);
+});
+
+test('物語への切替はファンファーレの残響も減衰後に解放し、停止は残響の待ちも打ち切る',()=>{
+ const {chime,sources}=fixture();chime.perfect();assert(sources.length);
+ chime.context.currentTime=1;chime.stop('story-transition',{fadeSeconds:.3});
+ assert(sources.every(source=>source.stopAt===1.3));assert(sources.every(source=>!source.disconnected));
+ chime.context.currentTime=1.1;chime.stop('hidden');assert(sources.every(source=>source.disconnected));assert.equal(chime.voices.size,0);
+});
+
+test('まだ鳴っていない鐘とファンファーレは発声前に取り消す',()=>{
+ const {chime,voices,sources}=fixture();chime.ring(440,.2);chime.perfect();
+ chime.stop('story-transition',{fadeSeconds:.3});
+ assert(voices.every(voice=>voice.stopAt<=voice.startedAt));assert(sources.every(source=>source.disconnected));
+ chime.context.currentTime=.3;for(const voice of voices)if(!voice.stopped&&voice.stopAt<=.3){voice.stopped=true;voice.onended?.();}
+ chime.stop('hidden');assert(voices.every(voice=>voice.stopped));assert.equal(chime.voices.size,0);
+});
+
 test('2回目の鐘の音源準備が遅れても本体と打音を新しい時刻から同時に鳴らす',()=>{
  for(const method of ['createOscillator','createGain'])for(const delayedNode of [1,2,3,4]){
   const {chime,voices,notes}=fixture();chime.strike();chime.context.currentTime=3.3;let created=0;const create=chime.context[method];

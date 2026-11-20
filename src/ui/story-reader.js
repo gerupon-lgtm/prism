@@ -1,6 +1,7 @@
 import {blocks,slides} from '../content/story.js';
 import {BELL_SOUND} from './audio.js';
 import {SPIRIT_CUES,VOICE_LIFE,spiritVoice} from './story-voice.js';
+import {MAX_STORY_TRANSITION_MS} from '../app/story-progress.js';
 
 // Approved story presentation; the caller owns game progress, audio and settings.
 export function createStoryReader({chime,motion,onToggleSound,version}){
@@ -116,8 +117,8 @@ function preloadNext(){
  void prepareScene(next).catch(()=>{/* 先読みの失敗は、実際の移動時に再試行する。 */});
 }
 function later(fn,delay){const timer=setTimeout(()=>{timers.delete(timer);fn();},delay);timers.add(timer);return timer;}
-function stopAll(reason='stopped'){
- epoch++;for(const timer of timers)clearTimeout(timer);timers.clear();tailUntil=0;queued=false;loading=false;reader.removeAttribute('aria-busy');for(const img of $('scenery').querySelectorAll('.is-ringing')){img.classList.remove('is-ringing');ringing.delete(img);}chime.stop(reason);paused=true;reader.classList.add('paused');
+function stopAll(reason='stopped',{fadeSeconds}={}){
+ epoch++;for(const timer of timers)clearTimeout(timer);timers.clear();tailUntil=0;queued=false;loading=false;reader.removeAttribute('aria-busy');for(const img of $('scenery').querySelectorAll('.is-ringing')){img.classList.remove('is-ringing');ringing.delete(img);}chime.stop(reason,{fadeSeconds});paused=true;reader.classList.add('paused');
 }
 function updateControls(){
  reduced=motion.reduced;
@@ -126,7 +127,7 @@ function updateControls(){
  reader.classList.toggle('reduced',reduced);
  $('previous').disabled=index===range[0]||queued||loading;$('next').disabled=queued||loading;
  $('stop').disabled=paused&&!queued&&!loading;$('replay').disabled=queued||loading;
- $('next').textContent=loading?'準備中':queued?'余韻待ち':index===range[1]?(mode==='viewer'?'閉じる':continuationLabel()):isLastOfBlock()&&slides[index].block!=='E'?'次の場面へ':'つづき';
+ $('next').textContent=loading?'準備中':queued?'切替中':index===range[1]?(mode==='viewer'?'閉じる':continuationLabel()):isLastOfBlock()&&slides[index].block!=='E'?'次の場面へ':'つづき';
  $('status').textContent=notice;
 }
 function isLastOfBlock(){return !slides[index+1]||slides[index+1].block!==slides[index].block;}
@@ -163,7 +164,7 @@ async function playCues(){
  },at*1000);
  const markQuiet=()=>{if(ticket!==epoch||queued)return;const remaining=tailUntil-performance.now();if(remaining>20){later(markQuiet,remaining+20);return;}notice='余韻が静かになりました。';updateControls();};
  later(markQuiet,tailUntil-performance.now());
- notice=slide.speaker?(slide.cues?.length?'鐘の応答と星の精霊の声を聴けます。通常のページ送りは余韻を待ちます。':'星の精霊の声を聴けます。通常のページ送りは余韻を待ちます。'):'鐘と余韻を聴けます。通常のページ送りは余韻を待ちます。';updateControls();
+ notice=slide.speaker?(slide.cues?.length?'鐘の応答と星の精霊の声を聴けます。次へで音を収めて進みます。':'星の精霊の声を聴けます。次へで音を収めて進みます。'):'鐘と余韻を聴けます。次へで音を収めて進みます。';updateControls();
 }
 async function render(target=index){
  const ticket=epoch,slide=slides[target];loading=true;reader.setAttribute('aria-busy','true');notice='場面の絵を準備しています。';updateControls();
@@ -190,10 +191,11 @@ async function render(target=index){
 function show(target,{immediate=false}={}){
  if(queued||loading||!active)return;
  if(!immediate&&!chime.muted&&!paused&&tailUntil>performance.now()){
-  queued=true;notice='余韻のあとに進みます。「停止」でこのページに留まれます。';updateControls();
+  const delay=Math.min(MAX_STORY_TRANSITION_MS,tailUntil-performance.now());
+  stopAll('story-navigation',{fadeSeconds:delay/1000});
+  queued=true;notice='音を収めて進みます。「停止」でこのページに留まれます。';updateControls();
   const ticket=epoch;
-  const finish=()=>{if(ticket!==epoch)return;const remaining=tailUntil-performance.now();if(remaining>20){later(finish,remaining+20);return;}queued=false;show(target,{immediate:true});};
-  later(finish,tailUntil-performance.now()+20);return;
+  later(()=>{if(ticket!==epoch)return;queued=false;show(target,{immediate:true});},delay);return;
  }
  if(target>range[1]){finish();return;}
  stopAll('navigation');void render(Math.max(range[0],Math.min(range[1],target)));

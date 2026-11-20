@@ -24,11 +24,16 @@ export function spiritVoice(chime,hz,start){
   amp.gain.setValueAtTime(0,start);amp.gain.linearRampToValueAtTime(peak,start+t.attack);
   amp.gain.setTargetAtTime(peak*t.sustain,start+t.attack,t.decay);
   amp.gain.setTargetAtTime(0,start+VOICE_DURATION,t.release);
-  const voice={kind:'spirit',hz:frequency,time:start,end,stopped:false,stop(){
-   if(voice.stopped)return;voice.stopped=true;const now=ctx.currentTime;
-   amp.gain.cancelScheduledValues(now);amp.gain.setValueAtTime(amp.gain.value,now);amp.gain.linearRampToValueAtTime(0,now+.05);
-   for(const node of [carrier,mod])try{node.stop(now+.06);}catch{/* 終了済み */}
-   chime.voices.delete(voice);
+  let stopAt=null;
+  const voice={kind:'spirit',hz:frequency,time:start,end,stopped:false,stop({fadeSeconds=.05}={}){
+   const now=ctx.currentTime,fade=now<start?0:Math.max(0,fadeSeconds),until=now+fade;
+   if(stopAt!==null&&until>=stopAt)return;stopAt=until;voice.stopped=true;
+   const held=amp.gain.value;
+   if(now<start){amp.gain.cancelScheduledValues(now);amp.gain.setValueAtTime(0,now);}
+   else if(typeof amp.gain.cancelAndHoldAtTime==='function')amp.gain.cancelAndHoldAtTime(now);
+   else{amp.gain.cancelScheduledValues(now);amp.gain.setValueAtTime(held,now);}
+   amp.gain.linearRampToValueAtTime(0,now+fade);
+   for(const node of [carrier,mod])try{node.stop(now+fade+.01);}catch{/* 終了済み */}
   }};
   carrier.onended=()=>{chime.voices.delete(voice);for(const node of [carrier,mod,depth,amp])node.disconnect();};
   chime.voices.add(voice);for(const node of [carrier,mod]){node.start(start);node.stop(end);}return voice;

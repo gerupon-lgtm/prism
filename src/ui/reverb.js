@@ -23,10 +23,15 @@ export function fanfareReverb(context,output,{time=context.currentTime,onended}=
   // A silent audio-clock source owns the tail, including during offline rendering.
   // Its ended event releases the graph; no wall-clock timer or continuing loop remains.
   const lifetime=context.createBufferSource();lifetime.buffer=context.createBuffer(1,1,context.sampleRate);lifetime.loop=true;lifetime.connect(wet);
-  const nodes=[input,convolver,filter,wet,lifetime];let cleaned=false;
+  const nodes=[input,convolver,filter,wet,lifetime];let cleaned=false,stopAt=null;
   const cleanup=()=>{if(cleaned)return;cleaned=true;for(const node of nodes)node.disconnect();onended?.();};
-  const effect={input,time,endTime:time+preset.endSeconds,stop(){
-    if(cleaned)return;wet.gain.cancelScheduledValues(context.currentTime);wet.gain.setValueAtTime(0,context.currentTime);lifetime.stop(context.currentTime);cleanup();
+  const effect={input,time,endTime:time+preset.endSeconds,stop({fadeSeconds=0}={}){
+    if(cleaned)return;const now=context.currentTime;if(now<time)fadeSeconds=0;const end=now+Math.max(0,fadeSeconds);if(stopAt!==null&&end>=stopAt)return;stopAt=end;
+    const held=wet.gain.value;
+    if(now<time){wet.gain.cancelScheduledValues(now);wet.gain.setValueAtTime(0,now);}
+    else if(typeof wet.gain.cancelAndHoldAtTime==='function')wet.gain.cancelAndHoldAtTime(now);
+    else{wet.gain.cancelScheduledValues(now);wet.gain.setValueAtTime(held,now);}
+    wet.gain.linearRampToValueAtTime(0,end);lifetime.stop(end);if(fadeSeconds<=0)cleanup();
   }};
   lifetime.onended=cleanup;lifetime.start(time);lifetime.stop(effect.endTime);return effect;
 }

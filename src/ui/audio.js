@@ -145,7 +145,7 @@ export class Chime {
     const delay=Math.max(.42,lastBell+FAILURE_BELL_DELAY_SECONDS-now);
     this.cue(SOUND_CUES.failure,delay);
   }
-  stop(reason='stopped',{preserveTap=false,preserveTail=false}={}){
+  stop(reason='stopped',{preserveTap=false,preserveTail=false,fadeSeconds}={}){
     this.playbackDiagnostics.finish(reason);this.silenceRelay();
     // Returning to editing does not shorten the bell or the outcome cue.
     // Explicit stops, navigation and a fresh playback still silence them.
@@ -158,6 +158,6 @@ export class Chime {
     this.gateEffects();if(reason==='muted'&&this.master)this.master.gain.value=0;
     // Navigation may immediately follow another press. Let its 75ms response
     // finish; mute, hidden pages and output replacement still stop everything.
-    this.stopVoices([...this.voices].filter(voice=>!preserveTap||!this.tapVoices.has(voice)));
+    this.stopVoices([...this.voices].filter(voice=>!preserveTap||!this.tapVoices.has(voice)),fadeSeconds===undefined?undefined:{fadeSeconds});
   }
 }

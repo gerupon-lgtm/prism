@@ -1,5 +1,5 @@
 import { Session } from '../app/session.js';
-import {StoryProgress,StoryTransition,STORY_BEFORE_STAGE} from '../app/story-progress.js';
+import {StoryProgress,StoryTransition,STORY_BEFORE_STAGE,MAX_STORY_TRANSITION_MS} from '../app/story-progress.js';
 import {createStoryReader} from './story-reader.js';
 import { LocalRecords } from '../core/storage.js';
 import { TimeScale } from '../core/time.js';
@@ -532,7 +532,7 @@ function renderClearToast() {
   if(clearToastRun!==run){clearToastRun=run;clearToastCircuit=session.circuit;}
   const perfect=perfectScore(session.result.score),time=session.result.evaluatedTime,score=displayScore(session.result.score);
   $('clear-next').disabled=storyTransition.pending;
-  $('clear-next').textContent=storyTransition.pending?'余韻待ち':choices.nextChallengeId?'次へ':!selectionPlay&&storyProgress.canEnd(choices.challengeId)?'エンディングへ':'課題一覧へ';
+  $('clear-next').textContent=storyTransition.pending?'切替中':choices.nextChallengeId?'次へ':!selectionPlay&&storyProgress.canEnd(choices.challengeId)?'エンディングへ':'課題一覧へ';
   $('clear-time-label').textContent=clearTimeLabel();$('clear-time').textContent=time+'秒';$('clear-score').textContent=score+'点';
   $('clear-time').setAttribute('aria-label',`${clearTimeLabel()} ${time}秒`);$('clear-score').setAttribute('aria-label',`スコア ${score}点`);
   toast.classList.toggle('perfect-clear',perfect);
@@ -582,8 +582,9 @@ function clearAction(next=false,{tailFinished=false}={}){
   const tail=context?.state==='running'?Math.max(0,(Math.max(chime.bellUntil,...[...chime.voices].map(voice=>voice.endTime??0))-context.currentTime)*1000):0;
   if(boundary&&!tailFinished&&tail>20){
     if(storyTransition.pending)return;
-    const run=session.run,circuit=session.circuit;
-    storyTransition.wait(tail+30,()=>{
+    const run=session.run,circuit=session.circuit,delay=Math.min(tail+30,MAX_STORY_TRANSITION_MS);
+    chime.stop('story-transition',{preserveTap:true,fadeSeconds:delay/1000});
+    storyTransition.wait(delay,()=>{
       if(session.run===run&&session.circuit===circuit&&session.clearChoices?.challengeId===choices.challengeId&&!document.hidden&&!dialog.open&&!story?.active&&!updating&&$('title-screen').hidden)clearAction(true,{tailFinished:true});
       else render(false);
     });render(false);return;

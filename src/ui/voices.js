@@ -15,8 +15,9 @@ function ownedVoice(context,oscillators,nodes,level,{time,endTime,frequencyHz,on
   let remaining=oscillators.length,cleaned=false,stopAt=null;
   const cleanup=()=>{if(cleaned)return;cleaned=true;for(const node of nodes)node.disconnect();onended?.();};
   const voice={time,endTime,frequencyHz,stop({fadeSeconds=0}={}){
-    if(cleaned)return;const now=context.currentTime,end=now+Math.max(0,fadeSeconds);if(stopAt!==null&&end>=stopAt)return;stopAt=end;
-    if(fadeSeconds>0){
+    if(cleaned)return;const now=context.currentTime,end=now<time?Math.min(time,now+Math.max(0,fadeSeconds)):now+Math.max(0,fadeSeconds);if(stopAt!==null&&end>=stopAt)return;stopAt=end;
+    if(now<time){level.gain.cancelScheduledValues(now);level.gain.setValueAtTime(0,now);}
+    else if(fadeSeconds>0){
       const held=level.gain.value;
       if(typeof level.gain.cancelAndHoldAtTime==='function')level.gain.cancelAndHoldAtTime(now);
       else{level.gain.cancelScheduledValues(now);level.gain.setValueAtTime(held,now);}
@@ -83,5 +84,5 @@ export function bellVoice(context,output,{time=context.currentTime,onended,attac
   modulator.connect(deviation);deviation.connect(carrier.frequency);carrier.connect(level);level.connect(output);
   const body=ownedVoice(context,[carrier,modulator],[carrier,modulator,deviation,level],level,{time,endTime:time+preset.durationSeconds,frequencyHz,onended:ended});
   const hit=startHit?.(time);
-  return {time,endTime:body.endTime,frequencyHz,stop(){body.stop();hit?.stop();}};
+  return {time,endTime:body.endTime,frequencyHz,stop(options){body.stop(options);hit?.stop(options);}};
 }

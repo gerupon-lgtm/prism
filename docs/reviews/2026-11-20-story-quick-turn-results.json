@@ -1,0 +1,332 @@
+{
+  "version": "0.105.0",
+  "maxAudioWaitMs": 300,
+  "quick": {
+    "url": "http://127.0.0.1:4191/",
+    "checks": [
+      {
+        "label": "voice and bell keep their complete waveform; all six fades end within 0.3 seconds"
+      },
+      {
+        "label": "stop overrides the pending fade and turn"
+      },
+      {
+        "label": "mute cancels the pending turn"
+      },
+      {
+        "label": "simulated hidden document cancels sound and turn"
+      },
+      {
+        "label": "last introductory page returns to the real game",
+        "ms": 379
+      }
+    ],
+    "advances": [
+      {
+        "id": "P1",
+        "next": "P2",
+        "ms": 391
+      },
+      {
+        "id": "P2",
+        "next": "P3",
+        "ms": 386
+      },
+      {
+        "id": "P4",
+        "next": "P5",
+        "ms": 374
+      },
+      {
+        "id": "P6",
+        "next": "P7",
+        "ms": 375
+      },
+      {
+        "id": "P7",
+        "next": "M1",
+        "ms": 374
+      },
+      {
+        "id": "M2",
+        "next": "B1-1",
+        "ms": 382
+      },
+      {
+        "id": "B1-1",
+        "next": "B1-2",
+        "ms": 392
+      },
+      {
+        "id": "B1-2",
+        "next": "B2-1",
+        "ms": 385
+      },
+      {
+        "id": "B2-1",
+        "next": "B2-2",
+        "ms": 372
+      },
+      {
+        "id": "B2-2",
+        "next": "B3-1",
+        "ms": 376
+      },
+      {
+        "id": "B3-1",
+        "next": "B3-2",
+        "ms": 385
+      },
+      {
+        "id": "B3-2",
+        "next": "B4-1",
+        "ms": 373
+      },
+      {
+        "id": "B4-2",
+        "next": "B5-1",
+        "ms": 397
+      },
+      {
+        "id": "B5-2",
+        "next": "B6-1",
+        "ms": 379
+      },
+      {
+        "id": "B6-2",
+        "next": "E1",
+        "ms": 394
+      },
+      {
+        "id": "E1",
+        "next": "E2",
+        "ms": 392
+      },
+      {
+        "id": "E3",
+        "next": "E4",
+        "ms": 373
+      }
+    ],
+    "errors": [],
+    "physicalDevice": false,
+    "browser": "157.0.8103.79",
+    "waveform": [
+      {
+        "kind": "voice",
+        "maxDifference": 4.470348358154297e-8,
+        "peak": 0.20461921393871307,
+        "fades": [
+          {
+            "at": 0.1,
+            "peak": 0,
+            "after": 0
+          },
+          {
+            "at": 0.7,
+            "peak": 0.09481877088546753,
+            "after": 0
+          },
+          {
+            "at": 1.55,
+            "peak": 0.20461921393871307,
+            "after": 0
+          }
+        ]
+      },
+      {
+        "kind": "bell",
+        "maxDifference": 0,
+        "peak": 0.22030924260616302,
+        "fades": [
+          {
+            "at": 0.1,
+            "peak": 0.22030924260616302,
+            "after": 0
+          },
+          {
+            "at": 0.7,
+            "peak": 0.22030924260616302,
+            "after": 0
+          },
+          {
+            "at": 1.55,
+            "peak": 0.22030924260616302,
+            "after": 0
+          }
+        ]
+      },
+      {
+        "kind": "future-bell",
+        "maxDifference": 0,
+        "peak": 0.22188155353069305,
+        "fades": [
+          {
+            "at": 0.1,
+            "peak": 0,
+            "after": 0
+          },
+          {
+            "at": 0.7,
+            "peak": 0,
+            "after": 0
+          },
+          {
+            "at": 1.55,
+            "peak": 0.22188155353069305,
+            "after": 0
+          }
+        ]
+      }
+    ],
+    "passed": true
+  },
+  "boundary": {
+    "url": "http://127.0.0.1:4191/",
+    "runs": [
+      {
+        "cancel": false,
+        "stages": [
+          {
+            "id": "Q1",
+            "clock": "2.5",
+            "score": "100.00点"
+          },
+          {
+            "id": "Q2",
+            "clock": "2.5",
+            "score": "100.00点"
+          },
+          {
+            "id": "Q3",
+            "clock": "2.5",
+            "score": "100.00点"
+          }
+        ],
+        "bellDurations": [
+          2.619999999999999
+        ],
+        "advanceMs": 529
+      },
+      {
+        "cancel": true,
+        "stages": [
+          {
+            "id": "Q1",
+            "clock": "2.5",
+            "score": "100.00点"
+          },
+          {
+            "id": "Q2",
+            "clock": "2.5",
+            "score": "100.00点"
+          },
+          {
+            "id": "Q3",
+            "clock": "2.5",
+            "score": "100.00点"
+          }
+        ],
+        "bellDurations": [
+          2.620000000000001
+        ]
+      }
+    ],
+    "errors": [],
+    "physicalDevice": false,
+    "passed": true
+  },
+  "readers": [
+    {
+      "engine": "chrome",
+      "checks": 221,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "checks": 220,
+      "errors": []
+    }
+  ],
+  "updates": [
+    {
+      "engine": "chrome",
+      "browser": "157.0.8103.79",
+      "checks": [
+        {
+          "label": "authentic released 0.104.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.104.0 to 0.105.0 update preserves storage and another editing tab",
+          "storageSha256": "1f44f4d0fb0e0e5126b8a1b290008c17eb58f84952e64ba09232735f147c952c"
+        },
+        {
+          "label": "cold offline restart without origin or HTTP cache, all 27 images/words, ending slot and font",
+          "slides": 27
+        }
+      ],
+      "driverWorkerNetworkInspection": false,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "151.0.7922.34",
+      "checks": [
+        {
+          "label": "authentic released 0.104.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.104.0 to 0.105.0 update preserves storage and another editing tab",
+          "storageSha256": "1f44f4d0fb0e0e5126b8a1b290008c17eb58f84952e64ba09232735f147c952c"
+        },
+        {
+          "label": "cold offline restart without origin or HTTP cache, all 27 images/words, ending slot and font",
+          "slides": 27
+        }
+      ],
+      "driverWorkerNetworkInspection": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.5",
+      "checks": [
+        {
+          "label": "authentic released 0.104.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.104.0 to 0.105.0 update preserves storage and another editing tab",
+          "storageSha256": "1f44f4d0fb0e0e5126b8a1b290008c17eb58f84952e64ba09232735f147c952c"
+        },
+        {
+          "label": "cold offline restart without origin or HTTP cache, all 27 images/words, ending slot and font",
+          "slides": 27
+        }
+      ],
+      "driverWorkerNetworkInspection": true,
+      "errors": []
+    }
+  ],
+  "preservation": {
+    "tracked": 4065,
+    "unexpected": []
+  }
+}

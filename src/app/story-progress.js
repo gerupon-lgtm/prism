@@ -1,6 +1,7 @@
 // The current continuous play only. Scores, saved circuits and tutorial state
 // remain owned by Session; opening the story gallery never changes this object.
 export const STORY_BEFORE_STAGE=Object.freeze({1:'P',4:'M1',6:'M2',7:'B1',13:'B2',19:'B3',25:'B4',31:'B5',37:'B6'});
+export const MAX_STORY_TRANSITION_MS=300;
 export class StoryProgress {
   constructor(challengeIds){this.ids=[...challengeIds];this.cancel();}
   cancel(){this.active=false;this.index=-1;this.cleared=0;this.ended=false;}
