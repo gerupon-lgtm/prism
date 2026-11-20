@@ -1115,5 +1115,72 @@
     "Each actual journey uses the first problem draw; the existing full unit suite separately verifies challenge data.",
     "Windows WebKit has no AudioContext.",
     "Chrome offline-update verification reads waiting-worker version and asset count before the actual update click; uninspected automation timed out."
-  ]
+  ],
+  "publicVerification": {
+    "commit": "24a82dc53acbeddc162896f729eaa39de3169d71",
+    "githubActions": "44716674955",
+    "cloudflareDeployment": "0d984a35-f36e-4003-b491-818817b45cb6",
+    "sites": [
+      {
+        "url": "https://prism.sikumilab.com/",
+        "version": "0.104.0",
+        "commit": "24a82dc53acbeddc162896f729eaa39de3169d71",
+        "assets": 101,
+        "passed": true
+      },
+      {
+        "url": "https://gerupon-lgtm.github.io/prism/",
+        "version": "0.104.0",
+        "commit": "24a82dc53acbeddc162896f729eaa39de3169d71",
+        "assets": 101,
+        "passed": true
+      }
+    ],
+    "readers": [
+      {
+        "engine": "chrome",
+        "checks": 221,
+        "errors": [],
+        "failed": []
+      },
+      {
+        "engine": "webkit",
+        "checks": 220,
+        "errors": [],
+        "failed": []
+      }
+    ],
+    "general": [
+      {
+        "site": "cloudflare",
+        "checks": 114,
+        "passed": true
+      },
+      {
+        "site": "github",
+        "checks": 114,
+        "passed": true
+      }
+    ],
+    "entry": [
+      {
+        "engine": "chrome",
+        "version": "0.104.0",
+        "chapter": "P",
+        "stage": 1,
+        "sharedMute": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "engine": "webkit",
+        "version": "0.104.0",
+        "chapter": "P",
+        "stage": 1,
+        "sharedMute": true,
+        "errors": [],
+        "passed": true
+      }
+    ]
+  }
 }
