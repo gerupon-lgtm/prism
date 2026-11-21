@@ -16,6 +16,9 @@ function copyTree(directory) {
     const source=posix.join(directory,entry.name);
     if(entry.isDirectory()&&source!=='src/pwa')copyTree(source);
     else if(entry.isFile()&&/\.(js|css|ttf|txt|svg|png|webp|mp3)$/.test(entry.name)) {
+      // The game reuses pixel-identical originals; retain preview copies in the
+      // repository, but download only the two new ending backgrounds.
+      if(directory==='public/ending/assets'&&!['credits-background.webp','panorama.webp'].includes(entry.name))continue;
       const target=posix.join(prefix,source);mkdirSync(join(output,posix.dirname(target)),{recursive:true});copyFileSync(source,join(output,target));assets.push(`./${target}`);
     }
   }

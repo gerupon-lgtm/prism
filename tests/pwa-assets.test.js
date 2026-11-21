@@ -69,3 +69,21 @@ test('失敗した準備の通信が残る間は再要求でも二重取得を�
   const count=f.requests.filter(url=>url.endsWith('/scene.png')).length;releases.forEach(release=>release());await Promise.all([initial,retry]);
   assert.equal(count,1,'outstanding requests belong to one preparation, including the failure path');
 });
+
+test('更新中の一時的な503と通信断は同じ資材だけを一度取り直して準備を完了する',async()=>{
+  for(const kind of ['503','network']){
+    const f=await fixture(),asset=`./v${version}/dependency.js`;let attempts=0;
+    f.overrides.set(asset,()=>{attempts++;if(attempts===1){if(kind==='network')throw new TypeError('network interrupted');return new Response('temporary',{status:503});}return new Response(material(version)[asset]);});
+    await f.install();assert.equal(attempts,2);assert.equal((await f.message()).ready,true);
+    assert.equal(await(await(await f.caches.open(f.name(oldVersion))).match(f.url(`./v${oldVersion}/dependency.js`))).text(),material(oldVersion)[`./v${oldVersion}/dependency.js`]);
+  }
+});
+
+test('恒久的な取得失敗は二度で止め、内容の不一致を通信断として再試行しない',async()=>{
+  for(const [status,body,count] of [[503,'unavailable',2],[404,'missing',1],[200,'incorrect bytes',1]]){
+    const f=await fixture(),asset=`./v${version}/dependency.js`;let attempts=0;
+    f.overrides.set(asset,()=>{attempts++;return new Response(body,{status});});
+    await assert.rejects(f.install());assert.equal(attempts,count);assert.equal((await f.message()).ready,false);
+    assert.equal(await(await(await f.caches.open(f.name(oldVersion))).match(f.url(`./v${oldVersion}/dependency.js`))).text(),material(oldVersion)[`./v${oldVersion}/dependency.js`]);
+  }
+});

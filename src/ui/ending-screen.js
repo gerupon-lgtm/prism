@@ -1,6 +1,7 @@
-import {ending as D} from '../content/ending.js';
+import {ending as D,endingAsset} from '../content/ending.js';
 import {ENDING_TEMPLATE} from './ending-template.js';
 import {DEFAULT_EFFECT_VOLUME} from './audio.js';
+import {KeepAwake} from './keep-awake.js';
 
 export function createEndingScreen({chime,motion,onToggleSound,version}){
  let view=null;
@@ -13,6 +14,8 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
  root.querySelector('.brand small').textContent='エンディング v'+version;
  let disposed=false,sourceNode=null,metadataCancel=null,musicURL=null,musicDownload=null;
  const nativeMedia=!(window.AudioContext??window.webkitAudioContext);
+ const awake=new KeepAwake(),START_WAIT_MS=350;
+ let starting=false,startWait=null;
  const playbackVolume=()=>nativeMedia?DEFAULT_EFFECT_VOLUME:1;
  root.addEventListener('cancel',event=>{if(event.target===root){event.preventDefault();exit();}});
  $('exit').addEventListener('click',exit);
@@ -21,7 +24,7 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
  const clock=n=>{n=Math.max(0,Math.floor(n));return Math.floor(n/60)+':'+String(n%60).padStart(2,'0');};
  const duration=()=>Number.isFinite(music.duration)?music.duration:D.duration;
 
- const asset=name=>new URL('../../public/ending/assets/'+name+'.webp',import.meta.url).href;
+ const asset=endingAsset;
  const allArt=new Set(Object.values(D.specs).flatMap(s=>[s.bg,...s.art.map(a=>a.name)]));
  function notice(text=''){$('status').textContent=text;$('status').hidden=!text;}
  function cancelVolume(){if(volumeJob){cancelAnimationFrame(volumeJob.frame);volumeJob.resolve(false);volumeJob=null;}}
@@ -32,12 +35,14 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
    job.frame=requestAnimationFrame(step);
   });
  }
- function pauseNow(){epoch++;desiredPlaying=false;cancelVolume();music.pause();music.volume=playbackVolume();cancelAnimationFrame(frame);frame=0;render();}
- async function pauseSoft(){const ticket=++epoch;desiredPlaying=false;await volumeTo(0,90);if(ticket!==epoch)return;music.pause();music.volume=playbackVolume();cancelAnimationFrame(frame);frame=0;render();}
+ function cancelStart(){if(starting)notice();starting=false;if(startWait){clearTimeout(startWait.timer);startWait.resolve(false);startWait=null;}}
+ function waitForStart(){return new Promise(resolve=>{const job={resolve,timer:setTimeout(()=>{if(startWait!==job)return;startWait=null;resolve(true);},START_WAIT_MS)};startWait=job;});}
+ function pauseNow(){epoch++;desiredPlaying=false;cancelStart();awake.stop();cancelVolume();music.pause();music.volume=playbackVolume();cancelAnimationFrame(frame);frame=0;render();}
+ async function pauseSoft(){const ticket=++epoch;desiredPlaying=false;cancelStart();awake.stop();await volumeTo(0,90);if(ticket!==epoch)return;music.pause();music.volume=playbackVolume();cancelAnimationFrame(frame);frame=0;render();}
  async function play(){
-  if(!ready)return;if(mode!=='song'){mode='song';music.currentTime=0;rendered='';}
+  if(!ready||starting)return;if(mode!=='song'){mode='song';music.currentTime=0;rendered='';}
   if(music.ended)music.currentTime=0;
-  const ticket=++epoch;desiredPlaying=true;cancelVolume();music.volume=0;music.muted=!sound;notice();
+  const position=music.currentTime,ticket=++epoch;desiredPlaying=true;starting=true;cancelVolume();music.volume=0;music.muted=!sound;notice('曲を準備しています。');render();
   try{
    const unlocked=nativeMedia?Promise.resolve():chime.unlock();
    if(!nativeMedia&&chime.context&&!sourceNode){sourceNode=chime.context.createMediaElementSource(music);sourceNode.connect(chime.master);}
@@ -45,8 +50,14 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
    const playing=music.play();await Promise.all([unlocked,playing]);
    if(ticket!==epoch||disposed){if(mode!=='song'||!desiredPlaying||disposed)music.pause();return;}
    if(!nativeMedia&&!sourceNode){sourceNode=chime.context.createMediaElementSource(music);sourceNode.connect(chime.master);music.muted=!sound;}
-   void volumeTo(playbackVolume(),90);render();tick();}
-  catch{if(ticket!==epoch)return;music.pause();cancelVolume();desiredPlaying=false;notice('曲を再生できませんでした。「再生」で試せます。');render();}
+   // Unlock the media element inside the gesture, then let the audio output and
+   // first picture settle silently. Rewind that preparation before the audible
+   // start, so neither startup latency nor a fade consumes the opening bell.
+   music.pause();music.currentTime=position;
+   if(!await waitForStart()||ticket!==epoch||disposed)return;
+   starting=false;music.volume=playbackVolume();notice();await music.play();
+   if(ticket!==epoch||disposed)return;void awake.start();render();tick();}
+  catch{if(ticket!==epoch)return;music.pause();cancelStart();awake.stop();cancelVolume();desiredPlaying=false;notice('曲を再生できませんでした。「再生」で試せます。');render();}
  }
  function slide(){return mode==='intro'?D.intro:mode==='after'?D.after[afterIndex]:D.song.findLast(s=>s.at<=music.currentTime+.0001)||D.song[0];}
  function svgFor(effect){
@@ -90,7 +101,7 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
    for(const button of $('scene-list').querySelectorAll('button[data-scene]')){const active=button.dataset.scene===s.id;button.classList.toggle('current',active);if(active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');}
   }
   const playing=mode==='song'&&desiredPlaying&&!music.paused;
-  $('play').textContent=playing?'一時停止':'再生';$('play').disabled=!ready||mode!=='song';
+  $('play').textContent=starting?'準備中':playing?'一時停止':'再生';$('play').disabled=!ready||mode!=='song'||starting;
   $('previous').disabled=(mode==='intro'&&!previous)||!ready;
   $('next').disabled=!ready;$('next').textContent=mode==='intro'?'曲を聴く':mode==='song'?'曲のあとへ':afterIndex===2?'タイトルへ':'つづき';
   $('seek').disabled=!ready||mode!=='song';$('seek').max=duration();$('seek').value=mode==='intro'?0:mode==='after'?duration():music.currentTime;
@@ -127,7 +138,8 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
  $('seek').addEventListener('pointercancel',()=>{seeking=false;seekPlaying=false;});
  music.addEventListener('timeupdate',()=>{if(mode==='song')render();});
  music.addEventListener('seeked',()=>{if(mode==='song')render();});
- music.addEventListener('playing',()=>{if(mode!=='song'||!desiredPlaying){music.pause();return;}tick();});
+ music.addEventListener('playing',()=>{if(mode!=='song'||!desiredPlaying){music.pause();return;}if(!starting){void awake.start();tick();}});
+ music.addEventListener('pause',()=>awake.stop());
  music.addEventListener('ended',()=>{if(mode==='song')manual(0);});
  music.addEventListener('error',()=>{if(ready){pauseNow();notice('曲を読み込めませんでした。準備をやり直せます。');$('retry').hidden=false;}});
  const hidden=()=>{if(document.hidden)pauseNow();};document.addEventListener('visibilitychange',hidden);window.addEventListener('pagehide',pauseNow);
@@ -158,8 +170,8 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
  $('retry').addEventListener('click',()=>void prepare());
  music.volume=playbackVolume();music.muted=!sound;
  function sync(){sound=!chime.muted;reduced=motion.reduced;music.muted=!sound||(!nativeMedia&&!sourceNode);render();}
- function inspect(){return {active:!disposed,legacyId:mode==='intro'?'E1':mode==='after'?(slide().id==='C1'?'E6':slide().id):(slide().id==='S11'?'E3':slide().id==='S13'?'E4':'E2'),version,musicVersion:D.musicVersion,mode,scene:slide().id,time:music.currentTime,duration:duration(),paused:music.paused,ready,sound,reduced,volume:music.volume,effectiveVolume:sound?music.volume*(sourceNode?(chime.master?.gain.value??DEFAULT_EFFECT_VOLUME):nativeMedia?1:DEFAULT_EFFECT_VOLUME):0,sourceConnected:!!sourceNode,outputMode:nativeMedia?'media-element':'shared-audio-context',latencyApplied:!!sourceNode,latencyHint:chime.latencyHint,audioState:chime.context?.state??'uncreated',worlds:$('scenery').children.length};}
- function dispose(){if(disposed)return;disposed=true;epoch++;musicDownload?.abort();metadataCancel?.();cancelVolume();cancelAnimationFrame(frame);music.pause();sourceNode?.disconnect();music.removeAttribute('src');music.load();if(musicURL)URL.revokeObjectURL(musicURL);document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',pauseNow);if($('scene-menu').open)$('scene-menu').close();if(root.open)root.close();root.remove();}
+ function inspect(){return {active:!disposed,legacyId:mode==='intro'?'E1':mode==='after'?(slide().id==='C1'?'E6':slide().id):(slide().id==='S11'?'E3':slide().id==='S13'?'E4':'E2'),version,musicVersion:D.musicVersion,mode,scene:slide().id,time:music.currentTime,duration:duration(),paused:music.paused,ready,starting,startWaitMs:START_WAIT_MS,wakeLock:awake.inspect(),sound,reduced,volume:music.volume,effectiveVolume:sound?music.volume*(sourceNode?(chime.master?.gain.value??DEFAULT_EFFECT_VOLUME):nativeMedia?1:DEFAULT_EFFECT_VOLUME):0,sourceConnected:!!sourceNode,outputMode:nativeMedia?'media-element':'shared-audio-context',latencyApplied:!!sourceNode,latencyHint:chime.latencyHint,audioState:chime.context?.state??'uncreated',worlds:$('scenery').children.length};}
+ function dispose(){if(disposed)return;disposed=true;epoch++;cancelStart();awake.stop();musicDownload?.abort();metadataCancel?.();cancelVolume();cancelAnimationFrame(frame);music.pause();sourceNode?.disconnect();music.removeAttribute('src');music.load();if(musicURL)URL.revokeObjectURL(musicURL);document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',pauseNow);if($('scene-menu').open)$('scene-menu').close();if(root.open)root.close();root.remove();}
  root.showModal();render();void prepare();
  return {dispose,sync,inspect};
 }

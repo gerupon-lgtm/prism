@@ -15,15 +15,25 @@ function responseBytes(bytes,response) {
   const headers=new Headers(response.headers);headers.delete('content-encoding');headers.delete('content-length');
   return new Response(bytes,{status:response.status,statusText:response.statusText,headers});
 }
-async function download(path,expectedHash) {
+async function downloadOnce(path,expectedHash) {
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),ASSET_FETCH_TIMEOUT_MS);
   try{
     const response=await fetch(new Request(cacheURL(path),{cache:'reload',signal:controller.signal}));
-    if(!response.ok)throw new Error('Asset unavailable');
+    if(!response.ok){const error=new Error('Asset unavailable');error.retryable=[408,429,500,502,503,504].includes(response.status);throw error;}
     const bytes=await response.arrayBuffer();
     if(expectedHash&&await digest(bytes)!==expectedHash)throw new Error('Asset integrity mismatch');
     return responseBytes(bytes,response);
   }finally{clearTimeout(timer);}
+}
+async function download(path,expectedHash){
+  try{return await downloadOnce(path,expectedHash);}
+  catch(error){
+    // A brief mobile-network interruption must not discard a nearly complete
+    // install. Retry this one file once; quota and integrity errors still fail.
+    if(!error.retryable&&!['TypeError','AbortError'].includes(error.name))throw error;
+    await new Promise(resolve=>setTimeout(resolve,300));
+    return downloadOnce(path,expectedHash);
+  }
 }
 function validManifest(manifest) {
   return manifest?.version===VERSION&&Array.isArray(manifest.assets)&&manifest.assets.length===ASSETS.length&&manifest.assets.every((asset,index)=>asset===ASSETS[index])&&ASSETS.every(asset=>asset==='./build-info.json'||/^[0-9a-f]{64}$/.test(manifest.hashes?.[asset]??''));

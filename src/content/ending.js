@@ -1,4 +1,11 @@
 'use strict';
+const sharedArt={
+ ruins:'graphics/ruins.png',observatory:'graphics/observatory.png',starwalk:'graphics/starwalk.png',moonwater:'graphics/moonwater.png',starecho:'graphics/starecho.png',starreturn:'graphics/starreturn.png',moonmirror:'graphics/moonmirror.png',stargate:'graphics/stargate.png',goal:'graphics/goal.png',source:'graphics/source.png',prism:'graphics/prism.png',mirror:'graphics/mirror.png',spirit:'spirit-guide.png',
+ 'forge-ruins':'story/forge-ruins.webp','monochord-story':'story/monochord-story.webp',hammer:'story/hammer.webp','spirit-listening':'story/spirit-listening.webp',
+};
+// These existing game images have exactly the same decoded pixels as the
+// independent preview copies. Keep one downloadable representation in the app.
+export const endingAsset=name=>new URL('../../public/'+(sharedArt[name]??'ending/assets/'+name+'.webp'),import.meta.url).href;
 export const ending = (() => {
  const item = (name,x,y,w,h,cls='') => ({name,x,y,w,h,cls});
  const bell = (x,y,w,h) => item('goal',x,y,w,h,'bell');
