@@ -14,17 +14,29 @@ async function choose(p,id){await p.locator('#ending-chapters').click();await p.
  const context=await browser.newContext({viewport:{width:1280,height:800},reducedMotion:'no-preference'});
  await context.addInitScript(()=>{if(location.protocol.startsWith('http')){localStorage.setItem('prism-notes.audio-latency.v1',JSON.stringify({version:1,latencyHint:.07}));localStorage.setItem('prism-notes.motion.v1',JSON.stringify({version:1,value:'full'}));}});
  p=await context.newPage();p.on('pageerror',e=>report.errors.push(e.message));report.browser=browser.version();
- await p.goto(base,{waitUntil:"domcontentloaded",timeout:60000});await bind(p);const saved=await p.evaluate(()=>['circuits','scores','guides'].map(key=>localStorage.getItem('prism-notes.'+key+'.v1')));
+ await p.goto(base,{waitUntil:"domcontentloaded",timeout:60000});await bind(p);
+ // Do not abort the initial worker-script request with an immediate second
+ // navigation. WebKit reports that deliberate cancellation as a page error.
+ if(await p.locator('meta[name=prism-offline]').count()){await p.evaluate(async()=>{await navigator.serviceWorker.ready;});await p.waitForFunction(()=>document.querySelector('#title-update').getAttribute('aria-busy')==='false',null,{timeout:120000});}
+ const saved=await p.evaluate(()=>['circuits','scores','guides'].map(key=>localStorage.getItem('prism-notes.'+key+'.v1')));
  await p.goto(new URL('?ending=1',base).href,{waitUntil:'domcontentloaded',timeout:60000});await bind(p);await ready(p);
  let state=await inspect(p);assert.equal(state.version,'0.107.0');assert.equal(state.mode,'viewer');assert.equal(state.journey.cleared,0);assert.equal(state.journey.ended,false);assert.equal(state.ending.scene,'E1');assert.equal(state.latencyHint,.07);
  await p.locator('#ending-next').click();await p.waitForFunction(()=>__prismInspect().ending.time>.25&&__prismInspect().ending.effectiveVolume>.69);
  state=await inspect(p);const webAudio=await p.evaluate(()=>Boolean(window.AudioContext??window.webkitAudioContext));assert.equal(state.ending.sourceConnected,webAudio);assert(Math.abs(state.ending.effectiveVolume-.7)<1e-6);assert.equal(state.voices,0);assert.equal(state.ending.latencyHint,.07);
  report.checks.push({shortcutIsViewer:true,cleared:0,sharedLatencyHint:.07,latencyApplied:webAudio,sharedOutputVolume:.7,outputMode:state.ending.outputMode,uncompressedMasterConnection:webAudio,noAddedEffectVoices:true});
+ if(process.argv.includes('--full-song')){
+  await p.evaluate(()=>{window.__endingSeen=[__prismInspect().ending.scene];window.__endingWatch=setInterval(()=>{const id=__prismInspect().ending.scene;if(__endingSeen.at(-1)!==id)__endingSeen.push(id);},75);});
+  await p.waitForFunction(()=>__prismInspect().ending.scene==='E5',null,{timeout:210000});
+  const seen=await p.evaluate(()=>{clearInterval(__endingWatch);return __endingSeen;});assert.deepEqual(seen.filter(id=>id.startsWith('S')),Array.from({length:13},(_,i)=>'S'+String(i+1).padStart(2,'0')));
+  assert((await inspect(p)).ending.time>=186.5);report.checks.push({realTimeFullSong:true,all13Scenes:true,naturalEnd:true,seen});
+ }
  await p.locator('#ending-sound').click();assert.equal((await inspect(p)).muted,true);assert.equal(await p.locator('#ending-music').evaluate(a=>a.muted),true);
  await p.locator('#ending-sound').click();await p.waitForFunction(()=>__prismInspect().muted===false);assert.equal((await inspect(p)).ending.sound,true);assert.equal((await inspect(p)).voices,0);
  await p.locator('#ending-motion').click();assert.equal((await inspect(p)).ending.reduced,true);await p.locator('#ending-motion').click();
  const ids=await p.evaluate(async()=>{const {ending}=await import(new URL('../content/ending.js',document.querySelector('script[type=module]').src));return ending.song.map(s=>s.id);});
- for(const [width,height] of [[1280,800],[1024,768],[844,410],[740,280],[640,240],[410,844],[360,640],[320,568]]){
+ const sizes=process.argv.includes('--controls-only')?[]:[[1280,800],[1024,768],[844,410],[740,280],[640,240],[410,844],[360,640],[320,568]];
+ if(!sizes.length)report.layout='Covered by the separate eight-viewport report; this run rechecks startup, shared settings and playback controls.';
+ for(const [width,height] of sizes){
   await p.setViewportSize({width,height});
   for(const id of [...ids,'E5','E6','C1']){
    await choose(p,id);

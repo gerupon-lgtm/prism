@@ -1,0 +1,393 @@
+{
+  "version": "0.107.0",
+  "commit": "ac5db79bc53af1b4f1f74d269ca30ec30dedd374",
+  "date": "2026-11-21T07:36:41.371Z",
+  "physicalDevice": false,
+  "musicVersion": "0.1.17",
+  "musicSHA256": "58f16dbe7ac6c5e4e60188dd2a56a9f72b5aa1b64ec00148908ccb0614d25a60",
+  "ci": {
+    "run": 44880205752,
+    "passed": true,
+    "testFiles": 48,
+    "tests": 587,
+    "syntaxFiles": 129,
+    "assets": 126
+  },
+  "cloudflare": {
+    "id": "64810b25-021f-4d45-8871-1aee8472f18d",
+    "autoTriggered": true,
+    "passed": true
+  },
+  "normalJourney": {
+    "passed": true,
+    "stages": 42,
+    "blocks": 10,
+    "loadPauses": 0,
+    "scenes": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13"
+    ]
+  },
+  "public": {
+    "committedBytes": [
+      {
+        "base": "https://prism.sikumilab.com/",
+        "version": "0.107.0",
+        "commit": "ac5db79bc53af1b4f1f74d269ca30ec30dedd374",
+        "assets": 126,
+        "exactCommittedBuild": true,
+        "assetOrderOSDependent": true,
+        "media": {
+          "status": 206,
+          "type": "audio/mpeg",
+          "range": "bytes 0-99/4480704",
+          "length": 100
+        }
+      },
+      {
+        "base": "https://gerupon-lgtm.github.io/prism/",
+        "version": "0.107.0",
+        "commit": "ac5db79bc53af1b4f1f74d269ca30ec30dedd374",
+        "assets": 126,
+        "exactCommittedBuild": true,
+        "assetOrderOSDependent": true,
+        "media": {
+          "status": 206,
+          "type": "audio/mp3",
+          "range": "bytes 0-99/4480704",
+          "length": 100
+        }
+      }
+    ],
+    "generalChecks": [
+      {
+        "url": "https://prism.sikumilab.com/",
+        "checks": 139,
+        "passed": true
+      },
+      {
+        "url": "https://gerupon-lgtm.github.io/prism/",
+        "checks": 139,
+        "passed": true
+      }
+    ],
+    "chromeEnding": {
+      "passed": true,
+      "browser": "157.0.8103.79",
+      "checks": [
+        {
+          "shortcutIsViewer": true,
+          "cleared": 0,
+          "sharedLatencyHint": 0.07,
+          "latencyApplied": true,
+          "sharedOutputVolume": 0.7,
+          "outputMode": "shared-audio-context",
+          "uncompressedMasterConnection": true,
+          "noAddedEffectVoices": true
+        },
+        {
+          "realTimeFullSong": true,
+          "all13Scenes": true,
+          "naturalEnd": true,
+          "seen": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08",
+            "S09",
+            "S10",
+            "S11",
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            1024,
+            768
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            844,
+            410
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            740,
+            280
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            640,
+            240
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            410,
+            844
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            360,
+            640
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "pauseOnHiddenFixture": true,
+          "menuPauses": true,
+          "finalBellWords": true,
+          "naturalEndFromTail": true,
+          "postSongE5E6Credits": true,
+          "shortcutDoesNotWriteResults": true,
+          "disposedOnClose": true
+        },
+        {
+          "galleryUsesSameEnding": true
+        }
+      ]
+    },
+    "webkitEnding": {
+      "browser": "26.5",
+      "layoutCases": 128,
+      "viewports": [
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            1024,
+            768
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            844,
+            410
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            740,
+            280
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            640,
+            240
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            410,
+            844
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            360,
+            640
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "scenes": 16,
+          "allCaptionsFit": true,
+          "rootTeaser": true,
+          "fixedMonochord": true
+        }
+      ],
+      "initialRunPassed": false,
+      "initialErrors": [
+        "/prism.sikumilab.com/sw.js due to access control checks."
+      ],
+      "fixtureCorrection": "Await initial service worker readiness and completed automatic update check before second navigation.",
+      "correctedControlsRunPassed": true,
+      "correctedErrors": [],
+      "checks": [
+        {
+          "shortcutIsViewer": true,
+          "cleared": 0,
+          "sharedLatencyHint": 0.07,
+          "latencyApplied": false,
+          "sharedOutputVolume": 0.7,
+          "outputMode": "media-element",
+          "uncompressedMasterConnection": false,
+          "noAddedEffectVoices": true
+        },
+        {
+          "pauseOnHiddenFixture": true,
+          "menuPauses": true,
+          "finalBellWords": true,
+          "naturalEndFromTail": true,
+          "postSongE5E6Credits": true,
+          "shortcutDoesNotWriteResults": true,
+          "disposedOnClose": true
+        },
+        {
+          "galleryUsesSameEnding": true
+        }
+      ]
+    }
+  },
+  "upgradeAndOffline": {
+    "chromium": {
+      "passed": true,
+      "checks": [
+        {
+          "label": "authentic released 0.106.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "real 0.106.0 to 0.107.0 update preserves storage and another editing tab",
+          "storageSha256": "1b8a3ffd43cbd648faff62b196b3132315b8809a526692b9511ad23e382606af"
+        },
+        {
+          "label": "cold offline restart, origin stopped, all story and ending scenes, font, MP3 range and direct URL playback",
+          "storySlides": 21,
+          "endingScenes": 17,
+          "range": {
+            "status": 206,
+            "range": "bytes 100-199/4480704",
+            "length": 100
+          }
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "applied": true
+        }
+      ]
+    },
+    "chromeReopen": {
+      "passed": true,
+      "checks": [
+        {
+          "label": "authentic released 0.106.0, real score and saved circuit, unsaved editing tab",
+          "scores": 1,
+          "slots": 1,
+          "oldWires": [
+            "E1",
+            "E2"
+          ]
+        },
+        {
+          "label": "Chrome actual released old version to new version by closing both old tabs and reopening, saved score and circuit unchanged"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Windows test WebKit has no Web Audio and cannot play cached/blob media. Smartphone Safari offline audio remains a physical-device check.",
+    "Chrome 157 old-version update button status requests timed out in one fixture; closing old tabs and reopening retained saved data and loaded 0.107.0.",
+    "Visual and listening acceptance on physical smartphones remains pending."
+  ],
+  "existingDifferences": {
+    "files": 95,
+    "hashesUnchanged": true
+  }
+}
