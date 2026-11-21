@@ -55,6 +55,11 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
    // start, so neither startup latency nor a fade consumes the opening bell.
    music.pause();music.currentTime=position;
    if(!await waitForStart()||ticket!==epoch||disposed)return;
+   // Mobile/PWA audio output may suspend while the silent media preparation is
+   // paused. Resume at the audible boundary too, without changing the user's
+   // mute choice; resuming only before that pause can leave an ON display silent.
+   if(!nativeMedia){await chime.unlock();if(ticket!==epoch||disposed)return;if(chime.context?.state!=='running')throw new Error('Audio output is not running');}
+   sound=!chime.muted;music.muted=!sound;
    starting=false;music.volume=playbackVolume();notice();await music.play();
    if(ticket!==epoch||disposed)return;void awake.start();render();tick();}
   catch{if(ticket!==epoch)return;music.pause();cancelStart();awake.stop();cancelVolume();desiredPlaying=false;notice('曲を再生できませんでした。「再生」で試せます。');render();}
@@ -170,7 +175,7 @@ function createView({chime,motion,onToggleSound,version,initialId='E1',done=()=>
  $('retry').addEventListener('click',()=>void prepare());
  music.volume=playbackVolume();music.muted=!sound;
  function sync(){sound=!chime.muted;reduced=motion.reduced;music.muted=!sound||(!nativeMedia&&!sourceNode);render();}
- function inspect(){return {active:!disposed,legacyId:mode==='intro'?'E1':mode==='after'?(slide().id==='C1'?'E6':slide().id):(slide().id==='S11'?'E3':slide().id==='S13'?'E4':'E2'),version,musicVersion:D.musicVersion,mode,scene:slide().id,time:music.currentTime,duration:duration(),paused:music.paused,ready,starting,startWaitMs:START_WAIT_MS,wakeLock:awake.inspect(),sound,reduced,volume:music.volume,effectiveVolume:sound?music.volume*(sourceNode?(chime.master?.gain.value??DEFAULT_EFFECT_VOLUME):nativeMedia?1:DEFAULT_EFFECT_VOLUME):0,sourceConnected:!!sourceNode,outputMode:nativeMedia?'media-element':'shared-audio-context',latencyApplied:!!sourceNode,latencyHint:chime.latencyHint,audioState:chime.context?.state??'uncreated',worlds:$('scenery').children.length};}
+ function inspect(){return {active:!disposed,legacyId:mode==='intro'?'E1':mode==='after'?(slide().id==='C1'?'E6':slide().id):(slide().id==='S11'?'E3':slide().id==='S13'?'E4':'E2'),version,musicVersion:D.musicVersion,mode,scene:slide().id,time:music.currentTime,duration:duration(),paused:music.paused,ready,starting,startWaitMs:START_WAIT_MS,wakeLock:awake.inspect(),sound,reduced,mediaMuted:music.muted,masterGain:chime.master?.gain.value??null,volume:music.volume,effectiveVolume:sound?music.volume*(sourceNode?(chime.master?.gain.value??DEFAULT_EFFECT_VOLUME):nativeMedia?1:DEFAULT_EFFECT_VOLUME):0,sourceConnected:!!sourceNode,outputMode:nativeMedia?'media-element':'shared-audio-context',latencyApplied:!!sourceNode,latencyHint:chime.latencyHint,audioState:chime.context?.state??'uncreated',worlds:$('scenery').children.length};}
  function dispose(){if(disposed)return;disposed=true;epoch++;cancelStart();awake.stop();musicDownload?.abort();metadataCancel?.();cancelVolume();cancelAnimationFrame(frame);music.pause();sourceNode?.disconnect();music.removeAttribute('src');music.load();if(musicURL)URL.revokeObjectURL(musicURL);document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',pauseNow);if($('scene-menu').open)$('scene-menu').close();if(root.open)root.close();root.remove();}
  root.showModal();render();void prepare();
  return {dispose,sync,inspect};
