@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="prism-ending-version" content="0.1.4">
+<title>PRISM NOTES｜余韻の向こうへ v0.1.4</title>
+<link rel="stylesheet" href="story-base.css?v=0.1.4">
+<link rel="stylesheet" href="ending.css?v=0.1.4-captions-root">
+<script src="scenes.js?v=0.1.4-captions-root" defer></script>
+<script src="player.js?v=0.1.4-captions-root" defer></script>
+<body id="story-screen">
+<main class="reader" id="reader">
+ <header class="toolbar">
+  <div class="brand"><span>PRISM NOTES</span><small>エンディング試作 v0.1.4</small></div>
+  <nav class="tools" aria-label="閲覧の設定">
+   <button id="sound" aria-pressed="true">音：あり</button>
+   <button id="motion" aria-pressed="false">動き：通常</button>
+   <button id="chapters">場面一覧</button>
+  </nav>
+ </header>
+ <section class="spread" aria-label="エンディング">
+  <div class="scene" id="scene" role="img" aria-label="星の光が届いた祭壇の鐘">
+   <div class="scenery" id="scenery"></div><div class="scene-vignette"></div>
+   <div class="scene-caption"><span id="era"></span></div>
+  </div>
+  <article class="story-copy" aria-labelledby="chapter-title">
+   <div class="chapter-heading"><span id="block-position">結末 · 42面クリア後</span><h1 id="chapter-title">余韻の向こうへ</h1></div>
+   <div class="words" id="words" tabindex="0"><p class="speaker" id="speaker" hidden></p><p id="narration"></p><p id="next-story" class="next-story" hidden></p></div>
+   <div class="copy-foot"><p id="status" role="status">絵と曲を準備しています。</p><button id="retry" hidden>準備をやり直す</button></div>
+  </article>
+ </section>
+ <footer class="reader-controls">
+  <div class="play-tools"><button id="play" disabled>再生</button></div>
+  <div class="music-progress"><span id="time">0:00 / 3:07</span><input id="seek" type="range" min="0" max="186.667" step="0.01" value="0" aria-label="曲の再生位置" disabled></div>
+  <nav class="page-tools" aria-label="物語を進める"><button id="previous" disabled>戻る</button><button class="primary" id="next" disabled>曲を聴く</button></nav>
+ </footer>
+</main>
+<dialog id="scene-menu" aria-labelledby="menu-title">
+ <div class="menu-head"><div><small>余韻の向こうへ</small><h2 id="menu-title">場面を選ぶ</h2></div><button id="close-menu">閉じる</button></div>
+ <div class="scene-list" id="scene-list"></div>
+ <div class="menu-foot"><button id="motion-menu">動き：通常</button><button id="restart">曲を初めから</button><span>試作 v0.1.4 · 曲 v0.1.17</span></div>
+</dialog>
+<audio id="music" preload="auto"></audio>
+</body>
+</html>

@@ -113,6 +113,24 @@ self.addEventListener('message',event=>{
 
 const unavailable=()=>new Response(`<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>プリズム・ノーツ</title><body style="margin:0;padding:24px;background:#090d1a;color:#e3e8f6;font:16px sans-serif"><h1 style="font-size:22px">プリズム・ノーツ</h1><p>起動に必要な資材が不足しています。通信できる状態で開き直し、オフラインの準備を行ってください。</p><p>この表示で保存回路や成績を削除していません。</p><button onclick="location.reload()" style="font:inherit;padding:10px">再試行</button><p>検証 v${VERSION}</p></body></html>`,{status:503,headers:{'Content-Type':'text/html; charset=utf-8'}});
 
+// A cached MP3 is a finite file, including when Safari requests a byte range.
+// Keep its length and range headers after the integrity-checked cache rewrite.
+async function cachedResponse(request,response){
+  if(!new URL(request.url).pathname.endsWith('.mp3')||response.status!==200)return response;
+  const bytes=await response.arrayBuffer(),size=bytes.byteLength,headers=new Headers(response.headers);
+  headers.delete('content-encoding');headers.set('Accept-Ranges','bytes');
+  const range=request.headers.get('Range');
+  if(!range){headers.set('Content-Length',String(size));return new Response(bytes,{status:200,headers});}
+  const match=/^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  const invalid=()=>new Response(null,{status:416,headers:{'Content-Range':`bytes */${size}`,'Content-Length':'0','Accept-Ranges':'bytes'}});
+  if(!match||(!match[1]&&!match[2]))return invalid();
+  let start=match[1]?Number(match[1]):Math.max(0,size-Number(match[2]));
+  let end=match[1]&&match[2]?Math.min(size-1,Number(match[2])):size-1;
+  if(!Number.isSafeInteger(start)||!Number.isSafeInteger(end)||start>end||start>=size||(!match[1]&&Number(match[2])===0))return invalid();
+  headers.set('Content-Range',`bytes ${start}-${end}/${size}`);headers.set('Content-Length',String(end-start+1));
+  return new Response(bytes.slice(start,end+1),{status:206,headers});
+}
+
 self.addEventListener('fetch',event=>{
   const request=event.request,url=new URL(request.url),scope=new URL(base);
   if(request.method!=='GET'||url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return;
@@ -135,10 +153,13 @@ self.addEventListener('fetch',event=>{
       }
       try{return await fetch(request);}catch{return unavailable();}
     }
-    const cached=await cache.match(request);if(cached)return cached;
+    // The verified, decoded media file has one immutable representation. Range
+    // and transport encoding headers must not hide it from the offline cache.
+    const cacheRequest=url.pathname.endsWith('.mp3')?request.url:request;
+    const cached=await cache.match(cacheRequest);if(cached)return cachedResponse(request,cached);
     // Old pages retain their fully prepared version and can continue safely.
     for(const name of await caches.keys())if(name.startsWith(prefix)&&name!==cacheName(VERSION)){
-      const old=await(await caches.open(name)).match(request);if(old)return old;
+      const old=await(await caches.open(name)).match(cacheRequest);if(old)return cachedResponse(request,old);
     }
     return fetch(request);
   })());

@@ -132,10 +132,10 @@ function playStory(block,initialId=null){
   prepareStory();
   story.open({block,initialId,done:()=>{pendingStory=null;if(block==='E'){showTitle();return;}render();maybeMirrorIntro();requestConditionCue();},exit:checkpoint=>{pendingStory=checkpoint;showTitle();}});
 }
-function storyGallery(){
+function storyGallery(initialId=null){
   const fromTitle=!$('title-screen').hidden;prepareStory();
   const back=()=>{render();if(fromTitle)$('title-story').focus({preventScroll:true});else menu();};
-  story.open({done:back,exit:back});
+  story.open({initialId,done:back,exit:back});
 }
 // Font, orientation and update-button changes can finish laying out after render.
 // Reposition existing result notices from the final bounds, without redrawing
@@ -158,7 +158,7 @@ let soundUnlock=null,automaticSoundFailed=false;
 // Create/resume audio inside an actual user action. A pending resume must never
 // overwrite an explicit mute, and opening a page alone must not start audio.
 function prepareAutomaticSound(event){
-  if(!event.isTrusted||event.target.closest('#sound')||chime.muted||automaticSoundFailed||chime.context?.state==='running')return;
+  if(!event.isTrusted||event.target.closest('#sound,#ending-screen')||chime.muted||automaticSoundFailed||chime.context?.state==='running')return;
   soundUnlock??=chime.unlock().catch(error=>{automaticSoundFailed=true;failure(error);}).finally(()=>{soundUnlock=null;});
 }
 document.addEventListener('click',prepareAutomaticSound,true);
@@ -179,7 +179,7 @@ function updateNotice(){
 
 document.addEventListener('click',event=>{
   const target=buttonPresses.get(event);if(!target)return;
-  if(target.closest('#story-screen'))return;
+  if(target.closest('#story-screen,#ending-screen'))return;
   // An action can hide its own button before this bubbling listener runs.
   // Hidden CSS animations never finish and would replay on the next reveal.
   target.classList.remove('button-response');if(!motion.reduced&&target.getClientRects().length){void target.offsetWidth;target.classList.add('button-response');}
@@ -1284,7 +1284,7 @@ $('records').addEventListener('click',()=>attempt(showRecords));$('close-records
 $('record-tab').addEventListener('click',()=>{session.view.recordTab=session.view.recordTab==='cases'?'records':'cases';renderRecords();});
 $('record-prev').addEventListener('click',()=>moveRecordPage(-1));
 $('record-next').addEventListener('click',()=>moveRecordPage(1));
-async function toggleSound(){storyTransition.cancel();if(chime.muted){await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');chime.tap();}else chime.mute();render(false);}
+async function toggleSound({quiet=false,mediaFallback=false}={}){storyTransition.cancel();if(chime.muted){if(mediaFallback&&!(window.AudioContext??window.webkitAudioContext))chime.muted=false;else await chime.enable();automaticSoundFailed=false;if(session.run?.status==='running')chime.beginPlayback(session.mode==='challenge'?session.challenge.id:'自由作成');if(!quiet)chime.tap();}else chime.mute();render(false);}
 $('sound').addEventListener('click',()=>attempt(toggleSound));
 $('update-notice').addEventListener('click',()=>attempt(requestUpdate));
 $('title-update').addEventListener('click',()=>attempt(requestUpdate));
@@ -1372,3 +1372,6 @@ if(offline.enabled)offline.prepare();
 export function inspectPerformance(){return {...load.snapshot(),run:session.run?{status:session.run.status,pauseReason:session.run.pauseReason,clock:session.run.format(),...runCounts()}:null,audioVoices:chime.voices.size};}
 export function inspectAudioPlayback(){return chime.inspectPlayback();}
 export function inspectStory(){return {...story.inspect(),journey:storyProgress.snapshot(),pending:pendingStory?{...pendingStory}:null,transitionPending:storyTransition.pending,muted:chime.muted,latencyHint:chime.latencyHint};}
+
+// Viewing the ending never calls StoryProgress.finish or writes a clear result.
+if(new URL(location.href).searchParams.get('ending')==='1')attempt(()=>storyGallery('E1'));

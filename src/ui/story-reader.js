@@ -2,10 +2,12 @@ import {blocks,slides} from '../content/story.js';
 import {BELL_SOUND} from './audio.js';
 import {SPIRIT_CUES,VOICE_LIFE,spiritVoice} from './story-voice.js';
 import {MAX_STORY_TRANSITION_MS} from '../app/story-progress.js';
+import {createEndingScreen} from './ending-screen.js';
 
 // Approved story presentation; the caller owns game progress, audio and settings.
 export function createStoryReader({chime,motion,onToggleSound,version}){
  const VERSION=version;
+ const ending=createEndingScreen({chime,motion,onToggleSound,version});
  const root=document.createElement('dialog');root.id='story-screen';root.setAttribute('aria-label','PRISM NOTES おはなし');root.innerHTML="<div id=\"story-reader\" data-story-id=\"reader\" class=\"reader\" aria-label=\"PRISM NOTES おはなし\">\n    <div class=\"toolbar\">\n      <div class=\"brand\"><span>PRISM NOTES</span><small>おはなし v0.104.0</small></div>\n      <nav class=\"tools\" aria-label=\"閲覧の設定\">\n        <button id=\"story-sound\" data-story-id=\"sound\" type=\"button\" aria-pressed=\"false\">音：なし</button>\n        <button id=\"story-motion\" data-story-id=\"motion\" type=\"button\" aria-pressed=\"false\">動き：通常</button>\n        <button id=\"story-chapters\" data-story-id=\"chapters\" type=\"button\">場面一覧</button><button id=\"story-exit\" data-story-id=\"exit\" type=\"button\">閉じる</button>\n      </nav>\n    </div>\n    <section class=\"spread\" aria-label=\"物語\">\n      <div id=\"story-scene\" data-story-id=\"scene\" class=\"scene\" role=\"img\" aria-label=\"\">\n        <div id=\"story-scenery\" data-story-id=\"scenery\" class=\"scenery\"></div>\n        <div class=\"scene-vignette\"></div>\n        <div class=\"scene-caption\"><span id=\"story-era\" data-story-id=\"era\"></span><span id=\"story-art-note\" data-story-id=\"art-note\"></span></div>\n        <div id=\"story-music-slot\" data-story-id=\"music-slot\" class=\"music-slot\" hidden><span class=\"music-orbit\" aria-hidden=\"true\">♪</span><strong>エンディング曲を聴く場面</strong><span>楽曲は準備中です。このまま進められます。</span></div>\n      </div>\n      <article class=\"story-copy\" aria-labelledby=\"story-chapter-title\">\n        <div class=\"chapter-heading\"><span id=\"story-block-position\" data-story-id=\"block-position\"></span><h1 id=\"story-chapter-title\" data-story-id=\"chapter-title\"></h1></div>\n        <div id=\"story-words\" data-story-id=\"words\" class=\"words\" tabindex=\"0\"><p id=\"story-speaker\" data-story-id=\"speaker\" class=\"speaker\" hidden>星の精霊</p><p id=\"story-narration\" data-story-id=\"narration\"></p></div>\n        <div class=\"copy-foot\"><p id=\"story-bridge\" data-story-id=\"bridge\"></p><p id=\"story-status\" data-story-id=\"status\" role=\"status\" aria-live=\"polite\"></p></div>\n      </article>\n    </section>\n    <div class=\"reader-controls\">\n      <div class=\"play-tools\"><button id=\"story-replay\" data-story-id=\"replay\" type=\"button\" title=\"今の場面を初めから再演\">再演</button><button id=\"story-stop\" data-story-id=\"stop\" type=\"button\">停止</button></div>\n      <div class=\"progress\" aria-label=\"現在の位置\"><span id=\"story-counter\" data-story-id=\"counter\">01 <i>/ 27</i></span><span id=\"story-slide-id\" data-story-id=\"slide-id\"></span><div class=\"progress-track\"><div id=\"story-progress-fill\" data-story-id=\"progress-fill\"></div></div></div>\n      <nav class=\"page-tools\" aria-label=\"物語を進める\"><button id=\"story-previous\" data-story-id=\"previous\" type=\"button\">戻る</button><button id=\"story-next\" data-story-id=\"next\" class=\"primary\" type=\"button\">つづき</button></nav>\n    </div>\n  </div>\n  <dialog id=\"story-scene-menu\" data-story-id=\"scene-menu\" aria-labelledby=\"story-menu-title\">\n    <div class=\"menu-head\"><div><small>物語を読み返す</small><h2 id=\"story-menu-title\" data-story-id=\"menu-title\">場面を選ぶ</h2></div><button id=\"story-close-menu\" data-story-id=\"close-menu\" type=\"button\" autofocus>閉じる</button></div>\n    <p class=\"menu-note\">場面を選ぶと、音と演出を止めて移動します。</p>\n    <div id=\"story-scene-list\" data-story-id=\"scene-list\" class=\"scene-list\"></div>\n    <div class=\"menu-foot\"><button id=\"story-skip\" data-story-id=\"skip\" type=\"button\">この章を飛ばす</button><button id=\"story-restart\" data-story-id=\"restart\" type=\"button\">最初から見る</button><span>© SIKUMI LAB</span></div>\n  </dialog>";document.body.append(root);
  const $=id=>root.querySelector('[data-story-id="'+id+'"]'),reader=$('reader'),scene=$('scene');
  let active=false,mode='viewer',range=[0,slides.length-1],onDone=()=>{},onExit=()=>{};
@@ -121,6 +123,7 @@ function stopAll(reason='stopped',{fadeSeconds}={}){
  epoch++;for(const timer of timers)clearTimeout(timer);timers.clear();tailUntil=0;queued=false;loading=false;reader.removeAttribute('aria-busy');for(const img of $('scenery').querySelectorAll('.is-ringing')){img.classList.remove('is-ringing');ringing.delete(img);}chime.stop(reason,{fadeSeconds});paused=true;reader.classList.add('paused');
 }
 function updateControls(){
+ ending.syncSettings();
  reduced=motion.reduced;
  $('sound').textContent=!chime.muted?'音：あり':'音：なし';$('sound').setAttribute('aria-pressed',String(!chime.muted));
  for(const id of ['motion','motion-menu'])if($(id)){$(id).textContent=reduced?'動き：控えめ':'動き：通常';$(id).setAttribute('aria-pressed',String(reduced));}
@@ -165,6 +168,14 @@ async function playCues(){
  },at*1000);
 }
 async function render(target=index){
+ if(slides[target].block==='E'){
+  index=target;loading=false;paused=true;
+  if($('scene-menu').open)$('scene-menu').close();
+  if(root.open)root.close();
+  ending.open({initialId:slides[target].id,done:finish,exit:()=>{const id=ending.inspect().legacyId;index=slides.findIndex(slide=>slide.id===id);exit();},
+   previous:mode==='viewer'?()=>{ending.close();if(!root.open)root.showModal();show(slides.findIndex(slide=>slide.block==='E')-1,{immediate:true});}:null});
+  return;
+ }
  const ticket=epoch,slide=slides[target];loading=true;reader.setAttribute('aria-busy','true');notice='場面の絵を準備しています。';updateControls();
  let prepared;
  try{prepared=await prepareScene(slide);}catch{
@@ -225,7 +236,7 @@ $('scene-menu').addEventListener('click',event=>{if(event.target===$('scene-menu
 $('skip').addEventListener('click',()=>{const next=slides.findIndex((s,i)=>i>index&&s.block!==slides[index].block);$('scene-menu').close();show(mode==='journey'?range[1]+1:next<0?range[1]+1:next,{immediate:true});});
 $('restart').addEventListener('click',()=>{$('scene-menu').close();show(range[0],{immediate:true});});
 document.addEventListener('keydown',event=>{
- if(!active||$('scene-menu').open||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('input,select,textarea,[contenteditable]'))return;
+ if(!active||ending.active||$('scene-menu').open||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('input,select,textarea,[contenteditable]'))return;
  if(event.key==='ArrowRight'){event.preventDefault();show(index+1);}
  if(event.key==='ArrowLeft'){event.preventDefault();show(index-1);}
  if(event.key==='Escape'){stopAll();notice='停止しました。「再演」で再開できます。';updateControls();}
@@ -233,14 +244,14 @@ document.addEventListener('keydown',event=>{
 document.addEventListener('visibilitychange',()=>{if(active&&document.hidden){stopAll('hidden');notice='画面が非表示になったため停止しました。「再演」で再開できます。';updateControls();}});
 window.addEventListener('pagehide',()=>{if(active)stopAll('pagehide');});
 // 検査用の読取専用情報。ゲーム状態を操作する入口は設けない。
-const inspect=()=>({version:VERSION,index,id:slides[index].id,total:slides.length,sound:!chime.muted,paused,reduced,queued,loading,timers:timers.size,voices:chime.voices.size,spiritVoices:[...chime.voices].filter(v=>v.kind==='spirit').map(v=>({hz:v.hz,time:v.time,end:v.end})),bellTimes:[...chime.bellVoices].map(v=>v.time),bells:[...chime.bellVoices].map(v=>({hz:v.frequencyHz,time:v.time,end:v.endTime})),pendingBells:chime.pendingBells.length,tailRemaining:Math.max(0,tailUntil-performance.now()),audioState:chime.context?.state??'uncreated'});
+const inspect=()=>({version:VERSION,index,id:ending.active?ending.inspect().legacyId:slides[index].id,total:slides.length,sound:!chime.muted,paused:ending.active?ending.inspect().paused:paused,reduced,queued,loading,timers:timers.size,voices:chime.voices.size,spiritVoices:[...chime.voices].filter(v=>v.kind==='spirit').map(v=>({hz:v.hz,time:v.time,end:v.end})),bellTimes:[...chime.bellVoices].map(v=>v.time),bells:[...chime.bellVoices].map(v=>({hz:v.frequencyHz,time:v.time,end:v.endTime})),pendingBells:chime.pendingBells.length,tailRemaining:Math.max(0,tailUntil-performance.now()),audioState:chime.context?.state??'uncreated',ending:ending.inspect()});
 
  function continuationLabel(){return ({P:'光の道へ',M1:'4面へ',M2:'6面へ',B1:'7面へ',B2:'13面へ',B3:'19面へ',B4:'25面へ',B5:'31面へ',B6:'37面へ',E:'タイトルへ'})[slides[index].block];}
- function hide(){stopAll('story-close');if($('scene-menu').open)$('scene-menu').close();active=false;if(root.open)root.close();}
+ function hide(){ending.close();stopAll('story-close');if($('scene-menu').open)$('scene-menu').close();active=false;if(root.open)root.close();}
  function finish(){const done=onDone;hide();done();}
  function exit(){const checkpoint={block:mode==='journey'?slides[range[0]].block:null,id:slides[index].id};const callback=onExit;hide();callback(checkpoint);}
  $('exit').addEventListener('click',exit);root.addEventListener('cancel',event=>{if(event.target===root){event.preventDefault();stopAll();notice='停止しました。「再演」で再開できます。';updateControls();}});
- return {get active(){return active;},inspect:()=>({...inspect(),active,mode,block:slides[range[0]].block}),syncSettings:updateControls,close:hide,open({block=null,initialId=null,done=()=>{},exit:leave=()=>{}}={}){
+ return {get active(){return active;},inspect:()=>({...inspect(),active,mode,block:ending.active?'E':slides[range[0]].block}),syncSettings:updateControls,close:hide,open({block=null,initialId=null,done=()=>{},exit:leave=()=>{}}={}){
   stopAll('story-open');mode=block?'journey':'viewer';const indices=slides.map((s,i)=>!block||s.block===block?i:-1).filter(i=>i>=0);if(!indices.length)throw new Error('物語が見つかりません。');range=[indices[0],indices.at(-1)];index=indices.find(i=>slides[i].id===initialId)??range[0];onDone=done;onExit=leave;active=true;buildMenu();$('exit').textContent=block?'タイトルへ':'閉じる';$('skip').textContent=block?'物語を飛ばして進む':'この章を飛ばす';if(!root.open)root.showModal();void render();
  }};
 }

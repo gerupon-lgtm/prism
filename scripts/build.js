@@ -15,7 +15,7 @@ function copyTree(directory) {
   for(const entry of readdirSync(directory,{withFileTypes:true})){
     const source=posix.join(directory,entry.name);
     if(entry.isDirectory()&&source!=='src/pwa')copyTree(source);
-    else if(entry.isFile()&&/\.(js|css|ttf|txt|svg|png|webp)$/.test(entry.name)) {
+    else if(entry.isFile()&&/\.(js|css|ttf|txt|svg|png|webp|mp3)$/.test(entry.name)) {
       const target=posix.join(prefix,source);mkdirSync(join(output,posix.dirname(target)),{recursive:true});copyFileSync(source,join(output,target));assets.push(`./${target}`);
     }
   }
