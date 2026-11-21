@@ -1,0 +1,722 @@
+{
+  "version": "0.109.0",
+  "commit": "aeed0f0cb223585e1d3bd08f72bdd13022dffab4",
+  "date": "2026-11-21T08:28:49.326Z",
+  "physicalDevice": false,
+  "ci": {
+    "run": 44884706857,
+    "testFiles": 49,
+    "tests": 593,
+    "syntaxFiles": 131,
+    "assets": 109,
+    "passed": true
+  },
+  "cloudflare": {
+    "id": "22dc19f6-4468-4327-ad52-3fe43b13ecbb",
+    "autoTriggered": true,
+    "passed": true
+  },
+  "reproduced": {
+    "base": "https://prism.sikumilab.com/",
+    "physicalDevice": false,
+    "injection": "Suspend the real AudioContext when the silent preparation pauses the media element. Capture post-master audio samples.",
+    "expectBug": true,
+    "errors": [],
+    "first": {
+      "ending": {
+        "active": true,
+        "legacyId": "E2",
+        "version": "0.108.0",
+        "musicVersion": "0.1.17",
+        "mode": "song",
+        "scene": "S01",
+        "time": 0,
+        "duration": 186.696,
+        "paused": false,
+        "ready": true,
+        "starting": false,
+        "startWaitMs": 350,
+        "wakeLock": {
+          "supported": true,
+          "active": true,
+          "held": true,
+          "pending": false,
+          "error": null
+        },
+        "sound": true,
+        "reduced": false,
+        "volume": 1,
+        "effectiveVolume": 0.699999988079071,
+        "sourceConnected": true,
+        "outputMode": "shared-audio-context",
+        "latencyApplied": true,
+        "latencyHint": 0.03,
+        "audioState": "suspended",
+        "worlds": 2
+      },
+      "rms": 0,
+      "injected": true
+    },
+    "afterToggle": {
+      "ending": {
+        "active": true,
+        "legacyId": "E2",
+        "version": "0.108.0",
+        "musicVersion": "0.1.17",
+        "mode": "song",
+        "scene": "S01",
+        "time": 0.129333,
+        "duration": 186.696,
+        "paused": false,
+        "ready": true,
+        "starting": false,
+        "startWaitMs": 350,
+        "wakeLock": {
+          "supported": true,
+          "active": true,
+          "held": true,
+          "pending": false,
+          "error": null
+        },
+        "sound": true,
+        "reduced": false,
+        "volume": 1,
+        "effectiveVolume": 0.699999988079071,
+        "sourceConnected": true,
+        "outputMode": "shared-audio-context",
+        "latencyApplied": true,
+        "latencyHint": 0.03,
+        "audioState": "running",
+        "worlds": 1
+      },
+      "rms": 0.19409332259162382
+    },
+    "passed": true
+  },
+  "redBeforeFix": {
+    "expectedFailure": true,
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'suspended'\n- 'running'\n\n    at C:\\Users\\user\\Documents\\project\\ダイクストラ法検証\\設計検証\\check_ending_audio_resume.cjs:17:59"
+  },
+  "localChecks": {
+    "fixed-suspend": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "suspend",
+      "cancel": null,
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.269333,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14764739186592002,
+        "injected": true
+      },
+      "withoutToggle": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.328,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 1
+        },
+        "rms": 0.1334235413347969
+      },
+      "passed": true
+    },
+    "fixed-gain": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "gain",
+      "cancel": null,
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.269333,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14764739186592002,
+        "injected": true
+      },
+      "withoutToggle": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.298667,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14140350217184738
+      },
+      "passed": true
+    },
+    "fixed-media": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "media",
+      "cancel": null,
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.272,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14671625339059313,
+        "injected": true
+      },
+      "withoutToggle": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.301333,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14356212358944392
+      },
+      "passed": true
+    },
+    "mute-during-resume": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "suspend",
+      "cancel": "mute",
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.222032,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": false,
+          "reduced": false,
+          "mediaMuted": true,
+          "masterGain": 0,
+          "volume": 1,
+          "effectiveVolume": 0,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 1
+        },
+        "rms": 0,
+        "injected": true
+      },
+      "explicitMutePreserved": true,
+      "passed": true
+    },
+    "close-during-resume": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "suspend",
+      "cancel": "close",
+      "expectBug": false,
+      "errors": [],
+      "cancelledWithoutLatePlay": true,
+      "passed": true
+    },
+    "normal-start": {
+      "base": "http://127.0.0.1:4185/",
+      "physicalDevice": false,
+      "errors": [],
+      "checks": [
+        {
+          "initialPlays": [
+            {
+              "wall": 4559.800000071526,
+              "position": 0,
+              "volume": 0,
+              "state": "running"
+            },
+            {
+              "wall": 4926.600000023842,
+              "position": 0,
+              "volume": 1,
+              "state": "running"
+            }
+          ],
+          "openingAtZero": true,
+          "noOpeningFade": true,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          }
+        },
+        {
+          "pauseReleases": true,
+          "menuReleases": true,
+          "hiddenCancelsPreroll": true,
+          "exitCancelsPreroll": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "publicAudio": {
+    "main": {
+      "base": "https://prism.sikumilab.com/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "suspend",
+      "cancel": null,
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.312,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.1433132339935335,
+        "injected": true
+      },
+      "withoutToggle": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.341333,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 1
+        },
+        "rms": 0.13851577747707797
+      },
+      "passed": true
+    },
+    "github": {
+      "base": "https://gerupon-lgtm.github.io/prism/",
+      "physicalDevice": false,
+      "injection": "Interrupt the audio output during silent media preparation, and capture real post-master samples.",
+      "fault": "suspend",
+      "cancel": null,
+      "expectBug": false,
+      "errors": [],
+      "first": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.288,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.14923856066487381,
+        "injected": true
+      },
+      "withoutToggle": {
+        "ending": {
+          "active": true,
+          "legacyId": "E2",
+          "version": "0.109.0",
+          "musicVersion": "0.1.17",
+          "mode": "song",
+          "scene": "S01",
+          "time": 0.315122,
+          "duration": 186.696,
+          "paused": false,
+          "ready": true,
+          "starting": false,
+          "startWaitMs": 350,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          },
+          "sound": true,
+          "reduced": false,
+          "mediaMuted": false,
+          "masterGain": 0.699999988079071,
+          "volume": 1,
+          "effectiveVolume": 0.699999988079071,
+          "sourceConnected": true,
+          "outputMode": "shared-audio-context",
+          "latencyApplied": true,
+          "latencyHint": 0.03,
+          "audioState": "running",
+          "worlds": 2
+        },
+        "rms": 0.139204632062458
+      },
+      "passed": true
+    },
+    "normal": {
+      "base": "https://prism.sikumilab.com/",
+      "physicalDevice": false,
+      "errors": [],
+      "checks": [
+        {
+          "initialPlays": [
+            {
+              "wall": 8136.899999976158,
+              "position": 0,
+              "volume": 0,
+              "state": "running"
+            },
+            {
+              "wall": 8513,
+              "position": 0,
+              "volume": 1,
+              "state": "running"
+            }
+          ],
+          "openingAtZero": true,
+          "noOpeningFade": true,
+          "wakeLock": {
+            "supported": true,
+            "active": true,
+            "held": true,
+            "pending": false,
+            "error": null
+          }
+        },
+        {
+          "pauseReleases": true,
+          "menuReleases": true,
+          "hiddenCancelsPreroll": true,
+          "exitCancelsPreroll": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "publicGeneral": [
+    {
+      "url": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 122
+    },
+    {
+      "url": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 122
+    }
+  ],
+  "publicBuild": {
+    "passed": true,
+    "result": [
+      {
+        "base": "https://prism.sikumilab.com/",
+        "version": "0.109.0",
+        "commit": "aeed0f0cb223585e1d3bd08f72bdd13022dffab4",
+        "assets": 109,
+        "exactCommittedBytes": true
+      },
+      {
+        "base": "https://gerupon-lgtm.github.io/prism/",
+        "version": "0.109.0",
+        "commit": "aeed0f0cb223585e1d3bd08f72bdd13022dffab4",
+        "assets": 109,
+        "exactCommittedBytes": true
+      }
+    ]
+  },
+  "upgrade": {
+    "from": "0.108.0",
+    "to": "0.109.0",
+    "passed": true,
+    "checks": [
+      {
+        "label": "authentic released 0.108.0, real score and saved circuit, unsaved editing tab",
+        "scores": 1,
+        "slots": 1,
+        "oldWires": [
+          "E1",
+          "E2"
+        ]
+      },
+      {
+        "label": "real 0.108.0 to 0.109.0 update preserves storage and another editing tab",
+        "storageSha256": "1b8a3ffd43cbd648faff62b196b3132315b8809a526692b9511ad23e382606af"
+      },
+      {
+        "label": "cold offline restart, origin stopped, all story and ending scenes, font, MP3 range and direct URL playback",
+        "storySlides": 21,
+        "endingScenes": 17,
+        "range": {
+          "status": 206,
+          "range": "bytes 100-199/4480704",
+          "length": 100
+        }
+      }
+    ]
+  },
+  "preservedExistingDifferences": 95,
+  "unconfirmed": [
+    "Physical Android PWA audio and listening acceptance",
+    "Exact naturally occurring device-side cause; tests injected controlled audio interruptions."
+  ]
+}
