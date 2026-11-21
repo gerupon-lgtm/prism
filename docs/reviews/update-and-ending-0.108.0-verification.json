@@ -1,0 +1,281 @@
+{
+  "version": "0.108.0",
+  "commit": "afe6f7cb309eff298c199ac0547f95e9326dd403",
+  "date": "2026-11-21T08:06:53.869Z",
+  "physicalDevice": false,
+  "ci": {
+    "run": 44882721075,
+    "passed": true,
+    "testFiles": 49,
+    "tests": 593,
+    "syntaxFiles": 131,
+    "assets": 109
+  },
+  "cloudflare": {
+    "deployment": "24c97864-2402-45f5-a15c-6fa8bc6f2383",
+    "autoTriggered": true,
+    "passed": true
+  },
+  "transfers": [
+    {
+      "from": "0.106.0",
+      "to": "0.108.0",
+      "files": 12,
+      "bytes": 8453704,
+      "large": [
+        "./v0.108.0/public/ending/assets/credits-background.webp",
+        "./v0.108.0/public/ending/assets/panorama.webp",
+        "./v0.108.0/public/ending/audio/PRISM_NOTES_ending_v0.1.17_A.mp3"
+      ]
+    },
+    {
+      "from": "0.107.0",
+      "to": "0.108.0",
+      "files": 6,
+      "bytes": 62988,
+      "large": []
+    }
+  ],
+  "startupAndWakeLock": {
+    "base": "https://prism.sikumilab.com/",
+    "physicalDevice": false,
+    "errors": [],
+    "checks": [
+      {
+        "initialPlays": [
+          {
+            "wall": 3382.899999976158,
+            "position": 0,
+            "volume": 0,
+            "state": "running"
+          },
+          {
+            "wall": 3746.6999999284744,
+            "position": 0,
+            "volume": 1,
+            "state": "running"
+          }
+        ],
+        "openingAtZero": true,
+        "noOpeningFade": true,
+        "wakeLock": {
+          "supported": true,
+          "active": true,
+          "held": true,
+          "pending": false,
+          "error": null
+        }
+      },
+      {
+        "pauseReleases": true,
+        "menuReleases": true,
+        "hiddenCancelsPreroll": true,
+        "exitCancelsPreroll": true
+      }
+    ],
+    "passed": true
+  },
+  "ending": {
+    "engine": "chrome",
+    "base": "https://prism.sikumilab.com/",
+    "physicalDevice": false,
+    "errors": [],
+    "checks": [
+      {
+        "shortcutIsViewer": true,
+        "cleared": 0,
+        "sharedLatencyHint": 0.07,
+        "latencyApplied": true,
+        "sharedOutputVolume": 0.7,
+        "outputMode": "shared-audio-context",
+        "uncompressedMasterConnection": true,
+        "noAddedEffectVoices": true
+      },
+      {
+        "realTimeFullSong": true,
+        "all13Scenes": true,
+        "naturalEnd": true,
+        "seen": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S10",
+          "S11",
+          "S12",
+          "S13"
+        ]
+      },
+      {
+        "viewport": [
+          1280,
+          800
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          1024,
+          768
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          844,
+          410
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          740,
+          280
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          640,
+          240
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          410,
+          844
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          360,
+          640
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "viewport": [
+          320,
+          568
+        ],
+        "scenes": 16,
+        "allCaptionsFit": true,
+        "rootTeaser": true,
+        "fixedMonochord": true
+      },
+      {
+        "pauseOnHiddenFixture": true,
+        "menuPauses": true,
+        "finalBellWords": true,
+        "naturalEndFromTail": true,
+        "postSongE5E6Credits": true,
+        "shortcutDoesNotWriteResults": true,
+        "disposedOnClose": true
+      },
+      {
+        "galleryUsesSameEnding": true
+      }
+    ],
+    "browser": "157.0.8103.79",
+    "passed": true
+  },
+  "publicGame": [
+    {
+      "base": "https://prism.sikumilab.com/",
+      "passed": true,
+      "checks": 122
+    },
+    {
+      "base": "https://gerupon-lgtm.github.io/prism/",
+      "passed": true,
+      "checks": 122
+    }
+  ],
+  "publicBuild": {
+    "passed": true,
+    "results": [
+      {
+        "base": "https://prism.sikumilab.com/",
+        "version": "0.108.0",
+        "commit": "afe6f7cb309eff298c199ac0547f95e9326dd403",
+        "assets": 109,
+        "exactCommittedBytes": true
+      },
+      {
+        "base": "https://gerupon-lgtm.github.io/prism/",
+        "version": "0.108.0",
+        "commit": "afe6f7cb309eff298c199ac0547f95e9326dd403",
+        "assets": 109,
+        "exactCommittedBytes": true
+      }
+    ]
+  },
+  "upgradeFrom107": {
+    "passed": true,
+    "attempts": [
+      {
+        "attempt": 1,
+        "applied": true
+      }
+    ],
+    "checks": [
+      {
+        "label": "authentic released 0.107.0, real score and saved circuit, unsaved editing tab",
+        "scores": 1,
+        "slots": 1,
+        "oldWires": [
+          "E1",
+          "E2"
+        ]
+      },
+      {
+        "label": "real 0.107.0 to 0.108.0 update preserves storage and another editing tab",
+        "storageSha256": "1b8a3ffd43cbd648faff62b196b3132315b8809a526692b9511ad23e382606af"
+      },
+      {
+        "label": "cold offline restart, origin stopped, all story and ending scenes, font, MP3 range and direct URL playback",
+        "storySlides": 21,
+        "endingScenes": 17,
+        "range": {
+          "status": 206,
+          "range": "bytes 100-199/4480704",
+          "length": 100
+        }
+      }
+    ]
+  },
+  "preservedExistingDiffs": 95,
+  "unconfirmed": [
+    "Android physical screen timeout prevention",
+    "Physical-device listening of the opening bell",
+    "The exact cause of the reported device update failure; user subsequently confirmed the 0.107.0 update succeeded."
+  ]
+}
